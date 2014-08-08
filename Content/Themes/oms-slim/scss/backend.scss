@@ -1,0 +1,294 @@
+@import "clean", "mixins", "backend-vars", "default";
+
+#dim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    z-index: 5;
+}
+
+input[type=text], select {
+    outline-color: $d-button-color-hover;
+}
+
+button, input[type=submit], input[type=button] {
+    background: $d-button-color;
+    color: $d-box-text-contrast-color;
+    text-indent: 0;
+    padding: 5px 10px 5px 10px;
+    border-width: 0;
+    cursor: pointer;
+
+    &:hover {
+        background: $d-button-color-hover;
+    }
+}
+
+#s-bar {
+    input[type=submit] {
+        padding: 5px;
+    }
+
+    input[type=text] {
+        padding: 3px 2px 3px 2px;
+    }
+}
+
+#nav-toggle {
+    font-size: 1.7em;
+    width: 1%;
+
+    i {
+        padding: 3px 7px 3px 7px;
+
+        &:hover {
+            cursor: pointer;
+            background: $d-button-color-hover;
+        }
+    }
+}
+
+#m-nav {
+    width: auto;
+    background: #fff;
+    margin: 5px 5px 0 5px;
+    font-size: 0.85em;
+    padding: 5px 0 5px 0;
+
+    a {
+        padding: 0 5px 0 5px;
+    }
+
+    li {
+        display: inline;
+    }
+}
+
+.c-bar {
+    margin-top: 5px;
+    background: #fff;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+}
+
+.b, .t {
+    background: $d-box-color;
+    float: left;
+    margin: 5px 5px 0 5px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+
+    > h1, th > h1, > h2 {
+        color: $d-box-text-contrast-color;
+        font-size: 15px;
+        font-weight: bold;
+        background: $d-base-color;
+        padding: 3px 5px 3px 5px;
+
+        i {
+            float: right;
+            margin: 3px 0 3px 5px;
+        }
+    }
+
+    > h2 {
+        background: #b3b3b3;
+    }
+}
+
+.b {
+    display: inline-block;
+
+    a {
+        color: $d-link-color;
+        text-decoration: underline;
+
+        &:hover {
+            color: $d-link-color-hover;
+            text-decoration: none;
+        }
+    }
+}
+
+.b-5, .t-1 {
+    margin-right: 7px;
+}
+
+.pop {
+    border: 1px solid #dadee2;
+}
+
+.b-5 {
+    //noinspection CssOverwrittenProperties
+    width: 100%;
+    //noinspection CssOverwrittenProperties
+    width: calc(100% - 10px);
+}
+
+.b-6 {
+    margin-right: 275px;
+}
+
+.b-7 {
+    width: 270px;
+    float: right;
+}
+
+.bc-1 {
+    padding: 5px;
+
+    label {
+        &:after {
+            content: ':'
+        }
+    }
+
+    input[type=text], input[type=password], input[type=email], select {
+        padding: 2px 5px 2px 5px;
+        width: 250px;
+    }
+
+    textarea {
+        width: 250px;
+        min-height: 70px;
+    }
+
+    h1 {
+        display: inline-block;
+    }
+}
+
+.img-1 {
+    margin: 3px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.l-1 {
+    label {
+        font-weight: bold;
+    }
+
+    li {
+        &:nth-child(2n+3) {
+            margin-top: 15px;
+        }
+
+        &:nth-child(2n+2) {
+            margin-top: 5px;
+        }
+    }
+
+    input + select {
+        width: auto;
+        margin-left: 5px;
+    }
+}
+
+.l-2 {
+    li:nth-child(2n+1) {
+        display: inline;
+    }
+}
+
+#t-f {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 10;
+}
+
+.t-1 {
+    thead th, thead td, tbody td {
+        padding: 4px;
+        white-space: nowrap;
+    }
+
+    thead {
+        tr:first-child {
+            background: $d-base-color;
+        }
+
+        h1 {
+            display: inline;
+            font-size: 1em;
+        }
+
+        th i {
+            color: $d-box-text-contrast-color;
+        }
+
+        td {
+            cursor: pointer;
+            font-weight: bold;
+            border-bottom: 1px solid $d-border-cont;
+            white-space: nowrap;
+
+            i {
+                color: inherit;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    tbody {
+        a {
+            display: block;
+            padding: 4px;
+        }
+
+        td {
+            cursor: pointer;
+            padding: 0;
+        }
+
+        tr {
+            &:nth-child(2n) {
+                background: #fafafa;
+            }
+
+            &:hover {
+                background: #f0f0f0;
+            }
+
+            &:not(:last-child) td {
+                border-bottom: 1px solid $d-border-cont;
+            }
+        }
+    }
+
+    tfoot {
+        td {
+            padding: 10px;
+            background: $d-cont-color;
+        }
+
+        li {
+            display: inline;
+        }
+
+        a {
+            cursor: pointer;
+            background: $d-box-color;
+            padding: 5px 10px 5px 10px;
+
+            &:hover {
+                color: $d-nav-color;
+                background: $d-base-color-o;
+            }
+        }
+
+        .a {
+            color: $d-nav-color;
+            background: $d-nav-hover-color;
+        }
+    }
+}
+
+@import "backend-media";

@@ -1,0 +1,28 @@
+{
+    "name": {
+        "internal": 1000500000,
+        "external": "OMS Navigation"
+    },
+    "version": "1.0.0",
+    "creator": "Orange Management",
+    "theme": {
+        "name": "oms-slim",
+        "path": "/oms-slim"
+    },
+    "description": "The navigation module.",
+    "class": "Navigation",
+    "dependencies": [],
+    "providing": [],
+    "load": [
+        {
+            "pid" : ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type" : 4,
+            "for": 0,
+            "file": "Navigation",
+            "from": "1000500000"
+        }
+    ],
+    "lang": false,
+    "js": true,
+    "css": false
+}

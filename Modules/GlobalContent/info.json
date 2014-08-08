@@ -1,0 +1,28 @@
+{
+    "name": {
+        "internal": 1004300000,
+        "external": "OMS Global"
+    },
+    "version": "1.0.0",
+    "creator": "Orange Management",
+    "theme": {
+        "name": "oms-slim",
+        "path": "/oms-slim"
+    },
+    "description": "The global module.",
+    "class":  "GlobalContent",
+    "dependencies": [],
+    "providing": [],
+    "load": [
+        {
+            "pid" : ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type" : 4,
+            "for": 0,
+            "from": "1004300000",
+            "file": "GlobalContent"
+        }
+    ],
+    "lang": true,
+    "js": true,
+    "css": true
+}

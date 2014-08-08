@@ -1,0 +1,28 @@
+{
+    "name": {
+        "internal": 1004400000,
+        "external": "OMS API"
+    },
+    "version": "1.0.0",
+    "creator": "Orange Management",
+    "theme": {
+        "name": "oms-slim",
+        "path": "/oms-slim"
+    },
+    "description": "The API module.",
+    "class":  "API",
+    "dependencies": [],
+    "providing": [],
+    "load": [
+        {
+            "pid" : ["a033a528b603fed46f861d4b3542c417b99d41c8"],
+            "type" : 4,
+            "for": 0,
+            "from": "1004400000",
+            "file": "API"
+        }
+    ],
+    "lang": false,
+    "js": false,
+    "css": false
+}
