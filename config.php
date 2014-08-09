@@ -13,7 +13,6 @@
  * @since      1.0.0
  */
 
-//<editor-fold desc="Database connection config">
 $DBDATA = [
     "db"       => "mysql", /* db type */
     "host"     => "127.0.0.1", /* db host address */
@@ -22,12 +21,9 @@ $DBDATA = [
     "database" => "orange_management", /* db name */
     "prefix"   => "oms_" /* db table prefix */
 ];
-//</editor-fold>
 
-//<editor-fold desc="Page data">
 $PAGE = [
     '127.0.0.1', /* remote address */
     '127.0.0.1', /* local address */
     __DIR__ /* root of the web application */
 ];
-//</editor-fold>
