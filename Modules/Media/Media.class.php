@@ -67,7 +67,7 @@ namespace Modules\Media {
          * Install module
          *
          * @param \Framework\Core\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                             $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -105,26 +105,32 @@ namespace Modules\Media {
          */
         public function show_content() {
             switch ($this->request->uri['l3']) {
-                case 'user':
+                case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/profile-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/media-single.tpl.php';
                     break;
                 case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = \Framework\Core\Users::getInstance();
-
                     if (!isset($this->request->uri['page'])) {
                         $this->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/accounts-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/media-list.tpl.php';
                     break;
                 default:
                     return false;
             }
 
             return true;
+        }
+
+        public function show_content_push() {
+            switch ($this->request->uri['l2']) {
+                case 'admin':
+                    break;
+                case 'profile':
+                    break;
+            }
         }
     }
 }
