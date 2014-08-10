@@ -1,5 +1,18 @@
 <?php
 namespace Framework\Core {
+    abstract class LoginReturnType extends \Framework\Base\Enum {
+        const OK = 0;
+        const FAILURE = 1;
+        const WRONG_PASSWORD = 2;
+        const WRONG_USERNAME = 3;
+        const WRONG_PERMISSION = 4;
+        const NOT_ACTIVATED = 5;
+        const WRONG_INPUT_EXCEEDED = 6;
+        const TIMEOUTED = 7;
+        const BANNED = 8;
+        const INACTIVE = 9;
+    }
+
     class Auth implements \Framework\Base\Singleton {
         /**
          * Database
