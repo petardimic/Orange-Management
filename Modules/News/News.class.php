@@ -1,7 +1,5 @@
 <?php
 namespace Modules\News {
-    require_once __DIR__ . '/../ModuleAbstract.class.php';;
-
     /**
      * News class
      *

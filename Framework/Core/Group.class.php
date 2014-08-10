@@ -15,7 +15,7 @@ namespace Framework\Core {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\Core\Database\ObjectInterface, \Framework\Base\Multition {
+    class Group implements \Framework\Core\Database\ObjectInterface, \Framework\Base\Multition, \Serializable {
         /**
          * Database
          *
@@ -119,5 +119,8 @@ namespace Framework\Core {
 
         public function create() {}
         public function delete() {}
+
+        public function serialize() {}
+        public function unserialize($serialized) {}
     }
 }
