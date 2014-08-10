@@ -71,6 +71,8 @@ namespace Framework\Core {
         /**
          * Initialize user ID
          *
+         * @param string $page Page address
+         *
          * @return int Account ID
          *
          * @since  1.0.0
@@ -85,10 +87,29 @@ namespace Framework\Core {
             return $SID;
         }
 
-        public function login() {
+        /**
+         * Login user
+         *
+         * @param string $username Username
+         * @param string $password Password
+         *
+         * @return int Login code
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function login($username, $password) {
         }
 
-        public function logout() {
+        /**
+         * Logout the given user
+         *
+         * @param int $uid User ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function logout($uid) {
         }
     }
 }
