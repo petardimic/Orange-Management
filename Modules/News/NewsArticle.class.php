@@ -6,7 +6,7 @@ namespace Modules\News {
         const HEADLINE = 2;
     }
 
-    class NewsArticle implements \Serializable {
+    class NewsArticle implements \Framework\Core\Database\ObjectInterface {
         public $id = null;
         public $author = null;
         public $created = null;
@@ -22,5 +22,8 @@ namespace Modules\News {
 
         public function serialize() {}
         public function unserialize($serialized) {}
+
+        public function create() {}
+        public function delete() {}
     }
 }

@@ -15,7 +15,7 @@ namespace Framework\Core {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\Core\Database\ObjectInterface, \Framework\Base\Multition, \Serializable {
+    class Group implements \Framework\Core\Database\ObjectInterface, \Framework\Base\Multition {
         /**
          * Database
          *
