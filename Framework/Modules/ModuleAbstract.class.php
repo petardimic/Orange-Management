@@ -160,7 +160,7 @@ namespace Framework\Modules {
          */
         public static function install(&$db, $module) {
             if (file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
-                $info = json_decode(file_get_contents(__DIR__ . '/../Modules/' . $module . '/' . 'info.json'), true);
+                $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
 
                 switch ($db->type) {
                     case \Framework\Core\Database\DatabaseType::MYSQL:
@@ -208,11 +208,11 @@ namespace Framework\Modules {
          */
         public static function install_providing(&$db, $path, $id) {
             $install = json_decode(file_get_contents($path), true);
-            $json    = json_decode(file_get_contents(__DIR__ . '/' . $id . '/info.json'), true);
+            $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
             /** @noinspection PhpIncludeInspection */
-            require_once __DIR__ . '/' . $json['class'] . '/' . $json['class'] . '.class.php';
-            $class = '\\Modules\\' . $json['class'] . '\\' . $json['class'];
+            require_once __DIR__ . '/../../Modules/' . $id . '/' . $json['class'] . '.class.php';
+            $class = '\\Modules\\' . $id . '\\' . $json['class'];
 
             /**
              * @var \Framework\Modules\ModuleAbstract $class

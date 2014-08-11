@@ -103,11 +103,17 @@ namespace Framework\Core\Database {
                 $this->con = new \PDO($this->dbdata['db'] . ':host=' . $this->dbdata['host'] . ';dbname=' . $this->dbdata['database'] . ';charset=utf8', $this->dbdata['login'], $this->dbdata['password']);
                 $this->con->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
                 $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-                $result = $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
+
                 $this->status = \Framework\Core\Database\DatabaseStatus::OK;
             } catch (\PDOException $e) {
-                $this->status = \Framework\Core\Database\DatabaseStatus::FAILURE;
+                $this->status = \Framework\Core\Database\DatabaseStatus::MISSING_DATABASE;
                 $this->con = null;
+            }
+
+            try {
+                $result = $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
+            } catch (\PDOException $e) {
+                $this->status = \Framework\Core\Database\DatabaseStatus::MISSING_TABLE;
             }
         }
 

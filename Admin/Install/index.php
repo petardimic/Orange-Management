@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config.php';
-require_once __DIR__ . '/../../Framework/Core/Database/Database.class.php';
-require_once __DIR__ . '/../../Framework/Core/Install.class.php';
+require_once __DIR__ . '/../../Framework/Autoloader.class.php';
 
 $dbHOBJ = new \Framework\Core\Database\Database($DBDATA);
 $instHOBJ = new \Framework\Core\Install($dbHOBJ);

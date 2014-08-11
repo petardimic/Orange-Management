@@ -46,7 +46,7 @@ namespace Framework\Core {
          */
         public function install_core() {
             switch ($this->db->type) {
-                case 1:
+                case \Framework\Core\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     /* Create groups table */
@@ -263,7 +263,7 @@ namespace Framework\Core {
          */
         public function install_groups() {
             switch ($this->db->type) {
-                case 1:
+                case \Framework\Core\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
@@ -290,7 +290,7 @@ namespace Framework\Core {
             $date = new \DateTime("NOW");
 
             switch ($this->db->type) {
-                case 1:
+                case \Framework\Core\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
@@ -321,7 +321,7 @@ namespace Framework\Core {
          */
         public function install_settings() {
             switch ($this->db->type) {
-                case 1:
+                case \Framework\Core\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
