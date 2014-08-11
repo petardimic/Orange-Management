@@ -112,7 +112,7 @@ namespace Framework\Core {
         private $db = null;
 
         /**
-         * Database
+         * Cache
          *
          * @var \Framework\Core\Cache
          * @since 1.0.0

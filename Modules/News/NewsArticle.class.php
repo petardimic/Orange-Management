@@ -1,8 +1,8 @@
 <?php
 namespace Modules\News {
     abstract class NewsType extends \Framework\Base\Enum {
-        const NEWS = 0;
-        const LINK = 1;
+        const NEWS     = 0;
+        const LINK     = 1;
         const HEADLINE = 2;
     }
 
@@ -21,7 +21,7 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class NewsArticle implements \Framework\Core\Database\ObjectInterface {
+    class NewsArticle implements \Framework\Base\Multition, \Framework\Core\Database\ObjectInterface {
         /**
          * Article ID
          *
@@ -110,10 +110,64 @@ namespace Modules\News {
          */
         public $content = null;
 
-        public function serialize() {}
-        public function unserialize($serialized) {}
+        /**
+         * Cache
+         *
+         * @var \Framework\Core\Cache
+         * @since 1.0.0
+         */
+        private $cache = null;
 
-        public function create() {}
-        public function delete() {}
+        /**
+         * Instances
+         *
+         * @var \Modules\News\NewsArticle[]
+         * @since 1.0.0
+         */
+        protected static $instances = [];
+
+        /**
+         * Constructor
+         *
+         * @param int $id Article ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct($id) {
+            $this->id    = $id;
+            $this->db    = \Framework\Core\Database\Database::getInstance();
+            $this->cache = \Framework\Core\Cache::getInstance();
+        }
+
+        /**
+         * Returns instance
+         *
+         * @param int $id Article ID
+         *
+         * @return \Modules\News\NewsArticle
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function getInstance($id) {
+            if (!isset(self::$instances[$id])) {
+                self::$instances[$id] = new self($id);
+            }
+
+            return self::$instances[$id];
+        }
+
+        public function serialize() {
+        }
+
+        public function unserialize($serialized) {
+        }
+
+        public function create() {
+        }
+
+        public function delete() {
+        }
     }
 }
