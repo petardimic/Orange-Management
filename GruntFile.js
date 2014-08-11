@@ -28,8 +28,8 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'Internal/js/oms.min.js': [
-                        'core/Core.js',
-                        'Internal/js/ui/*.js'
+                        'Framework/Utils/Core.js',
+                        'Framework/JS/ui/*.js'
                     ],
                     'Internal/js/backend.min.js': [],
                     'Internal/js/website.min.js': [],
@@ -61,13 +61,13 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['Internal/js/*.js'],
+                        src: ['Framework/Internal/JS/*.js'],
                         dest: '',
                         ext: '.min.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['External/jquery/*.js'],
+                        src: ['Framework/External/jquery/*.js'],
                         dest: '',
                         ext: '.min.js.gz'
                     },
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: ['External/fonts/fonts-awesome/css/*.css'],
+                        src: ['Framework/External/fonts/fonts-awesome/css/*.css'],
                         dest: '',
                         ext: '.min.css.gz'
                     }
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['Internal/js/ui/*.js', 'core/*.js'],
+                files: ['Framework/Internal/JS/ui/*.js', 'Framework/Utils/*.js'],
                 tasks: ['uglify:dist', 'compress:dist']
             },
             sass: {
