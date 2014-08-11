@@ -93,18 +93,22 @@ namespace Framework\Core {
             $this->request = \Framework\Core\Request\Request::getInstance();
 
             if (!$this->request->request_type !== \Framework\Core\Request\RequestPage::STATICP) {
-                $this->db         = \Framework\Core\Database\Database::getInstance($dbdata);
-                $this->cache      = Cache::getInstance();
-                $this->settings   = Settings::getInstance();
-                $this->modules    = \Framework\Modules\Modules::getInstance();
-                $this->auth       = \Framework\Core\Auth::getInstance();
-                $this->user       = $this->auth->authenticate($page[1]);
+                $this->db = \Framework\Core\Database\Database::getInstance($dbdata);
 
-                Model::set_content('page:addr:url', 'http://' . $page[0]);
-                Model::set_content('page:addr:local', $page[0]);
-                Model::set_content('page:addr:remote', $page[1]);
+                /* TODO: NEEDS better error handling here and further down... maybe create header error handler */
+                if ($this->db->status === \Framework\Core\Database\DatabaseStatus::OK) {
+                    $this->cache    = Cache::getInstance();
+                    $this->settings = Settings::getInstance();
+                    $this->modules  = \Framework\Modules\Modules::getInstance();
+                    $this->auth     = \Framework\Core\Auth::getInstance();
+                    $this->user     = $this->auth->authenticate($page[1]);
 
-                $this->modules->modules_load();
+                    Model::set_content('page:addr:url', 'http://' . $page[0]);
+                    Model::set_content('page:addr:local', $page[0]);
+                    Model::set_content('page:addr:remote', $page[1]);
+
+                    $this->modules->modules_load();
+                }
             }
         }
 
@@ -149,28 +153,37 @@ namespace Framework\Core {
                     break;
                 case \Framework\Core\Request\RequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');
-                    $this->settings->settings_load([
-                        1000000009,
-                        1000000011,
-                        1000000020,
-                        1000000021,
-                        1000000022
-                    ]);
 
-                    Model::set_content('core:oname', $this->settings->config[1000000009]);
-                    Model::set_content('theme:path', $this->settings->config[1000000011]);
-                    Model::set_content('core:layout', $this->request->request_type);
-                    Model::set_content('page:title', 'Orange Management');
+                    if ($this->db->status === \Framework\Core\Database\DatabaseStatus::OK) {
+                        $this->settings->settings_load([
+                            1000000009,
+                            1000000011,
+                            1000000020,
+                            1000000021,
+                            1000000022
+                        ]);
 
-                    Model::set_content('core:language', $this->settings->config[1000000020]);
-                    Model::set_content('core:timezone', $this->settings->config[1000000021]);
-                    Model::set_content('core:timeformat', $this->settings->config[1000000022]);
+                        Model::set_content('core:oname', $this->settings->config[1000000009]);
+                        Model::set_content('theme:path', $this->settings->config[1000000011]);
+                        Model::set_content('core:layout', $this->request->request_type);
+                        Model::set_content('page:title', 'Orange Management');
 
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '\..\..\Content\Themes' . $this->settings->config[1000000011] . '\backend.tpl.php';
+                        Model::set_content('core:language', $this->settings->config[1000000020]);
+                        Model::set_content('core:timezone', $this->settings->config[1000000021]);
+                        Model::set_content('core:timeformat', $this->settings->config[1000000022]);
+
+                        /** @noinspection PhpIncludeInspection */
+                        include __DIR__ . '\..\..\Content\Themes' . $this->settings->config[1000000011] . '\backend.tpl.php';
+                    } else {
+                        header('HTTP/1.0 503 Service Temporarily Unavailable');
+                        header('Status: 503 Service Temporarily Unavailable');
+                        header('Retry-After: 300');
+                        include __DIR__ . '\..\..\503.php';
+                    }
                     break;
                 case \Framework\Core\Request\RequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
+
                     $this->modules->running[1004400000]->show();
                     break;
                 case \Framework\Core\Request\RequestPage::SHOP:

@@ -1,5 +1,18 @@
 <?php
 namespace Framework\Core\Database {
+    abstract class DatabaseType extends \Framework\Base\Enum {
+        const MYSQL = 0;
+        const SQLITE = 1;
+    }
+
+    abstract class DatabaseStatus extends \Framework\Base\Enum {
+        const OK = 0;
+        const MISSING_DATABASE = 1;
+        const MISSING_TABLE = 2;
+        const FAILURE = 3;
+        const READONLY = 4;
+    }
+
     /**
      * Database handler
      *
@@ -53,6 +66,14 @@ namespace Framework\Core\Database {
         public $type = null;
 
         /**
+         * Database status
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        public $status = 0;
+
+        /**
          * Instance
          *
          * @var \Framework\Core\Database\Database
@@ -79,15 +100,14 @@ namespace Framework\Core\Database {
             }
 
             try {
-                $this->con = new \PDO($this->dbdata['db'] . ':host=' . $this->dbdata['host'] . ';dbname=' . $this->dbdata['database'].';charset=utf8', $this->dbdata['login'], $this->dbdata['password']);
+                $this->con = new \PDO($this->dbdata['db'] . ':host=' . $this->dbdata['host'] . ';dbname=' . $this->dbdata['database'] . ';charset=utf8', $this->dbdata['login'], $this->dbdata['password']);
                 $this->con->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
                 $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
-                return true;
+                $result = $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
+                $this->status = \Framework\Core\Database\DatabaseStatus::OK;
             } catch (\PDOException $e) {
+                $this->status = \Framework\Core\Database\DatabaseStatus::FAILURE;
                 $this->con = null;
-
-                return false;
             }
         }
 
@@ -134,7 +154,7 @@ namespace Framework\Core\Database {
          * Generates a filter for query
          *
          * @param array $filter Filter for the SQL query
-         * @param bool $pre WHERE clause required?
+         * @param bool  $pre    WHERE clause required?
          *
          * @return string Filter query
          *
