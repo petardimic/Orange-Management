@@ -19,7 +19,7 @@ namespace Framework\Modules {
         /**
          * Database object
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -87,7 +87,7 @@ namespace Framework\Modules {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         private function __construct() {
-            $this->db           = \Framework\Core\Database\Database::getInstance();
+            $this->db           = \Framework\Core\Database::getInstance();
             $this->cache        = \Framework\Core\Cache::getInstance();
             $this->localization = \Framework\Localization\Localization::getInstance(-1);
         }
@@ -124,7 +124,7 @@ namespace Framework\Modules {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function modules_load() {
-            $request      = \Framework\Core\Request\Request::getInstance();
+            $request      = \Framework\Core\Request::getInstance();
             $this->loaded = $this->cache->pull('modules:loaded' . $request->uri_hash[3]);
 
             if (!$this->loaded) {
@@ -246,7 +246,7 @@ namespace Framework\Modules {
             $result = null;
 
             switch ($this->db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter);
 
                     $sth = $this->db->con->prepare(

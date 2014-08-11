@@ -17,7 +17,7 @@ namespace Framework\Core {
         /**
          * Database
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -47,7 +47,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-            $this->db    = \Framework\Core\Database\Database::getInstance();
+            $this->db    = \Framework\Core\Database::getInstance();
             $this->cache = \Framework\Core\Cache::getInstance();
         }
 

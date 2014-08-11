@@ -19,7 +19,7 @@ namespace Framework\Modules {
         /**
          * Database
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         protected $db = null;
@@ -75,7 +75,7 @@ namespace Framework\Modules {
         /**
          * Request instance
          *
-         * @var \Framework\Core\Request\Request
+         * @var \Framework\Core\Request
          * @since 1.0.0
          */
         public $request = null;
@@ -100,13 +100,13 @@ namespace Framework\Modules {
             $this->theme_path = $theme_path;
 
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->db = \Framework\Core\Database\Database::getInstance();
+            $this->db = \Framework\Core\Database::getInstance();
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
             $this->user = \Framework\Core\User::getInstance(-1);
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
             $this->cache = \Framework\Core\Cache::getInstance();
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->request = \Framework\Core\Request\Request::getInstance();
+            $this->request = \Framework\Core\Request::getInstance();
 
             static::$dependencies;
             static::$receiving;
@@ -152,7 +152,7 @@ namespace Framework\Modules {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db     Database instance
+         * @param \Framework\Core\Database $db     Database instance
          * @param int                      $module Module ID
          *
          * @since  1.0.0
@@ -163,7 +163,7 @@ namespace Framework\Modules {
                 $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
 
                 switch ($db->type) {
-                    case \Framework\Core\Database\DatabaseType::MYSQL:
+                    case \Framework\Core\DatabaseType::MYSQL:
                         $db->con->beginTransaction();
 
                         $db->con->prepare(
@@ -199,7 +199,7 @@ namespace Framework\Modules {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $path Install file path
          * @param int                $id   ID of the receiving module
          *
@@ -223,7 +223,7 @@ namespace Framework\Modules {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0
@@ -244,7 +244,7 @@ namespace Framework\Modules {
         /**
          * Activate module
          *
-         * @param \Framework\Core\Database\Database $db Database instance
+         * @param \Framework\Core\Database $db Database instance
          * @param int                $id Module ID
          *
          * @since  1.0.0
@@ -252,7 +252,7 @@ namespace Framework\Modules {
          */
         public static function activate(&$db, $id) {
             switch ($db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 1 WHERE `id` = ' . $id . ';'
                     );
@@ -263,7 +263,7 @@ namespace Framework\Modules {
         /**
          * Deactivate module
          *
-         * @param \Framework\Core\Database\Database $db Database instance
+         * @param \Framework\Core\Database $db Database instance
          * @param int                $id Module ID
          *
          * @since  1.0.0
@@ -271,7 +271,7 @@ namespace Framework\Modules {
          */
         public static function deactivate(&$db, $id) {
             switch ($db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 0 WHERE `id` = ' . $id . ';'
                     );

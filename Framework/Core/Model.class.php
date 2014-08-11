@@ -76,7 +76,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function load_footer() {
-            $request = \Framework\Core\Request\Request::getInstance();
+            $request = \Framework\Core\Request::getInstance();
             $cache   = \Framework\Core\Cache::getInstance();
 
             echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/css/' . self::$content['core:layout'] . '.css">';
@@ -164,6 +164,7 @@ namespace Framework\Core {
         }
 
         /** [TABLE] ------------------------------------------------------ */
+        /* TODO: MAYBE create a table module??? - don't think so but should keep this in mind - Table.class.php could be another solution. (sounds good!!) */
 
         /**
          * Generates table header view
@@ -200,7 +201,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
-            $request = \Framework\Core\Request\Request::getInstance();
+            $request = \Framework\Core\Request::getInstance();
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
                 $url_t = ($url != null ? $request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
@@ -227,7 +228,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
-            $request = \Framework\Core\Request\Request::getInstance();
+            $request = \Framework\Core\Request::getInstance();
             $pages   = self::generate_pagination($request->uri['page'], $count);
 
             echo '<ul>';

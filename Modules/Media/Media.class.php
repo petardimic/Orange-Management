@@ -66,7 +66,7 @@ namespace Modules\Media {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array                             $info Module info
          *
          * @since  1.0.0
@@ -74,7 +74,7 @@ namespace Modules\Media {
          */
         public static function install(&$db, $info) {
             switch ($db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media` (
                             `id` int(11) NOT NULL,

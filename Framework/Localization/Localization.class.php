@@ -22,7 +22,7 @@ namespace Framework\Localization {
         /**
          * Database object
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -118,9 +118,9 @@ namespace Framework\Localization {
          */
         public function __construct($id) {
             $this->localization_id = $id;
-            $this->db              = \Framework\Core\Database\Database::getInstance();
+            $this->db              = \Framework\Core\Database::getInstance();
             $this->cache           = \Framework\Core\Cache::getInstance();
-            $this->language        = \Framework\Core\Request\Request::getInstance()->uri['l0'];
+            $this->language        = \Framework\Core\Request::getInstance()->uri['l0'];
         }
 
         /**
@@ -160,7 +160,7 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function language_load($language, $files) {
-            $request            = \Framework\Core\Request\Request::getInstance();
+            $request            = \Framework\Core\Request::getInstance();
             $cache              = \Framework\Core\Cache::getInstance();
             $modules            = \Framework\Modules\Modules::getInstance();
             self::$lang = $cache->pull('lang:' . $language . ':' . $request->uri_hash[3]);

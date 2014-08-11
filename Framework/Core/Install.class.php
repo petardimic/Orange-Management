@@ -1,7 +1,5 @@
 <?php
 namespace Framework\Core {
-    require_once __DIR__ . '/../Modules/ModuleAbstract.class.php';
-
     /**
      * Install class
      *
@@ -21,7 +19,7 @@ namespace Framework\Core {
         /**
          * Database object
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -29,7 +27,7 @@ namespace Framework\Core {
         /**
          * Constructor
          *
-         * @param \Framework\Core\Database\Database $db Database instance
+         * @param \Framework\Core\Database $db Database instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -46,7 +44,7 @@ namespace Framework\Core {
          */
         public function install_core() {
             switch ($this->db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     /* Create groups table */
@@ -263,7 +261,7 @@ namespace Framework\Core {
          */
         public function install_groups() {
             switch ($this->db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
@@ -290,7 +288,7 @@ namespace Framework\Core {
             $date = new \DateTime("NOW");
 
             switch ($this->db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
@@ -321,7 +319,7 @@ namespace Framework\Core {
          */
         public function install_settings() {
             switch ($this->db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(

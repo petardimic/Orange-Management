@@ -56,7 +56,7 @@ namespace OMS\Modules {
         /**
          * Constructor
          *
-         * @param \Framework\Core\Database\Database $db    Database instance
+         * @param \Framework\Core\Database $db    Database instance
          * @param \Framework\Core\Model    $model Model instance
          * @param \Framework\Core\User     $user  User instance
          * @param \Framework\Core\Cache    $cache Cache instance
@@ -71,7 +71,7 @@ namespace OMS\Modules {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Core\Database {
+namespace Framework\Core {
     abstract class DatabaseType extends \Framework\Base\Enum {
         const MYSQL = 0;
         const SQLITE = 1;
@@ -11,6 +11,17 @@ namespace Framework\Core\Database {
         const MISSING_TABLE = 2;
         const FAILURE = 3;
         const READONLY = 4;
+    }
+
+    interface ObjectInterface extends \Serializable {
+        public function delete();
+        public function create();
+    }
+
+    interface ObjectListInterface {
+        public function get_object();
+
+        public function instantiate();
     }
 
     /**
@@ -76,7 +87,7 @@ namespace Framework\Core\Database {
         /**
          * Instance
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         protected static $instance = null;
@@ -96,7 +107,7 @@ namespace Framework\Core\Database {
             $this->prefix = $dbdata['prefix'];
 
             if ($dbdata['db'] === 'mysql') {
-                $this->type = \Framework\Core\Database\DatabaseType::MYSQL;
+                $this->type = \Framework\Core\DatabaseType::MYSQL;
             }
 
             try {
@@ -104,16 +115,16 @@ namespace Framework\Core\Database {
                 $this->con->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
                 $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-                $this->status = \Framework\Core\Database\DatabaseStatus::OK;
+                $this->status = \Framework\Core\DatabaseStatus::OK;
             } catch (\PDOException $e) {
-                $this->status = \Framework\Core\Database\DatabaseStatus::MISSING_DATABASE;
+                $this->status = \Framework\Core\DatabaseStatus::MISSING_DATABASE;
                 $this->con = null;
             }
 
             try {
                 $result = $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
             } catch (\PDOException $e) {
-                $this->status = \Framework\Core\Database\DatabaseStatus::MISSING_TABLE;
+                $this->status = \Framework\Core\DatabaseStatus::MISSING_TABLE;
             }
         }
 
@@ -143,7 +154,7 @@ namespace Framework\Core\Database {
          *
          * @param array $dbdata the basic database information for establishing a connection
          *
-         * @return \Framework\Core\Database\Database
+         * @return \Framework\Core\Database
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

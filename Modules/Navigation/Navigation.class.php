@@ -100,7 +100,7 @@ namespace Modules\Navigation {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -110,7 +110,7 @@ namespace Modules\Navigation {
             /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
             switch ($db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'nav` (
                             `id` int(11) NOT NULL,
@@ -139,7 +139,7 @@ namespace Modules\Navigation {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0
@@ -154,7 +154,7 @@ namespace Modules\Navigation {
         /**
          * Install navigation element
          *
-         * @param \Framework\Core\Database\Database $db     Database instance
+         * @param \Framework\Core\Database $db     Database instance
          * @param array              $data   Link info
          * @param int                $parent Parent element (default is 0 for none)
          *

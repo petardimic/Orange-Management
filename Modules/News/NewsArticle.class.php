@@ -21,7 +21,7 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class NewsArticle implements \Framework\Base\Multition, \Framework\Core\Database\ObjectInterface {
+    class NewsArticle implements \Framework\Base\Multition, \Framework\Core\ObjectInterface {
         /**
          * Article ID
          *
@@ -136,7 +136,7 @@ namespace Modules\News {
          */
         public function __construct($id) {
             $this->id    = $id;
-            $this->db    = \Framework\Core\Database\Database::getInstance();
+            $this->db    = \Framework\Core\Database::getInstance();
             $this->cache = \Framework\Core\Cache::getInstance();
         }
 
@@ -156,6 +156,15 @@ namespace Modules\News {
             }
 
             return self::$instances[$id];
+        }
+
+        /**
+         * Protect instance from getting copied from outside
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        protected function __clone() {
         }
 
         public function serialize() {

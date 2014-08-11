@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../core/Account.class.php';
 
 class UserTest extends PHPUnit_Framework_TestCase {
     /**
-     * @var \Framework\Core\Database\Database
+     * @var \Framework\Core\Database
      */
     protected $db;
 
@@ -31,7 +31,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
          */
         require __DIR__ . '/../../oms-config.php';
 
-        $this->db    = new \Framework\Core\Database\Database($DBDATA);
+        $this->db    = new \Framework\Core\Database($DBDATA);
         $this->cache = new \Framework\Core\Cache($this->db);
         $this->user  = new \Framework\Core\User($this->db, $this->cache);
     }

@@ -22,7 +22,7 @@ namespace Framework\Core {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class User implements \Framework\Core\Database\ObjectInterface, \Framework\Base\Multition {
+    class User implements \Framework\Core\ObjectInterface, \Framework\Base\Multition {
         /**
          * User ID
          *
@@ -106,7 +106,7 @@ namespace Framework\Core {
         /**
          * Database
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -145,7 +145,7 @@ namespace Framework\Core {
          */
         public function __construct($id) {
             $this->id    = $id;
-            $this->db    = \Framework\Core\Database\Database::getInstance();
+            $this->db    = \Framework\Core\Database::getInstance();
             $this->cache = Cache::getInstance();
 
             $user = $this->cache->pull('usr:' . $this->id);

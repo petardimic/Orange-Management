@@ -35,7 +35,7 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param \Framework\Core\Database\Database $db    Database instance
+         * @param \Framework\Core\Database $db    Database instance
          * @param \Framework\Core\Model    $model Model instance
          * @param \Framework\Core\User     $user  User instance
          * @param \Framework\Core\Cache    $cache Cache instance
@@ -50,7 +50,7 @@ namespace Modules\News {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -58,7 +58,7 @@ namespace Modules\News {
          */
         public static function install(&$db, $info) {
             switch ($db->type) {
-                case \Framework\Core\Database\DatabaseType::MYSQL:
+                case \Framework\Core\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,7 +86,7 @@ namespace Modules\News {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0

@@ -19,7 +19,7 @@ namespace Framework\Modules {
         /**
          * Database
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -67,7 +67,7 @@ namespace Framework\Modules {
          */
         public function __construct($id) {
             $this->id    = $id;
-            $this->db    = \Framework\Core\Database\Database::getInstance();
+            $this->db    = \Framework\Core\Database::getInstance();
             $this->cache = \Framework\Core\Cache::getInstance();
         }
 

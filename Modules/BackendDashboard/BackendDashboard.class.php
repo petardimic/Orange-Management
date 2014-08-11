@@ -57,7 +57,7 @@ namespace Modules\BackendDashboard {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -70,7 +70,7 @@ namespace Modules\BackendDashboard {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0

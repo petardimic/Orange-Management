@@ -1,5 +1,20 @@
 <?php
-namespace Framework\Core\Request {
+namespace Framework\Core {
+    abstract class RequestType extends \Framework\Base\Enum {
+        const GET = 'GET';
+        const POST = 'POST';
+        const PUT = 'PUT';
+        const DELETE = 'DELETE';
+    }
+
+    abstract class RequestPage extends \Framework\Base\Enum {
+        const WEBSITE = 'website';
+        const API = 'api';
+        const SHOP = 'shop';
+        const BACKEND = 'backend';
+        const STATICP = 'static';
+    }
+
     /**
      * Request class
      *
@@ -71,7 +86,7 @@ namespace Framework\Core\Request {
         /**
          * Instance
          *
-         * @var \Framework\Core\Request\Request
+         * @var \Framework\Core\Request
          * @since 1.0.0
          */
         protected static $instance = null;
@@ -118,7 +133,7 @@ namespace Framework\Core\Request {
          *
          * @param array $f_url Forced URL
          *
-         * @return \Framework\Core\Request\Request
+         * @return \Framework\Core\Request
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

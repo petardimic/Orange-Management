@@ -23,19 +23,9 @@ namespace Framework\Core {
      */
     class Cache implements \Framework\Base\Singleton {
         /**
-         * The activity status
-         *
-         * Potential values are true and false.
-         *
-         * @var boolean
-         * @since 1.0.0
-         */
-        public $active = false;
-
-        /**
          * Caching type
          *
-         * @var CacheType
+         * @var \Framework\Core\Cache\CacheType
          * @since 1.0.0
          */
         public $type = null;
@@ -43,7 +33,7 @@ namespace Framework\Core {
         /**
          * Database
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -71,18 +61,15 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-            $this->db = \Framework\Core\Database\Database::getInstance();
+            $this->db = \Framework\Core\Database::getInstance();
 
-            if (isset($this->db->con)) {
-                $cache_data = null;
+            $cache_data = null;
 
-                $sth = $this->db->con->prepare('SELECT `content` FROM `' . $this->db->prefix . 'settings` WHERE `id` = 1000000015');
-                $sth->execute();
-                $cache_data = $sth->fetchAll();
+            $sth = $this->db->con->prepare('SELECT `content` FROM `' . $this->db->prefix . 'settings` WHERE `id` = 1000000015');
+            $sth->execute();
+            $cache_data = $sth->fetchAll();
 
-                $this->type   = (int)$cache_data[0][0];
-                $this->active = ($this->type !== CacheType::INACTIVE ? true : false);
-            }
+            $this->type = (int)$cache_data[0][0];
         }
 
         /**
@@ -123,14 +110,14 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function push($key, $var, $asarray = true) {
-            if ($this->active) {
+            if ($this->type !== \Framework\Core\CacheType::INACTIVE) {
                 if (!$asarray) {
                     foreach ($var as $v_key => $val) {
                         $this->push($key . ':' . $v_key, $val);
                     }
                 }
 
-                if (!isset($this->memc)) {
+                if ($this->type === \Framework\Core\CacheType::MEMCACHE) {
                     $json = json_encode($var);
 
                     try {
@@ -161,7 +148,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function pull($key) {
-            if ($this->active && !isset($this->memc)) {
+            if ($this->type === \Framework\Core\CacheType::FILE) {
                 try {
                     $json = file_get_contents(__DIR__ . '/../../Cache/' . $key . '.json');
 
@@ -169,7 +156,7 @@ namespace Framework\Core {
                 } catch (\Exception $e) {
                     return false;
                 }
-            } elseif ($this->active && isset($this->memc)) {
+            } elseif ($this->type === \Framework\Core\CacheType::MEMCACHE) {
                 return $this->memc->get($key);
             }
 

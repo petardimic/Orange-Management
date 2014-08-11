@@ -79,7 +79,7 @@ namespace Modules\Admin {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database\Database $db   Database instance
+         * @param \Framework\Core\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -358,15 +358,15 @@ namespace Modules\Admin {
          */
         public function api_account() {
             switch ($this->request->type) {
-                case \Framework\Core\Request\RequestType::PUT:
+                case \Framework\Core\RequestType::PUT:
                     $this->api_account_put();
                     break;
-                case \Framework\Core\Request\RequestType::DELETE:
+                case \Framework\Core\RequestType::DELETE:
                     $this->api_account_delete();
                     break;
-                case \Framework\Core\Request\RequestType::POST:
+                case \Framework\Core\RequestType::POST:
                     break;
-                case \Framework\Core\Request\RequestType::GET:
+                case \Framework\Core\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -419,16 +419,16 @@ namespace Modules\Admin {
          */
         public function api_group() {
             switch ($this->request->type) {
-                case \Framework\Core\Request\RequestType::PUT:
+                case \Framework\Core\RequestType::PUT:
                     $this->api_group_put();
                     break;
-                case \Framework\Core\Request\RequestType::DELETE:
+                case \Framework\Core\RequestType::DELETE:
                     $this->api_group_delete();
                     break;
-                case \Framework\Core\Request\RequestType::POST:
+                case \Framework\Core\RequestType::POST:
                     $this->api_group_post();
                     break;
-                case \Framework\Core\Request\RequestType::GET:
+                case \Framework\Core\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -529,7 +529,7 @@ namespace Modules\Admin {
          */
         public function api_module() {
             switch ($this->request->type) {
-                case \Framework\Core\Request\RequestType::PUT:
+                case \Framework\Core\RequestType::PUT:
                     \Framework\Modules\ModuleAbstract::install($this->db, $this->request->uri['id']);
 
                     $json_ret = [
@@ -540,13 +540,13 @@ namespace Modules\Admin {
 
                     echo json_encode($json_ret);
                     break;
-                case \Framework\Core\Request\RequestType::DELETE:
+                case \Framework\Core\RequestType::DELETE:
                     echo '1';
                     break;
-                case \Framework\Core\Request\RequestType::POST:
+                case \Framework\Core\RequestType::POST:
                     echo '2';
                     break;
-                case \Framework\Core\Request\RequestType::GET:
+                case \Framework\Core\RequestType::GET:
                     break;
                 default:
                     echo '3';

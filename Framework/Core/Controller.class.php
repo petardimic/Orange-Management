@@ -19,7 +19,7 @@ namespace Framework\Core {
         /**
          * Database object
          *
-         * @var \Framework\Core\Database\Database
+         * @var \Framework\Core\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -35,7 +35,7 @@ namespace Framework\Core {
         /**
          * Request instance
          *
-         * @var \Framework\Core\Request\Request
+         * @var \Framework\Core\Request
          * @since 1.0.0
          */
         public $request = null;
@@ -90,15 +90,15 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         private function __construct($dbdata = null, $page = null) {
-            $this->request = \Framework\Core\Request\Request::getInstance();
+            $this->request = \Framework\Core\Request::getInstance();
 
-            if (!$this->request->request_type !== \Framework\Core\Request\RequestPage::STATICP) {
-                $this->db = \Framework\Core\Database\Database::getInstance($dbdata);
+            if (!$this->request->request_type !== \Framework\Core\RequestPage::STATICP) {
+                $this->db = \Framework\Core\Database::getInstance($dbdata);
 
                 /* TODO: NEEDS better error handling here and further down... maybe create header error handler */
-                if ($this->db->status === \Framework\Core\Database\DatabaseStatus::OK) {
-                    $this->cache    = Cache::getInstance();
-                    $this->settings = Settings::getInstance();
+                if ($this->db->status === \Framework\Core\DatabaseStatus::OK) {
+                    $this->cache    = \Framework\Core\Cache::getInstance();
+                    $this->settings = \Framework\Core\Settings::getInstance();
                     $this->modules  = \Framework\Modules\Modules::getInstance();
                     $this->auth     = \Framework\Core\Auth::getInstance();
                     $this->user     = $this->auth->authenticate($page[1]);
@@ -148,13 +148,13 @@ namespace Framework\Core {
          */
         public function load() {
             switch ($this->request->request_type) {
-                case \Framework\Core\Request\RequestPage::WEBSITE:
+                case \Framework\Core\RequestPage::WEBSITE:
                     header('Content-Type: text/html; charset=utf-8');
                     break;
-                case \Framework\Core\Request\RequestPage::BACKEND:
+                case \Framework\Core\RequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');
 
-                    if ($this->db->status === \Framework\Core\Database\DatabaseStatus::OK) {
+                    if ($this->db->status === \Framework\Core\DatabaseStatus::OK) {
                         $this->settings->settings_load([
                             1000000009,
                             1000000011,
@@ -181,12 +181,12 @@ namespace Framework\Core {
                         include __DIR__ . '\..\..\503.php';
                     }
                     break;
-                case \Framework\Core\Request\RequestPage::API:
+                case \Framework\Core\RequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
                     $this->modules->running[1004400000]->show();
                     break;
-                case \Framework\Core\Request\RequestPage::SHOP:
+                case \Framework\Core\RequestPage::SHOP:
                     break;
             }
         }
