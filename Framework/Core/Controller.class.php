@@ -123,6 +123,7 @@ namespace Framework\Core {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
+         /* TODO: This shouldn't be a singleton ?!?!? */
         public static function getInstance($dbdata = null, $page = null) {
             if (self::$instance === null) {
                 self::$instance = new self($dbdata, $page);
@@ -154,6 +155,7 @@ namespace Framework\Core {
                 case \Framework\Core\RequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');
 
+                    /* This isn't nice, maybe fix it */
                     if ($this->db->status === \Framework\Core\DatabaseStatus::OK) {
                         $this->settings->settings_load([
                             1000000009,

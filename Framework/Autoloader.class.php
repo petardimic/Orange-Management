@@ -16,7 +16,6 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    //spl_autoload_extensions('.class.php');
     spl_autoload_register('\Framework\Autoloader::default_autoloader');
 
     class Autoloader {

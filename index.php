@@ -14,7 +14,6 @@ require_once __DIR__ . '/Framework/Autoloader.class.php';
 //</editor-fold>
 
 /** TODO: reduce global state by dependency injection ????? */
-/** TODO: rename modules to names ????? */
 
 //<editor-fold desc="Instantiate">
 $logHOBJ = \Framework\Utils\Logging::getInstance(__DIR__ . '/Admin/Log');
