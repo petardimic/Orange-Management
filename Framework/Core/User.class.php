@@ -306,7 +306,7 @@ namespace Framework\Core {
         }
 
         public function create() {
-            $date = new \DateTime("NOW");
+            $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch ($this->db->type) {
                 case \Framework\Core\DatabaseType::MYSQL:

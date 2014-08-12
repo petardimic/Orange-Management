@@ -285,7 +285,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function install_users() {
-            $date = new \DateTime("NOW");
+            $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch ($this->db->type) {
                 case \Framework\Core\DatabaseType::MYSQL:

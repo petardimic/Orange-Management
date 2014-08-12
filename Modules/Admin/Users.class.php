@@ -87,7 +87,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function account_create($name, $pass, $email) {
-            $date = new \DateTime("NOW");
+            $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch ($this->db->type) {
                 case \Framework\Core\DatabaseType::MYSQL:
