@@ -23,6 +23,28 @@ namespace Framework\Core {
     }
 
     /**
+     * User status enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
+    abstract class UserStatus extends \Framework\Base\Enum {
+        const ACTIVE = 0;
+        const INACTIVE = 1;
+        const BANNED = 2;
+        const TIMEOUTED = 3;
+    }
+
+    /**
      * User class
      *
      * PHP Version 5.4
@@ -52,7 +74,7 @@ namespace Framework\Core {
          * @var string[]
          * @since 1.0.0
          */
-        public $name = null;
+        public $name = ['','',''];
 
         /**
          * User email
@@ -65,15 +87,25 @@ namespace Framework\Core {
         /**
          * User status
          *
-         * @var int
+         * @var \Framework\Core\UserStatus
          * @since 1.0.0
          */
         public $status = null;
 
         /**
-         * User type
+         * User password
+         *
+         * This is never initialized with any value unless a user password is reset, changed or a user gets created
          *
          * @var int
+         * @since 1.0.0
+         */
+        public $password = null;
+
+        /**
+         * User type
+         *
+         * @var Framework\Core\UserType
          * @since 1.0.0
          */
         public $type = null;
@@ -101,6 +133,14 @@ namespace Framework\Core {
          * @since 1.0.0
          */
         public $login_name = null;
+
+        /**
+         * Tries
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        public $tries = null;
 
         /**
          * User permissions
@@ -305,38 +345,156 @@ namespace Framework\Core {
             }
         }
 
+        /**
+         * Creating this object as dataset
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function create() {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch ($this->db->type) {
                 case \Framework\Core\DatabaseType::MYSQL:
+                    $sth = $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
+                            (:status, :type, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
+                    );
+
+                    $sth->bindValue(':status', $this->status, \PDO::PARAM_INT);
+                    $sth->bindValue(':type', $this->type, \PDO::PARAM_INT);
+                    $sth->execute();
+
+                    $aid = $this->db->con->lastInsertId();
+
                     $this->db->con->beginTransaction();
+                    $sth = $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                            (:login, :name1, :name2, :name3, :passowrd, :email, 5, :account);'
+                    );
+
+                    $sth->bindValue(':login', $this->login_name, \PDO::PARAM_STR);
+                    $sth->bindValue(':name1', $this->name[0], \PDO::PARAM_STR);
+                    $sth->bindValue(':name2', $this->name[1], \PDO::PARAM_STR);
+                    $sth->bindValue(':name3', $this->name[2], \PDO::PARAM_STR);
+                    $sth->bindValue(':password', $this->password, \PDO::PARAM_STR);
+                    $sth->bindValue(':email', $this->email, \PDO::PARAM_STR);
+                    $sth->bindValue(':account', $aid, \PDO::PARAM_INT);
+
+                    $group_string = '';
+                    foreach($this->groups as $key => $value) {
+                        $group_string .= '(' . $value->id . ', ' . $aid . '),';
+                    }
+                    $group_string = rtrim($group_string, ',');
 
                     $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
-                            (1, 0, 0, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
-                    )->execute();
-
-                    $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
-                            (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'yellowOrange\', \'admin@email.com\', 5, 1);'
-                    )->execute();
-
-                    $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`id`, `group`, `account`) VALUES
-                            (1, 1000101000, 1)'
-                    )->execute();
-
+                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
+                    );
                     $this->db->con->commit();
                     break;
             }
         }
 
-        public function delete() {}
+        /**
+         * Deleting this object from the database
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function delete() {
+            /* TODO: call all installed modules user_delete function */
 
-        public function edit() {}
+            $sth = $this->db->con->prepare(
+                'DELETE `' . $this->db->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
+            );
 
-        public function serialize() {}
-        public function unserialize($serialized) {}
+            $sth->execute();
+
+            $sth = $this->db->con->prepare(
+                'DELETE `' . $this->db->prefix . 'accounts_data` WHERE `account` = ' . $this->id
+            );
+
+            $sth->execute();
+
+            $sth = $this->db->con->prepare(
+                'DELETE `' . $this->db->prefix . 'accounts` WHERE `id` = ' . $this->id
+            );
+
+            $sth->execute();
+        }
+
+        /**
+         * Editing the database object
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function edit() {
+            $sth = $this->db->con->prepare(
+                'UPDATE `' . $this->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
+            );
+
+            $sth->execute();
+
+            $sth = $this->db->con->prepare(
+                'UPDATE `' . $this->db->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
+            );
+
+            $sth->bindValue(':login', $this->login_name, \PDO::PARAM_STR);
+            $sth->bindValue(':name1', $this->name[0], \PDO::PARAM_STR);
+            $sth->bindValue(':name2', $this->name[1], \PDO::PARAM_STR);
+            $sth->bindValue(':name3', $this->name[2], \PDO::PARAM_STR);
+            $sth->bindValue(':password', $this->password, \PDO::PARAM_STR);
+            $sth->bindValue(':email', $this->email, \PDO::PARAM_STR);
+            $sth->execute();
+
+            /* TODO: In case of caching is implemented, overwrite the cache */
+        }
+
+        /**
+         * Serialize this object
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function serialize() {
+            $toSerialize = [
+                'name' => $this->name,
+                'login_name' => $this->login_name,
+                'id' => $this->id,
+                'email' => $this->email,
+                'status' => $this->status,
+                'type' => $this->created,
+                'last_activity' => $this->last_activity,
+                'created' => $this->created,
+                'tries' => $this->tries,
+                'groups' => $this->groups /* only ids */
+            ];
+
+            return json_encode($toSearialize);
+        }
+
+        /**
+         * Initialize this object from serialization
+         *
+         * @param array $serialized Serialized data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function unserialize($serialized) {
+            $plain = json_decode($serialized, true);
+
+            $this->name = $plain['name'];
+            $this->login_name = $plain['login_name'];
+            $this->id = $plain['id'];
+            $this->email = $plain['email'];
+            $this->status = $plain['status'];
+            $this->type = $plain['type'];
+            $this->last_activty = $plain['last_activity'];
+            $this->created = $plain['created'];
+            $this->tries = $plain['tries'];
+            $this->groups = $plain['groups']; /* TODO: This is wrong... check this later */
+        }
     }
 }
