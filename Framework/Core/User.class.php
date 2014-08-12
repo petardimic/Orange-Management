@@ -249,6 +249,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($id, $is_current = false) {
+            /* TODO: implement the cache loading right here. smart idea! */
             if (!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
 
@@ -283,7 +284,7 @@ namespace Framework\Core {
 
                 if (!$this->perm) {
                     switch ($this->db->type) {
-                        case 1:
+                        case \Framework\Core\DatabaseType::MYSQL:
 
                             break;
                     }
@@ -346,6 +347,32 @@ namespace Framework\Core {
         }
 
         /**
+         * Add a group to this user
+         *
+         * @param int $id Group ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function add_group($id) {
+            if(!array_key_exists($id, $this->groups)) {
+                $this->groups[$id] = \Framework\Core\Group::getInstance($id);
+            }
+
+            switch ($this->db->type) {
+                case \Framework\Core\DatabaseType::MYSQL:
+                    $sth = $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
+                    );
+
+                    $sth->bindValue(':group', $id, \PDO::PARAM_INT);
+                    $sth->bindValue(':account', $this->id, \PDO::PARAM_INT);
+                    $sth->execute();
+                    break;
+            }
+        }
+
+        /**
          * Creating this object as dataset
          *
          * @since  1.0.0
@@ -365,7 +392,7 @@ namespace Framework\Core {
                     $sth->bindValue(':type', $this->type, \PDO::PARAM_INT);
                     $sth->execute();
 
-                    $aid = $this->db->con->lastInsertId();
+                    $this->id = $this->db->con->lastInsertId();
 
                     $this->db->con->beginTransaction();
                     $sth = $this->db->con->prepare(
@@ -379,11 +406,11 @@ namespace Framework\Core {
                     $sth->bindValue(':name3', $this->name[2], \PDO::PARAM_STR);
                     $sth->bindValue(':password', $this->password, \PDO::PARAM_STR);
                     $sth->bindValue(':email', $this->email, \PDO::PARAM_STR);
-                    $sth->bindValue(':account', $aid, \PDO::PARAM_INT);
+                    $sth->bindValue(':account', $this->id, \PDO::PARAM_INT);
 
                     $group_string = '';
                     foreach($this->groups as $key => $value) {
-                        $group_string .= '(' . $value->id . ', ' . $aid . '),';
+                        $group_string .= '(' . $value->id . ', ' . $this->id . '),';
                     }
                     $group_string = rtrim($group_string, ',');
 

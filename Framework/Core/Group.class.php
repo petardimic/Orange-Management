@@ -41,6 +41,14 @@ namespace Framework\Core {
         public $id = null;
 
         /**
+         * Permissions
+         *
+         * @var int[]
+         * @since 1.0.0
+         */
+        public $permissions = [];
+
+        /**
          * Instances
          *
          * @var \Framework\Core\Group[]
@@ -71,9 +79,9 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($id) {
-            $this->id    = $id;
+            $this->id    = (int) $id;
             $this->db    = \Framework\Core\Database::getInstance();
-            $this->cache = Cache::getInstance();
+            $this->cache = \Framework\Core\Cache::getInstance();
 
             $sth = $this->db->con->prepare(
                 'SELECT * FROM `' . $this->db->prefix . 'groups` WHERE id = :id'
@@ -97,6 +105,7 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($id) {
+            /* TODO: Implement caching here */
             if (!isset(self::$instance[$id])) {
                 self::$instance[$id] = new self($id);
             }
@@ -113,15 +122,124 @@ namespace Framework\Core {
         protected function __clone() {
         }
 
-        public function permission_exists() {
+        /**
+         * Checking if any permission exists
+         *
+         * @param int[] $permission Permissions
+         *
+         * @return boolean
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function permission_exists($permissions) {
+            foreach($permissions as $permission) {
+                if(array_key_exists($permission, $this->permissions)) {
+                    return true;
+                }
+            }
 
+            return false
         }
 
-        public function create() {}
-        public function delete() {}
-        public function edit() {}
+        /**
+         * Creating this object as dataset
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function create() {
+            switch ($this->db->type) {
+                case \Framework\Core\DatabaseType::MYSQL:
+                    $sth = $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'groups` (`name`, `desc`) VALUES
+                            (:name, :desc);'
+                    );
 
-        public function serialize() {}
-        public function unserialize($serialized) {}
+                    $sth->bindValue(':name', $this->name, \PDO::PARAM_STR);
+                    $sth->bindValue(':desc', $this->desc, \PDO::PARAM_STR);
+                    $sth->execute();
+
+                    $this->id = $this->db->con->lastInsertId();
+
+                    break;
+            }
+        }
+
+        /**
+         * Deleting this object from the database
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function delete() {
+            /* TODO: delete permissions */
+            $sth = $this->db->con->prepare(
+                'DELETE `' . $this->db->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
+            );
+
+            $sth->execute();
+
+            $sth = $this->db->con->prepare(
+                'DELETE `' . $this->db->prefix . 'groups` WHERE `id` = ' . $this->id
+            );
+
+            $sth->execute();
+        }
+
+        /**
+         * Editing the database object
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function edit() {
+            switch ($this->db->type) {
+                case \Framework\Core\DatabaseType::MYSQL:
+                    $sth = $this->db->con->prepare(
+                        'UPDATE `' . $this->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
+                    );
+
+                    $sth->bindValue(':name', $this->name, \PDO::PARAM_STR);
+                    $sth->bindValue(':desc', $this->desc, \PDO::PARAM_STR);
+                    $sth->execute();
+
+                    break;
+            }
+        }
+
+        /**
+         * Serialize this object
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function serialize() {
+            $toSerialize = [
+                'id' => $this->id,
+                'name' => $this->name,
+                'desc' => $this->desc,
+                'permissions' => $this->permissions
+            ];
+
+            return json_encode($toSerialize);
+        }
+
+        /**
+         * Initialize this object from serialization
+         *
+         * @param array $serialized Serialized data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function unserialize($serialized) {
+            $plain = json_decode($serialized, true);
+
+            $this->id = $plain['id'];
+            $this->name = $plain['name'];
+            $this->desc = $plain['desc'];
+            $this->permission = $plain['permission'];
+        }
     }
 }

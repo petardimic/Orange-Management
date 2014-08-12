@@ -1,6 +1,30 @@
 <?php
 namespace Modules\Navigation {
     /**
+     * Navigation type enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
+    abstract class NavigationType extends \Framework\Base\Enum {
+        const TOP = 1;
+        const SIDE = 2;
+        const CONTENT = 3;
+        const TAB = 4;
+        const CONTENT_SIDE = 5;
+        const BOTTOM = 6;
+    }
+
+    /**
      * Navigation class
      *
      * PHP Version 5.4
@@ -204,15 +228,15 @@ namespace Modules\Navigation {
          */
         public function show($data = null) {
             switch ($data[0]) {
-                case 1:
+                case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/themes' . $this->theme_path . '/top.tpl.php';
                     break;
-                case 2:
+                case \Modules\Navigation\NavigationType::SIDE:
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/themes' . $this->theme_path . '/side.tpl.php';
                     break;
-                case 3:
+                case \Modules\Navigation\NavigationType::CONTENT:
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/themes' . $this->theme_path . '/mid.tpl.php';
                     break;

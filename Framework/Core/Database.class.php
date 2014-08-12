@@ -1,10 +1,40 @@
 <?php
 namespace Framework\Core {
+    /**
+     * Database type enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class DatabaseType extends \Framework\Base\Enum {
         const MYSQL = 0;
         const SQLITE = 1;
     }
 
+    /**
+     * Database status enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class DatabaseStatus extends \Framework\Base\Enum {
         const OK = 0;
         const MISSING_DATABASE = 1;
@@ -13,12 +43,47 @@ namespace Framework\Core {
         const READONLY = 4;
     }
 
+    /**
+     * Object interface
+     *
+     * Every object that gets created by a limited amount of database rows/columns is a database object. 
+     * Modifications on this object can be transfered to the database.
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     interface ObjectInterface extends \Serializable {
         public function delete();
         public function create();
         public function edit();
     }
 
+    /**
+     * Object list interface
+     *
+     * Interface for a list of database object. Usually usefull for search results and lists.
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     interface ObjectListInterface {
         public function get_object();
 
