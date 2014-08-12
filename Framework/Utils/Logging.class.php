@@ -1,5 +1,13 @@
 <?php
 namespace Framework\Utils {
+    abstract class LogLevel extends \Framework\Base\Enum {
+        const INFO = 0;
+        const DEBUG = 1;
+        const WARNING = 2;
+        const ERROR = 3;
+        const FATAL = 4;
+    }
+
     /**
      * Logging class
      *
@@ -110,7 +118,7 @@ namespace Framework\Utils {
          * FATAL
          * ERROR
          * WARNING
-         * BUG
+         * DEBUG
          * INFO
          *
          * @param array $fields

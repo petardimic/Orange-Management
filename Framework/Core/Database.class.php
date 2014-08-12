@@ -16,6 +16,7 @@ namespace Framework\Core {
     interface ObjectInterface extends \Serializable {
         public function delete();
         public function create();
+        public function edit();
     }
 
     interface ObjectListInterface {

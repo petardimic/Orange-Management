@@ -119,6 +119,7 @@ namespace Framework\Core {
 
         public function create() {}
         public function delete() {}
+        public function edit() {}
 
         public function serialize() {}
         public function unserialize($serialized) {}

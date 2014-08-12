@@ -172,6 +172,7 @@ namespace Framework\Modules {
             }
 
             if (isset($this->loaded[4])) {
+                /* TODO: Maybe pass array, reduces function call */
                 foreach ($this->loaded[4] as $class) {
                     ModuleFactory::getInstance($class['from']);
                 }

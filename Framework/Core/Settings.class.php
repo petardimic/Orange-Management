@@ -56,7 +56,7 @@ namespace Framework\Core {
          */
         private function __construct() {
             $this->db    = \Framework\Core\Database::getInstance();
-            $this->cache = Cache::getInstance();
+            $this->cache = \Framework\Core\Cache::getInstance();
         }
 
         /**
@@ -111,6 +111,7 @@ namespace Framework\Core {
                 $sth->execute();
                 $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
 
+                /* TODO: this overwrites old cfgs, which shouldn't happen */
                 $this->cache->push('cfg', $cfgs, false);
                 $this->config += $cfgs;
             }
@@ -125,6 +126,13 @@ namespace Framework\Core {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function settings_set($settings) {
+            $this->config += $settings;
+
+            /* TODO: change this */
+            foreach($settings as $key => $value) {
+                $sth = $this->db->con->prepare('UPDATE `' . $this->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = '. $key);
+                $sth->execute();
+            }
         }
     }
 }

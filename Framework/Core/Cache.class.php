@@ -1,5 +1,20 @@
 <?php
 namespace Framework\Core {
+    /**
+     * Cache type enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class CacheType extends \Framework\Base\Enum {
         const INACTIVE = 0;
         const FILE = 1;
@@ -117,20 +132,23 @@ namespace Framework\Core {
                     }
                 }
 
-                if ($this->type === \Framework\Core\CacheType::MEMCACHE) {
-                    $json = json_encode($var);
+                switch($this->type) {
+                    case \Framework\Core\CacheType::FILE:
+                        $json = json_encode($var);
 
-                    try {
-                        if (!file_exists(__DIR__ . '/../../Cache/' . $key . '.json')) {
-                            mkdir(__DIR__ . '/../../Cache', 0777, true);
+                        try {
+                            if (!file_exists(__DIR__ . '/../../Cache/' . $key . '.json')) {
+                                mkdir(__DIR__ . '/../../Cache', 0777, true);
+                            }
+
+                            file_put_contents(__DIR__ . '/../../Cache/' . $key . '.json', $json);
+                        } catch (\Exception $e) {
+                            return false;
                         }
-
-                        file_put_contents(__DIR__ . '/../../Cache/' . $key . '.json', $json);
-                    } catch (\Exception $e) {
-                        return false;
-                    }
-                } else {
-                    $this->memc->add($key, $var, 864000);
+                    break;
+                    case \Framework\Core\CacheType::MEMCACHE:
+                        $this->memc->add($key, $var, 864000);
+                    break;
                 }
             }
 

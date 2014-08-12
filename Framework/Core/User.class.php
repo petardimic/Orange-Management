@@ -1,5 +1,20 @@
 <?php
 namespace Framework\Core {
+    /**
+     * User type enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class UserType extends \Framework\Base\Enum {
         const PERSON = 0;
         const ORGANIZATION = 1;
@@ -290,8 +305,36 @@ namespace Framework\Core {
             }
         }
 
-        public function create() {}
+        public function create() {
+            $date = new \DateTime("NOW");
+
+            switch ($this->db->type) {
+                case \Framework\Core\DatabaseType::MYSQL:
+                    $this->db->con->beginTransaction();
+
+                    $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
+                            (1, 0, 0, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
+                    )->execute();
+
+                    $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                            (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'yellowOrange\', \'admin@email.com\', 5, 1);'
+                    )->execute();
+
+                    $this->db->con->prepare(
+                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`id`, `group`, `account`) VALUES
+                            (1, 1000101000, 1)'
+                    )->execute();
+
+                    $this->db->con->commit();
+                    break;
+            }
+        }
+
         public function delete() {}
+
+        public function edit() {}
 
         public function serialize() {}
         public function unserialize($serialized) {}

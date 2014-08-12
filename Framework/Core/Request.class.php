@@ -1,5 +1,20 @@
 <?php
 namespace Framework\Core {
+    /**
+     * Request type enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class RequestType extends \Framework\Base\Enum {
         const GET = 'GET';
         const POST = 'POST';
@@ -7,6 +22,21 @@ namespace Framework\Core {
         const DELETE = 'DELETE';
     }
 
+    /**
+     * Request page enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
     abstract class RequestPage extends \Framework\Base\Enum {
         const WEBSITE = 'website';
         const API = 'api';
@@ -44,6 +74,8 @@ namespace Framework\Core {
             'l3' => '',
             'l4' => '',
             'l5' => '',
+            'l6' => '',
+            'l7' => '',
         ];
 
         public $type = null;
@@ -94,6 +126,8 @@ namespace Framework\Core {
         /**
          * Constructor
          *
+         * @param array $f_url Forced URL
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -101,12 +135,10 @@ namespace Framework\Core {
             $this->type = $_SERVER['REQUEST_METHOD'];
 
             if ($f_url == null) {
-                $data = ($this->type !== "GET" ? json_decode(file_get_contents('php://input'), true) : $_GET);
-                $this->uri = array_replace($this->uri, $_GET);
-                $this->uri += array_values($data);
-                $this->uri += $data;
+                $data = ($this->type !== RequestType::GET ? json_decode(file_get_contents('php://input'), true) : $_GET);
+                $this->uri = $data + $this->uri;
             } else {
-                $this->uri += $f_url;
+                $this->uri = $f_url + $this->uri;
             }
 
             /* TODO: is this required?
