@@ -15,11 +15,11 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Users implements \Framework\Core\ObjectListInterface, \Framework\Base\Singleton {
+    class Users implements \Framework\DataStorage\Database\Objects\ObjectListInterface, \Framework\Pattern\Singleton {
         /**
          * Database
          *
-         * @var \Framework\Core\Database
+         * @var \Framework\DataStorage\Database\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -27,7 +27,7 @@ namespace Modules\Admin {
         /**
          * Cache instance
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         public $cache = null;
@@ -35,7 +35,7 @@ namespace Modules\Admin {
         /**
          * Instances
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         protected static $instance = null;
@@ -47,8 +47,8 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-            $this->db    = \Framework\Core\Database::getInstance();
-            $this->cache = \Framework\Core\Cache::getInstance();
+            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
+            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
         }
 
         /**
@@ -90,7 +90,7 @@ namespace Modules\Admin {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch ($this->db->type) {
-                case \Framework\Core\DatabaseType::MYSQL:
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->db->con->prepare(
                         'INSERT INTO `' . $this->db->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
                             (:aname, :pword, :email, \'0000-00-00 00:00:00\', 3, \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
@@ -135,7 +135,7 @@ namespace Modules\Admin {
             $result = null;
 
             switch ($this->db->type) {
-                case \Framework\Core\DatabaseType::MYSQL:
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter, true);
 
                     $sth = $this->db->con->prepare(

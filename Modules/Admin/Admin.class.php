@@ -15,7 +15,7 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Admin extends \Framework\Modules\ModuleAbstract {
+    class Admin extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -54,7 +54,7 @@ namespace Modules\Admin {
         /**
          * Request instance
          *
-         * @var \Framework\Core\Settings
+         * @var \Framework\Config\Settings
          * @since 1.0.0
          */
         public $settings = null;
@@ -71,7 +71,7 @@ namespace Modules\Admin {
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
             $this->users = \Modules\Admin\Users::getInstance();
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->settings = \Framework\Core\Settings::getInstance();
+            $this->settings = \Framework\Config\Settings::getInstance();
 
             parent::initialize($theme_path);
         }
@@ -79,7 +79,7 @@ namespace Modules\Admin {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -100,7 +100,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function module_active_set($id) {
-            \Framework\Modules\ModuleAbstract::activate($this->db, $id);
+            \Framework\Module\ModuleAbstract::activate($this->db, $id);
         }
 
         /**
@@ -114,7 +114,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function module_inactive_set($id) {
-            \Framework\Modules\ModuleAbstract::deactivate($this->db, $id);
+            \Framework\Module\ModuleAbstract::deactivate($this->db, $id);
         }
 
         /**
@@ -172,7 +172,7 @@ namespace Modules\Admin {
 
             switch ($this->request->uri[4]) {
                 case 'general':
-                    \Framework\Core\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
+                    \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/settings-general.tpl.php';
@@ -244,7 +244,7 @@ namespace Modules\Admin {
             }
 
             /** @noinspection PhpUnusedLocalVariableInspection */
-            $modules = \Framework\Modules\Modules::getInstance();
+            $modules = \Framework\Module\Modules::getInstance();
 
             switch ($this->request->uri['l4']) {
                 case 'list':
@@ -257,7 +257,7 @@ namespace Modules\Admin {
                     break;
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $info = \Framework\Modules\Module::getInstance((int)$this->request->uri['id'])->module_info_get();
+                    $info = \Framework\Module\Module::getInstance((int)$this->request->uri['id'])->module_info_get();
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/modules-single.tpl.php';
@@ -311,7 +311,7 @@ namespace Modules\Admin {
                     $accounts = \Modules\Admin\Users::getInstance();
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $group = \Framework\Core\Group::getInstance((int)$this->request->uri['id']);
+                    $group = \Framewrok\DataStorage\Database\Objects\Group\Group::getInstance((int)$this->request->uri['id']);
 
                     if (!isset($this->request->uri['page'])) {
                         $this->request->uri['page'] = 1;
@@ -358,15 +358,15 @@ namespace Modules\Admin {
          */
         public function api_account() {
             switch ($this->request->type) {
-                case \Framework\Core\RequestType::PUT:
+                case \Framework\Request\RequestType::PUT:
                     $this->api_account_put();
                     break;
-                case \Framework\Core\RequestType::DELETE:
+                case \Framework\Request\RequestType::DELETE:
                     $this->api_account_delete();
                     break;
-                case \Framework\Core\RequestType::POST:
+                case \Framework\Request\RequestType::POST:
                     break;
-                case \Framework\Core\RequestType::GET:
+                case \Framework\Request\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -419,16 +419,16 @@ namespace Modules\Admin {
          */
         public function api_group() {
             switch ($this->request->type) {
-                case \Framework\Core\RequestType::PUT:
+                case \Framework\Request\RequestType::PUT:
                     $this->api_group_put();
                     break;
-                case \Framework\Core\RequestType::DELETE:
+                case \Framework\Request\RequestType::DELETE:
                     $this->api_group_delete();
                     break;
-                case \Framework\Core\RequestType::POST:
+                case \Framework\Request\RequestType::POST:
                     $this->api_group_post();
                     break;
-                case \Framework\Core\RequestType::GET:
+                case \Framework\Request\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -498,7 +498,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_settings() {
-            $settings = \Framework\Core\Settings::getInstance();
+            $settings = \Framework\Config\Settings::getInstance();
 
             switch ($this->request->uri['l4']) {
                 case 'core':
@@ -529,8 +529,8 @@ namespace Modules\Admin {
          */
         public function api_module() {
             switch ($this->request->type) {
-                case \Framework\Core\RequestType::PUT:
-                    \Framework\Modules\ModuleAbstract::install($this->db, $this->request->uri['id']);
+                case \Framework\Request\RequestType::PUT:
+                    \Framework\Module\ModuleAbstract::install($this->db, $this->request->uri['id']);
 
                     $json_ret = [
                         'type' => 1,
@@ -540,13 +540,13 @@ namespace Modules\Admin {
 
                     echo json_encode($json_ret);
                     break;
-                case \Framework\Core\RequestType::DELETE:
+                case \Framework\Request\RequestType::DELETE:
                     echo '1';
                     break;
-                case \Framework\Core\RequestType::POST:
+                case \Framework\Request\RequestType::POST:
                     echo '2';
                     break;
-                case \Framework\Core\RequestType::GET:
+                case \Framework\Request\RequestType::GET:
                     break;
                 default:
                     echo '3';

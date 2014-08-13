@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Modules\ModuleFactory::$initialized[1000500000]->show([3, 1000103201]); ?>
+\Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
     <h1>
@@ -16,7 +16,7 @@
                 </li>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= /** @var \Framework\Core\Group $group */ $group->id; ?>" disabled>
+                           value="<?= /** @var \Framewrok\DataStorage\Database\Objects\Group\Group $group */ $group->id; ?>" disabled>
                 </li>
                 <li>
                     <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
@@ -71,7 +71,7 @@
     </div>
 </div>
 
-<?php \Framework\Core\Model::generate_table_filter_view(); ?>
+<?php \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-5 c1" id="i1-5-3">
     <thead>
@@ -88,7 +88,7 @@
     </tr>
     <tr>
         <?php
-        \Framework\Core\Model::generate_table_header_view(
+        \Framework\Model\Model::generate_table_header_view(
            [
                 ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
                 ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
@@ -102,13 +102,13 @@
     </thead>
     <tbody>
     <?php
-    /** @var \Framework\Core\Users $accounts */
+    /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
     $data = $accounts->account_list_get();
     $url['level'] = array_slice($this->request->uri, 0, 4);
     $url['level'][] = 'single';
     $url['id'] = 'id';
 
-    \Framework\Core\Model::generate_table_content_view(
+    \Framework\Model\Model::generate_table_content_view(
         $data['list'],
         ['status', 'id', 'name1', 'lactive', 'created'],
         $url
@@ -118,7 +118,7 @@
     <tfoot>
     <tr>
         <td colspan="5" class="cT">
-            <?php \Framework\Core\Model::generate_table_pagination_view($data['count']); ?>
+            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
         </td>
     </tr>
     </tfoot>

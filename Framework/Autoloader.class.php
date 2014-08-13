@@ -31,9 +31,9 @@ namespace Framework {
 
             $file .= $class . '.class.php';
 
-            /* TODO: log + make screen notification */
+            /* TODO: log! + make screen notification? */
             if (!file_exists($file)) {
-                throw new \Exception();
+                throw new \Exception($class);
             }
 
             /** @noinspection PhpIncludeInspection */

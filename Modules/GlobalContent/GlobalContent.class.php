@@ -15,7 +15,7 @@ namespace Modules\GlobalContent {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class GlobalContent extends \Framework\Modules\ModuleAbstract {
+    class GlobalContent extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -47,7 +47,7 @@ namespace Modules\GlobalContent {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -67,7 +67,7 @@ namespace Modules\GlobalContent {
         public function show($data = null) {
             if (isset(self::$receiving)) {
                 foreach (self::$receiving as $mid) {
-                    \Framework\Modules\ModuleFactory::$initialized[$mid]->show_global($data);
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
                 }
             }
         }

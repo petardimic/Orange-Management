@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <?php /** @var \Framework\Core\Controller $this */
-    \Framework\Core\Model::load_header(); ?>
+    <?php /** @var \Framework\Controller\Controller $this */
+    \Framework\Model\Model::load_header(); ?>
     <style>
-        <?php \Framework\Core\Model::load_style_small(); ?>
+        <?php \Framework\Model\Model::load_style_small(); ?>
     </style>
 </head>
 <body>
@@ -19,7 +19,7 @@
             <i class="fa fa-bars ani-click" data-aniref="#s-nav" data-aniin="slide-right" data-aniout="slide-left" data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo"><a
-                href="<?= $this->request->generate_uri([$this->request->request_lang, 'backend']); ?>"><?= \Framework\Core\Model::$content['core:oname']; ?></a>
+                href="<?= $this->request->generate_uri([$this->request->request_lang, 'backend']); ?>"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar">
             <label>
@@ -36,6 +36,6 @@
         <?php $this->modules->running[1004100000]->show(); ?>
     </div>
 </div>
-<?php \Framework\Core\Model::load_footer(); ?>
+<?php \Framework\Model\Model::load_footer(); ?>
 </body>
 </html>

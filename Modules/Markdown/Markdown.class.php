@@ -56,10 +56,10 @@ namespace OMS\Modules {
         /**
          * Constructor
          *
-         * @param \Framework\Core\Database $db    Database instance
-         * @param \Framework\Core\Model    $model Model instance
-         * @param \Framework\Core\User     $user  User instance
-         * @param \Framework\Core\Cache    $cache Cache instance
+         * @param \Framework\DataStorage\Database\Database $db    Database instance
+         * @param \Framework\Model\Model    $model Model instance
+         * @param \Framework\DataStorage\Database\Objects\User\User     $user  User instance
+         * @param \Framework\DataStorage\Cache\Cache    $cache Cache instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -71,7 +71,7 @@ namespace OMS\Modules {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0

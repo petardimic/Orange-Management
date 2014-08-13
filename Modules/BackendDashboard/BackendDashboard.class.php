@@ -15,7 +15,7 @@ namespace Modules\BackendDashboard {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class BackendDashboard extends \Framework\Modules\ModuleAbstract {
+    class BackendDashboard extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -57,7 +57,7 @@ namespace Modules\BackendDashboard {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -70,7 +70,7 @@ namespace Modules\BackendDashboard {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0
@@ -89,7 +89,7 @@ namespace Modules\BackendDashboard {
             if (isset(BackendDashboard::$receiving)) {
                 foreach (BackendDashboard::$receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Modules\ModuleFactory::$initialized[$mid]->show_dashboard();
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_dashboard();
                 }
             } else {
                 /** @noinspection PhpIncludeInspection */

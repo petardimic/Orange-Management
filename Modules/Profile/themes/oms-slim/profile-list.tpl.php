@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Core\Model::generate_table_filter_view(); ?>
+\Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <?php
-        \Framework\Core\Model::generate_table_header_view(
+        \Framework\Model\Model::generate_table_header_view(
             [
                 ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
                 ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
@@ -37,7 +37,7 @@
     $url['level'][] = 'front';
     $url['id'] = 'id';
 
-    \Framework\Core\Model::generate_table_content_view(
+    \Framework\Model\Model::generate_table_content_view(
         $data['list'],
         ['status', 'id', 'name1', 'lactive', 'created'],
         $url,
@@ -51,7 +51,7 @@
     <tfoot>
     <tr>
         <td colspan="5" class="cT">
-            <?php \Framework\Core\Model::generate_table_pagination_view($data['count']); ?>
+            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
         </td>
     </tr>
     </tfoot>

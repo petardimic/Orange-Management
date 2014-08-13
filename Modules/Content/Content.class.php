@@ -15,7 +15,7 @@ namespace Modules\Content {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Content extends \Framework\Modules\ModuleAbstract {
+    class Content extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -47,7 +47,7 @@ namespace Modules\Content {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -68,7 +68,7 @@ namespace Modules\Content {
             if (isset(self::$receiving)) {
                 foreach (self::$receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Modules\ModuleFactory::$initialized[$mid]->show_content();
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_content();
                 }
             }
         }

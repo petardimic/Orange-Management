@@ -15,11 +15,11 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Groups implements \Framework\Core\ObjectListInterface, \Framework\Base\Singleton {
+    class Groups implements \Framework\DataStorage\Database\Objects\ObjectListInterface, \Framework\Pattern\Singleton {
         /**
          * Database
          *
-         * @var \Framework\Core\Database
+         * @var \Framework\DataStorage\Database\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -27,7 +27,7 @@ namespace Modules\Admin {
         /**
          * Cache instance
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         public $cache = null;
@@ -47,8 +47,8 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-            $this->db    = \Framework\Core\Database::getInstance();
-            $this->cache = \Framework\Core\Cache::getInstance();
+            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
+            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
         }
 
         /**
@@ -94,7 +94,7 @@ namespace Modules\Admin {
             $result = null;
 
             switch ($this->db->type) {
-                case \Framework\Core\DatabaseType::MYSQL:
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter);
 
                     $sth = $this->db->con->prepare(

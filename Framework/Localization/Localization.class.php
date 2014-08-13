@@ -22,7 +22,7 @@ namespace Framework\Localization {
         /**
          * Database object
          *
-         * @var \Framework\Core\Database
+         * @var \Framework\DataStorage\Database\Database
          * @since 1.0.0
          */
         private $db = null;
@@ -30,7 +30,7 @@ namespace Framework\Localization {
         /**
          * Cache instance
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         public $cache = null;
@@ -105,7 +105,7 @@ namespace Framework\Localization {
         /**
          * Instance
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         protected static $instance = null;
@@ -118,9 +118,9 @@ namespace Framework\Localization {
          */
         public function __construct($id) {
             $this->localization_id = $id;
-            $this->db              = \Framework\Core\Database::getInstance();
-            $this->cache           = \Framework\Core\Cache::getInstance();
-            $this->language        = \Framework\Core\Request::getInstance()->uri['l0'];
+            $this->db              = \Framework\DataStorage\Database\Database::getInstance();
+            $this->cache           = \Framework\DataStorage\Cache\Cache::getInstance();
+            $this->language        = \Framework\Request\Request::getInstance()->uri['l0'];
         }
 
         /**
@@ -160,9 +160,9 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function language_load($language, $files) {
-            $request            = \Framework\Core\Request::getInstance();
-            $cache              = \Framework\Core\Cache::getInstance();
-            $modules            = \Framework\Modules\Modules::getInstance();
+            $request            = \Framework\Request\Request::getInstance();
+            $cache              = \Framework\DataStorage\Cache\Cache::getInstance();
+            $modules            = \Framework\Module\Modules::getInstance();
             self::$lang = $cache->pull('lang:' . $language . ':' . $request->uri_hash[3]);
 
             if (!self::$lang && !empty($files)) {

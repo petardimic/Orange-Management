@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Modules\ModuleFactory::$initialized[1000500000]->show([3, 1000104300]);
+\Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000104300]);
 ?>
 
 <div class="b b-1 c1-3 c1" id="i1-3-1">
@@ -9,7 +9,7 @@
         <i class="fa fa-plus max vh"></i>
     </h1>
     <div class="bc-1">
-        <?php $account = \Framework\Core\User::getInstance((int)$this->request->uri['id']); ?>
+        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->request->uri['id']); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>

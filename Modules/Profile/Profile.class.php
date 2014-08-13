@@ -15,7 +15,7 @@ namespace Modules\Profile {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Profile extends \Framework\Modules\ModuleAbstract {
+    class Profile extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -66,7 +66,7 @@ namespace Modules\Profile {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -74,7 +74,7 @@ namespace Modules\Profile {
          */
         public static function install(&$db, $info) {
             switch ($db->type) {
-                case \Framework\Core\DatabaseType::MYSQL:
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account` (
                             `id` int(11) NOT NULL,

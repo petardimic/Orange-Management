@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Core\Model::generate_table_filter_view(); ?>
+\Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-6 c1" id="i1-6-1">
     <thead>
@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <?php
-        \Framework\Core\Model::generate_table_header_view(
+        \Framework\Model\Model::generate_table_header_view(
             [
                 ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
                 ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
@@ -29,13 +29,13 @@
     </thead>
     <tbody>
     <?php
-    /** @var \Framework\Modules\Modules $modules */
+    /** @var \Framework\Module\Modules $modules */
     $modules_installed = $modules->module_list_installed_get();
     $url['level'] = array_slice($this->request->uri, 0, 4);
     $url['level'][] = 'front';
     $url['id'] = 'class';
 
-    \Framework\Core\Model::generate_table_content_view(
+    \Framework\Model\Model::generate_table_content_view(
         $modules_installed['list'],
         ['id', 'name', 'theme', 'version'],
         $url
@@ -59,7 +59,7 @@
     </tr>
     <tr>
         <?php
-        \Framework\Core\Model::generate_table_header_view(
+        \Framework\Model\Model::generate_table_header_view(
             [
                 ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
                 ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],

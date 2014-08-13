@@ -16,10 +16,10 @@ require_once __DIR__ . '/Framework/Autoloader.class.php';
 /** TODO: reduce global state by dependency injection ????? */
 
 //<editor-fold desc="Instantiate">
-$logHOBJ = \Framework\Utils\Logging::getInstance(__DIR__ . '/Admin/Log');
+$logHOBJ = \Framework\Log\Logging::getInstance(__DIR__ . '/Admin/Log');
 $logHOBJ->startTimeLog('global');
 $logHOBJ->startTimeLog('init');
-$ctrlHOBJ = \Framework\Core\Controller::getInstance($DBDATA, $PAGE);
+$ctrlHOBJ = \Framework\Controller\Controller::getInstance($DBDATA, $PAGE);
 $logHOBJ->endTimeLog('init');
 $ctrlHOBJ->load();
 //</editor-fold>

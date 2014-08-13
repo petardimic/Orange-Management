@@ -5,7 +5,7 @@
         <i class="fa fa-plus max vh"></i>
     </h1>
     <div class="bc-1">
-        <?php $account = \Framework\Core\User::getInstance((int)$this->request->uri['id']); ?>
+        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->request->uri['id']); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>

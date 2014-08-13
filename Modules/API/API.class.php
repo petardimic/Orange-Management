@@ -15,7 +15,7 @@ namespace Modules\API {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class API extends \Framework\Modules\ModuleAbstract {
+    class API extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -47,7 +47,7 @@ namespace Modules\API {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -68,7 +68,7 @@ namespace Modules\API {
             if (isset(API::$receiving)) {
                 foreach (API::$receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Modules\ModuleFactory::$initialized[$mid]->show_api();
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
                 }
             }
         }

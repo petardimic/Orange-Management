@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../config.php';
 require_once __DIR__ . '/../../Framework/Autoloader.class.php';
 
-$dbHOBJ = new \Framework\Core\Database($DBDATA);
+$dbHOBJ = new \Framework\DataStorage\Database\Database($DBDATA);
 $instHOBJ = new \Framework\Core\Install($dbHOBJ);
 
 $toInstall = [

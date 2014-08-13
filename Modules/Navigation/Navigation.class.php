@@ -15,7 +15,7 @@ namespace Modules\Navigation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class NavigationType extends \Framework\Base\Enum {
+    abstract class NavigationType extends \Framework\Datatypes\Enum {
         const TOP = 1;
         const SIDE = 2;
         const CONTENT = 3;
@@ -39,7 +39,7 @@ namespace Modules\Navigation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Navigation extends \Framework\Modules\ModuleAbstract {
+    class Navigation extends \Framework\Module\ModuleAbstract {
         /**
          * Dependencies
          *
@@ -124,7 +124,7 @@ namespace Modules\Navigation {
         /**
          * Install module
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $info Module info
          *
          * @since  1.0.0
@@ -134,7 +134,7 @@ namespace Modules\Navigation {
             /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
             switch ($db->type) {
-                case \Framework\Core\DatabaseType::MYSQL:
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'nav` (
                             `id` int(11) NOT NULL,
@@ -163,7 +163,7 @@ namespace Modules\Navigation {
         /**
          * Install data from providing modules
          *
-         * @param \Framework\Core\Database $db   Database instance
+         * @param \Framework\DataStorage\Database\Database $db   Database instance
          * @param array              $data Module info
          *
          * @since  1.0.0
@@ -178,7 +178,7 @@ namespace Modules\Navigation {
         /**
          * Install navigation element
          *
-         * @param \Framework\Core\Database $db     Database instance
+         * @param \Framework\DataStorage\Database\Database $db     Database instance
          * @param array              $data   Link info
          * @param int                $parent Parent element (default is 0 for none)
          *

@@ -1,6 +1,6 @@
 <?php
 namespace Modules\News {
-    abstract class NewsType extends \Framework\Base\Enum {
+    abstract class NewsType extends \Framework\Datatypes\Enum {
         const NEWS     = 0;
         const LINK     = 1;
         const HEADLINE = 2;
@@ -21,7 +21,7 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class NewsArticle implements \Framework\Base\Multition, \Framework\Core\ObjectInterface {
+    class NewsArticle implements \Framework\Pattern\Multition, \Framework\DataStorage\Database\Objects\ObjectInterface {
         /**
          * Article ID
          *
@@ -33,7 +33,7 @@ namespace Modules\News {
         /**
          * Author
          *
-         * @var \Framewrok\Core\User
+         * @var \Framework\DataStorage\Database\Objects\User\User
          * @since 1.0.0
          */
         public $author = null;
@@ -57,7 +57,7 @@ namespace Modules\News {
         /**
          * Last editor
          *
-         * @var \Framewrok\Core\User
+         * @var \Framework\DataStorage\Database\Objects\User\User
          * @since 1.0.0
          */
         public $last_editor = null;
@@ -89,7 +89,7 @@ namespace Modules\News {
         /**
          * Groups that can see this article
          *
-         * @var \Framework\Core\Group[]
+         * @var \Framewrok\DataStorage\Database\Objects\Group\Group[]
          * @since 1.0.0
          */
         public $groups = [];
@@ -113,7 +113,7 @@ namespace Modules\News {
         /**
          * Cache
          *
-         * @var \Framework\Core\Cache
+         * @var \Framework\DataStorage\Cache\Cache
          * @since 1.0.0
          */
         private $cache = null;
@@ -136,8 +136,8 @@ namespace Modules\News {
          */
         public function __construct($id) {
             $this->id    = $id;
-            $this->db    = \Framework\Core\Database::getInstance();
-            $this->cache = \Framework\Core\Cache::getInstance();
+            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
+            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
         }
 
         /**

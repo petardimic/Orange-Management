@@ -27,13 +27,13 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'Internal/js/oms.min.js': [
+                    'Framework/JavaScript/oms.min.js': [
                         'Framework/Utils/Core.js',
-                        'Framework/JS/ui/*.js'
+                        'Framework/JavaScript/UI/*.js'
                     ],
-                    'Internal/js/backend.min.js': [],
-                    'Internal/js/website.min.js': [],
-                    'Internal/js/shop.min.js': []
+                    'Framework/JavaScript/backend.min.js': [],
+                    'Framework/JavaScript/website.min.js': [],
+                    'Framework/JavaScript/shop.min.js': []
                 }
             }
         },
@@ -61,13 +61,13 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['Framework/Internal/JS/*.js'],
+                        src: ['Framework/JavaScript/*.js'],
                         dest: '',
                         ext: '.min.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['Framework/External/jquery/*.js'],
+                        src: ['Framework/Libs/jquery/*.js'],
                         dest: '',
                         ext: '.min.js.gz'
                     },
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: ['Framework/External/fonts/fonts-awesome/css/*.css'],
+                        src: ['Framework/Libs/fonts/fonts-awesome/css/*.css'],
                         dest: '',
                         ext: '.min.css.gz'
                     }
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['Framework/Internal/JS/ui/*.js', 'Framework/Utils/*.js'],
+                files: ['Framework/JavaScript/UI/*.js', 'Framework/JavaScript/Utils/*.js'],
                 tasks: ['uglify:dist', 'compress:dist']
             },
             sass: {

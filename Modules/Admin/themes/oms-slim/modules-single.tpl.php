@@ -1,11 +1,11 @@
 <?php
 /* TODO: Check 'id' with sanitizer for [A-Za-z] */
 /** @var \Modules\Admin\Admin $this */
-/** @var \Framework\Modules\Modules $modules */
+/** @var \Framework\Module\Modules $modules */
 $modules_all = $modules->module_list_all_get();
 
 if (array_key_exists($this->request->uri['id'], $modules_all)) {
-    \Framework\Modules\ModuleFactory::$initialized[1000500000]->show([3, 1000105001]);
+    \Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000105001]);
 }
 ?>
 
@@ -29,7 +29,7 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
         <div class="clearfix rT">
             <ul>
                 <?php
-                /** @var \Framework\Modules\Modules $modules */
+                /** @var \Framework\Module\Modules $modules */
                 if (!array_key_exists($this->request->uri['id'], $modules->modules_installed_get())) {
                     ?>
                     <li>
