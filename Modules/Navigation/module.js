@@ -28,7 +28,7 @@ $(document).ready(function () {
         var val = null;
         for (var key in naviOBJ) {
             //noinspection JSUnfilteredForInLoop
-            if(!isNaN(key)) {
+            if (!isNaN(key)) {
                 val = naviOBJ[key];
                 sidebar.find('.' + val + ' li:not(:first-child)').hide();
                 sidebar.find('.' + val + ' .min').hide();

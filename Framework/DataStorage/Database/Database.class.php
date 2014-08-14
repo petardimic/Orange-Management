@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Database {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Database implements \Framework\Pattern\Singleton {
+    class Database {
         /**
          * Connection object
          *
@@ -61,14 +61,6 @@ namespace Framework\DataStorage\Database {
         public $status = 0;
 
         /**
-         * Instance
-         *
-         * @var \Framework\DataStorage\Database\Database
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Object constructor
          *
          * Creates the database object and overwrites all default values.
@@ -94,7 +86,7 @@ namespace Framework\DataStorage\Database {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::OK;
             } catch (\PDOException $e) {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_DATABASE;
-                $this->con = null;
+                $this->con    = null;
             }
 
             try {
@@ -102,15 +94,6 @@ namespace Framework\DataStorage\Database {
             } catch (\PDOException $e) {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_TABLE;
             }
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
         }
 
         /**
@@ -123,24 +106,6 @@ namespace Framework\DataStorage\Database {
          */
         public function __destruct() {
             $this->con = null;
-        }
-
-        /**
-         * Returns instance
-         *
-         * @param array $dbdata the basic database information for establishing a connection
-         *
-         * @return \Framework\DataStorage\Database\Database
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance($dbdata = null) {
-            if (self::$instance === null) {
-                self::$instance = new self($dbdata);
-            }
-
-            return self::$instance;
         }
 
         /**

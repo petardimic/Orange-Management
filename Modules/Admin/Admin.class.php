@@ -67,20 +67,15 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path) {
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->users = \Modules\Admin\Users::getInstance();
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->settings = \Framework\Config\Settings::getInstance();
-
-            parent::initialize($theme_path);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -124,7 +119,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
-            switch ($this->request->uri['l3']) {
+            switch ($this->app->request->uri['l3']) {
                 case 'account':
                     $this->show_account();
                     break;
@@ -153,7 +148,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_settings() {
-            $this->settings->settings_load([
+            $this->app->settings->load_settings([
                 1000000006,
                 1000000007,
                 1000000008,
@@ -170,7 +165,7 @@ namespace Modules\Admin {
                 1000000026
             ]);
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'general':
                     \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
 
@@ -189,13 +184,13 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_account() {
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = \Modules\Admin\Users::getInstance();
+                    $accounts = new \Modules\Admin\Users($this->app);
 
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
@@ -222,7 +217,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_account_single() {
-            switch ($this->request->uri['l5']) {
+            switch ($this->app->request->uri['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/accounts-single.tpl.php';
@@ -239,25 +234,21 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_module() {
-            if (empty($this->request->uri['l4'])) {
-                $this->request->uri['l5'] = 'front';
+            if (empty($this->app->request->uri['l4'])) {
+                $this->app->request->uri['l5'] = 'front';
             }
 
-            /** @noinspection PhpUnusedLocalVariableInspection */
-            $modules = \Framework\Module\Modules::getInstance();
-
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/modules-list.tpl.php';
                     break;
                 case 'front':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $info = \Framework\Module\Module::getInstance((int)$this->request->uri['id'])->module_info_get();
+                    $info = $this->app->modules->module_info_get((int)$this->app->request->uri['id']);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/modules-single.tpl.php';
@@ -274,13 +265,13 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_group() {
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $groups = \Modules\Admin\Groups::getInstance();
+                    $groups = new \Modules\Admin\Groups($this->app);
 
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
@@ -305,16 +296,16 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_group_single() {
-            switch ($this->request->uri['l5']) {
+            switch ($this->app->request->uri['l5']) {
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = \Modules\Admin\Users::getInstance();
+                    $accounts = new \Modules\Admin\Users($this->app);
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $group = \Framework\DataStorage\Database\Objects\Group\Group::getInstance((int)$this->request->uri['id']);
+                    $group = new \Framework\DataStorage\Database\Objects\Group\Group((int)$this->app->request->uri['id'], $this->app);
 
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
@@ -330,7 +321,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_api() {
-            switch ($this->request->uri['l3']) {
+            switch ($this->app->request->uri['l3']) {
                 case 'account':
                     $this->api_account();
                     break;
@@ -357,7 +348,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_account() {
-            switch ($this->request->type) {
+            switch ($this->app->request->type) {
                 case \Framework\Request\RequestType::PUT:
                     $this->api_account_put();
                     break;
@@ -384,11 +375,11 @@ namespace Modules\Admin {
         public function api_account_put() {
             $accounts = \Modules\Admin\Users::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'user':
                     break;
                 default:
-                    $accounts->account_create($this->request->post['name'], $this->request->post['pass'], $this->request->post['email']);
+                    $accounts->account_create($this->app->request->post['name'], $this->app->request->post['pass'], $this->app->request->post['email']);
                     break;
             }
         }
@@ -402,11 +393,11 @@ namespace Modules\Admin {
         public function api_account_delete() {
             $accounts = \Modules\Admin\Users::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'user':
                     break;
                 default:
-                    $accounts->account_delete((int)$this->request->post['id']);
+                    $accounts->account_delete((int)$this->app->request->post['id']);
                     break;
             }
         }
@@ -418,7 +409,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_group() {
-            switch ($this->request->type) {
+            switch ($this->app->request->type) {
                 case \Framework\Request\RequestType::PUT:
                     $this->api_group_put();
                     break;
@@ -446,11 +437,11 @@ namespace Modules\Admin {
         public function api_group_put() {
             $groups = \Modules\Admin\Groups::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'user':
                     break;
                 default:
-                    $groups->group_create($this->request->post['name'], $this->request->post['desc'], $this->request->post['perm']);
+                    $groups->group_create($this->app->request->post['name'], $this->app->request->post['desc'], $this->app->request->post['perm']);
                     break;
             }
         }
@@ -464,11 +455,11 @@ namespace Modules\Admin {
         public function api_group_delete() {
             $groups = \Modules\Admin\Groups::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'user':
                     break;
                 default:
-                    $groups->group_edit((int)$this->request->post['id'], $this->request->post['name'], $this->request->post['desc']);
+                    $groups->group_edit((int)$this->app->request->post['id'], $this->app->request->post['name'], $this->app->request->post['desc']);
                     break;
             }
         }
@@ -482,11 +473,11 @@ namespace Modules\Admin {
         public function api_group_post() {
             $groups = \Modules\Admin\Groups::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'user':
                     break;
                 default:
-                    $groups->group_delete((int)$this->request->post['id']);
+                    $groups->group_delete((int)$this->app->request->post['id']);
                     break;
             }
         }
@@ -500,14 +491,14 @@ namespace Modules\Admin {
         public function api_settings() {
             $settings = \Framework\Config\Settings::getInstance();
 
-            switch ($this->request->uri['l4']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'core':
-                    $settings->settings_set($this->request->post['settigns']);
+                    $settings->settings_set($this->app->request->post['settigns']);
 
                     $json_ret = [
-                        'type' => 1,
+                        'type'   => 1,
                         'status' => 1,
-                        'msg' => \Framework\Localization\Localization::$lang[1]['i:SettingsSet']
+                        'msg'    => \Framework\Localization\Localization::$lang[1]['i:SettingsSet']
                     ];
 
                     echo json_encode($json_ret);
@@ -528,14 +519,14 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_module() {
-            switch ($this->request->type) {
+            switch ($this->app->request->type) {
                 case \Framework\Request\RequestType::PUT:
-                    \Framework\Module\ModuleAbstract::install($this->db, $this->request->uri['id']);
+                    \Framework\Module\ModuleAbstract::install($this->db, $this->app->request->uri['id']);
 
                     $json_ret = [
-                        'type' => 1,
+                        'type'   => 1,
                         'status' => 1,
-                        'msg' => str_replace('{$1}', $this->request->uri['id'], \Framework\Localization\Localization::$lang[1]['i:ModuleInstalled'])
+                        'msg'    => str_replace('{$1}', $this->app->request->uri['id'], \Framework\Localization\Localization::$lang[1]['i:ModuleInstalled'])
                     ];
 
                     echo json_encode($json_ret);
@@ -550,6 +541,7 @@ namespace Modules\Admin {
                     break;
                 default:
                     echo '3';
+
                     return false;
             }
 

@@ -4,8 +4,9 @@
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
+
     <div class="bc-1">
-        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->request->uri['id']); ?>
+        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->uri['id']); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>
@@ -13,7 +14,7 @@
                 </li>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= (int)$this->request->uri['id']; ?>" disabled>
+                           value="<?= (int)$this->app->request->uri['id']; ?>" disabled>
                 </li>
                 <li>
                     <label for="i-status"><?= \Framework\Localization\Localization::$lang[3]['Status']; ?></label>
@@ -70,6 +71,7 @@
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
+
     <div class="bc-1">
         <form class="f-1">
             <ul class="l-1">

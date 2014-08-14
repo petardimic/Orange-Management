@@ -15,30 +15,14 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Users implements \Framework\DataStorage\Database\Objects\ObjectListInterface, \Framework\Pattern\Singleton {
+    class Users implements \Framework\DataStorage\Database\Objects\ObjectListInterface {
         /**
-         * Database
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
-
-        /**
-         * Instances
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected static $instance = null;
+        private $app = null;
 
         /**
          * Constructor
@@ -46,41 +30,15 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Modules\Admin\Users
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (self::$instance === null) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
+        public function __construct($app) {
+            $this->app = $app;
         }
 
         /**
          * Create new account
          *
-         * @param string $name Login name
-         * @param string $pass Password
+         * @param string $name  Login name
+         * @param string $pass  Password
          * @param string $email Email
          *
          * @since  1.0.0
@@ -89,10 +47,10 @@ namespace Modules\Admin {
         public function account_create($name, $pass, $email) {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
                             (:aname, :pword, :email, \'0000-00-00 00:00:00\', 3, \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                     );
 
@@ -134,28 +92,28 @@ namespace Modules\Admin {
         public function account_list_get($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $search = $this->db->generate_sql_filter($filter, true);
+                    $search = $this->app->db->generate_sql_filter($filter, true);
 
-                    $sth = $this->db->con->prepare(
+                    $sth = $this->app->db->con->prepare(
                         'SELECT SQL_CALC_FOUND_ROWS
-                            `' . $this->db->prefix . 'accounts`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->app->db->prefix . 'accounts`.*,
+                            `' . $this->app->db->prefix . 'accounts_data`.`name1`,
+                            `' . $this->app->db->prefix . 'accounts_data`.`name2`,
+                            `' . $this->app->db->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->db->prefix . 'accounts`,
-                            `' . $this->db->prefix . 'accounts_data`
+                            `' . $this->app->db->prefix . 'accounts`,
+                            `' . $this->app->db->prefix . 'accounts_data`
                         WHERE
-                            `' . $this->db->prefix . 'accounts`.`id` = `' . $this->db->prefix . 'accounts_data`.`account`'
+                            `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`'
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();
 
-                    $sth = $this->db->con->prepare(
+                    $sth = $this->app->db->con->prepare(
                         'SELECT FOUND_ROWS();'
                     );
                     $sth->execute();
@@ -167,7 +125,10 @@ namespace Modules\Admin {
             return $result;
         }
 
-        public function instantiate() {}
-        public function get_object() {}
+        public function instantiate() {
+        }
+
+        public function get_object() {
+        }
     }
 }

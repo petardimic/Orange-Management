@@ -17,58 +17,25 @@ namespace Framework\Auth {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Auth implements \Framework\Pattern\Singleton {
+    class Auth {
         /**
-         * Database
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
-
-        /**
-         * Instances
-         *
-         * @var \Framework\Auth\Auth
-         * @since 1.0.0
-         */
-        protected static $instance = null;
+        private $app = null;
 
         /**
          * Constructor
          *
-         * @param string $page Page address
+         * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Framework\Auth\Auth
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (!isset(self::$instance)) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
+        public function __construct($app) {
+            $this->app = $app;
         }
 
         /**
@@ -82,7 +49,7 @@ namespace Framework\Auth {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function authenticate($page) {
-            return \Framework\DataStorage\Database\Objects\User\User::getInstance($this->check_session($page), true);
+            return \Framework\DataStorage\Database\Objects\User\User::getInstance($this->check_session($page), $this->app, true);
         }
 
         /**

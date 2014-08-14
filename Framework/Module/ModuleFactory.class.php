@@ -36,6 +36,15 @@ namespace Framework\Module {
          */
         public static $initialized = [];
 
+
+        /**
+         * Application instance
+         *
+         * @var \Framework\Application
+         * @since 1.0.0
+         */
+        public static $app = null;
+
         /**
          * Gets and initializes modules
          *
@@ -54,7 +63,7 @@ namespace Framework\Module {
                 /**
                  * @var \Framework\Module\ModuleAbstract $obj
                  */
-                $obj                     = new $class(self::$available[$mid]['path']);
+                $obj                     = new $class(self::$available[$mid]['path'], ModuleFactory::$app);
                 self::$initialized[$mid] = $obj;
 
                 /* TODO: find dependencies or load them inside module? */

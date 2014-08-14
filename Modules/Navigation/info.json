@@ -15,8 +15,8 @@
     "providing": [],
     "load": [
         {
-            "pid" : ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type" : 4,
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 4,
             "for": 0,
             "file": "Navigation",
             "from": "1000500000"

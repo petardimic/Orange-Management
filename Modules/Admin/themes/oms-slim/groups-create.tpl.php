@@ -26,7 +26,8 @@
                         <input name="name" class="i-1 t-i" id="i-name" type="text">
                     </li>
                     <li>
-                        <label for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
+                        <label
+                            for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
                     </li>
                     <li>
                         <textarea name="desc" id="i-desc"></textarea>

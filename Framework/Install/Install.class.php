@@ -43,7 +43,7 @@ namespace Framework\Install {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function install_core() {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
@@ -260,7 +260,7 @@ namespace Framework\Install {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function install_groups() {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
@@ -287,7 +287,7 @@ namespace Framework\Install {
         public function install_users() {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
@@ -318,7 +318,7 @@ namespace Framework\Install {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function install_settings() {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 

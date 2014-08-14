@@ -47,11 +47,11 @@
                 <li>
                     <select name="cache" class="i-1" id="i-cache">
                         <option
-                            value="0"<?= ($this->cache->type == 0 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['None']; ?></option>
+                            value="0"<?= ($this->app->cache->type == 0 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['None']; ?></option>
                         <option
-                            value="1"<?= ($this->cache->type == 1 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['File']; ?></option>
+                            value="1"<?= ($this->app->cache->type == 1 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['File']; ?></option>
                         <option
-                            value="2"<?= ($this->cache->type == 2 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Memcache']; ?></option>
+                            value="2"<?= ($this->app->cache->type == 2 ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Memcache']; ?></option>
                     </select>
                 </li>
                 <li>
@@ -66,7 +66,7 @@
                 </li>
                 <li>
                     <input name="email" class="i-1 t-mail" id="i-email" type="text"
-                           value="<?= $this->settings->config[1000000025]; ?>">
+                           value="<?= $this->app->settings->config[1000000025]; ?>">
                     <i class="bt-1 p-3 vh">
                         <?= \Framework\Localization\Localization::$lang[1]['i:mail']; ?>
                     </i>
@@ -109,7 +109,7 @@
                     <select name="count" class="i-1" id="i-count">
                         <?php
                         foreach ($GLOBALS['COUNTRIES_ARRAY'] as $key => $val) {
-                            echo '<option value="' . $key . '"' . ($key === $this->settings->config[1000000019] ? ' selected' : '') . '>' . $val . '</option>';
+                            echo '<option value="' . $key . '"' . ($key === $this->app->settings->config[1000000019] ? ' selected' : '') . '>' . $val . '</option>';
                         }
                         ?>
                     </select>
@@ -145,7 +145,7 @@
                     <select name="curr" class="i-1" id="i-curr">
                         <?php
                         foreach ($GLOBALS['CURRENCIES_ARRAY'] as $key => $val) {
-                            echo '<option value="' . $key . '"' . ($key === $this->settings->config[1000000023] ? ' selected' : '') . '>' . $val[0] . '</option>';
+                            echo '<option value="' . $key . '"' . ($key === $this->app->settings->config[1000000023] ? ' selected' : '') . '>' . $val[0] . '</option>';
                         }
                         ?>
                     </select>
@@ -174,9 +174,9 @@
                 <li>
                     <select name="uname" class="i-1" id="i-uname">
                         <option
-                            value="1"<?= ($this->settings->config[1000000026] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Email']; ?></option>
+                            value="1"<?= ($this->app->settings->config[1000000026] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Email']; ?></option>
                         <option
-                            value="2"<?= ($this->settings->config[1000000026] === '2' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['ID']; ?></option>
+                            value="2"<?= ($this->app->settings->config[1000000026] === '2' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['ID']; ?></option>
                     </select>
                 </li>
                 <li>
@@ -185,13 +185,13 @@
                 <li>
                     <select name="pass" class="i-1" id="i-pass" multiple>
                         <option
-                            value="1"<?= ($this->settings->config[1000000024] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Lowercase']; ?></option>
+                            value="1"<?= ($this->app->settings->config[1000000024] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Lowercase']; ?></option>
                         <option
-                            value="2"<?= ($this->settings->config[1000000007] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Uppercase']; ?></option>
+                            value="2"<?= ($this->app->settings->config[1000000007] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Uppercase']; ?></option>
                         <option
-                            value="3"<?= ($this->settings->config[1000000008] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Numeric']; ?></option>
+                            value="3"<?= ($this->app->settings->config[1000000008] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Numeric']; ?></option>
                         <option
-                            value="4"<?= ($this->settings->config[1000000006] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Specialchar']; ?></option>
+                            value="4"<?= ($this->app->settings->config[1000000006] === '1' ? ' selected' : ''); ?>><?= \Framework\Localization\Localization::$lang[1]['Specialchar']; ?></option>
                     </select>
                 </li>
                 <li>

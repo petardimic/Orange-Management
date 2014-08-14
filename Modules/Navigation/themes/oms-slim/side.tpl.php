@@ -20,7 +20,7 @@ if (isset($this->nav[2])) {
         foreach ($this->nav[2][1] as $key2 => $link) {
             if ($link['parent'] === $parent['id']) {
                 echo '<li>';
-                echo '<a href="' . $this->request->generate_uri([$this->request->request_lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">' . \Framework\Localization\Localization::$lang[5][$link['name']] . '</a>';
+                echo '<a href="' . $this->app->request->generate_uri([$this->app->request->request_lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">' . \Framework\Localization\Localization::$lang[5][$link['name']] . '</a>';
                 echo '</li>';
             }
         }

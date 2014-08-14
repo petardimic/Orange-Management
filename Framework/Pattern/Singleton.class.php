@@ -16,6 +16,6 @@ namespace Framework\Pattern {
      * @since      1.0.0
      */
     interface Singleton {
-        public static function getInstance();
+        public static function getInstance($app);
     }
 }

@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Cache implements \Framework\Pattern\Singleton {
+    class Cache {
         /**
          * Caching type
          *
@@ -23,14 +23,6 @@ namespace Framework\DataStorage\Cache {
          * @since 1.0.0
          */
         public $type = null;
-
-        /**
-         * Database
-         *
-         * @var \Framework\DataStorage\Database\Database
-         * @since 1.0.0
-         */
-        private $db = null;
 
         /**
          * Memcache instance
@@ -41,12 +33,12 @@ namespace Framework\DataStorage\Cache {
         private $memc = null;
 
         /**
-         * Instance
+         * Application instance
          *
-         * @var \Framework\DataStorage\Cache\Cache
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        protected static $instance = null;
+        private $app = null;
 
         /**
          * Constructor
@@ -54,41 +46,14 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
-            $this->db = \Framework\DataStorage\Database\Database::getInstance();
+        public function __construct($app) {
+            $this->app = $app;
 
-            $cache_data = null;
-
-            $sth = $this->db->con->prepare('SELECT `content` FROM `' . $this->db->prefix . 'settings` WHERE `id` = 1000000015');
+            $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
             $sth->execute();
             $cache_data = $sth->fetchAll();
 
             $this->type = (int)$cache_data[0][0];
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Framework\DataStorage\Cache\Cache
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (self::$instance === null) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
         }
 
         /**
@@ -111,7 +76,7 @@ namespace Framework\DataStorage\Cache {
                     }
                 }
 
-                switch($this->type) {
+                switch ($this->type) {
                     case \Framework\DataStorage\Cache\CacheType::FILE:
                         $json = json_encode($var);
 
@@ -124,10 +89,10 @@ namespace Framework\DataStorage\Cache {
                         } catch (\Exception $e) {
                             return false;
                         }
-                    break;
+                        break;
                     case \Framework\DataStorage\Cache\CacheType::MEMCACHE:
                         $this->memc->add($key, $var, 864000);
-                    break;
+                        break;
                 }
             }
 

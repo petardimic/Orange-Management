@@ -10,13 +10,13 @@
         "path": "/oms-slim"
     },
     "description": "The API module.",
-    "class":  "API",
+    "class": "API",
     "dependencies": [],
     "providing": [],
     "load": [
         {
-            "pid" : ["a033a528b603fed46f861d4b3542c417b99d41c8"],
-            "type" : 4,
+            "pid": ["a033a528b603fed46f861d4b3542c417b99d41c8"],
+            "type": 4,
             "for": 0,
             "from": "1004400000",
             "file": "API"

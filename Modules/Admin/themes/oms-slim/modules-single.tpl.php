@@ -2,9 +2,9 @@
 /* TODO: Check 'id' with sanitizer for [A-Za-z] */
 /** @var \Modules\Admin\Admin $this */
 /** @var \Framework\Module\Modules $modules */
-$modules_all = $modules->module_list_all_get();
+$modules_all = $this->app->modules->module_list_all_get();
 
-if (array_key_exists($this->request->uri['id'], $modules_all)) {
+if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
     \Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000105001]);
 }
 ?>
@@ -18,7 +18,7 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
 
     <div class="bc-1">
         <img alt="<?= \Framework\Localization\Localization::$lang[1]['Module']; ?>"
-             src="/Modules/<?= $this->request->uri['id']; ?>/img/module_teaser_small.png" class="lf img-1">
+             src="/Modules/<?= $this->app->request->uri['id']; ?>/img/module_teaser_small.png" class="lf img-1">
         <span class="lf">
             <h1><?=
                 /** @var array $info */
@@ -30,13 +30,13 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
             <ul>
                 <?php
                 /** @var \Framework\Module\Modules $modules */
-                if (!array_key_exists($this->request->uri['id'], $modules->modules_installed_get())) {
+                if (!array_key_exists($this->app->request->uri['id'], $this->app->modules->modules_installed_get())) {
                     ?>
                     <li>
                         <button class="d-call" data-requestType="PUT"
-                                data-json='{"id":"<?= $this->request->uri['id']; ?>"}' data-src="<?=
-                        $this->request->generate_uri([
-                                $this->request->uri['l0'],
+                                data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-src="<?=
+                        $this->app->request->generate_uri([
+                                $this->app->request->uri['l0'],
                                 'api',
                                 'admin',
                                 'module'
@@ -45,15 +45,15 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
                     </li>
                 <?php } else { ?>
                     <li><a href="<?=
-                        $this->request->generate_uri([
-                                $this->request->uri['l0'],
-                                $this->request->uri['l1'],
-                                $this->request->uri['l2'],
-                                $this->request->uri['l3'],
-                                $this->request->uri['l4'],
+                        $this->app->request->generate_uri([
+                                $this->app->request->uri['l0'],
+                                $this->app->request->uri['l1'],
+                                $this->app->request->uri['l2'],
+                                $this->app->request->uri['l3'],
+                                $this->app->request->uri['l4'],
                                 'settings'
                             ],
-                            [['id', $this->request->uri['id']]]
+                            [['id', $this->app->request->uri['id']]]
                         );
                         ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a></li>
                 <?php } ?>
@@ -72,7 +72,7 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
 
     <div class="bc-1">
         <?php /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../../../' . $this->request->uri['id'] . '/docs/features.htm'; ?>
+        include __DIR__ . '/../../../' . $this->app->request->uri['id'] . '/docs/features.htm'; ?>
     </div>
 </div>
 
@@ -85,6 +85,6 @@ if (array_key_exists($this->request->uri['id'], $modules_all)) {
 
     <div class="bc-1">
         <?php /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../../../' . $this->request->uri['id'] . '/docs/version.htm'; ?>
+        include __DIR__ . '/../../../' . $this->app->request->uri['id'] . '/docs/version.htm'; ?>
     </div>
 </div>

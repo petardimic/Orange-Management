@@ -17,28 +17,12 @@ namespace Framework\Module {
      */
     class Modules {
         /**
-         * Database object
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
-
-        /**
-         * Localization instance
-         *
-         * @var \Framework\Localization\Localization
-         * @since 1.0.0
-         */
-        public $localization = null;
+        private $app = null;
 
         /**
          * Active Modules
@@ -73,48 +57,13 @@ namespace Framework\Module {
         public $installed = null;
 
         /**
-         * Instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function __construct() {
-            $this->db           = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache        = \Framework\DataStorage\Cache\Cache::getInstance();
-            $this->localization = \Framework\Localization\Localization::getInstance(-1);
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Framework\Module\Modules
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (self::$instance === null) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
+        public function __construct($app) {
+            $this->app = $app;
         }
 
         /**
@@ -124,57 +73,56 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function modules_load() {
-            $request      = \Framework\Request\Request::getInstance();
-            $this->loaded = $this->cache->pull('modules:loaded' . $request->uri_hash[3]);
+            $this->loaded = $this->app->cache->pull('modules:loaded' . $this->app->request->uri_hash[3]);
 
             if (!$this->loaded) {
-                $sth = $this->db->con->prepare(
+                $sth = $this->app->db->con->prepare(
                     'SELECT
-                        `' . $this->db->prefix . 'modules_load`.`type`, `' . $this->db->prefix . 'modules_load`.*
+                        `' . $this->app->db->prefix . 'modules_load`.`type`, `' . $this->app->db->prefix . 'modules_load`.*
                     FROM
-                        `' . $this->db->prefix . 'modules_load`
+                        `' . $this->app->db->prefix . 'modules_load`
                     WHERE
                         `pid` IN(:pid1, :pid2, :pid3, :pid4)'
                 );
 
-                $sth->bindValue(':pid1', $request->uri_hash[0], \PDO::PARAM_STR);
-                $sth->bindValue(':pid2', $request->uri_hash[1], \PDO::PARAM_STR);
-                $sth->bindValue(':pid3', $request->uri_hash[2], \PDO::PARAM_STR);
-                $sth->bindValue(':pid4', $request->uri_hash[3], \PDO::PARAM_STR);
+                $sth->bindValue(':pid1', $this->app->request->uri_hash[0], \PDO::PARAM_STR);
+                $sth->bindValue(':pid2', $this->app->request->uri_hash[1], \PDO::PARAM_STR);
+                $sth->bindValue(':pid3', $this->app->request->uri_hash[2], \PDO::PARAM_STR);
+                $sth->bindValue(':pid4', $this->app->request->uri_hash[3], \PDO::PARAM_STR);
                 $sth->execute();
                 $this->loaded = $sth->fetchAll(\PDO::FETCH_GROUP);
 
-                $this->cache->push('modules:loaded' . $request->uri_hash[3], $this->loaded);
+                $this->app->cache->push('modules:loaded' . $this->app->request->uri_hash[3], $this->loaded);
             }
 
-            $this->active = $this->cache->pull('modules:active');
+            $this->active = $this->app->cache->pull('modules:active');
 
             if (!$this->active) {
-                $sth = $this->db->con->prepare(
+                $sth = $this->app->db->con->prepare(
                     'SELECT
-                        `' . $this->db->prefix . 'modules`.`id`, `' . $this->db->prefix . 'modules`.*
+                        `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.*
                     FROM
-                        `' . $this->db->prefix . 'modules`
+                        `' . $this->app->db->prefix . 'modules`
                     WHERE
                         `active` = 1'
                 );
                 $sth->execute();
 
                 $this->active = $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
-                $this->cache->push('modules:active', $this->active);
+                $this->app->cache->push('modules:active', $this->active);
             }
 
-            ModuleFactory::$available = $this->active;
-            $this->running            = & ModuleFactory::$initialized;
+            \Framework\Module\ModuleFactory::$available = $this->active;
+            $this->running                              = & \Framework\Module\ModuleFactory::$initialized;
 
             if (isset($this->loaded[5])) {
-                \Framework\Localization\Localization::language_load($this->localization->language, $this->loaded[5]);
+                $this->app->user->localization->load_language($this->app->user->localization->language, $this->loaded[5]);
             }
 
             if (isset($this->loaded[4])) {
                 /* TODO: Maybe pass array, reduces function call */
                 foreach ($this->loaded[4] as $class) {
-                    ModuleFactory::getInstance($class['from']);
+                    \Framework\Module\ModuleFactory::getInstance($class['from']);
                 }
             }
         }
@@ -189,14 +137,14 @@ namespace Framework\Module {
          */
         public function modules_installed_get() {
             if (!isset($this->installed)) {
-                $this->installed = $this->cache->pull('modules::installed');
+                $this->installed = $this->app->cache->pull('modules::installed');
 
                 if (!$this->installed) {
-                    $sth = $this->db->con->prepare('SELECT `id`,`name` FROM `' . $this->db->prefix . 'modules` WHERE `active` = 1');
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
 
-                    $this->cache->push('modules::installed', $this->installed);
+                    $this->app->cache->push('modules::installed', $this->installed);
                 }
             }
 
@@ -246,18 +194,18 @@ namespace Framework\Module {
         public function module_list_installed_get($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $search = $this->db->generate_sql_filter($filter);
+                    $search = $this->app->db->generate_sql_filter($filter);
 
-                    $sth = $this->db->con->prepare(
-                        'SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->db->prefix . 'modules` ' . $search . 'LIMIT ' . $offset . ',' . $limit
+                    $sth = $this->app->db->con->prepare(
+                        'SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->app->db->prefix . 'modules` ' . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();
 
-                    $sth = $this->db->con->prepare(
+                    $sth = $this->app->db->con->prepare(
                         'SELECT FOUND_ROWS();'
                     );
                     $sth->execute();
@@ -278,7 +226,7 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function modules_inactive_get() {
-            $sth = $this->db->con->prepare('SELECT `' . $this->db->prefix . 'modules`.`id`, `' . $this->db->prefix . 'modules`.* FROM `' . $this->db->prefix . 'modules` WHERE `active` = 0');
+            $sth = $this->app->db->con->prepare('SELECT `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.* FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 0');
             $sth->execute();
 
             return $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
@@ -293,20 +241,20 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function modules_active_get() {
-            $active = $this->cache->pull('modules:active');
+            $active = $this->app->cache->pull('modules:active');
 
             if (!$active) {
-                $sth = $this->db->con->prepare('SELECT `' . $this->db->prefix . 'modules`.`id`, `' . $this->db->prefix . 'modules`.* FROM `' . $this->db->prefix . 'modules` WHERE `active` = 1');
+                $sth = $this->app->db->con->prepare('SELECT `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.* FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
                 $sth->execute();
                 $active = $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
 
-                $this->cache->push('modules:active', $active);
+                $this->app->cache->push('modules:active', $active);
             }
 
             return $active;
         }
-		
-		/**
+
+        /**
          * Get all active modules
          *
          * @return array
@@ -314,16 +262,16 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function module_info_get() {
-            if (!isset($this->info)) {
-                $path = __DIR__ . '/../../Modules/' . $this->id . '/info.json';
+        public function module_info_get($id) {
+            if (!isset($this->installed[$id]['info'])) {
+                $path = __DIR__ . '/../../Modules/' . $id . '/info.json';
 
                 if (file_exists($path)) {
-                    $this->info = json_decode(file_get_contents($path), true);
+                    $this->installed[$id]['info'] = json_decode(file_get_contents($path), true);
                 }
             }
 
-            return $this->info;
+            return $this->installed[$id]['info'];
         }
     }
 }

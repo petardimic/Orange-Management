@@ -16,12 +16,12 @@ namespace Modules\Navigation {
      * @since      1.0.0
      */
     abstract class NavigationType extends \Framework\Datatypes\Enum {
-        const TOP = 1;
-        const SIDE = 2;
-        const CONTENT = 3;
-        const TAB = 4;
+        const TOP          = 1;
+        const SIDE         = 2;
+        const CONTENT      = 3;
+        const TAB          = 4;
         const CONTENT_SIDE = 5;
-        const BOTTOM = 6;
+        const BOTTOM       = 6;
     }
 
     /**
@@ -92,21 +92,21 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path) {
-            parent::initialize($theme_path);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
 
-            $this->nav = $this->cache->pull('nav::' . $this->request->uri_hash[2]);
+            $this->nav = $this->app->cache->pull('nav::' . $this->app->request->uri_hash[2]);
 
             if (!$this->nav) {
                 $temp_nav  = null;
                 $this->nav = [];
 
-                $sth = $this->db->con->prepare('SELECT * FROM `' . $this->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE)');
-                $sth->bindValue(':pidA', $this->request->uri_hash[0], \PDO::PARAM_STR);
-                $sth->bindValue(':pidB', $this->request->uri_hash[1], \PDO::PARAM_STR);
-                $sth->bindValue(':pidC', $this->request->uri_hash[2], \PDO::PARAM_STR);
-                $sth->bindValue(':pidD', $this->request->uri_hash[3], \PDO::PARAM_STR);
-                $sth->bindValue(':pidE', $this->request->uri_hash[4], \PDO::PARAM_STR);
+                $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE)');
+                $sth->bindValue(':pidA', $this->app->request->uri_hash[0], \PDO::PARAM_STR);
+                $sth->bindValue(':pidB', $this->app->request->uri_hash[1], \PDO::PARAM_STR);
+                $sth->bindValue(':pidC', $this->app->request->uri_hash[2], \PDO::PARAM_STR);
+                $sth->bindValue(':pidD', $this->app->request->uri_hash[3], \PDO::PARAM_STR);
+                $sth->bindValue(':pidE', $this->app->request->uri_hash[4], \PDO::PARAM_STR);
                 $sth->execute();
                 $temp_nav = $sth->fetchAll();
 
@@ -117,7 +117,7 @@ namespace Modules\Navigation {
                     $this->nav[$link['type']][$link['subtype']][$link['id']] = $link;
                 }
 
-                $this->cache->push('nav::' . $this->request->uri_hash[2], $this->nav);
+                $this->app->cache->push('nav::' . $this->app->request->uri_hash[2], $this->nav);
             }
         }
 
@@ -125,7 +125,7 @@ namespace Modules\Navigation {
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -164,7 +164,7 @@ namespace Modules\Navigation {
          * Install data from providing modules
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $data Module info
+         * @param array                                    $data Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -179,8 +179,8 @@ namespace Modules\Navigation {
          * Install navigation element
          *
          * @param \Framework\DataStorage\Database\Database $db     Database instance
-         * @param array              $data   Link info
-         * @param int                $parent Parent element (default is 0 for none)
+         * @param array                                    $data   Link info
+         * @param int                                      $parent Parent element (default is 0 for none)
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

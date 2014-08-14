@@ -15,8 +15,8 @@
     "providing": [],
     "load": [
         {
-            "pid" : ["3788e96aebafcdf3acc1a87861d559695e9a531f"],
-            "type" : 4,
+            "pid": ["3788e96aebafcdf3acc1a87861d559695e9a531f"],
+            "type": 4,
             "for": 0,
             "from": "1000200000",
             "file": "BackendDashboard"

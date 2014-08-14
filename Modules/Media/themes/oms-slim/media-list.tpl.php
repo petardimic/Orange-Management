@@ -32,7 +32,7 @@
     <?php
     /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
     $data = $accounts->account_list_get();
-    $url['level'] = array_slice($this->request->uri, 0, 4);
+    $url['level'] = array_slice($this->app->request->uri, 0, 4);
     $url['level'][] = 'single';
     $url['id'] = 'id';
 

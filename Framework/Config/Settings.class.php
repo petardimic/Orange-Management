@@ -15,22 +15,14 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Settings implements \Framework\Pattern\Singleton {
+    class Settings {
         /**
-         * Database object
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
+        private $app = null;
 
         /**
          * Config
@@ -41,47 +33,13 @@ namespace Framework\Config {
         public $config = [];
 
         /**
-         * Instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function __construct() {
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Framework\Config\Settings
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (self::$instance === null) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
+        public function __construct($app) {
+            $this->app = $app;
         }
 
         /**
@@ -92,12 +50,12 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function settings_load($ids) {
+        public function load_settings($ids) {
             foreach ($ids as $id) {
                 if (isset($this->config[$id])) {
                     unset($ids[$id]);
                 } else {
-                    $cfg = $this->cache->pull('cfg:' . $id);
+                    $cfg = $this->app->cache->pull('cfg:' . $id);
 
                     if ($cfg !== false) {
                         $this->config[$id] = $cfg;
@@ -107,12 +65,12 @@ namespace Framework\Config {
             }
 
             if (!empty($ids)) {
-                $sth = $this->db->con->prepare('SELECT `id`, `content` FROM `' . $this->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
+                $sth = $this->app->db->con->prepare('SELECT `id`, `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
                 $sth->execute();
                 $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
 
                 /* TODO: this overwrites old cfgs, which shouldn't happen */
-                $this->cache->push('cfg', $cfgs, false);
+                $this->app->cache->push('cfg', $cfgs, false);
                 $this->config += $cfgs;
             }
         }
@@ -129,8 +87,8 @@ namespace Framework\Config {
             $this->config += $settings;
 
             /* TODO: change this */
-            foreach($settings as $key => $value) {
-                $sth = $this->db->con->prepare('UPDATE `' . $this->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = '. $key);
+            foreach ($settings as $key => $value) {
+                $sth = $this->app->db->con->prepare('UPDATE `' . $this->app->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
                 $sth->execute();
             }
         }

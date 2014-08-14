@@ -59,15 +59,15 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path) {
-            parent::initialize($theme_path);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                             $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -104,14 +104,14 @@ namespace Modules\Media {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
-            switch ($this->request->uri['l3']) {
+            switch ($this->app->request->uri['l3']) {
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/media-single.tpl.php';
                     break;
                 case 'list':
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
@@ -125,7 +125,7 @@ namespace Modules\Media {
         }
 
         public function show_content_push() {
-            switch ($this->request->uri['l2']) {
+            switch ($this->app->request->uri['l2']) {
                 case 'admin':
                     break;
                 case 'profile':

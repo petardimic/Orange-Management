@@ -115,20 +115,12 @@ namespace Framework\DataStorage\Database\Objects\User {
         public $groups = [];
 
         /**
-         * Database
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        private $cache = null;
+        private $app = null;
 
         /**
          * Localization instance
@@ -136,7 +128,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @var \Framework\Localization\Localization
          * @since 1.0.0
          */
-        public $loc_user = null;
+        public $localization = null;
 
         /**
          * Instances
@@ -154,31 +146,32 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id) {
+        public function __construct($id, $app) {
+            $this->app = $app;
             $this->id    = $id;
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
 
-            $user = $this->cache->pull('usr:' . $this->id);
+            $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
+
+            $user = $this->app->cache->pull('usr:' . $this->id);
 
             if (!$user && $id !== -1) {
-                $sth = $this->db->con->prepare(
+                $sth = $this->app->db->con->prepare(
                     'SELECT
-                        `' . $this->db->prefix . 'accounts`.*,
-                                `' . $this->db->prefix . 'accounts_data`.*,
-                                `' . $this->db->prefix . 'accounts`.`id`
+                        `' . $this->app->db->prefix . 'accounts`.*,
+                                `' . $this->app->db->prefix . 'accounts_data`.*,
+                                `' . $this->app->db->prefix . 'accounts`.`id`
                             FROM
-                                `' . $this->db->prefix . 'accounts`,
-                                `' . $this->db->prefix . 'accounts_data`
+                                `' . $this->app->db->prefix . 'accounts`,
+                                `' . $this->app->db->prefix . 'accounts_data`
                             WHERE
-                                `' . $this->db->prefix . 'accounts`.`id` = :id AND
-                                `' . $this->db->prefix . 'accounts`.`id` = `' . $this->db->prefix . 'accounts_data`.`account`');
+                                `' . $this->app->db->prefix . 'accounts`.`id` = :id AND
+                                `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`');
                 $sth->bindValue(':id', $this->id, \PDO::PARAM_INT);
                 $sth->execute();
                 $user = $sth->fetchAll(\PDO::FETCH_UNIQUE);
 
                 if (!empty($user)) {
-                    $this->cache->push('usr:' . $id, $user);
+                    $this->app->cache->push('usr:' . $id, $user);
                 }
             }
 
@@ -204,10 +197,10 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($id, $is_current = false) {
+        public static function getInstance($id, $app, $is_current = false) {
             /* TODO: implement the cache loading right here. smart idea! */
             if (!isset(self::$instances[$id])) {
-                self::$instances[$id] = new self($id);
+                self::$instances[$id] = new self($id, $app);
 
                 if ($is_current) {
                     self::$instances[-1] = & self::$instances[$id];
@@ -236,16 +229,16 @@ namespace Framework\DataStorage\Database\Objects\User {
          */
         public function account_permission_get() {
             if (!isset($this->perm)) {
-                $this->perm = $this->cache->pull('usr:perm:' . $this->id);
+                $this->perm = $this->app->cache->pull('usr:perm:' . $this->id);
 
                 if (!$this->perm) {
-                    switch ($this->db->type) {
+                    switch ($this->app->db->type) {
                         case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                             break;
                     }
 
-                    $this->cache->push('usr:perm:' . $this->id, $this->perm);
+                    $this->app->cache->push('usr:perm:' . $this->id, $this->perm);
                 }
             }
 
@@ -287,10 +280,10 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function account_edit_base($account) {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
                             (:aname, :pword, :email, 1);'
                     );
 
@@ -315,10 +308,10 @@ namespace Framework\DataStorage\Database\Objects\User {
                 $this->groups[$id] = \Framework\DataStorage\Database\Objects\Group\Group::getInstance($id);
             }
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
                     );
 
                     $sth->bindValue(':group', $id, \PDO::PARAM_INT);
@@ -337,10 +330,10 @@ namespace Framework\DataStorage\Database\Objects\User {
         public function create() {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
                             (:status, :type, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                     );
 
@@ -348,11 +341,11 @@ namespace Framework\DataStorage\Database\Objects\User {
                     $sth->bindValue(':type', $this->type, \PDO::PARAM_INT);
                     $sth->execute();
 
-                    $this->id = $this->db->con->lastInsertId();
+                    $this->id = $this->app->db->con->lastInsertId();
 
-                    $this->db->con->beginTransaction();
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                    $this->app->db->con->beginTransaction();
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
                             (:login, :name1, :name2, :name3, :passowrd, :email, 5, :account);'
                     );
 
@@ -370,10 +363,10 @@ namespace Framework\DataStorage\Database\Objects\User {
                     }
                     $group_string = rtrim($group_string, ',');
 
-                    $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
+                    $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
                     );
-                    $this->db->con->commit();
+                    $this->app->db->con->commit();
                     break;
             }
         }
@@ -387,20 +380,20 @@ namespace Framework\DataStorage\Database\Objects\User {
         public function delete() {
             /* TODO: call all installed modules user_delete function */
 
-            $sth = $this->db->con->prepare(
-                'DELETE `' . $this->db->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
+            $sth = $this->app->db->con->prepare(
+                'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
             );
 
             $sth->execute();
 
-            $sth = $this->db->con->prepare(
-                'DELETE `' . $this->db->prefix . 'accounts_data` WHERE `account` = ' . $this->id
+            $sth = $this->app->db->con->prepare(
+                'DELETE `' . $this->app->db->prefix . 'accounts_data` WHERE `account` = ' . $this->id
             );
 
             $sth->execute();
 
-            $sth = $this->db->con->prepare(
-                'DELETE `' . $this->db->prefix . 'accounts` WHERE `id` = ' . $this->id
+            $sth = $this->app->db->con->prepare(
+                'DELETE `' . $this->app->db->prefix . 'accounts` WHERE `id` = ' . $this->id
             );
 
             $sth->execute();
@@ -413,14 +406,14 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function edit() {
-            $sth = $this->db->con->prepare(
-                'UPDATE `' . $this->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
+            $sth = $this->app->db->con->prepare(
+                'UPDATE `' . $this->app->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
             );
 
             $sth->execute();
 
-            $sth = $this->db->con->prepare(
-                'UPDATE `' . $this->db->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
+            $sth = $this->app->db->con->prepare(
+                'UPDATE `' . $this->app->db->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
             );
 
             $sth->bindValue(':login', $this->login_name, \PDO::PARAM_STR);

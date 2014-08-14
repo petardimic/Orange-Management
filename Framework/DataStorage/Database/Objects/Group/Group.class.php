@@ -17,20 +17,12 @@ namespace Framework\DataStorage\Database\Objects\Group {
      */
     class Group implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
-         * Database
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
+        private $app = null;
 
         /**
          * Group ID
@@ -78,13 +70,12 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id) {
+        public function __construct($id, $app) {
+            $this->app = $app;
             $this->id    = (int) $id;
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
 
-            $sth = $this->db->con->prepare(
-                'SELECT * FROM `' . $this->db->prefix . 'groups` WHERE id = :id'
+            $sth = $this->app->db->con->prepare(
+                'SELECT * FROM `' . $this->app->db->prefix . 'groups` WHERE id = :id'
             );
             $sth->bindValue(':id', $id, \PDO::PARAM_INT);
             $sth->execute();
@@ -104,10 +95,10 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($id) {
+        public static function getInstance($id, $app) {
             /* TODO: Implement caching here */
             if (!isset(self::$instance[$id])) {
-                self::$instance[$id] = new self($id);
+                self::$instance[$id] = new self($id, $app);
             }
 
             return self::$instance[$id];
@@ -149,10 +140,10 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function create() {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'groups` (`name`, `desc`) VALUES
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'groups` (`name`, `desc`) VALUES
                             (:name, :desc);'
                     );
 
@@ -160,7 +151,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
                     $sth->bindValue(':desc', $this->desc, \PDO::PARAM_STR);
                     $sth->execute();
 
-                    $this->id = $this->db->con->lastInsertId();
+                    $this->id = $this->app->db->con->lastInsertId();
 
                     break;
             }
@@ -174,14 +165,14 @@ namespace Framework\DataStorage\Database\Objects\Group {
          */
         public function delete() {
             /* TODO: delete permissions */
-            $sth = $this->db->con->prepare(
-                'DELETE `' . $this->db->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
+            $sth = $this->app->db->con->prepare(
+                'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
             );
 
             $sth->execute();
 
-            $sth = $this->db->con->prepare(
-                'DELETE `' . $this->db->prefix . 'groups` WHERE `id` = ' . $this->id
+            $sth = $this->app->db->con->prepare(
+                'DELETE `' . $this->app->db->prefix . 'groups` WHERE `id` = ' . $this->id
             );
 
             $sth->execute();
@@ -194,10 +185,10 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function edit() {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->db->con->prepare(
-                        'UPDATE `' . $this->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
+                    $sth = $this->app->db->con->prepare(
+                        'UPDATE `' . $this->app->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
                     );
 
                     $sth->bindValue(':name', $this->name, \PDO::PARAM_STR);

@@ -35,10 +35,10 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param \Framework\DataStorage\Database\Database $db    Database instance
-         * @param \Framework\Model\Model    $model Model instance
-         * @param \Framework\DataStorage\Database\Objects\User\User     $user  User instance
-         * @param \Framework\DataStorage\Cache\Cache    $cache Cache instance
+         * @param \Framework\DataStorage\Database\Database          $db    Database instance
+         * @param \Framework\Model\Model                            $model Model instance
+         * @param \Framework\DataStorage\Database\Objects\User\User $user  User instance
+         * @param \Framework\DataStorage\Cache\Cache                $cache Cache instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -51,7 +51,7 @@ namespace Modules\News {
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -87,7 +87,7 @@ namespace Modules\News {
          * Install data from providing modules
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $data Module info
+         * @param array                                    $data Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -108,9 +108,9 @@ namespace Modules\News {
         public function news_get($id) {
             $news = null;
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare('SELECT * FROM `' . $this->db->prefix . 'news` WHERE `id` = :id');
+                    $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                     $sth->execute();
                     $news = $sth->fetchAll();
@@ -121,12 +121,12 @@ namespace Modules\News {
         }
 
         public function news_list_get($filter = null, $offset = 0, $limit = 100) {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
                     $search = $this->model->generate_sql_filter($filter);
 
-                    $sth = $this->db->con->prepare(
-                        'SELECT * FROM `' . $this->db->prefix . 'news` WHERE ' . $search . 'OFFSET ' . $offset . ' LIMIT ' . $limit
+                    $sth = $this->app->db->con->prepare(
+                        'SELECT * FROM `' . $this->app->db->prefix . 'news` WHERE ' . $search . 'OFFSET ' . $offset . ' LIMIT ' . $limit
                     );
 
                     $sth->execute();
@@ -147,9 +147,9 @@ namespace Modules\News {
         public function news_small_get($id) {
             $news = null;
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare('SELECT `title`, `author`, `type`, `created` FROM `' . $this->db->prefix . 'news` WHERE `id` = :id');
+                    $sth = $this->app->db->con->prepare('SELECT `title`, `author`, `type`, `created` FROM `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                     $sth->execute();
                     $news = $sth->fetchAll();
@@ -169,10 +169,10 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_edit($id, $data) {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare(
-                        'UPDATE `' . $this->db->prefix . 'news` SET
+                    $sth = $this->app->db->con->prepare(
+                        'UPDATE `' . $this->app->db->prefix . 'news` SET
                             `title` = :title,
                             `author` = :author,
                             `type` = :type,
@@ -204,10 +204,10 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_create($data) {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'news` (`title`, `author`, `type`, `content`, `created`, `lang`, `featured`) VALUES
+                    $sth = $this->app->db->con->prepare(
+                        'INSERT INTO `' . $this->app->db->prefix . 'news` (`title`, `author`, `type`, `content`, `created`, `lang`, `featured`) VALUES
                             (:title, :author, :type, :content, :created, :lang, :featured);'
                     );
 
@@ -232,9 +232,9 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_delete($id) {
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case 1:
-                    $sth = $this->db->con->prepare('DELETE `' . $this->db->prefix . 'news` WHERE `id` = :id');
+                    $sth = $this->app->db->con->prepare('DELETE `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                     $sth->execute();
                     break;
@@ -250,7 +250,6 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_dashboard($data) {
-
         }
 
         /**
@@ -263,7 +262,7 @@ namespace Modules\News {
          */
         public function show_content($data) {
             /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
-            switch($data['l3']) {
+            switch ($data['l3']) {
                 case 'front':
                     $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
 

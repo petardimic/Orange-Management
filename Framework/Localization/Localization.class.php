@@ -20,20 +20,12 @@ namespace Framework\Localization {
 
     class Localization {
         /**
-         * Database object
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
+        private $app = null;
 
         /**
          * Language ID
@@ -103,51 +95,15 @@ namespace Framework\Localization {
         public static $lang = [];
 
         /**
-         * Instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id) {
+        public function __construct($id, $app) {
+            $this->app = $app;
             $this->localization_id = $id;
-            $this->db              = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache           = \Framework\DataStorage\Cache\Cache::getInstance();
-            $this->language        = \Framework\Request\Request::getInstance()->uri['l0'];
-        }
-
-        /**
-         * Returns instance
-         *
-         * @param int $id
-         *
-         * @return \Framework\Localization\Localization
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance($id) {
-            if (self::$instance === null) {
-                self::$instance = new self($id);
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
+            $this->language        = $this->app->request->uri['l0'];
         }
 
         /**
@@ -159,11 +115,8 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function language_load($language, $files) {
-            $request            = \Framework\Request\Request::getInstance();
-            $cache              = \Framework\DataStorage\Cache\Cache::getInstance();
-            $modules            = \Framework\Module\Modules::getInstance();
-            self::$lang = $cache->pull('lang:' . $language . ':' . $request->uri_hash[3]);
+        public function load_language($language, $files) {
+            self::$lang = $this->app->cache->pull('lang:' . $language . ':' . $this->app->request->uri_hash[3]);
 
             if (!self::$lang && !empty($files)) {
                 self::$lang = [];
@@ -177,7 +130,7 @@ namespace Framework\Localization {
                 foreach ($files as $file) {
                     /** @noinspection PhpIncludeInspection */
                     /** @var string[] $MODLANG */
-                    require __DIR__ . '/../../Modules/' . $modules->active[$file['from']]['class'] . '/themes/' . $modules->active[$file['from']]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
+                    require __DIR__ . '/../../Modules/' . $this->app->modules->active[$file['from']]['class'] . '/themes/' . $this->app->modules->active[$file['from']]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
                     $key = (int) ($file['for']/100000 - 10000);
                     if(!isset(self::$lang[$key])) {
@@ -189,7 +142,7 @@ namespace Framework\Localization {
 
                 }
 
-                $cache->push('lang:' . $language . ':' . $request->uri_hash[3], self::$lang);
+                $this->app->cache->push('lang:' . $language . ':' . $this->app->request->uri_hash[3], self::$lang);
             }
         }
     }

@@ -10,52 +10,52 @@
         "path": "/oms-slim"
     },
     "description": "The profile module.",
-    "class":  "Media",
+    "class": "Media",
     "dependencies": [],
     "providing": [],
     "load": [
         {
-            "pid" : ["1ba288c868cacf14e56f8205efef31d697301d02"],
-            "type" : 4,
+            "pid": ["1ba288c868cacf14e56f8205efef31d697301d02"],
+            "type": 4,
             "for": 1004100000,
             "file": "Media",
             "from": 1000400000
         },
         {
-            "pid" : ["15b5e54cc7b2f8bdb84ed667d9931d758c6bc108"],
-            "type" : 4,
+            "pid": ["15b5e54cc7b2f8bdb84ed667d9931d758c6bc108"],
+            "type": 4,
             "for": 1004400000,
             "file": "Media",
             "from": 1000400000
         },
         {
-            "pid" : ["e269b5109994852366c276ad5f6bb4ef89f45d2e"],
-            "type" : 4,
+            "pid": ["e269b5109994852366c276ad5f6bb4ef89f45d2e"],
+            "type": 4,
             "for": 1000300000,
             "file": "Media",
             "from": 1000400000
         },
         {
-            "pid" : ["e56f238d391b804975e0f47f26d20b6d2d675200"],
-            "type" : 4,
+            "pid": ["e56f238d391b804975e0f47f26d20b6d2d675200"],
+            "type": 4,
             "for": 1000100000,
             "file": "Media",
             "from": 1000400000
         },
         {
-            "pid" : [
+            "pid": [
                 "1ba288c868cacf14e56f8205efef31d697301d02",
                 "e269b5109994852366c276ad5f6bb4ef89f45d2e",
                 "e56f238d391b804975e0f47f26d20b6d2d675200"
             ],
-            "type" : 5,
+            "type": 5,
             "for": 1004100000,
             "file": "backend",
             "from": 1000400000
         },
         {
-            "pid" : ["15b5e54cc7b2f8bdb84ed667d9931d758c6bc108"],
-            "type" : 5,
+            "pid": ["15b5e54cc7b2f8bdb84ed667d9931d758c6bc108"],
+            "type": 5,
             "for": 1004400000,
             "file": "api",
             "from": 1000400000

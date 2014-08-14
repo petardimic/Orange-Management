@@ -18,6 +18,14 @@ namespace Framework\Model {
      */
     class Model {
         /**
+         * Application instance
+         *
+         * @var \Framework\Application
+         * @since 1.0.0
+         */
+        public static $app = null;
+
+        /**
          * Content
          *
          * @var array
@@ -76,9 +84,6 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function load_footer() {
-            $request = \Framework\Request\Request::getInstance();
-            $cache   = \Framework\DataStorage\Cache\Cache::getInstance();
-
             echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/css/' . self::$content['core:layout'] . '.css">';
 
             /* Load module stylesheet */
@@ -99,7 +104,7 @@ namespace Framework\Model {
             echo '<script src="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
 
             /* Load module javascript */
-            $jsArray = $cache->pull('js:' . $request->uri[0]);
+            $jsArray = self::$app->cache->pull('js:' . self::$app->request->uri['l0']);
 
 
             if (!$jsArray) {
@@ -110,13 +115,13 @@ namespace Framework\Model {
                         $js = self::$content['page:addr:url'] . '/' . $val->info['name']['internal'] . '/module.js';
                         echo '<script src="' . $js . '"></script>';
 
-                        if ($cache->active) {
+                        if (self::$app->cache->active) {
                             $jsArray[] = $js;
                         }
                     }
                 }*/
 
-                $cache->push('js:' . $request->uri[0], $jsArray);
+                self::$app->cache->push('js:' . self::$app->request->uri['l0'], $jsArray);
             } else {
                 foreach ($jsArray as $val) {
                     echo '<script src="' . $val . '"></script>';
@@ -201,10 +206,9 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
-            $request = \Framework\Request\Request::getInstance();
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
-                $url_t = ($url != null ? $request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
+                $url_t = ($url != null ? self::$app->request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
 
                 /* TODO: Replace is to slow (most likely) */
                 echo '<tr>';
@@ -228,19 +232,18 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
-            $request = \Framework\Request\Request::getInstance();
-            $pages   = self::generate_pagination($request->uri['page'], $count);
+            $pages   = self::generate_pagination(self::$app->request->uri['page'], $count);
 
             echo '<ul>';
             foreach ($pages as $page) {
                 if ($page > 0) {
-                    $url = $request->generate_uri($request->uri, [['page', $page]]);
+                    $url = self::$app->request->generate_uri(self::$app->request->uri, [['page', $page]]);
                 } else {
                     $url = '';
                 }
 
                 echo '<li><a href="' . $url
-                    . '"' . ($page == $request->uri['page'] ? ' class="a"' : '') . '>'
+                    . '"' . ($page == self::$app->request->uri['page'] ? ' class="a"' : '') . '>'
                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
                     . '</a></li>';
             }

@@ -59,15 +59,15 @@ namespace Modules\Profile {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path) {
-            parent::initialize($theme_path);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -157,7 +157,7 @@ namespace Modules\Profile {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
-            switch ($this->request->uri['l3']) {
+            switch ($this->app->request->uri['l3']) {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
@@ -168,10 +168,10 @@ namespace Modules\Profile {
                     break;
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = \Modules\Admin\Users::getInstance();
+                    $accounts = new \Modules\Admin\Users($this->app);
 
-                    if (!isset($this->request->uri['page'])) {
-                        $this->request->uri['page'] = 1;
+                    if (!isset($this->app->request->uri['page'])) {
+                        $this->app->request->uri['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */

@@ -30,8 +30,8 @@
     <tbody>
     <?php
     /** @var \Framework\Module\Modules $modules */
-    $modules_installed = $modules->module_list_installed_get();
-    $url['level'] = array_slice($this->request->uri, 0, 4);
+    $modules_installed = $this->app->modules->module_list_installed_get();
+    $url['level'] = array_slice($this->app->request->uri, 0, 4);
     $url['level'][] = 'front';
     $url['id'] = 'class';
 
@@ -72,14 +72,14 @@
     </thead>
     <tbody>
     <?php
-    $modules_all = $modules->module_list_all_get();
-    $url['level'] = array_slice($this->request->uri, 0, 4);
+    $modules_all = $this->app->modules->module_list_all_get();
+    $url['level'] = array_slice($this->app->request->uri, 0, 4);
     $url['level'][] = 'front';
 
     foreach ($modules_all as $ele) {
-        $url_t = $this->request->generate_uri($url['level'], [['id', $ele['class']]]);
+        $url_t = $this->app->request->generate_uri($url['level'], [['id', $ele['class']]]);
 
-        if (!array_key_exists($ele['name']['internal'], $modules->modules_installed_get())) {
+        if (!array_key_exists($ele['name']['internal'], $this->app->modules->modules_installed_get())) {
             echo '<tr>'
                 . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a></td>'
                 . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a></td>'

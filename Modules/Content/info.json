@@ -10,13 +10,13 @@
         "path": "/oms-slim"
     },
     "description": "The content module.",
-    "class":  "Content",
+    "class": "Content",
     "dependencies": [],
     "providing": [],
     "load": [
         {
-            "pid" : ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type" : 4,
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 4,
             "for": 0,
             "from": "1004100000",
             "file": "Content"

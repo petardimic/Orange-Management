@@ -11,13 +11,12 @@ require_once __DIR__ . '/Framework/Utils/Core.php';
 require_once __DIR__ . '/Framework/Autoloader.class.php';
 //</editor-fold>
 
-/** TODO: reduce global state by dependency injection ????? */
+/** TODO: make $app static in group and user?!?!?! */
 
-//<editor-fold desc="Instantiate">
 $logHOBJ = \Framework\Log\Logging::getInstance(__DIR__ . '/Admin/Log');
+
 $logHOBJ->startTimeLog('global');
 $ctrlHOBJ = \Framework\Application::getInstance($DBDATA, $PAGE);
-//</editor-fold>
-
 $logHOBJ->endTimeLog('global');
+
 ob_end_flush();

@@ -176,7 +176,8 @@ namespace Modules\News {
         public function create() {
         }
 
-        public function edit() {}
+        public function edit() {
+        }
 
         public function delete() {
         }

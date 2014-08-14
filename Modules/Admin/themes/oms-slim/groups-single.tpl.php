@@ -16,7 +16,8 @@
                 </li>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */ $group->id; ?>" disabled>
+                           value="<?= /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
+                           $group->id; ?>" disabled>
                 </li>
                 <li>
                     <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
@@ -89,7 +90,7 @@
     <tr>
         <?php
         \Framework\Model\Model::generate_table_header_view(
-           [
+            [
                 ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
                 ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
                 ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
@@ -104,7 +105,7 @@
     <?php
     /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
     $data = $accounts->account_list_get();
-    $url['level'] = array_slice($this->request->uri, 0, 4);
+    $url['level'] = array_slice($this->app->request->uri, 0, 4);
     $url['level'][] = 'single';
     $url['id'] = 'id';
 

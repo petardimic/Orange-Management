@@ -98,19 +98,21 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         private function __construct($dbdata = null, $page = null) {
-            $this->request = \Framework\Request\Request::getInstance();
+            $this->request = new \Framework\Request\Request();
+            $this->db      = new \Framework\DataStorage\Database\Database($dbdata);
 
-            $this->db = \Framework\DataStorage\Database\Database::getInstance($dbdata);
+            \Framework\Module\ModuleFactory::$app = $this;
+            \Framework\Model\Model::$app          = $this;
 
             /* TODO: NEEDS better error handling here and further down... maybe create header error handler */
             if ($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
-                $this->cache    = \Framework\DataStorage\Cache\Cache($this);
-                $this->settings = \Framework\Config\Settings($this);
-                $this->modules  = \Framework\Module\Modules($this);
-                $this->auth     = \Framework\Auth\Auth($this);
+                $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
+                $this->settings = new \Framework\Config\Settings($this);
+                $this->modules  = new \Framework\Module\Modules($this);
+                $this->auth     = new \Framework\Auth\Auth($this);
                 $this->user     = $this->auth->authenticate($page[1]);
 
-                $this->settings->settings_load([1000000011]);
+                $this->settings->load_settings([1000000011]);
 
                 \Framework\Model\Model::set_content('page:addr:url', 'http://' . $page[0]);
                 \Framework\Model\Model::set_content('page:addr:local', $page[0]);
@@ -132,7 +134,7 @@ namespace Framework {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-         /* TODO: This shouldn't be a singleton ?!?!? */
+        /* TODO: This shouldn't be a singleton ?!?!? */
         public static function getInstance($dbdata = null, $page = null) {
             if (self::$instance === null) {
                 self::$instance = new self($dbdata, $page);

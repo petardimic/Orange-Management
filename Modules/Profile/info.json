@@ -10,34 +10,34 @@
         "path": "/oms-slim"
     },
     "description": "The profile module.",
-    "class":  "Profile",
+    "class": "Profile",
     "dependencies": [],
     "providing": [],
     "load": [
         {
-            "pid" : ["88a70f9456abff33fda791878b9c0bcbe2cb5bc4"],
-            "type" : 4,
+            "pid": ["88a70f9456abff33fda791878b9c0bcbe2cb5bc4"],
+            "type": 4,
             "for": 1004100000,
             "file": "Profile",
             "from": 1000300000
         },
         {
-            "pid" : ["13bccf6f6554e7257b1575fc9bb52105bf095133"],
-            "type" : 4,
+            "pid": ["13bccf6f6554e7257b1575fc9bb52105bf095133"],
+            "type": 4,
             "for": 1004400000,
             "file": "Profile",
             "from": 1000300000
         },
         {
-            "pid" : ["88a70f9456abff33fda791878b9c0bcbe2cb5bc4"],
-            "type" : 5,
+            "pid": ["88a70f9456abff33fda791878b9c0bcbe2cb5bc4"],
+            "type": 5,
             "for": 1004100000,
             "file": "backend",
             "from": 1000300000
         },
         {
-            "pid" : ["13bccf6f6554e7257b1575fc9bb52105bf095133"],
-            "type" : 5,
+            "pid": ["13bccf6f6554e7257b1575fc9bb52105bf095133"],
+            "type": 5,
             "for": 1004400000,
             "file": "api",
             "from": 1000300000

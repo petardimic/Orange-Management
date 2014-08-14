@@ -1,6 +1,6 @@
 <?php
 $MODLANG[5] = [
     'Dashboard' => 'Dashboard',
-    'Home' => 'Home',
-    'Logout' => 'Logout',
+    'Home'      => 'Home',
+    'Logout'    => 'Logout',
 ];

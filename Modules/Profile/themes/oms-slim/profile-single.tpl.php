@@ -1,4 +1,4 @@
-<?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->request->uri['id']); ?>
+<?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->uri['id'], $this->app); ?>
 <div class="b-7" id="i3-2-1">
     <div class="b-5" id="i3-2-4">
         <div class="bc-1">

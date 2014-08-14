@@ -50,15 +50,15 @@ namespace Modules\BackendDashboard {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path) {
-            parent::initialize($theme_path);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $info Module info
+         * @param array                                    $info Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -71,7 +71,7 @@ namespace Modules\BackendDashboard {
          * Install data from providing modules
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $data Module info
+         * @param array                                    $data Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

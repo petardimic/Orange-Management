@@ -17,14 +17,6 @@ namespace Framework\Module {
      */
     abstract class ModuleAbstract {
         /**
-         * Database
-         *
-         * @var \Framework\DataStorage\Database\Database
-         * @since 1.0.0
-         */
-        protected $db = null;
-
-        /**
          * Dependencies
          *
          * @var int[]
@@ -57,20 +49,12 @@ namespace Framework\Module {
         public $theme_path = '';
 
         /**
-         * User object
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Objects\User\User
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        protected $user = null;
-
-        /**
-         * Database
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected $cache = null;
+        protected $app = null;
 
         /**
          * Request instance
@@ -96,17 +80,9 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        protected function initialize($theme_path) {
+        protected function initialize($theme_path, $app) {
+            $this->app = $app;
             $this->theme_path = $theme_path;
-
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->db = \Framework\DataStorage\Database\Database::getInstance();
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->user = \Framework\DataStorage\Database\Objects\User\User::getInstance(-1);
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            $this->request = \Framework\Request\Request::getInstance();
 
             static::$dependencies;
             static::$receiving;

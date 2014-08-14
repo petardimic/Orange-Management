@@ -20,6 +20,12 @@ namespace Framework\Controller {
     }
 
     class ThemeController {
+        /**
+         * Application instance
+         *
+         * @var \Framework\Application
+         * @since 1.0.0
+         */
         private $app = null;
 
         public function __construct($app) {
@@ -42,7 +48,7 @@ namespace Framework\Controller {
 
                     /* This isn't nice, maybe fix it */
                     if ($this->app->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
-                        $this->app->settings->settings_load([
+                        $this->app->settings->load_settings([
                             1000000009,
                             1000000020,
                             1000000021,

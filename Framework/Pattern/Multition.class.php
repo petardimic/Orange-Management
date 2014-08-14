@@ -16,6 +16,6 @@ namespace Framework\Pattern {
      * @since      1.0.0
      */
     interface Multition {
-        public static function getInstance($id);
+        public static function getInstance($id, $app);
     }
 }

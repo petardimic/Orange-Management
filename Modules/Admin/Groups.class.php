@@ -15,30 +15,14 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Groups implements \Framework\DataStorage\Database\Objects\ObjectListInterface, \Framework\Pattern\Singleton {
+    class Groups implements \Framework\DataStorage\Database\Objects\ObjectListInterface {
         /**
-         * Database
+         * Application instance
          *
-         * @var \Framework\DataStorage\Database\Database
+         * @var \Framework\Application
          * @since 1.0.0
          */
-        private $db = null;
-
-        /**
-         * Cache instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        public $cache = null;
-
-        /**
-         * Instances
-         *
-         * @var \Modules\Admin\Groups
-         * @since 1.0.0
-         */
-        protected static $instance = null;
+        private $app = null;
 
         /**
          * Constructor
@@ -46,34 +30,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
-            $this->db    = \Framework\DataStorage\Database\Database::getInstance();
-            $this->cache = \Framework\DataStorage\Cache\Cache::getInstance();
-        }
-
-        /**
-         * Returns instance
-         *
-         * @return \Modules\Admin\Groups
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance() {
-            if (self::$instance === null) {
-                self::$instance = new self();
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
+        public function __construct($app) {
+            $this->app = $app;
         }
 
         /**
@@ -93,18 +51,18 @@ namespace Modules\Admin {
         public function group_list_get($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch ($this->db->type) {
+            switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $search = $this->db->generate_sql_filter($filter);
+                    $search = $this->app->db->generate_sql_filter($filter);
 
-                    $sth = $this->db->con->prepare(
-                        'SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->db->prefix . 'groups` ' . $search . 'LIMIT ' . $offset . ',' . $limit
+                    $sth = $this->app->db->con->prepare(
+                        'SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->app->db->prefix . 'groups` ' . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();
 
-                    $sth = $this->db->con->prepare(
+                    $sth = $this->app->db->con->prepare(
                         'SELECT FOUND_ROWS();'
                     );
                     $sth->execute();
@@ -153,7 +111,10 @@ namespace Modules\Admin {
         public function group_edit($id, $name, $desc) {
         }
 
-        public function instantiate() {}
-        public function get_object() {}
+        public function instantiate() {
+        }
+
+        public function get_object() {
+        }
     }
 }

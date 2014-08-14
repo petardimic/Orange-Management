@@ -59,7 +59,6 @@ namespace Framework\Request {
          */
         public $uri_hash = null;
 
-
         public $request_type = null;
 
         /**
@@ -71,14 +70,6 @@ namespace Framework\Request {
         public $request_lang = null;
 
         /**
-         * Instance
-         *
-         * @var \Framework\Request\Request
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Constructor
          *
          * @param array $f_url Forced URL
@@ -86,11 +77,11 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($f_url) {
+        public function __construct($f_url = null) {
             $this->type = $_SERVER['REQUEST_METHOD'];
 
             if ($f_url == null) {
-                $data = ($this->type !== RequestType::GET ? json_decode(file_get_contents('php://input'), true) : $_GET);
+                $data      = ($this->type !== RequestType::GET ? json_decode(file_get_contents('php://input'), true) : $_GET);
                 $this->uri = $data + $this->uri;
             } else {
                 $this->uri = $f_url + $this->uri;
@@ -113,33 +104,6 @@ namespace Framework\Request {
                 $this->generate_uri_hash([$this->uri['l1'], $this->uri['l2'], $this->uri['l3'], $this->uri['l4']]),
                 $this->generate_uri_hash([$this->uri['l1'], $this->uri['l2'], $this->uri['l3'], $this->uri['l4'], $this->uri['l5']]),
             ];
-        }
-
-        /**
-         * Returns instance
-         *
-         * @param array $f_url Forced URL
-         *
-         * @return \Framework\Request\Request
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance($f_url = null) {
-            if (self::$instance === null) {
-                self::$instance = new self($f_url);
-            }
-
-            return self::$instance;
-        }
-
-        /**
-         * Protect instance from getting copied from outside
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function __clone() {
         }
 
         /**
