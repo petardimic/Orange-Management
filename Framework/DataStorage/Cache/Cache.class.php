@@ -49,6 +49,7 @@ namespace Framework\DataStorage\Cache {
         public function __construct($app) {
             $this->app = $app;
 
+            /* This is costing me 1ms, maybe init settings first cause i'm making another settings call later on -> same call 2 times */
             $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
             $sth->execute();
             $cache_data = $sth->fetchAll();

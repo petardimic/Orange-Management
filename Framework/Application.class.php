@@ -104,7 +104,6 @@ namespace Framework {
             \Framework\Module\ModuleFactory::$app = $this;
             \Framework\Model\Model::$app          = $this;
 
-            /* TODO: NEEDS better error handling here and further down... maybe create header error handler */
             if ($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
                 $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
                 $this->settings = new \Framework\Config\Settings($this);
@@ -114,12 +113,21 @@ namespace Framework {
 
                 $this->settings->load_settings([1000000011]);
 
-                \Framework\Model\Model::set_content('page:addr:url', 'http://' . $page[0]);
-                \Framework\Model\Model::set_content('page:addr:local', $page[0]);
-                \Framework\Model\Model::set_content('page:addr:remote', $page[1]);
+                \Framework\Model\Model::set_content(
+                    [
+                        'page:addr:url' => 'http://' . $page[0], 
+                        'page:addr:local' => $page[0], 
+                        'page:addr:remote' => $page[1]
+                    ]
+                );
 
                 require __DIR__ . '\..\Content\Themes' . $this->settings->config[1000000011] . '\ThemeController.class.php';
                 $this->theme = new \Framework\Controller\ThemeController($this);
+            } else {
+                header('HTTP/1.0 503 Service Temporarily Unavailable');
+                header('Status: 503 Service Temporarily Unavailable');
+                header('Retry-After: 300');
+                include __DIR__ . '\..\503.php';
             }
         }
 

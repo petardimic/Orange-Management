@@ -17,5 +17,5 @@ $toInstall = [
 $instHOBJ->install_core();
 $instHOBJ->install_core_modules($toInstall);
 $instHOBJ->install_groups();
-$instHOBJ->install_users();
+$instHOBJ->install_users(); /* TODO: create user 1 = Guest -> 2 = Admin */
 $instHOBJ->install_settings();

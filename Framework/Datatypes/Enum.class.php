@@ -1,6 +1,5 @@
 <?php
 namespace Framework\Datatypes {
-
     /**
      * Enum class
      *
@@ -19,8 +18,22 @@ namespace Framework\Datatypes {
      * @since      1.0.0
      */
     abstract class Enum {
+        /**
+         * Caching constant values
+         *
+         * @var array
+         * @since 1.0.0
+         */
         private static $constCache = null;
 
+        /**
+         * Getting all constants of this enum
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         private static function getConstants() {
             if (self::$constCache === null) {
                 $reflect          = new \ReflectionClass(get_called_class());
@@ -30,18 +43,36 @@ namespace Framework\Datatypes {
             return self::$constCache;
         }
 
-        public static function isValidName($name, $strict = false) {
+        /**
+         * Checking enum name
+         *
+         * Checking if a certain const name exists (case sensitive)
+         *
+         * @param string $name Name of the value (case sensitive)
+         *
+         * @return boolean
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function isValidName($name) {
             $constants = self::getConstants();
 
-            if ($strict) {
-                return array_key_exists($name, $constants);
-            }
-
-            $keys = array_map('strtolower', array_keys($constants));
-
-            return in_array(strtolower($name), $keys);
+            return array_key_exists($name, $constants);
         }
 
+        /**
+         * Check enum value
+         *
+         * Checking if a given value is part of this enum
+         *
+         * @param var $value Value to check
+         *
+         * @return boolean
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function isValidValue($value) {
             $values = array_values(self::getConstants());
 

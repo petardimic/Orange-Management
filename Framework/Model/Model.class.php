@@ -42,8 +42,10 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public static function set_content($key, $value) {
-            self::$content[$key] = $value;
+        public static function set_content($pair) {
+            foreach($pair as $key => $val) {
+                self::$content[$key] = $val;
+            }
         }
 
         /**

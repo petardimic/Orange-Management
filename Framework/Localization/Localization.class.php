@@ -15,9 +15,6 @@ namespace Framework\Localization {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-
-    include_once __DIR__ . '/Localization.array.php';
-
     class Localization {
         /**
          * Application instance
@@ -76,6 +73,14 @@ namespace Framework\Localization {
         public $timeformat = null;
 
         /**
+         * Locals
+         *
+         * @var array[]
+         * @since 1.0.0
+         */
+        private static $locals = null;
+
+        /**
          * Localization ID
          *
          * > 0 = User
@@ -104,6 +109,21 @@ namespace Framework\Localization {
             $this->app = $app;
             $this->localization_id = $id;
             $this->language        = $this->app->request->uri['l0'];
+        }
+
+        /**
+         * Load local arrays
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function get_locals() {
+            if(!isset(self::$locals)) {
+                include_once __DIR__ . '/Localization.array.php';
+                self::$locals = $LOCALS;
+            }
+
+            return self::$locals;
         }
 
         /**
