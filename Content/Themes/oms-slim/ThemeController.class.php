@@ -1,10 +1,30 @@
 <?php
 namespace Framework\Controller {
+    /**
+     * Request page enum
+     *
+     * PHP Version 5.4
+     *
+     * @category   Base
+     * @package    OMS Core
+     * @author     OMS Development Team <dev@oms.com>
+     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+     * @copyright  2013
+     * @license    OMS License 1.0
+     * @version    1.0.0
+     * @link       http://orange-management.com
+     * @since      1.0.0
+     */
+    abstract class ThemePage extends \Framework\Request\RequestPage {
+        const CREDIT = 'credit';
+    }
+
     class ThemeController {
         private $app = null;
 
         public function __construct($app) {
             $this->app = $app;
+            $this->load();
         }
 
         /**
@@ -14,6 +34,8 @@ namespace Framework\Controller {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function load() {
+            $this->app->modules->modules_load($this->app);
+
             switch ($this->app->request->request_type) {
                 case \Framework\Request\RequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');

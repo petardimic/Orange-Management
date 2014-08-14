@@ -70,7 +70,15 @@ namespace Framework {
          * @var \Framework\DataStorage\Database\Objects\User\User
          * @since 1.0.0
          */
-        private $user = null;
+        public $user = null;
+
+        /**
+         * Theme controller
+         *
+         * @var \Framework\Controller\ThemeController
+         * @since 1.0.0
+         */
+        private $theme = null;
 
         /**
          * Instance
@@ -96,25 +104,20 @@ namespace Framework {
 
             /* TODO: NEEDS better error handling here and further down... maybe create header error handler */
             if ($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
-                $this->cache    = \Framework\DataStorage\Cache\Cache::getInstance();
-                $this->settings = \Framework\Config\Settings::getInstance();
-                $this->modules  = \Framework\Module\Modules::getInstance();
-                $this->auth     = \Framework\Auth\Auth::getInstance();
+                $this->cache    = \Framework\DataStorage\Cache\Cache($this);
+                $this->settings = \Framework\Config\Settings($this);
+                $this->modules  = \Framework\Module\Modules($this);
+                $this->auth     = \Framework\Auth\Auth($this);
                 $this->user     = $this->auth->authenticate($page[1]);
+
+                $this->settings->settings_load([1000000011]);
 
                 \Framework\Model\Model::set_content('page:addr:url', 'http://' . $page[0]);
                 \Framework\Model\Model::set_content('page:addr:local', $page[0]);
                 \Framework\Model\Model::set_content('page:addr:remote', $page[1]);
 
-                $this->modules->modules_load();
-
-                $this->settings->settings_load([
-                    1000000011,
-                ]);
-
                 require __DIR__ . '\..\Content\Themes' . $this->settings->config[1000000011] . '\ThemeController.class.php';
-                $theme = new \Framework\Controller\ThemeController($this);
-                $theme->load();
+                $this->theme = new \Framework\Controller\ThemeController($this);
             }
         }
 
