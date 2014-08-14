@@ -31,7 +31,7 @@
     </thead>
     <tbody>
     <?php
-    /** @var \Framewrok\DataStorage\Database\Objects\Group\Groups $groups */
+    /** @var \Framework\DataStorage\Database\Objects\Group\Groups $groups */
     $data = $groups->group_list_get();
     $url['level'] = array_slice($this->request->uri, 0, 4);
     $url['level'][] = 'single';

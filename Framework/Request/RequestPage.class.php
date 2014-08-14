@@ -21,5 +21,14 @@ namespace Framework\Request {
         const SHOP = 'shop';
         const BACKEND = 'backend';
         const STATICP = 'static';
+        const FORUM = 'forum';
+        const TICKET = 'ticket';
+        const SUPPORT = 'support';
+        const SURVEY = 'survey';
+        const BLOG = 'blog';
+        const CHART = 'chart';
+        const CALENDAR = 'calendar';
+        const PROFILE = 'profile';
+        const CHAT = 'chat';
     }
 }

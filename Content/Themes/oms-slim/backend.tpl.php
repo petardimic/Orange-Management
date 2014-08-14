@@ -9,17 +9,17 @@
 </head>
 <body>
 <div class="vh" id="dim"></div>
-<?php $this->modules->running[1004300000]->show(); ?>
+<?php $this->app->modules->running[1004300000]->show(); ?>
 <div id="h">
     <div id="bar-s">
-        <?php $this->modules->running[1000500000]->show([1]); ?>
+        <?php $this->app->modules->running[1000500000]->show([1]); ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
             <i class="fa fa-bars ani-click" data-aniref="#s-nav" data-aniin="slide-right" data-aniout="slide-left" data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo"><a
-                href="<?= $this->request->generate_uri([$this->request->request_lang, 'backend']); ?>"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
+                href="<?= $this->app->request->generate_uri([$this->app->request->request_lang, 'backend']); ?>"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar">
             <label>
@@ -31,9 +31,9 @@
     </div>
 </div>
 <div id="out">
-    <?php $this->modules->running[1000500000]->show([2]); ?>
+    <?php $this->app->modules->running[1000500000]->show([2]); ?>
     <div id="cont">
-        <?php $this->modules->running[1004100000]->show(); ?>
+        <?php $this->app->modules->running[1004100000]->show(); ?>
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>

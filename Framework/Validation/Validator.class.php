@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils {
+namespace Framework\Validation {
     /**
      * Sanitizer class
      *
@@ -15,7 +15,7 @@ namespace Framework\Utils {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Sanitizer {
+    class Validator {
         private function __construct() {
 
         }
@@ -42,23 +42,6 @@ namespace Framework\Utils {
                     return filter_var($val, FILTER_VALIDATE_URL);
                 default:
                     return false;
-            }
-        }
-
-        public static function sanitize($val, $type) {
-            switch($type) {
-                case 'int':
-                    return (int)$val;
-                case 'float':
-                    return (float)$val;
-                case 'bool':
-                    return (bool)$val;
-                case 'wstring':
-                    return preg_replace('[^\p{L}]', '', $val);
-                case 'wistring':
-                    return preg_replace('[^(\p{L}|0-9)]', '', $val);
-                default:
-                    return null;
             }
         }
     }

@@ -16,7 +16,7 @@
                 </li>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= /** @var \Framewrok\DataStorage\Database\Objects\Group\Group $group */ $group->id; ?>" disabled>
+                           value="<?= /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */ $group->id; ?>" disabled>
                 </li>
                 <li>
                     <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>

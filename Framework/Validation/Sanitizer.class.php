@@ -20,30 +20,7 @@ namespace Framework\Validation {
 
         }
 
-        public static function validate_array($val, $type) {
-
-        }
-
-        public static function validate($val, $type) {
-            switch($type) {
-                case 'int':
-                    return is_int($val);
-                case 'float':
-                    return is_float($val);
-                case 'bool':
-                    return is_bool($val);
-                case 'wstring':
-                    return (bool) preg_match('^\p{L}*$', $val);
-                case 'wistring':
-                    return (bool) preg_match('^(\p{L}|[0-9])*$', $val);
-                case 'email':
-                    return filter_var($val, FILTER_VALIDATE_EMAIL);
-                case 'website':
-                    return filter_var($val, FILTER_VALIDATE_URL);
-                default:
-                    return false;
-            }
-        }
+        public static function sanitize_array($val, $type) {}
 
         public static function sanitize($val, $type) {
             switch($type) {

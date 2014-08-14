@@ -109,7 +109,7 @@ namespace Framework\DataStorage\Database\Objects\User {
         /**
          * User groups
          *
-         * @var \Framewrok\DataStorage\Database\Objects\Group\Group[]
+         * @var \Framework\DataStorage\Database\Objects\Group\Group[]
          * @since 1.0.0
          */
         public $groups = [];
@@ -312,7 +312,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          */
         public function add_group($id) {
             if(!array_key_exists($id, $this->groups)) {
-                $this->groups[$id] = \Framewrok\DataStorage\Database\Objects\Group\Group::getInstance($id);
+                $this->groups[$id] = \Framework\DataStorage\Database\Objects\Group\Group::getInstance($id);
             }
 
             switch ($this->db->type) {

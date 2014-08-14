@@ -89,7 +89,7 @@ namespace Modules\News {
         /**
          * Groups that can see this article
          *
-         * @var \Framewrok\DataStorage\Database\Objects\Group\Group[]
+         * @var \Framework\DataStorage\Database\Objects\Group\Group[]
          * @since 1.0.0
          */
         public $groups = [];

@@ -170,7 +170,7 @@ namespace Modules\Admin {
                 1000000026
             ]);
 
-            switch ($this->request->uri[4]) {
+            switch ($this->request->uri['l4']) {
                 case 'general':
                     \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
 
@@ -311,7 +311,7 @@ namespace Modules\Admin {
                     $accounts = \Modules\Admin\Users::getInstance();
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $group = \Framewrok\DataStorage\Database\Objects\Group\Group::getInstance((int)$this->request->uri['id']);
+                    $group = \Framework\DataStorage\Database\Objects\Group\Group::getInstance((int)$this->request->uri['id']);
 
                     if (!isset($this->request->uri['page'])) {
                         $this->request->uri['page'] = 1;

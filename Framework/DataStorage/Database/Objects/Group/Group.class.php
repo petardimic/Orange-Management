@@ -51,7 +51,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
         /**
          * Instances
          *
-         * @var \Framewrok\DataStorage\Database\Objects\Group\Group[]
+         * @var \Framework\DataStorage\Database\Objects\Group\Group[]
          * @since 1.0.0
          */
         protected static $instance = [];
@@ -99,7 +99,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
          *
          * @param int $id Group ID
          *
-         * @return \Framewrok\DataStorage\Database\Objects\Group\Group
+         * @return \Framework\DataStorage\Database\Objects\Group\Group
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -139,7 +139,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
                 }
             }
 
-            return false
+            return false;
         }
 
         /**
