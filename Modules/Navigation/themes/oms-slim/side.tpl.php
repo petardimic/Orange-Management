@@ -6,8 +6,7 @@ if (isset($this->nav[2])) {
     echo '<ul id="s-nav">';
 
     foreach ($this->nav[2][0] as $key => $parent) {
-        echo '<ul>';
-        echo '<li>';
+        echo '<li><ul><li>';
 
         if (isset($parent['icon'])) {
             echo '<i class="' . $parent['icon'] . '"></i>';

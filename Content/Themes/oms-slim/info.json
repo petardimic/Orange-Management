@@ -22,6 +22,6 @@
     },
     "description": "The profile module.",
     "lang": true,
-    "js": false,
-    "css": false
+    "js": true,
+    "css": true
 }

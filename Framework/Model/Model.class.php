@@ -55,12 +55,14 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function load_header() {
-            echo '<title>' . self::$content['page:title'] . '</title>';
-            echo '<meta name="viewport" content="initial-scale=1.0,width=device-width,height=device-height,user-scalable=yes">';
+            echo '<title>' . self::$content['page:title'] . '</title>'
+                . '<meta name="viewport" content="initial-scale=1.0,width=device-width,height=device-height,user-scalable=yes">'
+                . '<meta charset="UTF-8">';
 
             /* TODO: Create page specific meta keyword tags */
-
-            echo '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>';
+            echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/css/' . self::$content['core:layout'] . '.css">'
+                . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
+                . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>';
 
             ob_flush();
         }
@@ -88,11 +90,8 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function load_footer() {
-            echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/css/' . self::$content['core:layout'] . '.css">';
-
-            echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">';
-            echo '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/jquery/jquery.min.js"></script>';
-            echo '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
+            echo '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/jquery/jquery.min.js"></script>'
+                . '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
 
             /* Load page javascript */
             echo '<script src="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
