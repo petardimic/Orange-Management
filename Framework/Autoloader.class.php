@@ -33,6 +33,7 @@ namespace Framework {
 
             /* TODO: log! + make screen notification? */
             if (!file_exists($file)) {
+                echo $file;
                 throw new \Exception($class);
             }
 

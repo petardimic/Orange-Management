@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Event {
+namespace Modules\Navigation {
     /**
-     * Event interface
+     * Navigation type enum
      *
      * PHP Version 5.4
      *
@@ -15,9 +15,12 @@ namespace Framework\Event {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface Event {
-        public function subscribe($obj, $trigger, $func);
-        public function unsubscribe($obj);
-        public function trigger($trigger);
+    abstract class NavigationType extends \Framework\Datatypes\Enum {
+        const TOP          = 1;
+        const SIDE         = 2;
+        const CONTENT      = 3;
+        const TAB          = 4;
+        const CONTENT_SIDE = 5;
+        const BOTTOM       = 6;
     }
 }

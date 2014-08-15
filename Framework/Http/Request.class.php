@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Http {
     /**
      * Request class
      *

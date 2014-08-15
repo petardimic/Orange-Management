@@ -15,49 +15,17 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Admin extends \Framework\Module\ModuleAbstract {
-        /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
-
+    class Handler extends \Framework\Module\ModuleAbstract {
         /**
          * Providing
          *
          * @var int[]
          * @since 1.0.0
          */
-        public static $providing = [
-            1004100000 => true,
-            1004400000 => true
+        public $providing = [
+            1004100000,
+            1004400000
         ];
-
-        /**
-         * Users instance
-         *
-         * @var \Modules\Admin\Users
-         * @since 1.0.0
-         */
-        protected $users = null;
-
-        /**
-         * Request instance
-         *
-         * @var \Framework\Config\Settings
-         * @since 1.0.0
-         */
-        public $settings = null;
 
         /**
          * Constructor
@@ -69,19 +37,6 @@ namespace Modules\Admin {
          */
         public function __construct($theme_path, $app) {
             parent::initialize($theme_path, $app);
-        }
-
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info) {
-            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 'Navigation');
         }
 
         /**
@@ -352,15 +307,15 @@ namespace Modules\Admin {
          */
         public function api_account() {
             switch ($this->app->request->type) {
-                case \Framework\Request\RequestType::PUT:
+                case \Framework\Http\RequestType::PUT:
                     $this->api_account_put();
                     break;
-                case \Framework\Request\RequestType::DELETE:
+                case \Framework\Http\RequestType::DELETE:
                     $this->api_account_delete();
                     break;
-                case \Framework\Request\RequestType::POST:
+                case \Framework\Http\RequestType::POST:
                     break;
-                case \Framework\Request\RequestType::GET:
+                case \Framework\Http\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -413,16 +368,16 @@ namespace Modules\Admin {
          */
         public function api_group() {
             switch ($this->app->request->type) {
-                case \Framework\Request\RequestType::PUT:
+                case \Framework\Http\RequestType::PUT:
                     $this->api_group_put();
                     break;
-                case \Framework\Request\RequestType::DELETE:
+                case \Framework\Http\RequestType::DELETE:
                     $this->api_group_delete();
                     break;
-                case \Framework\Request\RequestType::POST:
+                case \Framework\Http\RequestType::POST:
                     $this->api_group_post();
                     break;
-                case \Framework\Request\RequestType::GET:
+                case \Framework\Http\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -523,7 +478,7 @@ namespace Modules\Admin {
          */
         public function api_module() {
             switch ($this->app->request->type) {
-                case \Framework\Request\RequestType::PUT:
+                case \Framework\Http\RequestType::PUT:
                     \Framework\Module\ModuleAbstract::install($this->db, $this->app->request->uri['id']);
 
                     $json_ret = [
@@ -534,13 +489,13 @@ namespace Modules\Admin {
 
                     echo json_encode($json_ret);
                     break;
-                case \Framework\Request\RequestType::DELETE:
+                case \Framework\Http\RequestType::DELETE:
                     echo '1';
                     break;
-                case \Framework\Request\RequestType::POST:
+                case \Framework\Http\RequestType::POST:
                     echo '2';
                     break;
-                case \Framework\Request\RequestType::GET:
+                case \Framework\Http\RequestType::GET:
                     break;
                 default:
                     echo '3';

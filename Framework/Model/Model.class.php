@@ -82,54 +82,20 @@ namespace Framework\Model {
         /**
          * Loading html footer
          *
+         * @todo Load css and js of modules
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function load_footer() {
             echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/css/' . self::$content['core:layout'] . '.css">';
 
-            /* Load module stylesheet */
-            /* TODO: Cache this as array for this page, just like for js */
-            foreach (\Framework\Module\ModuleFactory::$initialized as $key => $val) {
-                $class = get_class(\Framework\Module\ModuleFactory::$initialized[$key]);
-                if ($class::$css) {
-                    echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/' . \Framework\Module\ModuleFactory::$initialized[$key]->theme_path . '/css/styles.css">';
-                }
-            }
-
             echo '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">';
-
             echo '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/jquery/jquery.min.js"></script>';
             echo '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
 
             /* Load page javascript */
             echo '<script src="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
-
-            /* Load module javascript */
-            $jsArray = self::$app->cache->pull('js:' . self::$app->request->uri['l0']);
-
-
-            if (!$jsArray) {
-                /*
-                foreach (ModuleFactory::$initialized as $val) {
-
-                    if ($val->info['js']) {
-                        $js = self::$content['page:addr:url'] . '/' . $val->info['name']['internal'] . '/module.js';
-                        echo '<script src="' . $js . '"></script>';
-
-                        if (self::$app->cache->active) {
-                            $jsArray[] = $js;
-                        }
-                    }
-                }*/
-
-                self::$app->cache->push('js:' . self::$app->request->uri['l0'], $jsArray);
-            } else {
-                foreach ($jsArray as $val) {
-                    echo '<script src="' . $val . '"></script>';
-                }
-            }
-
             ob_flush();
         }
 

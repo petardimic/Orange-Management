@@ -35,7 +35,7 @@ namespace Framework {
         /**
          * Request instance
          *
-         * @var \Framework\Request\Request
+         * @var \Framework\Http\Request
          * @since 1.0.0
          */
         public $request = null;
@@ -98,7 +98,7 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         private function __construct($dbdata = null, $page = null) {
-            $this->request = new \Framework\Request\Request();
+            $this->request = new \Framework\Http\Request();
             $this->db      = new \Framework\DataStorage\Database\Database($dbdata);
 
             \Framework\Module\ModuleFactory::$app = $this;

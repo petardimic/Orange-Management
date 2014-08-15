@@ -249,7 +249,7 @@ namespace Framework\Install {
         public function install_core_modules($modules) {
             foreach ($modules as $module) {
                 /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-                \Framework\Module\ModuleAbstract::install($this->db, $module);
+                \Framework\Install\Module::install($this->db, $module);
             }
         }
 

@@ -15,23 +15,7 @@ namespace Modules\API {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class API extends \Framework\Module\ModuleAbstract {
-        /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
-
+    class Handler extends \Framework\Module\ModuleAbstract {
         /**
          * Constructor
          *
@@ -45,18 +29,6 @@ namespace Modules\API {
         }
 
         /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info) {
-        }
-
-        /**
          * Shows module content
          *
          * @para   array $data
@@ -65,8 +37,8 @@ namespace Modules\API {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show($data = null) {
-            if (isset(API::$receiving)) {
-                foreach (API::$receiving as $mid) {
+            if (isset($this->receiving)) {
+                foreach ($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
                 }

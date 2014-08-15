@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Content {
+namespace Modules\GlobalContent {
     /**
      * Navigation class
      *
@@ -15,23 +15,7 @@ namespace Modules\Content {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Content extends \Framework\Module\ModuleAbstract {
-        /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
-
+    class Handler extends \Framework\Module\ModuleAbstract {
         /**
          * Constructor
          *
@@ -45,18 +29,6 @@ namespace Modules\Content {
         }
 
         /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info) {
-        }
-
-        /**
          * Shows module content
          *
          * @para   array $data
@@ -67,8 +39,7 @@ namespace Modules\Content {
         public function show($data = null) {
             if (isset(self::$receiving)) {
                 foreach (self::$receiving as $mid) {
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_content();
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
                 }
             }
         }

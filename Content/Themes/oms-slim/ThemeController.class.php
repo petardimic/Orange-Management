@@ -17,7 +17,7 @@ namespace Framework\Controller {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ThemeRequestPage extends \Framework\Request\RequestPage {
+    abstract class ThemeRequestPage extends \Framework\Http\RequestPage {
         const CREDIT = 'credit';
     }
 
@@ -45,7 +45,7 @@ namespace Framework\Controller {
             $this->app->modules->modules_load($this->app);
 
             switch ($this->app->request->request_type) {
-                case \Framework\Request\RequestPage::BACKEND:
+                case \Framework\Http\RequestPage::BACKEND:
                 header('Content-Type: text/html; charset=utf-8');
 
                 $this->app->settings->load_settings([1000000009]);
@@ -62,7 +62,7 @@ namespace Framework\Controller {
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '\backend.tpl.php';
                 break;
-                case \Framework\Request\RequestPage::API:
+                case \Framework\Http\RequestPage::API:
                 header('Content-Type: application/json; charset=utf-8');
 
                 $this->app->modules->running[1004400000]->show();

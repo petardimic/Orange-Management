@@ -1,5 +1,5 @@
 <?php
-namespace Modules\GlobalContent {
+namespace Modules\Content {
     /**
      * Navigation class
      *
@@ -15,23 +15,7 @@ namespace Modules\GlobalContent {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class GlobalContent extends \Framework\Module\ModuleAbstract {
-        /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
-
+    class Handler extends \Framework\Module\ModuleAbstract {
         /**
          * Constructor
          *
@@ -45,18 +29,6 @@ namespace Modules\GlobalContent {
         }
 
         /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info) {
-        }
-
-        /**
          * Shows module content
          *
          * @para   array $data
@@ -65,9 +37,10 @@ namespace Modules\GlobalContent {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show($data = null) {
-            if (isset(self::$receiving)) {
-                foreach (self::$receiving as $mid) {
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
+            if (isset($this->receiving)) {
+                foreach ($this->receiving as $mid) {
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_content();
                 }
             }
         }

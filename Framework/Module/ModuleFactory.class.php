@@ -58,12 +58,12 @@ namespace Framework\Module {
          */
         public static function getInstance($mid) {
             if (!isset(self::$initialized[$mid])) {
-                $class = '\\Modules\\' . self::$available[$mid]['class'] . '\\' . self::$available[$mid]['class'];
+                $class = '\\Modules\\' . self::$available[$mid]['class'] . '\\Handler';
 
                 /**
                  * @var \Framework\Module\ModuleAbstract $obj
                  */
-                $obj                     = new $class(self::$available[$mid]['path'], ModuleFactory::$app);
+                $obj                     = new $class(self::$available[$mid]['path'], self::$app);
                 self::$initialized[$mid] = $obj;
 
                 /* TODO: find dependencies or load them inside module? */
@@ -78,15 +78,12 @@ namespace Framework\Module {
 
                 /* Find all providing modules */
                 foreach (self::$initialized as $key => $val) {
-                    $t_class2 = get_class(self::$initialized[$key]);
-
-                    if (isset($t_class2::$providing)) {
-                        foreach ($t_class2::$providing as $key2 => $val2) {
-                            if (isset(self::$initialized[$key2])) {
-                                $t_class = get_class(self::$initialized[$key2]);
+                    if (isset($val->providing)) {
+                        foreach ($val->providing as $key2 => $val2) {
+                            if (isset(self::$initialized[$val2])) {
                                 /** @var \Framework\Module\ModuleAbstract $receiving */
-                                $t_class::$receiving[] = $key;
-                                $t_class::$receiving   = array_unique($t_class::$receiving);
+                                self::$initialized[$val2]->receiving[] = $key;
+                                self::$initialized[$val2]->receiving   = array_unique(self::$initialized[$val2]->receiving);
                             }
                         }
                     }
