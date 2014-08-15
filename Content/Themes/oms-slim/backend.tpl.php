@@ -37,5 +37,3 @@
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>
-</body>
-</html>

@@ -8,12 +8,9 @@
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[1]['Modules'] . ' - ' . \Framework\Localization\Localization::$lang[1]['Installed']; ?></h1>
-        </th>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-        </th>
-    </tr>
     <tr>
         <?php
         \Framework\Model\Model::generate_table_header_view(
@@ -25,8 +22,6 @@
             ]
         );
         ?>
-    </tr>
-    </thead>
     <tbody>
     <?php
     /** @var \Framework\Module\Modules $modules */
@@ -41,7 +36,6 @@
         $url
     );
     ?>
-    </tbody>
 </table>
 
 <table class="t t-1 c1-6 c1" id="i1-6-2">
@@ -51,12 +45,9 @@
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[1]['Modules'] . ' - ' . \Framework\Localization\Localization::$lang[1]['All']; ?></h1>
-        </th>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-        </th>
-    </tr>
     <tr>
         <?php
         \Framework\Model\Model::generate_table_header_view(
@@ -68,8 +59,6 @@
             ]
         );
         ?>
-    </tr>
-    </thead>
     <tbody>
     <?php
     $modules_all = $this->app->modules->module_list_all_get();
@@ -81,13 +70,11 @@
 
         if (!array_key_exists($ele['name']['internal'], $this->app->modules->modules_installed_get())) {
             echo '<tr>'
-                . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a></td>'
-                . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a></td>'
-                . '<td><a href="' . $url_t . '">' . $ele['theme']['name'] . '</a></td>'
-                . '<td><a href="' . $url_t . '">' . $ele['version'] . '</a></td>'
-                . '</tr>';
+                . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a>'
+                . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a>'
+                . '<td><a href="' . $url_t . '">' . $ele['theme']['name'] . '</a>'
+                . '<td><a href="' . $url_t . '">' . $ele['version'] . '</a>';
         }
     }
     ?>
-    </tbody>
 </table>

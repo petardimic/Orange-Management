@@ -158,7 +158,6 @@ namespace Framework\Model {
                         . '<i class="fa fa-caret-down' . ($head['sort'] == 3 ? '' : ' vh') . '"></i>'
                         . '<i class="fa fa-times' . ($head['sort'] > 0 ? '' : ' vh') . '"></i>';
                 }
-                echo '</td>';
             }
         }
 
@@ -182,12 +181,11 @@ namespace Framework\Model {
                 echo '<tr>';
                 foreach ($cols as $col) {
                     if ($replace == null || !isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . $ele[$col] . '</a></td>';
+                        echo '<td><a href="' . $url_t . '">' . $ele[$col] . '</a>';
                     } elseif (isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[$col]]) ? $replace[$col][$ele[$col]] : $ele[$col]) . '</a></td>';
+                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[$col]]) ? $replace[$col][$ele[$col]] : $ele[$col]) . '</a>';
                     }
                 }
-                echo '</tr>';
             }
         }
 
@@ -213,7 +211,7 @@ namespace Framework\Model {
                 echo '<li><a href="' . $url
                     . '"' . ($page == self::$app->request->uri['page'] ? ' class="a"' : '') . '>'
                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
-                    . '</a></li>';
+                    . '</a>';
             }
             echo '</ul>';
         }

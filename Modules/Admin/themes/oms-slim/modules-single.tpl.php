@@ -42,7 +42,6 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                                 'module'
                             ]
                         ); ?>"><?= \Framework\Localization\Localization::$lang[1]['Install']; ?></button>
-                    </li>
                 <?php } else { ?>
                     <li><a href="<?=
                         $this->app->request->generate_uri([
@@ -55,9 +54,9 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                             ],
                             [['id', $this->app->request->uri['id']]]
                         );
-                        ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a></li>
+                        ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a>
                 <?php } ?>
-                <li><a href=""></a></li>
+                <li><a href=""></a>
             </ul>
         </div>
     </div>

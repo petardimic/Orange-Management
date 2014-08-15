@@ -90,8 +90,8 @@ $(document).ready(function () {
                     val = list_filter_arr[tid]['i-' + c];
                 }
 
-                flist.append('<li><label for="i-' + c + '">' + $(this).text().trim() + '</label></li>');
-                flist.append('<li><input name="i-' + c + '" id="i-' + c + '" type="text" value="' + val + '"><select><option>=</option><option>!=</option><option>></option><option><</option><option><></option></select></li>');
+                flist.append('<li><label for="i-' + c + '">' + $(this).text().trim() + '</label>');
+                flist.append('<li><input name="i-' + c + '" id="i-' + c + '" type="text" value="' + val + '"><select><option>=<option>!=<option>><option><<option><></select>');
             });
 
             filter.removeClass('vh');

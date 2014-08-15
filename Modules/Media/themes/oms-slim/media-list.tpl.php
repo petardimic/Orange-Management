@@ -8,12 +8,9 @@
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[3]['Accounts'] ?></h1>
-        </th>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-        </th>
-    </tr>
     <tr>
         <?php
         \Framework\Model\Model::generate_table_header_view(
@@ -26,8 +23,6 @@
             ]
         );
         ?>
-    </tr>
-    </thead>
     <tbody>
     <?php
     /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
@@ -42,12 +37,8 @@
         $url
     );
     ?>
-    </tbody>
     <tfoot>
     <tr>
         <td colspan="5" class="cT">
             <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
-        </td>
-    </tr>
-    </tfoot>
 </table>

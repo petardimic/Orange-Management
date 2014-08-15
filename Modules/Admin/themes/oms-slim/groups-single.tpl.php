@@ -13,28 +13,21 @@
             <ul class="l-1">
                 <li>
                     <label for="i-id"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                </li>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
                            value="<?= /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
                            $group->id; ?>" disabled>
-                </li>
                 <li>
                     <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
-                </li>
                 <li>
                     <input name="name" class="i-1 t-i" id="i-name" type="text"
                            value="<?= $group->name; ?>">
-                </li>
                 <li>
                     <label for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
-                </li>
                 <li>
                     <textarea name="desc" id="i-desc"><?= $group->desc; ?></textarea>
-                </li>
                 <li>
                     <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Edit']; ?>">
-                </li>
             </ul>
         </form>
     </div>
@@ -52,21 +45,16 @@
             <ul class="l-1">
                 <li>
                     <label for="i-idn"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                </li>
                 <li>
                     <input name="idn" class="i-1 t-i" id="i-idn" type="text"
                            value="">
-                </li>
                 <li>
                     <label for="i-namen"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
-                </li>
                 <li>
                     <input name="namen" class="i-1 t-i" id="i-namen" type="text"
                            value="<?= ''; ?>">
-                </li>
                 <li>
                     <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Add']; ?>">
-                </li>
             </ul>
         </form>
     </div>
@@ -81,12 +69,9 @@
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[1]['Members'] ?></h1>
-        </th>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-        </th>
-    </tr>
     <tr>
         <?php
         \Framework\Model\Model::generate_table_header_view(
@@ -99,8 +84,6 @@
             ]
         );
         ?>
-    </tr>
-    </thead>
     <tbody>
     <?php
     /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
@@ -115,12 +98,9 @@
         $url
     );
     ?>
-    </tbody>
     <tfoot>
     <tr>
         <td colspan="5" class="cT">
             <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
         </td>
-    </tr>
-    </tfoot>
 </table>

@@ -30,20 +30,16 @@
             <ul class="l-2">
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Name']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Occupation']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Birthday']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Ranks']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
             </ul>
         </div>
     </div>
@@ -58,16 +54,13 @@
             <ul class="l-2">
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Email']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Phone']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Skype']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
             </ul>
         </div>
     </div>
@@ -82,16 +75,13 @@
             <ul class="l-2">
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Registered']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['LastLogin']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
                 <li>
                     <?= \Framework\Localization\Localization::$lang[3]['Status']; ?>
-                </li>
-                <li>Test</li>
+                <li>Test
             </ul>
         </div>
     </div>

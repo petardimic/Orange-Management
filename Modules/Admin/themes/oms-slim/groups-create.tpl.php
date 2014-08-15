@@ -15,26 +15,19 @@
                 <ul class="l-1">
                     <li>
                         <label for="i-id"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                    </li>
                     <li>
                         <input name="id" class="i-1 t-i" id="i-id" type="text">
-                    </li>
                     <li>
                         <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
-                    </li>
                     <li>
                         <input name="name" class="i-1 t-i" id="i-name" type="text">
-                    </li>
                     <li>
                         <label
                             for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
-                    </li>
                     <li>
                         <textarea name="desc" id="i-desc"></textarea>
-                    </li>
                     <li>
                         <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Create']; ?>">
-                    </li>
                 </ul>
             </form>
         </div>

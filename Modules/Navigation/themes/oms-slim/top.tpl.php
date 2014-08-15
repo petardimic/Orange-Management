@@ -13,7 +13,7 @@ if (isset($this->nav[1])) {
                 echo '<i class="' . $link['icon'] . '"></i>';
             }
 
-            echo \Framework\Localization\Localization::$lang[5][$link['name']] . '</a></li>';
+            echo \Framework\Localization\Localization::$lang[5][$link['name']] . '</a>';
         }
     }
 

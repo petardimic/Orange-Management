@@ -15,23 +15,18 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class News extends \Framework\Module\ModuleAbstract {
+    class Handler extends \Framework\Module\ModuleAbstract {
         /**
-         * Dependencies
+         * Providing
          *
          * @var int[]
          * @since 1.0.0
          */
-        public static $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
-
+        public $providing = [
+            1004100000,
+            1004400000
+        ];
+        
         /**
          * Constructor
          *
@@ -45,54 +40,6 @@ namespace Modules\News {
          */
         public function __construct(&$db, &$model, &$user, &$cache) {
             parent::initialize($db, $model, $user, $cache);
-        }
-
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info) {
-            switch ($db->type) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `title` varchar(250) NOT NULL,
-                            `featured` tinyint(1) DEFAULT NULL,
-                            `content` text NOT NULL,
-                            `type` tinyint(2) NOT NULL,
-                            `lang` tinyint(2) NOT NULL,
-                            `created` datetime NOT NULL,
-                            `author` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `author` (`author`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'news`
-				            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
-                    )->execute();
-
-                    break;
-            }
-        }
-
-        /**
-         * Install data from providing modules
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $data Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install_external(&$db, $data) {
         }
 
         /**
