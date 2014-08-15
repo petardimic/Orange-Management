@@ -80,26 +80,28 @@ html, body {
     float: left;
     height: 100%;
 
-    li {
-        border-top: 1px solid #3f3f3f;
-        border-bottom: 1px solid #1a1a1a;
-        color: $d-nav-color;
+    > li { 
+        li {
+            border-top: 1px solid #3f3f3f;
+            border-bottom: 1px solid #1a1a1a;
+            color: $d-nav-color;
 
-        &:first-child {
-            padding: 5px 0 5px 5px;
-        }
+            &:first-child {
+                padding: 5px 0 5px 5px;
+            }
 
-        a {
-            display: block;
-            padding: 5px 0 5px 5px;
+            a {
+                display: block;
+                padding: 5px 0 5px 5px;
 
-            &:hover {
-                background: $d-nav-hover-color;
+                &:hover {
+                    background: $d-nav-hover-color;
+                }
             }
         }
     }
 
-    ul:last-child li:last-child {
+    li:last-child li:last-child {
         border-bottom: none;
     }
 
