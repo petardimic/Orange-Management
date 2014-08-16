@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    'use strict';
-
     //<editor-fold desc="Min/Max/Close/Save button behaviour">
     $('.min').each(function () {
         var $$ = $(this);
@@ -43,4 +40,3 @@ $(document).ready(function () {
         });
     });
     //</editor-fold>
-});

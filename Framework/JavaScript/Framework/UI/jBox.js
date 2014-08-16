@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    'use strict';
-
     //<editor-fold desc="Box functionality">
     $('.b > h1 .min, .b > h2 .min').each(function () {
         var $$ = $(this);
@@ -18,4 +15,3 @@ $(document).ready(function () {
         });
     });
     //</editor-fold>
-});

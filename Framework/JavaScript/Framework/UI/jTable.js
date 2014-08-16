@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    'use strict';
-
     //<editor-fold desc="Table functionality">
     $('.t thead .min').each(function () {
         var $$ = $(this);
@@ -98,4 +95,4 @@ $(document).ready(function () {
         });
     });
     //</editor-fold>
-});
+    

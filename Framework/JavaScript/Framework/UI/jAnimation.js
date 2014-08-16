@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    'use strict';
-
     $('.ani-click').each(function() {
         var $$ = $(this);
 
@@ -28,4 +25,3 @@ $(document).ready(function () {
             }
         });
     });
-});

@@ -33,8 +33,8 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                 if (!array_key_exists($this->app->request->uri['id'], $this->app->modules->modules_installed_get())) {
                     ?>
                     <li>
-                        <button class="d-call" data-requestType="PUT"
-                                data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-src="<?=
+                        <button data-http="PUT"
+                                data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-uri="<?=
                         $this->app->request->generate_uri([
                                 $this->app->request->uri['l0'],
                                 'api',
