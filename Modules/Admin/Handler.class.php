@@ -74,6 +74,14 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
+            switch($this->app->request->request_type) {
+                case \Framework\Http\RequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
                 case 'account':
                     $this->show_account();
@@ -90,8 +98,6 @@ namespace Modules\Admin {
                 default:
                     return false;
             }
-
-            return true;
         }
 
         /**
@@ -128,7 +134,7 @@ namespace Modules\Admin {
                     \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/settings-general.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->request_type . '/settings-general.tpl.php';
                     break;
             }
         }
@@ -152,7 +158,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/accounts-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_account_single();
@@ -161,7 +167,7 @@ namespace Modules\Admin {
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/accounts-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-create.tpl.php';
                     break;
             }
         }
@@ -178,7 +184,7 @@ namespace Modules\Admin {
             switch ($this->app->request->uri['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/accounts-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-single.tpl.php';
                     break;
             }
         }
@@ -203,13 +209,13 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/modules-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/modules-list.tpl.php';
                     break;
                 case 'front':
                     $info = $this->app->modules->module_info_get((int)$this->app->request->uri['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/modules-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/modules-single.tpl.php';
                     break;
             }
         }
@@ -233,14 +239,14 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/groups-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_group_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/groups-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-create.tpl.php';
                     break;
             }
         }
@@ -267,7 +273,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/groups-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-single.tpl.php';
                     break;
             }
         }

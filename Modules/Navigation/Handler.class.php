@@ -93,15 +93,15 @@ namespace Modules\Navigation {
             switch ($data[0]) {
                 case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/top.tpl.php';
+                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/top.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::SIDE:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/side.tpl.php';
+                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/side.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::CONTENT:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/mid.tpl.php';
+                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/mid.tpl.php';
                     break;
             }
         }

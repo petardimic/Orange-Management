@@ -121,8 +121,7 @@ namespace Framework {
                     ]
                 );
 
-                require __DIR__ . '\..\Content\Themes' . $this->settings->config[1000000011] . '\ThemeController.class.php';
-                $this->theme = new \Framework\Controller\ThemeController($this);
+                $this->load();
             } else {
                 header('HTTP/1.0 503 Service Temporarily Unavailable');
                 header('Status: 503 Service Temporarily Unavailable');
@@ -158,6 +157,42 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         protected function __clone() {
+        }
+
+        /**
+         * Show view
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function load() {
+            $this->modules->modules_load($this);
+
+            switch ($this->request->request_type) {
+                case \Framework\Http\RequestPage::BACKEND:
+                    header('Content-Type: text/html; charset=utf-8');
+
+                    $this->settings->load_settings([1000000009]);
+
+                    \Framework\Model\Model::set_content(
+                        [
+                            'core:oname' => $this->settings->config[1000000009],
+                            'theme:path' =>  $this->settings->config[1000000011], 
+                            'core:layout' => $this->request->request_type,
+                            'page:title' => 'Orange Management'
+                        ]
+                    );
+
+                    /** @noinspection PhpIncludeInspection */
+                    require __DIR__ . '\..\Content\Themes' . $this->settings->config[1000000011] . '\backend.tpl.php';
+                    break;
+                case \Framework\Http\RequestPage::API:
+                    header('Content-Type: application/json; charset=utf-8');
+
+                    $this->modules->running[1004400000]->show();
+                    break;
+                default:
+            }
         }
     }
 }

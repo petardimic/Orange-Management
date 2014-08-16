@@ -50,7 +50,7 @@ namespace Modules\Profile {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/profile-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/profile-single.tpl.php';
 
                     $this->show_push();
 
@@ -64,7 +64,7 @@ namespace Modules\Profile {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/profile-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/profile-list.tpl.php';
                     break;
                 default:
                     return false;

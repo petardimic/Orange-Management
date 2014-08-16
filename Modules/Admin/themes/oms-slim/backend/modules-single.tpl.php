@@ -71,7 +71,7 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
 
     <div class="bc-1">
         <?php /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../../../' . $this->app->request->uri['id'] . '/docs/features.htm'; ?>
+        include __DIR__ . '/../../../docs/features.htm'; ?>
     </div>
 </div>
 
@@ -84,6 +84,6 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
 
     <div class="bc-1">
         <?php /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../../../' . $this->app->request->uri['id'] . '/docs/version.htm'; ?>
+        include __DIR__ . '/../../../docs/version.htm'; ?>
     </div>
 </div>
