@@ -33,6 +33,12 @@ namespace Framework\Http {
             'l7' => '',
         ];
 
+        /**
+         * Request type
+         *
+         * @var \Framework\Http\RequestType
+         * @since 1.0.0
+         */
         public $type = null;
 
         /**
@@ -59,6 +65,12 @@ namespace Framework\Http {
          */
         public $uri_hash = null;
 
+        /**
+         * Page type
+         *
+         * @var \Framework\Http\RequestPage
+         * @since 1.0.0
+         */
         public $request_type = null;
 
         /**
