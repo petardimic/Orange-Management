@@ -3,7 +3,7 @@
 
 /* Looping through all links */
 if (isset($this->nav[3])) {
-    echo '<ul id="m-nav">';
+    echo '<ul id="m-nav" role="navigation">';
 
     foreach ($this->nav[3] as $key => $parent) {
         foreach ($parent as $link) {
