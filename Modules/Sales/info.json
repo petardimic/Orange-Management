@@ -1,7 +1,7 @@
 {
     "name": {
-        "internal": 1000700000,
-        "external": "OMS News"
+        "internal": 1001600000,
+        "external": "OMS Sales"
     },
     "version": "1.0.0",
     "requirements": {
@@ -19,32 +19,32 @@
         "name": "oms-slim",
         "path": "/oms-slim"
     },
-    "description": "News module.",
-    "class": "News",
+    "description": "Sales module.",
+    "class": "Sales",
     "dependencies": [],
     "providing": [],
     "load": [
         {
-            "pid": ["d7470914e19522acc310a55e5cb13a6f0f7ca000"],
+            "pid": ["b5adefd1c8bd87a6b304347e0daee31b279ed2ae"],
             "type": 4,
             "for": 0,
-            "from": "1000700000",
-            "file": "News"
+            "from": "1001600000",
+            "file": "Sales"
         },
-		{
+        {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,
-            "from": 1000700000,
+            "from": 1001600000,
             "for": 1000500000,
             "file": "nav.backend"
         },
-		{
-            "pid": ["d7470914e19522acc310a55e5cb13a6f0f7ca000"],
+        {
+            "pid": ["b5adefd1c8bd87a6b304347e0daee31b279ed2ae"],
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1000700000
-        },
+            "from": 1001600000
+        }
     ],
     "lang": true,
     "js": true,

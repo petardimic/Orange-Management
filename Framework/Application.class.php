@@ -123,7 +123,6 @@ namespace Framework {
 
                 include __DIR__ . '/../Content/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);
-                $this->theme->load();
             } else {
                 header('HTTP/1.0 503 Service Temporarily Unavailable');
                 header('Status: 503 Service Temporarily Unavailable');

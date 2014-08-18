@@ -208,13 +208,21 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content($data) {
-            /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
+           switch($this->app->request->request_type) {
+                case \Framework\Http\RequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public functino show_content_backend() {
+             /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
             switch ($data['l3']) {
                 case 'front':
                     $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/news-front.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
                     break;
                 case 'single':
                     $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
@@ -222,19 +230,19 @@ namespace Modules\News {
                     $news = null;
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/news-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
                     break;
                 case 'editor':
                     $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/news-editor.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
                     break;
                 case 'archive':
                     $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/news-archive.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
                     break;
             }
         }

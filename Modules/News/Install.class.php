@@ -36,16 +36,21 @@ namespace Modules\News {
                             `content` text NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `lang` tinyint(2) NOT NULL,
+                            `publish` datetime NOT NULL,
                             `created` datetime NOT NULL,
                             `author` int(11) NOT NULL,
+                            `last_changed` datetime NOT NULL,
+                            `last_change` int(11) NOT NULL,
                             PRIMARY KEY (`id`),
-                            KEY `author` (`author`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;'
+                            KEY `author` (`author`, `last_change`),
+                            KEY `last_change` (`last_change`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'news`
-                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`last_change`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     break;

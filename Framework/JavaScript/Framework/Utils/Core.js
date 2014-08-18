@@ -41,3 +41,30 @@ function getCookie(c_name) {
     }
     return c_value;
 }
+
+function DataBinder(object_id) {
+    var pubSub = $({});
+
+    var data_attr = "bind-" + object_id,
+        message = object_id + ":change";
+
+    $(document).on("change", "[data-" + data_attr + "]", function (evt) {
+        var input = $(this);
+
+        pubSub.trigger(message, [input.data(data_attr), input.val()]);
+    });
+
+    pubSub.on(message, function (evt, prop_name, new_val) {
+        $("[data-" + data_attr + "=" + prop_name + "]").each(function () {
+            var bound = $(this);
+
+            if (bound.is("input, textarea, select")) {
+                bound.val(new_val);
+            } else {
+                bound.html(new_val);
+            }
+        });
+    });
+
+    return pubSub;
+}

@@ -46,11 +46,19 @@ namespace Modules\Profile {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
+            switch($this->app->request->request_type) {
+                case \Framework\Http\RequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/profile-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/profile-single.tpl.php';
 
                     $this->show_push();
 
@@ -64,13 +72,11 @@ namespace Modules\Profile {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/profile-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/profile-list.tpl.php';
                     break;
                 default:
                     return false;
             }
-
-            return true;
         }
     }
 }

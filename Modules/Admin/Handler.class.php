@@ -84,16 +84,16 @@ namespace Modules\Admin {
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
                 case 'account':
-                    $this->show_account();
+                    $this->show_backend_account();
                     break;
                 case 'group':
-                    $this->show_group();
+                    $this->show_backend_group();
                     break;
                 case 'settings':
-                    $this->show_settings();
+                    $this->show_backend_settings();
                     break;
                 case 'module':
-                    $this->show_module();
+                    $this->show_backend_module();
                     break;
                 default:
                     return false;
@@ -108,7 +108,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_settings() {
+        public function show_backend_settings() {
             $this->app->settings->load_settings([
                 1000000006,
                 1000000007,
@@ -134,7 +134,7 @@ namespace Modules\Admin {
                     \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->request_type . '/settings-general.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/settings-general.tpl.php';
                     break;
             }
         }
@@ -147,7 +147,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_account() {
+        public function show_backend_account() {
             switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -158,16 +158,16 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/accounts-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_account_single();
+                    $this->show_backend_account_single();
                     $this->show_push();
 
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/accounts-create.tpl.php';
                     break;
             }
         }
@@ -180,11 +180,11 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_account_single() {
+        public function show_backend_account_single() {
             switch ($this->app->request->uri['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/accounts-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/accounts-single.tpl.php';
                     break;
             }
         }
@@ -197,7 +197,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_module() {
+        public function show_backend_module() {
             if (empty($this->app->request->uri['l4'])) {
                 $this->app->request->uri['l5'] = 'front';
             }
@@ -209,13 +209,13 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/modules-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/modules-list.tpl.php';
                     break;
                 case 'front':
                     $info = $this->app->modules->module_info_get((int)$this->app->request->uri['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/modules-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/modules-single.tpl.php';
                     break;
             }
         }
@@ -228,7 +228,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_group() {
+        public function show_backend_group() {
             switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -239,14 +239,14 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/groups-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_group_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/groups-create.tpl.php';
                     break;
             }
         }
@@ -259,7 +259,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_group_single() {
+        public function show_backend_group_single() {
             switch ($this->app->request->uri['l5']) {
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -273,7 +273,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/groups-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/groups-single.tpl.php';
                     break;
             }
         }

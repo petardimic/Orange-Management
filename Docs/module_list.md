@@ -19,7 +19,7 @@
 * 1001800000 - OMS Import
 * 1001900000 - OMS Marketing
 * 1002000000 - OMS Production
-* 1002100000 - OMS Purchasing Department
+* 1002100000 - OMS Purchasing
 * 1002200000 - OMS Research & Development
 * 1002300000 - OMS Shipping
 * 1002400000 - OMS Human Resource Management

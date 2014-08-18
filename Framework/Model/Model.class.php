@@ -117,7 +117,7 @@ namespace Framework\Model {
                 . '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
 
             /* Load page javascript */
-            echo '<script src="' . self::$content['page:addr:url'] . '/Content/themes' . self::$content['theme:path'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
+            echo '<script src="' . self::$content['page:addr:url'] . '/Content/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
             ob_flush();
         }
 

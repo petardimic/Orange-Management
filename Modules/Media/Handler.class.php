@@ -46,10 +46,18 @@ namespace Modules\Media {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
+            switch($this->app->request->request_type) {
+                case \Framework\Http\RequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/media-single.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/media-single.tpl.php';
                     break;
                 case 'list':
                     if (!isset($this->app->request->uri['page'])) {
@@ -57,13 +65,9 @@ namespace Modules\Media {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/media-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/media-list.tpl.php';
                     break;
-                default:
-                    return false;
             }
-
-            return true;
         }
 
         public function show_content_push() {
