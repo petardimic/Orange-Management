@@ -28,8 +28,10 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'Framework/JavaScript/oms.min.js': [
-                        'Framework/Utils/Core.js',
-                        'Framework/JavaScript/UI/*.js'
+                        'Framework/JavaScript/a.js',
+                        'Framework/JavaScript/Utils/Core.js',
+                        'Framework/JavaScript/UI/*.js',
+                        'Framework/JavaScript/z.js',
                     ],
                     'Framework/JavaScript/backend.min.js': [],
                     'Framework/JavaScript/website.min.js': [],
@@ -45,9 +47,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'Content/themes/oms-slim/scss',
+                        cwd: 'Content/themes/oms-slim/backend/scss',
                         src: ['*.scss'],
-                        dest: 'Content/themes/oms-slim/css',
+                        dest: 'Content/themes/oms-slim/backend/css',
                         ext: '.css'
                     }
                 ]
@@ -73,13 +75,13 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: ['Content/themes/oms-slim/js/*.js'],
+                        src: ['Content/themes/oms-slim/backend/js/*.js'],
                         dest: '',
                         ext: '.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['Content/themes/oms-slim/css/*.css'],
+                        src: ['Content/themes/oms-slim/backend/css/*.css'],
                         dest: '',
                         ext: '.css.gz'
                     },
@@ -98,7 +100,7 @@ module.exports = function (grunt) {
                 tasks: ['uglify:dist', 'compress:dist']
             },
             sass: {
-                files: ['Content/themes/oms-slim/scss/*.scss'],
+                files: ['Content/themes/oms-slim/backend/scss/*.scss'],
                 tasks: ['sass:dist', 'compress:dist']
             },
             img: {

@@ -8,7 +8,7 @@
         <th colspan="4" class="lT">
             <i class="fa fa-cogs p f dim"></i>
 
-            <h1><?= \Framework\Localization\Localization::$lang[1]['Articles'] ?></h1>
+            <h1><?= \Framework\Localization\Localization::$lang[16]['Articles'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
