@@ -1,4 +1,3 @@
-//<editor-fold desc="Box functionality">
 $('.b > h1 .min, .b > h2 .min').each(function () {
     var $$ = $(this);
 
@@ -14,4 +13,3 @@ $('.b > h1 .max, .b > h2 .max').each(function () {
         $$.parent().parent().find('.bc-1').show();
     });
 });
-//</editor-fold>

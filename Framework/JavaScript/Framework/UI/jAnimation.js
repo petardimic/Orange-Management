@@ -22,6 +22,6 @@ $('.ani-click').each(function () {
                     marginLeft: ($$$.position().left - $$$.width()) + $$$.width()
                 }, $$.data().anitime);
             }
-        }
+        } 
     });
 });

@@ -1,4 +1,3 @@
-//<editor-fold desc="Table functionality">
 $('.t thead .min').each(function () {
     var $$ = $(this);
 
@@ -20,7 +19,6 @@ $('.t thead span').each(function () {
     $$.click(function () {
         var filter = $$.parent().find(':nth-child(5)');
 
-        /* TODO: is this necessary/dropping performance??? */
         if (filter.hasClass('vh')) {
             filter.removeClass('vh');
             $$.parent().find(':nth-child(2)').removeClass('vh');
@@ -94,5 +92,3 @@ $('.t thead .f').each(function () {
         filter.removeClass('vh');
     });
 });
-//</editor-fold>
-    

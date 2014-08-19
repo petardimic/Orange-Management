@@ -1,4 +1,3 @@
-//<editor-fold desc="Min/Max/Close/Save button behaviour">
 $('.min').each(function () {
     var $$ = $(this);
 
@@ -29,9 +28,6 @@ $('.close, .save').each(function () {
         }
     });
 });
-//</editor-fold>
-
-//<editor-fold desc="Dim functionality">
 $('.dim').each(function () {
     var $$ = $(this);
 
@@ -39,4 +35,3 @@ $('.dim').each(function () {
         $('#dim').removeClass('vh');
     });
 });
-//</editor-fold>

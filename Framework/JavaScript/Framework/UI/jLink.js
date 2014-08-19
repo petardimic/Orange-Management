@@ -1,5 +1,5 @@
 $('a, button, input[type=submit]').each(function () {
-    $$ = $(this);
+    var $$ = $(this);
 
     $$.click(function () {
         if (!$$.attr('data-request') || $$.attr('data-http')) {

@@ -44,7 +44,7 @@
             "for": 1004100000,
             "file": "backend",
             "from": 1000700000
-        },
+        }
     ],
     "lang": true,
     "js": true,

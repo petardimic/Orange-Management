@@ -21,6 +21,20 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         banner: '/* <%= pkg.name %>\n' +
             'Version: <%= pkg.version %>\n */',
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: [
+                    'Framework/JavaScript/Framework/Utils/*.js',
+                    'Framework/JavaScript/Framework/a.js',
+                    'Framework/JavaScript/Framework/UI/*.js',
+                    'Framework/JavaScript/Framework/z.js'
+                ],
+                dest: 'Framework/JavaScript/oms.min.js',
+            },
+        },
         uglify: {
             options: {
                 banner: '<%= banner %>'
@@ -28,10 +42,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'Framework/JavaScript/oms.min.js': [
-                        'Framework/JavaScript/a.js',
-                        'Framework/JavaScript/Utils/Core.js',
-                        'Framework/JavaScript/UI/*.js',
-                        'Framework/JavaScript/z.js',
+                        'Framework/JavaScript/oms.min.js'
                     ],
                     'Framework/JavaScript/backend.min.js': [],
                     'Framework/JavaScript/website.min.js': [],
@@ -96,8 +107,8 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['Framework/JavaScript/UI/*.js', 'Framework/JavaScript/Utils/*.js'],
-                tasks: ['uglify:dist', 'compress:dist']
+                files: ['Framework/JavaScript/Framework/UI/*.js', 'Framework/JavaScript/Framework/Utils/*.js'],
+                tasks: ['concat:dist', 'uglify:dist', 'compress:dist']
             },
             sass: {
                 files: ['Content/themes/oms-slim/backend/scss/*.scss'],
