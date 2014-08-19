@@ -15,5 +15,5 @@ cache/*
 .sass-cache/*
 .idea/*
 vendor/*
-content/themes/oms-slim/css/*
+content/themes/oms-slim/backend/css/*
 node_modules/*
