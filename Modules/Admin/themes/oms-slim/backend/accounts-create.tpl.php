@@ -18,10 +18,8 @@
                     <select name="status" id="i-status">
                         <option value="0">
                             <?= \Framework\Localization\Localization::$lang[1]['Active']; ?>
-                        </option>
                         <option value="1">
                             <?= \Framework\Localization\Localization::$lang[1]['Inactive']; ?>
-                        </option>
                     </select>
                 <li>
                     <label for="i-type"><?= \Framework\Localization\Localization::$lang[1]['Type']; ?></label>
@@ -29,10 +27,8 @@
                     <select name="type" id="i-type">
                         <option value="0">
                             <?= \Framework\Localization\Localization::$lang[1]['Single']; ?>
-                        </option>
                         <option value="1">
                             <?= \Framework\Localization\Localization::$lang[1]['Group']; ?>
-                        </option>
                     </select>
                 <li>
                     <label for="i-active"><?= \Framework\Localization\Localization::$lang[1]['Activity']; ?></label>
@@ -91,5 +87,6 @@
 
 <div class="c-bar rT">
     <button><?= \Framework\Localization\Localization::$lang[0]['Create']; ?></button>
-    <button><?= \Framework\Localization\Localization::$lang[0]['Cancel']; ?></div>
+    <button><?= \Framework\Localization\Localization::$lang[0]['Cancel']; ?></button>
+</div>
 

@@ -26,7 +26,7 @@ namespace Modules\News {
             1004100000,
             1004400000
         ];
-        
+
         /**
          * Constructor
          *
@@ -208,43 +208,43 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content($data) {
-           switch($this->app->request->request_type) {
+            switch ($this->app->request->request_type) {
                 case \Framework\Http\RequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
             }
         }
 
-        public functino show_content_backend() {
-             /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
-            switch ($data['l3']) {
-                case 'front':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
+    public functino show_content_backend() {
+        /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
+    switch ($data['l3']) {
+    case 'front':
+    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
 
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
-                    break;
-                case 'single':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
+        /** @noinspection PhpIncludeInspection */
+    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
+    break;
+    case 'single':
+    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
 
-                    $news = null;
+    $news = null;
 
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
-                    break;
-                case 'editor':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
+        /** @noinspection PhpIncludeInspection */
+    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
+    break;
+    case 'editor':
+    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
 
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
-                    break;
-                case 'archive':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
+        /** @noinspection PhpIncludeInspection */
+    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
+    break;
+    case 'archive':
+    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
 
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
-                    break;
-            }
-        }
+        /** @noinspection PhpIncludeInspection */
+    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
+    break;
     }
+}
+}
 }

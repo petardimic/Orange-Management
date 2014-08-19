@@ -22,20 +22,20 @@
             ]
         );
         ?>
-    <tbody>
-    <?php
-    /** @var \Framework\Module\Modules $modules */
-    $modules_installed = $this->app->modules->module_list_installed_get();
-    $url['level'] = array_slice($this->app->request->uri, 0, 4);
-    $url['level'][] = 'front';
-    $url['id'] = 'class';
+        <tbody>
+        <?php
+        /** @var \Framework\Module\Modules $modules */
+        $modules_installed = $this->app->modules->module_list_installed_get();
+        $url['level'] = array_slice($this->app->request->uri, 0, 4);
+        $url['level'][] = 'front';
+        $url['id'] = 'class';
 
-    \Framework\Model\Model::generate_table_content_view(
-        $modules_installed['list'],
-        ['id', 'name', 'theme', 'version'],
-        $url
-    );
-    ?>
+        \Framework\Model\Model::generate_table_content_view(
+            $modules_installed['list'],
+            ['id', 'name', 'theme', 'version'],
+            $url
+        );
+        ?>
 </table>
 
 <table class="t t-1 c1-6 c1" id="i1-6-2">
@@ -59,22 +59,22 @@
             ]
         );
         ?>
-    <tbody>
-    <?php
-    $modules_all = $this->app->modules->module_list_all_get();
-    $url['level'] = array_slice($this->app->request->uri, 0, 4);
-    $url['level'][] = 'front';
+        <tbody>
+        <?php
+        $modules_all = $this->app->modules->module_list_all_get();
+        $url['level'] = array_slice($this->app->request->uri, 0, 4);
+        $url['level'][] = 'front';
 
-    foreach ($modules_all as $ele) {
-        $url_t = $this->app->request->generate_uri($url['level'], [['id', $ele['class']]]);
+        foreach ($modules_all as $ele) {
+            $url_t = $this->app->request->generate_uri($url['level'], [['id', $ele['class']]]);
 
-        if (!array_key_exists($ele['name']['internal'], $this->app->modules->modules_installed_get())) {
-            echo '<tr>'
-                . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a>'
-                . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a>'
-                . '<td><a href="' . $url_t . '">' . $ele['theme']['name'] . '</a>'
-                . '<td><a href="' . $url_t . '">' . $ele['version'] . '</a>';
+            if (!array_key_exists($ele['name']['internal'], $this->app->modules->modules_installed_get())) {
+                echo '<tr>'
+                    . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a>'
+                    . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a>'
+                    . '<td><a href="' . $url_t . '">' . $ele['theme']['name'] . '</a>'
+                    . '<td><a href="' . $url_t . '">' . $ele['version'] . '</a>';
+            }
         }
-    }
-    ?>
+        ?>
 </table>

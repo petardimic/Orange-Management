@@ -12,37 +12,37 @@
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-    <tr>
-        <?php
-        \Framework\Model\Model::generate_table_header_view(
-            [
-                ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                ['name' => \Framework\Localization\Localization::$lang[1]['Matchcode'], 'sort' => 0],
-                ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                ['name' => \Framework\Localization\Localization::$lang[1]['Street'], 'sort' => 0],
-                ['name' => \Framework\Localization\Localization::$lang[1]['City'], 'sort' => 0],
-                ['name' => \Framework\Localization\Localization::$lang[1]['Zip'], 'sort' => 0],
-                ['name' => \Framework\Localization\Localization::$lang[1]['State'], 'sort' => 0],
-                ['name' => \Framework\Localization\Localization::$lang[1]['Country'], 'sort' => 0]
-            ]
-        );
-        ?>
-    <tbody>
-    <?php
-    /** @var \Modules\Sales\ArticleList $articles */
-    $data = $articles->article_list_get();
-    $url['level'] = array_slice($this->app->request->uri, 0, 4);
-    $url['level'][] = 'single';
-    $url['level'][] = 'front';
-    $url['id'] = 'id';
+            <tr>
+                <?php
+                \Framework\Model\Model::generate_table_header_view(
+                    [
+                        ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['Matchcode'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['Street'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['City'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['Zip'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['State'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[1]['Country'], 'sort' => 0]
+                    ]
+                );
+                ?>
+                <tbody>
+                <?php
+                /** @var \Modules\Sales\ArticleList $articles */
+                $data = $articles->article_list_get();
+                $url['level'] = array_slice($this->app->request->uri, 0, 4);
+                $url['level'][] = 'single';
+                $url['level'][] = 'front';
+                $url['id'] = 'id';
 
-    \Framework\Model\Model::generate_table_content_view(
-        $data['list'],
-        ['status', 'id', 'name1', 'lactive', 'created'],
-        $url
-    );
-    ?>
-    <tfoot>
+                \Framework\Model\Model::generate_table_content_view(
+                    $data['list'],
+                    ['status', 'id', 'name1', 'lactive', 'created'],
+                    $url
+                );
+                ?>
+                <tfoot>
     <tr>
         <td colspan="5" class="cT">
             <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>

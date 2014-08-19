@@ -26,7 +26,7 @@ namespace Modules\Purchase {
             1004100000,
             1004400000
         ];
-        
+
         /**
          * Constructor
          *
@@ -51,7 +51,7 @@ namespace Modules\Purchase {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content($data) {
-           switch($this->app->request->request_type) {
+            switch ($this->app->request->request_type) {
                 case \Framework\Http\RequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -73,7 +73,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_article() {
-            switch($this->app->request->url['l3']) {
+            switch ($this->app->request->url['l3']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/article-list.tpl.php';
@@ -89,7 +89,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_invoice() {
-            switch($this->app->request->url['l3']) {
+            switch ($this->app->request->url['l3']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/suppliers-list.tpl.php';
@@ -105,7 +105,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backent_client() {
-            switch($this->app->request->url['l3']) {
+            switch ($this->app->request->url['l3']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-list.tpl.php';
@@ -121,7 +121,6 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_client_single() {
-
         }
     }
 }

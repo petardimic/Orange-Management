@@ -31,31 +31,31 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                 <?php
                 /** @var \Framework\Module\Modules $modules */
                 if (!array_key_exists($this->app->request->uri['id'], $this->app->modules->modules_installed_get())) {
-                    ?>
-                    <li>
-                        <button data-http="PUT"
-                                data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-uri="<?=
-                        $this->app->request->generate_uri([
-                                $this->app->request->uri['l0'],
-                                'api',
-                                'admin',
-                                'module'
-                            ]
-                        ); ?>"><?= \Framework\Localization\Localization::$lang[1]['Install']; ?></button>
-                <?php } else { ?>
-                    <li><a href="<?=
-                        $this->app->request->generate_uri([
-                                $this->app->request->uri['l0'],
-                                $this->app->request->uri['l1'],
-                                $this->app->request->uri['l2'],
-                                $this->app->request->uri['l3'],
-                                $this->app->request->uri['l4'],
-                                'settings'
-                            ],
-                            [['id', $this->app->request->uri['id']]]
-                        );
-                        ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a>
-                <?php } ?>
+                ?>
+                <li>
+                    <button data-http="PUT"
+                            data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-uri="<?=
+                    $this->app->request->generate_uri([
+                            $this->app->request->uri['l0'],
+                            'api',
+                            'admin',
+                            'module'
+                        ]
+                    ); ?>"><?= \Framework\Localization\Localization::$lang[1]['Install']; ?></button>
+                    <?php } else { ?>
+                <li><a href="<?=
+                    $this->app->request->generate_uri([
+                            $this->app->request->uri['l0'],
+                            $this->app->request->uri['l1'],
+                            $this->app->request->uri['l2'],
+                            $this->app->request->uri['l3'],
+                            $this->app->request->uri['l4'],
+                            'settings'
+                        ],
+                        [['id', $this->app->request->uri['id']]]
+                    );
+                    ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a>
+                    <?php } ?>
                 <li><a href=""></a>
             </ul>
         </div>

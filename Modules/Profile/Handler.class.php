@@ -46,7 +46,7 @@ namespace Modules\Profile {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
-            switch($this->app->request->request_type) {
+            switch ($this->app->request->request_type) {
                 case \Framework\Http\RequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
