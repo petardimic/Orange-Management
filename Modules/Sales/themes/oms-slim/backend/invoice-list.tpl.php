@@ -5,7 +5,7 @@
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
     <tr>
-        <th colspan="4" class="lT">
+        <th colspan="5" class="lT">
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[16]['Invoices'] ?></h1>
@@ -17,17 +17,17 @@
                 \Framework\Model\Model::generate_table_header_view(
                     [
                         ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Date'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['ClientID'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['ClientName'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Price'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Creator'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Date'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['ClientID'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['ClientName'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Price'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Creator'], 'sort' => 0],
                     ]
                 );
                 ?>
                 <tbody>
                 <?php
-                /** @var \Modules\Sales\ArticleList $articles */
+                /** @var \Modules\Sales\ArticleList $articles *//*
                 $data = $articles->article_list_get();
                 $url['level'] = array_slice($this->app->request->uri, 0, 4);
                 $url['level'][] = 'single';
@@ -38,10 +38,10 @@
                     $data['list'],
                     ['status', 'id', 'name1', 'lactive', 'created'],
                     $url
-                );
+                );*/
                 ?>
                 <tfoot>
     <tr>
-        <td colspan="5" class="cT">
-            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+        <td colspan="6" class="cT">
+            <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']);*/ ?>
 </table>

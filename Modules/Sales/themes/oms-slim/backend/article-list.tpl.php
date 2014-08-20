@@ -5,7 +5,7 @@
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
     <tr>
-        <th colspan="4" class="lT">
+        <th colspan="8" class="lT">
             <i class="fa fa-cogs p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[16]['Articles'] ?></h1>
@@ -17,20 +17,20 @@
                 \Framework\Model\Model::generate_table_header_view(
                     [
                         ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Matchcode'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Available'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Ordered'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Stock'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Class'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Group'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Subgroup'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Matchcode'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Available'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Ordered'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Stock'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Class'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Group'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[16]['Subgroup'], 'sort' => 0],
                     ]
                 );
                 ?>
                 <tbody>
                 <?php
-                /** @var \Modules\Sales\ArticleList $articles */
+                /** @var \Modules\Sales\ArticleList $articles *//*
                 $data = $articles->article_list_get();
                 $url['level'] = array_slice($this->app->request->uri, 0, 4);
                 $url['level'][] = 'single';
@@ -41,10 +41,10 @@
                     $data['list'],
                     ['status', 'id', 'name1', 'lactive', 'created'],
                     $url
-                );
+                );*/
                 ?>
                 <tfoot>
     <tr>
-        <td colspan="5" class="cT">
-            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+        <td colspan="9" class="cT">
+            <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']); */?>
 </table>

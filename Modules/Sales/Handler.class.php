@@ -91,7 +91,7 @@ namespace Modules\Sales {
             switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-list.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_backend_client_single();
