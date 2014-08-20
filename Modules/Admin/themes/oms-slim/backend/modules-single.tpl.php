@@ -1,11 +1,11 @@
 <?php
 /* TODO: Check 'id' with sanitizer for [A-Za-z] */
-/** @var \Modules\Admin\Admin $this */
+/** @var \Modules\Admin\Handler $this */
 /** @var \Framework\Module\Modules $modules */
 $modules_all = $this->app->modules->module_list_all_get();
 
 if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
-    \Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000105001]);
+    \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000105001]);
 }
 ?>
 
@@ -33,7 +33,7 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                 if (!array_key_exists($this->app->request->uri['id'], $this->app->modules->modules_installed_get())) {
                 ?>
                 <li>
-                    <button data-http="PUT"
+                    <button data-http="PUT" data-request="DYN" 
                             data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-uri="<?=
                     $this->app->request->generate_uri([
                             $this->app->request->uri['l0'],

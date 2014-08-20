@@ -75,7 +75,7 @@ namespace Framework {
         /**
          * Theme controller
          *
-         * @var \Framework\Controller\ThemeController
+         * @var \Content\Theme
          * @since 1.0.0
          */
         private $theme = null;
@@ -113,13 +113,9 @@ namespace Framework {
 
                 $this->settings->load_settings([1000000011]);
 
-                \Framework\Model\Model::set_content(
-                    [
-                        'page:addr:url' => 'http://' . $page[0], 
-                        'page:addr:local' => $page[0], 
-                        'page:addr:remote' => $page[1]
-                    ]
-                );
+                \Framework\Model\Model::$content['page:addr:url']    = 'http://' . $page[0];
+                \Framework\Model\Model::$content['page:addr:local']  = 'http://' . $page[0];
+                \Framework\Model\Model::$content['page:addr:remote'] = 'http://' . $page[1];
 
                 include __DIR__ . '/../Content/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);

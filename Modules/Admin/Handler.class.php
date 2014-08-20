@@ -31,6 +31,7 @@ namespace Modules\Admin {
          * Constructor
          *
          * @param string $theme_path
+         * @param \Framework\Application $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -242,7 +243,7 @@ namespace Modules\Admin {
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/groups-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_group_single();
+                    $this->show_backend_group_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
@@ -485,12 +486,12 @@ namespace Modules\Admin {
         public function api_module() {
             switch ($this->app->request->type) {
                 case \Framework\Http\RequestType::PUT:
-                    \Framework\Module\ModuleAbstract::install($this->db, $this->app->request->uri['id']);
+                    \Framework\Install\Module::install($this->app->db, $this->app->request->data['id']);
 
                     $json_ret = [
                         'type'   => 1,
                         'status' => 1,
-                        'msg'    => str_replace('{$1}', $this->app->request->uri['id'], \Framework\Localization\Localization::$lang[1]['i:ModuleInstalled'])
+                        'msg'    => str_replace('{$1}', $this->app->request->data['id'], \Framework\Localization\Localization::$lang[1]['i:ModuleInstalled'])
                     ];
 
                     echo json_encode($json_ret);

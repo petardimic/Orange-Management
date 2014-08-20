@@ -34,21 +34,6 @@ namespace Framework\Model {
         public static $content = [];
 
         /**
-         * Set content variables for this view
-         *
-         * @param $key
-         * @param $value
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn
-         */
-        public static function set_content($pair) {
-            foreach($pair as $key => $val) {
-                self::$content[$key] = $val;
-            }
-        }
-
-        /**
          * Loading html header
          *
          * @since  1.0.0

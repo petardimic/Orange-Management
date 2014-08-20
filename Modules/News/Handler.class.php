@@ -30,16 +30,14 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param \Framework\DataStorage\Database\Database          $db    Database instance
-         * @param \Framework\Model\Model                            $model Model instance
-         * @param \Framework\DataStorage\Database\Objects\User\User $user  User instance
-         * @param \Framework\DataStorage\Cache\Cache                $cache Cache instance
+         * @param string                 $theme_path
+         * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct(&$db, &$model, &$user, &$cache) {
-            parent::initialize($db, $model, $user, $cache);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
@@ -207,7 +205,7 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content($data) {
+        public function show_content() {
             switch ($this->app->request->request_type) {
                 case \Framework\Http\RequestPage::BACKEND:
                     $this->show_content_backend();
@@ -215,36 +213,36 @@ namespace Modules\News {
             }
         }
 
-    public functino show_content_backend() {
-        /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
-    switch ($data['l3']) {
-    case 'front':
-    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
+        public function show_content_backend() {
+            /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
+            switch ($data['l3']) {
+                case 'front':
+                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
 
-        /** @noinspection PhpIncludeInspection */
-    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
-    break;
-    case 'single':
-    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
+                    break;
+                case 'single':
+                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
 
-    $news = null;
+                    $news = null;
 
-        /** @noinspection PhpIncludeInspection */
-    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
-    break;
-    case 'editor':
-    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
+                    break;
+                case 'editor':
+                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
 
-        /** @noinspection PhpIncludeInspection */
-    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
-    break;
-    case 'archive':
-    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
+                    break;
+                case 'archive':
+                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
 
-        /** @noinspection PhpIncludeInspection */
-    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
-    break;
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
+                    break;
+            }
+        }
     }
-}
-}
 }

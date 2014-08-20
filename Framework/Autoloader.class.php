@@ -22,20 +22,21 @@ namespace Framework {
         public static function default_autoloader($class) {
             $class = ltrim($class, '\\');
 
-            $file = __DIR__ . '/../';
-            if ($lastNsPos = strrpos($class, '\\')) {
+            $file = __DIR__ . '/../' . $class;
+            /*if ($lastNsPos = strrpos($class, '\\')) {
                 $namespace = substr($class, 0, $lastNsPos);
                 $class     = substr($class, $lastNsPos + 1);
                 $file .= str_replace('\\', '/', $namespace) . '/';
             }
-
-            $file .= $class . '.class.php';
+*/
+            $file .= /*$class .*/ '.class.php';
 
             /* TODO: log! + make screen notification? */
+            /*
             if (!file_exists($file)) {
                 echo $file;
                 throw new \Exception($class);
-            }
+            }*/
 
             /** @noinspection PhpIncludeInspection */
             include $file;

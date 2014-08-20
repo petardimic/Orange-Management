@@ -30,16 +30,14 @@ namespace Modules\Sales {
         /**
          * Constructor
          *
-         * @param \Framework\DataStorage\Database\Database          $db    Database instance
-         * @param \Framework\Model\Model                            $model Model instance
-         * @param \Framework\DataStorage\Database\Objects\User\User $user  User instance
-         * @param \Framework\DataStorage\Cache\Cache                $cache Cache instance
+         * @param string $theme_path
+         * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct(&$db, &$model, &$user, &$cache) {
-            parent::initialize($db, $model, $user, $cache);
+        public function __construct($theme_path, $app) {
+            parent::initialize($theme_path, $app);
         }
 
         /**
@@ -50,7 +48,7 @@ namespace Modules\Sales {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content($data) {
+        public function show_content() {
             switch ($this->app->request->request_type) {
                 case \Framework\Http\RequestPage::BACKEND:
                     $this->show_content_backend();
@@ -59,8 +57,9 @@ namespace Modules\Sales {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->url['l2']) {
+            switch ($this->app->request->uri['l3']) {
                 case 'client':
+
                     $this->show_backend_client();
                     break;
                 case 'invoice':
@@ -73,7 +72,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_article() {
-            switch ($this->app->request->url['l3']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/article-list.tpl.php';
@@ -89,7 +88,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_invoice() {
-            switch ($this->app->request->url['l3']) {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-list.tpl.php';
@@ -104,8 +103,8 @@ namespace Modules\Sales {
             }
         }
 
-        public function show_backent_client() {
-            switch ($this->app->request->url['l3']) {
+        public function show_backend_client() {
+            switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-list.tpl.php';

@@ -11,7 +11,7 @@
         "l3": null,
         "l4": null,
         "l5": null,
-        "icon": "fa fa-home",
+        "icon": "fa fa-usd",
         "order": 3,
         "from": 1001600000,
         "permission": null,
@@ -37,9 +37,9 @@
                 "children": [
                     {
                         "id": 1001602101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
-                        "subtype": 2,
+                        "pid": "25a25434541197e2ca3ff0164a8b02173c5fcd8b",
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Clients",
                         "l0": "backend",
                         "l1": "sales",
@@ -55,9 +55,9 @@
                         "children": [
                             {
                                 "id": 1001603101,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "pid": "734f84316536b783ab45b9777a4cdefa56ba6aa0",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Profile",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -74,9 +74,9 @@
                             },
                             {
                                 "id": 1001603201,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "pid": "734f84316536b783ab45b9777a4cdefa56ba6aa0",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Invoices",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -93,9 +93,9 @@
                             },
                             {
                                 "id": 1001603301,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "pid": "734f84316536b783ab45b9777a4cdefa56ba6aa0",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Articles",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -112,9 +112,9 @@
                             },
                             {
                                 "id": 1001603401,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "pid": "734f84316536b783ab45b9777a4cdefa56ba6aa0",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Analysis",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -133,9 +133,9 @@
                     },
                     {
                         "id": 1001602201,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
-                        "subtype": 2,
+                        "pid": "25a25434541197e2ca3ff0164a8b02173c5fcd8b",
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Create",
                         "l0": "backend",
                         "l1": "sales",
@@ -153,7 +153,7 @@
                 ]
             },
             {
-                "id": 1001603001,
+                "id": 1001604001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
                 "subtype": 1,
@@ -171,9 +171,9 @@
                 "parent": 1001601001,
                 "children": [
                     {
-                        "id": 1001603101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
+                        "id": 1001604101,
+                        "pid": "722ef87be24d036db431dd65c0418e5502a6eb89",
+                        "type": 3,
                         "subtype": 1,
                         "name": "List",
                         "l0": "backend",
@@ -186,13 +186,13 @@
                         "order": 1,
                         "from": 1001600000,
                         "permission": null,
-                        "parent": 1001601001,
+                        "parent": 1001604001,
                         "children": [
                             {
-                                "id": 1001603201,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "id": 1001604201,
+                                "pid": "420c091bd6d9f5cd16b1d62569189feb707d6652",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Invoice",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -204,16 +204,16 @@
                                 "order": 1,
                                 "from": 1001600000,
                                 "permission": null,
-                                "parent": 1001603001,
+                                "parent": 1001604101,
                                 "children": []
                             }
                         ]
                     },
                     {
-                        "id": 1001603301,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
-                        "subtype": 2,
+                        "id": 1001604301,
+                        "pid": "722ef87be24d036db431dd65c0418e5502a6eb89",
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Invoice",
                         "l0": "backend",
                         "l1": "sales",
@@ -225,13 +225,13 @@
                         "order": 1,
                         "from": 1001600000,
                         "permission": null,
-                        "parent": 1001603001,
+                        "parent": 1001604001,
                         "children": []
                     }
                 ]
             },
             {
-                "id": 1001604001,
+                "id": 1001605001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
                 "subtype": 1,
@@ -249,10 +249,10 @@
                 "parent": 1001601001,
                 "children": [
                     {
-                        "id": 1001604101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
-                        "subtype": 2,
+                        "id": 1001605101,
+                        "pid": "357d4cb2edda54febaf2c3f765e84dd31bf6c4fd",
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Articles",
                         "l0": "backend",
                         "l1": "sales",
@@ -264,13 +264,13 @@
                         "order": 1,
                         "from": 1001600000,
                         "permission": null,
-                        "parent": 1001604001,
+                        "parent": 1001605001,
                         "children": [
                             {
-                                "id": 1001604301,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                                "type": 2,
-                                "subtype": 2,
+                                "id": 1001605301,
+                                "pid": "4a41925386568368ad4dd823b3945199e8e2628e",
+                                "type": 3,
+                                "subtype": 1,
                                 "name": "Article",
                                 "l0": "backend",
                                 "l1": "sales",
@@ -282,16 +282,16 @@
                                 "order": 1,
                                 "from": 1001600000,
                                 "permission": null,
-                                "parent": 1001604101,
+                                "parent": 1001605101,
                                 "children": []
                             }
                         ]
                     },
                     {
-                        "id": 1001604201,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                        "type": 2,
-                        "subtype": 2,
+                        "id": 1001605201,
+                        "pid": "357d4cb2edda54febaf2c3f765e84dd31bf6c4fd",
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Create",
                         "l0": "backend",
                         "l1": "sales",
@@ -303,13 +303,13 @@
                         "order": 1,
                         "from": 1001600000,
                         "permission": null,
-                        "parent": 1001604001,
+                        "parent": 1001605001,
                         "children": []
                     }
                 ]
             },
             {
-                "id": 1001605001,
+                "id": 1001606001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
                 "subtype": 1,

@@ -9,7 +9,7 @@
     <div class="tab-content">
         <div class="tab tab-1 active">
             <?php /** @var \Modules\Admin\Admin $this */
-            \Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000104001]);
+            \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000104001]);
             ?>
 
             <div class="b b-2 c16-1 c16" id="i16-1-1">

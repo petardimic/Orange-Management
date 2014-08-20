@@ -50,14 +50,10 @@ namespace Content {
 
                     $this->app->settings->load_settings([1000000009]);
 
-                    \Framework\Model\Model::set_content(
-                        [
-                            'core:oname' => $this->app->settings->config[1000000009],
-                            'theme:path' =>  $this->app->settings->config[1000000011], 
-                            'core:layout' => $this->app->request->request_type,
-                            'page:title' => 'Orange Management'
-                        ]
-                    );
+                    \Framework\Model\Model::$content['core:oname']  = $this->app->settings->config[1000000009];
+                    \Framework\Model\Model::$content['theme:path']  = $this->app->settings->config[1000000011];
+                    \Framework\Model\Model::$content['core:layout'] = $this->app->request->request_type;
+                    \Framework\Model\Model::$content['page:title']  = 'Orange Management';
 
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/backend/template.tpl.php';

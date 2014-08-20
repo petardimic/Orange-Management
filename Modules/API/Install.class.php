@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Content {
+namespace Modules\API {
     /**
      * Navigation class
      *

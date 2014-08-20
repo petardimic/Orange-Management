@@ -16,8 +16,17 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     class Response {
+        public $type = null;
+        public $msg_text = null;
+        public $msg_level = null;
+        public $data = null;
+
         public function __construct() {}
 
         public function create($id) {}
+
+        public function send() {
+            
+        }
     }
 }

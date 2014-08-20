@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([3, 1000103201]); ?>
+\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
     <h1>

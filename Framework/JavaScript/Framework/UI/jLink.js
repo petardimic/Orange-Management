@@ -1,19 +1,26 @@
 $('a, button, input[type=submit]').each(function () {
     var $$ = $(this);
 
-    $$.click(function () {
-        if (!$$.attr('data-request') || $$.attr('data-http')) {
+    $$.click(function (e) {
+        if (!$$.attr('data-request') || !$$.attr('data-http')) {
             return true;
         }
 
         var request_type = $$.data().request;
         var http_type = $$.data().http;
-        var request_uri = $$.data().uri;
+        var request_uri = '';
         var request_data = $$.data().json;
 
-        if (request_type === 'url') {
+        if (request_type === 'URL') {
             request_uri = $$.attr('href');
+        } else {
+            request_uri = $$.data().uri;
         }
+
+        console.log(request_type);
+        console.log(http_type);
+        console.log(request_uri);
+        console.log(request_data);
 
         $.ajax({
             type: http_type,
@@ -32,6 +39,9 @@ $('a, button, input[type=submit]').each(function () {
                 console.log(msg);
             }
         });
+
+        e.preventDefault();
+        return false;
     });
 });
 /*

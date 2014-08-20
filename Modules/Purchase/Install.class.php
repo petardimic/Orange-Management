@@ -30,36 +30,43 @@ namespace Modules\Purchase {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_articles` (
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_articles`
-                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            PRIMARY KEY (`id`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'suppliers` (
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `account` int(11) NOT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `account` (`account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'suppliers`
-                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoices` (
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `account` int(11) NOT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `account` (`account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'purchase_invoices`
-                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `purchase_invoices_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     break;
             }
+
+            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 'Navigation');
         }
     }
 }

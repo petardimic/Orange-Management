@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <?php /** @var \Framework\Controller\Controller $this */
+    <?php /** @var \Content\Theme $this */
     \Framework\Model\Model::load_header(); ?>
     <style>
         <?php \Framework\Model\Model::load_style_small(); ?>
@@ -12,7 +12,7 @@
 <?php $this->app->modules->running[1004300000]->show(); ?>
 <div id="h">
     <div id="bar-s">
-        <?php $this->app->modules->running[1000500000]->show([1]); ?>
+        <?php $this->app->modules->running[1000500000]->show([\Modules\Navigation\NavigationType::TOP]); ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
@@ -31,7 +31,7 @@
     </div>
 </div>
 <div id="out">
-    <?php $this->app->modules->running[1000500000]->show([2]); ?>
+    <?php $this->app->modules->running[1000500000]->show([\Modules\Navigation\NavigationType::SIDE]); ?>
     <div id="cont" role="main">
         <?php $this->app->modules->running[1004100000]->show(); ?>
     </div>

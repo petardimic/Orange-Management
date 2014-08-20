@@ -1,9 +1,11 @@
 <?php
 $MODLANG[5] = [
-    'Articles' => 'Articles',
-    'Clients'  => 'Clients',
-    'Create'   => 'Create',
-    'Invoices' => 'Invoices',
-    'List'     => 'List',
-    'Profile'  => 'Profile',
+    'Analysis'  => 'Analysis',
+    'Articles'  => 'Articles',
+    'Create'    => 'Create',
+    'Invoices'  => 'Invoices',
+    'List'      => 'List',
+    'Profile'   => 'Profile',
+    'Purchase'  => 'Purchase',
+    'Suppliers' => 'Suppliers',
 ];

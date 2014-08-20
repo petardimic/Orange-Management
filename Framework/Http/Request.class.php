@@ -47,7 +47,7 @@ namespace Framework\Http {
          * @var string[]
          * @since 1.0.0
          */
-        public $post = null;
+        public $data = null;
 
         /**
          * Put data
@@ -92,12 +92,8 @@ namespace Framework\Http {
         public function __construct($f_url = null) {
             $this->type = $_SERVER['REQUEST_METHOD'];
 
-            if ($f_url == null) {
-                $data      = ($this->type !== RequestType::GET ? json_decode(file_get_contents('php://input'), true) : $_GET);
-                $this->uri = $data + $this->uri;
-            } else {
-                $this->uri = $f_url + $this->uri;
-            }
+            $this->data = ($this->type !== RequestType::GET ? json_decode(file_get_contents('php://input'), true) : $_GET);
+            $this->uri  = $_GET + $this->uri;
 
             /* TODO: is this required?
             foreach ($this->uri as &$val) {
