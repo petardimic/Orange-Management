@@ -58,8 +58,8 @@ namespace Modules\Purchase {
 
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
-                case 'client':
-                    $this->show_backend_client();
+                case 'supplier':
+                    $this->show_backend_supplier();
                     break;
                 case 'invoice':
                     $this->show_backend_invoice();
@@ -90,22 +90,6 @@ namespace Modules\Purchase {
             switch ($this->app->request->uri['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/suppliers-list.tpl.php';
-                    break;
-                case 'single':
-                    $this->show_backend_client_single();
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/suppliers-create.tpl.php';
-                    break;
-            }
-        }
-
-        public function show_backend_client() {
-            switch ($this->app->request->uri['l4']) {
-                case 'list':
-                    /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
@@ -114,6 +98,22 @@ namespace Modules\Purchase {
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-create.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_supplier() {
+            switch ($this->app->request->uri['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/suppliers-list.tpl.php';
+                    break;
+                case 'single':
+                    $this->show_backend_client_single();
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/suppliers-create.tpl.php';
                     break;
             }
         }

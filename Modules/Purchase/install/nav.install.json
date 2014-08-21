@@ -37,7 +37,7 @@
                 "children": [
                     {
                         "id": 1002102101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "520f00a1a583e4936dc01665781e0dfafd699613",
                         "type": 2,
                         "subtype": 2,
                         "name": "Suppliers",
@@ -55,7 +55,7 @@
                         "children": [
                             {
                                 "id": 1002103101,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "8cb9bb8ac30a3372db74b90f4c847bdb48da45ce",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Profile",
@@ -74,7 +74,7 @@
                             },
                             {
                                 "id": 1002103201,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "8cb9bb8ac30a3372db74b90f4c847bdb48da45ce",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Invoices",
@@ -93,7 +93,7 @@
                             },
                             {
                                 "id": 1002103301,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "8cb9bb8ac30a3372db74b90f4c847bdb48da45ce",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Articles",
@@ -112,7 +112,7 @@
                             },
                             {
                                 "id": 1002103401,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "8cb9bb8ac30a3372db74b90f4c847bdb48da45ce",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Analysis",
@@ -133,7 +133,7 @@
                     },
                     {
                         "id": 1002102201,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "520f00a1a583e4936dc01665781e0dfafd699613",
                         "type": 2,
                         "subtype": 2,
                         "name": "Create",
@@ -172,7 +172,7 @@
                 "children": [
                     {
                         "id": 1002104101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "475124021da7877ef311983bb9eb769b1bd94f22",
                         "type": 2,
                         "subtype": 1,
                         "name": "List",
@@ -190,7 +190,7 @@
                         "children": [
                             {
                                 "id": 1002104201,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "b6e53e5e6ef4ea4ab05514366d6d7d0c3be5b228",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Invoice",
@@ -211,7 +211,7 @@
                     },
                     {
                         "id": 1002104301,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "475124021da7877ef311983bb9eb769b1bd94f22",
                         "type": 2,
                         "subtype": 2,
                         "name": "Invoice",
@@ -250,7 +250,7 @@
                 "children": [
                     {
                         "id": 1002105101,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "a005ff04327ee3557c50a4b867c85a2eb13d0d9e",
                         "type": 2,
                         "subtype": 2,
                         "name": "Articles",
@@ -268,7 +268,7 @@
                         "children": [
                             {
                                 "id": 1002105301,
-                                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                                "pid": "0d1672b53c43a604c1c64a09e7fe93e28864e06e",
                                 "type": 2,
                                 "subtype": 2,
                                 "name": "Article",
@@ -289,7 +289,7 @@
                     },
                     {
                         "id": 1002105201,
-                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "pid": "a005ff04327ee3557c50a4b867c85a2eb13d0d9e",
                         "type": 2,
                         "subtype": 2,
                         "name": "Create",
@@ -317,7 +317,7 @@
                 "l0": "backend",
                 "l1": "purchase",
                 "l2": "analysis",
-                "l3": "menu",
+                "l3": "dashboard",
                 "l4": null,
                 "l5": null,
                 "icon": null,
