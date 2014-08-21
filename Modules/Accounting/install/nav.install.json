@@ -38,8 +38,9 @@
                     {
                         "id": 1002602101,
                         "pid": "79feadf2f027799208d5390283aa4b26334c922a",
-                        "type": 2,
-                        "subtype": 2,
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Debitors",
                         "l0": "backend",
                         "l1": "accounting",
                         "l2": "debitor",
@@ -57,8 +58,8 @@
                     {
                         "id": 1002602201,
                         "pid": "79feadf2f027799208d5390283aa4b26334c922a",
-                        "type": 2,
-                        "subtype": 2,
+                        "type": 3,
+                        "subtype": 1,
                         "name": "Create",
                         "l0": "backend",
                         "l1": "accounting",
@@ -80,7 +81,7 @@
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
                 "subtype": 1,
-                "name": "Creditor",
+                "name": "Creditors",
                 "l0": "backend",
                 "l1": "accounting",
                 "l2": "creditor",
@@ -96,9 +97,9 @@
                     {
                         "id": 1002604101,
                         "pid": "21b1fc834ef53f6476cf691f5acedc6ebefe0df0",
-                        "type": 2,
+                        "type": 3,
                         "subtype": 1,
-                        "name": "List",
+                        "name": "Creditors",
                         "l0": "backend",
                         "l1": "accounting",
                         "l2": "creditor",
@@ -116,9 +117,9 @@
                     {
                         "id": 1002604301,
                         "pid": "21b1fc834ef53f6476cf691f5acedc6ebefe0df0",
-                        "type": 2,
-                        "subtype": 2,
-                        "name": "Invoice",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Create",
                         "l0": "backend",
                         "l1": "accounting",
                         "l2": "creditor",
@@ -133,6 +134,25 @@
                         "children": []
                     }
                 ]
+            },
+            {
+                "id": 1002605001,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "BatchPostings",
+                "l0": "backend",
+                "l1": "accounting",
+                "l2": "postings",
+                "l3": "list",
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 3,
+                "from": 1002600000,
+                "permission": null,
+                "parent": 1002601001,
+                "children": []
             }
         ]
     }
