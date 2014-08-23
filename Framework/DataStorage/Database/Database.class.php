@@ -126,5 +126,45 @@ namespace Framework\DataStorage\Database {
 
             return '';
         }
+
+        public function create_table() {
+            switch($this->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                    break;
+            }
+        }
+
+        public function insert() {
+            switch($this->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                    break;
+            }
+        }
+
+        public function select() {
+            switch($this->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                    break;
+            }
+        }
+
+        public function update() {
+            switch($this->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                    break;
+            }
+        }
+
+        public function delete() {
+            switch($this->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                    break;
+            }
+        }
     }
 }

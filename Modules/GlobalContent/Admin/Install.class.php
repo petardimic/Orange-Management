@@ -1,5 +1,5 @@
 <?php
-namespace Modules\BackendDashboard {
+namespace Modules\GlobalContent\Admin {
     /**
      * Navigation class
      *
@@ -26,7 +26,6 @@ namespace Modules\BackendDashboard {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
-            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 'Navigation');
         }
     }
 }

@@ -23,7 +23,7 @@
         </span>
         <span class="vC" id="s-bar" role="search">
             <label>
-                <input type="text">
+                <input type="text" autofocus="autofocus">
             </label>
             <input type="submit" value="<?= \Framework\Localization\Localization::$lang[0]['Search'] ?>">
         </span>

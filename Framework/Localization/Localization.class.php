@@ -150,6 +150,7 @@ namespace Framework\Localization {
                 foreach ($files as $file) {
                     /** @noinspection PhpIncludeInspection */
                     /** @var string[] $MODLANG */
+                    /* TODO: change, store name inside instead of id */
                     require __DIR__ . '/../../Modules/' . $this->app->modules->active[$file['from']]['class'] . '/themes/' . $this->app->modules->active[$file['from']]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
                     $key = (int) ($file['for']/100000 - 10000);

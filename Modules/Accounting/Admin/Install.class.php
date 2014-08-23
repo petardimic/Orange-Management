@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Admin {
+namespace Modules\Accounting\Admin {
     /**
      * Navigation class
      *
@@ -26,7 +26,13 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
-            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 'Navigation');
+            switch ($db->type) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                   
+                    break;
+            }
+
+            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

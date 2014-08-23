@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Content {
+namespace Modules\Admin\Admin {
     /**
      * Navigation class
      *
@@ -26,6 +26,7 @@ namespace Modules\Content {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
+            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

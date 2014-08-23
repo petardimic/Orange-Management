@@ -78,7 +78,7 @@ namespace OMS\Modules {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
-            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 1000500000);
+            parent::install_providing($db, __DIR__ . '/nav.install.json', 1000500000);
         }
 
         /**

@@ -52,9 +52,7 @@ namespace Framework\Install {
                         break;
                 }
 
-                /** @noinspection PhpIncludeInspection */
-                require_once __DIR__ . '/../../Modules/' . $module . '/Install.class.php';
-                $class = '\\Modules\\' . $module . '\\Install';
+                $class = '\\Modules\\' . $module . '\\Admin\\Install';
 
                 /**
                  * @var \Framework\Module\ModuleAbstract $class
@@ -77,9 +75,7 @@ namespace Framework\Install {
             $install = json_decode(file_get_contents($path), true);
             $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
-            /** @noinspection PhpIncludeInspection */
-            require_once __DIR__ . '/../../Modules/' . $id . '/Install.class.php';
-            $class = '\\Modules\\' . $id . '\\Install';
+            $class = '\\Modules\\' . $id . '\\Admin\\Install';
 
             /**
              * @var \Framework\Module\ModuleAbstract $class

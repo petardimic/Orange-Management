@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Profile {
+namespace Modules\Profile\Admin {
     /**
      * Navigation class
      *
@@ -100,7 +100,7 @@ namespace Modules\Profile {
                     break;
             }
 
-            parent::install_providing($db, __DIR__ . '/install/nav.install.json', 'Navigation');
+            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

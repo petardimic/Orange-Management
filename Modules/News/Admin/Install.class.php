@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News {
+namespace Modules\News\Admin {
     /**
      * Navigation class
      *

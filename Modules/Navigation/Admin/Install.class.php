@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Navigation {
+namespace Modules\Navigation\Admin {
     /**
      * Navigation class
      *
