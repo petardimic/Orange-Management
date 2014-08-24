@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1001801001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 1,
+        "subtype": 1,
+        "name": "Chat",
+        "l0": "backend",
+        "l1": "chat",
+        "l2": "dashboard",
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "icon": "fa fa-comment",
+        "order": 1,
+        "from": 1001800000,
+        "permission": null,
+        "parent": 0,
+        "children": []
+    }
+]

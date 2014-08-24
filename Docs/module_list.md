@@ -1,6 +1,6 @@
 
 * 1000100000 - OMS Admin
-* 1000200000 - OMS Frontend
+* 1000200000 - OMS Backend Dashboard
 * 1000300000 - OMS Profile
 * 1000400000 - OMS Media Library
 * 1000500000 - OMS Navigation
@@ -10,13 +10,13 @@
 * 1000900000 - OMS Calendar
 * 1001000000 - OMS Charts
 * 1001100000 - OMS Tasks
-* 1001200000 - OMS Email
+* 1001200000 - OMS Messages
 * 1001300000 - OMS Education
 * 1001400000 - OMS Visual Log
 * 1001500000 - OMS Visual Loader
 * 1001600000 - OMS Sales
-* 1001700000 - OMS Export
-* 1001800000 - OMS Import
+* 1001700000 - OMS Project Management
+* 1001800000 - OMS Chat
 * 1001900000 - OMS Marketing
 * 1002000000 - OMS Production
 * 1002100000 - OMS Purchasing
@@ -26,9 +26,9 @@
 * 1002500000 - OMS Customer Service
 * 1002600000 - OMS Accounting Department
 * 1002700000 - OMS Warehousing
-* 1002800000 - OMS Clients
-* 1002900000 - OMS Products
-* 1003000000 - OMS Receipts
+* 1002800000 - OMS Clients ***
+* 1002900000 - OMS Products ***
+* 1003000000 - OMS Receipts ***
 * 1003100000 - OMS Management
 * 1003200000 - OMS Promotions
 * 1003300000 - OMS Classes
@@ -40,7 +40,7 @@
 * 1003900000 - OMS Teachers
 * 1004000000 - OMS Forums
 * 1004100000 - OMS Content
-* 1004200000 - OMS Login
+* 1004200000 - OMS Login ***
 * 1004300000 - OMS Global
 * 1004400000 - OMS API
 * 1004500000 - OMS Markdown

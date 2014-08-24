@@ -20,8 +20,8 @@
             {
                 "id": 1000702001,
                 "pid": "d7470914e19522acc310a55e5cb13a6f0f7ca000",
-                "type": 2,
-                "subtype": 2,
+                "type": 3,
+                "subtype": 1,
                 "name": "News",
                 "l0": "backend",
                 "l1": "news",

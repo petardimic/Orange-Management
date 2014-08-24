@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Warehousing {
     /**
      * Sales class
      *

@@ -55,6 +55,8 @@ namespace Modules\News\Admin {
 
                     break;
             }
+
+            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

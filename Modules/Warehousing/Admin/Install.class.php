@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Admin {
+namespace Modules\Warehousing\Admin {
     /**
      * Navigation class
      *

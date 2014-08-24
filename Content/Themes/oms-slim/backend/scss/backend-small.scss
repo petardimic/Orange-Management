@@ -71,6 +71,10 @@ html, body {
         padding: 0 5px 0 5px;
         line-height: 25px;
     }
+
+    li {
+        display: inline;
+    }
 }
 
 #s-nav {
@@ -79,6 +83,7 @@ html, body {
     font-size: 0.75em;
     float: left;
     height: 100%;
+    overflow-y: auto;
 
     > li { 
         li {

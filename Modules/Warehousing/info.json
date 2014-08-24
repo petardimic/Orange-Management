@@ -1,7 +1,7 @@
 {
     "name": {
         "internal": 1002700000,
-        "external": "OMS Accounting"
+        "external": "OMS Warehousing"
     },
     "version": "1.0.0",
     "requirements": {
@@ -19,8 +19,8 @@
         "name": "oms-slim",
         "path": "/oms-slim"
     },
-    "description": "Accounting module.",
-    "class": "Accounting",
+    "description": "Warehousing module.",
+    "class": "Warehousing",
     "dependencies": [],
     "providing": [],
     "load": [
