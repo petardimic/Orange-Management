@@ -1,0 +1,21 @@
+[
+	{
+        "id": 1002001001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 0,
+        "name": "Production",
+        "l0": "backend",
+        "l1": "production",
+        "l2": "dashboard",
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "icon": "fa fa-fire",
+        "order": 1,
+        "from": 1002000000,
+        "permission": null,
+        "parent": 1000201001,
+        "children": []
+    }
+]

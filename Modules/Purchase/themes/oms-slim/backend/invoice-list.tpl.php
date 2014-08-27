@@ -6,7 +6,7 @@
     <thead>
     <tr>
         <th colspan="5" class="lT">
-            <i class="fa fa-cogs p f dim"></i>
+            <i class="fa fa-filter p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[21]['Invoices'] ?></h1>
         <th class="rT">

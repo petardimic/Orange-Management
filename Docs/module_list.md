@@ -26,8 +26,8 @@
 * 1002500000 - OMS Customer Service
 * 1002600000 - OMS Accounting Department
 * 1002700000 - OMS Warehousing
-* 1002800000 - OMS Clients ***
-* 1002900000 - OMS Products ***
+* 1002800000 - OMS Crontrolling
+* 1002900000 - OMS Support
 * 1003000000 - OMS Receipts ***
 * 1003100000 - OMS Management
 * 1003200000 - OMS Promotions

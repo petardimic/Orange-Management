@@ -5,7 +5,7 @@
     <thead>
     <tr>
         <th colspan="4" class="lT">
-            <i class="fa fa-cogs p f dim"></i>
+            <i class="fa fa-filter p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[1]['Modules'] . ' - ' . \Framework\Localization\Localization::$lang[1]['Installed']; ?></h1>
         <th class="rT">
@@ -42,7 +42,7 @@
     <thead>
     <tr>
         <th colspan="3" class="lT">
-            <i class="fa fa-cogs p f dim"></i>
+            <i class="fa fa-filter p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[1]['Modules'] . ' - ' . \Framework\Localization\Localization::$lang[1]['All']; ?></h1>
         <th class="rT">

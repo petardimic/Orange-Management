@@ -5,7 +5,7 @@
     <thead>
     <tr>
         <th colspan="4" class="lT">
-            <i class="fa fa-cogs p f dim"></i>
+            <i class="fa fa-filter p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[3]['Accounts'] ?></h1>
         <th class="rT">

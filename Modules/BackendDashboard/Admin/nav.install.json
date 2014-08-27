@@ -50,7 +50,7 @@
         "l3": null,
         "l4": null,
         "l5": null,
-        "icon": null,
+        "icon": "fa fa-power-off",
         "order": 1,
         "from": 1000200000,
         "permission": null,
