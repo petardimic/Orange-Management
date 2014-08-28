@@ -57,6 +57,24 @@ namespace Framework\DataStorage\Cache {
             $this->type = (int)$cache_data[0][0];
         }
 
+        public function start_cache_page_element($url, $id) {
+            ob_flush();
+            ob_end_clean();
+            ob_start();
+        }
+
+        public function end_cache_page_element($url, $id) {
+            $buffer = ob_getcontents();
+            ob_end_clean();
+            echo $buffer;
+
+            file_put_contents(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
+        }
+
+        public function get_cache_page_element($url, $id) {
+            return file_get_contents(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
+        }
+
         /**
          * Caches data
          *

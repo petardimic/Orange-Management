@@ -51,7 +51,8 @@
                     <label for="i-recache"><?= \Framework\Localization\Localization::$lang[1]['ReCache']; ?></label>
                 <li>
                     <input id="i-recache" type="checkbox" name="recache"
-                           value="rc"><?= \Framework\Localization\Localization::$lang[1]['i:rc']; ?>
+                           value="rc">
+                    <label><?= \Framework\Localization\Localization::$lang[1]['i:rc']; ?></label>
                 <li>
                     <label for="i-email"><?= \Framework\Localization\Localization::$lang[1]['EmailAdmin']; ?></label>
                 <li>

@@ -51,7 +51,7 @@ namespace Modules\Sales\Admin {
                             `group` tinyint(3) DEFAULT NULL,
                             `subgroup` tinyint(3) DEFAULT NULL,
                             `article` tinyint(3) DEFAULT NULL,
-                            KEY `article` (`article`)
+                            KEY `article` (`article`),
                             PRIMARY KEY (`id`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();

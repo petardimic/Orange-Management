@@ -1,5 +1,7 @@
 <?php
 $MODLANG[5] = [
-	"Warehousing" => "Warehousing",
+	"Arrival" => "Arrival",
 	"Articles" => "Articles",
+	"Shipping" => "Shipping",
+	"Warehousing" => "Warehousing",
 ];

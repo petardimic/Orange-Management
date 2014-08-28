@@ -142,7 +142,7 @@ button, input[type=submit], input[type=button] {
 .bc-1 {
     padding: 5px;
 
-    label {
+    label:first-child {
         &:after {
             content: ':'
         }
@@ -172,7 +172,9 @@ button, input[type=submit], input[type=button] {
 
 .l-1 {
     label {
-        font-weight: bold;
+        &:first-child {
+            font-weight: bold;
+        }
     }
 
     li {

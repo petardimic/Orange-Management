@@ -81,7 +81,8 @@
                                 <label
                                     for="i-login"><?= \Framework\Localization\Localization::$lang[16]['Priority']; ?></label>
                             <li>
-                                <input type="checkbox" name="vehicle" value="Bike"><?= \Framework\Localization\Localization::$lang[16]['IsDefault']; ?>
+                                <input type="checkbox" name="vehicle" value="Bike">
+                                <label><?= \Framework\Localization\Localization::$lang[16]['IsDefault']; ?></label>
                             <li>
                                 <label
                                     for="i-login"><?= \Framework\Localization\Localization::$lang[16]['Price']; ?></label>
