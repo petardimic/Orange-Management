@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Tasks {
     /**
-     * Sales class
+     * Task class
      *
      * PHP Version 5.4
      *
@@ -58,6 +58,9 @@ namespace Modules\Tasks {
 
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
+                case 'dashboard': 
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/dashboard.tpl.php';
+                    break;
             }
         }
     }

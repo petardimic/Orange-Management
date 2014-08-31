@@ -1,13 +1,13 @@
-<?php /** @var \Modules\Profile\Profile $this */
+<?php /** @var \Modules\Media\Handler $this */
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
-<table class="t t-1 c3-1 c3" id="i3-1-1">
+<table class="t t-1 c4-1 c4" id="i4-1-1">
     <thead>
     <tr>
         <th colspan="4" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= \Framework\Localization\Localization::$lang[3]['Accounts'] ?></h1>
+            <h1><?= \Framework\Localization\Localization::$lang[4]['Media'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -15,11 +15,11 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => \Framework\Localization\Localization::$lang[3]['Status'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[3]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[3]['Activity'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[3]['Created'], 'sort' => 0]
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Type'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Size'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Created'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Owner'], 'sort' => 0],
                     ]
                 );
                 ?>

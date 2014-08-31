@@ -75,6 +75,22 @@ namespace Framework\DataStorage\Cache {
             return file_get_contents(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
         }
 
+        public function clean_cache_page_element_all() {
+            $files = glob(__DIR__ . '/../../Cache/Page/*');
+            
+            foreach($files as $file) {
+                if(is_file($file)) {
+                    unlink($file);
+                }
+            }
+        }
+
+        public function clean_cache_page_element($url, $id) {
+            if(file_exists(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp')) {
+                unlink(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
+            }
+        }
+
         /**
          * Caches data
          *

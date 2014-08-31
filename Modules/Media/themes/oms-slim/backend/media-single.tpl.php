@@ -20,10 +20,8 @@
                     <select name="status" id="i-status">
                         <option value="0"<?= (0 === $account->status ? 'selected' : ''); ?>>
                             <?= \Framework\Localization\Localization::$lang[3]['Active']; ?>
-                        </option>
                         <option value="1"<?= (1 === $account->status ? 'selected' : ''); ?>>
                             <?= \Framework\Localization\Localization::$lang[3]['Inactive']; ?>
-                        </option>
                     </select>
                 <li>
                     <label for="i-type"><?= \Framework\Localization\Localization::$lang[3]['Type']; ?></label>
@@ -31,10 +29,8 @@
                     <select name="type" id="i-type">
                         <option value="0"<?= (0 === $account->type ? 'selected' : ''); ?>>
                             <?= \Framework\Localization\Localization::$lang[3]['Single']; ?>
-                        </option>
                         <option value="1"<?= (1 === $account->type ? 'selected' : ''); ?>>
                             <?= \Framework\Localization\Localization::$lang[3]['Group']; ?>
-                        </option>
                     </select>
                 <li>
                     <label for="i-active"><?= \Framework\Localization\Localization::$lang[3]['Activity']; ?></label>
