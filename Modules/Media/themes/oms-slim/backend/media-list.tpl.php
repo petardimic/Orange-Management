@@ -1,4 +1,6 @@
 <?php /** @var \Modules\Media\Handler $this */
+\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000401001]);
+
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">

@@ -17,7 +17,7 @@ namespace Framework\DataStorage\Cache {
      */
     abstract class CacheType extends \Framework\Datatypes\Enum {
         const INACTIVE = 0;
-        const FILE = 1;
+        const FILE     = 1;
         const MEMCACHE = 2;
     }
 }

@@ -1,4 +1,7 @@
 <?php
-$MODLANG[3] = [
-    "Media" => "Media",
+$MODLANG[4] = [
+    "Data"     => "Data",
+    "Media"    => "Media",
+    "Preview"  => "Preview",
+    "Settings" => "Settings",
 ];

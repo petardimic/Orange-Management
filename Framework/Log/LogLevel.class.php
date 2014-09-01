@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Log {
-	/**
+    /**
      * Log level enum
      *
      * PHP Version 5.4
@@ -16,10 +16,10 @@ namespace Framework\Log {
      * @since      1.0.0
      */
     abstract class LogLevel extends \Framework\Datatypes\Enum {
-        const INFO = 0;
-        const DEBUG = 1;
+        const INFO    = 0;
+        const DEBUG   = 1;
         const WARNING = 2;
-        const ERROR = 3;
-        const FATAL = 4;
+        const ERROR   = 3;
+        const FATAL   = 4;
     }
 }

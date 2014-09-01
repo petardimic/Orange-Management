@@ -28,7 +28,7 @@ namespace Modules\Controlling\Admin {
         public static function install(&$db, $info) {
             switch ($db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                   
+
                     break;
             }
 

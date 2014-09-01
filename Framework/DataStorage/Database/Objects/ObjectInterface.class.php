@@ -3,7 +3,7 @@ namespace Framework\DataStorage\Database\Objects {
     /**
      * Object interface
      *
-     * Every object that gets created by a limited amount of database rows/columns is a database object. 
+     * Every object that gets created by a limited amount of database rows/columns is a database object.
      * Modifications on this object can be transfered to the database.
      *
      * PHP Version 5.4
@@ -20,7 +20,9 @@ namespace Framework\DataStorage\Database\Objects {
      */
     interface ObjectInterface extends \Serializable {
         public function delete();
+
         public function create();
+
         public function edit();
     }
 }

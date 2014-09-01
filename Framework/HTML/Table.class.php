@@ -5,17 +5,23 @@ namespace Framework\HTML {
         public $header = [];
         public $dataset = [];
 
-        public function __construct() {}
+        public function __construct() {
+        }
 
-        public function set_table_data($data) {}
+        public function set_table_data($data) {
+        }
 
-        public function add_header($header) {}
+        public function add_header($header) {
+        }
 
-        public function remove_header($header) {}
+        public function remove_header($header) {
+        }
 
-        public function add_dataset($header, $data) {}
+        public function add_dataset($header, $data) {
+        }
 
-        public function remove_dataset($header) {}
+        public function remove_dataset($header) {
+        }
 
         public function render_header() {
             foreach ($this->header as $head) {

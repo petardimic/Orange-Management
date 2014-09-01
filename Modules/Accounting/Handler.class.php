@@ -30,7 +30,7 @@ namespace Modules\Accounting {
         /**
          * Constructor
          *
-         * @param string $theme_path
+         * @param string                 $theme_path
          * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0

@@ -18,7 +18,9 @@ namespace Framework\Pattern {
     interface Subject {
         /** \Framework\Pattern\Observer */
         public function attach($observer, $state = null, $func = null);
+
         public function detach($observer);
+
         public function set_state($state);
     }
 }

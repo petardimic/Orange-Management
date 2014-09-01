@@ -1,5 +1,5 @@
 <?php
 $SalesPriceNames = [
-	0 => 'DefaultInternational',
-	1 => 'DefaultNational',
+    0 => 'DefaultInternational',
+    1 => 'DefaultNational',
 ];

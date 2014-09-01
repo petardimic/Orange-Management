@@ -1,4 +1,4 @@
 <?php
 $MODLANG[5] = [
-	"Controlling" => "Controlling",
+    "Controlling" => "Controlling",
 ];

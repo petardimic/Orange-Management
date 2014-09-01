@@ -1,5 +1,5 @@
 <?php
 $MODLANG[5] = [
-    'News'    => 'News',
-    'Create'   => 'Create',
+    'News'   => 'News',
+    'Create' => 'Create',
 ];

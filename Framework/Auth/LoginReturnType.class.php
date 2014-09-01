@@ -16,15 +16,15 @@ namespace Framework\Auth {
      * @since      1.0.0
      */
     abstract class LoginReturnType extends \Framework\Datatypes\Enum {
-        const OK = 0;
-        const FAILURE = 1;
-        const WRONG_PASSWORD = 2;
-        const WRONG_USERNAME = 3;
-        const WRONG_PERMISSION = 4;
-        const NOT_ACTIVATED = 5;
+        const OK                   = 0;
+        const FAILURE              = 1;
+        const WRONG_PASSWORD       = 2;
+        const WRONG_USERNAME       = 3;
+        const WRONG_PERMISSION     = 4;
+        const NOT_ACTIVATED        = 5;
         const WRONG_INPUT_EXCEEDED = 6;
-        const TIMEOUTED = 7;
-        const BANNED = 8;
-        const INACTIVE = 9;
+        const TIMEOUTED            = 7;
+        const BANNED               = 8;
+        const INACTIVE             = 9;
     }
 }

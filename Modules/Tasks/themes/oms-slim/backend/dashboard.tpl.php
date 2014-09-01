@@ -20,7 +20,7 @@
                 ['name' => \Framework\Localization\Localization::$lang[11]['Title'], 'sort' => 0, 'full' => true],
                 ['name' => \Framework\Localization\Localization::$lang[11]['Receiver'], 'sort' => 0]
                 ['name' => \Framework\Localization\Localization::$lang[11]['Group'], 'sort' => 0]
-                ['name' => \Framework\Localization\Localization::$lang[11]['Creator'], 'sort' => 0]
+            ['name' => \Framework\Localization\Localization::$lang[11]['Creator'], 'sort' => 0]
                 ['name' => \Framework\Localization\Localization::$lang[11]['Created'], 'sort' => 0]
             ]
         );

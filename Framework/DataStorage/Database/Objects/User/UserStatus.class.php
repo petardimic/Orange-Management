@@ -16,9 +16,9 @@ namespace Framework\DataStorage\Database\Objects\User {
      * @since      1.0.0
      */
     abstract class UserStatus extends \Framework\Datatypes\Enum {
-        const ACTIVE = 0;
-        const INACTIVE = 1;
-        const BANNED = 2;
+        const ACTIVE    = 0;
+        const INACTIVE  = 1;
+        const BANNED    = 2;
         const TIMEOUTED = 3;
     }
 }

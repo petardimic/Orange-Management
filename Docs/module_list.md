@@ -28,7 +28,7 @@
 * 1002700000 - OMS Warehousing
 * 1002800000 - OMS Crontrolling
 * 1002900000 - OMS Support
-* 1003000000 - OMS Receipts ***
+* 1003000000 - OMS Risk Management
 * 1003100000 - OMS Management
 * 1003200000 - OMS Promotions
 * 1003300000 - OMS Classes

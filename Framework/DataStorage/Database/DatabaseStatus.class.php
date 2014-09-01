@@ -16,10 +16,10 @@ namespace Framework\DataStorage\Database {
      * @since      1.0.0
      */
     abstract class DatabaseStatus extends \Framework\Datatypes\Enum {
-        const OK = 0;
+        const OK               = 0;
         const MISSING_DATABASE = 1;
-        const MISSING_TABLE = 2;
-        const FAILURE = 3;
-        const READONLY = 4;
+        const MISSING_TABLE    = 2;
+        const FAILURE          = 3;
+        const READONLY         = 4;
     }
 }

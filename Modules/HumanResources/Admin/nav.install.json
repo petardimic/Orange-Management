@@ -17,7 +17,7 @@
         "permission": null,
         "parent": 0,
         "children": [
-			{
+            {
                 "id": 1002402001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
@@ -35,8 +35,8 @@
                 "permission": null,
                 "parent": 1002401001,
                 "children": []
-			},
-			{
+            },
+            {
                 "id": 1002403001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
@@ -54,7 +54,7 @@
                 "permission": null,
                 "parent": 1002401001,
                 "children": []
-			}
+            }
         ]
     }
 ]

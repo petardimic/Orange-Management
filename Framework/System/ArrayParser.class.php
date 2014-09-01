@@ -11,7 +11,7 @@ namespace Framework\System {
                 /** @noinspection PhpIncludeInspection */
                 include $this->file;
 
-                if(isset(${$arr_name})) {
+                if (isset(${$arr_name})) {
                     $this->module_array = ${$arr_name};
                 }
             }

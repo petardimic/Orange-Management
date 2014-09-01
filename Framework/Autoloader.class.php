@@ -29,7 +29,8 @@ namespace Framework {
                 $file .= str_replace('\\', '/', $namespace) . '/';
             }
 */
-            $file .= /*$class .*/ '.class.php';
+            $file .= /*$class .*/
+                '.class.php';
 
             /* TODO: log! + make screen notification? */
             /*

@@ -30,7 +30,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @var string[]
          * @since 1.0.0
          */
-        public $name = ['','',''];
+        public $name = ['', '', ''];
 
         /**
          * User email
@@ -148,7 +148,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          */
         public function __construct($id, $app) {
             $this->app = $app;
-            $this->id    = $id;
+            $this->id  = $id;
 
             $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
 
@@ -304,7 +304,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function add_group($id) {
-            if(!array_key_exists($id, $this->groups)) {
+            if (!array_key_exists($id, $this->groups)) {
                 $this->groups[$id] = \Framework\DataStorage\Database\Objects\Group\Group::getInstance($id);
             }
 
@@ -358,7 +358,7 @@ namespace Framework\DataStorage\Database\Objects\User {
                     $sth->bindValue(':account', $this->id, \PDO::PARAM_INT);
 
                     $group_string = '';
-                    foreach($this->groups as $key => $value) {
+                    foreach ($this->groups as $key => $value) {
                         $group_string .= '(' . $value->id . ', ' . $this->id . '),';
                     }
                     $group_string = rtrim($group_string, ',');
@@ -423,7 +423,6 @@ namespace Framework\DataStorage\Database\Objects\User {
             $sth->bindValue(':password', $this->password, \PDO::PARAM_STR);
             $sth->bindValue(':email', $this->email, \PDO::PARAM_STR);
             $sth->execute();
-
             /* TODO: In case of caching is implemented, overwrite the cache */
         }
 
@@ -435,16 +434,16 @@ namespace Framework\DataStorage\Database\Objects\User {
          */
         public function serialize() {
             $toSerialize = [
-                'name' => $this->name,
-                'login_name' => $this->login_name,
-                'id' => $this->id,
-                'email' => $this->email,
-                'status' => $this->status,
-                'type' => $this->created,
+                'name'          => $this->name,
+                'login_name'    => $this->login_name,
+                'id'            => $this->id,
+                'email'         => $this->email,
+                'status'        => $this->status,
+                'type'          => $this->created,
                 'last_activity' => $this->last_activity,
-                'created' => $this->created,
-                'tries' => $this->tries,
-                'groups' => $this->groups /* only ids */
+                'created'       => $this->created,
+                'tries'         => $this->tries,
+                'groups'        => $this->groups /* only ids */
             ];
 
             return json_encode($toSearialize);
@@ -461,16 +460,16 @@ namespace Framework\DataStorage\Database\Objects\User {
         public function unserialize($serialized) {
             $plain = json_decode($serialized, true);
 
-            $this->name = $plain['name'];
-            $this->login_name = $plain['login_name'];
-            $this->id = $plain['id'];
-            $this->email = $plain['email'];
-            $this->status = $plain['status'];
-            $this->type = $plain['type'];
+            $this->name         = $plain['name'];
+            $this->login_name   = $plain['login_name'];
+            $this->id           = $plain['id'];
+            $this->email        = $plain['email'];
+            $this->status       = $plain['status'];
+            $this->type         = $plain['type'];
             $this->last_activty = $plain['last_activity'];
-            $this->created = $plain['created'];
-            $this->tries = $plain['tries'];
-            $this->groups = $plain['groups']; /* TODO: This is wrong... check this later */
+            $this->created      = $plain['created'];
+            $this->tries        = $plain['tries'];
+            $this->groups       = $plain['groups']; /* TODO: This is wrong... check this later */
         }
     }
 }

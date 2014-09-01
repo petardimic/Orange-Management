@@ -20,7 +20,7 @@ namespace Framework\Install {
          * Install module
          *
          * @param \Framework\DataStorage\Database\Database $db     Database instance
-         * @param int                      $module Module ID
+         * @param int                                      $module Module ID
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -65,8 +65,8 @@ namespace Framework\Install {
          * Install data from providing modules
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $path Install file path
-         * @param int                $id   ID of the receiving module
+         * @param array                                    $path Install file path
+         * @param int                                      $id   ID of the receiving module
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -87,7 +87,7 @@ namespace Framework\Install {
          * Install data from providing modules
          *
          * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array              $data Module info
+         * @param array                                    $data Module info
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -108,7 +108,7 @@ namespace Framework\Install {
          * Activate module
          *
          * @param \Framework\DataStorage\Database\Database $db Database instance
-         * @param int                $id Module ID
+         * @param int                                      $id Module ID
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -127,7 +127,7 @@ namespace Framework\Install {
          * Deactivate module
          *
          * @param \Framework\DataStorage\Database\Database $db Database instance
-         * @param int                $id Module ID
+         * @param int                                      $id Module ID
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -30,7 +30,7 @@ namespace Modules\Tasks {
         /**
          * Constructor
          *
-         * @param string $theme_path
+         * @param string                 $theme_path
          * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0
@@ -58,7 +58,7 @@ namespace Modules\Tasks {
 
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
-                case 'dashboard': 
+                case 'dashboard':
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/dashboard.tpl.php';
                     break;
             }

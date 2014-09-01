@@ -30,7 +30,7 @@ namespace Modules\Admin {
         /**
          * Constructor
          *
-         * @param string $theme_path
+         * @param string                 $theme_path
          * @param \Framework\Application $app Application instance
          *
          * @since  1.0.0

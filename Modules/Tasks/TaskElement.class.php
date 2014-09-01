@@ -27,7 +27,5 @@ namespace Modules\Tasks {
         public function __construct($id) {
             $this->id = $id;
         }
-
-        
     }
 }

@@ -106,7 +106,7 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($id, $app) {
-            $this->app = $app;
+            $this->app             = $app;
             $this->localization_id = $id;
             $this->language        = $this->app->request->uri['l0'];
         }
@@ -118,7 +118,7 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function get_locals() {
-            if(!isset(self::$locals)) {
+            if (!isset(self::$locals)) {
                 include_once __DIR__ . '/Localization.array.php';
                 self::$locals = $LOCALS;
             }
@@ -153,14 +153,13 @@ namespace Framework\Localization {
                     /* TODO: change, store name inside instead of id */
                     require __DIR__ . '/../../Modules/' . $this->app->modules->active[$file['from']]['class'] . '/themes/' . $this->app->modules->active[$file['from']]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
-                    $key = (int) ($file['for']/100000 - 10000);
-                    if(!isset(self::$lang[$key])) {
+                    $key = (int)($file['for'] / 100000 - 10000);
+                    if (!isset(self::$lang[$key])) {
                         self::$lang += $MODLANG;
                     } else {
                         /** @noinspection PhpWrongStringConcatenationInspection */
                         self::$lang[$key] += $MODLANG[$key];
                     }
-
                 }
 
                 $this->app->cache->push('lang:' . $language . ':' . $this->app->request->uri_hash[3], self::$lang);

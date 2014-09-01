@@ -36,7 +36,6 @@ namespace Framework\Module {
          */
         public static $initialized = [];
 
-
         /**
          * Application instance
          *

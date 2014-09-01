@@ -65,7 +65,7 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         protected function initialize($theme_path, $app) {
-            $this->app = $app;
+            $this->app        = $app;
             $this->theme_path = $theme_path;
         }
 

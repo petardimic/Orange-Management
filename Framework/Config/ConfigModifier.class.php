@@ -47,7 +47,7 @@ namespace Framework\Config {
             /** @var array $DBDATA */
             $this->config['DBDATA'] = $DBDATA;
             /** @var array $PAGE */
-            $this->config['PAGE']   = $PAGE;
+            $this->config['PAGE'] = $PAGE;
         }
 
         public function write_config() {

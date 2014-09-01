@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Controlling {
     /**
-     * Sales class
+     * Controlling class
      *
      * PHP Version 5.4
      *
@@ -30,7 +30,7 @@ namespace Modules\Controlling {
         /**
          * Constructor
          *
-         * @param string $theme_path
+         * @param string                 $theme_path
          * @param \Framework\Application $app Application reference
          *
          * @since  1.0.0

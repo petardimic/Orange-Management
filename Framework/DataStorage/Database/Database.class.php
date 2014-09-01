@@ -128,7 +128,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function create_table() {
-            switch($this->type) {
+            switch ($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -136,7 +136,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function insert() {
-            switch($this->type) {
+            switch ($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -144,7 +144,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function select() {
-            switch($this->type) {
+            switch ($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -152,7 +152,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function update() {
-            switch($this->type) {
+            switch ($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -160,7 +160,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function delete() {
-            switch($this->type) {
+            switch ($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;

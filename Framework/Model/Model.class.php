@@ -46,7 +46,7 @@ namespace Framework\Model {
                 . '<meta charset="UTF-8">';
 
             /* TODO: Create page specific meta keyword tags maybe even create a meta tag class */
-            self::$content['page:desc'] = '';
+            self::$content['page:desc']     = '';
             self::$content['page:keywords'] = '';
             /* Everyone */
             echo '<meta name="application-name" content="' . self::$content['core:oname'] . '"/>'
@@ -92,7 +92,7 @@ namespace Framework\Model {
         /**
          * Loading html footer
          *
-         * @todo Load css and js of modules
+         * @todo   Load css and js of modules
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -205,7 +205,7 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
-            $pages   = self::generate_pagination(self::$app->request->uri['page'], $count);
+            $pages = self::generate_pagination(self::$app->request->uri['page'], $count);
 
             echo '<ul>';
             foreach ($pages as $page) {

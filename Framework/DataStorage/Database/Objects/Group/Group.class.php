@@ -72,7 +72,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
          */
         public function __construct($id, $app) {
             $this->app = $app;
-            $this->id    = (int) $id;
+            $this->id  = (int)$id;
 
             $sth = $this->app->db->con->prepare(
                 'SELECT * FROM `' . $this->app->db->prefix . 'groups` WHERE id = :id'
@@ -80,7 +80,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
             $sth->bindValue(':id', $id, \PDO::PARAM_INT);
             $sth->execute();
 
-            $group = $sth->fetchAll()[0];
+            $group      = $sth->fetchAll()[0];
             $this->name = $group['name'];
             $this->desc = $group['desc'];
         }
@@ -124,8 +124,8 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function permission_exists($permissions) {
-            foreach($permissions as $permission) {
-                if(array_key_exists($permission, $this->permissions)) {
+            foreach ($permissions as $permission) {
+                if (array_key_exists($permission, $this->permissions)) {
                     return true;
                 }
             }
@@ -207,9 +207,9 @@ namespace Framework\DataStorage\Database\Objects\Group {
          */
         public function serialize() {
             $toSerialize = [
-                'id' => $this->id,
-                'name' => $this->name,
-                'desc' => $this->desc,
+                'id'          => $this->id,
+                'name'        => $this->name,
+                'desc'        => $this->desc,
                 'permissions' => $this->permissions
             ];
 
@@ -227,9 +227,9 @@ namespace Framework\DataStorage\Database\Objects\Group {
         public function unserialize($serialized) {
             $plain = json_decode($serialized, true);
 
-            $this->id = $plain['id'];
-            $this->name = $plain['name'];
-            $this->desc = $plain['desc'];
+            $this->id         = $plain['id'];
+            $this->name       = $plain['name'];
+            $this->desc       = $plain['desc'];
             $this->permission = $plain['permission'];
         }
     }

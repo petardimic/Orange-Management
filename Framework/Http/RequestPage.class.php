@@ -16,19 +16,19 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     abstract class RequestPage extends \Framework\Datatypes\Enum {
-        const WEBSITE = 'website';
-        const API = 'api';
-        const SHOP = 'shop';
-        const BACKEND = 'backend';
-        const STATICP = 'static';
-        const FORUM = 'forum';
-        const TICKET = 'ticket';
-        const SUPPORT = 'support';
-        const SURVEY = 'survey';
-        const BLOG = 'blog';
-        const CHART = 'chart';
+        const WEBSITE  = 'website';
+        const API      = 'api';
+        const SHOP     = 'shop';
+        const BACKEND  = 'backend';
+        const STATICP  = 'static';
+        const FORUM    = 'forum';
+        const TICKET   = 'ticket';
+        const SUPPORT  = 'support';
+        const SURVEY   = 'survey';
+        const BLOG     = 'blog';
+        const CHART    = 'chart';
         const CALENDAR = 'calendar';
-        const PROFILE = 'profile';
-        const CHAT = 'chat';
+        const PROFILE  = 'profile';
+        const CHAT     = 'chat';
     }
 }

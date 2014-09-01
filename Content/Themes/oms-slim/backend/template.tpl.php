@@ -16,10 +16,12 @@
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
-            <i class="fa fa-bars ani-click" data-aniref="#s-nav" data-aniin="slide-right" data-aniout="slide-left" data-anistate="1" data-anitime="300"></i>
+            <i class="fa fa-bars ani-click" data-aniref="#s-nav" data-aniin="slide-right" data-aniout="slide-left"
+               data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= $this->app->request->generate_uri([$this->app->request->request_lang, 'backend']); ?>" itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
+                href="<?= $this->app->request->generate_uri([$this->app->request->request_lang, 'backend']); ?>"
+                itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">
             <label>
@@ -27,6 +29,7 @@
             </label>
             <input type="submit" value="<?= \Framework\Localization\Localization::$lang[0]['Search'] ?>">
         </span>
+
         <div id="u-logo" itemscope itemtype="http://schema.org/Person"></div>
     </div>
 </div>

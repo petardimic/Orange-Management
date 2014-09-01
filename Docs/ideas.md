@@ -6,8 +6,8 @@
 2. Allow child elements on hover (for content navigation only?!)
 
 ## Accounting
-1. Sales receit transfer
-2. Purchase receit transfer
+1. Sales receipt transfer
+2. Purchase receipt transfer
 3. Cost Center
     * List (Range)
     * View
@@ -27,13 +27,13 @@
     2. Quarterly
         * Create
         * Show
-    3. Jearly
+    3. Yearly
         * Create
         * Show
 
 ## Production
 1. Status
-2. Create Prozess
+2. Create Process
 
 ## Marketing
 1. Sales analysis

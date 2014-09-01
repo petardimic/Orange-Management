@@ -1,0 +1,21 @@
+<?php
+$MODLANG[30] = [
+    "Active" => "Active",
+    "Categories" => "Categories",
+    "Category" => "Category",
+    "Causes" => "Causes",
+    "Department" => "Department",
+    "Departments" => "Departments",
+    "Due" => "Due",
+    "History" => "History",
+    "Name" => "Name",
+    "Parent" => "Parent",
+    "Probability" => "Probability",
+    "Ratio" => "Ratio",
+    "Risk" => "Risk",
+    "Risks" => "Risks",
+    "Severity" => "Severity",
+    "Statistics" => "Statistics",
+    "TopRisks" => "Top Risks",
+    "Watchlist" => "Watchlist",
+];

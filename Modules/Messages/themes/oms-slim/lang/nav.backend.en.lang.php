@@ -1,4 +1,4 @@
 <?php
 $MODLANG[5] = [
-	"Messages" => "Messages",
+    "Messages" => "Messages",
 ];

@@ -17,13 +17,13 @@ namespace Framework\Validation {
      */
     class Sanitizer {
         private function __construct() {
-
         }
 
-        public static function sanitize_array($val, $type) {}
+        public static function sanitize_array($val, $type) {
+        }
 
         public static function sanitize($val, $type) {
-            switch($type) {
+            switch ($type) {
                 case 'int':
                     return (int)$val;
                 case 'float':

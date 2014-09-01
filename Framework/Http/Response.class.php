@@ -21,12 +21,13 @@ namespace Framework\Http {
         public $msg_level = null;
         public $data = null;
 
-        public function __construct() {}
+        public function __construct() {
+        }
 
-        public function create($id) {}
+        public function create($id) {
+        }
 
         public function send() {
-            
         }
     }
 }
