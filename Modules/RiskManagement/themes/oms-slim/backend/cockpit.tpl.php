@@ -44,11 +44,11 @@
 
     <div class="bc-1">
         <ul class="l-1">
-            <li><?= \Framework\Localization\Localization::$lang[30]['Riskindex']; ?>
+            <li><?= \Framework\Localization\Localization::$lang[30]['RiskIndex']; ?>
             <li>
             <li><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?>
             <li>
-            <li><?= \Framework\Localization\Localization::$lang[30]['Riskprotection']; ?>
+            <li><?= \Framework\Localization\Localization::$lang[30]['RiskProtection']; ?>
             <li>
             <li><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?>
             <li>
