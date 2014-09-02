@@ -43,6 +43,37 @@
     </h1>
 
     <div class="bc-1">
+        <ul class="l-1">
+            <li><?= \Framework\Localization\Localization::$lang[30]['Riskindex']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Riskprotection']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['RiskAcceptance']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Risks']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Processes']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Projects']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Outdated']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['Critical']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['MainDepartment']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['MainCategory']; ?>
+            <li>
+            <li><?= \Framework\Localization\Localization::$lang[30]['MainCause']; ?>
+        </ul>
     </div>
 </div>
 
