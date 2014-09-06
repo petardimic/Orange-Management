@@ -1,8 +1,11 @@
 <?php
 $MODLANG[5] = [
-    "Cause" => "Cause",
-    "Cockpit" => "Cockpit",
-    "Risk" => "Risk",
+    "Cause"          => "Cause",
+    "Cockpit"        => "Cockpit",
+    "Create"         => "Create",
+    "Delete"         => "Delete",
+    "Risk"           => "Risk",
     "RiskManagement" => "Risk Management",
-    "Solution" => "Solution",
+    "Settings"       => "Settings",
+    "Solution"       => "Solution",
 ];

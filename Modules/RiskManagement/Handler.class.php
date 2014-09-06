@@ -71,6 +71,9 @@ namespace Modules\RiskManagement {
                 case 'solution':
                     $this->show_backend_solution();
                     break;
+                case 'settings':
+                    $this->show_backend_settings();
+                    break;
             }
         }
 
@@ -79,6 +82,10 @@ namespace Modules\RiskManagement {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-list.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-create.tpl.php';
                     break;
             }
         }
@@ -97,6 +104,15 @@ namespace Modules\RiskManagement {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/solution-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_settings() {
+            switch ($this->app->request->uri['l5']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/settings-list.tpl.php';
                     break;
             }
         }

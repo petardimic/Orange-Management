@@ -4,6 +4,8 @@
 ## Navigation
 1. Maybe make sidebar tabbed 3-4 tabs at the top?
 2. Allow child elements on hover (for content navigation only?!)
+3. Mark links as dynamic request
+4. Create l6 and l7 for navigation elements
 
 ## Accounting
 1. Sales receipt transfer

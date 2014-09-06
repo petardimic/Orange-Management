@@ -103,6 +103,10 @@ namespace Modules\Navigation {
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/mid.tpl.php';
                     break;
+                case \Modules\Navigation\NavigationType::CONTENT_SIDE:
+                    /** @noinspection PhpIncludeInspection */
+                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->request_type . '/mid-side.tpl.php';
+                    break;
             }
         }
     }
