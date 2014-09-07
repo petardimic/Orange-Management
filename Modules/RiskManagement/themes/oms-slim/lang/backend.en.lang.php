@@ -13,6 +13,7 @@ $MODLANG[30] = [
     "Description"       => "Description",
     "Due"               => "Due",
     "Evaluation"        => "Evaluation",
+    "Front"             => "Front",
     "History"           => "History",
     "Interval"          => "Interval",
     "LastReevaluation"  => "Last Reevaluation",

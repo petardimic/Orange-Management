@@ -13,21 +13,21 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-                <tr>
-                    <?php
-                    \Framework\Model\Model::generate_table_header_view(
-                        [
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
-                        ]
-                    );
-                    ?>
-                    <tbody>
-                    <?php
-                    /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts *//*
+        <tr>
+            <?php
+            \Framework\Model\Model::generate_table_header_view(
+                [
+                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
+                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                ]
+            );
+            ?>
+            <tbody>
+            <?php
+            /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->uri, 0, 4);
                     $url['level'][] = 'single';
@@ -39,9 +39,10 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-                    ?>
+            ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button> <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
+        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
     </div>
 </div>

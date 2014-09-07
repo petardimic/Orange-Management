@@ -2,6 +2,18 @@
 \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
 ?>
 
+<div class="tabview">
+<ul class="tab-links">
+    <li class="active">
+        <a href=".tab-1"><?= \Framework\Localization\Localization::$lang[30]['Front'] ?></a>
+    <li>
+        <a href=".tab-2"><?= \Framework\Localization\Localization::$lang[30]['Causes'] ?></a>
+    <li>
+        <a href=".tab-3"><?= \Framework\Localization\Localization::$lang[30]['Solutions'] ?></a>
+</ul>
+
+<div class="tab-content">
+<div class="tab tab-1 active">
 <div class="b b-2 c30-1 c30" id="i30-1-1">
     <h1>
         <?= \Framework\Localization\Localization::$lang[30]['Risk']; ?>
@@ -38,6 +50,10 @@
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Interval']; ?></label>
             <li><input type="text">
         </ul>
+        <div class="rT">
+            <button><?= \Framework\Localization\Localization::$lang[0]['Save'] ?></button>
+            <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        </div>
     </div>
 </div>
 
@@ -50,12 +66,27 @@
 
     <div class="bc-1">
         <table class="tc-1">
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Severity']; ?></label><td>asdfsds
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label><td>asdfsds
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label><td>asdfsds
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Reduction']; ?></label><td>asdfsds
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['LastReevaluation']; ?></label><td>asdfsds
-            <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['NextReevaluation']; ?></label><td>asdfsds
+            <tr>
+                <th><label><?= \Framework\Localization\Localization::$lang[30]['Severity']; ?></label>
+                    <td>asdfsds
+                        <tr>
+                            <th><label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label>
+                                <td>asdfsds
+                                    <tr>
+                                        <th>
+                                            <label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label>
+                                            <td>asdfsds
+                                                <tr>
+                                                    <th>
+                                                        <label><?= \Framework\Localization\Localization::$lang[30]['Reduction']; ?></label>
+                                                        <td>asdfsds
+                                                            <tr>
+                                                                <th>
+                                                                    <label><?= \Framework\Localization\Localization::$lang[30]['LastReevaluation']; ?></label>
+                                                                    <td>asdfsds
+                                                                        <tr>
+            <th><label><?= \Framework\Localization\Localization::$lang[30]['NextReevaluation']; ?></label>
+                <td>asdfsds
         </table>
     </div>
 </div>
@@ -207,4 +238,13 @@
             </script>
         </div>
     </div>
+</div>
+</div>
+<div class="tab tab-2">
+    asdf
+</div>
+<div class="tab tab-3">
+    asdfddddddddddddddddddddddd
+</div>
+</div>
 </div>
