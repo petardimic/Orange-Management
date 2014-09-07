@@ -87,6 +87,18 @@ namespace Modules\RiskManagement {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-create.tpl.php';
                     break;
+                case 'single':
+                    $this->show_backend_risk_single();
+                    break;
+            }
+        }
+
+        public function show_backend_risk_single() {
+            switch ($this->app->request->uri['l6']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-single-dashboard.tpl.php';
+                    break;
             }
         }
 

@@ -60,6 +60,10 @@ RewriteRule ^(.*)$ $1.gz [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.php /?l0=$1&l1=$2&l2=$3&l3=$4&l4=$5&l5=$6&l6=$7 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)\.php /?l0=$1&l1=$2&l2=$3&l3=$4&l4=$5&l5=$6 [QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f

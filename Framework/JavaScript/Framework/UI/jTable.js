@@ -1,4 +1,4 @@
-$('.t thead .min').each(function () {
+$('thead .min').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -6,14 +6,14 @@ $('.t thead .min').each(function () {
     });
 });
 
-$('.t thead .max').each(function () {
+$('thead .max').each(function () {
     var $$ = $(this);
     $$.click(function () {
         $$.parent().parent().parent().parent().find('tbody').show();
     });
 });
 
-$('.t thead span').each(function () {
+$('thead span').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -26,7 +26,7 @@ $('.t thead span').each(function () {
     });
 });
 
-$('.t thead td :nth-child(2)').each(function () {
+$('thead td :nth-child(2)').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -35,7 +35,7 @@ $('.t thead td :nth-child(2)').each(function () {
     });
 });
 
-$('.t thead td :nth-child(3)').each(function () {
+$('thead td :nth-child(3)').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -44,7 +44,7 @@ $('.t thead td :nth-child(3)').each(function () {
     });
 });
 
-$('.t thead td :nth-child(4)').each(function () {
+$('thead td :nth-child(4)').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -53,7 +53,7 @@ $('.t thead td :nth-child(4)').each(function () {
     });
 });
 
-$('.t thead td :nth-child(5)').each(function () {
+$('thead td :nth-child(5)').each(function () {
     var $$ = $(this);
 
     $$.click(function () {
@@ -64,7 +64,7 @@ $('.t thead td :nth-child(5)').each(function () {
 var list_filter_arr = [
     []
 ];
-$('.t thead .f').each(function () {
+$('thead .f').each(function () {
     var $$ = $(this);
     var c = 0;
 

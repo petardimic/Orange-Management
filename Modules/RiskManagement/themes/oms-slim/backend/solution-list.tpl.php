@@ -27,7 +27,7 @@
                 ?>
                 <tbody>
                 <?php
-                /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
+                /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts *//*
                 $data = $accounts->account_list_get();
                 $url['level'] = array_slice($this->app->request->uri, 0, 4);
                 $url['level'][] = 'single';
@@ -38,10 +38,10 @@
                     $data['list'],
                     ['status', 'id', 'name1', 'lactive', 'created'],
                     $url
-                );
+                );*/
                 ?>
                 <tfoot>
     <tr>
         <td colspan="5" class="cT">
-            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+            <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
 </table>

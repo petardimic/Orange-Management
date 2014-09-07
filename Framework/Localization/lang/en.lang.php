@@ -4,6 +4,7 @@ $CORELANG[0] = [
     "Cancel"   => "Cancel",
     "Close"    => "Close",
     "Create"   => "Create",
+    "Delete"   => "Delete",
     "Edit"     => "Edit",
     "Email"    => "Email",
     "Filter"   => "Filter",

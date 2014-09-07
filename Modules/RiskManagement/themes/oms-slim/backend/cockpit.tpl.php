@@ -1,6 +1,6 @@
 <?php /** @var \Modules\RiskManagement\Handler $this */
 \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
-?>
+\Framework\Model\Model::generate_table_filter_view(); ?>
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
@@ -21,43 +21,29 @@
         </h1>
 
         <div class="bc-1">
-            <ul class="l-1">
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['RiskIndex']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['RiskProtection']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['RiskAcceptance']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Risks']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Processes']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Projects']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Outdated']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['Critical']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['MainDepartment']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['MainCategory']; ?></label>
-                <li>
-                <li><label><?= \Framework\Localization\Localization::$lang[30]['MainCause']; ?></label>
-            </ul>
+            <table class="tc-1">
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['RiskIndex']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['RiskProtection']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['RiskAcceptance']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Risks']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Processes']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Projects']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Outdated']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['Critical']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['MainDepartment']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['MainCategory']; ?></label><td>asldkf
+                <tr><th><label><?= \Framework\Localization\Localization::$lang[30]['MainCause']; ?></label><td>asldkf
+            </table>
         </div>
     </div>
 </div>
 <div class="b-6">
-<div class="b-5 c30-1 c30" id="i30-1-2">
-    <table class="t t-1 c1-2 c1 full" id="i1-2-1">
+<div class="b b-5 c30-1 c30" id="i30-1-2">
+    <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
             <th colspan="4" class="lT">
@@ -67,88 +53,23 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-                <tr>
-                    <td>
-                        <span>ID</span>
-                        <i class="fa fa-sort"></i>
-                        <i class="fa fa-caret-up vh"></i>
-                        <i class="fa fa-caret-down vh"></i>
-                        <i class="fa fa-times"></i>
-                    <td class="full">
-                        <span>Name</span>
-                        <i class="fa fa-sort vh"></i>
-                        <i class="fa fa-caret-up vh"></i>
-                        <i class="fa fa-caret-down vh"></i>
-                        <i class="fa fa-times vh"></i>
-                    <td>
-                        <span>Department</span>
-                    <td>
-                        <span>Category</span>
-                    <td><span>Severity</span>
-                        <tbody>
-                        <tr>
-                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                <tr>
-                                    <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                    <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                                    <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                    <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                    <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                        <tr>
-                                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                            <td><a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                <tr>
-                                                    <td>
-                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                    <td>
-                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                                                    <td>
-                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                    <td>
-                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                    <td>
-                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                            <td>
-                                                                <a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                                                            <td>
-                                                                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                            <td>
-                                                                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                            <td>
-                                                                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                                    <td>
-                                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-                                                                    <td>
-                                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                                    <td>
-                                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-                                                                    <td>
-                                                                        <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-        <tr>
-            <td>
-                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-            <td>
-                <a href="/en/backend/admin/group/single/front.php?id=1000000000">anonymous</a>
-            <td>
-                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-            <td>
-                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
-            <td>
-                <a href="/en/backend/admin/group/single/front.php?id=1000000000">1000000000</a>
+               <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => \Framework\Localization\Localization::$lang[30]['Severity'], 'sort' => 1],
+                            ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => \Framework\Localization\Localization::$lang[30]['Department'], 'sort' => 0],
+                            ['name' => \Framework\Localization\Localization::$lang[30]['Category'], 'sort' => 0],
+                            ['name' => \Framework\Localization\Localization::$lang[30]['Responsible'], 'sort' => 0]
+                        ]
+                    );
+                    ?>
+                    <tbody>
     </table>
+    <div class="bc-1 rT">
+        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button> <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+    </div>
 </div>
 
 <div class="b b-2 c30-1 c30" id="i30-1-1">
@@ -267,7 +188,6 @@
     </div>
 </div>
 
-<!-- BUGGY ?????!?!!!!!!! -->
 <div class="b b-2 c30-1 c30" id="i30-1-3">
     <h1>
         <?= \Framework\Localization\Localization::$lang[30]['History']; ?>
