@@ -1,2 +1,2 @@
-$(document).ready(function () {
+oLib.ready(function() {
     'use strict';

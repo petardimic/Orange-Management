@@ -1,4 +1,4 @@
-$('.accordion-section-title').click(function (e) {
+/*$('.accordion-section-title').click(function (e) {
     var currentAttrValue = $(this).attr('href');
 
     $('.accordion .accordion-section-title').removeClass('active');
@@ -10,4 +10,4 @@ $('.accordion-section-title').click(function (e) {
     }
 
     e.preventDefault();
-}); 
+}); */

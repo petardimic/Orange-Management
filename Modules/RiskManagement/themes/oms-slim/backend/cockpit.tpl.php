@@ -159,10 +159,10 @@
                     return d;
                 }
                 function resize_chart1(data, chart) {
-                    d3.select(chart + " svg").remove();
+                    d3.select('#' + chart + " svg").remove();
 
                     var margin = {top: 10, right: 10, bottom: 20, left: 20},
-                        width = $(chart).innerWidth() - margin.left - margin.right,
+                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                         height = 300 - margin.top - margin.bottom,
                         percent = d3.format('%');
 
@@ -181,7 +181,7 @@
                         .orient("left")
                         .ticks(10, "");
 
-                    var svg = d3.select(chart).append("svg")
+                    var svg = d3.select('#' + chart).append("svg")
                         .attr("width", width + margin.left + margin.right)
                         .attr("height", height + margin.top + margin.bottom)
                         .append("g")
@@ -225,12 +225,12 @@
                         });
                 }
 
-                $(document).ready(function () {
+                oLib.ready(function () {
                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/top.csv", type, function (error, data) {
                         d3.select(window).on('resize', function () {
-                            resize_chart1(data, "#chart-1");
+                            resize_chart1(data, "chart-1");
                         });
-                        resize_chart1(data, "#chart-1");
+                        resize_chart1(data, "chart-1");
                     });
                 });
             </script>
@@ -260,10 +260,10 @@
             </style>
             <script>
                 function resize_chart2(data, chart) {
-                    d3.select(chart + " svg").remove();
+                    d3.select('#' + chart + " svg").remove();
 
                     var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                        width = $(chart).innerWidth() - margin.left - margin.right,
+                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                         height = 300 - margin.top - margin.bottom;
 
                     var x = d3.time.scale()
@@ -297,7 +297,7 @@
                             return y(d.close);
                         });
 
-                    var svg = d3.select(chart).append("svg")
+                    var svg = d3.select('#' + chart).append("svg")
                         .attr("width", width + margin.left + margin.right)
                         .attr("height", height + margin.top + margin.bottom)
                         .append("g")
@@ -367,7 +367,7 @@
                         .text("Price ($)");
                 }
 
-                $(document).ready(function () {
+                oLib.ready(function () {
                     var parseDate = d3.time.format("%d-%b-%y").parse;
 
                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/history.csv", function (error, data) {
@@ -377,9 +377,9 @@
                         });
 
                         d3.select(window).on('resize', function () {
-                            resize_chart2(data, "#chart-2");
+                            resize_chart2(data, "chart-2");
                         });
-                        resize_chart2(data, "#chart-2");
+                        resize_chart2(data, "chart-2");
                     });
                 });
             </script>
@@ -409,10 +409,10 @@
             </style>
             <script>
                 function resize_chart3(data, chart) {
-                    d3.select(chart + " svg").remove();
+                    d3.select('#' + chart + " svg").remove();
 
                     var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                        width = $(chart).innerWidth() - margin.left - margin.right,
+                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                         height = 300 - margin.top - margin.bottom,
                         radius = Math.min(width, height) / 2;
 
@@ -429,7 +429,7 @@
                             return d.population;
                         });
 
-                    var svg = d3.select(chart).append("svg")
+                    var svg = d3.select('#' + chart).append("svg")
                         .attr("width", width)
                         .attr("height", height)
                         .append("g")
@@ -457,16 +457,16 @@
                         });
                 }
 
-                $(document).ready(function () {
+                oLib.ready(function () {
                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/departments.csv", function (error, data) {
                         data.forEach(function (d) {
                             d.population = +d.population;
                         });
 
                         d3.select(window).on('resize', function () {
-                            resize_chart3(data, "#chart-3");
+                            resize_chart3(data, "chart-3");
                         });
-                        resize_chart3(data, "#chart-3");
+                        resize_chart3(data, "chart-3");
                     });
                 });
             </script>
@@ -496,10 +496,10 @@
             </style>
             <script>
                 function resize_chart4(data, chart) {
-                    d3.select(chart + " svg").remove();
+                    d3.select('#' + chart + " svg").remove();
 
                     var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                        width = $(chart).innerWidth() - margin.left - margin.right,
+                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                         height = 300 - margin.top - margin.bottom,
                         radius = Math.min(width, height) / 2;
 
@@ -516,7 +516,7 @@
                             return d.population;
                         });
 
-                    var svg = d3.select(chart).append("svg")
+                    var svg = d3.select('#' + chart).append("svg")
                         .attr("width", width)
                         .attr("height", height)
                         .append("g")
@@ -544,16 +544,16 @@
                         });
                 }
 
-                $(document).ready(function () {
+                oLib.ready(function () {
                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/departments.csv", function (error, data) {
                         data.forEach(function (d) {
                             d.population = +d.population;
                         });
 
                         d3.select(window).on('resize', function () {
-                            resize_chart4(data, "#chart-4");
+                            resize_chart4(data, "chart-4");
                         });
-                        resize_chart4(data, "#chart-4");
+                        resize_chart4(data, "chart-4");
                     });
                 });
             </script>

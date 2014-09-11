@@ -113,10 +113,10 @@
                         </style>
                         <script>
                             function resize_chart2(data, chart) {
-                                d3.select(chart + " svg").remove();
+                                d3.select('#' + chart + " svg").remove();
 
                                 var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                                    width = $(chart).innerWidth() - margin.left - margin.right,
+                                    width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width')) - margin.left - margin.right,
                                     height = 300 - margin.top - margin.bottom;
 
                                 var x = d3.time.scale()
@@ -150,7 +150,7 @@
                                         return y(d.close);
                                     });
 
-                                var svg = d3.select(chart).append("svg")
+                                var svg = d3.select('#' + chart).append("svg")
                                     .attr("width", width + margin.left + margin.right)
                                     .attr("height", height + margin.top + margin.bottom)
                                     .append("g")
@@ -220,7 +220,7 @@
                                     .text("Price ($)");
                             }
 
-                            $(document).ready(function () {
+                            oLib.ready(function () {
                                 var parseDate = d3.time.format("%d-%b-%y").parse;
 
                                 d3.csv(URL + "/Modules/RiskManagement/data/cockpit/history.csv", function (error, data) {
@@ -230,9 +230,9 @@
                                     });
 
                                     d3.select(window).on('resize', function () {
-                                        resize_chart2(data, "#chart-2");
+                                        resize_chart2(data, "chart-2");
                                     });
-                                    resize_chart2(data, "#chart-2");
+                                    resize_chart2(data, "chart-2");
                                 });
                             });
                         </script>

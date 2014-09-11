@@ -1,15 +1,15 @@
-$('.b > h1 .min, .b > h2 .min').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.parent().parent().find('.bc-1').hide();
-    });
+var nodes = document.querySelectorAll('.b > h1 .max, .b > h2 .max');
+oLib.each(nodes, function(ele) {
+	oLib.listenEvent(ele, 'click', function(evt, e) {
+		var box = oLib.getByClass(e.parentNode.parentNode, 'bc-1');
+		oLib.removeClass(box, 'vh');
+	});
 });
 
-$('.b > h1 .max, .b > h2 .max').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.parent().parent().find('.bc-1').show();
-    });
+var nodes = document.querySelectorAll('.b > h1 .min, .b > h2 .min');
+oLib.each(nodes, function(ele) {
+	oLib.listenEvent(ele, 'click', function(evt, e) {
+		var box = oLib.getByClass(e.parentNode.parentNode, 'bc-1');
+		oLib.addClass(box, 'vh');
+	});
 });

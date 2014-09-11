@@ -27,7 +27,6 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: [
-                    'Framework/JavaScript/Framework/Utils/*.js',
                     'Framework/JavaScript/Framework/a.js',
                     'Framework/JavaScript/Framework/UI/*.js',
                     'Framework/JavaScript/Framework/z.js'

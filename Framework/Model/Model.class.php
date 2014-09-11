@@ -71,8 +71,8 @@ namespace Framework\Model {
                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Content/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
                 . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
-                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/jquery/jquery.min.js"></script>'
-                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/d3/d3.min.js"></script>';
+                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/d3/d3.min.js"></script>'
+                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Javascript/Framework/Utils/oLib.js"></script>';
 
             ob_flush();
         }
@@ -102,8 +102,6 @@ namespace Framework\Model {
         public static function load_footer() {
             echo '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
 
-            /* Load page javascript */
-            echo '<script src="' . self::$content['page:addr:url'] . '/Content/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/js/' . self::$content['core:layout'] . '.js"></script>';
             ob_flush();
         }
 

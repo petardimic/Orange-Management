@@ -1,7 +1,14 @@
-$('.tabview .tab-links a').on('click', function (e) {
-    var currentAttrValue = $(this).attr('href');
+var nodes = document.querySelectorAll('.tabview .tab-links a');
+oLib.each(nodes, function(ele) {
+	oLib.listenEvent(ele, 'click', function(evt, e) {
+		var attr = e.getAttribute('href').substring(1),
+			cont = e.parentNode.parentNode.parentNode.childNodes[3];
 
-    $('.tabview ' + currentAttrValue).show().siblings().hide();
-    $(this).parent('li').addClass('active').siblings().removeClass('active');
-    e.preventDefault();
+		oLib.removeClass(oLib.getByClass(e.parentNode.parentNode, 'active'), 'active');
+		oLib.addClass(e.parentNode, 'active');
+		oLib.removeClass(oLib.getByClass(cont, 'active'), 'active');
+		oLib.addClass(oLib.getByClass(cont, attr), 'active');
+
+		evt.preventDefault();
+	});
 });

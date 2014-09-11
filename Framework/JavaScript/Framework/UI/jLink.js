@@ -1,4 +1,4 @@
-$('a, button, input[type=submit]').each(function () {
+/*$('a, button, input[type=submit]').each(function () {
     var $$ = $(this);
 
     $$.click(function (e) {
@@ -43,7 +43,7 @@ $('a, button, input[type=submit]').each(function () {
         e.preventDefault();
         return false;
     });
-});
+});*/
 /*
  RETURN OBJECT = JSON
  types: INTERACTION, DIALOG, OBJ, HTML

@@ -1,37 +1,32 @@
-$('.min').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.addClass('vh');
-        $$.parent().find('.max').removeClass('vh');
+var nodes = document.getElementsByClassName('min');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e, 'vh');
+        oLib.removeClass(oLib.getByClass(e.parentNode, 'max'), 'vh');
     });
 });
 
-$('.max').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.addClass('vh');
-        $$.parent().find('.min').removeClass('vh');
+nodes = document.getElementsByClassName('max');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e, 'vh');
+        oLib.removeClass(oLib.getByClass(e.parentNode, 'min'), 'vh');
     });
 });
 
-var dim = $('#dim');
-$('.close, .save').each(function () {
-    var $$ = $(this);
+var dim = document.getElementById('dim');
+nodes = document.querySelectorAll('.close, .save');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e.parentNode.parentNode.parentNode, 'vh');
 
-    $$.click(function () {
-        $$.parent().parent().parent().addClass('vh');
-
-        if (!dim.hasClass('vh')) {
-            dim.addClass('vh');
-        }
+        oLib.addClass(dim, 'vh')
     });
 });
-$('.dim').each(function () {
-    var $$ = $(this);
 
-    $$.click(function () {
-        $('#dim').removeClass('vh');
+nodes = document.getElementsByClassName('dim');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.removeClass(dim, 'vh')
     });
 });

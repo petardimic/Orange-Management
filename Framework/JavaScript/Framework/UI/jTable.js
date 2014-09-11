@@ -1,94 +1,97 @@
-$('thead .min').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.parent().parent().parent().parent().find('tbody').hide();
+var nodes = document.querySelectorAll('thead .min');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        var body = oLib.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
+        oLib.addClass(body[0], 'vh');
     });
 });
 
-$('thead .max').each(function () {
-    var $$ = $(this);
-    $$.click(function () {
-        $$.parent().parent().parent().parent().find('tbody').show();
+nodes = document.querySelectorAll('thead .max');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        var body = oLib.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
+        oLib.removeClass(body[0], 'vh');
     });
 });
 
-$('thead span').each(function () {
-    var $$ = $(this);
+nodes = document.querySelectorAll('thead span');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        var filter = e.parentNode.childNodes[4];
 
-    $$.click(function () {
-        var filter = $$.parent().find(':nth-child(5)');
-
-        if (filter.hasClass('vh')) {
-            filter.removeClass('vh');
-            $$.parent().find(':nth-child(2)').removeClass('vh');
+        if(oLib.hasClass(filter, 'vh')) {
+            oLib.removeClass(filter, 'vh');
+            oLib.removeClass(e.parentNode.childNodes[1], 'vh');
         }
     });
 });
 
-$('thead td :nth-child(2)').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.addClass('vh');
-        $$.parent().find(':nth-child(3)').removeClass('vh');
+nodes = document.querySelectorAll('thead td :nth-child(2)');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e, 'vh');
+        oLib.removeClass(e.parentNode.childNodes[2], 'vh');
     });
 });
 
-$('thead td :nth-child(3)').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.addClass('vh');
-        $$.parent().find(':nth-child(4)').removeClass('vh');
+nodes = document.querySelectorAll('thead td :nth-child(3)');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e, 'vh');
+        oLib.removeClass(e.parentNode.childNodes[3], 'vh');
     });
 });
 
-$('thead td :nth-child(4)').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.addClass('vh');
-        $$.parent().find(':nth-child(2)').removeClass('vh');
+nodes = document.querySelectorAll('thead td :nth-child(4)');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        oLib.addClass(e, 'vh');
+        oLib.removeClass(e.parentNode.childNodes[1], 'vh');
     });
 });
 
-$('thead td :nth-child(5)').each(function () {
-    var $$ = $(this);
-
-    $$.click(function () {
-        $$.parent().find('i').addClass('vh');
+nodes = document.querySelectorAll('thead td :nth-child(5)');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        var iParent = e.parentNode;
+        oLib.addClass(iParent.childNodes[1], 'vh');
+        oLib.addClass(iParent.childNodes[2], 'vh');
+        oLib.addClass(iParent.childNodes[3], 'vh');
+        oLib.addClass(iParent.childNodes[4], 'vh');
     });
 });
 
 var list_filter_arr = [
     []
 ];
-$('thead .f').each(function () {
-    var $$ = $(this);
+
+nodes = document.querySelectorAll('thead .f');
+oLib.each(nodes, function(ele) {
     var c = 0;
 
-    $$.click(function () {
-        var table = $$.parent().parent().parent().find('tr:nth-child(2)');
-        var filter = $('#t-f');
-        var flist = filter.find('ul');
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        var table = e.parentNode.parentNode.parentNode.childNodes[2],
+            filter = document.getElementById('t-f'),
+            flist = document.querySelectorAll('#tf ul');
 
-        flist.empty();
+        oLib.empty(flist);
 
-        table.find('td').each(function () {
+        var titles = oLib.getByTag(table, 'td');
+
+        oLib.each(titles, function(t) {
             c++;
 
-            var val = '';
-            var tid = $$.parent().parent().parent().parent().attr('id');
+            var val = '',
+                tid = e.parentNode.parentNode.parentNode.parentNode.getAttribute('id');
 
             if ((tid in list_filter_arr) && ('i-' + c in list_filter_arr[tid])) {
                 val = list_filter_arr[tid]['i-' + c];
             }
 
-            flist.append('<li><label for="i-' + c + '">' + $(this).text().trim() + '</label>');
-            flist.append('<li><input name="i-' + c + '" id="i-' + c + '" type="text" value="' + val + '"><select><option>=<option>!=<option>><option><<option><></select>');
+            /* Still not working */
+            flist.innerHTML += '<li><label for="i-' + c + '">' + '</label>' + '<li><input name="i-' + c + '" id="i-' + c + '" type="text" value="' + val + '"><select><option>=<option>!=<option>><option><<option><></select>';
         });
 
-        filter.removeClass('vh');
+        oLib.removeClass(filter, 'vh');
     });
 });
