@@ -5,6 +5,7 @@ var oLib = {
         var xhr = new XMLHttpRequest();
         xhr.open(obj.type, obj.url);
         xhr.responseType = obj.responseType;
+        xhr.setRequestHeader("Content-Type", obj.requestHeader);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15,7 +16,7 @@ var oLib = {
         if (obj.type === 'GET') {
             xhr.send();
         } else {
-            xhr.send({data: obj.data});
+            xhr.send(obj.data);
         }
     },
 

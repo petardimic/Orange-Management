@@ -23,7 +23,8 @@ oLib.each(nodes, function(ele) {
         oLib.ajax({
             type: http_type, 
             url: URL + request_uri, 
-            data: JSON.stringify(request_data),
+            data: request_data,
+            requestHeader: "application/json; charset=utf-8",
             responseType: "text",
             success: function(ret) {
                 console.log(ret);

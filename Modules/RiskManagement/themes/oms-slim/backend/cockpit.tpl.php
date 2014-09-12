@@ -166,6 +166,8 @@
                         height = 300 - margin.top - margin.bottom,
                         percent = d3.format('%');
 
+                    console.log(parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10));
+
                     var x = d3.scale.ordinal()
                         .rangeRoundBands([0, width], .1);
 
@@ -227,7 +229,7 @@
 
                 oLib.ready(function () {
                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/top.csv", type, function (error, data) {
-                        d3.select(window).on('resize', function () {
+                        oLib.listenEvent(window, 'resize', function () {
                             resize_chart1(data, "chart-1");
                         });
                         resize_chart1(data, "chart-1");
@@ -376,7 +378,7 @@
                             d.close = +d.close;
                         });
 
-                        d3.select(window).on('resize', function () {
+                        oLib.listenEvent(window, 'resize', function () {
                             resize_chart2(data, "chart-2");
                         });
                         resize_chart2(data, "chart-2");
@@ -463,7 +465,7 @@
                             d.population = +d.population;
                         });
 
-                        d3.select(window).on('resize', function () {
+                        oLib.listenEvent(window, 'resize', function () {
                             resize_chart3(data, "chart-3");
                         });
                         resize_chart3(data, "chart-3");
@@ -550,7 +552,7 @@
                             d.population = +d.population;
                         });
 
-                        d3.select(window).on('resize', function () {
+                        oLib.listenEvent(window, 'resize', function () {
                             resize_chart4(data, "chart-4");
                         });
                         resize_chart4(data, "chart-4");
