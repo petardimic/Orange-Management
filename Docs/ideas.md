@@ -1,5 +1,6 @@
 ## Sales
 1. Print invoices based on filter (array of invoices)
+2. Make invoices only printable after they got checked (by a different person) (Optional)
 
 ## Navigation
 1. Maybe make sidebar tabbed 3-4 tabs at the top?

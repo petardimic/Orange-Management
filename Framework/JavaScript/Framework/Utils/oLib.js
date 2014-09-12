@@ -1,24 +1,21 @@
 var oLib = {
     LoadedCSSJS: "",
 
-    ajax: function(type, url, data, func) {
+    ajax: function(obj) {
         var xhr = new XMLHttpRequest();
-        xhr.open(type, url);
+        xhr.open(obj.type, obj.url);
+        xhr.responseType = obj.responseType;
 
-        xhr.onreadystatechange = function (data) {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                func.success();
-
-                return xhr.responseText;
-            } else {
-                func.error();
+                obj.success(xhr.responseText);
             }
         }
 
-        if (type === 'GET') {
+        if (obj.type === 'GET') {
             xhr.send();
         } else {
-            xhr.send({data: data});
+            xhr.send({data: obj.data});
         }
     },
 

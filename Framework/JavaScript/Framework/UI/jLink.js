@@ -1,59 +1,39 @@
-/*$('a, button, input[type=submit]').each(function () {
-    var $$ = $(this);
-
-    $$.click(function (e) {
-        if (!$$.attr('data-request') || !$$.attr('data-http')) {
+var nodes = document.querySelectorAll('a, button, input[type=submit]');
+oLib.each(nodes, function(ele) {
+    oLib.listenEvent(ele, 'click', function(evt, e) {
+        if(!e.hasAttribute('data-request') || !e.hasAttribute('data-http')) {
             return true;
-        }
+        } 
 
-        var request_type = $$.data().request;
-        var http_type = $$.data().http;
-        var request_uri = '';
-        var request_data = $$.data().json;
+        var request_type = e.getAttribute('data-request'),
+            http_type = e.getAttribute('data-http'),
+            request_uri = '',
+            request_data = e.getAttribute('data-json');
 
-        if (request_type === 'URL') {
-            request_uri = $$.attr('href');
+        if(request_type === 'URL') {
+            request_uri = e.getAttribute('href');
         } else {
-            request_uri = $$.data().uri;
+            request_uri = e.getAttribute('data-uri');
         }
 
-        console.log(request_type);
         console.log(http_type);
-        console.log(request_uri);
+        console.log(URL + request_uri);
         console.log(request_data);
 
-        $.ajax({
-            type: http_type,
-            url: URL + request_uri,
+        oLib.ajax({
+            type: http_type, 
+            url: URL + request_uri, 
             data: JSON.stringify(request_data),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (res) {
-                if (typeof res !== 'undefined' && res.type === 1) {
-                    console.log(res.msg);
-
-
-                }
+            responseType: "text",
+            success: function(ret) {
+                console.log(ret);
             },
-            error: function (msg) {
-                console.log(msg);
+            error: function(ret) {
+                console.log('error');
             }
         });
 
-        e.preventDefault();
+        evt.preventDefault();
         return false;
     });
-});*/
-/*
- RETURN OBJECT = JSON
- types: INTERACTION, DIALOG, OBJ, HTML
- msg-level: WARNING, INFO, ERROR, OK, DEBUG
- {
- "type": 1,
- "msg": {
- "level": 1,
- "text": "Here some text"
- },
-
- }
- */
+});
