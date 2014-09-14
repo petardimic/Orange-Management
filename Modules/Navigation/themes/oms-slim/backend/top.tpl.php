@@ -7,7 +7,7 @@ if (isset($this->nav[1])) {
 
     foreach ($this->nav[1] as $key => $parent) {
         foreach ($parent as $link) {
-            echo '<li><a href="' . '">';
+            echo '<li><a href="' . $this->app->request->generate_uri([$this->app->request->request_lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">';
 
             if (isset($val['icon'])) {
                 echo '<i class="' . $link['icon'] . '"></i>';
