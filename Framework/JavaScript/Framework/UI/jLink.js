@@ -16,10 +16,6 @@ oLib.each(nodes, function(ele) {
             request_uri = e.getAttribute('data-uri');
         }
 
-        console.log(http_type);
-        console.log(URL + request_uri);
-        console.log(request_data);
-
         oLib.ajax({
             type: http_type, 
             url: URL + request_uri, 

@@ -6,6 +6,7 @@ $MODLANG[30] = [
     "Category"          => "Category",
     "Cause"             => "Cause",
     "Causes"            => "Causes",
+    "Cost"              => "Cost",
     "Critical"          => "Critical",
     "Damage"            => "Damage",
     "Department"        => "Department",

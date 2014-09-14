@@ -6,7 +6,7 @@ oLib.each(nodes, function(ele) {
 	});
 });
 
-var nodes = document.querySelectorAll('.b > h1 .min, .b > h2 .min');
+nodes = document.querySelectorAll('.b > h1 .min, .b > h2 .min');
 oLib.each(nodes, function(ele) {
 	oLib.listenEvent(ele, 'click', function(evt, e) {
 		var box = oLib.getByClass(e.parentNode.parentNode, 'bc-1');

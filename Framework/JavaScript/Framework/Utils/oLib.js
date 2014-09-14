@@ -1,7 +1,7 @@
 var oLib = {
     LoadedCSSJS: "",
 
-    ajax: function(obj) {
+    ajax: function (obj) {
         var xhr = new XMLHttpRequest();
         xhr.open(obj.type, obj.url);
         xhr.responseType = obj.responseType;
@@ -11,7 +11,7 @@ var oLib = {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 obj.success(xhr.responseText);
             }
-        }
+        };
 
         if (obj.type === 'GET') {
             xhr.send();
@@ -20,104 +20,108 @@ var oLib = {
         }
     },
 
-    listenEvent: function(ele, listen, func) {
-        ele.addEventListener(listen, function(e) {func(e, ele)}, false);
+    listenEvent: function (ele, listen, func) {
+        ele.addEventListener(listen, function (e) {
+            func(e, ele)
+        }, false);
     },
 
-    getPropertyValue: function(ele, value) {
+    getPropertyValue: function (ele, value) {
         return window.getComputedStyle(ele, null).getPropertyValue(value);
     },
 
-    hasClass: function(ele, cls) {
+    hasClass: function (ele, cls) {
         return ele !== undefined && ele.className !== undefined && ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
     },
 
-    addClass: function(ele, cls) {
+    addClass: function (ele, cls) {
         if (!oLib.hasClass(ele, cls)) ele.className += " " + cls;
     },
 
-    removeClass: function(ele, cls) {
+    removeClass: function (ele, cls) {
         if (oLib.hasClass(ele, cls)) {
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
             ele.className = ele.className.replace(reg, '');
         }
     },
 
-    ready: function(func) {
-        document.addEventListener("DOMContentLoaded", function(event) {
+    ready: function (func) {
+        document.addEventListener("DOMContentLoaded", function (event) {
             func();
         });
     },
 
-    each: function(nodes, func) {
+    each: function (nodes, func) {
         var length = nodes.length;
 
-        for(var i = 0; i < length; i++) {
+        for (var i = 0; i < length; i++) {
             func(nodes[i]);
         }
     },
 
-    empty: function(ele) {
-    	while(ele.firstChild) {
-    		ele.removeChild(ele.firstChild);
-    	}
+    empty: function (ele) {
+        while (ele.firstChild) {
+            ele.removeChild(ele.firstChild);
+        }
     },
 
-    find: function(nodes, cls) {
-        
+    find: function (nodes, cls) {
+
     },
 
-    getID: function(ele, cls) {
+    getID: function (ele, cls) {
 
-    }, 
-
-    isNode: function(ele){
-      return (
-        typeof Node === "object" ? ele instanceof Node : 
-        ele && typeof ele === "object" && typeof ele.nodeType === "number" && typeof ele.nodeName==="string"
-      );
     },
 
-    isElement: function(o){
+    isNode: function (ele) {
         return (
-            typeof HTMLElement === "object" ? o instanceof HTMLElement : o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
-        );
+            typeof Node === "object" ? ele instanceof Node :
+                ele && typeof ele === "object" && typeof ele.nodeType === "number" && typeof ele.nodeName === "string"
+            );
     },
 
-    getByClass: function(ele, cls) {
+    isElement: function (o) {
+        return (
+            typeof HTMLElement === "object" ? o instanceof HTMLElement : o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+            );
+    },
+
+    getByClass: function (ele, cls) {
         var length = ele.childNodes.length;
 
-        for(var i = 0; i < length; i++) {
-            if(oLib.hasClass(ele.childNodes[i], cls)) {
+        for (var i = 0; i < length; i++) {
+            if (oLib.hasClass(ele.childNodes[i], cls)) {
                 return ele.childNodes[i];
             }
         }
+
+        return null;
     },
 
-    getByTag: function(ele, tag) {
+    getByTag: function (ele, tag) {
         return ele.getElementsByTagName(tag);
     },
 
-    merge: function(target, source) {
+    merge: function (target, source) {
         for (var p in source) {
-        try {
-          if ( source[p].constructor==Object ) {
-            target[p] = merge(target[p], source[p]);
+            try {
+                if (source[p].constructor == Object) {
+                    target[p] = merge(target[p], source[p]);
 
-          } else {
-            target[p] = source[p];
-          }
+                } else {
+                    target[p] = source[p];
+                }
 
-        } catch(e) {
-          target[p] = source[p];
+            } catch (e) {
+                target[p] = source[p];
 
+            }
         }
-      }
 
-      return target;
+        return target;
     },
 
-    loadCSSJS: function(path, filename, filetype, func) {
+    loadCSSJS: function (path, filename, filetype, func) {
         if (oLib.LoadedCSSJS.indexOf("[" + filename + "]") === -1) {
             var fileref = null;
 
@@ -138,16 +142,16 @@ var oLib = {
 
         oLib.LoadedCSSJS += "[" + filename + "]";
 
-        if(func !== undefined) {
-            fileref.onreadystatechange = function() {
-                if(this.readyState == 'complete') func();
-            }
+        if (func !== undefined) {
+            fileref.onreadystatechange = function () {
+                if (this.readyState == 'complete') func();
+            };
 
             fileref.onload = func();
         }
     },
 
-    supportsHTML5Storage: function() {
+    supportsHTML5Storage: function () {
         try {
             return 'localStorage' in window && window.localStorage !== null;
         } catch (e) {
@@ -155,14 +159,14 @@ var oLib = {
         }
     },
 
-    setCookie: function(c_name, value, exdays, domain, path) {
+    setCookie: function (c_name, value, exdays, domain, path) {
         var exdate = new Date();
         exdate.setDate(exdate.getDate() + exdays);
         var c_value = encodeURI(value) + ((exdays === null) ? "" : "; expires=" + exdate.toUTCString()) + ";domain=" + domain + ";path=" + path;
         document.cookie = c_name + "=" + c_value;
     },
 
-    getCookie: function(c_name) {
+    getCookie: function (c_name) {
         var c_value = document.cookie;
         var c_start = c_value.indexOf(" " + c_name + "=");
 
@@ -184,4 +188,4 @@ var oLib = {
         }
         return c_value;
     }
-}
+};

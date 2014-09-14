@@ -1,5 +1,6 @@
 <?php
 $MODLANG[16] = [
+    "Area"                 => "Area",
     "Article"              => "Article",
     "Articles"             => "Articles",
     "Available"            => "Available",
@@ -26,6 +27,7 @@ $MODLANG[16] = [
     "MinPrice"             => "Min Price",
     "Name"                 => "Name",
     "Ordered"              => "Ordered",
+    "Payment"              => "Payment",
     "Price"                => "Price",
     "Priority"             => "Priority",
     "State"                => "State",

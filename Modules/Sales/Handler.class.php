@@ -120,6 +120,12 @@ namespace Modules\Sales {
         }
 
         public function show_backend_client_single() {
+            switch ($this->app->request->uri['l5']) {
+                case 'front':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-single.tpl.php';
+                    break;
+            }
         }
     }
 }

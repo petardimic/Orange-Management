@@ -17,6 +17,7 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
+                        ['name' => '', 'sort' => 0],
                         ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
                         ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
                         ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],

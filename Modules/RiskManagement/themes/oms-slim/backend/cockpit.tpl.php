@@ -21,72 +21,69 @@
         </h1>
 
         <div class="bc-1">
+            <!-- @formatter:off -->
             <table class="tc-1">
                 <tr>
-                    <th><label><?= \Framework\Localization\Localization::$lang[30]['RiskIndex']; ?></label>
-                        <td>asldkf
-                            <tr>
-                                <th>
-                                    <label><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?></label>
-                                    <td>asldkf
-                                        <tr>
-                                            <th>
-                                                <label><?= \Framework\Localization\Localization::$lang[30]['RiskProtection']; ?></label>
-                                                <td>asldkf
-                                                    <tr>
-                                                        <th>
-                                                            <label><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?></label>
-                                                            <td>asldkf
-                                                                <tr>
-                                                                    <th>
-                                                                        <label><?= \Framework\Localization\Localization::$lang[30]['RiskAcceptance']; ?></label>
-                                                                        <td>asldkf
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <label><?= \Framework\Localization\Localization::$lang[30]['Risks']; ?></label>
-                                                                                    <td>asldkf
-                                                                                        <tr>
-                                                                                            <th>
-                                                                                                <label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label>
-                                                                                                <td>asldkf
-                                                                                                    <tr>
-                                                                                                        <th>
-                                                                                                            <label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label>
-                                                                                                            <td>asldkf
-                                                                                                                <tr>
-                                                                                                                    <th>
-                                                                                                                        <label><?= \Framework\Localization\Localization::$lang[30]['Processes']; ?></label>
-                                                                                                                        <td>
-                                                                                                                            asldkf
-                                                                                                                            <tr>
-                                                                                                                                <th>
-                                                                                                                                    <label><?= \Framework\Localization\Localization::$lang[30]['Projects']; ?></label>
-                                                                                                                                    <td>
-                                                                                                                                        asldkf
-                                                                                                                                        <tr>
-                                                                                                                                            <th>
-                                                                                                                                                <label><?= \Framework\Localization\Localization::$lang[30]['Outdated']; ?></label>
-                                                                                                                                                <td>
-                                                                                                                                                    asldkf
-                                                                                                                                                    <tr>
-                                                                                                                                                        <th>
-                                                                                                                                                            <label><?= \Framework\Localization\Localization::$lang[30]['Critical']; ?></label>
-                                                                                                                                                            <td>
-                                                                                                                                                                asldkf
-                                                                                                                                                                <tr>
-                                                                                                                                                                    <th>
-                                                                                                                                                                        <label><?= \Framework\Localization\Localization::$lang[30]['MainDepartment']; ?></label>
-                                                                                                                                                                        <td>
-                                                                                                                                                                            asldkf
-                                                                                                                                                                            <tr>
-                                                                                                                                                                                <th>
-                                                                                                                                                                                    <label><?= \Framework\Localization\Localization::$lang[30]['MainCategory']; ?></label>
-                                                                                                                                                                                    <td>
-                                                                                                                                                                                        asldkf
-                                                                                                                                                                                        <tr>
-                <th><label><?= \Framework\Localization\Localization::$lang[30]['MainCause']; ?></label>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['RiskIndex']; ?></label>
                     <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['OverallRisk']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['RiskProtection']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['RemainingRisk']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['RiskAcceptance']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Risks']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Processes']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Projects']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Outdated']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['Critical']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['MainDepartment']; ?></label>
+                    <td>asldkf
+                <tr>
+                    <th>
+                        <label><?= \Framework\Localization\Localization::$lang[30]['MainCategory']; ?></label>
+                     <td>asldkf
+                <tr>
+                    <th><label><?= \Framework\Localization\Localization::$lang[30]['MainCause']; ?></label>
+                        <td>asldkf
             </table>
+            <!-- @formatter:on -->
         </div>
     </div>
 </div>
@@ -165,8 +162,6 @@
                         width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                         height = 300 - margin.top - margin.bottom,
                         percent = d3.format('%');
-
-                    console.log(parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10));
 
                     var x = d3.scale.ordinal()
                         .rangeRoundBands([0, width], .1);

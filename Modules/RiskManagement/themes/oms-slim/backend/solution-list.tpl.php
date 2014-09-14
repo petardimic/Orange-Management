@@ -6,7 +6,7 @@
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
     <tr>
-        <th colspan="4" class="lT">
+        <th colspan="8" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
             <h1><?= \Framework\Localization\Localization::$lang[30]['Solutions'] ?></h1>
@@ -17,11 +17,15 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                        ['name' => '', 'sort' => 0],
                         ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Risk'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Protection'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Probability'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Cost'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[30]['Active'], 'sort' => 0],
                     ]
                 );
                 ?>
@@ -42,6 +46,6 @@
                 ?>
                 <tfoot>
     <tr>
-        <td colspan="5" class="cT">
+        <td colspan="9" class="cT">
             <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
 </table>

@@ -10,7 +10,7 @@
     <table class="t t-1 c1-2 c1" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="7" class="lT">
+            <th colspan="8" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['Risks'] ?></h1>
@@ -21,6 +21,7 @@
                     <?php
                     \Framework\Model\Model::generate_table_header_view(
                         [
+                            ['name' => '', 'sort' => 0],
                             ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
                             ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
                             ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
@@ -49,7 +50,7 @@
                     ?>
                     <tfoot>
         <tr>
-            <td colspan="8" class="cT">
+            <td colspan="9" class="cT">
                 <?php /* \Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
     </table>
 </div>

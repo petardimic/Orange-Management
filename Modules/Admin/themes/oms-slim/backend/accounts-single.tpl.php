@@ -1,10 +1,10 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Admin\Handler $this */
 \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000104300]);
 ?>
 
 <div class="b b-1 c1-3 c1" id="i1-3-1">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Account']; /** @var \Modules\Admin\Admin $this */ ?>
+        <?= \Framework\Localization\Localization::$lang[1]['Account']; /** @var \Modules\Admin\Handler $this */ ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>

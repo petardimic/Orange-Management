@@ -2,7 +2,7 @@
 <div class="b b-1 c1-1 c1" id="i1-1-1">
     <h1>
         <?php
-        /** @var \Modules\Admin\Admin $this */
+        /** @var \Modules\Admin\Handler $this */
         echo \Framework\Localization\Localization::$lang[1]['Page']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>

@@ -1,4 +1,4 @@
-function oLineChart(dataset, chart, text, legend, axis) {
+function OLineChart(dataset, chart, text, legend, axis) {
     this.chart = {
         margin: {
             top: 0,
@@ -83,12 +83,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         },
@@ -111,12 +111,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         },
@@ -139,12 +139,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         },
@@ -167,12 +167,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         },
@@ -195,12 +195,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         },
@@ -223,12 +223,12 @@ function oLineChart(dataset, chart, text, legend, axis) {
             ticks: {
                 active: true,
                 color: '#000',
-                steps: 10,
+                steps: 10
             },
             subticks: {
                 active: true,
                 color: '#000',
-                steps: 1,
+                steps: 1
             },
             type: 'data'
         }
@@ -239,13 +239,13 @@ function oLineChart(dataset, chart, text, legend, axis) {
     this.legend = oLib.merge(this.legend, legend);
     this.axis = oLib.merge(this.axis, axis);
 
-    oChart.call(this, dataset, this.chart, this.text, this.legend, this.axis);
+    OChart.call(this, dataset, this.chart, this.text, this.legend, this.axis);
 }
 
-oLineChart.prototype = Object.create(oChart.prototype);
-oLineChart.prototype.constructor = oLineChart;
+OLineChart.prototype = Object.create(OChart.prototype);
+OLineChart.prototype.constructor = OLineChart;
 
-oLineChart.prototype.redraw = function(id)
+OLineChart.prototype.redraw = function(id)
 {
     d3.select(id + " svg").remove();
 
@@ -253,17 +253,17 @@ oLineChart.prototype.redraw = function(id)
     this.drawAxis(id);
     this.drawLegend(id);
     this.drawText(id);
-}
+};
 
-oLineChart.prototype.draw = function(id)
+OLineChart.prototype.draw = function(id)
 {
     window.addEventListener('resize', function (e) {
         this.redraw(id)
     });
     this.redraw(id);
-}
+};
 
-oLineChart.prototype.drawChart = function(id)
+OLineChart.prototype.drawChart = function(id)
 {
     var $$ = $(id),
         width = $$.innerWidth() - this.chart.margin.left - this.chart.margin.right,
@@ -293,17 +293,17 @@ oLineChart.prototype.drawChart = function(id)
     y1.domain(d3.extent(this.data[0], function (d) {
         return d.yVal1;
     }));
-}
+};
 
-oLineChart.prototype.drawLine = function(line)
+OLineChart.prototype.drawLine = function(line)
 {
     svg.append("path")
         .datum(this.data[line])
         .attr("class", "line")
         .attr("d", lineFormula1);
-}
+};
 
-oLineChart.prototype.drawAxis = function()
+OLineChart.prototype.drawAxis = function()
 {
     var xAxis1 = d3.svg.axis()
         .scale(x1)
@@ -312,14 +312,14 @@ oLineChart.prototype.drawAxis = function()
     var yAxis1 = d3.svg.axis()
         .scale(y1)
         .orient("left");
-}
+};
 
-oLineChart.prototype.drawLegend = function()
+OLineChart.prototype.drawLegend = function()
 {
 
-}
+};
 
-oLineChart.prototype.drawText = function()
+OLineChart.prototype.drawText = function()
 {
 
-}
+};

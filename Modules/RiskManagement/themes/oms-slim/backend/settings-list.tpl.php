@@ -6,7 +6,7 @@
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="4" class="lT">
+            <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['Departments'] ?></h1>
@@ -17,11 +17,10 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
                 ]
             );
             ?>
@@ -52,7 +51,7 @@
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="4" class="lT">
+            <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['Categories'] ?></h1>
@@ -63,11 +62,10 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
                 ]
             );
             ?>
@@ -97,7 +95,7 @@
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="4" class="lT">
+            <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['Units'] ?></h1>
@@ -108,11 +106,10 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => '', 'sort' => 0],
                 ]
             );
             ?>
@@ -142,7 +139,7 @@
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="4" class="lT">
+            <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['RiskLevels'] ?></h1>
@@ -153,11 +150,10 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Severity'], 'sort' => 0],
                 ]
             );
             ?>
@@ -187,7 +183,7 @@
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="4" class="lT">
+            <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= \Framework\Localization\Localization::$lang[30]['RiskProbabilities'] ?></h1>
@@ -198,11 +194,10 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[30]['Probability'], 'sort' => 0],
                 ]
             );
             ?>

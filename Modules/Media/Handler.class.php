@@ -29,11 +29,6 @@ namespace Modules\Media {
 
         /**
          * Constructor
-         *
-         * @param string $theme_path
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($theme_path, $app) {
             parent::initialize($theme_path, $app);

@@ -1,3 +1,25 @@
 <?php
-$MODLANG[26] = [
+$MODLANG[11] = [
+    "All"      => "All",
+    "AverageProcessTime"      => "Avg. Process Time",
+    "AverageAmount"      => "Average Amount",
+    "Created"  => "Created",
+    "Creator"  => "Creator",
+    "Due"  => "Due",
+    "Forwarded"    => "Forwarded",
+    "Group"    => "Group",
+    "Interval"    => "Interval",
+    "Month"     => "Month",
+    "Open"     => "Open",
+    "Priority" => "Priority",
+    "Received" => "Received",
+    "Receiver" => "Receiver",
+    "Redirected" => "Redirected",
+    "Statistics" => "Statistics",
+    "Task"     => "Task",
+    "Tasks"    => "Tasks",
+    "Title"    => "Title",
+    "Today"    => "Today",
+    "Week"    => "Week",
+    "Year"    => "Year",
 ];

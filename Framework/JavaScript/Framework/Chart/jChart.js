@@ -1,4 +1,4 @@
-function oChart(dataset, chart, text, legend, axis) {
+function OChart(dataset, chart, text, legend, axis) {
     this.dataset = null;
     this.chart = null;
     this.text = null;

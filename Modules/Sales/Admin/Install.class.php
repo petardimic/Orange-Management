@@ -56,10 +56,10 @@ namespace Modules\Sales\Admin {
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
-                    $db->con->prepare(
+                    /*$db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_articles`
                             ADD CONSTRAINT `sales_articles_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'stock_articles` (`id`);'
-                    )->execute();
+                    )->execute();*/
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_classification` (

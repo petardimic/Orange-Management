@@ -10,7 +10,6 @@
     </h1>
 
     <div class="bc-1">
-        </form>
     </div>
 </div>
 

@@ -22,7 +22,7 @@
     <div class="b-6" id="i3-2-2">
         <div class="b b-5 c3-2 c3" id="i3-2-3">
             <h1>
-                <?= \Framework\Localization\Localization::$lang[3]['Profile']; /** @var \Modules\Profile\Profile $this */ ?>
+                <?= \Framework\Localization\Localization::$lang[3]['Profile']; /** @var \Modules\Profile\Handler $this */ ?>
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
             </h1>
