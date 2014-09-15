@@ -3,9 +3,11 @@ namespace Framework\DataStorage\Database {
     /**
      * Database status enum
      *
+     * Possible database connection status
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   DataStorage
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,10 +18,10 @@ namespace Framework\DataStorage\Database {
      * @since      1.0.0
      */
     abstract class DatabaseStatus extends \Framework\Datatypes\Enum {
-        const OK               = 0;
-        const MISSING_DATABASE = 1;
-        const MISSING_TABLE    = 2;
-        const FAILURE          = 3;
-        const READONLY         = 4;
+        const OK               = 0; /* Database connection successful */
+        const MISSING_DATABASE = 1; /* Couldn't find database */
+        const MISSING_TABLE    = 2; /* One of the core tables couldn't be found */
+        const FAILURE          = 3; /* Unknown failure */
+        const READONLY         = 4; /* Database connection is in readonly (but ok) */
     }
 }

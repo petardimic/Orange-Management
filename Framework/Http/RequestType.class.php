@@ -3,9 +3,11 @@ namespace Framework\Http {
     /**
      * Request type enum
      *
+     * Request types that are supported by this application. Especially useful for restful requests and the API.
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Http
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,9 +18,9 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     abstract class RequestType extends \Framework\Datatypes\Enum {
-        const GET    = 'GET';
-        const POST   = 'POST';
-        const PUT    = 'PUT';
-        const DELETE = 'DELETE';
+        const GET    = 'GET';       /* GET */
+        const POST   = 'POST';      /* POST */
+        const PUT    = 'PUT';       /* PUT */
+        const DELETE = 'DELETE';    /* DELETE */
     }
 }

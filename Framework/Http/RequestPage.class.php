@@ -3,9 +3,11 @@ namespace Framework\Http {
     /**
      * Request page enum
      *
+     * Possible page requests. Page requests can have completely different themes, permissions and page structures.
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Http
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,19 +18,19 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     abstract class RequestPage extends \Framework\Datatypes\Enum {
-        const WEBSITE  = 'website';
-        const API      = 'api';
-        const SHOP     = 'shop';
-        const BACKEND  = 'backend';
-        const STATICP  = 'static';
-        const FORUM    = 'forum';
-        const TICKET   = 'ticket';
-        const SUPPORT  = 'support';
-        const SURVEY   = 'survey';
-        const BLOG     = 'blog';
-        const CHART    = 'chart';
-        const CALENDAR = 'calendar';
-        const PROFILE  = 'profile';
-        const CHAT     = 'chat';
+        const WEBSITE  = 'website';     /* Website */
+        const API      = 'api';         /* API */
+        const SHOP     = 'shop';        /* Shop */
+        const BACKEND  = 'backend';     /* Backend */
+        const STATICP  = 'static';      /* Static content */
+        const FORUM    = 'forum';       /* Forum */
+        const TICKET   = 'ticket';      /* ???? */
+        const SUPPORT  = 'support';     /* Support center */
+        const SURVEY   = 'survey';      /* Survey page */
+        const BLOG     = 'blog';        /* Blog */
+        const CHART    = 'chart';       /* Chart view */
+        const CALENDAR = 'calendar';    /* Calendar */
+        const PROFILE  = 'profile';     /* User profile page */
+        const CHAT     = 'chat';        /* Chat page */
     }
 }

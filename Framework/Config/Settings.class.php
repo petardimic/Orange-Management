@@ -3,9 +3,13 @@ namespace Framework\Config {
     /**
      * Settings class
      *
+     * Responsible for all application and module configurations.
+     * This class can load and save settings based on their ids.
+     * Creating new settings is not possible, this has to be done during the module installation.
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Config
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

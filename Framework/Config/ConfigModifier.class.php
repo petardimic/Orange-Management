@@ -1,11 +1,14 @@
 <?php
 namespace Framework\Config {
     /**
-     * Group class
+     * Config modifer class
+     *
+     * Responsible for editing the server and core configuration for this software.
+     * This only includes the core config.conf file and nothing else.
      *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Config
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

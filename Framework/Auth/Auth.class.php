@@ -7,7 +7,7 @@ namespace Framework\Auth {
      *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Auth
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

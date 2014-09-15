@@ -3,9 +3,11 @@ namespace Framework\DataStorage\Database {
     /**
      * Database type enum
      *
+     * Database types that are supported by the application
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   DataStorage
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,7 +18,7 @@ namespace Framework\DataStorage\Database {
      * @since      1.0.0
      */
     abstract class DatabaseType extends \Framework\Datatypes\Enum {
-        const MYSQL  = 0;
-        const SQLITE = 1;
+        const MYSQL  = 0; /* MYSQL */
+        const SQLITE = 1; /* SQLITE */
     }
 }

@@ -3,9 +3,12 @@ namespace Framework\Http {
     /**
      * Request class
      *
+     * Responsible for handling incoming requests from clients. Loading POST, PUT, DELETE & GET data.
+     * This class is also responsible for generating links and their ids.
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Http
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

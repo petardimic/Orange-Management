@@ -1,11 +1,14 @@
 <?php
+/* NOT IN USE */
 namespace Framework\Http {
     /**
      * Response class
      *
+     * NOT IN USE - Maybe implement especially for API responses?!?!?!
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Http
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

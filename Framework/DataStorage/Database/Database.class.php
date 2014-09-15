@@ -3,9 +3,12 @@ namespace Framework\DataStorage\Database {
     /**
      * Database handler
      *
+     * Handles the database connection.
+     * Implementing wrapper functions for multiple databases is planned (far away).
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   DataStorage
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

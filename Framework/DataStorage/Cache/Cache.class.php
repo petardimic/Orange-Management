@@ -3,9 +3,12 @@ namespace Framework\DataStorage\Cache {
     /**
      * Cache class
      *
+     * Responsible for caching scalar data types and arrays. 
+     * Caching HTML output and objects coming soon/is planned.
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   DataStorage
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

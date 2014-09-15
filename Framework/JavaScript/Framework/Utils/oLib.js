@@ -1,6 +1,44 @@
+/**
+ * Core JS functionality
+ *
+ * This logic is supposed to minimize coding and support core javascript functionality.
+ *
+ * @category   Base
+ * @package    OMS Core
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
 var oLib = {
+    /**
+     * Loaded CSS or JS files
+     *
+     * @var string
+     * @since 1.0.0
+     */
     LoadedCSSJS: "",
 
+    /**
+     * AJAX
+     *
+     * @param Object obj AJAX variables
+     * 
+     * The following obj variables are expected:
+     * responseType - Type of the response
+     * requestHeader - Header description for the request
+     * success - Success callback function
+     * error - Error callback function
+     * type - GET, PUT, DELETE, POST type
+     * url - Request url
+     * data - Data to send
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     ajax: function (obj) {
         var xhr = new XMLHttpRequest();
         xhr.open(obj.type, obj.url);

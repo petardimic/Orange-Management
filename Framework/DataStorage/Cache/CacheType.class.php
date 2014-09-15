@@ -3,9 +3,11 @@ namespace Framework\DataStorage\Cache {
     /**
      * Cache type enum
      *
+     * Possible caching types
+     *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   DataStorage
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,8 +18,8 @@ namespace Framework\DataStorage\Cache {
      * @since      1.0.0
      */
     abstract class CacheType extends \Framework\Datatypes\Enum {
-        const INACTIVE = 0;
-        const FILE     = 1;
-        const MEMCACHE = 2;
+        const INACTIVE = 0; /* Caching is disabled */
+        const FILE     = 1; /* Caching in files I/O */
+        const MEMCACHE = 2; /* Using Memcache for caching */
     }
 }
