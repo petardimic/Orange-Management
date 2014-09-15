@@ -6,7 +6,7 @@ namespace Framework {
      *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   App
      * @package    OMS Core
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -22,15 +22,15 @@ namespace Framework {
         public static function default_autoloader($class) {
             $class = ltrim($class, '\\');
 
-            $file = __DIR__ . '/../' . $class;
+            $file = __DIR__ . '/../' . $class . '.class.php';
             /*if ($lastNsPos = strrpos($class, '\\')) {
                 $namespace = substr($class, 0, $lastNsPos);
                 $class     = substr($class, $lastNsPos + 1);
                 $file .= str_replace('\\', '/', $namespace) . '/';
             }
 */
-            $file .= /*$class .*/
-                '.class.php';
+           // $file .= /*$class .*/
+           //     '.class.php';
 
             /* TODO: log! + make screen notification? */
             /*
