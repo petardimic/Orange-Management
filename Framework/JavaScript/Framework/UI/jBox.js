@@ -1,3 +1,4 @@
+/* Handle minimize and maximize logic for boxes */
 var nodes = document.querySelectorAll('.b > h1 .max, .b > h2 .max');
 oLib.each(nodes, function(ele) {
 	oLib.listenEvent(ele, 'click', function(evt, e) {

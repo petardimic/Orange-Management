@@ -1,3 +1,4 @@
+/* Handle tab clicks */
 var nodes = document.querySelectorAll('.tabview .tab-links a');
 oLib.each(nodes, function(ele) {
 	oLib.listenEvent(ele, 'click', function(evt, e) {

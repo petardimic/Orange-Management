@@ -1,3 +1,4 @@
+/* Handling minimizing */
 var nodes = document.querySelectorAll('thead .min');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -6,6 +7,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling maximizing */
 nodes = document.querySelectorAll('thead .max');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -14,6 +16,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling header element click */
 nodes = document.querySelectorAll('thead span');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -26,6 +29,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(2)');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -34,6 +38,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(3)');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -42,6 +47,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(4)');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -50,6 +56,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling sort close click */
 nodes = document.querySelectorAll('thead td :nth-child(5)');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
@@ -61,6 +68,7 @@ oLib.each(nodes, function(ele) {
     });
 });
 
+/* Handling filter view (creating and saving data) */
 var list_filter_arr = [
     []
 ];

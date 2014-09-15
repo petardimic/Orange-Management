@@ -1,3 +1,7 @@
+/*
+ * Handle special case link and button clicks. 
+ * This is usefull in order to support ajax calls and dynamic page changes without reloads
+ */
 var nodes = document.querySelectorAll('a, button, input[type=submit]');
 oLib.each(nodes, function(ele) {
     oLib.listenEvent(ele, 'click', function(evt, e) {
