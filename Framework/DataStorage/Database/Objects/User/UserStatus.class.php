@@ -5,8 +5,8 @@ namespace Framework\DataStorage\Database\Objects\User {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    OMS Core
+     * @category   DataStorage
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -16,9 +16,9 @@ namespace Framework\DataStorage\Database\Objects\User {
      * @since      1.0.0
      */
     abstract class UserStatus extends \Framework\Datatypes\Enum {
-        const ACTIVE    = 0;
-        const INACTIVE  = 1;
-        const BANNED    = 2;
-        const TIMEOUTED = 3;
+        const ACTIVE    = 0; /* Account is active */
+        const INACTIVE  = 1; /* Account is inactive */
+        const BANNED    = 2; /* Account is banned */
+        const TIMEOUTED = 3; /* Account is banned for a certain time */
     }
 }

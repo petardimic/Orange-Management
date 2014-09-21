@@ -8,7 +8,7 @@ namespace Framework\Auth {
      * PHP Version 5.4
      *
      * @category   Auth
-     * @package    OMS Core
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -24,7 +24,7 @@ namespace Framework\Auth {
         const WRONG_USERNAME       = 3; /* Authentication with unknown user */
         const WRONG_PERMISSION     = 4; /* User doesn't have permission to authenticate */
         const NOT_ACTIVATED        = 5; /* The user is not activated yet */
-        const WRONG_INPUT_EXCEEDED = 6; /* Too many wrong logins recentyl */
+        const WRONG_INPUT_EXCEEDED = 6; /* Too many wrong logins recently */
         const TIMEOUTED            = 7; /* User received a timeout and can not log in until a certain date */
         const BANNED               = 8; /* User is banned */
         const INACTIVE             = 9; /* User is inactive */

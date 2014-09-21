@@ -2,8 +2,8 @@
 /**
  * Global config file
  *
- * @category   Base
- * @package    OMS Core
+ * @category   Config
+ * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

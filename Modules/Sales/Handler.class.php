@@ -6,7 +6,7 @@ namespace Modules\Sales {
      * PHP Version 5.4
      *
      * @category   Base
-     * @package    OMS Core
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -59,7 +59,6 @@ namespace Modules\Sales {
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
                 case 'client':
-
                     $this->show_backend_client();
                     break;
                 case 'invoice':

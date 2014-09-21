@@ -6,7 +6,7 @@ namespace Framework {
      * PHP Version 5.4
      *
      * @category   App
-     * @package    OMS Core
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013

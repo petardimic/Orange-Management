@@ -5,8 +5,8 @@ namespace Framework\Log {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    OMS Core
+     * @category   Log
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -16,10 +16,10 @@ namespace Framework\Log {
      * @since      1.0.0
      */
     abstract class LogLevel extends \Framework\Datatypes\Enum {
-        const INFO    = 0;
-        const DEBUG   = 1;
-        const WARNING = 2;
-        const ERROR   = 3;
-        const FATAL   = 4;
+        const DEBUG    = 0; /* Everything with higher priority gets logged */
+        const INFO     = 1; /* Everything with higher priority gets logged */
+        const WARNING  = 2; /* Everything with higher priority gets logged */
+        const ERROR    = 3; /* Everything with higher priority gets logged */
+        const FATAL    = 4; /* Only this gets logged */
     }
 }

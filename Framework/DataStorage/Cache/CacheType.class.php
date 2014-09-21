@@ -8,7 +8,7 @@ namespace Framework\DataStorage\Cache {
      * PHP Version 5.4
      *
      * @category   DataStorage
-     * @package    OMS Core
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013

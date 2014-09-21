@@ -3,8 +3,8 @@
  *
  * This logic is supposed to minimize coding and support core javascript functionality.
  *
- * @category   Base
- * @package    OMS Core
+ * @category   App
+ * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

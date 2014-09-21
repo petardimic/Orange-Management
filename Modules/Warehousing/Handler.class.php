@@ -5,8 +5,8 @@ namespace Modules\Warehousing {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    OMS Core
+     * @category   Module
+     * @package    Warehousing
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -43,8 +43,6 @@ namespace Modules\Warehousing {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -56,8 +54,38 @@ namespace Modules\Warehousing {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
+                case 'article':
+                    $this->show_backend_articles();
+                    break;
+                case 'shipping':
+                    $this->show_backend_shipping();
+                    break;
+                case 'arrival':
+                    $this->show_backend_arrival();
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_articles() {
+            switch ($this->app->request->uri['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/article-list.tpl.php';
+                    break;
             }
         }
     }

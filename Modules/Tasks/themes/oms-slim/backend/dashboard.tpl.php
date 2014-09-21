@@ -1,4 +1,4 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Tasks\Handler $this */
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">

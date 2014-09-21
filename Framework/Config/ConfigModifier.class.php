@@ -9,7 +9,7 @@ namespace Framework\Config {
      * PHP Version 5.4
      *
      * @category   Config
-     * @package    OMS Core
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -58,8 +58,8 @@ namespace Framework\Config {
                 .= '/**' . PHP_EOL
                 .= ' * Global config file' . PHP_EOL
                 .= ' *' . PHP_EOL
-                .= ' * @category   Base' . PHP_EOL
-                .= ' * @package    OMS Core' . PHP_EOL
+                .= ' * @category   Config' . PHP_EOL
+                .= ' * @package    Framework' . PHP_EOL
                 .= ' * @author     OMS Development Team <dev@oms.com>' . PHP_EOL
                 .= ' * @author     Dennis Eichhorn <d.eichhorn@oms.com>' . PHP_EOL
                 .= ' * @copyright  2013' . PHP_EOL

@@ -5,8 +5,8 @@ namespace Modules\Admin {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    OMS Core
+     * @category   Module
+     * @package    Admin
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013

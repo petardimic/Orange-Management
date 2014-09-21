@@ -5,8 +5,8 @@ namespace Modules\Messages {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    OMS Core
+     * @category   Messages
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -43,8 +43,6 @@ namespace Modules\Messages {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -56,8 +54,18 @@ namespace Modules\Messages {
             }
         }
 
+        /**
+         * Shows backend module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
+                case 'dashboard': 
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/dashboard.tpl.php';
+                    break;
             }
         }
     }
