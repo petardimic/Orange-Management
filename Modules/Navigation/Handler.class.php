@@ -61,7 +61,7 @@ namespace Modules\Navigation {
                 $temp_nav  = null;
                 $this->nav = [];
 
-                $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE)');
+                $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `order` ASC');
                 $sth->bindValue(':pidA', $this->app->request->uri_hash[0], \PDO::PARAM_STR);
                 $sth->bindValue(':pidB', $this->app->request->uri_hash[1], \PDO::PARAM_STR);
                 $sth->bindValue(':pidC', $this->app->request->uri_hash[2], \PDO::PARAM_STR);
@@ -69,9 +69,6 @@ namespace Modules\Navigation {
                 $sth->bindValue(':pidE', $this->app->request->uri_hash[4], \PDO::PARAM_STR);
                 $sth->execute();
                 $temp_nav = $sth->fetchAll();
-
-                /* TODO: sort temp_nav by order (don't have to care about parents etc. will work regardless, trust me :))
-                    Maybe sort the select query. depends on performance */
 
                 foreach ($temp_nav as $link) {
                     $this->nav[$link['type']][$link['subtype']][$link['id']] = $link;

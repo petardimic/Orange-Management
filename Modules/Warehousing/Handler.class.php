@@ -88,5 +88,35 @@ namespace Modules\Warehousing {
                     break;
             }
         }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_shipping() {
+            switch ($this->app->request->uri['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/shipping-list.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_arrival() {
+            switch ($this->app->request->uri['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/arrival-list.tpl.php';
+                    break;
+            }
+        }
     }
 }

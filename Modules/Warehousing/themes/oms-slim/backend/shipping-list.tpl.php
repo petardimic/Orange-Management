@@ -7,10 +7,10 @@
     <table class="t t-1 c27-1 c27" id="i27-1-1">
         <thead>
         <tr>
-            <th colspan="6" class="lT">
+            <th colspan="10" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[27]['Articles']; ?></h1>
+                <h1><?= \Framework\Localization\Localization::$lang[27]['Shipping']; ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -19,12 +19,16 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Matchcode'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Name'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Description'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Amount'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Stock'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[27]['Location'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Type'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Reference'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Consignee'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Street'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['City'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Zip'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Country'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Order'], 'sort' => 0],
+                    ['name' => \Framework\Localization\Localization::$lang[27]['Date'], 'sort' => 0],
                 ]
             );
             ?>
