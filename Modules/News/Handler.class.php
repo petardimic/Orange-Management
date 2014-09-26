@@ -214,33 +214,10 @@ namespace Modules\News {
         }
 
         public function show_content_backend() {
-            /* TODO: Page title doesn't work here, needs to move to the init. In the init it only should get initialized if != api */
-            switch ($data['l3']) {
-                case 'front':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsDashboard'];
-
+            switch ($this->app->request->uri['l3']) {
+                case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-front.tpl.php';
-                    break;
-                case 'single':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['News'] . ' ';
-
-                    $news = null;
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-single.tpl.php';
-                    break;
-                case 'editor':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['NewsEditor'];
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-editor.tpl.php';
-                    break;
-                case 'archive':
-                    $this->model->data['page::title'] = \Framework\Localization\Localization::$lang[7]['Archive'];
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-dashboard.tpl.php';
                     break;
             }
         }

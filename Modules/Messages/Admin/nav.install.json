@@ -12,7 +12,7 @@
         "l4": null,
         "l5": null,
         "icon": "fa fa-envelope",
-        "order": 1,
+        "order": 10,
         "from": 1001200000,
         "permission": null,
         "parent": 0,
@@ -20,7 +20,7 @@
             {
                 "id": 1001202001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                "type": 1,
+                "type": 3,
                 "subtype": 1,
                 "name": "Inbox",
                 "l0": "backend",
@@ -39,7 +39,7 @@
             {
                 "id": 1001203001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                "type": 1,
+                "type": 3,
                 "subtype": 1,
                 "name": "Outbox",
                 "l0": "backend",
@@ -58,7 +58,7 @@
             {
                 "id": 1001204001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                "type": 1,
+                "type": 3,
                 "subtype": 1,
                 "name": "Trash",
                 "l0": "backend",
@@ -77,7 +77,7 @@
             {
                 "id": 1001205001,
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-                "type": 1,
+                "type": 3,
                 "subtype": 1,
                 "name": "Spam",
                 "l0": "backend",

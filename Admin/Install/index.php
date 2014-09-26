@@ -12,6 +12,24 @@ $toInstall = [
     'Content',
     'GlobalContent',
     'API',
+    /* TESTING */
+    'News',
+    'Tasks',
+    'Profile',
+    'Production',
+    'Purchase',
+    'Controlling',
+    'RiskManagement',
+    'Sales',
+    'Surveys',
+    'Marketing',
+    'Media',
+    'Messages',
+    'HumanResources',
+    'Calendar',
+    'Accounting',
+    'Warehousing',
+    'ProjectManagement',
 ];
 
 $instHOBJ->install_core();

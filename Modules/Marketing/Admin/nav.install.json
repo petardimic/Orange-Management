@@ -12,7 +12,7 @@
         "l4": null,
         "l5": null,
         "icon": "fa fa-paint-brush",
-        "order": 1,
+        "order": 60,
         "from": 1001900000,
         "permission": null,
         "parent": 1000201001,

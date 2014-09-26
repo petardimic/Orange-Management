@@ -12,7 +12,7 @@
         "l4": null,
         "l5": null,
         "icon": "fa fa-exclamation-triangle",
-        "order": 1,
+        "order": 100,
         "from": 1002800000,
         "permission": null,
         "parent": 1000201001,

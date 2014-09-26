@@ -12,7 +12,7 @@
         "l4": null,
         "l5": null,
         "icon": "fa fa-question-circle",
-        "order": 1,
+        "order": 80,
         "from": 1002900000,
         "permission": null,
         "parent": 1000201001,

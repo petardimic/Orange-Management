@@ -62,7 +62,7 @@ namespace Modules\Messages {
          */
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
-                case 'dashboard': 
+                case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/dashboard.tpl.php';
                     break;
