@@ -15,7 +15,7 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Application implements \Framework\Pattern\Singleton {
+    class Application {
         /**
          * Database object
          *
@@ -81,14 +81,6 @@ namespace Framework {
         private $theme = null;
 
         /**
-         * Instance
-         *
-         * @var \Framework\DataStorage\Cache\Cache
-         * @since 1.0.0
-         */
-        protected static $instance = null;
-
-        /**
          * Constructor
          *
          * @param array $dbdata DB data used for connection
@@ -97,7 +89,7 @@ namespace Framework {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function __construct($dbdata = null, $page = null) {
+        public function __construct($dbdata = null, $page = null) {
             $this->request = new \Framework\Http\Request();
             $this->db      = new \Framework\DataStorage\Database\Database($dbdata);
 
@@ -125,26 +117,6 @@ namespace Framework {
                 header('Retry-After: 300');
                 include __DIR__ . '/../Content/Error/503.php';
             }
-        }
-
-        /**
-         * Returns instance
-         *
-         * @param array $dbdata DB data used for connection
-         * @param array $page   Page data
-         *
-         * @return \Framework\Controller\Controller
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        /* TODO: This shouldn't be a singleton ?!?!? */
-        public static function getInstance($dbdata = null, $page = null) {
-            if (self::$instance === null) {
-                self::$instance = new self($dbdata, $page);
-            }
-
-            return self::$instance;
         }
 
         /**

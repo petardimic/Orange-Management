@@ -73,8 +73,7 @@ namespace Framework\Config {
                 $sth->execute();
                 $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
 
-                /* TODO: this overwrites old cfgs, which shouldn't happen */
-                $this->app->cache->push('cfg', $cfgs, false);
+                $this->app->cache->push('cfg:', $cfgs, false);
                 $this->config += $cfgs;
             }
         }

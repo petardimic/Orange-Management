@@ -1,4 +1,5 @@
 <?php
+/* TODO: Think about implementing ThemeAbstract.class.php for modules. This can be used for javascript, css and lang loading */
 namespace Framework\Module {
     /**
      * Module abstraction class
@@ -55,6 +56,14 @@ namespace Framework\Module {
          * @since 1.0.0
          */
         protected $app = null;
+
+        /**
+         * Javascript
+         *
+         * @var mixed
+         * @since 1.0.0
+         */
+        public $js = false;
 
         /**
          * Constructor

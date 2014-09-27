@@ -37,6 +37,22 @@ namespace Framework\Http {
         ];
 
         /**
+         * Browser type
+         *
+         * @var \Framework\Http\BrowserType
+         * @since 1.0.0
+         */
+        public $browser = null;
+
+        /**
+         * OS type
+         *
+         * @var \Framework\Http\OSType
+         * @since 1.0.0
+         */
+        public $os = null;
+
+        /**
          * Request type
          *
          * @var \Framework\Http\RequestType
@@ -115,6 +131,56 @@ namespace Framework\Http {
                 $this->generate_uri_hash([$this->uri['l1'], $this->uri['l2'], $this->uri['l3'], $this->uri['l4']]),
                 $this->generate_uri_hash([$this->uri['l1'], $this->uri['l2'], $this->uri['l3'], $this->uri['l4'], $this->uri['l5']]),
             ];
+        }
+
+        /**
+         * Determine request browser
+         *
+         * @return \Framework\Http\BrowserType
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function get_browser() {
+            if($this->browser == null) {
+                $arr = BrowserType::getConstants();
+
+                $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
+
+                foreach($arr as $key => $val) {
+                    if(stripos($http_request_type, $val)) {
+                        $this->browser = $val;
+                        break;
+                    }
+                }
+            }
+
+            return $this->browser;
+        }
+
+        /**
+         * Determine request OS
+         *
+         * @return \Framework\Http\OSType
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function get_os() {
+            if($this->os == null) {
+                $arr = OSType::getConstants();
+
+                $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
+
+                foreach($arr as $key => $val) {
+                    if(stripos($http_request_type, $val)) {
+                        $this->os = $val;
+                        break;
+                    }
+                }
+            }
+
+            return $this->os;
         }
 
         /**

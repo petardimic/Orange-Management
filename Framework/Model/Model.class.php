@@ -49,23 +49,27 @@ namespace Framework\Model {
             /* TODO: Create page specific meta keyword tags maybe even create a meta tag class */
             self::$content['page:desc']     = '';
             self::$content['page:keywords'] = '';
+
             /* Everyone */
             echo '<meta name="application-name" content="' . self::$content['core:oname'] . '"/>'
                 . '<meta name="description" content="' . self::$content['page:desc'] . '">'
                 . '<meta name="keywords" content="' . self::$content['page:keywords'] . '">';
 
-            /* Windows8 */
-            echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
-                . '<meta name="msapplication-square70x70logo" content="/Content/Startup/win_tiny.png"/>'
-                . '<meta name="msapplication-square150x150logo" content="/Content/Startup/win_square.png"/>'
-                . '<meta name="msapplication-wide310x150logo" content="/Content/Startup/win_wide.png"/>'
-                . '<meta name="msapplication-square310x310logo" content="/Content/Startup/win_large.png"/>';
+            $os = self::$app->request->get_os();
 
-            /* iOS */
-            echo '<link rel="apple-touch-icon" href="/Content/Startup/apple_icon.png">'
-                . '<link rel="apple-touch-startup-image" href="/Content/Startup/apple_startup.png">'
-                . '<meta name="apple-mobile-web-app-capable" content="yes">'
-                . '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+            /* OS specific */
+            if($os === \Framework\Http\OSType::WINDOWS_8 || $os === \Framework\Http\OSType::WINDOWS_81) {
+                echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
+                    . '<meta name="msapplication-square70x70logo" content="/Content/Startup/win_tiny.png"/>'
+                    . '<meta name="msapplication-square150x150logo" content="/Content/Startup/win_square.png"/>'
+                    . '<meta name="msapplication-wide310x150logo" content="/Content/Startup/win_wide.png"/>'
+                    . '<meta name="msapplication-square310x310logo" content="/Content/Startup/win_large.png"/>';
+            } elseif ($os === \Framework\Http\OSType::IPHONE || $os === \Framework\Http\OSType::MAC_OS_X || $os === \Framework\Http\OSType::MAC_OS_X_2 || $os === \Framework\Http\OSType::IPAD) {
+                echo '<link rel="apple-touch-icon" href="/Content/Startup/apple_icon.png">'
+                    . '<link rel="apple-touch-startup-image" href="/Content/Startup/apple_startup.png">'
+                    . '<meta name="apple-mobile-web-app-capable" content="yes">'
+                    . '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+            }
 
             /* Everyone */
             echo '<link rel="shortcut icon" href="/Content/Startup/favicon.ico">'
@@ -102,6 +106,12 @@ namespace Framework\Model {
          */
         public static function load_footer() {
             echo '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
+
+            //var_dump(self::$app->modules->running);
+
+            foreach(self::$app->modules->running as $key => $val) {
+                var_dump($val);
+            }
 
             ob_flush();
         }

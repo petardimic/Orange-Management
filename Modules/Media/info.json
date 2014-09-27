@@ -79,6 +79,6 @@
         }
     ],
     "lang": true,
-    "js": true,
+    "js": false,
     "css": false
 }

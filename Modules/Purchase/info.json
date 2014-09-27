@@ -50,6 +50,6 @@
         }
     ],
     "lang": true,
-    "js": true,
+    "js": false,
     "css": true
 }

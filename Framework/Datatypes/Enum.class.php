@@ -34,7 +34,7 @@ namespace Framework\Datatypes {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private static function getConstants() {
+        public static function getConstants() {
             if (self::$constCache === null) {
                 $reflect          = new \ReflectionClass(get_called_class());
                 self::$constCache = $reflect->getConstants();
