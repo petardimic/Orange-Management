@@ -4,6 +4,11 @@
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
+            <button><?= \Framework\Localization\Localization::$lang[11]['New']; ?></button>
+        </div>
+    </div>
+    <div class="b b-5 c3-2 c3" id="i3-2-5">
+        <div class="bc-1">
             <ul class="l-1">
                 <li><?= \Framework\Localization\Localization::$lang[11]['Interval']; ?>
                 <li><select>
@@ -28,28 +33,22 @@
             <!-- @formatter:off -->
             <table class="tc-1">
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['Received']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['Received']; ?></label>
                     <td>0
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['Created']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['Created']; ?></label>
                     <td>0
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['Forwarded']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['Forwarded']; ?></label>
                     <td>0
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['Redirected']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['Redirected']; ?></label>
                     <td>0
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['AverageAmount']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['AverageAmount']; ?></label>
                     <td>0
                 <tr>
-                    <th>
-                        <label><?= \Framework\Localization\Localization::$lang[11]['AverageProcessTime']; ?></label>
+                    <th><label><?= \Framework\Localization\Localization::$lang[11]['AverageProcessTime']; ?></label>
                     <td>0 Min.
             </table>
             <!-- @formatter:on -->

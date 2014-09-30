@@ -17,7 +17,7 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => \Framework\Localization\Localization::$lang[4]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[4]['Name'], 'sort' => 1, 'full' => true],
                         ['name' => \Framework\Localization\Localization::$lang[4]['Type'], 'sort' => 0],
                         ['name' => \Framework\Localization\Localization::$lang[4]['Size'], 'sort' => 0],
                         ['name' => \Framework\Localization\Localization::$lang[4]['Created'], 'sort' => 0],
@@ -27,7 +27,7 @@
                 ?>
                 <tbody>
                 <?php
-                /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
+                /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts *//*
                 $data = $accounts->account_list_get();
                 $url['level'] = array_slice($this->app->request->uri, 0, 4);
                 $url['level'][] = 'single';
@@ -37,10 +37,10 @@
                     $data['list'],
                     ['status', 'id', 'name1', 'lactive', 'created'],
                     $url
-                );
+                );*/
                 ?>
                 <tfoot>
     <tr>
         <td colspan="5" class="cT">
-            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+            <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
 </table>

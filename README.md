@@ -5,7 +5,7 @@ All install and developer instructions can be found inside the /docs directory.
 ### Project ###
 
 * Orange Management
-* Version 0.0.48
+* Version 0.0.80
 * (c) 2013 - Dennis Eichhorn
 
 ### Interested in using our product? ###
@@ -31,7 +31,7 @@ We are currently looking for new members on our development team in various area
 
 ### Version Info ###
 
-[0.0.1] - [0.0.55]: Early development phase
+[0.0.1] - [0.0.80]: Early development phase
 
 ### Contact ###
 

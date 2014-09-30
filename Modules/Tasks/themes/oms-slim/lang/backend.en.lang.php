@@ -10,6 +10,7 @@ $MODLANG[11] = [
     "Group"              => "Group",
     "Interval"           => "Interval",
     "Month"              => "Month",
+    "New"                => "New",
     "Open"               => "Open",
     "Priority"           => "Priority",
     "Received"           => "Received",

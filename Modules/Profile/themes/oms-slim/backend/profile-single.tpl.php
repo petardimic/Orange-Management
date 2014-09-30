@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="b-6" id="i3-2-2">
-        <div class="b b-5 c3-2 c3" id="i3-2-3">
+        <div class="b b-2 c3-2 c3" id="i3-2-3">
             <h1>
                 <?= \Framework\Localization\Localization::$lang[3]['Profile']; /** @var \Modules\Profile\Handler $this */ ?>
                 <i class="fa fa-minus min"></i>
@@ -28,62 +28,37 @@
             </h1>
 
             <div class="bc-1">
-                <ul class="l-2">
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Name']; ?>
-                    <li><span itemprop="familyName">Duck</span>, <span itemprop="givenName">Donald</span>
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Occupation']; ?>
-                    <li itemprop="jobTitle">Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Birthday']; ?>
-                    <li itemprop="birthDate">Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Ranks']; ?>
-                    <li itemprop="memberOf">Test
-                </ul>
-            </div>
-        </div>
-        <div class="b b-5 c3-2 c3" id="i3-2-4">
-            <h1>
-                <?= \Framework\Localization\Localization::$lang[3]['ContactInformation']; ?>
-                <i class="fa fa-minus min"></i>
-                <i class="fa fa-plus max vh"></i>
-            </h1>
-
-            <div class="bc-1">
-                <ul class="l-2">
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Email']; ?>
-                    <li itemprop="email">Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Phone']; ?>
-                    <li itemprop="telephone">Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Skype']; ?>
-                    <li itemprop="telephone">Test
-                </ul>
-            </div>
-        </div>
-        <div class="b b-5 c3-2 c3" id="i3-2-5">
-            <h1>
-                <?= \Framework\Localization\Localization::$lang[3]['Community']; ?>
-                <i class="fa fa-minus min"></i>
-                <i class="fa fa-plus max vh"></i>
-            </h1>
-
-            <div class="bc-1">
-                <ul class="l-2">
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Registered']; ?>
-                    <li>Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['LastLogin']; ?>
-                    <li>Test
-                    <li>
-                        <?= \Framework\Localization\Localization::$lang[3]['Status']; ?>
-                    <li>Test
-                </ul>
+                 <!-- @formatter:off -->
+                <table class="tc-1">
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Name']; ?>
+                        <td><span itemprop="familyName">Duck</span>, <span itemprop="givenName">Donald</span>
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Occupation']; ?>
+                        <td itemprop="jobTitle">Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Birthday']; ?>
+                        <td itemprop="birthDate">Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Ranks']; ?>
+                        <td itemprop="memberOf">Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Email']; ?>
+                        <td itemprop="email">Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Phone']; ?>
+                        <td itemprop="telephone">Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Registered']; ?>
+                        <td>Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['LastLogin']; ?>
+                        <td>Test
+                    <tr>
+                        <th><?= \Framework\Localization\Localization::$lang[3]['Status']; ?>
+                        <td>Test
+                </table>
+                <!-- @formatter:on -->
             </div>
         </div>
     </div>

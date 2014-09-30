@@ -23,7 +23,7 @@ namespace Modules\Tasks {
         public $desc = null;
         public $status = null;
 
-        public $TaskElements = [];
+        private $TaskElements = [];
 
         public function __construct($id) {
             $this->id = $id;
@@ -31,6 +31,12 @@ namespace Modules\Tasks {
 
         public function add_element($element) {
             $this->TaskElements[] = $element;
+        }
+
+        public function remove_element($id) {
+            if(array_key_exists($id, $this->TaskElements)) {
+                unset($this->TaskElements[$id]);
+            }
         }
     }
 }

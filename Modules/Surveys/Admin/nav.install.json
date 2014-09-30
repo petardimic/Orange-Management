@@ -16,6 +16,45 @@
         "from": 1000800000,
         "permission": null,
         "parent": 1000201001,
-        "children": []
+        "children": [
+            {
+                "id": 1000802001,
+                "pid": "6c941ab5b60c49df3c7d50b935fd213c060a6664",
+                "type": 3,
+                "subtype": 1,
+                "name": "Surveys",
+                "l0": "backend",
+                "l1": "survey",
+                "l2": "dashboard",
+                "l3": null,
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 1,
+                "from": 1000800000,
+                "permission": null,
+                "parent": 1000801001,
+                "children": []
+            },
+            {
+                "id": 1000803001,
+                "pid": "6c941ab5b60c49df3c7d50b935fd213c060a6664",
+                "type": 3,
+                "subtype": 1,
+                "name": "Create",
+                "l0": "backend",
+                "l1": "survey",
+                "l2": "create",
+                "l3": null,
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 5,
+                "from": 1000800000,
+                "permission": null,
+                "parent": 1000801001,
+                "children": []
+            }
+        ]
     }
 ]

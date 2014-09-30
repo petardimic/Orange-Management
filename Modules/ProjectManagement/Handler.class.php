@@ -58,6 +58,10 @@ namespace Modules\ProjectManagement {
 
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/projectmanagement-list.tpl.php';
+                    break;
             }
         }
     }

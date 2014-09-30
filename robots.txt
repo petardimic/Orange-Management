@@ -4,3 +4,5 @@ Disallow: /Admin
 Disallow: /Cache
 Disallow: /Dev
 Disallow: /Docs
+Disallow: /Framework
+Disallow: /Modules
