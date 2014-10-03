@@ -35,28 +35,46 @@
                         <td><span itemprop="familyName">Duck</span>, <span itemprop="givenName">Donald</span>
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Occupation']; ?>
-                        <td itemprop="jobTitle">Test
+                        <td itemprop="jobTitle">Sailor
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Birthday']; ?>
-                        <td itemprop="birthDate">Test
+                        <td itemprop="birthDate">06.09.1934
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Ranks']; ?>
-                        <td itemprop="memberOf">Test
+                        <td itemprop="memberOf">Gosling
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Email']; ?>
-                        <td itemprop="email">Test
+                        <td itemprop="email"><a href="mailto:>donald.duck@email.com<">donald.duck[at]email.com</a>
+                    <tr>
+                        <th>Address
+                        <td>
+                    <tr>
+                        <th class="vT">Private
+                        <td itemprop="address">SMALLSYS INC<br>795 E DRAGRAM<br>TUCSON AZ 85705<br>USA
+                    <tr>
+                        <th class="vT">Work
+                        <td itemprop="address">SMALLSYS INC<br>795 E DRAGRAM<br>TUCSON AZ 85705<br>USA
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Phone']; ?>
-                        <td itemprop="telephone">Test
+                        <td>
+                    <tr>
+                        <th>Private
+                        <td itemprop="telephone">+01 12345-4567
+                    <tr>
+                        <th>Mobile
+                        <td itemprop="telephone">+01 12345-4567
+                    <tr>
+                        <th>Work
+                        <td itemprop="telephone">+01 12345-4567
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Registered']; ?>
-                        <td>Test
+                        <td>09.06.1934
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['LastLogin']; ?>
-                        <td>Test
+                        <td>01.04.2015
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Status']; ?>
-                        <td>Test
+                        <td><span class="green">Active</span>
                 </table>
                 <!-- @formatter:on -->
             </div>

@@ -34,8 +34,7 @@
                 "from": 1002000000,
                 "permission": null,
                 "parent": 1002001001,
-                "children": [
-                ]
+                "children": []
             },
             {
                 "id": 1002003001,
@@ -50,12 +49,11 @@
                 "l4": null,
                 "l5": null,
                 "icon": null,
-                "order": 1,
+                "order": 5,
                 "from": 1002000000,
                 "permission": null,
                 "parent": 1002001001,
-                "children": [
-                ]
+                "children": []
             }
         ]
     }

@@ -10,7 +10,7 @@
 
     <div class="tab-content">
         <div class="tab tab-1 active">
-            <div class="b b-2 c16-1 c16" id="i16-1-1">
+            <div class="b b-1 c16-1 c16" id="i16-1-1">
                 <h1>
                     <?= \Framework\Localization\Localization::$lang[16]['Article']; ?>
                     <i class="fa fa-minus min"></i>
@@ -23,11 +23,6 @@
                             <li>
                                 <label
                                     for="i-status"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                            <li>
-                                <input name="active" class="i-1 t-i" id="i-active" type="text">
-                            <li>
-                                <label
-                                    for="i-type"><?= \Framework\Localization\Localization::$lang[16]['Name']; ?></label>
                             <li>
                                 <input name="active" class="i-1 t-i" id="i-active" type="text">
                             <li>
@@ -56,7 +51,44 @@
                 </div>
             </div>
 
-            <div class="b b-2 c16-1 c16" id="i16-1-2">
+            <div class="b b-1 c16-1 c16" id="i16-1-1">
+                <h1>
+                    <?= \Framework\Localization\Localization::$lang[16]['Localization']; ?>
+                    <i class="fa fa-minus min"></i>
+                    <i class="fa fa-plus max vh"></i>
+                </h1>
+
+                <div class="bc-1">
+                    <form class="f-1">
+                        <ul class="l-1">
+                            <li>
+                                <label
+                                    for="i-status"><?= \Framework\Localization\Localization::$lang[16]['Language']; ?></label>
+                            <li>
+                                <select>
+                                    <?php require __DIR__ . '/../../../sales_price_names.php';
+                                    foreach ($SalesPriceNames as $key => $val) {
+                                        echo '<option value="' . $key . '">' . \Framework\Localization\Localization::$lang[16][$val];
+                                    }
+                                    ?>
+                                </select>
+                            <li>
+                                <label
+                                    for="i-type"><?= \Framework\Localization\Localization::$lang[16]['Name']; ?></label>
+                            <li>
+                                <input name="active" class="i-1 t-i" id="i-active" type="text">
+                            <li>
+                                <label
+                                    for="i-active"><?= \Framework\Localization\Localization::$lang[16]['Description']; ?></label>
+                            <li>
+                                <textarea name="active" class="i-1 t-i" id="i-active"></textarea>
+                            <li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+            <div class="b b-1 c16-1 c16" id="i16-1-2">
                 <h1>
                     <?= \Framework\Localization\Localization::$lang[16]['Price']; ?>
                     <i class="fa fa-minus min"></i>

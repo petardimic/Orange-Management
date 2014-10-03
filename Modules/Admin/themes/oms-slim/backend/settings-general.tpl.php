@@ -9,7 +9,7 @@
     </h1>
 
     <div class="bc-1">
-        <form class="f-1">
+        <form class="f-1" id="f-page">
             <i class="bt-1 p-3 vh i-empty"><?= \Framework\Localization\Localization::$lang[0]['e:empty']; ?></i>
             <ul class="l-1">
                 <li>
@@ -62,7 +62,13 @@
                         <?= \Framework\Localization\Localization::$lang[1]['i:mail']; ?>
                     </i>
                 <li>
-                    <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Submit']; ?>">
+                    <button data-http="PUT" data-request="FORM" data-id='["f-page"]' data-uri="<?=
+                        $this->app->request->generate_uri([
+                            $this->app->request->uri['l0'],
+                            'api',
+                            'admin',
+                            'settings'
+                        ]); ?>"><?= \Framework\Localization\Localization::$lang[0]['Submit']; ?></button>
             </ul>
         </form>
     </div>
