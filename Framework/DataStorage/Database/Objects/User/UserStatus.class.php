@@ -20,5 +20,6 @@ namespace Framework\DataStorage\Database\Objects\User {
         const INACTIVE  = 1; /* Account is inactive */
         const BANNED    = 2; /* Account is banned */
         const TIMEOUTED = 3; /* Account is banned for a certain time */
+        const VIRTUAL   = 4; /* Account can not log in */
     }
 }

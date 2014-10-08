@@ -67,6 +67,9 @@ namespace Modules\Sales {
                 case 'article':
                     $this->show_backend_article();
                     break;
+                case 'analysis':
+                    $this->show_backend_analysis();
+                    break;
             }
         }
 
@@ -97,7 +100,7 @@ namespace Modules\Sales {
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-create.tpl.php';
                     break;
             }
         }
@@ -125,6 +128,10 @@ namespace Modules\Sales {
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-single.tpl.php';
                     break;
             }
+        }
+
+        public function show_backend_analysis() {
+            echo 'eeeeeeeeeeee';
         }
     }
 }

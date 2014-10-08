@@ -83,6 +83,7 @@
                             <li>
                                 <textarea name="active" class="i-1 t-i" id="i-active"></textarea>
                             <li>
+                                <button><?= \Framework\Localization\Localization::$lang[0]['Add']; ?></button>
                         </ul>
                     </form>
                 </div>

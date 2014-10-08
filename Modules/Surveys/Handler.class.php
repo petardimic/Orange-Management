@@ -62,6 +62,10 @@ namespace Modules\Surveys {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/surveys-dashboard.tpl.php';
                     break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/surveys-create.tpl.php';
+                    break;
             }
         }
     }

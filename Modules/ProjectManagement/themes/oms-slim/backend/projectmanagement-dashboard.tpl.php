@@ -1,14 +1,14 @@
 <?php /** @var \Modules\Admin\Admin $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000801001]);
+\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1001701001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
     <tr>
-        <th colspan="3" class="lT">
+        <th colspan="4" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= \Framework\Localization\Localization::$lang[8]['Surveys'] ?></h1>
+            <h1><?= \Framework\Localization\Localization::$lang[17]['ProjectManagement'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -17,9 +17,10 @@
                 \Framework\Model\Model::generate_table_header_view(
                     [
                         ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[8]['Title'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[8]['Start'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[8]['End'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[17]['Title'], 'sort' => 0, 'full' => true],
+                        ['name' => \Framework\Localization\Localization::$lang[17]['Status'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[17]['Start'], 'sort' => 0],
+                        ['name' => \Framework\Localization\Localization::$lang[17]['End'], 'sort' => 0],
                     ]
                 );
                 ?>
@@ -40,6 +41,6 @@
                 ?>
                 <tfoot>
     <tr>
-        <td colspan="4" class="cT">
+        <td colspan="5" class="cT">
             <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
 </table>

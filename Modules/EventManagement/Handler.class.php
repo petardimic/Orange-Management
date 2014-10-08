@@ -1,7 +1,7 @@
 <?php
-namespace Modules\ProjectManagement {
+namespace Modules\EventManagement {
     /**
-     * Sales class
+     * Event Management class
      *
      * PHP Version 5.4
      *

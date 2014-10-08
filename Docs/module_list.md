@@ -40,7 +40,7 @@
 * 1003900000 - OMS Teachers
 * 1004000000 - OMS Forums
 * 1004100000 - OMS Content
-* 1004200000 - OMS Company *** 
+* 1004200000 - OMS Event Management 
 * 1004300000 - OMS Global
 * 1004400000 - OMS API
 * 1004500000 - OMS Markdown
