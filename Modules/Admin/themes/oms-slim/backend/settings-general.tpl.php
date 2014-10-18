@@ -63,12 +63,12 @@
                     </i>
                 <li>
                     <button data-http="PUT" data-request="FORM" data-id='["f-page"]' data-uri="<?=
-                        $this->app->request->generate_uri([
-                            $this->app->request->uri['l0'],
-                            'api',
-                            'admin',
-                            'settings'
-                        ]); ?>"><?= \Framework\Localization\Localization::$lang[0]['Submit']; ?></button>
+                    $this->app->request->generate_uri([
+                        $this->app->request->uri['l0'],
+                        'api',
+                        'admin',
+                        'settings'
+                    ]); ?>"><?= \Framework\Localization\Localization::$lang[0]['Submit']; ?></button>
             </ul>
         </form>
     </div>

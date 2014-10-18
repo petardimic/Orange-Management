@@ -219,6 +219,14 @@ namespace Modules\News {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes' . $this->theme_path . '/backend/news-dashboard.tpl.php';
                     break;
+                case 'archive':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-archive.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/news-create.tpl.php';
+                    break;
             }
         }
     }

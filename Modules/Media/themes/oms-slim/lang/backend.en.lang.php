@@ -1,12 +1,12 @@
 <?php
 $MODLANG[4] = [
-    "Created"     => "Created",
+    "Created"  => "Created",
     "Data"     => "Data",
     "Media"    => "Media",
-    "Name"    => "Name",
+    "Name"     => "Name",
     "Owner"    => "Owner",
     "Preview"  => "Preview",
     "Settings" => "Settings",
-    "Size" => "Size",
-    "Type" => "Type",
+    "Size"     => "Size",
+    "Type"     => "Type",
 ];

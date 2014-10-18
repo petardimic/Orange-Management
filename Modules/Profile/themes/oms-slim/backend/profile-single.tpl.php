@@ -1,4 +1,5 @@
-<?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->uri['id'], $this->app); ?>
+<?php /** @var \Modules\Profile\Handler $this */
+$account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->uri['id'], $this->app); ?>
 <div itemscope itemtype="http://schema.org/Person">
     <div class="b-7" id="i3-2-1">
         <div class="b-5" id="i3-2-4">
@@ -6,18 +7,7 @@
                 <img src="/Modules/Profile/themes/oms-slim/backend/img/profile-default-small.jpg" itemprop="image">
             </div>
         </div>
-        <div class="b b-5 c3-2 c3" id="i3-2-5">
-            <h2>
-                <?= \Framework\Localization\Localization::$lang[3]['Profile']; ?>
-                <i class="fa fa-minus min"></i>
-                <i class="fa fa-plus max vh"></i>
-            </h2>
-
-            <div class="bc-1">
-                <ul class="l-1">
-                </ul>
-            </div>
-        </div>
+        <?php \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT_SIDE, 1000301001]); ?>
     </div>
     <div class="b-6" id="i3-2-2">
         <div class="b b-2 c3-2 c3" id="i3-2-3">
@@ -28,7 +18,7 @@
             </h1>
 
             <div class="bc-1">
-                 <!-- @formatter:off -->
+                <!-- @formatter:off -->
                 <table class="tc-1">
                     <tr>
                         <th><?= \Framework\Localization\Localization::$lang[3]['Name']; ?>

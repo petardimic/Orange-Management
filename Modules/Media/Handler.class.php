@@ -73,5 +73,48 @@ namespace Modules\Media {
                     break;
             }
         }
+
+        /**
+         * Handle api call
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_api() {
+            switch ($this->app->request->type) {
+                case \Framework\Http\RequestType::PUT:
+                    $this->api_media_put();
+                    break;
+                default:
+                    return false;
+            }
+
+            return true;
+        }
+
+        private function api_media_put() {
+            $this->upload_file();
+        }
+
+        private function upload_file() {
+            $upload_dir = './tmp/';
+            $file_count = count($_FILES['user_file']['name']);
+
+            for ($i = 0; $i < $file_count; $i++) {
+                $upload_file = $upload_dir . basename($_FILES['user_file']['name'][$i]);
+
+                if (!preg_match('/(gif|jpg|jpeg|png)$/', $_FILES['user_file']['name'][$i])) {
+                    // not allowed
+                } else {
+                    if (is_uploaded_file($_FILES['user_file']['tmp_name'][$i])) {
+                        if (!move_uploaded_file($_FILES['user_file']['tmp_name'][$i], $upload_file)) {
+                            // Failure
+                        }
+                    } else {
+                        // ERROR
+                    }
+                }
+            }
+        }
     }
 }

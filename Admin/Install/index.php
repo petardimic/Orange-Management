@@ -30,6 +30,7 @@ $toInstall = [
     'Accounting',
     'Warehousing',
     'ProjectManagement',
+    'EventManagement',
 ];
 
 $instHOBJ->install_core();

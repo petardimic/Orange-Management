@@ -58,6 +58,10 @@ namespace Modules\Calendar {
 
         public function show_content_backend() {
             switch ($this->app->request->uri['l3']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/calendar-dashboard.tpl.php';
+                    break;
             }
         }
     }

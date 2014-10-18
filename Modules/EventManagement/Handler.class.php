@@ -60,11 +60,11 @@ namespace Modules\EventManagement {
             switch ($this->app->request->uri['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/projectmanagement-dashboard.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/eventmanagement-dashboard.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/projectmanagement-create.tpl.php';
+                    include __DIR__ . '/themes' . $this->theme_path . '/backend/eventmanagement-create.tpl.php';
                     break;
             }
         }

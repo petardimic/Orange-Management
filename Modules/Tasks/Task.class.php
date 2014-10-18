@@ -34,7 +34,7 @@ namespace Modules\Tasks {
         }
 
         public function remove_element($id) {
-            if(array_key_exists($id, $this->TaskElements)) {
+            if (array_key_exists($id, $this->TaskElements)) {
                 unset($this->TaskElements[$id]);
             }
         }
