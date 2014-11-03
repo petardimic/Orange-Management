@@ -1,5 +1,5 @@
 <?php
-/** @var \Modules\Navigation\Navigation $this */
+/** @var \Modules\Navigation\Handler $this */
 
 /* Looping through all links */
 if (isset($this->nav[3])) {

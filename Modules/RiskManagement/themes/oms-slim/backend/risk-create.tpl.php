@@ -13,10 +13,14 @@
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Title']; ?></label>
             <li><input type="text">
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Description']; ?></label>
-            <li><input type="text">
+            <li><textarea></textarea>
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Responsible']; ?></label>
             <li><input type="text">
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Unit']; ?></label>
+            <li><input type="text">
+            <li><label><?= \Framework\Localization\Localization::$lang[30]['Department']; ?></label>
+            <li><input type="text">
+            <li><label><?= \Framework\Localization\Localization::$lang[30]['Category']; ?></label>
             <li><input type="text">
         </ul>
     </div>
@@ -36,10 +40,6 @@
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Damage']; ?></label>
             <li><input type="text">
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Parent']; ?></label>
-            <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Department']; ?></label>
-            <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Category']; ?></label>
             <li><input type="text">
             <li><label><?= \Framework\Localization\Localization::$lang[30]['Process']; ?></label>
             <li><input type="text">

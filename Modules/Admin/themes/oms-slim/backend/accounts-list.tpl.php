@@ -1,4 +1,4 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Admin\Handler $this */
 \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000104001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 

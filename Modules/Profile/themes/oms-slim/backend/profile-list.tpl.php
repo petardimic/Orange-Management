@@ -1,4 +1,4 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Profile\Handler $this */
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">

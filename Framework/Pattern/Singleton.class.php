@@ -16,6 +16,14 @@ namespace Framework\Pattern {
      * @since      1.0.0
      */
     interface Singleton {
+        /**
+         * @param \Framework\Application $app Application reference
+         *
+         * @return Singleton
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function getInstance($app);
     }
 }

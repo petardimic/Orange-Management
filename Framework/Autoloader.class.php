@@ -1,6 +1,8 @@
 <?php
 
 namespace Framework {
+    spl_autoload_register('\Framework\Autoloader::default_autoloader');
+
     /**
      * Autoloader class
      *
@@ -16,9 +18,15 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    spl_autoload_register('\Framework\Autoloader::default_autoloader');
-
     class Autoloader {
+        /**
+         * Loading classes by namespace + class name
+         *
+         * @param string $class Class path
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function default_autoloader($class) {
             $class = ltrim($class, '\\');
 

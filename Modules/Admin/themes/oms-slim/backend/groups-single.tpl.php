@@ -1,4 +1,4 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Admin\Handler $this */ /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
 \Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
@@ -10,26 +10,17 @@
 
     <div class="bc-1">
         <form class="f-1">
+            <!-- @formatter:off -->
             <ul class="l-1">
-                <li>
-                    <label for="i-id"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                <li>
-                    <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?=
-                           /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
-                           $group->id; ?>" disabled>
-                <li>
-                    <label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
-                <li>
-                    <input name="name" class="i-1 t-i" id="i-name" type="text"
-                           value="<?= $group->name; ?>">
-                <li>
-                    <label for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
-                <li>
-                    <textarea name="desc" id="i-desc"><?= $group->desc; ?></textarea>
-                <li>
-                    <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Edit']; ?>">
+                <li><label for="i-id"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
+                <li><input name="id" class="i-1 t-i" id="i-id" type="text" value="<?= $group->id; ?>" disabled>
+                <li><label for="i-name"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
+                <li><input name="name" class="i-1 t-i" id="i-name" type="text" value="<?= $group->name; ?>">
+                <li><label for="i-desc"><?= \Framework\Localization\Localization::$lang[1]['Description']; ?></label>
+                <li><textarea name="desc" id="i-desc"><?= $group->desc; ?></textarea>
+                <li><input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Edit']; ?>"> <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Delete']; ?>">
             </ul>
+            <!-- @formatter:on -->
         </form>
     </div>
 </div>
@@ -43,20 +34,15 @@
 
     <div class="bc-1">
         <form class="f-1">
+            <!-- @formatter:off -->
             <ul class="l-1">
-                <li>
-                    <label for="i-idn"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                <li>
-                    <input name="idn" class="i-1 t-i" id="i-idn" type="text"
-                           value="">
-                <li>
-                    <label for="i-namen"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
-                <li>
-                    <input name="namen" class="i-1 t-i" id="i-namen" type="text"
-                           value="<?= ''; ?>">
-                <li>
-                    <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Add']; ?>">
+                <li><label for="i-idn"><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
+                <li><input name="idn" class="i-1 t-i" id="i-idn" type="text" value="">
+                <li><label for="i-namen"><?= \Framework\Localization\Localization::$lang[1]['Name']; ?></label>
+                <li><input name="namen" class="i-1 t-i" id="i-namen" type="text" value="<?= ''; ?>">
+                <li><input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Add']; ?>">
             </ul>
+            <!-- @formatter:on -->
         </form>
     </div>
 </div>

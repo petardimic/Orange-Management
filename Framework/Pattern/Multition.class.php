@@ -16,6 +16,15 @@ namespace Framework\Pattern {
      * @since      1.0.0
      */
     interface Multition {
+        /**
+         * @param mixed $id Object id
+         * @param \Framework\Application $app Application reference
+         *
+         * @return Multition
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function getInstance($id, $app);
     }
 }
