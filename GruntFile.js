@@ -14,6 +14,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-compress");
+    grunt.loadNpmTasks('grunt-phpunit');
     grunt.loadNpmTasks('grunt-newer');
 
     //noinspection JSUnresolvedFunction
