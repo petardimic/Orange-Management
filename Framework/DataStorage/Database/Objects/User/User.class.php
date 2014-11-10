@@ -117,7 +117,7 @@ namespace Framework\DataStorage\Database\Objects\User {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;
@@ -216,7 +216,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        protected function __clone() {
+        public function __clone() {
         }
 
         /**

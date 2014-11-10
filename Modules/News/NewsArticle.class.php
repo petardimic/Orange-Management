@@ -164,7 +164,7 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        protected function __clone() {
+        public function __clone() {
         }
 
         public function serialize() {

@@ -142,13 +142,13 @@ namespace Framework\Http {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function get_browser() {
-            if($this->browser == null) {
+            if ($this->browser == null) {
                 $arr = BrowserType::getConstants();
 
                 $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-                foreach($arr as $key => $val) {
-                    if(stripos($http_request_type, $val)) {
+                foreach ($arr as $key => $val) {
+                    if (stripos($http_request_type, $val)) {
                         $this->browser = $val;
                         break;
                     }
@@ -167,13 +167,13 @@ namespace Framework\Http {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function get_os() {
-            if($this->os == null) {
+            if ($this->os == null) {
                 $arr = OSType::getConstants();
 
                 $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-                foreach($arr as $key => $val) {
-                    if(stripos($http_request_type, $val)) {
+                foreach ($arr as $key => $val) {
+                    if (stripos($http_request_type, $val)) {
                         $this->os = $val;
                         break;
                     }

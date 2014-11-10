@@ -47,12 +47,18 @@ namespace Framework\Config {
 
             include __DIR__ . '/../../config.php';
 
-            /** @var array $DBDATA */
-            $this->config['DBDATA'] = $DBDATA;
+            /** @var array $CONFIG */
+            $this->config['db'] = $CONFIG['db'];
             /** @var array $PAGE */
-            $this->config['PAGE'] = $PAGE;
+            $this->config['page'] = $CONFIG['page'];
         }
 
+        /**
+         * Creating config file
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function write_config() {
             $output = '<' . '?php' . PHP_EOL
                 .= '/**' . PHP_EOL
@@ -68,19 +74,19 @@ namespace Framework\Config {
                 .= ' * @link       http://orange-management.com' . PHP_EOL
                 .= ' * @since      1.0.0' . PHP_EOL
                 .= ' */' . PHP_EOL . PHP_EOL
-                .= '$DBDATA = [' . PHP_EOL
-                .= '"db" => "' . $this->config['DBDATA']['db'] . '"' . PHP_EOL
-                .= '"host" => "' . $this->config['DBDATA']['host'] . '"' . PHP_EOL
-                .= '"login" => "' . $this->config['DBDATA']['login'] . '"' . PHP_EOL
-                .= '"password" => "' . $this->config['DBDATA']['password'] . '"' . PHP_EOL
-                .= '"database" => "' . $this->config['DBDATA']['database'] . '"' . PHP_EOL
-                .= '"prefix" => "' . $this->config['DBDATA']['prefix'] . '"' . PHP_EOL
-                .= '];' . PHP_EOL . PHP_EOL
-                .= '$PAGE = [' . PHP_EOL
-                .= '"' . $this->config['PAGE'][0] . '"' . PHP_EOL
-                .= '"' . $this->config['PAGE'][1] . '"' . PHP_EOL
-                .= '"' . $this->config['PAGE'][2] . '"' . PHP_EOL
-                .= '];';
+                .= '$CONFIG = [ "db" => [' . PHP_EOL
+                .= '"db" => "' . $this->config['db']['db'] . '"' . PHP_EOL
+                .= '"host" => "' . $this->config['db']['host'] . '"' . PHP_EOL
+                .= '"login" => "' . $this->config['db']['login'] . '"' . PHP_EOL
+                .= '"password" => "' . $this->config['db']['password'] . '"' . PHP_EOL
+                .= '"database" => "' . $this->config['db']['database'] . '"' . PHP_EOL
+                .= '"prefix" => "' . $this->config['db']['prefix'] . '"' . PHP_EOL
+                .= '],' . PHP_EOL
+                .= '"page" => [' . PHP_EOL
+                .= '"' . $this->config['page'][0] . '"' . PHP_EOL
+                .= '"' . $this->config['page'][1] . '"' . PHP_EOL
+                .= '"' . $this->config['page'][2] . '"' . PHP_EOL
+                .= ']];';
 
             file_put_contents($this->file, $output);
         }

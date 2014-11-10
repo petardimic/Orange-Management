@@ -19,7 +19,7 @@ namespace Modules\Admin {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;

@@ -2,6 +2,7 @@
 module.exports = function (grunt) {
     "use strict";
 
+    grunt.loadNpmTasks('grunt-composer');
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-concat");
@@ -14,6 +15,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-compress");
+    grunt.loadNpmTasks('grunt-include-source');
     grunt.loadNpmTasks('grunt-phpunit');
     grunt.loadNpmTasks('grunt-newer');
 
@@ -22,6 +24,14 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         banner: '/* <%= pkg.name %>\n' +
             'Version: <%= pkg.version %>\n */',
+        includeSource: {
+            options: {
+              // Task-specific options go here.
+            },
+            your_target: {
+              // Target-specific file lists and/or options go here.
+            },
+        },
         concat: {
             options: {
                 separator: ';',

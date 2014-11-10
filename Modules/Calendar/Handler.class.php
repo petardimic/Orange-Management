@@ -31,7 +31,7 @@ namespace Modules\Calendar {
          * Constructor
          *
          * @param string                 $theme_path
-         * @param \Framework\Application $app Application reference
+         * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

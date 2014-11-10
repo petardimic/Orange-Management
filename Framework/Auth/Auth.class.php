@@ -21,7 +21,7 @@ namespace Framework\Auth {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;
@@ -29,7 +29,7 @@ namespace Framework\Auth {
         /**
          * Constructor
          *
-         * @param \Framework\Application $app Application reference
+         * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -48,27 +48,14 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function authenticate($page) {
-            return \Framework\DataStorage\Database\Objects\User\User::getInstance($this->check_session($page), $this->app, true);
-        }
+        public function authenticate() {
+            $uid = $this->app->session->get_value('user_id');
 
-        /**
-         * Initialize user ID
-         *
-         * @param string $page Page address
-         *
-         * @return int Account ID
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function check_session($page) {
-            session_set_cookie_params(0, '/', 'http://' . $page, false, true);
-            session_start();
-            $SID = (isset($_SESSION['account']) && !empty($_SESSION['account']) && $_SESSION['account']['id'] !== 0 ? $_SESSION['account'] : 0);
-            session_write_close();
-
-            return $SID;
+            if ($uid !== null) {
+                return \Framework\DataStorage\Database\Objects\User\User::getInstance($uid, $this->app, true);
+            } else {
+                return null;
+            }
         }
 
         /**

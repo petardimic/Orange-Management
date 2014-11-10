@@ -18,8 +18,9 @@ namespace Framework\DataStorage\Cache {
      * @since      1.0.0
      */
     abstract class CacheType extends \Framework\Datatypes\Enum {
-        const INACTIVE = 0; /* Caching is disabled */
-        const FILE     = 1; /* Caching in files I/O */
-        const MEMCACHE = 2; /* Using Memcache for caching */
+        const _NUMERIC = 0; /* Data is numeric */
+        const _STRING = 1; /* Data is string */
+        const _ARRAY = 2; /* Data is array */
+        const _OBJECT = 3; /* Data is object */
     }
 }

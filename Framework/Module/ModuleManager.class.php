@@ -17,11 +17,11 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Modules {
+    class ModuleManager {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;
@@ -51,7 +51,7 @@ namespace Framework\Module {
         public $running = [];
 
         /**
-         * Installed Modules
+         * Installed modules
          *
          * @var array
          * @since 1.0.0

@@ -3,7 +3,7 @@ namespace Framework\Install {
     /**
      * Module install abstraction class
      *
-     * The default installation procedure for all modules. 
+     * The default installation procedure for all modules.
      * In fact many modules can rely on these methods in order to minimize their installation abstraction.
      *
      * PHP Version 5.4

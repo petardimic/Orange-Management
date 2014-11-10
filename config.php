@@ -13,17 +13,18 @@
  * @since      1.0.0
  */
 
-$DBDATA = [
-    "db"       => "mysql", /* db type */
-    "host"     => "127.0.0.1", /* db host address */
-    "login"    => "root", /* db login name */
-    "password" => "s4b3r?", /* db login password */
-    "database" => "orange_management", /* db name */
-    "prefix"   => "oms_" /* db table prefix */
-];
-
-$PAGE = [
-    '127.0.0.1', /* remote address */
-    '127.0.0.1', /* local address */
-    __DIR__ /* root of the web application */
+$CONFIG = [
+	"db" => [
+	    "db"       => "mysql", /* db type */
+	    "host"     => "127.0.0.1", /* db host address */
+	    "login"    => "root", /* db login name */
+	    "password" => "s4b3r?", /* db login password */
+	    "database" => "orange_management", /* db name */
+	    "prefix"   => "oms_" /* db table prefix */
+	],
+	'page' => [
+		 '127.0.0.1', /* remote address */
+    	'127.0.0.1', /* local address */
+    	__DIR__ /* root of the web application */
+	]
 ];

@@ -2,7 +2,8 @@
 $(document).ready(function () {
     "use strict";
 
-    var sidebar = $('#sidenav');
+    var sidebar = document.getElementById("s-nav"),
+        scrollPos = sidebar.scrollTop;
 
     /* [BEGIN]: Load/Save old navigation status */
     var $localStorage = supports_html5_storage();

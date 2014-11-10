@@ -17,8 +17,8 @@ namespace Framework\Pattern {
      */
     interface Multition {
         /**
-         * @param mixed $id Object id
-         * @param \Framework\Application $app Application reference
+         * @param mixed                     $id  Object id
+         * @param \Framework\WebApplication $app Application reference
          *
          * @return Multition
          *
@@ -26,5 +26,7 @@ namespace Framework\Pattern {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($id, $app);
+
+        public function __clone();
     }
 }

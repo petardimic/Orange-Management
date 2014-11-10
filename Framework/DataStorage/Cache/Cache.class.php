@@ -3,7 +3,7 @@ namespace Framework\DataStorage\Cache {
     /**
      * Cache class
      *
-     * Responsible for caching scalar data types and arrays. 
+     * Responsible for caching scalar data types and arrays.
      * Caching HTML output and objects coming soon/is planned.
      *
      * PHP Version 5.4
@@ -22,7 +22,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * Caching type
          *
-         * @var \Framework\DataStorage\Cache\CacheType
+         * @var \Framework\DataStorage\Cache\CacheStatus
          * @since 1.0.0
          */
         public $type = null;
@@ -38,7 +38,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;
@@ -107,7 +107,7 @@ namespace Framework\DataStorage\Cache {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function push($key, $var, $asarray = true) {
-            if ($this->type !== \Framework\DataStorage\Cache\CacheType::INACTIVE) {
+            if ($this->type !== \Framework\DataStorage\Cache\CacheStatus::INACTIVE) {
                 if (!$asarray) {
                     foreach ($var as $v_key => $val) {
                         $this->push($key . ':' . $v_key, $val);
@@ -115,7 +115,7 @@ namespace Framework\DataStorage\Cache {
                 }
 
                 switch ($this->type) {
-                    case \Framework\DataStorage\Cache\CacheType::FILE:
+                    case \Framework\DataStorage\Cache\CacheStatus::FILE:
                         $json = json_encode($var);
 
                         try {
@@ -128,7 +128,7 @@ namespace Framework\DataStorage\Cache {
                             return false;
                         }
                         break;
-                    case \Framework\DataStorage\Cache\CacheType::MEMCACHE:
+                    case \Framework\DataStorage\Cache\CacheStatus::MEMCACHE:
                         $this->memc->add($key, $var, 864000);
                         break;
                 }
@@ -148,7 +148,7 @@ namespace Framework\DataStorage\Cache {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function pull($key) {
-            if ($this->type === \Framework\DataStorage\Cache\CacheType::FILE) {
+            if ($this->type === \Framework\DataStorage\Cache\CacheStatus::FILE) {
                 try {
                     $json = file_get_contents(__DIR__ . '/../../Cache/' . $key . '.json');
 
@@ -156,7 +156,7 @@ namespace Framework\DataStorage\Cache {
                 } catch (\Exception $e) {
                     return false;
                 }
-            } elseif ($this->type === \Framework\DataStorage\Cache\CacheType::MEMCACHE) {
+            } elseif ($this->type === \Framework\DataStorage\Cache\CacheStatus::MEMCACHE) {
                 return $this->memc->get($key);
             }
 

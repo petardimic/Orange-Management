@@ -3,14 +3,12 @@
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="tabview">
+    <!-- @formatter:off -->
     <ul class="tab-links">
-        <li class="active">
-            <a href=".tab-1"><?= \Framework\Localization\Localization::$lang[42]['CoreData'] ?></a>
-        <li>
-            <a href=".tab-2"><?= \Framework\Localization\Localization::$lang[42]['People'] ?></a>
-        <li>
-            <a href=".tab-3"><?= \Framework\Localization\Localization::$lang[42]['Elements'] ?></a>
+        <li class="active"><a href=".tab-1"><?= \Framework\Localization\Localization::$lang[42]['CoreData'] ?></a>
+        <li><a href=".tab-2"><?= \Framework\Localization\Localization::$lang[42]['People'] ?></a>
     </ul>
+    <!-- @formatter:on -->
 
     <div class="tab-content">
         <div class="tab tab-1 active">
@@ -79,60 +77,6 @@
                     </ul>
                     <!-- @formatter:on -->
                     <button><?= \Framework\Localization\Localization::$lang[0]['Add']; ?></button>
-                </div>
-            </div>
-        </div>
-        <div class="tab tab-3">
-            <div class="b b-2 c42-2 c42" id="i42-2-2">
-                <h1>
-                    <?= \Framework\Localization\Localization::$lang[42]['Elements']; ?>
-                    <i class="fa fa-minus min"></i>
-                    <i class="fa fa-plus max vh"></i>
-                </h1>
-
-                <div class="bc-1">
-                    <!-- @formatter:off -->
-                    <ul class="l-1">
-                        <li><label><?= \Framework\Localization\Localization::$lang[0]['ID']; ?></label>
-                        <li><input type="text" disabled>
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['Type']; ?></label>
-                        <li><select>
-                                <option><?= \Framework\Localization\Localization::$lang[42]['Task']; ?>
-                                <option><?= \Framework\Localization\Localization::$lang[42]['Calendar']; ?>
-                            </select>
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['Title']; ?></label>
-                        <li><input type="text">
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['Description']; ?></label>
-                        <li><textarea></textarea>
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['Start']; ?></label>
-                        <li><input type="date">
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['End']; ?></label>
-                        <li><input type="date">
-                        <li>
-                    </ul>
-                    <!-- @formatter:on -->
-                    <button><?= \Framework\Localization\Localization::$lang[0]['Add']; ?></button>
-                </div>
-            </div>
-
-            <div class="b b-2 c42-2 c42" id="i42-2-2">
-                <h1>
-                    <?= \Framework\Localization\Localization::$lang[42]['Permissions']; ?>
-                    <i class="fa fa-minus min"></i>
-                    <i class="fa fa-plus max vh"></i>
-                </h1>
-
-                <div class="bc-1">
-                    <!-- @formatter:off -->
-                    <ul class="l-1">
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['Group']; ?></label>
-                        <li><input type="text">
-                            <button><?= \Framework\Localization\Localization::$lang[0]['Add']; ?></button>
-                        <li><label><?= \Framework\Localization\Localization::$lang[42]['User']; ?></label>
-                        <li><input type="text">
-                            <button><?= \Framework\Localization\Localization::$lang[0]['Add']; ?></button>
-                    </ul>
-                    <!-- @formatter:on -->
                 </div>
             </div>
         </div>

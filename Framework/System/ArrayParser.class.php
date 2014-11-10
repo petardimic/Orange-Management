@@ -37,8 +37,8 @@ namespace Framework\System {
         /**
          * Constructor
          *
-         * @param string $file File path
-         * @param ref $arr_name Array to parse
+         * @param string $file     File path
+         * @param ref    $arr_name Array to parse
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -59,7 +59,7 @@ namespace Framework\System {
         /**
          * Set or add new value
          *
-         * @param mixed $id Array ID to add/edit
+         * @param mixed $id  Array ID to add/edit
          * @param mixed $val Value to add/insert
          *
          * @since  1.0.0

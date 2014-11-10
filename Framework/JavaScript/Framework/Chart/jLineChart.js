@@ -245,8 +245,7 @@ function OLineChart(dataset, chart, text, legend, axis) {
 OLineChart.prototype = Object.create(OChart.prototype);
 OLineChart.prototype.constructor = OLineChart;
 
-OLineChart.prototype.redraw = function(id)
-{
+OLineChart.prototype.redraw = function (id) {
     d3.select(id + " svg").remove();
 
     this.drawChart(id);
@@ -255,16 +254,14 @@ OLineChart.prototype.redraw = function(id)
     this.drawText(id);
 };
 
-OLineChart.prototype.draw = function(id)
-{
+OLineChart.prototype.draw = function (id) {
     window.addEventListener('resize', function (e) {
         this.redraw(id)
     });
     this.redraw(id);
 };
 
-OLineChart.prototype.drawChart = function(id)
-{
+OLineChart.prototype.drawChart = function (id) {
     var $$ = $(id),
         width = $$.innerWidth() - this.chart.margin.left - this.chart.margin.right,
         height = $$.innerHeight() - this.chart.margin.top - this.chart.margin.bottom;
@@ -295,16 +292,14 @@ OLineChart.prototype.drawChart = function(id)
     }));
 };
 
-OLineChart.prototype.drawLine = function(line)
-{
+OLineChart.prototype.drawLine = function (line) {
     svg.append("path")
         .datum(this.data[line])
         .attr("class", "line")
         .attr("d", lineFormula1);
 };
 
-OLineChart.prototype.drawAxis = function()
-{
+OLineChart.prototype.drawAxis = function () {
     var xAxis1 = d3.svg.axis()
         .scale(x1)
         .orient("bottom");
@@ -314,12 +309,10 @@ OLineChart.prototype.drawAxis = function()
         .orient("left");
 };
 
-OLineChart.prototype.drawLegend = function()
-{
+OLineChart.prototype.drawLegend = function () {
 
 };
 
-OLineChart.prototype.drawText = function()
-{
+OLineChart.prototype.drawText = function () {
 
 };

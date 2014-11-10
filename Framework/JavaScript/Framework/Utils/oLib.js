@@ -26,7 +26,7 @@ var oLib = {
      * AJAX
      *
      * @param Object obj AJAX variables
-     * 
+     *
      * The following obj variables are expected:
      * responseType - Type of the response
      * requestHeader - Header description for the request
@@ -103,7 +103,7 @@ var oLib = {
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     hasClass: function (ele, cls) {
-        return ele !== undefined && ele.className !== undefined && ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+        return ele !== undefined && ele !== null && ele.className !== undefined && ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
     },
 
     /**

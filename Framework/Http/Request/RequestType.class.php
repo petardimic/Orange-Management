@@ -18,9 +18,9 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     abstract class RequestType extends \Framework\Datatypes\Enum {
-        const GET    = 'GET';       /* GET */
-        const POST   = 'POST';      /* POST */
-        const PUT    = 'PUT';       /* PUT */
-        const DELETE = 'DELETE';    /* DELETE */
+        const GET = 'GET'; /* GET */
+        const POST = 'POST'; /* POST */
+        const PUT = 'PUT'; /* PUT */
+        const DELETE = 'DELETE'; /* DELETE */
     }
 }

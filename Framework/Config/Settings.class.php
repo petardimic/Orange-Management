@@ -23,7 +23,7 @@ namespace Framework\Config {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         private $app = null;
@@ -68,6 +68,7 @@ namespace Framework\Config {
                 }
             }
 
+            // TODO: implement cache if cache is initialized
             if (!empty($ids)) {
                 $sth = $this->app->db->con->prepare('SELECT `id`, `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
                 $sth->execute();
@@ -86,10 +87,10 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function settings_set($settings) {
+        public function set_settings($settings) {
             $this->config += $settings;
 
-            /* TODO: change this */
+            /* TODO: change this + implement cache */
             foreach ($settings as $key => $value) {
                 $sth = $this->app->db->con->prepare('UPDATE `' . $this->app->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
                 $sth->execute();

@@ -16,10 +16,10 @@ namespace Framework\Log {
      * @since      1.0.0
      */
     abstract class LogLevel extends \Framework\Datatypes\Enum {
-        const DEBUG    = 0; /* Everything with higher priority gets logged */
-        const INFO     = 1; /* Everything with higher priority gets logged */
-        const WARNING  = 2; /* Everything with higher priority gets logged */
-        const ERROR    = 3; /* Everything with higher priority gets logged */
-        const FATAL    = 4; /* Only this gets logged */
+        const DEBUG = 0; /* Everything with higher priority gets logged */
+        const INFO = 1; /* Everything with higher priority gets logged */
+        const WARNING = 2; /* Everything with higher priority gets logged */
+        const ERROR = 3; /* Everything with higher priority gets logged */
+        const FATAL = 4; /* Only this gets logged */
     }
 }

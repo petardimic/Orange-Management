@@ -28,6 +28,36 @@ namespace Framework\Version {
         }
 
         /**
+         * Loading version file
+         *
+         * @param string $path Path to version file
+         *
+         * @return string[]
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function get_version($path) {
+            return json_decode(file_get_contents($path), true);
+        }
+
+        /**
+         * Save version file
+         *
+         * @param string $type    Lib or tool name
+         * @param string $version Version
+         * @param string $path    Path to version file
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function set_version($type, $version, $path) {
+            $versions        = $this->get_version($path);
+            $versions[$type] = $version;
+            file_put_contents($path, json_encode($versions));
+        }
+
+        /**
          * Comparing two versions
          *
          * @param string $ver1 Version

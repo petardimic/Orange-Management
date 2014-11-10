@@ -77,8 +77,10 @@ namespace Framework\DataStorage\Database {
             $this->dbdata = $dbdata;
             $this->prefix = $dbdata['prefix'];
 
-            if ($dbdata['db'] === 'mysql') {
-                $this->type = \Framework\DataStorage\Database\DatabaseType::MYSQL;
+            switch ($dbdata['db']) {
+                case 'mysql':
+                    $this->type = \Framework\DataStorage\Database\DatabaseType::MYSQL;
+                    break;
             }
 
             try {

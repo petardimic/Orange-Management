@@ -18,7 +18,7 @@ namespace Framework\DataStorage\Database {
      * @since      1.0.0
      */
     abstract class DatabaseType extends \Framework\Datatypes\Enum {
-        const MYSQL  = 0; /* MYSQL */
+        const MYSQL = 0; /* MYSQL */
         const SQLITE = 1; /* SQLITE */
     }
 }

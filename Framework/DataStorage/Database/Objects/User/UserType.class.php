@@ -16,9 +16,9 @@ namespace Framework\DataStorage\Database\Objects\User {
      * @since      1.0.0
      */
     abstract class UserType extends \Framework\Datatypes\Enum {
-        const PERSON       = 0; /* Account belongs to real person */
+        const PERSON = 0; /* Account belongs to real person */
         const ORGANIZATION = 1; /* Account belongs to a organization */
-        const COMPANY      = 2; /* Account belongs to a company */
-        const GROUP        = 3; /* Account belongs to a group */
+        const COMPANY = 2; /* Account belongs to a company */
+        const GROUP = 3; /* Account belongs to a group */
     }
 }

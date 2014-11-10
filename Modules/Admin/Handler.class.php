@@ -31,7 +31,7 @@ namespace Modules\Admin {
          * Constructor
          *
          * @param string                 $theme_path
-         * @param \Framework\Application $app Application instance
+         * @param \Framework\WebApplication $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

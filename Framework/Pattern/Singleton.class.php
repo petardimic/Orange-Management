@@ -17,7 +17,7 @@ namespace Framework\Pattern {
      */
     interface Singleton {
         /**
-         * @param \Framework\Application $app Application reference
+         * @param \Framework\WebApplication $app Application reference
          *
          * @return Singleton
          *
@@ -25,5 +25,7 @@ namespace Framework\Pattern {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($app);
+
+        public function __clone();
     }
 }

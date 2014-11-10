@@ -9,6 +9,7 @@
   "description": "Business Management System",
   "devDependencies": {
     "grunt": "~0.4.4",
+    "grunt-composer": "^0.4.3",
     "grunt-concat-include": "^0.2.4",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-compass": "~0.7.2",
@@ -22,6 +23,7 @@
     "grunt-contrib-sass": "~0.7.3",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
+    "grunt-include-source": "^0.4.2",
     "grunt-newer": "~0.7.0",
     "grunt-phpunit": "^0.3.6"
   }

@@ -18,14 +18,14 @@ namespace Framework\Http {
      * @since      1.0.0
      */
     abstract class BrowserType extends \Framework\Datatypes\Enum {
-        const IE        = 'msie';           /* Internet Explorer */
-        const FIREFOX   = 'firefox';        /* Firefox */
-        const SAFARI    = 'safari';         /* Safari */
-        const CHROME    = 'chrome';         /* Chrome */
-        const OPERA     = 'opera';          /* Opera */
-        const NETSCAPE  = 'netscape';       /* Netscape */
-        const MAXTHON   = 'maxthon';        /* Maxthon */
-        const KONQUEROR = 'konqueror';      /* Konqueror */
-        const HANDHELD  = 'mobile';         /* Handheld Browser */
+        const IE = 'msie'; /* Internet Explorer */
+        const FIREFOX = 'firefox'; /* Firefox */
+        const SAFARI = 'safari'; /* Safari */
+        const CHROME = 'chrome'; /* Chrome */
+        const OPERA = 'opera'; /* Opera */
+        const NETSCAPE = 'netscape'; /* Netscape */
+        const MAXTHON = 'maxthon'; /* Maxthon */
+        const KONQUEROR = 'konqueror'; /* Konqueror */
+        const HANDHELD = 'mobile'; /* Handheld Browser */
     }
 }

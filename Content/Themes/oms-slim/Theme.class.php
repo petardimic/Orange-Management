@@ -1,7 +1,7 @@
 <?php
 namespace Content {
     /**
-     * Controller class
+     * Theme class
      *
      * PHP Version 5.4
      *
@@ -19,7 +19,7 @@ namespace Content {
         /**
          * Application instance
          *
-         * @var \Framework\Application
+         * @var \Framework\WebApplication
          * @since 1.0.0
          */
         protected $app = null;
@@ -42,6 +42,7 @@ namespace Content {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function load() {
+            /* TODO: handle not authenticated! */
             $this->app->modules->modules_load($this);
 
             switch ($this->app->request->request_type) {
