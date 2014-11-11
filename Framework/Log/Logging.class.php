@@ -119,6 +119,7 @@ namespace Framework\Log {
          * @author Dennis Eichhorn
          */
         public function log($fields) {
+            // TODO: make screen and socket log possible
             fputcsv($this->fp, $fields, ';');
         }
 

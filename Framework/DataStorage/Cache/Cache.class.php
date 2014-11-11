@@ -18,7 +18,7 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Cache {
+    class Cache implements \Framework\DataStorage\Cache\CacheInterface {
         /**
          * Caching type
          *

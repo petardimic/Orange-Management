@@ -1,4 +1,5 @@
 <?php
+// TODO: Maybe remove this class entirely
 namespace Framework\Config {
     /**
      * Settings class

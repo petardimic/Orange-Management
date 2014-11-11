@@ -17,7 +17,7 @@ namespace Framework\Auth {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Auth {
+    class Auth implements \Framework\Config\OptionsInterface {
         /**
          * Application instance
          *
@@ -25,6 +25,8 @@ namespace Framework\Auth {
          * @since 1.0.0
          */
         private $app = null;
+
+        private $options = [];
 
         /**
          * Constructor
@@ -70,6 +72,10 @@ namespace Framework\Auth {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function login($username, $password) {
+            // TODO: get password from db based on $username which is = loginname which can be email or number or name
+
+            // TODO: save to session
+            // TODO: reload page
         }
 
         /**
@@ -82,5 +88,21 @@ namespace Framework\Auth {
          */
         public function logout($uid) {
         }
+
+        public function get_option($key) {
+            if(isset($this->options[$key])) {
+                return $this->options[$key];
+            }
+        }
+
+        public function set_option($key, $value, $storable = false, $save = false) {
+            $this->options[$key] = $value;
+
+            if($save) {
+                // TODO: save to db and or caching
+            }
+        }
+
+        public function update() {}
     }
 }

@@ -20,7 +20,6 @@ namespace Framework\DataStorage\Cache {
     abstract class CacheStatus extends \Framework\Datatypes\Enum {
         const INACTIVE = 0; /* Caching is disabled */
         const ERROR = 1; /* Caching failed */
-        const FILE = 2; /* Caching in files I/O */
-        const MEMCACHE = 3; /* Using Memcache for caching */
+        const ACTIVE = 2; /* Caching OK */
     }
 }
