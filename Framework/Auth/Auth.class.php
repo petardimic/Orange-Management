@@ -90,13 +90,11 @@ namespace Framework\Auth {
         }
 
         public function get_option($key) {
-            if(isset($this->options[$key])) {
-                return $this->options[$key];
-            }
+            return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         public function set_option($key, $value, $storable = false, $save = false) {
-            $this->options[$key] = $value;
+            $this->options[$key] = [$value, $storable];
 
             if($save) {
                 // TODO: save to db and or caching

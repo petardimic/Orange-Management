@@ -18,22 +18,22 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Cache implements \Framework\DataStorage\Cache\CacheInterface {
+    class Cache implements \Framework\DataStorage\Cache\CacheInterface, \Framework\Config\OptionsInterface {
         /**
-         * Caching type
+         * MemCache instance
          *
-         * @var \Framework\DataStorage\Cache\CacheStatus
-         * @since 1.0.0
-         */
-        public $type = null;
-
-        /**
-         * Memcache instance
-         *
-         * @var \Memcache
+         * @var \Framework\DataStorage\Cache\MemCache
          * @since 1.0.0
          */
         private $memc = null;
+
+        /**
+         * FileCache instance
+         *
+         * @var \Framework\DataStorage\Cache\FileCache
+         * @since 1.0.0
+         */
+        private $filec = null;
 
         /**
          * Application instance
@@ -44,6 +44,14 @@ namespace Framework\DataStorage\Cache {
         private $app = null;
 
         /**
+         * Options array
+         *
+         * @var mixed[]
+         * @since 1.0.0
+         */
+        private $options = [];
+
+        /**
          * Constructor
          *
          * @since  1.0.0
@@ -51,116 +59,219 @@ namespace Framework\DataStorage\Cache {
          */
         public function __construct($app) {
             $this->app = $app;
-
-            /* This is costing me 1ms, maybe init settings first cause i'm making another settings call later on -> same call 2 times */
-            $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
-            $sth->execute();
-            $cache_data = $sth->fetchAll();
-
-            $this->type = (int)$cache_data[0][0];
-        }
-
-        public function start_cache_page_element($url, $id) {
-            ob_flush();
-            ob_end_clean();
-            ob_start();
-        }
-
-        public function end_cache_page_element($url, $id) {
-            $buffer = ob_getcontents();
-            ob_end_clean();
-            echo $buffer;
-
-            file_put_contents(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
-        }
-
-        public function get_cache_page_element($url, $id) {
-            return file_get_contents(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
-        }
-
-        public function clean_cache_page_element_all() {
-            $files = glob(__DIR__ . '/../../Cache/Page/*');
-
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
-        }
-
-        public function clean_cache_page_element($url, $id) {
-            if (file_exists(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp')) {
-                unlink(__DIR__ . '/../../Cache/Page/' . $id . $url . '.tmp');
-            }
         }
 
         /**
-         * Caches data
+         * Requesting caching instance
          *
-         * @param array $key     Key for caching
-         * @param       $var
-         * @param bool  $asarray Store variable as array
+         * @param \Framework\DataStorage\Cache\CacheType $type Cache to request
          *
-         * @return boolean
+         * @return \Framework\DataStorage\Cache\MemCache|\Framework\DataStorage\Cache\FileCache|null
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function push($key, $var, $asarray = true) {
-            if ($this->type !== \Framework\DataStorage\Cache\CacheStatus::INACTIVE) {
-                if (!$asarray) {
-                    foreach ($var as $v_key => $val) {
-                        $this->push($key . ':' . $v_key, $val);
-                    }
-                }
-
-                switch ($this->type) {
-                    case \Framework\DataStorage\Cache\CacheStatus::FILE:
-                        $json = json_encode($var);
-
-                        try {
-                            if (!file_exists(__DIR__ . '/../../Cache/' . $key . '.json')) {
-                                mkdir(__DIR__ . '/../../Cache', 0777, true);
-                            }
-
-                            file_put_contents(__DIR__ . '/../../Cache/' . $key . '.json', $json);
-                        } catch (\Exception $e) {
-                            return false;
-                        }
-                        break;
-                    case \Framework\DataStorage\Cache\CacheStatus::MEMCACHE:
-                        $this->memc->add($key, $var, 864000);
-                        break;
-                }
+        public function get_instance($type = null) {
+            if(($type === null || $type === \Framework\DataStorage\Cache\CacheType::MEMCACHE) && $this->memc !== null) {
+                return $this->memc;
             }
 
-            return true;
+            if(($type === null || $type === \Framework\DataStorage\Cache\CacheType::FILECACHE) && $this->filec !== null) {
+                return $this->memc;
+            }
+
+            return null;
         }
 
         /**
-         * Loads cached data
+         * Init cache
          *
-         * @param array $key Key for caching
-         *
-         * @return array
+         * @param mixed $options Options used to initialize the different caching types
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function pull($key) {
-            if ($this->type === \Framework\DataStorage\Cache\CacheStatus::FILE) {
-                try {
-                    $json = file_get_contents(__DIR__ . '/../../Cache/' . $key . '.json');
+        public function init($options = null) {
+            if($options === null) {
+                /* This is costing me 1ms, maybe init settings first cause i'm making another settings call later on -> same call 2 times */
+                $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
+                $sth->execute();
+                $cache_data = $sth->fetchAll();
 
-                    return json_decode($json, true);
-                } catch (\Exception $e) {
-                    return false;
-                }
-            } elseif ($this->type === \Framework\DataStorage\Cache\CacheStatus::MEMCACHE) {
-                return $this->memc->get($key);
+                $this->set_option('cache:type', (int)$cache_data[0][0]);
+            } else {
+                $this->options = $options;
+            }
+        }
+
+        /**
+         * Updating or adding settings
+         *
+         * @param mixed $key Unique option key
+         * @param mixed $value Option value
+         * @param bool $storable Is this option storable inside DB or cache
+         * @param bool $save Should this update the database/cache
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function set_option($key, $value, $storeable = false, $save = false) {
+            $this->options[$key] = [$value, $storable];
+        }
+
+        /**
+         * Get option by key
+         *
+         * @param mixed $key Unique option key
+         *
+         * @return mixed Option value
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function get_option($key) {
+            return (isset($this->options[$key]) ? $this->options[$key] : null);
+        }
+
+        /**
+         * Update options (push them into DB and Cache)
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function update() {}
+
+        /**
+         * Updating or adding cache data
+         *
+         * @param mixed $key Unique cache key
+         * @param mixed $value Cache value
+         * @param \Framework\DataStorage\CacheType $type Cache type
+         * @param int $expire Valid duration (in s)
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function set($key, $value, $type = null, $expire = 2592000) {
+            $this->get_instance($type)->set($key, $value, $type = null, $expire);
+        }
+
+        /**
+         * Adding new data if it doesn't exist
+         *
+         * @param mixed $key Unique cache key
+         * @param mixed $value Cache value
+         * @param \Framework\DataStorage\CacheType $type Cache type
+         * @param int $expire Valid duration (in s)
+         *
+         * @param bool Successful or not?
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function add($key, $value, $type = null, $expire = 2592000) {
+            return $this->get_instance($type)->add($key, $value, $type = null, $expire);
+        }
+
+        /**
+         * Get cache by key
+         *
+         * @param mixed $key Unique cache key
+         *
+         * @return mixed Cache value
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function get($key) {
+            return $this->get_instance($type)->get($key);
+        }
+
+        /**
+         * Remove value by key
+         *
+         * @param mixed $key Unique cache key
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function delete($key) {
+            $this->get_instance($type)->delete($key);
+        }
+
+        /**
+         * Removing all elements from cache (invalidate cache)
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function flush() {
+            if($type === null) {
+                $this->filec->flush();
+                $this->memc->flush();
+            } elseif($type === \Framework\DataStorage\Cache\CacheType::MEMCACHE) {
+                $this->memc->flush();
+            } elseif($type === \Framework\DataStorage\Cache\CacheType::FILECACHE) {
+                $this->filec->flush();
+            }
+        }
+
+        /**
+         * Updating existing value/key
+         *
+         * @param mixed $key Unique cache key
+         * @param mixed $value Cache value
+         * @param \Framework\DataStorage\CacheType $type Cache type
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function replace($key, $value, $type = null) {
+            $this->get_instance($type)->replace($key, $value);
+        }
+
+        /**
+         * Requesting cache stats
+         *
+         * @return mixed[] Stats array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function stats() {
+            $stats = [];
+
+            if($this->memc !== null) {
+                $stats['memc'] = $this->memc->stats();
             }
 
-            return false;
+            if($this->filec !== null) {
+                $stats['filec'] = $this->filec->stats();
+            }
+
+            return $stats;
+        }
+
+        /**
+         * Get the threshold required to cache data using this cache
+         *
+         * @return int Storage threshold
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function get_threshold() {
+            $threshold = [];
+
+            if($this->memc !== null) {
+                $threshold['memc'] = $this->memc->get_threshold();
+            }
+
+            if($this->filec !== null) {
+                $threshold['filec'] = $this->filec->get_threshold();
+            }
+
+            return $threshold;
         }
     }
 }
