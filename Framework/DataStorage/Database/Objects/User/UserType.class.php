@@ -20,5 +20,6 @@ namespace Framework\DataStorage\Database\Objects\User {
         const ORGANIZATION = 1; /* Account belongs to a organization */
         const COMPANY = 2; /* Account belongs to a company */
         const GROUP = 3; /* Account belongs to a group */
+        const CHILD = 4; /* Child account of existing account (e.g. employees of company) */
     }
 }

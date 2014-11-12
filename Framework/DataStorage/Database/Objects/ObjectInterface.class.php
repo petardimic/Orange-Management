@@ -23,6 +23,6 @@ namespace Framework\DataStorage\Database\Objects {
 
         public function create();
 
-        public function edit();
+        public function update();
     }
 }

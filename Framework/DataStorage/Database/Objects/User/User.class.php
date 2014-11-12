@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Database\Objects\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class User implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class User implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition, \Serializable {
         /**
          * User ID
          *
@@ -141,13 +141,16 @@ namespace Framework\DataStorage\Database\Objects\User {
         /**
          * Constructor
          *
-         * @param int $id User ID
+         * @param int $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id, $app) {
+        public function __construct($app) {
             $this->app = $app;
+        }
+
+        public function init($id) {
             $this->id  = $id;
 
             $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
@@ -379,6 +382,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          */
         public function delete() {
             /* TODO: call all installed modules user_delete function */
+            // TODO: remove from cache
 
             $sth = $this->app->db->con->prepare(
                 'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
@@ -405,7 +409,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function edit() {
+        public function update() {
             $sth = $this->app->db->con->prepare(
                 'UPDATE `' . $this->app->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
             );

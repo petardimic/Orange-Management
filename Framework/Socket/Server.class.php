@@ -17,28 +17,19 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Server {
-        private $server_ip = null;
-        private $server_port = null;
+    class Server extends \Framework\Socket\SocketAbstract {
         private $server_limit = null;
-        private $run = true;
 
         private $clients = [];
 
-        private $sock = null;
-
         public function __construct() {
-            
+            parent::__construct();
         }
 
         public function create($ip, $port, $limit) {
-            $this->ip = $ip;
-            $this->port = $port;
-            $this->limit = $limit;
+            parent::create($ip, $port);
 
-            $this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_bind($this->sock, $this->server_ip, $this->port);
-            
+            $this->limit = $limit;
         }
 
         public function run() {
@@ -85,14 +76,11 @@ namespace Framework\Socket {
         }
 
         private function close() {
-            if($this->sock !== null) {
-                socket_close($this->sock);
-                $this->sock = null;
-            }
+            parent::close();
         }
 
         public function __destruct() {
-            $this->close();
+            parent::__destruct();
         }
     }
 }

@@ -1,13 +1,11 @@
 <?php
-namespace Framework\DataStorage\Database\Objects {
+namespace Framework\Socket {
     /**
-     * Object list interface
-     *
-     * Interface for a list of database object. Usually usefull for search results and lists.
+     * Socket class
      *
      * PHP Version 5.4
      *
-     * @category   DataStorage
+     * @category   System
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -17,9 +15,9 @@ namespace Framework\DataStorage\Database\Objects {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ObjectListInterface extends \Serialzable, \Countable {
-        public function get_object();
-
-        public function instantiate();
+    interface SocketInterface {
+        public function create($ip, $port);
+        public function close();
+        public function run();
     }
 }

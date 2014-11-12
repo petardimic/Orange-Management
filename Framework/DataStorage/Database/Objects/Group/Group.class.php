@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Group implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition, \Serializable {
         /**
          * Application instance
          *
@@ -70,13 +70,17 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id, $app) {
+        public function __construct($app) {
             $this->app = $app;
+        }
+
+        public function init($id) {
             $this->id  = (int)$id;
 
             $sth = $this->app->db->con->prepare(
                 'SELECT * FROM `' . $this->app->db->prefix . 'groups` WHERE id = :id'
             );
+
             $sth->bindValue(':id', $id, \PDO::PARAM_INT);
             $sth->execute();
 
@@ -184,7 +188,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function edit() {
+        public function update() {
             switch ($this->app->db->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(

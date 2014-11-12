@@ -18,8 +18,22 @@ namespace Framework\Module {
      * @since      1.0.0
      */
     class InfoManager {
-        public $name;
-        public $name_internal;
-        public $version;
+        private $fp = null;
+
+        public $name = '';
+        public $name_internal = '';
+        public $version = '1.0.0';
+
+        public function __construct($module) {
+            $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json');
+        }
+
+        public function update() {
+            // TODO: update file (convert to json)
+        }
+
+        public function __destruct() {
+            $this->fp->close();
+        }
     }
 }
