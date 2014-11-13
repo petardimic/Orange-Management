@@ -18,20 +18,38 @@ namespace Framework\Module {
      * @since      1.0.0
      */
     class InfoManager {
+        /**
+         * File pointer
+         *
+         * @var mixed
+         * @since 1.0.0
+         */
         private $fp = null;
 
-        public $name = '';
-        public $name_internal = '';
-        public $version = '1.0.0';
-
+        /**
+         * Object constructor
+         *
+         * @param string $module Module name
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
         public function __construct($module) {
-            $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json');
+            if(file_exists(__DIR__ . '/../../Modules/' . $module . '/info.json')) {
+                $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json');
+            }
         }
 
         public function update() {
             // TODO: update file (convert to json)
         }
 
+        /**
+         * Object destructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
         public function __destruct() {
             $this->fp->close();
         }

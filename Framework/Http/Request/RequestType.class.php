@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http {
+namespace Framework\Http\Request {
     /**
      * Request type enum
      *
@@ -22,5 +22,7 @@ namespace Framework\Http {
         const POST = 'POST'; /* POST */
         const PUT = 'PUT'; /* PUT */
         const DELETE = 'DELETE'; /* DELETE */
+        const SOCKET = 'SOCK'; /* Socket */
+        const CONSOLE = 'CMD'; /* Console */
     }
 }

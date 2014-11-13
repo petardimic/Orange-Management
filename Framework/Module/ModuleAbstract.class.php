@@ -81,7 +81,7 @@ namespace Framework\Module {
         /**
          * Shows module content
          *
-         * @para   array $data
+         * @param   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
