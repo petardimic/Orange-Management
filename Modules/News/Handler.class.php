@@ -207,7 +207,7 @@ namespace Modules\News {
          */
         public function show_content() {
             switch ($this->app->request->request_type) {
-                case \Framework\Http\RequestPage::BACKEND:
+                case \Framework\RequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
             }

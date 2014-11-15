@@ -46,7 +46,7 @@ namespace Content {
             $this->app->modules->modules_load($this);
 
             switch ($this->app->request->request_type) {
-                case \Framework\Http\RequestPage::BACKEND:
+                case \Framework\RequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');
 
                     $this->app->settings->load_settings([1000000009]);
@@ -59,7 +59,7 @@ namespace Content {
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/backend/template.tpl.php';
                     break;
-                case \Framework\Http\RequestPage::API:
+                case \Framework\RequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
                     $this->app->modules->running[1004400000]->show();

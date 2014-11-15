@@ -79,7 +79,7 @@ namespace Framework\Socket {
          * @param string $cmd Command ID
          * @param mixed $para Parameters to pass
          *
-         * @return \Framework\Http\Response\ResponseStatus::WRONG_REQUEST|mixed
+         * @return \Framework\Response\ResponseStatus::WRONG_REQUEST|mixed
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
@@ -89,7 +89,7 @@ namespace Framework\Socket {
                 return $this->commands[$cmd][0]($para);
             }
 
-            return \Framework\Http\Response\ResponseStatus::WRONG_REQUEST;
+            return \Framework\Response\ResponseStatus::WRONG_REQUEST;
         }
 
         /**

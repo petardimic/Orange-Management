@@ -33,7 +33,7 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($config) {
-            $this->request = new \Framework\Http\Request();
+            $this->request = new \Framework\Request();
             $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
 
             \Framework\Module\ModuleFactory::$app = $this;

@@ -50,7 +50,7 @@ namespace Framework\HTML {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function render_content() {
-            $request = \Framework\Http\Request::getInstance();
+            $request = \Framework\Request::getInstance();
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
                 $url_t = ($url != null ? $request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
@@ -113,7 +113,7 @@ namespace Framework\HTML {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function render_pagination() {
-            $request = \Framework\Http\Request::getInstance();
+            $request = \Framework\Request::getInstance();
             $pages   = self::generate_pagination($request->uri['page'], $count);
 
             echo '<ul>';

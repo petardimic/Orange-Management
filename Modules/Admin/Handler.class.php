@@ -76,7 +76,7 @@ namespace Modules\Admin {
          */
         public function show_content() {
             switch ($this->app->request->request_type) {
-                case \Framework\Http\RequestPage::BACKEND:
+                case \Framework\RequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
             }
@@ -314,15 +314,15 @@ namespace Modules\Admin {
          */
         public function api_account() {
             switch ($this->app->request->type) {
-                case \Framework\Http\RequestType::PUT:
+                case \Framework\RequestType::PUT:
                     $this->api_account_put();
                     break;
-                case \Framework\Http\RequestType::DELETE:
+                case \Framework\RequestType::DELETE:
                     $this->api_account_delete();
                     break;
-                case \Framework\Http\RequestType::POST:
+                case \Framework\RequestType::POST:
                     break;
-                case \Framework\Http\RequestType::GET:
+                case \Framework\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -375,16 +375,16 @@ namespace Modules\Admin {
          */
         public function api_group() {
             switch ($this->app->request->type) {
-                case \Framework\Http\RequestType::PUT:
+                case \Framework\RequestType::PUT:
                     $this->api_group_put();
                     break;
-                case \Framework\Http\RequestType::DELETE:
+                case \Framework\RequestType::DELETE:
                     $this->api_group_delete();
                     break;
-                case \Framework\Http\RequestType::POST:
+                case \Framework\RequestType::POST:
                     $this->api_group_post();
                     break;
-                case \Framework\Http\RequestType::GET:
+                case \Framework\RequestType::GET:
                     break;
                 default:
                     return false;
@@ -485,7 +485,7 @@ namespace Modules\Admin {
          */
         public function api_module() {
             switch ($this->app->request->type) {
-                case \Framework\Http\RequestType::PUT:
+                case \Framework\RequestType::PUT:
                     \Framework\Install\Module::install($this->app->db, $this->app->request->data['id']);
 
                     $json_ret = [
@@ -496,13 +496,13 @@ namespace Modules\Admin {
 
                     echo json_encode($json_ret);
                     break;
-                case \Framework\Http\RequestType::DELETE:
+                case \Framework\RequestType::DELETE:
                     echo '1';
                     break;
-                case \Framework\Http\RequestType::POST:
+                case \Framework\RequestType::POST:
                     echo '2';
                     break;
-                case \Framework\Http\RequestType::GET:
+                case \Framework\RequestType::GET:
                     break;
                 default:
                     echo '3';

@@ -58,13 +58,13 @@ namespace Framework\Model {
             $os = self::$app->request->get_os();
 
             /* OS specific */
-            if ($os === \Framework\Http\OSType::WINDOWS_8 || $os === \Framework\Http\OSType::WINDOWS_81) {
+            if ($os === \Framework\OSType::WINDOWS_8 || $os === \Framework\OSType::WINDOWS_81) {
                 echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
                     . '<meta name="msapplication-square70x70logo" content="/Content/Startup/win_tiny.png"/>'
                     . '<meta name="msapplication-square150x150logo" content="/Content/Startup/win_square.png"/>'
                     . '<meta name="msapplication-wide310x150logo" content="/Content/Startup/win_wide.png"/>'
                     . '<meta name="msapplication-square310x310logo" content="/Content/Startup/win_large.png"/>';
-            } elseif ($os === \Framework\Http\OSType::IPHONE || $os === \Framework\Http\OSType::MAC_OS_X || $os === \Framework\Http\OSType::MAC_OS_X_2 || $os === \Framework\Http\OSType::IPAD) {
+            } elseif ($os === \Framework\OSType::IPHONE || $os === \Framework\OSType::MAC_OS_X || $os === \Framework\OSType::MAC_OS_X_2 || $os === \Framework\OSType::IPAD) {
                 echo '<link rel="apple-touch-icon" href="/Content/Startup/apple_icon.png">'
                     . '<link rel="apple-touch-startup-image" href="/Content/Startup/apple_startup.png">'
                     . '<meta name="apple-mobile-web-app-capable" content="yes">'

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http\Request {
+namespace Framework\Request {
     /**
      * Request status enum
      *
