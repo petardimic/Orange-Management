@@ -19,8 +19,8 @@ namespace Framework\Validation {
     	private function __construct() {
     	}
 
-    	public static is_valid($value) {
-    		return filter_var($val, FILTER_VALIDATE_EMAIL);
+    	public static function is_valid($value) {
+    		return filter_var($value, FILTER_VALIDATE_EMAIL);
     	}
     }
 }

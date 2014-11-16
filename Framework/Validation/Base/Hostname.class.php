@@ -19,7 +19,7 @@ namespace Framework\Validation {
     	private function __construct() {
     	}
 
-    	public static is_valid($value) {
+    	public static function is_valid($value) {
     		return filter_var(gethostbyname($value), FILTER_VALIDATE_IP);
     	}
     }
