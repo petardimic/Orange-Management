@@ -21,7 +21,7 @@ namespace Framework\Validation {
         protected static $msg = '';
 
         public static function get_message() {
-            return $this->msg;
+            return self::$msg;
         }
     }
 }

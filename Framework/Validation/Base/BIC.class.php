@@ -15,12 +15,12 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class BIC extends \Framework\Validation\ValidatorAbstract {
-        private function __construct() {
+    class BIC extends \Framework\Validation\ValidatorAbstract {
+        public function __construct() {
         }
 
-        public static is_valid($value) {
-            return (bool)preg_match('/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value);
+        public static function is_valid($value) {
+            return (bool) preg_match('/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value);
         }
     }
 }

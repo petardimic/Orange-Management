@@ -101,7 +101,7 @@ namespace Framework\Auth {
          * @param mixed $key Unique option key
          *
          * @return mixed Option value
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -112,10 +112,10 @@ namespace Framework\Auth {
         /**
          * Updating or adding settings
          *
-         * @param mixed $key Unique option key
-         * @param mixed $value Option value
-         * @param bool $storable Is this option storable inside DB or cache
-         * @param bool $save Should this update the database/cache
+         * @param mixed $key      Unique option key
+         * @param mixed $value    Option value
+         * @param bool  $storable Is this option storable inside DB or cache
+         * @param bool  $save     Should this update the database/cache
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -123,17 +123,18 @@ namespace Framework\Auth {
         public function set_option($key, $value, $storable = false, $save = false) {
             $this->options[$key] = [$value, $storable];
 
-            if($save) {
+            if ($save) {
                 // TODO: save to db and or caching
             }
         }
 
         /**
          * Update options (push them into DB and Cache)
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function update() {}
+        public function update() {
+        }
     }
 }

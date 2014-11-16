@@ -15,7 +15,7 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ValidatorInterface {
+    interface ValidatorInterface {
         public static function is_valid($value);
 
         public static function get_message();

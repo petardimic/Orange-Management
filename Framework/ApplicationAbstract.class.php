@@ -62,7 +62,7 @@ namespace Framework {
          * @var \Framework\Auth\Auth
          * @since 1.0.0
          */
-        private $auth = null;
+        public $auth = null;
 
         /**
          * User instance
