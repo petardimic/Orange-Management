@@ -15,17 +15,17 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface Request {
-        public function getRequest();
-
+    interface RequestInterface {
         public function getRequestSource();
 
-        public function setRequestSource();
+        public function setRequestSource($source);
 
-        public function getRequestType();
+        public function getRequest();
+
+        public function getType();
 
         public function getRequestInfo();
 
-        public function createRequest($para, $type = null);
+        public function getUri();
     }
 }

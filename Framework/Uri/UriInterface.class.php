@@ -18,7 +18,31 @@ namespace Framework\Uri {
      * @since      1.0.0
      */
     interface UriInterface {
-        public static function create($data);
+        /**
+         * Create URI
+         *
+         * @param string $data Parameters
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function create($data, $query = null);
+
+        /**
+         * Validate URI
+         *
+         * @param string $uri URI to validate
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function isValid($uri);
+
+        public function parse($uri);
+
+        public function toString();
+
+        // make relative absolute
+        public function resolve($base);
     }
 }

@@ -17,7 +17,7 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Uri {
+    abstract class UriAbstract {
         
         public function __construct() {
 

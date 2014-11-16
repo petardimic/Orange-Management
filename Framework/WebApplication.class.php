@@ -33,7 +33,7 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($config) {
-            $this->request = new \Framework\Request();
+            $this->request = new \Framework\Request\Web();
             $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
 
             \Framework\Module\ModuleFactory::$app = $this;
@@ -42,15 +42,18 @@ namespace Framework {
             if ($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
                 $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
                 $this->settings = new \Framework\Config\Settings($this);
+                $this->session  = new \Framework\DataStorage\Session\Session();
                 $this->modules  = new \Framework\Module\ModuleManager($this);
                 $this->auth     = new \Framework\Auth\Auth($this);
                 $this->user     = $this->auth->authenticate();
 
-                $this->settings->load_settings([1000000011]);
+                $toLoad = $this->modules->getUriLoads($this->request->getRequest());
 
-                \Framework\Model\Model::$content['page:addr:url']    = 'http://' . $config['page'][0];
-                \Framework\Model\Model::$content['page:addr:local']  = 'http://' . $config['page'][0];
-                \Framework\Model\Model::$content['page:addr:remote'] = 'http://' . $config['page'][1];
+                foreach($toLoad as $module) {
+                    \Framework\Module\ModuleFactory::getInstance($module);
+                }
+
+                $this->settings->loadSettings([1000000011]);
 
                 include __DIR__ . '/../Content/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);

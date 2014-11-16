@@ -71,5 +71,21 @@ namespace Framework {
          * @since 1.0.0
          */
         public $user = null;
+
+        /**
+         * Server localization
+         *
+         * @var \Framework\Localization\Localization
+         * @since 1.0.0
+         */
+        public $localization = null;
+
+        /**
+         * Server localization
+         *
+         * @var \Framework\DataStorage\Session\Session
+         * @since 1.0.0
+         */
+        public $session = null;
     }
 }

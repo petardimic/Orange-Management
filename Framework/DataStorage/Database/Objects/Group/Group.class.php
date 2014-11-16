@@ -74,6 +74,14 @@ namespace Framework\DataStorage\Database\Objects\Group {
             $this->app = $app;
         }
 
+        /**
+         * Initializing a group
+         *
+         * @param int $id ID to initialize
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function init($id) {
             $this->id  = (int)$id;
 
@@ -102,7 +110,8 @@ namespace Framework\DataStorage\Database\Objects\Group {
         public static function getInstance($id, $app) {
             /* TODO: Implement caching here */
             if (!isset(self::$instance[$id])) {
-                self::$instance[$id] = new self($id, $app);
+                self::$instance[$id] = new self($app);
+                self::$instance[$id]->init($id);
             }
 
             return self::$instance[$id];

@@ -27,106 +27,84 @@ namespace Framework\Module {
         private $app = null;
 
         /**
-         * Active Modules
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        public $active = [];
-
-        /**
-         * Loaded files
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        public $loaded = [];
-
-        /**
-         * Running modules
-         *
-         * @var \Framework\Module\ModuleAbstract[]
-         * @since 1.0.0
-         */
-        public $running = [];
-
-        /**
          * Installed modules
          *
          * @var array
          * @since 1.0.0
          */
-        public $installed = null;
+        private $installed = null;
 
         /**
-         * Constructor
+         * All active modules (on all pages not just the ones that are running now)
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $active = null;
+
+        /**
+         * All modules in the module directory
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $all = null;
+
+        /**
+         * All modules that are running on this uri
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $running = null;
+
+        /**
+         * Object constructor
+         *
+         * @param \Framework\ApplicationInterface $app Application instance
          *
          * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * @author Dennis Eichhorn
          */
         public function __construct($app) {
             $this->app = $app;
         }
 
         /**
-         * Load all modules for this request
+         * Get modules that run on this page
+         *
+         * @return array
          *
          * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * @author Dennis Eichhorn
          */
-        public function modules_load() {
-            $this->loaded = $this->app->cache->pull('modules:loaded' . $this->app->request->uri_hash[3]);
-
-            if (!$this->loaded) {
-                $sth = $this->app->db->con->prepare(
-                    'SELECT
+        public function getUriLoads() {
+            if ($this->running === null) {
+                switch($this->app->db->getType()) {
+                    case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    /* TODO: make join in order to see if they are active */
+                    $sth = $this->app->db->con->prepare(
+                        'SELECT
                         `' . $this->app->db->prefix . 'modules_load`.`type`, `' . $this->app->db->prefix . 'modules_load`.*
-                    FROM
+                        FROM
                         `' . $this->app->db->prefix . 'modules_load`
-                    WHERE
+                        WHERE
                         `pid` IN(:pid1, :pid2, :pid3, :pid4)'
-                );
+                        );
 
-                $sth->bindValue(':pid1', $this->app->request->uri_hash[0], \PDO::PARAM_STR);
-                $sth->bindValue(':pid2', $this->app->request->uri_hash[1], \PDO::PARAM_STR);
-                $sth->bindValue(':pid3', $this->app->request->uri_hash[2], \PDO::PARAM_STR);
-                $sth->bindValue(':pid4', $this->app->request->uri_hash[3], \PDO::PARAM_STR);
-                $sth->execute();
-                $this->loaded = $sth->fetchAll(\PDO::FETCH_GROUP);
+                    $uri_hash = $this->app->request->getHash();
 
-                $this->app->cache->push('modules:loaded' . $this->app->request->uri_hash[3], $this->loaded);
-            }
-
-            $this->active = $this->app->cache->pull('modules:active');
-
-            if (!$this->active) {
-                $sth = $this->app->db->con->prepare(
-                    'SELECT
-                        `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.*
-                    FROM
-                        `' . $this->app->db->prefix . 'modules`
-                    WHERE
-                        `active` = 1'
-                );
-                $sth->execute();
-
-                $this->active = $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
-                $this->app->cache->push('modules:active', $this->active);
-            }
-
-            \Framework\Module\ModuleFactory::$available = $this->active;
-            $this->running                              = & \Framework\Module\ModuleFactory::$initialized;
-
-            if (isset($this->loaded[5])) {
-                $this->app->user->localization->load_language($this->app->user->localization->language, $this->loaded[5]);
-            }
-
-            if (isset($this->loaded[4])) {
-                /* TODO: Maybe pass array, reduces function call */
-                foreach ($this->loaded[4] as $class) {
-                    \Framework\Module\ModuleFactory::getInstance($class['from']);
+                    $sth->bindValue(':pid1', $uri_hash[0], \PDO::PARAM_STR);
+                    $sth->bindValue(':pid2', $uri_hash[1], \PDO::PARAM_STR);
+                    $sth->bindValue(':pid3', $uri_hash[2], \PDO::PARAM_STR);
+                    $sth->bindValue(':pid4', $uri_hash[3], \PDO::PARAM_STR);
+                    $sth->execute();
+                    $this->running = $sth->fetchAll(\PDO::FETCH_GROUP);
+                    break;
                 }
             }
+
+            return $this->running;
         }
 
         /**
@@ -135,18 +113,16 @@ namespace Framework\Module {
          * @return array
          *
          * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * @author Dennis Eichhorn
          */
-        public function modules_installed_get() {
-            if (!isset($this->installed)) {
-                $this->installed = $this->app->cache->pull('modules::installed');
-
-                if (!$this->installed) {
-                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
+        public function getInstalledModules() {
+            if ($this->installed === null) {
+                switch($this->app->db->getType()) {
+                    case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules`');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
-
-                    $this->app->cache->push('modules::installed', $this->installed);
+                    break;
                 }
             }
 
@@ -154,126 +130,62 @@ namespace Framework\Module {
         }
 
         /**
-         * Get all modules
-         *
-         * This function gets all modules located in /modules
+         * Get all installed modules that are active (not just on this uri)
          *
          * @return array
          *
          * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * @author Dennis Eichhorn
          */
-        public function module_list_all_get() {
-            chdir(__DIR__ . '/../../Modules');
-            $files     = glob('*', GLOB_ONLYDIR);
-            $c         = count($files);
-            $installed = null;
-
-            for ($i = 0; $i < $c; $i++) {
-                $path = __DIR__ . '/../../Modules/' . $files[$i] . '/info.json';
-
-                if (file_exists($path)) {
-                    $json                                 = json_decode(file_get_contents($path), true);
-                    $installed[$json['name']['internal']] = $json;
-                }
-            }
-
-            return $installed;
-        }
-
-        /**
-         * Get all modules
-         *
-         * @param array $filter Filter for search results
-         * @param int   $offset Offset for first account
-         * @param int   $limit  Limit for results
-         *
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function module_list_installed_get($filter = null, $offset = 0, $limit = 100) {
-            $result = null;
-
-            switch ($this->app->db->type) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $search = $this->app->db->generate_sql_filter($filter);
-
-                    $sth = $this->app->db->con->prepare(
-                        'SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->app->db->prefix . 'modules` ' . $search . 'LIMIT ' . $offset . ',' . $limit
-                    );
+        public function getActiveModules() {
+            if ($this->active === null) {
+                switch($this->app->db->getType()) {
+                    case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
                     $sth->execute();
-
-                    $result['list'] = $sth->fetchAll();
-
-                    $sth = $this->app->db->con->prepare(
-                        'SELECT FOUND_ROWS();'
-                    );
-                    $sth->execute();
-
-                    $result['count'] = $sth->fetchAll()[0][0];
+                    $this->installed = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
                     break;
-            }
-
-            return $result;
-        }
-
-        /**
-         * Get all inactive modules
-         *
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function modules_inactive_get() {
-            $sth = $this->app->db->con->prepare('SELECT `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.* FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 0');
-            $sth->execute();
-
-            return $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
-        }
-
-        /**
-         * Get all active modules
-         *
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function modules_active_get() {
-            $active = $this->app->cache->pull('modules:active');
-
-            if (!$active) {
-                $sth = $this->app->db->con->prepare('SELECT `' . $this->app->db->prefix . 'modules`.`id`, `' . $this->app->db->prefix . 'modules`.* FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
-                $sth->execute();
-                $active = $sth->fetchAll(\PDO::FETCH_GROUP | \PDO::FETCH_UNIQUE);
-
-                $this->app->cache->push('modules:active', $active);
-            }
-
-            return $active;
-        }
-
-        /**
-         * Get all active modules
-         *
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function module_info_get($id) {
-            if (!isset($this->installed[$id]['info'])) {
-                $path = __DIR__ . '/../../Modules/' . $id . '/info.json';
-
-                if (file_exists($path)) {
-                    $this->installed[$id]['info'] = json_decode(file_get_contents($path), true);
                 }
             }
 
-            return $this->installed[$id]['info'];
+            return $this->active;
+        }
+
+        /**
+         * Get all modules in the module directory
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        public function getAllModules() {
+            if($this->all === null) {
+                chdir(__DIR__ . '/../../Modules');
+                $files     = glob('*', GLOB_ONLYDIR);
+                $c         = count($files);
+
+                for ($i = 0; $i < $c; $i++) {
+                    $path = __DIR__ . '/../../Modules/' . $files[$i] . '/info.json';
+
+                    if (file_exists($path)) {
+                        $json                                 = json_decode(file_get_contents($path), true);
+                        $this->all[$json['name']['internal']] = $json;
+                    }
+                }
+            }
+        }
+
+        /**
+         * Get modules that are available from official resources
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        public function getAvailableModules() {
+
         }
     }
 }

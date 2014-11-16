@@ -1,5 +1,4 @@
 <?php
-/* TODO: Think about implementing ThemeAbstract.class.php for modules. This can be used for javascript, css and lang loading */
 namespace Framework\Module {
     /**
      * Module abstraction class
@@ -18,99 +17,31 @@ namespace Framework\Module {
      */
     abstract class ModuleAbstract {
         /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public $dependencies = null;
-
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public $receiving = null;
-
-        /**
-         * Providing
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public $providing = null;
-
-        /**
-         * Theme path
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public $theme_path = '';
-
-        /**
          * Application instance
          *
-         * @var \Framework\WebApplication
+         * @var \Framework\ApplicationInterface
          * @since 1.0.0
          */
         protected $app = null;
 
         /**
-         * Javascript
+         * Receiving modules from?
          *
-         * @var mixed
+         * @var string[]
          * @since 1.0.0
          */
-        public $js = false;
+        public $receiving = [];
 
         /**
-         * Constructor
+         * Object constructor
          *
-         * @param string $theme_path
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function initialize($theme_path, $app) {
-            $this->app        = $app;
-            $this->theme_path = $theme_path;
-        }
-
-        /**
-         * Shows module content
-         *
-         * @param   array $data
+         * @param \Framework\ApplicationInterface $app Application instance
          *
          * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * @author Dennis Eichhorn
          */
-        public function show($data = null) {
-        }
-
-        /**
-         * Shows module content provided by other modules
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        protected function show_push() {
-            if (isset(self::$receiving)) {
-                foreach (self::$receiving as $mid) {
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_content_push();
-                }
-            }
-        }
-
-        /**
-         * Shows module content provided by other modules
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function show_content_push() {
+        public function __construct($app) {
+            $this->app = $app;
         }
     }
 }

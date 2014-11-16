@@ -17,14 +17,6 @@ namespace Framework\Request {
      */
     abstract class RequestAbstract implements \Framework\Request\RequestInterface {
         /**
-         * Request data
-         *
-         * @var mixed[]
-         * @since 1.0.0
-         */
-        private $request = [];
-
-        /**
          * Request type
          *
          * @var \Framework\Request\RequestType
@@ -41,6 +33,23 @@ namespace Framework\Request {
         private static $source = null;
 
         /**
+         * Uri
+         *
+         * @var \Framework\Uri\UriAbstract
+         * @since 1.0.0
+         */
+        public $uri = null;
+
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct() {
+        }
+
+        /**
          * Get request
          *
          * @return array
@@ -48,8 +57,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getRequest() {
-            return $this->request;
+        public function getUri() {
+            return $this->uri;
         }
 
         /**
@@ -84,7 +93,7 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getRequestType() {
+        public function getType() {
             return $this->type;
         }
     }

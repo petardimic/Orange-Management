@@ -55,18 +55,11 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function load_settings($ids) {
+        public function loadSettings($ids) {
             foreach ($ids as $id) {
                 if (isset($this->config[$id])) {
                     unset($ids[$id]);
-                } else {
-                    $cfg = $this->app->cache->pull('cfg:' . $id);
-
-                    if ($cfg !== false) {
-                        $this->config[$id] = $cfg;
-                        unset($ids[$id]);
-                    }
-                }
+                } 
             }
 
             // TODO: implement cache if cache is initialized
@@ -74,8 +67,6 @@ namespace Framework\Config {
                 $sth = $this->app->db->con->prepare('SELECT `id`, `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
                 $sth->execute();
                 $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
-
-                $this->app->cache->push('cfg:', $cfgs, false);
                 $this->config += $cfgs;
             }
         }
@@ -88,7 +79,7 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function set_settings($settings) {
+        public function setSettings($settings) {
             $this->config += $settings;
 
             /* TODO: change this + implement cache */

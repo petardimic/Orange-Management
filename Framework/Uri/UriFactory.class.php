@@ -18,43 +18,72 @@ namespace Framework\Uri {
      * @since      1.0.0
      */
     class UriFactory {
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
         private function __construct() {}
 
-        public static function build($data, $scheme = \Framework\Uri\UriScheme::HTTP) {
+        /**
+         * Build uri
+         *
+         * @param array $data Path data
+         * @param array $query Query data
+         * @param \Framework\Uri\UriScheme $scheme Scheme type
+         *
+         * @return null|string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function build($data, $query, $scheme = \Framework\Uri\UriScheme::HTTP) {
             switch($scheme) {
                 case \Framework\Uri\UriScheme::HTTP:
-                    return \Framework\Uri\Http::create($data);
+                    return \Framework\Uri\Http::create($data, $query);
                 case \Framework\Uri\UriScheme::FILE:
-                    return \Framework\Uri\File::create($data);
+                    return \Framework\Uri\File::create($data, $query);
                 case \Framework\Uri\UriScheme::MAILTO:
-                    return \Framework\Uri\Mailto::create($data);
+                    return \Framework\Uri\Mailto::create($data, $query);
                 case \Framework\Uri\UriScheme::FTP:
-                    return \Framework\Uri\Ftp::create($data);
+                    return \Framework\Uri\Ftp::create($data, $query);
                 case \Framework\Uri\UriScheme::IRC:
-                    return \Framework\Uri\Irc::create($data);
+                    return \Framework\Uri\Irc::create($data, $query);
                 case \Framework\Uri\UriScheme::TEL:
-                    return \Framework\Uri\Tel::create($data);
+                    return \Framework\Uri\Tel::create($data, $query);
                 case \Framework\Uri\UriScheme::TELNET:
-                    return \Framework\Uri\Telnet::create($data);
+                    return \Framework\Uri\Telnet::create($data, $query);
                 case \Framework\Uri\UriScheme::SSH:
-                    return \Framework\Uri\Ssh::create($data);
+                    return \Framework\Uri\Ssh::create($data, $query);
                 case \Framework\Uri\UriScheme::SKYPE:
-                    return \Framework\Uri\Skype::create($data);
+                    return \Framework\Uri\Skype::create($data, $query);
                 case \Framework\Uri\UriScheme::SSL:
-                    return \Framework\Uri\Ssl::create($data);
+                    return \Framework\Uri\Ssl::create($data, $query);
                 case \Framework\Uri\UriScheme::NFS:
-                    return \Framework\Uri\Nfs::create($data);
+                    return \Framework\Uri\Nfs::create($data, $query);
                 case \Framework\Uri\UriScheme::GEO:
-                    return \Framework\Uri\Geo::create($data);
+                    return \Framework\Uri\Geo::create($data, $query);
                 case \Framework\Uri\UriScheme::MARKET:
-                    return \Framework\Uri\Market::create($data);
+                    return \Framework\Uri\Market::create($data, $query);
                 case \Framework\Uri\UriScheme::ITMS:
-                    return \Framework\Uri\Itms::create($data);
+                    return \Framework\Uri\Itms::create($data, $query);
             }
 
             return null;
         }
 
+        /**
+         * Validate uri
+         *
+         * @param string $uri URI to validate
+         * @param \Framework\Uri\UriScheme $scheme Scheme type
+         *
+         * @return bool
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function isValid($uri, $scheme = \Framework\Uri\UriScheme::HTTP) {
             $uri = null;
 

@@ -135,9 +135,7 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function load_language($language, $files) {
-            self::$lang = $this->app->cache->pull('lang:' . $language . ':' . $this->app->request->uri_hash[3]);
-
+        public function loadLanguage($language, $files) {
             if (!self::$lang && !empty($files)) {
                 self::$lang = [];
 
@@ -161,8 +159,6 @@ namespace Framework\Localization {
                         self::$lang[$key] += $MODLANG[$key];
                     }
                 }
-
-                $this->app->cache->push('lang:' . $language . ':' . $this->app->request->uri_hash[3], self::$lang);
             }
         }
     }

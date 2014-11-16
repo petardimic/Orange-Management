@@ -18,7 +18,7 @@ namespace Framework\DataStorage\Database\Objects {
      * @since      1.0.0
      */
     interface ObjectListInterface extends \Serialzable, \Countable {
-        public function get_object();
+        public function getObject();
 
         public function instantiate();
     }

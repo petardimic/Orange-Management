@@ -1,11 +1,11 @@
 <?php
-namespace Framework\Localization {
+namespace Framework\Module {
     /**
-     * Localization class
+     * Console module interface
      *
      * PHP Version 5.4
      *
-     * @category   Localization
+     * @category   Module
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,14 +15,7 @@ namespace Framework\Localization {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Currency {
-        private $local;
-
-        public function __constructor() {
-        }
-
-        public function print($number, $digits = 2) {
-
-        }
-}
+    interface ConsoleInterface {
+        public function callConsole();
+    }
 }

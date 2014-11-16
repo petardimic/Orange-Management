@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http {
+namespace Framework\Request {
     /**
      * OS type enum
      *
@@ -7,7 +7,7 @@ namespace Framework\Http {
      *
      * PHP Version 5.4
      *
-     * @category   Http
+     * @category   Request
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

@@ -50,15 +50,15 @@ namespace Framework\DataStorage\Database {
         /**
          * Database type
          *
-         * @var int
+         * @var \Framework\DataStorage\Database\DatabaseType
          * @since 1.0.0
          */
-        public $type = null;
+        private $type = null;
 
         /**
          * Database status
          *
-         * @var int
+         * @var \Framework\DataStorage\Database\DatabaseStatus
          * @since 1.0.0
          */
         public $status = 0;
@@ -99,6 +99,18 @@ namespace Framework\DataStorage\Database {
             } catch (\PDOException $e) {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_TABLE;
             }
+        }
+
+        /**
+         * Get the database type
+         *
+         * @return \Framework\DataStorage\Database\DatabaseType
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getType() {
+            return $this->type;
         }
 
         /**

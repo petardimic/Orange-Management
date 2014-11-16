@@ -42,24 +42,21 @@ namespace Content {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function load() {
-            /* TODO: handle not authenticated! */
-            $this->app->modules->modules_load($this);
-
-            switch ($this->app->request->request_type) {
-                case \Framework\RequestPage::BACKEND:
+            switch ($this->app->request->getType()) {
+                case \Framework\Request\WebRequestPage::BACKEND:
                     header('Content-Type: text/html; charset=utf-8');
 
-                    $this->app->settings->load_settings([1000000009]);
+                    $this->app->settings->loadSettings([1000000009]);
 
                     \Framework\Model\Model::$content['core:oname']  = $this->app->settings->config[1000000009];
                     \Framework\Model\Model::$content['theme:path']  = $this->app->settings->config[1000000011];
-                    \Framework\Model\Model::$content['core:layout'] = $this->app->request->request_type;
+                    \Framework\Model\Model::$content['core:layout'] = $this->app->request->getType();
                     \Framework\Model\Model::$content['page:title']  = 'Orange Management';
 
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/backend/template.tpl.php';
                     break;
-                case \Framework\RequestPage::API:
+                case \Framework\Request\WebRequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
                     $this->app->modules->running[1004400000]->show();

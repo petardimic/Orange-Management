@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http {
+namespace Framework\Request {
     /**
      * Request page enum
      *
@@ -7,7 +7,7 @@ namespace Framework\Http {
      *
      * PHP Version 5.4
      *
-     * @category   Http
+     * @category   Request
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -32,5 +32,6 @@ namespace Framework\Http {
         const CALENDAR = 'calendar'; /* Calendar */
         const PROFILE = 'profile'; /* User profile page */
         const CHAT = 'chat'; /* Chat page */
+        const GALLERY = 'gallery'; /* Chat page */
     }
 }

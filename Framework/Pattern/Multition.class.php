@@ -27,6 +27,12 @@ namespace Framework\Pattern {
          */
         public static function getInstance($id, $app);
 
+        /**
+         * Overwriting clone in order to maintain singleton pattern
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __clone();
     }
 }

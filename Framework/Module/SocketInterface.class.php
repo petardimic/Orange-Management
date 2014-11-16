@@ -1,11 +1,11 @@
 <?php
-namespace Framework\Localization\Number {
+namespace Framework\Module {
     /**
-     * Localization class
+     * Socket module interface
      *
      * PHP Version 5.4
      *
-     * @category   Localization
+     * @category   Module
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,14 +15,7 @@ namespace Framework\Localization\Number {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Number {
-        private $local;
-
-        public function __constructor() {
-        }
-
-        public function print($number, $digits = 0) {
-
-        }
-}
+    interface SocketInterface {
+        public function callSock();
+    }
 }

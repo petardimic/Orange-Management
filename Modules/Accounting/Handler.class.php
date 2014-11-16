@@ -49,8 +49,8 @@ namespace Modules\Accounting {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content() {
-            switch ($this->app->request->request_type) {
-                case \Framework\RequestPage::BACKEND:
+            switch ($this->app->request->getType()) {
+                case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
             }

@@ -15,13 +15,67 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Web {
+    class Web extends \Framework\Request\RequestAbstract {
+        /**
+         * Request information
+         *
+         * @var string[]
+         * @since 1.0.0
+         */
         private $request_info = null;
 
-        public function __construct() {
+        /**
+         * Request
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $request = null;
 
+        /**
+         * Request hash
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $hash = null;
+
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct() {
+            parent::__construct();
+            $this->uri = new \Framework\Uri\Http();
+            $this->getRequest();
         }
 
+        /**
+         * Get request
+         *
+         * @return array $request_info (Browser and OS data)
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getRequest() {
+            if($this->request === null) {
+                $this->request = file_get_contents("php://input");
+            }
+
+            return $this->request;
+        }
+
+        /**
+         * Get request information
+         *
+         * @return array $request_info (Browser and OS data)
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getRequestInfo() {
             if($this->request_info === null) {
                 /* Get browser */
@@ -52,8 +106,16 @@ namespace Framework\Request {
             return $this->request_info;
         }
 
-        public function createRequest($para, $type = null) {
-            
+        /**
+         * Get request hashes
+         *
+         * @return array Request hashes
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getHash() {
+            return $this->hash;
         }
     }
 }

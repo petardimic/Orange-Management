@@ -150,8 +150,16 @@ namespace Framework\DataStorage\Database\Objects\User {
             $this->app = $app;
         }
 
+        /**
+         * Initializing a user
+         *
+         * @param int $id ID to initialize
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function init($id) {
-            $this->id  = $id;
+            $this->id = $id;
 
             $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
 
@@ -203,7 +211,8 @@ namespace Framework\DataStorage\Database\Objects\User {
         public static function getInstance($id, $app, $is_current = false) {
             /* TODO: implement the cache loading right here. smart idea! */
             if (!isset(self::$instances[$id])) {
-                self::$instances[$id] = new self($id, $app);
+                self::$instances[$id] = new self($app);
+                self::$instances[$id]->init($id);
 
                 if ($is_current) {
                     self::$instances[-1] = & self::$instances[$id];
