@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Media\Handler $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000701001]); ?>
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000701001]); ?>
 
 <div class="b b-2 c7-2 c7" id="i7-2-1">
     <h1>

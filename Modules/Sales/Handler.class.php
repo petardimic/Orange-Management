@@ -23,7 +23,7 @@ namespace Modules\Sales {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -90,7 +90,7 @@ namespace Modules\Sales {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
                 case 'client':
                     $this->show_backend_client();
                     break;
@@ -107,58 +107,58 @@ namespace Modules\Sales {
         }
 
         public function show_backend_article() {
-            switch ($this->app->request->uri['l4']) {
+            switch ($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_backend_client_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/article-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-create.tpl.php';
                     break;
             }
         }
 
         public function show_backend_invoice() {
-            switch ($this->app->request->uri['l4']) {
+            switch ($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_backend_client_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/invoice-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/invoice-create.tpl.php';
                     break;
             }
         }
 
         public function show_backend_client() {
-            switch ($this->app->request->uri['l4']) {
+            switch ($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/clients-list.tpl.php';
                     break;
                 case 'single':
                     $this->show_backend_client_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/clients-create.tpl.php';
                     break;
             }
         }
 
         public function show_backend_client_single() {
-            switch ($this->app->request->uri['l5']) {
+            switch ($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/clients-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/clients-single.tpl.php';
                     break;
             }
         }

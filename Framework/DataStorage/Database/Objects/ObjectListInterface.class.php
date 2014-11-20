@@ -17,7 +17,7 @@ namespace Framework\DataStorage\Database\Objects {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ObjectListInterface extends \Serialzable, \Countable {
+    interface ObjectListInterface extends \Serializable, \Countable {
         public function getObject();
 
         public function instantiate();

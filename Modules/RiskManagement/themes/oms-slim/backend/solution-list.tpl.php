@@ -1,6 +1,6 @@
 <?php /** @var \Modules\RiskManagement\Handler $this */
 \Framework\Model\Model::generate_table_filter_view();
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
 ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
@@ -33,7 +33,7 @@
                 <?php
                 /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */ /*
                 $data = $accounts->account_list_get();
-                $url['level'] = array_slice($this->app->request->uri, 0, 4);
+                $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
                 $url['id'] = 'id';

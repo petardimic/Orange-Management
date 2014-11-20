@@ -23,7 +23,7 @@ namespace Modules\EventManagement {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -90,14 +90,14 @@ namespace Modules\EventManagement {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/eventmanagement-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/eventmanagement-dashboard.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/eventmanagement-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/eventmanagement-create.tpl.php';
                     break;
             }
         }

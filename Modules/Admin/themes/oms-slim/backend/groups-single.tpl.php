@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */ /** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
     <h1>
@@ -75,7 +75,7 @@
                 <?php
                 /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */
                 $data = $accounts->account_list_get();
-                $url['level'] = array_slice($this->app->request->uri, 0, 4);
+                $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['id'] = 'id';
 

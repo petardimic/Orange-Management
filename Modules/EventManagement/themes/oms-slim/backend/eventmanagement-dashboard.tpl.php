@@ -1,5 +1,5 @@
 <?php /** @var \Modules\EventManager\Handler $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1004201001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1004201001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
@@ -28,7 +28,7 @@
                 <?php
                 /** @var \Modules\Sales\ArticleList $articles */ /*
                 $data = $articles->article_list_get();
-                $url['level'] = array_slice($this->app->request->uri, 0, 4);
+                $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
                 $url['id'] = 'id';

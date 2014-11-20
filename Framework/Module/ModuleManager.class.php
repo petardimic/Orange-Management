@@ -119,7 +119,7 @@ namespace Framework\Module {
             if ($this->installed === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class` FROM `' . $this->app->db->prefix . 'modules`');
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'modules`');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -141,7 +141,7 @@ namespace Framework\Module {
             if ($this->active === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
                     $sth->execute();
                     $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -174,6 +174,8 @@ namespace Framework\Module {
                     }
                 }
             }
+
+            return $this->all;
         }
 
         /**

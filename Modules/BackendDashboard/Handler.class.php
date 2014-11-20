@@ -23,7 +23,7 @@ namespace Modules\BackendDashboard {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 

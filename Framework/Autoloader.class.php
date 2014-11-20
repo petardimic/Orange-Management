@@ -28,10 +28,13 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function default_autoloader($class) {
-            $class = ltrim($class, '\\');
+            //if(strpos($class, 'Framework') !== false || strpos($class, 'Module') !== false) {
+                //echo $class. ' - ';
+                $class = ltrim($class, '\\');
 
-            /** @noinspection PhpIncludeInspection */
-            include __DIR__ . '/../' . $class . '.class.php';
+                /** @noinspection PhpIncludeInspection */
+                include __DIR__ . '/../' . $class . '.class.php';
+            //}
         }
     }
 }

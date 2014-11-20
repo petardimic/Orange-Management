@@ -192,15 +192,14 @@ namespace Framework\Model {
         public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
-                $url_t = ($url != null ? self::$app->request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
-
+                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id', $ele[0][$url['id']]]]) : '#');
                 /* TODO: Replace is to slow (most likely) */
                 echo '<tr>';
                 foreach ($cols as $col) {
                     if ($replace == null || !isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . $ele[$col] . '</a>';
+                        echo '<td><a href="' . $url_t . '">' . $ele[0][$col] . '</a>';
                     } elseif (isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[$col]]) ? $replace[$col][$ele[$col]] : $ele[$col]) . '</a>';
+                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[0][$col]]) ? $replace[$col][$ele[0][$col]] : $ele[0][$col]) . '</a>';
                     }
                 }
             }
@@ -215,18 +214,18 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
-            $pages = self::generate_pagination(self::$app->request->uri['page'], $count);
+            $pages = self::generate_pagination(self::$app->request->request['page'], $count);
 
             echo '<ul>';
             foreach ($pages as $page) {
                 if ($page > 0) {
-                    $url = self::$app->request->generate_uri(self::$app->request->uri, [['page', $page]]);
+                    $url = \Framework\Uri\UriFactory::build(self::$app->request->request, [['page', $page]]);
                 } else {
                     $url = '';
                 }
 
                 echo '<li><a href="' . $url
-                    . '"' . ($page == self::$app->request->uri['page'] ? ' class="a"' : '') . '>'
+                    . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
                     . '</a>';
             }
@@ -241,14 +240,14 @@ namespace Framework\Model {
          */
         public static function generate_table_filter_view() {
             echo '<div class="b pop vh" id="t-f">
-                    <h1>' . $this->app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
+                    <h1>' . self::$app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
                     <div class="bc-1">
                         <ul class="l-1">
 
                         </ul>
                         <div class="bt cT">
-                            <button class="save">' . $this->app->user->localization->lang[0]['Save'] . '</button>
-                            <button class="close">' . $this->app->user->localization->lang[0]['Close'] . '</button>
+                            <button class="save">' . self::$app->user->localization->lang[0]['Save'] . '</button>
+                            <button class="close">' . self::$app->user->localization->lang[0]['Close'] . '</button>
                         </div>
                     </div>
                 </div>';

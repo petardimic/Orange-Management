@@ -23,7 +23,7 @@ namespace Modules\Media {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -82,24 +82,24 @@ namespace Modules\Media {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/media-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-single.tpl.php';
                     break;
                 case 'list':
-                    if (!isset($this->app->request->uri['page'])) {
-                        $this->app->request->uri['page'] = 1;
+                    if (!isset($this->app->request->request['page'])) {
+                        $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/media-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-list.tpl.php';
                     break;
             }
         }
 
-        public function show_content_push() {
-            switch ($this->app->request->uri['l2']) {
+        public function callPush() {
+            switch ($this->app->request->request['l2']) {
                 case 'admin':
                     break;
                 case 'profile':

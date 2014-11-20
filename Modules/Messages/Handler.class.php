@@ -23,7 +23,7 @@ namespace Modules\Messages {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -94,10 +94,10 @@ namespace Modules\Messages {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/dashboard.tpl.php';
                     break;
             }
         }

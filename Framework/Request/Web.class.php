@@ -30,7 +30,7 @@ namespace Framework\Request {
          * @var array
          * @since 1.0.0
          */
-        private $request = null;
+        public $request = null;
 
         /**
          * Request hash

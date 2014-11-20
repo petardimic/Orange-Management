@@ -1,5 +1,5 @@
 <?php /** @var \Modules\RiskManagement\Handler $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
 ?>
 <div class="b b-2 c30-1 c30" id="i30-1-1">
     <h1>

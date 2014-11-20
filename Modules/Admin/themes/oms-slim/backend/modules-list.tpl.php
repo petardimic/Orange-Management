@@ -25,13 +25,15 @@
         <tbody>
         <?php
         /** @var \Framework\Module\Modules $modules */
-        $modules_installed = $this->app->modules->module_list_installed_get();
-        $url['level'] = array_slice($this->app->request->uri, 0, 4);
+        $modules_installed = $this->app->modules->getInstalledModules();
+        $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
         $url['id'] = 'class';
 
+        //var_dump($modules_installed);
+
         \Framework\Model\Model::generate_table_content_view(
-            $modules_installed['list'],
+            $modules_installed,
             ['id', 'name', 'theme', 'version'],
             $url
         );
@@ -61,14 +63,14 @@
         ?>
         <tbody>
         <?php
-        $modules_all = $this->app->modules->module_list_all_get();
-        $url['level'] = array_slice($this->app->request->uri, 0, 4);
+        $modules_all = $this->app->modules->getAllModules();
+        $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
 
         foreach ($modules_all as $ele) {
             $url_t = \Framework\Uri\UriFactory::build($url['level'], [['id', $ele['class']]]);
 
-            if (!array_key_exists($ele['name']['internal'], $this->app->modules->modules_installed_get())) {
+            if (!array_key_exists($ele['name']['internal'], $modules_installed)) {
                 echo '<tr>'
                     . '<td><a href="' . $url_t . '">' . $ele['name']['internal'] . '</a>'
                     . '<td><a href="' . $url_t . '">' . $ele['name']['external'] . '</a>'

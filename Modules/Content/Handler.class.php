@@ -23,7 +23,6 @@ namespace Modules\Content {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
             1004400000
         ];
 
@@ -72,7 +71,7 @@ namespace Modules\Content {
             if (isset($this->receiving)) {
                 foreach ($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_content();
+                    \Framework\Module\ModuleFactory::$loaded[$mid]->callWeb();
                 }
             }
         }

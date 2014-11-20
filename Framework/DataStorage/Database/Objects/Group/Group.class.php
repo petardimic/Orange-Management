@@ -153,7 +153,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function create() {
-            switch ($this->app->db->type) {
+            switch ($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'groups` (`name`, `desc`) VALUES
@@ -198,7 +198,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function update() {
-            switch ($this->app->db->type) {
+            switch ($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'UPDATE `' . $this->app->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'

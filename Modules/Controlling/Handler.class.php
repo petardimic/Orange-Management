@@ -23,7 +23,7 @@ namespace Modules\Controlling {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -90,7 +90,7 @@ namespace Modules\Controlling {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
             }
         }
     }

@@ -241,7 +241,7 @@ namespace Framework\DataStorage\Database\Objects\User {
                 $this->perm = $this->app->cache->pull('usr:perm:' . $this->id);
 
                 if (!$this->perm) {
-                    switch ($this->app->db->type) {
+                    switch ($this->app->db->getType()) {
                         case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                             break;
@@ -289,7 +289,7 @@ namespace Framework\DataStorage\Database\Objects\User {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function account_edit_base($account) {
-            switch ($this->app->db->type) {
+            switch ($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
@@ -317,7 +317,7 @@ namespace Framework\DataStorage\Database\Objects\User {
                 $this->groups[$id] = \Framework\DataStorage\Database\Objects\Group\Group::getInstance($id);
             }
 
-            switch ($this->app->db->type) {
+            switch ($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
@@ -339,7 +339,7 @@ namespace Framework\DataStorage\Database\Objects\User {
         public function create() {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-            switch ($this->app->db->type) {
+            switch ($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES

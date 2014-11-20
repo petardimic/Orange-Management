@@ -64,7 +64,7 @@
                 <li>
                     <button data-http="PUT" data-request="FORM" data-id='["f-page"]' data-uri="<?=
                     \Framework\Uri\UriFactory::build([
-                        $this->app->request->uri['l0'],
+                        $this->app->request->request['l0'],
                         'api',
                         'admin',
                         'settings'

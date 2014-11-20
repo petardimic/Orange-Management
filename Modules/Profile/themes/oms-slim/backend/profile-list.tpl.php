@@ -27,7 +27,7 @@
                 <?php
                 /** @var \Modules\Admin\Users $accounts */
                 $data = $accounts->account_list_get();
-                $url['level'] = array_slice($this->app->request->uri, 0, 3);
+                $url['level'] = array_slice($this->app->request->request, 0, 3);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
                 $url['id'] = 'id';

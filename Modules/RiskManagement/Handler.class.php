@@ -23,7 +23,7 @@ namespace Modules\RiskManagement {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -90,10 +90,10 @@ namespace Modules\RiskManagement {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l4']) {
+            switch ($this->app->request->request['l4']) {
                 case 'cockpit':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/cockpit.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/cockpit.tpl.php';
                     break;
                 case 'risk':
                     $this->show_backend_risk();
@@ -111,14 +111,14 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_risk() {
-            switch ($this->app->request->uri['l5']) {
+            switch ($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/risk-list.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/risk-create.tpl.php';
                     break;
                 case 'single':
                     $this->show_backend_risk_single();
@@ -127,37 +127,37 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_risk_single() {
-            switch ($this->app->request->uri['l6']) {
+            switch ($this->app->request->request['l6']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/risk-single-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/risk-single-dashboard.tpl.php';
                     break;
             }
         }
 
         public function show_backend_cause() {
-            switch ($this->app->request->uri['l5']) {
+            switch ($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/cause-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/cause-list.tpl.php';
                     break;
             }
         }
 
         public function show_backend_solution() {
-            switch ($this->app->request->uri['l5']) {
+            switch ($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/solution-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/solution-list.tpl.php';
                     break;
             }
         }
 
         public function show_backend_settings() {
-            switch ($this->app->request->uri['l5']) {
+            switch ($this->app->request->request['l5']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/settings-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/settings-list.tpl.php';
                     break;
             }
         }

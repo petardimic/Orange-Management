@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */
-\Framework\Module\ModuleFactory::$initialized[1000500000]->show([\Modules\Navigation\NavigationType::CONTENT, 1000104300]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000104300]);
 ?>
 
 <div class="b b-1 c1-3 c1" id="i1-3-1">
@@ -10,14 +10,14 @@
     </h1>
 
     <div class="bc-1">
-        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->uri['id'], $this->app); ?>
+        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->request['id'], $this->app); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>
                     <label for="i-id"><?= $this->app->user->localization->lang[0]['ID']; ?></label>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= (int)$this->app->request->uri['id']; ?>" disabled>
+                           value="<?= (int)$this->app->request->request['id']; ?>" disabled>
                 <li>
                     <label for="i-status"><?= $this->app->user->localization->lang[1]['Status']; ?></label>
                 <li>

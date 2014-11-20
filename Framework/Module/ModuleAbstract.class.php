@@ -52,5 +52,12 @@ namespace Framework\Module {
             $this->app = $app;
             $this->theme_path = $theme;
         }
+
+        public function callPull() {
+            foreach ($this->receiving as $mid) {
+                /** @noinspection PhpUndefinedMethodInspection */
+                \Framework\Module\ModuleFactory::$loaded[$mid]->callPush();
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@
             <?php
             /** @var \Framework\Module\Modules $modules */ /*
         $modules_installed = $this->app->modules->module_list_installed_get();
-        $url['level'] = array_slice($this->app->request->uri, 0, 4);
+        $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
         $url['id'] = 'class';
 

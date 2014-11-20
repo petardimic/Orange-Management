@@ -192,7 +192,7 @@ namespace Framework\Model {
         public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
-                $url_t = ($url != null ? self::$app->request->generate_uri($url['level'], [['id', $ele[$url['id']]]]) : '#');
+                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id', $ele[$url['id']]]]) : '#');
 
                 /* TODO: Replace is to slow (most likely) */
                 echo '<tr>';
@@ -215,18 +215,18 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
-            $pages = self::generate_pagination(self::$app->request->uri['page'], $count);
+            $pages = self::generate_pagination(self::$app->request->request['page'], $count);
 
             echo '<ul>';
             foreach ($pages as $page) {
                 if ($page > 0) {
-                    $url = self::$app->request->generate_uri(self::$app->request->uri, [['page', $page]]);
+                    $url = \Framework\Uri\UriFactory::build(self::$app->request->request, [['page', $page]]);
                 } else {
                     $url = '';
                 }
 
                 echo '<li><a href="' . $url
-                    . '"' . ($page == self::$app->request->uri['page'] ? ' class="a"' : '') . '>'
+                    . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
                     . '</a>';
             }

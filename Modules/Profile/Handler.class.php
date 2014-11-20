@@ -23,7 +23,7 @@ namespace Modules\Profile {
          * @since 1.0.0
          */
         public $providing = [
-            1004100000,
+            'Content',
             1004400000
         ];
 
@@ -87,25 +87,25 @@ namespace Modules\Profile {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->uri['l3']) {
+            switch ($this->app->request->request['l3']) {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/profile-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/profile-single.tpl.php';
 
-                    $this->show_push();
+                    $this->callPull();
 
                     break;
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $accounts = new \Modules\Admin\Users($this->app);
 
-                    if (!isset($this->app->request->uri['page'])) {
-                        $this->app->request->uri['page'] = 1;
+                    if (!isset($this->app->request->request['page'])) {
+                        $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes' . $this->theme_path . '/backend/profile-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/profile-list.tpl.php';
                     break;
                 default:
                     return false;
