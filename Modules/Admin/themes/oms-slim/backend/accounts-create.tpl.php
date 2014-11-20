@@ -4,7 +4,7 @@
 
 <div class="b b-2 c1-8 c1" id="i1-8-2">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Account']; ?>
+        <?= $this->app->user->localization->lang[1]['Account']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -13,29 +13,29 @@
         <form class="f-1">
             <ul class="l-1">
                 <li>
-                    <label for="i-status"><?= \Framework\Localization\Localization::$lang[1]['Status']; ?></label>
+                    <label for="i-status"><?= $this->app->user->localization->lang[1]['Status']; ?></label>
                 <li>
                     <select name="status" id="i-status">
                         <option value="0">
-                            <?= \Framework\Localization\Localization::$lang[1]['Active']; ?>
+                            <?= $this->app->user->localization->lang[1]['Active']; ?>
                         <option value="1">
-                            <?= \Framework\Localization\Localization::$lang[1]['Inactive']; ?>
+                            <?= $this->app->user->localization->lang[1]['Inactive']; ?>
                     </select>
                 <li>
-                    <label for="i-type"><?= \Framework\Localization\Localization::$lang[1]['Type']; ?></label>
+                    <label for="i-type"><?= $this->app->user->localization->lang[1]['Type']; ?></label>
                 <li>
                     <select name="type" id="i-type">
                         <option value="0">
-                            <?= \Framework\Localization\Localization::$lang[1]['Single']; ?>
+                            <?= $this->app->user->localization->lang[1]['Single']; ?>
                         <option value="1">
-                            <?= \Framework\Localization\Localization::$lang[1]['Group']; ?>
+                            <?= $this->app->user->localization->lang[1]['Group']; ?>
                     </select>
                 <li>
-                    <label for="i-active"><?= \Framework\Localization\Localization::$lang[1]['Activity']; ?></label>
+                    <label for="i-active"><?= $this->app->user->localization->lang[1]['Activity']; ?></label>
                 <li>
                     <input name="active" class="i-1 t-i" id="i-active" type="text">
                 <li>
-                    <label for="i-created"><?= \Framework\Localization\Localization::$lang[1]['Created']; ?></label>
+                    <label for="i-created"><?= $this->app->user->localization->lang[1]['Created']; ?></label>
                 <li>
                     <input name="created" class="i-1 t-i" id="i-created" type="text">
                 <li>
@@ -46,7 +46,7 @@
 
 <div class="b b-2 c1-8 c1" id="i1-8-3">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Account']; ?>
+        <?= $this->app->user->localization->lang[1]['Account']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -55,30 +55,30 @@
         <form class="f-1">
             <ul class="l-1">
                 <li>
-                    <label for="i-login"><?= \Framework\Localization\Localization::$lang[1]['Loginname']; ?></label>
+                    <label for="i-login"><?= $this->app->user->localization->lang[1]['Loginname']; ?></label>
                 <li>
                     <input name="login" class="i-1 t-i" id="i-login" type="text">
                 <li>
-                    <label for="i-name1"><?= \Framework\Localization\Localization::$lang[1]['Name1']; ?></label>
+                    <label for="i-name1"><?= $this->app->user->localization->lang[1]['Name1']; ?></label>
                 <li>
                     <input name="name1" class="i-1 t-i" id="i-name1" type="text">
                 <li>
-                    <label for="i-name2"><?= \Framework\Localization\Localization::$lang[1]['Name2']; ?></label>
+                    <label for="i-name2"><?= $this->app->user->localization->lang[1]['Name2']; ?></label>
                 <li>
                     <input name="name2" class="i-1 t-i" id="i-name2" type="text">
                 <li>
-                    <label for="i-name3"><?= \Framework\Localization\Localization::$lang[1]['Name3']; ?></label>
+                    <label for="i-name3"><?= $this->app->user->localization->lang[1]['Name3']; ?></label>
                 <li>
                     <input name="name3" class="i-1 t-i" id="i-name3" type="text">
                 <li>
-                    <label for="i-email"><?= \Framework\Localization\Localization::$lang[0]['Email']; ?></label>
+                    <label for="i-email"><?= $this->app->user->localization->lang[0]['Email']; ?></label>
                 <li>
                     <input name="email" class="i-1 t-i" id="i-email" type="text">
                 <li>
-                    <label for="i-pass"><?= \Framework\Localization\Localization::$lang[0]['Password']; ?></label>
+                    <label for="i-pass"><?= $this->app->user->localization->lang[0]['Password']; ?></label>
                 <li>
                     <input name="pass" class="i-1 t-i" id="i-pass" type="password">
-                    <input type="button" value="<?= \Framework\Localization\Localization::$lang[0]['Create']; ?>">
+                    <input type="button" value="<?= $this->app->user->localization->lang[0]['Create']; ?>">
                 <li>
             </ul>
         </form>
@@ -86,7 +86,7 @@
 </div>
 
 <div class="c-bar rT">
-    <button><?= \Framework\Localization\Localization::$lang[0]['Create']; ?></button>
-    <button><?= \Framework\Localization\Localization::$lang[0]['Cancel']; ?></button>
+    <button><?= $this->app->user->localization->lang[0]['Create']; ?></button>
+    <button><?= $this->app->user->localization->lang[0]['Cancel']; ?></button>
 </div>
 

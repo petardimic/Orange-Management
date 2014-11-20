@@ -49,12 +49,19 @@ namespace Framework {
 
                 $toLoad = $this->modules->getUriLoads($this->request->getRequest());
 
-                foreach($toLoad as $module) {
-                    \Framework\Module\ModuleFactory::getInstance($module);
+                foreach($toLoad[4] as $module) {
+                    \Framework\Module\ModuleFactory::getInstance($module['file'], 'oms-slim');
                 }
 
-                $this->settings->loadSettings([1000000011]);
+                $this->user->localization->loadLanguage($this->request->lang, $toLoad[5]);
 
+                /* TODO: change */
+                $this->settings->loadSettings([1000000011]);
+                \Framework\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
+                \Framework\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
+                \Framework\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+
+                /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/../Content/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);
             } else {

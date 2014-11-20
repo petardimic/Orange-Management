@@ -59,7 +59,7 @@ namespace Content {
                 case \Framework\Request\WebRequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
-                    $this->app->modules->running[1004400000]->show();
+                    $this->app->modules->running[1004400000]->showWeb();
                     break;
                 default:
             }

@@ -59,11 +59,11 @@ namespace Framework\Auth {
         public function authenticate() {
             $uid = $this->app->session->getValue('user_id');
 
-            if ($uid !== null) {
-                return \Framework\DataStorage\Database\Objects\User\User::getInstance($uid, $this->app, true);
-            } else {
-                return null;
+            if ($uid === null) {
+                $uid = -1;
             }
+
+            return \Framework\DataStorage\Database\Objects\User\User::getInstance($uid, $this->app, true);
         }
 
         /**

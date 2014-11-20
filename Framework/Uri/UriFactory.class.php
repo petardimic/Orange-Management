@@ -38,7 +38,7 @@ namespace Framework\Uri {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function build($data, $query, $scheme = \Framework\Uri\UriScheme::HTTP) {
+        public static function build($data, $query = null, $scheme = \Framework\Uri\UriScheme::HTTP) {
             switch($scheme) {
                 case \Framework\Uri\UriScheme::HTTP:
                     return \Framework\Uri\Http::create($data, $query);

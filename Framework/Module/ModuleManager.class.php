@@ -56,7 +56,7 @@ namespace Framework\Module {
          * @var array
          * @since 1.0.0
          */
-        private $running = null;
+        public $running = null;
 
         /**
          * Object constructor
@@ -78,7 +78,7 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function getUriLoads() {
+        public function getUriLoads($request) {
             if ($this->running === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
@@ -119,9 +119,9 @@ namespace Framework\Module {
             if ($this->installed === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules`');
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class` FROM `' . $this->app->db->prefix . 'modules`');
                     $sth->execute();
-                    $this->installed = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
+                    $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
                 }
             }
@@ -141,9 +141,9 @@ namespace Framework\Module {
             if ($this->active === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->db->con->prepare('SELECT `id`,`name` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
+                    $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
                     $sth->execute();
-                    $this->installed = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
+                    $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
                 }
             }

@@ -15,7 +15,25 @@ namespace Modules\Navigation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+        /**
+         * Providing
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $providing = [
+        ];
+
+        /**
+         * Dependencies
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $dependencies = [
+        ];
+
         /**
          * Navigation array
          *
@@ -52,30 +70,52 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path, $app) {
-            parent::initialize($theme_path, $app);
-
-            $this->nav = $this->app->cache->pull('nav::' . $this->app->request->uri_hash[2]);
+        public function __construct($app, $theme_path) {
+            parent::__construct($app, $theme_path);
 
             if (!$this->nav) {
                 $temp_nav  = null;
                 $this->nav = [];
 
+                $uri_hash = $this->app->request->getHash();
+
                 $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `order` ASC');
-                $sth->bindValue(':pidA', $this->app->request->uri_hash[0], \PDO::PARAM_STR);
-                $sth->bindValue(':pidB', $this->app->request->uri_hash[1], \PDO::PARAM_STR);
-                $sth->bindValue(':pidC', $this->app->request->uri_hash[2], \PDO::PARAM_STR);
-                $sth->bindValue(':pidD', $this->app->request->uri_hash[3], \PDO::PARAM_STR);
-                $sth->bindValue(':pidE', $this->app->request->uri_hash[4], \PDO::PARAM_STR);
+                $sth->bindValue(':pidA', $uri_hash[0], \PDO::PARAM_STR);
+                $sth->bindValue(':pidB', $uri_hash[1], \PDO::PARAM_STR);
+                $sth->bindValue(':pidC', $uri_hash[2], \PDO::PARAM_STR);
+                $sth->bindValue(':pidD', $uri_hash[3], \PDO::PARAM_STR);
+                $sth->bindValue(':pidE', $uri_hash[4], \PDO::PARAM_STR);
                 $sth->execute();
                 $temp_nav = $sth->fetchAll();
 
                 foreach ($temp_nav as $link) {
                     $this->nav[$link['type']][$link['subtype']][$link['id']] = $link;
                 }
-
-                $this->app->cache->push('nav::' . $this->app->request->uri_hash[2], $this->nav);
             }
+        }
+
+        /**
+         * Get modules this module is providing for
+         *
+         * @return array Providing
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getProviding() {
+            return $this->providing;
+        }
+
+        /**
+         * Get dependencies for this module
+         *
+         * @return array Dependencies
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDependencies() {
+            return $this->dependencies;
         }
 
         /**
@@ -86,23 +126,23 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show($data = null) {
+        public function callWeb($data = null) {
             switch ($data[0]) {
                 case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->getType() . '/top.tpl.php';
+                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/top.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::SIDE:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->getType() . '/side.tpl.php';
+                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/side.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::CONTENT:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->getType() . '/mid.tpl.php';
+                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/mid.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::CONTENT_SIDE:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes' . $this->theme_path . '/' . $this->app->request->getType() . '/mid-side.tpl.php';
+                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/mid-side.tpl.php';
                     break;
             }
         }

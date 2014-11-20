@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Database\Objects\Group {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition, \Serializable {
+    class Group implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Application instance
          *

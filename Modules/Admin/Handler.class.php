@@ -15,16 +15,25 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
         /**
          * Providing
          *
-         * @var int[]
+         * @var string
          * @since 1.0.0
          */
         public $providing = [
             1004100000,
             1004400000
+        ];
+
+        /**
+         * Dependencies
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $dependencies = [
         ];
 
         /**
@@ -36,8 +45,32 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path, $app) {
-            parent::initialize($theme_path, $app);
+        public function __construct($app, $theme_path) {
+            parent::__construct($app, $theme_path);
+        }
+
+        /**
+         * Get modules this module is providing for
+         *
+         * @return array Providing
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getProviding() {
+            return $this->providing;
+        }
+
+        /**
+         * Get dependencies for this module
+         *
+         * @return array Dependencies
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDependencies() {
+            return $this->dependencies;
         }
 
         /**
@@ -74,7 +107,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content() {
+        public function callWeb() {
             switch ($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
@@ -132,7 +165,7 @@ namespace Modules\Admin {
 
             switch ($this->app->request->uri['l4']) {
                 case 'general':
-                    \Framework\Model\Model::$content['page::title'] = \Framework\Localization\Localization::$lang[1]['SettingsGeneral'];
+                    \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/settings-general.tpl.php';
@@ -463,7 +496,7 @@ namespace Modules\Admin {
                     $json_ret = [
                         'type'   => 1,
                         'status' => 1,
-                        'msg'    => \Framework\Localization\Localization::$lang[1]['i:SettingsSet']
+                        'msg'    => $this->app->user->localization->lang[1]['i:SettingsSet']
                     ];
 
                     echo json_encode($json_ret);
@@ -491,7 +524,7 @@ namespace Modules\Admin {
                     $json_ret = [
                         'type'   => 1,
                         'status' => 1,
-                        'msg'    => str_replace('{$1}', $this->app->request->data['id'], \Framework\Localization\Localization::$lang[1]['i:ModuleInstalled'])
+                        'msg'    => str_replace('{$1}', $this->app->request->data['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
                     ];
 
                     echo json_encode($json_ret);

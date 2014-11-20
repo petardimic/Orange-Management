@@ -16,6 +16,12 @@ namespace Framework\Module {
      * @since      1.0.0
      */
     interface WebInterface {
+        /**
+         * Answer web request
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function callWeb();
     }
 }

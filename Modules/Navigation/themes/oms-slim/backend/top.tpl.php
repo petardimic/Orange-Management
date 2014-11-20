@@ -7,13 +7,13 @@ if (isset($this->nav[1])) {
 
     foreach ($this->nav[1] as $key => $parent) {
         foreach ($parent as $link) {
-            echo '<li><a href="' . $this->app->request->generate_uri([$this->app->request->request_lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">';
+            echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->app->request->lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">';
 
             if (isset($link['icon'])) {
                 echo '<i class="' . $link['icon'] . '"></i>';
             }
 
-            echo \Framework\Localization\Localization::$lang[5][$link['name']] . '</a>';
+            echo $this->app->user->localization->lang[5][$link['name']] . '</a>';
         }
     }
 

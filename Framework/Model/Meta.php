@@ -241,14 +241,14 @@ namespace Framework\Model {
          */
         public static function generate_table_filter_view() {
             echo '<div class="b pop vh" id="t-f">
-                    <h1>' . \Framework\Localization\Localization::$lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
+                    <h1>' . $this->app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
                     <div class="bc-1">
                         <ul class="l-1">
 
                         </ul>
                         <div class="bt cT">
-                            <button class="save">' . \Framework\Localization\Localization::$lang[0]['Save'] . '</button>
-                            <button class="close">' . \Framework\Localization\Localization::$lang[0]['Close'] . '</button>
+                            <button class="save">' . $this->app->user->localization->lang[0]['Save'] . '</button>
+                            <button class="close">' . $this->app->user->localization->lang[0]['Close'] . '</button>
                         </div>
                     </div>
                 </div>';

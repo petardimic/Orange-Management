@@ -6,61 +6,61 @@
 <!--suppress HtmlUnknownTarget -->
 <ul class="tab-links">
     <li class="active">
-        <a href=".tab-1"><?= \Framework\Localization\Localization::$lang[30]['Front'] ?></a>
+        <a href=".tab-1"><?= $this->app->user->localization->lang[30]['Front'] ?></a>
     <li>
-        <a href=".tab-2"><?= \Framework\Localization\Localization::$lang[30]['Causes'] ?></a>
+        <a href=".tab-2"><?= $this->app->user->localization->lang[30]['Causes'] ?></a>
     <li>
-        <a href=".tab-3"><?= \Framework\Localization\Localization::$lang[30]['Solutions'] ?></a>
+        <a href=".tab-3"><?= $this->app->user->localization->lang[30]['Solutions'] ?></a>
 </ul>
 
 <div class="tab-content">
 <div class="tab tab-1 active">
 <div class="b b-2 c30-1 c30" id="i30-1-1">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[30]['Risk']; ?>
+        <?= $this->app->user->localization->lang[30]['Risk']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
 
     <div class="bc-1">
         <ul class="l-1">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Title']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Title']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Description']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Description']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Responsible']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Responsible']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Unit']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Unit']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Probability']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Probability']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Damage']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Damage']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Parent']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Parent']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Department']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Department']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Category']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Category']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Process']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Process']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Project']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Project']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Limit']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Limit']; ?></label>
             <li><input type="text">
-            <li><label><?= \Framework\Localization\Localization::$lang[30]['Interval']; ?></label>
+            <li><label><?= $this->app->user->localization->lang[30]['Interval']; ?></label>
             <li><input type="text">
         </ul>
         <div class="rT">
-            <button><?= \Framework\Localization\Localization::$lang[0]['Save'] ?></button>
-            <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+            <button><?= $this->app->user->localization->lang[0]['Save'] ?></button>
+            <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
         </div>
     </div>
 </div>
 
 <div class="b b-2 c30-1 c30" id="i30-1-1">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[30]['Evaluation']; ?>
+        <?= $this->app->user->localization->lang[30]['Evaluation']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -69,25 +69,25 @@
         <!--suppress HtmlUnknownTag -->
         <table class="tc-1">
             <tr>
-                <th><label><?= \Framework\Localization\Localization::$lang[30]['Severity']; ?></label>
+                <th><label><?= $this->app->user->localization->lang[30]['Severity']; ?></label>
                     <td>asdfsds
                         <tr>
-                            <th><label><?= \Framework\Localization\Localization::$lang[30]['Causes']; ?></label>
+                            <th><label><?= $this->app->user->localization->lang[30]['Causes']; ?></label>
                                 <td>asdfsds
                                     <tr>
                                         <th>
-                                            <label><?= \Framework\Localization\Localization::$lang[30]['Solutions']; ?></label>
+                                            <label><?= $this->app->user->localization->lang[30]['Solutions']; ?></label>
                                             <td>asdfsds
                                                 <tr>
                                                     <th>
-                                                        <label><?= \Framework\Localization\Localization::$lang[30]['Reduction']; ?></label>
+                                                        <label><?= $this->app->user->localization->lang[30]['Reduction']; ?></label>
                                                         <td>asdfsds
                                                             <tr>
                                                                 <th>
-                                                                    <label><?= \Framework\Localization\Localization::$lang[30]['LastReevaluation']; ?></label>
+                                                                    <label><?= $this->app->user->localization->lang[30]['LastReevaluation']; ?></label>
                                                                     <td>asdfsds
                                                                         <tr>
-            <th><label><?= \Framework\Localization\Localization::$lang[30]['NextReevaluation']; ?></label>
+            <th><label><?= $this->app->user->localization->lang[30]['NextReevaluation']; ?></label>
                 <td>asdfsds
         </table>
     </div>
@@ -95,7 +95,7 @@
 
 <div class="b b-2 c30-1 c30" id="i30-1-3">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[30]['History']; ?>
+        <?= $this->app->user->localization->lang[30]['History']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -249,7 +249,7 @@
             <th colspan="8" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Causes'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Causes'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -257,15 +257,15 @@
                     <?php
                     \Framework\Model\Model::generate_table_header_view(
                         [
-                            ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Risk'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Probability'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Ratio'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Department'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Category'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[30]['Active'], 'sort' => 0]
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Risk'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Probability'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Ratio'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Department'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Category'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Active'], 'sort' => 0]
                         ]
                     );
                     ?>
@@ -297,7 +297,7 @@
             <th colspan="4" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Solutions'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Solutions'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -305,11 +305,11 @@
                     <?php
                     \Framework\Model\Model::generate_table_header_view(
                         [
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                            ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                            ['name' => $this->app->user->localization->lang[1]['Status'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[1]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[1]['Activity'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[1]['Created'], 'sort' => 0]
                         ]
                     );
                     ?>

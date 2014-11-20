@@ -9,7 +9,7 @@
             <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Departments'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Departments'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -18,9 +18,9 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => '', 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
                 ]
             );
             ?>
@@ -42,8 +42,8 @@
     </table>
 
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
             <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Categories'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Categories'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -63,9 +63,9 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => '', 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Parent'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
                 ]
             );
             ?>
@@ -86,8 +86,8 @@
             ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>
 
@@ -98,7 +98,7 @@
             <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Units'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Units'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -107,8 +107,8 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => '', 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
                     ['name' => '', 'sort' => 0],
                 ]
             );
@@ -130,8 +130,8 @@
             ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>
 
@@ -142,7 +142,7 @@
             <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['RiskLevels'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['RiskLevels'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -151,9 +151,9 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => '', 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Severity'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 0],
                 ]
             );
             ?>
@@ -174,8 +174,8 @@
             ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>
 
@@ -186,7 +186,7 @@
             <th colspan="3" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['RiskProbabilities'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['RiskProbabilities'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -195,9 +195,9 @@
             \Framework\Model\Model::generate_table_header_view(
                 [
                     ['name' => '', 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[30]['Probability'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[30]['Probability'], 'sort' => 0],
                 ]
             );
             ?>
@@ -218,7 +218,7 @@
             ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>

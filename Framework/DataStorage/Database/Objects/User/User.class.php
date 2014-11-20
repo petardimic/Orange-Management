@@ -15,7 +15,7 @@ namespace Framework\DataStorage\Database\Objects\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class User implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition, \Serializable {
+    class User implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * User ID
          *
@@ -163,9 +163,7 @@ namespace Framework\DataStorage\Database\Objects\User {
 
             $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
 
-            $user = $this->app->cache->pull('usr:' . $this->id);
-
-            if (!$user && $id !== -1) {
+            if ($id !== -1) {
                 $sth = $this->app->db->con->prepare(
                     'SELECT
                         `' . $this->app->db->prefix . 'accounts`.*,
@@ -182,7 +180,6 @@ namespace Framework\DataStorage\Database\Objects\User {
                 $user = $sth->fetchAll(\PDO::FETCH_UNIQUE);
 
                 if (!empty($user)) {
-                    $this->app->cache->push('usr:' . $id, $user);
                 }
             }
 

@@ -55,16 +55,16 @@ namespace Framework\Model {
                 . '<meta name="description" content="' . self::$content['page:desc'] . '">'
                 . '<meta name="keywords" content="' . self::$content['page:keywords'] . '">';
 
-            $os = self::$app->request->get_os();
+            $os = self::$app->request->getOS();
 
             /* OS specific */
-            if ($os === \Framework\OSType::WINDOWS_8 || $os === \Framework\OSType::WINDOWS_81) {
+            if ($os === \Framework\Request\OSType::WINDOWS_8 || $os === \Framework\Request\OSType::WINDOWS_81) {
                 echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
                     . '<meta name="msapplication-square70x70logo" content="/Content/Startup/win_tiny.png"/>'
                     . '<meta name="msapplication-square150x150logo" content="/Content/Startup/win_square.png"/>'
                     . '<meta name="msapplication-wide310x150logo" content="/Content/Startup/win_wide.png"/>'
                     . '<meta name="msapplication-square310x310logo" content="/Content/Startup/win_large.png"/>';
-            } elseif ($os === \Framework\OSType::IPHONE || $os === \Framework\OSType::MAC_OS_X || $os === \Framework\OSType::MAC_OS_X_2 || $os === \Framework\OSType::IPAD) {
+            } elseif ($os === \Framework\Request\OSType::IPHONE || $os === \Framework\Request\OSType::MAC_OS_X || $os === \Framework\Request\OSType::MAC_OS_X_2 || $os === \Framework\Request\OSType::IPAD) {
                 echo '<link rel="apple-touch-icon" href="/Content/Startup/apple_icon.png">'
                     . '<link rel="apple-touch-startup-image" href="/Content/Startup/apple_startup.png">'
                     . '<meta name="apple-mobile-web-app-capable" content="yes">'
@@ -241,14 +241,14 @@ namespace Framework\Model {
          */
         public static function generate_table_filter_view() {
             echo '<div class="b pop vh" id="t-f">
-                    <h1>' . \Framework\Localization\Localization::$lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
+                    <h1>' . $this->app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
                     <div class="bc-1">
                         <ul class="l-1">
 
                         </ul>
                         <div class="bt cT">
-                            <button class="save">' . \Framework\Localization\Localization::$lang[0]['Save'] . '</button>
-                            <button class="close">' . \Framework\Localization\Localization::$lang[0]['Close'] . '</button>
+                            <button class="save">' . $this->app->user->localization->lang[0]['Save'] . '</button>
+                            <button class="close">' . $this->app->user->localization->lang[0]['Close'] . '</button>
                         </div>
                     </div>
                 </div>';

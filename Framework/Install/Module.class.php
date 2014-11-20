@@ -32,7 +32,7 @@ namespace Framework\Install {
             if (file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
                 $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
 
-                switch ($db->type) {
+                switch ($db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                         $db->con->beginTransaction();
 
@@ -117,7 +117,7 @@ namespace Framework\Install {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function activate(&$db, $id) {
-            switch ($db->type) {
+            switch ($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 1 WHERE `id` = ' . $id . ';'
@@ -136,7 +136,7 @@ namespace Framework\Install {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function deactivate(&$db, $id) {
-            switch ($db->type) {
+            switch ($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 0 WHERE `id` = ' . $id . ';'

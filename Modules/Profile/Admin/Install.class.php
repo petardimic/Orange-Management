@@ -26,7 +26,7 @@ namespace Modules\Profile\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
-            switch ($db->type) {
+            switch ($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account` (

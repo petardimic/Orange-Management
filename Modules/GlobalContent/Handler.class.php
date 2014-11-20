@@ -15,7 +15,25 @@ namespace Modules\GlobalContent {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+        /**
+         * Providing
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $providing = [
+        ];
+
+        /**
+         * Dependencies
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $dependencies = [
+        ];
+
         /**
          * Constructor
          *
@@ -24,8 +42,32 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path, $app) {
-            parent::initialize($theme_path, $app);
+        public function __construct($app, $theme_path) {
+            parent::__construct($app, $theme_path);
+        }
+
+        /**
+         * Get modules this module is providing for
+         *
+         * @return array Providing
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getProviding() {
+            return $this->providing;
+        }
+
+        /**
+         * Get dependencies for this module
+         *
+         * @return array Dependencies
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDependencies() {
+            return $this->dependencies;
         }
 
         /**
@@ -36,7 +78,7 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show($data = null) {
+        public function callWeb($data = null) {
             if (isset(self::$receiving)) {
                 foreach (self::$receiving as $mid) {
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);

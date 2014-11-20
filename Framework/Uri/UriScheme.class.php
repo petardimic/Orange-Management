@@ -1,11 +1,11 @@
 <?php
-namespace Framework\Http {
+namespace Framework\Uri {
     /**
-     * Uri type enum
+     * Uri scheme
      *
      * PHP Version 5.4
      *
-     * @category   Http
+     * @category   Uri
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>

@@ -15,17 +15,49 @@ namespace Modules\Content {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
         /**
-         * Constructor
+         * Providing
          *
-         * @param string $theme_path
+         * @var string
+         * @since 1.0.0
+         */
+        public $providing = [
+            1004100000,
+            1004400000
+        ];
+
+        /**
+         * Dependencies
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        public $dependencies = [
+        ];
+
+        /**
+         * Get modules this module is providing for
+         *
+         * @return array Providing
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($theme_path, $app) {
-            parent::initialize($theme_path, $app);
+        public function getProviding() {
+            return $this->providing;
+        }
+
+        /**
+         * Get dependencies for this module
+         *
+         * @return array Dependencies
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDependencies() {
+            return $this->dependencies;
         }
 
         /**
@@ -36,7 +68,7 @@ namespace Modules\Content {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show($data = null) {
+        public function callWeb($data = null) {
             if (isset($this->receiving)) {
                 foreach ($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */

@@ -11,13 +11,13 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
 
 <div class="b b-5 c1-7 c1" id="i1-7-1">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Module']; ?>
+        <?= $this->app->user->localization->lang[1]['Module']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
 
     <div class="bc-1">
-        <img alt="<?= \Framework\Localization\Localization::$lang[1]['Module']; ?>"
+        <img alt="<?= $this->app->user->localization->lang[1]['Module']; ?>"
              src="/Modules/<?= $this->app->request->uri['id']; ?>/img/module_teaser_small.png" class="lf img-1">
         <span class="lf">
             <h1><?=
@@ -35,16 +35,16 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                 <li>
                     <button data-http="PUT" data-request="DYN"
                             data-json='{"id":"<?= $this->app->request->uri['id']; ?>"}' data-uri="<?=
-                    $this->app->request->generate_uri([
+                    \Framework\Uri\UriFactory::build([
                             $this->app->request->uri['l0'],
                             'api',
                             'admin',
                             'module'
                         ]
-                    ); ?>"><?= \Framework\Localization\Localization::$lang[1]['Install']; ?></button>
+                    ); ?>"><?= $this->app->user->localization->lang[1]['Install']; ?></button>
                     <?php } else { ?>
                 <li><a href="<?=
-                    $this->app->request->generate_uri([
+                    \Framework\Uri\UriFactory::build([
                             $this->app->request->uri['l0'],
                             $this->app->request->uri['l1'],
                             $this->app->request->uri['l2'],
@@ -54,7 +54,7 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
                         ],
                         [['id', $this->app->request->uri['id']]]
                     );
-                    ?>"><?= \Framework\Localization\Localization::$lang[1]['Settings']; ?></a>
+                    ?>"><?= $this->app->user->localization->lang[1]['Settings']; ?></a>
                     <?php } ?>
                 <li><a href=""></a>
             </ul>
@@ -64,7 +64,7 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
 
 <div class="b b-2 c1-7 c1" id="i1-7-2">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Features']; ?>
+        <?= $this->app->user->localization->lang[1]['Features']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -77,7 +77,7 @@ if (array_key_exists($this->app->request->uri['id'], $modules_all)) {
 
 <div class="b b-2 c1-7 c1" id="i1-7-3">
     <h1>
-        <?= \Framework\Localization\Localization::$lang[1]['Version']; ?>
+        <?= $this->app->user->localization->lang[1]['Version']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>

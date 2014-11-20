@@ -9,7 +9,7 @@
             <th colspan="4" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= \Framework\Localization\Localization::$lang[30]['Solutions'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Solutions'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -17,11 +17,11 @@
             <?php
             \Framework\Model\Model::generate_table_header_view(
                 [
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Status'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Activity'], 'sort' => 0],
-                    ['name' => \Framework\Localization\Localization::$lang[1]['Created'], 'sort' => 0]
+                    ['name' => $this->app->user->localization->lang[1]['Status'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[1]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[1]['Activity'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[1]['Created'], 'sort' => 0]
                 ]
             );
             ?>
@@ -42,7 +42,7 @@
             ?>
     </table>
     <div class="bc-1 rT">
-        <button><?= \Framework\Localization\Localization::$lang[0]['Add'] ?></button>
-        <button><?= \Framework\Localization\Localization::$lang[0]['Delete'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
+        <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
     </div>
 </div>

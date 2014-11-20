@@ -17,16 +17,6 @@ namespace Framework\Module {
      */
     interface ModuleInterface {
         /**
-         * Get events this module can fire
-         *
-         * @return array Events
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getEvents();
-
-        /**
          * Get modules this module is providing for
          *
          * @return array Providing

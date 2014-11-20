@@ -97,7 +97,7 @@ namespace Framework\Localization {
          * @var string[]
          * @since 1.0.0
          */
-        public static $lang = [];
+        public $lang = [];
 
         /**
          * Constructor
@@ -108,7 +108,7 @@ namespace Framework\Localization {
         public function __construct($id, $app) {
             $this->app             = $app;
             $this->localization_id = $id;
-            $this->language        = $this->app->request->uri['l0'];
+            $this->language        = $this->app->request->lang;
         }
 
         /**
@@ -136,27 +136,28 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function loadLanguage($language, $files) {
-            if (!self::$lang && !empty($files)) {
-                self::$lang = [];
+            if (!$this->lang && !empty($files)) {
+                $this->lang = [];
 
                 /** @noinspection PhpIncludeInspection */
                 /** @var string[] $CORELANG */
                 require __DIR__ . '/lang/' . $language . '.lang.php';
                 /** @noinspection PhpUndefinedVariableInspection */
-                self::$lang += $CORELANG;
+                $this->lang += $CORELANG;
+                $active_modules = $this->app->modules->getActiveModules();
 
                 foreach ($files as $file) {
                     /** @noinspection PhpIncludeInspection */
                     /** @var string[] $MODLANG */
                     /* TODO: change, store name inside instead of id */
-                    require __DIR__ . '/../../Modules/' . $this->app->modules->active[$file['from']]['class'] . '/themes/' . $this->app->modules->active[$file['from']]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
+                    require __DIR__ . '/../../Modules/' . $active_modules[$file['from']][0]['class'] . '/themes/' . $active_modules[$file['from']][0]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
                     $key = (int)($file['for'] / 100000 - 10000);
-                    if (!isset(self::$lang[$key])) {
-                        self::$lang += $MODLANG;
+                    if (!isset($this->lang[$key])) {
+                        $this->lang += $MODLANG;
                     } else {
                         /** @noinspection PhpWrongStringConcatenationInspection */
-                        self::$lang[$key] += $MODLANG[$key];
+                        $this->lang[$key] += $MODLANG[$key];
                     }
                 }
             }

@@ -15,7 +15,7 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ModuleAbstract {
+    abstract class ModuleAbstract implements \Framework\Module\ModuleInterface {
         /**
          * Application instance
          *
@@ -33,6 +33,14 @@ namespace Framework\Module {
         public $receiving = [];
 
         /**
+         * Theme path
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        protected $theme_path = null;
+
+        /**
          * Object constructor
          *
          * @param \Framework\ApplicationInterface $app Application instance
@@ -40,8 +48,9 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __construct($app) {
+        public function __construct($app, $theme) {
             $this->app = $app;
+            $this->theme_path = $theme;
         }
     }
 }

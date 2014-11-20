@@ -28,7 +28,7 @@ namespace Modules\Navigation\Admin {
         public static function install(&$db, $info) {
             /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
-            switch ($db->type) {
+            switch ($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'nav` (

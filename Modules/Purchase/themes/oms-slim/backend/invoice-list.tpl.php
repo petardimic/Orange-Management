@@ -8,7 +8,7 @@
         <th colspan="5" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= \Framework\Localization\Localization::$lang[21]['Invoices'] ?></h1>
+            <h1><?= $this->app->user->localization->lang[21]['Invoices'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -16,12 +16,12 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => \Framework\Localization\Localization::$lang[0]['ID'], 'sort' => 1],
-                        ['name' => \Framework\Localization\Localization::$lang[21]['Date'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[21]['SupplierID'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[21]['SupplierName'], 'sort' => 0, 'full' => true],
-                        ['name' => \Framework\Localization\Localization::$lang[21]['Price'], 'sort' => 0],
-                        ['name' => \Framework\Localization\Localization::$lang[21]['Creator'], 'sort' => 0],
+                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                        ['name' => $this->app->user->localization->lang[21]['Date'], 'sort' => 0],
+                        ['name' => $this->app->user->localization->lang[21]['SupplierID'], 'sort' => 0],
+                        ['name' => $this->app->user->localization->lang[21]['SupplierName'], 'sort' => 0, 'full' => true],
+                        ['name' => $this->app->user->localization->lang[21]['Price'], 'sort' => 0],
+                        ['name' => $this->app->user->localization->lang[21]['Creator'], 'sort' => 0],
                     ]
                 );
                 ?>
