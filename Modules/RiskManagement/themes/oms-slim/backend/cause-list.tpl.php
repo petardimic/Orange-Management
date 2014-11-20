@@ -6,7 +6,7 @@
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
     <tr>
-        <th colspan="8" class="lT">
+        <th colspan="9" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
             <h1><?= $this->app->user->localization->lang[30]['Causes'] ?></h1>
@@ -47,6 +47,6 @@
                 ?>
                 <tfoot>
     <tr>
-        <td colspan="9" class="cT">
+        <td colspan="10" class="cT">
             <?php /* \Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
 </table>

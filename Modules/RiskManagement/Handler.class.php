@@ -107,6 +107,21 @@ namespace Modules\RiskManagement {
                 case 'settings':
                     $this->show_backend_settings();
                     break;
+                case 'unit':
+                    $this->show_backend_unit();
+                    break;
+                case 'department':
+                    $this->show_backend_department();
+                    break;
+                case 'category':
+                    $this->show_backend_category();
+                    break;
+                case 'project':
+                    $this->show_backend_project();
+                    break;
+                case 'process':
+                    $this->show_backend_process();
+                    break;
             }
         }
 
@@ -149,6 +164,51 @@ namespace Modules\RiskManagement {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/solution-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_unit() {
+            switch ($this->app->request->request['l5']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/unit-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_category() {
+            switch ($this->app->request->request['l5']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/category-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_department() {
+            switch ($this->app->request->request['l5']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/department-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_project() {
+            switch ($this->app->request->request['l5']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/project-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function show_backend_process() {
+            switch ($this->app->request->request['l5']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/process-list.tpl.php';
                     break;
             }
         }

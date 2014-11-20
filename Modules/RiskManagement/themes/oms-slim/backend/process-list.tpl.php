@@ -10,10 +10,10 @@
     <table class="t t-1 c1-2 c1" id="i1-2-1">
         <thead>
         <tr>
-            <th colspan="11" class="lT">
+            <th colspan="4" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= $this->app->user->localization->lang[30]['Risks'] ?></h1>
+                <h1><?= $this->app->user->localization->lang[30]['Processes'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -24,15 +24,8 @@
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
                             ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Probability'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Department'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Category'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Project'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Process'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[30]['Manager'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Due'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Level'], 'sort' => 0]
                         ]
                     );
                     ?>
@@ -53,7 +46,7 @@
                     ?>
                     <tfoot>
         <tr>
-            <td colspan="12" class="cT">
+            <td colspan="5" class="cT">
                 <?php /* \Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
     </table>
 </div>
