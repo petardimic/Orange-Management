@@ -39,8 +39,8 @@ namespace Modules\Accounting {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
-         * @param \Framework\WebApplication $app Application reference
+         * @param \Framework\WebApplication $app        Application reference
+         * @param string                    $theme_path Theme path
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -82,7 +82,7 @@ namespace Modules\Accounting {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -90,7 +90,19 @@ namespace Modules\Accounting {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
+                case 'creditor':
+                    $this->show_backend_creditor();
+                    break;
+            }
+        }
+
+        public function show_backend_creditor() {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/creditor-list.tpl.php';
+                    break;
             }
         }
     }

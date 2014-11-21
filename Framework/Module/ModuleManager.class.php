@@ -61,7 +61,7 @@ namespace Framework\Module {
         /**
          * Object constructor
          *
-         * @param \Framework\ApplicationInterface $app Application instance
+         * @param \Framework\ApplicationAbstract $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
@@ -72,6 +72,8 @@ namespace Framework\Module {
 
         /**
          * Get modules that run on this page
+         *
+         * @param \Framework\Request\RequestAbstract $request Request
          *
          * @return array
          *

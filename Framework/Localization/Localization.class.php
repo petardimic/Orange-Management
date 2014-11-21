@@ -70,7 +70,7 @@ namespace Framework\Localization {
          * @var string
          * @since 1.0.0
          */
-        public $timeformat = null;
+        public $datetime = null;
 
         /**
          * Locals
@@ -109,6 +109,7 @@ namespace Framework\Localization {
             $this->app             = $app;
             $this->localization_id = $id;
             $this->language        = $this->app->request->lang;
+            $this->datetime = new \Framework\Localization\DateTime\DateTime();
         }
 
         /**

@@ -10,10 +10,9 @@ $(document).ready(function () {
     var navigation = null;
 
     if (!$localStorage) {
-        navigation = getCookie('1000500000');
-    }
-    else {
-        navigation = localStorage['1000500000'];
+        navigation = getCookie('1000500001');
+    } else {
+        navigation = localStorage['1000500001'];
     }
 
     var naviOBJ = null;

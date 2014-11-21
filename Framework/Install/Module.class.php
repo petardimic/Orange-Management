@@ -58,7 +58,7 @@ namespace Framework\Install {
                 $class = '\\Modules\\' . $module . '\\Admin\\Install';
 
                 /**
-                 * @var \Framework\Module\ModuleAbstract $class
+                 * @var \Framework\Install\Module $class
                  */
                 $class::install($db, $info);
             }

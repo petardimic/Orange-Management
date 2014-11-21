@@ -35,7 +35,7 @@ namespace Framework {
         /**
          * Request instance
          *
-         * @var \Framework\Request
+         * @var \Framework\Request\RequestAbstract
          * @since 1.0.0
          */
         public $request = null;

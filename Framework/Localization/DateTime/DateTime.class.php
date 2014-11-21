@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Localization {
+namespace Framework\Localization\DateTime {
     /**
      * Localization class
      *
@@ -16,13 +16,19 @@ namespace Framework\Localization {
      * @since      1.0.0
      */
     class DateTime {
-        private $local;
+        private $local = null;
 
         public function __constructor() {
         }
 
-        public function print($date, $type) {
+        public function format($date) {
+            if(is_string($date)) {
 
+            } elseif($date instanceof \DateTime) {
+                return $date->format('Y-m-d H:i:s');
+            }
+
+            return null;
         }
-}
+    }
 }

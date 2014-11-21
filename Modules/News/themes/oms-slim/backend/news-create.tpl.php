@@ -25,7 +25,7 @@
                         <option><?= $this->app->user->localization->lang[7]['Visible']; ?>
                     </select>
                 <li><strong><?= $this->app->user->localization->lang[7]['Publish']; ?></strong>
-                <li><input type="date">
+                <li><input type="datetime-local" value="<?= $this->app->user->localization->datetime->format(new \DateTime('NOW')); ?>">
             </ul>
             <br>
             <button><?= $this->app->user->localization->lang[0]['Save']; ?></button>

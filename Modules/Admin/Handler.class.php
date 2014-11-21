@@ -346,7 +346,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_account() {
-            switch ($this->app->request->type) {
+            switch ($this->app->request->getType()) {
                 case \Framework\RequestType::PUT:
                     $this->api_account_put();
                     break;
@@ -407,7 +407,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_group() {
-            switch ($this->app->request->type) {
+            switch ($this->app->request->getType()) {
                 case \Framework\RequestType::PUT:
                     $this->api_group_put();
                     break;
@@ -517,7 +517,7 @@ namespace Modules\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function api_module() {
-            switch ($this->app->request->type) {
+            switch ($this->app->request->getType()) {
                 case \Framework\RequestType::PUT:
                     \Framework\Install\Module::install($this->app->db, $this->app->request->data['id']);
 

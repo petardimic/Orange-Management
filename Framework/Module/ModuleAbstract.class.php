@@ -19,7 +19,7 @@ namespace Framework\Module {
         /**
          * Application instance
          *
-         * @var \Framework\ApplicationInterface
+         * @var \Framework\ApplicationAbstract
          * @since 1.0.0
          */
         protected $app = null;
@@ -41,9 +41,10 @@ namespace Framework\Module {
         protected $theme_path = null;
 
         /**
-         * Object constructor
+         * Constructor
          *
-         * @param \Framework\ApplicationInterface $app Application instance
+         * @param \Framework\ApplicationAbstract $app Application instance
+         * @param string $theme Theme name/path
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
