@@ -47,13 +47,17 @@ namespace Framework {
                 $this->auth     = new \Framework\Auth\Auth($this);
                 $this->user     = $this->auth->authenticate();
 
-                $toLoad = $this->modules->getUriLoads($this->request->getRequest());
+                $toLoad = $this->modules->getUriLoads($this->request->request);
 
-                foreach($toLoad[4] as $module) {
-                    \Framework\Module\ModuleFactory::getInstance($module['file'], 'oms-slim');
+                if(isset($toLoad[4])) {
+                    foreach($toLoad[4] as $module) {
+                        \Framework\Module\ModuleFactory::getInstance($module['file'], 'oms-slim');
+                    }
                 }
 
-                $this->user->localization->loadLanguage($this->request->lang, $toLoad[5]);
+                if(isset($toLoad[5])) {
+                    $this->user->localization->loadLanguage($this->request->lang, $toLoad[5]);
+                }
 
                 /* TODO: change */
                 $this->settings->loadSettings([1000000011]);

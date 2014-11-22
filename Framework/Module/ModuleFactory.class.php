@@ -39,7 +39,8 @@ namespace Framework\Module {
         /**
          * Gets and initializes modules
          *
-         * @param int $mid Module ID
+         * @param string $module Module ID
+         * @param string $theme  Module theme
          *
          * @return \Framework\Module\ModuleAbstract
          *
@@ -48,13 +49,13 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($module, $theme) {
-            if (!isset(self::$loaded[$module])) {
+            if(!isset(self::$loaded[$module])) {
                 $class = '\\Modules\\' . $module . '\\Handler';
 
                 /**
                  * @var \Framework\Module\ModuleAbstract $obj
                  */
-                $obj                    = new $class(self::$app, $theme);
+                $obj                   = new $class(self::$app, $theme);
                 self::$loaded[$module] = $obj;
 
                 /* TODO: find dependencies or load them inside module? */
@@ -68,16 +69,16 @@ namespace Framework\Module {
                 If already handled remove from static array to not re-handle it and only loop static arrays*/
 
                 /* Find all providing modules */
-                foreach (self::$loaded as $key => $val) {
+                foreach(self::$loaded as $key => $val) {
                     $providing = $val->getProviding();
 
-                        foreach ($val->providing as $key2 => $val2) {
-                            if (isset(self::$loaded[$val2])) {
-                                /** @var \Framework\Module\ModuleAbstract $receiving */
-                                self::$loaded[$val2]->receiving[] = $key;
-                                self::$loaded[$val2]->receiving   = array_unique(self::$loaded[$val2]->receiving);
-                            }
+                    foreach($val->providing as $key2 => $val2) {
+                        if(isset(self::$loaded[$val2])) {
+                            /** @var \Framework\Module\ModuleAbstract $receiving */
+                            self::$loaded[$val2]->receiving[] = $key;
+                            self::$loaded[$val2]->receiving   = array_unique(self::$loaded[$val2]->receiving);
                         }
+                    }
                 }
             }
 

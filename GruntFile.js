@@ -3,6 +3,16 @@ module.exports = function (grunt) {
     "use strict";
 
     grunt.loadNpmTasks('grunt-composer');
+    grunt.loadNpmTasks('grunt-vagrant');
+    grunt.loadNpmTasks('grunt-vagrantup');
+    grunt.loadNpmTasks("grunt-jscs");
+    grunt.loadNpmTasks('grunt-phpcs');
+    grunt.loadNpmTasks('grunt-phpmd');
+    grunt.loadNpmTasks('grunt-phpdcd');
+    grunt.loadNpmTasks("grunt-phplint");
+    grunt.loadNpmTasks('grunt-hashres');
+    grunt.loadNpmTasks('grunt-html-validation');
+    grunt.loadNpmTasks('grunt-phpdocumentor');
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-concat");
@@ -12,6 +22,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-compass");
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-compress");
