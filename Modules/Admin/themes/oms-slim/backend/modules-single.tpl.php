@@ -2,7 +2,7 @@
 /* TODO: Check 'id' with sanitizer for [A-Za-z] */
 /** @var \Modules\Admin\Handler $this */
 /** @var \Framework\Module\Modules $modules */
-$modules_all = $this->app->modules->module_list_all_get();
+$modules_all = $this->app->modules->getAllModules();
 
 if (array_key_exists($this->app->request->request['id'], $modules_all)) {
     \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000105001]);
@@ -30,7 +30,7 @@ if (array_key_exists($this->app->request->request['id'], $modules_all)) {
             <ul>
                 <?php
                 /** @var \Framework\Module\Modules $modules */
-                if (!array_key_exists($this->app->request->request['id'], $this->app->modules->modules_installed_get())) {
+                if (!array_key_exists($this->app->request->request['id'], $this->app->modules->getInstalledModules())) {
                 ?>
                 <li>
                     <button data-http="PUT" data-request="DYN"
