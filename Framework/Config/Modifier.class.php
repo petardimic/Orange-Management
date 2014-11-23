@@ -18,7 +18,7 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ConfigModifier {
+    class Modifier {
 
         /**
          * Config file

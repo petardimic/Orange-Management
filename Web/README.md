@@ -1,7 +1,6 @@
-# Admin #
+# Web #
 
-Administration files include log files and the installation scripts.
-Apart from that all other operations can be handled in the backend.
+All theme elements for the web component of this project.
 
 ## License ##
 

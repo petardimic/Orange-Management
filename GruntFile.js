@@ -41,11 +41,11 @@ module.exports = function (grunt) {
             },
             your_target: {
               // Target-specific file lists and/or options go here.
-            },
+            }
         },
         concat: {
             options: {
-                separator: ';',
+                separator: ';'
             },
             dist: {
                 src: [
@@ -53,8 +53,8 @@ module.exports = function (grunt) {
                     'Framework/JavaScript/Framework/UI/*.js',
                     'Framework/JavaScript/Framework/z.js'
                 ],
-                dest: 'Framework/JavaScript/oms.min.js',
-            },
+                dest: 'Framework/JavaScript/oms.min.js'
+            }
         },
         uglify: {
             options: {

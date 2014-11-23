@@ -19,19 +19,38 @@ namespace Modules\Navigation {
         /**
          * Providing
          *
-         * @var string
+         * @var string[]
          * @since 1.0.0
          */
-        public $providing = [
+        public static $providing = [
         ];
 
         /**
          * Dependencies
          *
-         * @var string
+         * @var string[]
          * @since 1.0.0
          */
-        public $dependencies = [
+        public static $dependencies = [
+        ];
+
+        /**
+         * JavaScript files
+         *
+         * @var string[]
+         * @since 1.0.0
+         */
+        public static $js = [
+            'backend',
+        ];
+
+        /**
+         * CSS files
+         *
+         * @var string[]
+         * @since 1.0.0
+         */
+        public static  $css = [
         ];
 
         /**

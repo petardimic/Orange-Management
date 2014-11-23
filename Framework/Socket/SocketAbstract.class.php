@@ -15,12 +15,12 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Server implements \Framework\Socket\SocketInterface {
-        private $server_ip = null;
-        private $server_port = null;
-        private $run = true;
+    abstract class SocketAbstract implements \Framework\Socket\SocketInterface {
+        protected $ip = null;
+        protected $port = null;
+        protected $run = true;
 
-        private $sock = null;
+        protected $sock = null;
 
         public function __construct() {
             
@@ -31,10 +31,10 @@ namespace Framework\Socket {
             $this->port = $port; 
 
             $this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_bind($this->sock, $this->server_ip, $this->port);          
+            socket_bind($this->sock, $this->ip, $this->port);
         }
 
-        private function close() {
+        public function close() {
             if($this->sock !== null) {
                 socket_close($this->sock);
                 $this->sock = null;

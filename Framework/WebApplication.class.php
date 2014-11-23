@@ -66,13 +66,13 @@ namespace Framework {
                 \Framework\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/../Content/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
+                include __DIR__ . '/../Web/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);
             } else {
                 header('HTTP/1.0 503 Service Temporarily Unavailable');
                 header('Status: 503 Service Temporarily Unavailable');
                 header('Retry-After: 300');
-                include __DIR__ . '/../Content/Error/503.php';
+                include __DIR__ . '/../Web/Error/503.php';
             }
         }
     }
