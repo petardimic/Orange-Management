@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Calender {
+namespace Modules\Warehousing {
     /**
-     * Calender class
+     * Warehouse class
      *
      * PHP Version 5.4
      *
-     * @category   Calender
+     * @category   Warehousing
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,15 +15,7 @@ namespace Modules\Calender {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Calender implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
-        /**
-         * Calender ID
-         *
-         * @var int
-         * @since 1.0.0
-         */
-        private $id = null;
-
+    class Warehouse implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
          * Name
          *
@@ -41,28 +33,12 @@ namespace Modules\Calender {
         private $description = '';
 
         /**
-         * Created
+         * 
          *
-         * @var datetime
+         * @var \Framework\Object\Location
          * @since 1.0.0
          */
-        private $created = null;
-
-        /**
-         * Creator
-         *
-         * @var int
-         * @since 1.0.0
-         */
-        private $creator = null;
-
-         /**
-         * Events
-         *
-         * @var \Modules\Calender\Event[]
-         * @since 1.0.0
-         */
-        private $events = [];
+        private $location = null;
 
         private static $instances = [];
 
@@ -88,42 +64,6 @@ namespace Modules\Calender {
 
         public function setName($name) {
             $this->name = $name;
-        }
-
-        public function getDescription() {
-            return $this->description;
-        }
-
-        public function setDescription($desc) {
-            $this->description = $desc;
-        }
-
-        public function getEvents() {
-            return $this->events;
-        }
-
-        public function removeEvent() {
-
-        }
-
-        public function getEvent($id) {
-
-        }
-
-        public function getCreated() {
-            return $this->created;
-        }
-
-        public function setCreated($created) {
-            $this->created = $created;
-        }
-
-        public function getCreator() {
-            return $this->creator;
-        }
-
-        public function setCreator($creator) {
-            $this->creator = $creator;
         }
 
         /**

@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Calender {
+namespace Modules\Warehousing {
     /**
-     * Calender class
+     * Article class
      *
      * PHP Version 5.4
      *
-     * @category   Calender
+     * @category   Warehousing
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,9 +15,9 @@ namespace Modules\Calender {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Calender implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Article implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
-         * Calender ID
+         * Article ID
          *
          * @var int
          * @since 1.0.0
@@ -56,14 +56,6 @@ namespace Modules\Calender {
          */
         private $creator = null;
 
-         /**
-         * Events
-         *
-         * @var \Modules\Calender\Event[]
-         * @since 1.0.0
-         */
-        private $events = [];
-
         private static $instances = [];
 
         public function __construct($id) {
@@ -96,18 +88,6 @@ namespace Modules\Calender {
 
         public function setDescription($desc) {
             $this->description = $desc;
-        }
-
-        public function getEvents() {
-            return $this->events;
-        }
-
-        public function removeEvent() {
-
-        }
-
-        public function getEvent($id) {
-
         }
 
         public function getCreated() {
