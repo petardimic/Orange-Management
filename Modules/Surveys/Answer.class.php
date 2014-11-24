@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Warehousing {
+namespace Modules\Surveys {
     /**
-     * Warehouse class
+     * Answer class
      *
      * PHP Version 5.4
      *
-     * @category   Warehousing
+     * @category   Surveys
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Shipping implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Answer implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
          * ID
          *
@@ -25,28 +25,20 @@ namespace Modules\Warehousing {
         private $id = '';
 
         /**
-         * From
+         * Name
          *
-         * @var \Framework\Object\Address
+         * @var string
          * @since 1.0.0
          */
-        private $to = null;
+        private $name = '';
 
         /**
-         * Warehouse
+         * Description
          *
-         * @var int
+         * @var string
          * @since 1.0.0
          */
-        private $warehouse = '';
-
-        /**
-         * Date
-         *
-         * @var datetime
-         * @since 1.0.0
-         */
-        private $date = '';
+        private $description = '';
 
         private static $instances = [];
 
@@ -64,6 +56,22 @@ namespace Modules\Warehousing {
 
         public function getID() {
             return $this->id;
+        }
+
+        public function getName() {
+            return $this->name;
+        }
+
+        public function setName($name) {
+            $this->name = $name;
+        }
+
+        public function getDescription() {
+            return $this->description;
+        }
+
+        public function setDescription($desc) {
+            $this->description = $desc;
         }
 
         /**

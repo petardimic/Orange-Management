@@ -27,5 +27,43 @@ namespace Modules\Tasks {
         public function __construct($id) {
             $this->id = $id;
         }
+
+        /**
+         * Removing the current object from cache and database
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function delete() {
+
+        }
+
+        /**
+         * Creating the current object in cache and database
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function create() {
+
+        }
+
+        /**
+         * Updating the current object in cache and database
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function update() {
+
+        }
+
+        public function serialize() {
+
+        }
+
+        public function unserialize($data) {
+
+        }
     }
 }
