@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Calender {
+namespace Modules\Calendar {
     /**
-     * Calender class
+     * Calendar class
      *
      * PHP Version 5.4
      *
-     * @category   Calender
+     * @category   Calendar
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,9 +15,9 @@ namespace Modules\Calender {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Calender implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Calendar implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
-         * Calender ID
+         * Calendar ID
          *
          * @var int
          * @since 1.0.0
@@ -59,7 +59,7 @@ namespace Modules\Calender {
          /**
          * Events
          *
-         * @var \Modules\Calender\Event[]
+         * @var \Modules\Calendar\Event[]
          * @since 1.0.0
          */
         private $events = [];

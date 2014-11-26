@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Calendar {
+namespace Modules\Warehousing {
     /**
-     * Calendar class
+     * Warehouse class
      *
      * PHP Version 5.4
      *
-     * @category   Calendar
+     * @category   Warehousing
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,15 +15,7 @@ namespace Modules\Calendar {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Event implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
-        /**
-         * Calendar ID
-         *
-         * @var int
-         * @since 1.0.0
-         */
-        private $id = null;
-
+    class Warehouse implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
          * Name
          *
@@ -41,68 +33,12 @@ namespace Modules\Calendar {
         private $description = '';
 
         /**
-         * Created
+         * \Framework\Object\Location
          *
-         * @var datetime
+         * @var string
          * @since 1.0.0
          */
-        private $created = null;
-
-        /**
-         * Creator
-         *
-         * @var int
-         * @since 1.0.0
-         */
-        private $creator = null;
-
-        /**
-         * People
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        private $location = null;
-
-        /**
-         * People
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        private $people = [];
-
-        /**
-         * Start
-         *
-         * @var \Datetime
-         * @since 1.0.0
-         */
-        private $start = null;
-
-        /**
-         * Start
-         *
-         * @var \Datetime
-         * @since 1.0.0
-         */
-        private $end = null;
-
-        /**
-         * Timezone
-         *
-         * @var \Datetime
-         * @since 1.0.0
-         */
-        private $timezone = null;
-
-        /**
-         * Occurence
-         *
-         * @var \Modules\Calendar\OccurenceType
-         * @since 1.0.0
-         */
-        private $occurence = null;
+        private $location = '';
 
         private static $instances = [];
 
@@ -128,30 +64,6 @@ namespace Modules\Calendar {
 
         public function setName($name) {
             $this->name = $name;
-        }
-
-        public function getDescription() {
-            return $this->description;
-        }
-
-        public function setDescription($desc) {
-            $this->description = $desc;
-        }
-
-        public function getCreated() {
-            return $this->created;
-        }
-
-        public function setCreated($created) {
-            $this->created = $created;
-        }
-
-        public function getCreator() {
-            return $this->creator;
-        }
-
-        public function setCreator($creator) {
-            $this->creator = $creator;
         }
 
         /**

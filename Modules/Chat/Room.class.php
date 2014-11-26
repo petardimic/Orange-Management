@@ -1,11 +1,11 @@
 <?php
-namespace Modules\EventManagement {
+namespace Modules\Chat {
     /**
-     * Event class
+     * Room class
      *
      * PHP Version 5.4
      *
-     * @category   EventManager
+     * @category   Chat
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,9 +15,9 @@ namespace Modules\EventManagement {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Event implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Room implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
         /**
-         * ID
+         * Room ID
          *
          * @var int
          * @since 1.0.0
@@ -38,7 +38,7 @@ namespace Modules\EventManagement {
          * @var string
          * @since 1.0.0
          */
-        private $description = null;
+        private $description = '';
 
         /**
          * Created
@@ -57,20 +57,22 @@ namespace Modules\EventManagement {
         private $creator = null;
 
         /**
-         * Calendar
+         * Type
          *
-         * @var \Modules\Calender\Calender
+         * @var \Modules\Chat\RoomType
          * @since 1.0.0
          */
-        private $calendar = null;
+        private $room_type = null;
 
         /**
-         * People/Users
+         * Password
          *
-         * @var array
+         * @var string
          * @since 1.0.0
          */
-        private $people = [];
+        private $password = null;
+
+
 
         private static $instances = [];
 
@@ -91,7 +93,7 @@ namespace Modules\EventManagement {
         }
 
         public function getName() {
-            return $name;
+            return $this->name;
         }
 
         public function setName($name) {
@@ -103,7 +105,7 @@ namespace Modules\EventManagement {
         }
 
         public function setDescription($desc) {
-            $this->descritpion = $desc;
+            $this->description = $desc;
         }
 
         public function getCreated() {
@@ -120,34 +122,6 @@ namespace Modules\EventManagement {
 
         public function setCreator($creator) {
             $this->creator = $creator;
-        }
-
-        public function getCalendar() {
-            return $this->calender;
-        }
-
-        public function setCalender($calender) {
-            $this->calender = $calender;
-        }
-
-        public function getPeople() {
-            return $this->people;
-        }
-
-        public function setPeople($people) {
-            $this->people = $people;
-        }
-
-        public function addPerson($person) {
-            if(!isset($this->people[$person['id']])) {
-                $this->people[$person['id']] = $person;
-            }
-        }
-
-        public function removePerson($id) {
-            if(isset($this->people[$id])) {
-                unset($this->people[$id]);
-            }
         }
 
         /**
