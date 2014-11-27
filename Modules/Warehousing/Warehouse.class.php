@@ -33,19 +33,43 @@ namespace Modules\Warehousing {
         private $description = '';
 
         /**
-         * 
+         * Location of the warehouse
          *
          * @var \Framework\Object\Location
          * @since 1.0.0
          */
         private $location = null;
 
+        /**
+         * Warehouse
+         *
+         * @var \Modules\Warehousing\Warehouse[]
+         * @since 1.0.0
+         */
         private static $instances = [];
 
+        /**
+         * Constructor
+         *
+         * @param int $id Warehouse ID
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($id) {
-
+            $this->id = $id;
         }
 
+        /**
+         * Initializing object
+         *
+         * @param int $id Warehouse ID
+         *
+         * @return \Modules\Warehousing\Warehouse
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getInstance($id) {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
@@ -54,14 +78,38 @@ namespace Modules\Warehousing {
             return self::$instances[$id];
         }
 
+        /**
+         * Get ID
+         *
+         * @return int
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getID() {
             return $this->id;
         }
 
+        /**
+         * Get name
+         *
+         * @return string
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getName() {
             return $this->name;
         }
 
+        /**
+         * Set name
+         *
+         * @param string $name Name of the article
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function setName($name) {
             $this->name = $name;
         }

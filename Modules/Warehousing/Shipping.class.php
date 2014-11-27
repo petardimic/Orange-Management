@@ -25,6 +25,14 @@ namespace Modules\Warehousing {
         private $id = '';
 
         /**
+         * Order
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $order = '';
+
+        /**
          * From
          *
          * @var \Framework\Object\Address
@@ -41,19 +49,59 @@ namespace Modules\Warehousing {
         private $warehouse = '';
 
         /**
-         * Date
+         * Date of arrival
          *
-         * @var datetime
+         * @var \Datetime
          * @since 1.0.0
          */
-        private $date = '';
+        private $date = null;
 
+        /**
+         * Person who sent the delivery
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $sender = null;
+
+        /**
+         * Warehouse
+         *
+         * @var \Modules\Warehousing\ArrivalStatus
+         * @since 1.0.0
+         */
+        private $status = null;
+
+        /**
+         * Shipping
+         *
+         * @var \Modules\Warehousing\Article[]
+         * @since 1.0.0
+         */
         private static $instances = [];
 
+        /**
+         * Constructor
+         *
+         * @param int $id Article ID
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($id) {
-
+            $this->id = $id;
         }
 
+        /**
+         * Initializing object
+         *
+         * @param int $id Article ID
+         *
+         * @return \Modules\Warehousing\Article
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getInstance($id) {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
@@ -62,8 +110,124 @@ namespace Modules\Warehousing {
             return self::$instances[$id];
         }
 
+        /**
+         * Get ID
+         *
+         * @return int
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getID() {
             return $this->id;
+        }
+
+        /**
+         * Get ID
+         *
+         * @return int
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getOrder() {
+            return $this->order;
+        }
+
+        /**
+         * Set order
+         *
+         * @return int
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setOrder($order) {
+            $this->order = $order;
+        }
+
+        /**
+         * Get To
+         *
+         * @return \Framework\Datatypes\Address
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getTo() {
+            return $this->to;
+        }
+
+        /**
+         * Set To
+         *
+         * @return \Framework\Datatypes\Address
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setTo($to) {
+            $this->to = $to;
+        }
+
+        /**
+         * Get status
+         *
+         * @return \Modules\Warehousing\ArrivalStatus
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getStatus() {
+            return $this->status;
+        }
+
+        /**
+         * Set status
+         *
+         * @param \Modules\Warehousing\ArrivalStatus
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setStatus($status) {
+            $this->status = $status;
+        }
+
+        /**
+         * Get warehouse
+         *
+         * @return \Modules\Warehousing\Warehouse
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getWarehouse() {
+            return $this->warehouse;
+        }
+
+        /**
+         * Get acceptor
+         *
+         * @return int
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getSender() {
+            return $this->sender;
+        }
+
+        /**
+         * Set sender
+         *
+         * @param int $sender Person who accepted the consignment
+         * 
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setSender($sender) {
+            $this->sender = $sender;
         }
 
         /**
