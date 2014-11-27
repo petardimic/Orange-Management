@@ -15,7 +15,7 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Employee implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Employee implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Employee ID
          *

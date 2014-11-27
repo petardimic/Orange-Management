@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Arrival implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Arrival implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * ID
          *
@@ -72,7 +72,7 @@ namespace Modules\Warehousing {
          */
         private $status = null;
 
-        /* TODO: count, packaging, product count etc.... for every single position */
+        /* TODO: count, packaging, product count etc.... for every single position + where do you put it */
 
         /**
          * Arrival
@@ -168,7 +168,7 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setOrder($from) {
+        public function setFrom($from) {
             $this->from = $from;
         }
 
@@ -233,39 +233,36 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
 
         }

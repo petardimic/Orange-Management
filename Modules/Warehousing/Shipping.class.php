@@ -15,14 +15,14 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Shipping implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Shipping implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * ID
          *
          * @var int
          * @since 1.0.0
          */
-        private $id = '';
+        private $id = 0;
 
         /**
          * Order
@@ -35,7 +35,7 @@ namespace Modules\Warehousing {
         /**
          * From
          *
-         * @var \Framework\Object\Address
+         * @var \Framework\Datatypes\Address
          * @since 1.0.0
          */
         private $to = null;
@@ -54,7 +54,7 @@ namespace Modules\Warehousing {
          * @var \Datetime
          * @since 1.0.0
          */
-        private $date = null;
+        private $delivered = null;
 
         /**
          * Person who sent the delivery
@@ -93,6 +93,11 @@ namespace Modules\Warehousing {
         }
 
         /**
+         * {@inheritdoc}
+         */
+        public function __clone() {}
+
+        /**
          * Initializing object
          *
          * @param int $id Article ID
@@ -102,7 +107,7 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getInstance($id) {
+        public static function getInstance($id) {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -123,7 +128,7 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Get ID
+         * Get order
          *
          * @return int
          * 
@@ -137,13 +142,37 @@ namespace Modules\Warehousing {
         /**
          * Set order
          *
-         * @return int
+         * @param int $order Order ID
          * 
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function setOrder($order) {
             $this->order = $order;
+        }
+
+        /**
+         * Get delivered
+         *
+         * @return \Datetime
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDelivered() {
+            return $this->delivered;
+        }
+
+        /**
+         * Set delivered
+         *
+         * @param \Datetime $delivered Date of delivery
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setDelivered($delivered) {
+            $this->delivered = $delivered;
         }
 
         /**
@@ -161,7 +190,7 @@ namespace Modules\Warehousing {
         /**
          * Set To
          *
-         * @return \Framework\Datatypes\Address
+         * @param \Framework\Datatypes\Address $to Receiver
          * 
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -231,39 +260,36 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
 
         }

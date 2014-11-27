@@ -16,65 +16,83 @@ namespace Modules\Tasks {
      * @since      1.0.0
      */
     class Task implements \Framework\DataStorage\Database\Objects\ObjectInterface {
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
         public $id = null;
+
+        /**
+         * Title
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $title = null;
+
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         * @
+         */
         public $creator = null;
         public $created = null;
-        public $desc = null;
+        public $description = null;
         public $status = null;
+        public $priority = null;
 
-        private $TaskElements = [];
+        private $task_elements = [];
 
         public function __construct($id) {
             $this->id = $id;
         }
 
         public function add_element($element) {
-            $this->TaskElements[] = $element;
+            $this->task_elements[] = $element;
         }
 
         public function remove_element($id) {
-            if (array_key_exists($id, $this->TaskElements)) {
-                unset($this->TaskElements[$id]);
+            if (array_key_exists($id, $this->task_elements)) {
+                unset($this->task_elements[$id]);
             }
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
-
         }
     }
 }

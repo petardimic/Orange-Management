@@ -105,39 +105,21 @@ namespace Framework\DataStorage\Cache {
         }
 
         /**
-         * Updating or adding settings
-         *
-         * @param mixed $key Unique option key
-         * @param mixed $value Option value
-         * @param bool $storable Is this option storable inside DB or cache
-         * @param bool $save Should this update the database/cache
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function set_option($key, $value, $storeable = false, $save = false) {
             $this->options[$key] = [$value, $storable];
         }
 
         /**
-         * Get option by key
-         *
-         * @param mixed $key Unique option key
-         *
-         * @return mixed Option value
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function get_option($key) {
             return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         /**
-         * Update options (push them into DB and Cache)
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {}
 

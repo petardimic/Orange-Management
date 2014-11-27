@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Warehouse implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Warehouse implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition  {
         /**
          * Name
          *
@@ -35,7 +35,7 @@ namespace Modules\Warehousing {
         /**
          * Location of the warehouse
          *
-         * @var \Framework\Object\Location
+         * @var \Framework\Datatypes\Location
          * @since 1.0.0
          */
         private $location = null;
@@ -61,6 +61,11 @@ namespace Modules\Warehousing {
         }
 
         /**
+         * {@inheritdoc}
+         */
+        public function __clone() {}
+
+        /**
          * Initializing object
          *
          * @param int $id Warehouse ID
@@ -70,7 +75,7 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getInstance($id) {
+        public static function getInstance($id) {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -115,39 +120,84 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
+         * Get name
+         *
+         * @return string
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDescription() {
+            return $this->description;
+        }
+
+        /**
+         * Set name
+         *
+         * @param string $description Description of the warehouse
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setDescription($description) {
+            $this->description = $description;
+        }
+
+        /**
+         * Get location
+         *
+         * @return \Framework\Datatypes\Location
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getLocation() {
+            return $this->location;
+        }
+
+        /**
+         * Set location
+         *
+         * @param \Framework\Datatypes\Location $location Location of the warehouse
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setLocation($location) {
+            $this->location = $location;
+        }
+
+        /**
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
 
         }

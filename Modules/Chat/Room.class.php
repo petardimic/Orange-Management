@@ -15,7 +15,7 @@ namespace Modules\Chat {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Room implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Room implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Room ID
          *
@@ -125,39 +125,36 @@ namespace Modules\Chat {
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
 
         }

@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Article implements \Framework\DataStorage\Database\Objects\ObjectInterface \Framework\Pattern\Multition {
+    class Article implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Article ID
          *
@@ -49,6 +49,32 @@ namespace Modules\Warehousing {
         private $matchcode = '';
 
         /**
+         * Sector
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $sector = null;
+
+        /**
+         * Group
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $group = null;
+
+        /**
+         * Suppliers
+         *
+         * supplier price leadtime
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $suppliers = null;
+
+        /**
          * Localization strings
          *
          * [en] Name - Description
@@ -61,12 +87,20 @@ namespace Modules\Warehousing {
         /**
          * Prizes
          *
-         * [id] name country state prize discount% discountA bonus-in-kind groupA groupB
+         * [id] name country state prize discount% discountA bonus-in-kind groupA groupB amount event
          *
          * @var array
          * @since 1.0.0
          */
         private $prizes = [];
+
+        /**
+         * Active supplier
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $pprice = null;
 
         /**
          * Created
@@ -300,39 +334,36 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Removing the current object from cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function delete() {
 
         }
 
         /**
-         * Creating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function create() {
 
         }
 
         /**
-         * Updating the current object in cache and database
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function update() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function serialize() {
 
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function unserialize($data) {
 
         }
