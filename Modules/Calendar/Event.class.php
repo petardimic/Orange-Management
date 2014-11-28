@@ -15,7 +15,7 @@ namespace Modules\Calendar {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Event implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Event implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Calendar ID
          *

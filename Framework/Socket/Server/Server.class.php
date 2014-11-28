@@ -18,20 +18,53 @@ namespace Framework\Socket {
      * @since      1.0.0
      */
     class Server extends \Framework\Socket\SocketAbstract {
-        private $server_limit = null;
+        /**
+         * Socket connection limit
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $limit = 10;
 
+        /**
+         * Clients
+         *
+         * @var resource
+         * @since 1.0.0
+         */
         private $clients = [];
 
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct() {
-            parent::__construct();
         }
 
-        public function create($ip, $port, $limit) {
+        /**
+         * {@inheritdoc}
+         */
+        public function create($ip, $port) {
             parent::create($ip, $port);
+        }
 
+        /**
+         * Set connection limit
+         *
+         * @param int $limit Connection limit
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setLimit($limit) {
             $this->limit = $limit;
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function run() {
             socket_listen($this->sock);
             socket_set_nonblock($this->sock);
@@ -53,7 +86,7 @@ namespace Framework\Socket {
                     unset($read[$key]);
                 }
 
-                foreach ($read as $read_sock) {
+                foreach($read as $read_sock) {
                     $data = @socket_read($read_sock, 1024, PHP_NORMAL_READ);
 
                     /* Client disconnected */
@@ -66,7 +99,7 @@ namespace Framework\Socket {
                     /* Normalize */
                     $data = trim($data);
 
-                    if (!empty($data)) {
+                    if(!empty($data)) {
                         // TODO: handle data
                     }
                 }
@@ -75,10 +108,16 @@ namespace Framework\Socket {
             $this->close();
         }
 
-        private function close() {
+        /**
+         * {@inheritdoc}
+         */
+        public function close() {
             parent::close();
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function __destruct() {
             parent::__destruct();
         }

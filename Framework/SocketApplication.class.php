@@ -25,7 +25,6 @@ namespace Framework {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($config) {
-
         }
     }
 }

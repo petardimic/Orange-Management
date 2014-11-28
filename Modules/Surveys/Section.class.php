@@ -15,7 +15,7 @@ namespace Modules\Surveys {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Section implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Section implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * ID
          *

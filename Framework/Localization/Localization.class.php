@@ -102,14 +102,17 @@ namespace Framework\Localization {
         /**
          * Constructor
          *
+         * @param string                         $id  Localization ID
+         * @param \Framework\ApplicationAbstract $app Application instance
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($id, $app) {
             $this->app             = $app;
             $this->localization_id = $id;
-            $this->language        = $this->app->request->lang;
-            $this->datetime = new \Framework\Localization\DateTime\DateTime();
+            $this->language        = $this->app->request->getLanguage();
+            $this->datetime        = new \Framework\Localization\DateTime\DateTime();
         }
 
         /**
@@ -119,8 +122,10 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function get_locals() {
-            if (!isset(self::$locals)) {
+            if(!isset(self::$locals)) {
                 include_once __DIR__ . '/Localization.array.php';
+
+                /** @var array[] $LOCALS */
                 self::$locals = $LOCALS;
             }
 
@@ -137,7 +142,7 @@ namespace Framework\Localization {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function loadLanguage($language, $files) {
-            if (!$this->lang && !empty($files)) {
+            if(!$this->lang && !empty($files)) {
                 $this->lang = [];
 
                 /** @noinspection PhpIncludeInspection */
@@ -147,14 +152,14 @@ namespace Framework\Localization {
                 $this->lang += $CORELANG;
                 $active_modules = $this->app->modules->getActiveModules();
 
-                foreach ($files as $file) {
+                foreach($files as $file) {
                     /** @noinspection PhpIncludeInspection */
                     /** @var string[] $MODLANG */
                     /* TODO: change, store name inside instead of id */
                     require __DIR__ . '/../../Modules/' . $active_modules[$file['from']][0]['class'] . '/themes/' . $active_modules[$file['from']][0]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
-                    $key = (int)($file['for'] / 100000 - 10000);
-                    if (!isset($this->lang[$key])) {
+                    $key = (int) ($file['for'] / 100000 - 10000);
+                    if(!isset($this->lang[$key])) {
                         $this->lang += $MODLANG;
                     } else {
                         /** @noinspection PhpWrongStringConcatenationInspection */

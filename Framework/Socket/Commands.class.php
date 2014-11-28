@@ -39,15 +39,14 @@ namespace Framework\Socket {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-
         }
 
         /**
          * Attach new command
          *
-         * @param string $cmd Command ID
-         * @param mixed $callback Function callback
-         * @param mixed $source Provider
+         * @param string $cmd      Command ID
+         * @param mixed  $callback Function callback
+         * @param mixed  $source   Provider
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
@@ -60,8 +59,8 @@ namespace Framework\Socket {
         /**
          * Detach existing command
          *
-         * @param string $cmd Command ID
-         * @param mixed $source Provider
+         * @param string $cmd    Command ID
+         * @param mixed  $source Provider
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
@@ -76,8 +75,8 @@ namespace Framework\Socket {
         /**
          * Detach existing command
          *
-         * @param string $cmd Command ID
-         * @param mixed $para Parameters to pass
+         * @param string $cmd  Command ID
+         * @param mixed  $para Parameters to pass
          *
          * @return \Framework\Response\ResponseStatus::WRONG_REQUEST|mixed
          *

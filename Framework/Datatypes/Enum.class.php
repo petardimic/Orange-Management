@@ -35,7 +35,7 @@ namespace Framework\Datatypes {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getConstants() {
-            if (self::$constCache === null) {
+            if(self::$constCache === null) {
                 $reflect          = new \ReflectionClass(get_called_class());
                 self::$constCache = $reflect->getConstants();
             }
@@ -66,7 +66,7 @@ namespace Framework\Datatypes {
          *
          * Checking if a given value is part of this enum
          *
-         * @param var $value Value to check
+         * @param mixed $value Value to check
          *
          * @return boolean
          *

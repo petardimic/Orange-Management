@@ -5,7 +5,7 @@ namespace Framework\Socket {
      *
      * PHP Version 5.4
      *
-     * @category   System
+     * @category   Socket
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,24 +16,52 @@ namespace Framework\Socket {
      * @since      1.0.0
      */
     abstract class SocketAbstract implements \Framework\Socket\SocketInterface {
+        /**
+         * Socket ip
+         *
+         * @var string
+         * @since 1.0.0
+         */
         protected $ip = null;
+
+        /**
+         * Socket port
+         *
+         * @var int
+         * @since 1.0.0
+         */
         protected $port = null;
+
+        /**
+         * Socket running?
+         *
+         * @var bool
+         * @since 1.0.0
+         */
         protected $run = true;
 
+        /**
+         * Socket
+         *
+         * @var resource
+         * @since 1.0.0
+         */
         protected $sock = null;
 
-        public function __construct() {
-            
-        }
-
+        /**
+         * {@inheritdoc}
+         */
         public function create($ip, $port) {
-            $this->ip = $ip;
-            $this->port = $port; 
+            $this->ip   = $ip;
+            $this->port = $port;
 
             $this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             socket_bind($this->sock, $this->ip, $this->port);
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function close() {
             if($this->sock !== null) {
                 socket_close($this->sock);
@@ -41,6 +69,12 @@ namespace Framework\Socket {
             }
         }
 
+        /**
+         * Destructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __destruct() {
             $this->close();
         }

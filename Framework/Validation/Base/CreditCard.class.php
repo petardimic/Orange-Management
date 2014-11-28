@@ -16,10 +16,19 @@ namespace Framework\Validation {
      * @since      1.0.0
      */
     abstract class CreditCard extends \Framework\Validation\ValidatorAbstract {
-        private function __construct() {
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct() {
         }
 
-        public static function is_valid($value) {
+        /**
+         * {@inheritdoc}
+         */
+        public static function isValid($value) {
             $value = preg_replace('/\D/', '', $value);
 
         // Set the string length and parity

@@ -77,7 +77,7 @@ namespace Framework\DataStorage\Database {
             $this->dbdata = $dbdata;
             $this->prefix = $dbdata['prefix'];
 
-            switch ($dbdata['db']) {
+            switch($dbdata['db']) {
                 case 'mysql':
                     $this->type = \Framework\DataStorage\Database\DatabaseType::MYSQL;
                     break;
@@ -89,14 +89,14 @@ namespace Framework\DataStorage\Database {
                 $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::OK;
-            } catch (\PDOException $e) {
+            } catch(\PDOException $e) {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_DATABASE;
                 $this->con    = null;
             }
 
             try {
-                $result = $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
-            } catch (\PDOException $e) {
+                $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
+            } catch(\PDOException $e) {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_TABLE;
             }
         }
@@ -137,7 +137,7 @@ namespace Framework\DataStorage\Database {
          * @author Dennis Eichhorn
          */
         public function generate_sql_filter($filter, $pre = false) {
-            if (!isset($filter)) {
+            if(!isset($filter)) {
                 return '';
             }
 
@@ -145,7 +145,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function create_table() {
-            switch ($this->type) {
+            switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -153,7 +153,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function insert() {
-            switch ($this->type) {
+            switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -161,7 +161,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function select() {
-            switch ($this->type) {
+            switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -169,7 +169,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function update() {
-            switch ($this->type) {
+            switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -177,7 +177,7 @@ namespace Framework\DataStorage\Database {
         }
 
         public function delete() {
-            switch ($this->type) {
+            switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;

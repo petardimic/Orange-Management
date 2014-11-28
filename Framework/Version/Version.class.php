@@ -37,7 +37,7 @@ namespace Framework\Version {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function get_version($path) {
+        public static function getVersion($path) {
             return json_decode(file_get_contents($path), true);
         }
 
@@ -51,8 +51,8 @@ namespace Framework\Version {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function set_version($type, $version, $path) {
-            $versions        = $this->get_version($path);
+        public static function setVersion($type, $version, $path) {
+            $versions        = self::getVersion($path);
             $versions[$type] = $version;
             file_put_contents($path, json_encode($versions));
         }

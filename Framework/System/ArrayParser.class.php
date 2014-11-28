@@ -38,19 +38,19 @@ namespace Framework\System {
          * Constructor
          *
          * @param string $file     File path
-         * @param ref    $arr_name Array to parse
+         * @param string $arr_name Array to parse
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($file, $arr_name) {
-            if (file_exists($file)) {
+            if(file_exists($file)) {
                 $this->file = $file;
 
                 /** @noinspection PhpIncludeInspection */
                 include $this->file;
 
-                if (isset(${$arr_name})) {
+                if(isset(${$arr_name})) {
                     $this->array = ${$arr_name};
                 }
             }
@@ -91,9 +91,9 @@ namespace Framework\System {
          */
         public function save($name) {
             $arr = '<' . '?php' . PHP_EOL
-                . '$' . $name . ' = [' . PHP_EOL
-                . $this->serialize_array($this->array)
-                . '];';
+                   . '$' . $name . ' = [' . PHP_EOL
+                   . $this->serializeArray($this->array)
+                   . '];';
 
             file_put_contents($this->file, $arr);
         }
@@ -103,31 +103,35 @@ namespace Framework\System {
          *
          * @param array $arr Array to serialize
          *
+         * @return string
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function serialize_array($arr) {
-            foreach ($arr as $key => $val) {
-                if (is_array($val)) {
-                    if (is_string($key)) {
-                        return '"' . $key . '" => [' . PHP_EOL . $this->serialize_array($val) . PHP_EOL . '],' . PHP_EOL;
+        public function serializeArray($arr) {
+            foreach($arr as $key => $val) {
+                if(is_array($val)) {
+                    if(is_string($key)) {
+                        return '"' . $key . '" => [' . PHP_EOL . $this->serializeArray($val) . PHP_EOL . '],' . PHP_EOL;
                     } else {
-                        return $key . ' => [' . PHP_EOL . $this->serialize_array($val) . PHP_EOL . '],' . PHP_EOL;
+                        return $key . ' => [' . PHP_EOL . $this->serializeArray($val) . PHP_EOL . '],' . PHP_EOL;
                     }
-                } elseif (is_null($val)) {
-                    if (is_string($key)) {
+                } elseif(is_null($val)) {
+                    if(is_string($key)) {
                         return '"' . $key . '" => null';
                     } else {
                         return $key . ' => null,' . PHP_EOL;
                     }
                 } else {
-                    if (is_string($key)) {
+                    if(is_string($key)) {
                         return '"' . $key . '" => ' . $val . ',' . PHP_EOL;
                     } else {
                         return $key . ' => ' . $val . ',' . PHP_EOL;
                     }
                 }
             }
+
+            return null;
         }
     }
 }

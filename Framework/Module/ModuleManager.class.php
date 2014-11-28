@@ -73,7 +73,7 @@ namespace Framework\Module {
         /**
          * Get modules that run on this page
          *
-         * @param \Framework\Request\RequestAbstract $request Request
+         * @param array $request Request
          *
          * @return array
          *

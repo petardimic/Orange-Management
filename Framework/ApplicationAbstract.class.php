@@ -67,7 +67,7 @@ namespace Framework {
         /**
          * User instance
          *
-         * @var \Framework\DataStorage\Database\Objects\User\User
+         * @var \Framework\Object\User\User
          * @since 1.0.0
          */
         public $user = null;

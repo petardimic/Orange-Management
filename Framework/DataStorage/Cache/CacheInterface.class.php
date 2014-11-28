@@ -21,7 +21,7 @@ namespace Framework\DataStorage\Cache {
          *
          * @param mixed $key Unique cache key
          * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache type
          * @param int $expire Valid duration (in s)
          *
          * @since  1.0.0
@@ -34,10 +34,10 @@ namespace Framework\DataStorage\Cache {
          *
          * @param mixed $key Unique cache key
          * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache type
          * @param int $expire Valid duration (in s)
          *
-         * @param bool Successful or not?
+         * @param bool
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -48,38 +48,42 @@ namespace Framework\DataStorage\Cache {
          * Get cache by key
          *
          * @param mixed $key Unique cache key
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
          *
          * @return mixed Cache value
          * 
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function get($key);
+        public function get($key, $type = null);
 
         /**
          * Remove value by key
          *
          * @param mixed $key Unique cache key
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function delete($key);
+        public function delete($key, $type = null);
 
         /**
          * Removing all elements from cache (invalidate cache)
+         *
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
          * 
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function flush();
+        public function flush($type = null);
 
         /**
          * Updating existing value/key
          *
          * @param mixed $key Unique cache key
          * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
+         * @param \Framework\DataStorage\Cache\CacheType $type Cache type
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

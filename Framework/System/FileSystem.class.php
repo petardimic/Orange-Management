@@ -1,9 +1,9 @@
 <?php
 namespace Framework\System {
     /**
-     * Array parser class
+     * Filesystem class
      *
-     * Parsing/serializing arrays to and from php file
+     * Performing operations on the file system
      *
      * PHP Version 5.4
      *
@@ -18,22 +18,44 @@ namespace Framework\System {
      * @since      1.0.0
      */
     class FileSystem {
-        private function __construct() {}
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        private function __construct() {
+        }
 
-        public static function get_file_count($path, $recursive = true, $ignore = array('.','..','cgi-bin','.DS_Store')) {
-            $size = 0;
+        /**
+         * Get file count inside path
+         *
+         * @param string $path      Path to folder
+         * @param bool   $recursive Should sub folders be counted as well?
+         * @param array  $ignore    Ignore these sub-paths
+         *
+         * @return null|string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public static function getFileCount($path, $recursive = true, $ignore = array('.', '..', 'cgi-bin', '.DS_Store')) {
+            $size  = 0;
             $files = scandir($path);
 
             foreach($files as $t) {
-                if(in_array($t, $ignore)) continue;
-                if (is_dir(rtrim($path, '/') . '/' . $t)) {
+                if(in_array($t, $ignore)) {
+                    continue;
+                }
+                if(is_dir(rtrim($path, '/') . '/' . $t)) {
                     if($recursive) {
-                        $size += self::get_file_count(rtrim($path, '/') . '/' . $t, true, $ignore);
-                    } 
+                        $size += self::getFileCount(rtrim($path, '/') . '/' . $t, true, $ignore);
+                    }
                 } else {
                     $size++;
-                }   
+                }
             }
+
             return $size;
         }
     }

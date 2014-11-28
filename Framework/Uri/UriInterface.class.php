@@ -21,7 +21,10 @@ namespace Framework\Uri {
         /**
          * Create URI
          *
-         * @param string $data Parameters
+         * @param string[] $data  Parameters
+         * @param string[] $query Query
+         *
+         * @return string
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -33,16 +36,45 @@ namespace Framework\Uri {
          *
          * @param string $uri URI to validate
          *
+         * @return bool
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function isValid($uri);
 
+        /**
+         * Make string to Uri
+         *
+         * @param string $uri Uri string
+         *
+         * @return \Framework\Uri\UriInterface
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function parse($uri);
 
+        /**
+         * Make Uri to string
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function toString();
 
-        // make relative absolute
+        /**
+         * Make relative path absolute
+         *
+         * @param string $base Base uri
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function resolve($base);
     }
 }

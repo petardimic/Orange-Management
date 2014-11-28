@@ -35,10 +35,18 @@ namespace Framework\Request {
         /**
          * Uri
          *
-         * @var \Framework\Uri\UriAbstract
+         * @var \Framework\Uri\UriInterface
          * @since 1.0.0
          */
         public $uri = null;
+
+        /**
+         * Language
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        protected $lang = null;
 
         /**
          * Constructor
@@ -50,51 +58,38 @@ namespace Framework\Request {
         }
 
         /**
-         * Get request
-         *
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function getUri() {
             return $this->uri;
         }
 
         /**
-         * Get request source
-         *
-         * @return \Framework\Request\RequestSource
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function getRequestSource() {
            return self::$source;
         }
 
         /**
-         * Get request source
-         *
-         * @param \Framework\Request\RequestSource $source Source of the request
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function setRequestSource($source) {
             self::$source = $source;
         }
 
         /**
-         * Get request type
-         *
-         * @return \Framework\Request\RequestType
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function getType() {
             return $this->type;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function getLanguage() {
+            return $this->lang;
         }
     }
 }

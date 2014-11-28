@@ -3,7 +3,7 @@ namespace Framework\Auth {
     /**
      * Login return types enum
      *
-     * These are possible answeres to authentications.
+     * These are possible answers to authentications.
      *
      * PHP Version 5.4
      *

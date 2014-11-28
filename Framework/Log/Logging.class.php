@@ -82,7 +82,7 @@ namespace Framework\Log {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($path = null) {
-            if (self::$instance === null) {
+            if(self::$instance === null) {
                 self::$instance = new self($path);
             }
 
@@ -170,7 +170,7 @@ namespace Framework\Log {
          * @author Dennis Eichhorn
          */
         private function orderSort($a, $b) {
-            if ($a['time'] == $b['time']) {
+            if($a['time'] == $b['time']) {
                 return 0;
             }
 

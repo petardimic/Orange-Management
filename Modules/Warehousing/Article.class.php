@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Article implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Article implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Article ID
          *

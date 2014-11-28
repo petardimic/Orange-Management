@@ -56,7 +56,7 @@ namespace Framework {
                 }
 
                 if(isset($toLoad[5])) {
-                    $this->user->localization->loadLanguage($this->request->lang, $toLoad[5]);
+                    $this->user->localization->loadLanguage($this->request->getLanguage(), $toLoad[5]);
                 }
 
                 /* TODO: change */

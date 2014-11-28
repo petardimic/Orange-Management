@@ -31,7 +31,7 @@
                     ?>
                     <tbody>
                     <?php
-                    /** @var \Framework\DataStorage\Database\Objects\User\Users $accounts */ /*
+                    /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';

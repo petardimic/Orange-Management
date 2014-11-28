@@ -17,14 +17,14 @@ namespace Framework\Pattern {
      */
     interface Singleton {
         /**
-         * @param \Framework\WebApplication $app Application reference
+         * Get instance
          *
          * @return Singleton
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($app);
+        public static function getInstance();
 
         /**
          * Overwriting clone in order to maintain singleton pattern

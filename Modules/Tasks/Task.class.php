@@ -15,7 +15,7 @@ namespace Modules\Tasks {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Task implements \Framework\DataStorage\Database\Objects\ObjectInterface {
+    class Task implements \Framework\Object\ObjectInterface {
         /**
          * ID
          *

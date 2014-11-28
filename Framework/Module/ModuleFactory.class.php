@@ -72,7 +72,7 @@ namespace Framework\Module {
                 foreach(self::$loaded as $key => $val) {
                     $providing = $val->getProviding();
 
-                    foreach($val->providing as $key2 => $val2) {
+                    foreach($providing as $key2 => $val2) {
                         if(isset(self::$loaded[$val2])) {
                             /** @var \Framework\Module\ModuleAbstract $receiving */
                             self::$loaded[$val2]->receiving[] = $key;

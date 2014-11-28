@@ -32,7 +32,6 @@ namespace Framework\Event {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-
         }
 
         /**
@@ -40,9 +39,9 @@ namespace Framework\Event {
          *
          * Listeners will get called if a certain event gets triggered
          *
-         * @param string $event Event ID
-         * @param function $callback Function to call if the event gets triggered
-         * @param class $source What class is attaching this listener
+         * @param string   $event    Event ID
+         * @param callback $callback Function to call if the event gets triggered
+         * @param string   $source   What class is attaching this listener
          *
          * @return int UID for the listener
          *
@@ -50,7 +49,6 @@ namespace Framework\Event {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function attach($event, $callback, $source) {
-
         }
 
         /**
@@ -58,15 +56,14 @@ namespace Framework\Event {
          *
          * An object fires an event
          *
-         * @param string $event Event ID
-         * @param function $callback Callback function of the event. This will get triggered after firering all listener callbacks.
-         * @param class $source What class is invoking this event
+         * @param string   $event    Event ID
+         * @param callback $callback Callback function of the event. This will get triggered after firering all listener callbacks.
+         * @param string   $source   What class is invoking this event
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function trigger($event, $callback = null, $source = null) {
-
         }
 
         /**
@@ -74,29 +71,27 @@ namespace Framework\Event {
          *
          * An object fires an event until it's callback returns false
          *
-         * @param string $event Event ID
-         * @param function $callback Callback function of the event. This will get triggered after firering all listener callbacks.
-         * @param class $source What class is invoking this event
+         * @param string   $event    Event ID
+         * @param callback $callback Callback function of the event. This will get triggered after firering all listener callbacks.
+         * @param string   $source   What class is invoking this event
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function trigger_until($event, $callback = null, $source = null) {
-
         }
 
         /**
          * Removing a listener
          *
-         * @param int $id ID of the listener
-         * @param string $event Event ID
-         * @param class $source What class is detaching this listener
+         * @param int    $id     ID of the listener
+         * @param string $event  Event ID
+         * @param string $source What class is detaching this listener
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function detach($id, $event = null, $source = null) {
-
         }
 
         /**

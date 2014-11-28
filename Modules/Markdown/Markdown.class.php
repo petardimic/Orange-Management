@@ -58,7 +58,7 @@ namespace OMS\Modules {
          *
          * @param \Framework\DataStorage\Database\Database          $db    Database instance
          * @param \Framework\Model\Model                            $model Model instance
-         * @param \Framework\DataStorage\Database\Objects\User\User $user  User instance
+         * @param \Framework\Object\User\User $user  User instance
          * @param \Framework\DataStorage\Cache\Cache                $cache Cache instance
          *
          * @since  1.0.0

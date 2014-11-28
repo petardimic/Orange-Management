@@ -25,7 +25,6 @@ namespace Framework\Uri {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct() {
-
         }
 
         /**
@@ -37,24 +36,19 @@ namespace Framework\Uri {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getCurrent() {
-            return 'http://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI];
+            return 'http://' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI];
         }
 
         /**
-         * Create URI
-         *
-         * @param string $data Parameters
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public static function create($data, $query = null) {
             $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
 
-            if (isset($query)) {
+            if(isset($query)) {
                 $i = 0;
-                foreach ($query as $para) {
-                    if ($i == 0) {
+                foreach($query as $para) {
+                    if($i == 0) {
                         $uri .= '?' . $para[0] . '=' . $para[1];
                         $i++;
                         continue;
@@ -66,29 +60,29 @@ namespace Framework\Uri {
 
             return $uri;
         }
-        
+
         /**
-         * Validate URI
-         *
-         * @param string $uri URI to validate
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public static function isValid($uri) {
-
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function parse($uri) {
-
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function toString() {
-
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function resolve($base) {
-            
         }
     }
 }

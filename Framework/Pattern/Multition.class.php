@@ -17,16 +17,6 @@ namespace Framework\Pattern {
      */
     interface Multition {
         /**
-         * @param mixed $id Object id
-         *
-         * @return Multition
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function getInstance($id);
-
-        /**
          * Overwriting clone in order to maintain singleton pattern
          *
          * @since  1.0.0

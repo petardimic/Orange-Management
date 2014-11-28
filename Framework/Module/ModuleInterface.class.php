@@ -35,5 +35,13 @@ namespace Framework\Module {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getDependencies();
+
+        /**
+         * Call all modules from which this module is receiving
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        public function callPull();
     }
 }

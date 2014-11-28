@@ -24,14 +24,15 @@ namespace Framework\Uri {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        private function __construct() {}
+        private function __construct() {
+        }
 
         /**
          * Build uri
          *
-         * @param array $data Path data
-         * @param array $query Query data
-         * @param \Framework\Uri\UriScheme $scheme Scheme type
+         * @param array         $data   Path data
+         * @param array         $query  Query data
+         * @param UriScheme|int $scheme Scheme type
          *
          * @return null|string
          *
@@ -76,8 +77,8 @@ namespace Framework\Uri {
         /**
          * Validate uri
          *
-         * @param string $uri URI to validate
-         * @param \Framework\Uri\UriScheme $scheme Scheme type
+         * @param string        $uri    URI to validate
+         * @param UriScheme|int $scheme Scheme type
          *
          * @return bool
          *
@@ -85,37 +86,35 @@ namespace Framework\Uri {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function isValid($uri, $scheme = \Framework\Uri\UriScheme::HTTP) {
-            $uri = null;
-
             switch($scheme) {
                 case \Framework\Uri\UriScheme::HTTP:
-                    return \Framework\Uri\Http::isValid($data);
+                    return \Framework\Uri\Http::isValid($uri);
                 case \Framework\Uri\UriScheme::FILE:
-                    return \Framework\Uri\File::isValid($data);
+                    return \Framework\Uri\File::isValid($uri);
                 case \Framework\Uri\UriScheme::MAILTO:
-                    return \Framework\Uri\Mailto::isValid($data);
+                    return \Framework\Uri\Mailto::isValid($uri);
                 case \Framework\Uri\UriScheme::FTP:
-                    return \Framework\Uri\Ftp::isValid($data);
+                    return \Framework\Uri\Ftp::isValid($uri);
                 case \Framework\Uri\UriScheme::IRC:
-                    return \Framework\Uri\Irc::isValid($data);
+                    return \Framework\Uri\Irc::isValid($uri);
                 case \Framework\Uri\UriScheme::TEL:
-                    return \Framework\Uri\Tel::isValid($data);
+                    return \Framework\Uri\Tel::isValid($uri);
                 case \Framework\Uri\UriScheme::TELNET:
-                    return \Framework\Uri\Telnet::isValid($data);
+                    return \Framework\Uri\Telnet::isValid($uri);
                 case \Framework\Uri\UriScheme::SSH:
-                    return \Framework\Uri\Ssh::isValid($data);
+                    return \Framework\Uri\Ssh::isValid($uri);
                 case \Framework\Uri\UriScheme::SKYPE:
-                    return \Framework\Uri\Skype::isValid($data);
+                    return \Framework\Uri\Skype::isValid($uri);
                 case \Framework\Uri\UriScheme::SSL:
-                    return \Framework\Uri\Ssl::isValid($data);
+                    return \Framework\Uri\Ssl::isValid($uri);
                 case \Framework\Uri\UriScheme::NFS:
-                    return \Framework\Uri\Nfs::isValid($data);
+                    return \Framework\Uri\Nfs::isValid($uri);
                 case \Framework\Uri\UriScheme::GEO:
-                    return \Framework\Uri\Geo::isValid($data);
+                    return \Framework\Uri\Geo::isValid($uri);
                 case \Framework\Uri\UriScheme::MARKET:
-                    return \Framework\Uri\Market::isValid($data);
+                    return \Framework\Uri\Market::isValid($uri);
                 case \Framework\Uri\UriScheme::ITMS:
-                    return \Framework\Uri\Itms::isValid($data);
+                    return \Framework\Uri\Itms::isValid($uri);
             }
 
             return false;

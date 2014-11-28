@@ -16,8 +16,26 @@ namespace Framework\Validation {
      * @since      1.0.0
      */
     interface ValidatorInterface {
-        public static function is_valid($value);
+        /**
+         * Check if value is valid
+         *
+         * @param mixed $value Value to validate
+         *
+         * @return bool
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        public static function isValid($value);
 
-        public static function get_message();
+        /**
+         * Get most recent error string
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn
+         */
+        public static function getMessage();
     }
 }

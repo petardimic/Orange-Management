@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Check if needle exists in multidimensional array
  *
@@ -15,17 +14,17 @@
 function in_array_r($needle, $haystack, $id = null) {
     $found = false;
 
-    if (isset($id) && isset($haystack[$id]) && $haystack[$id] === $needle) {
+    if(isset($id) && isset($haystack[$id]) && $haystack[$id] === $needle) {
         return true;
     }
 
-    foreach ($haystack as $item) {
-        if ($item === $needle) {
+    foreach($haystack as $item) {
+        if($item === $needle) {
             return true;
-        } elseif (is_array($item)) {
+        } elseif(is_array($item)) {
             $found = in_array_r($needle, $item, $id);
 
-            if ($found) {
+            if($found) {
                 break;
             }
         }

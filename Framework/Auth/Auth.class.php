@@ -49,9 +49,7 @@ namespace Framework\Auth {
         /**
          * Authenticates user
          *
-         * @param string $page Page address
-         *
-         * @return \Framework\DataStorage\Database\Objects\User\User
+         * @return \Framework\Object\User\User
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -59,11 +57,11 @@ namespace Framework\Auth {
         public function authenticate() {
             $uid = $this->app->session->getValue('user_id');
 
-            if ($uid === null) {
+            if($uid === null) {
                 $uid = -1;
             }
 
-            return \Framework\DataStorage\Database\Objects\User\User::getInstance($uid, $this->app, true);
+            return \Framework\Object\User\User::getInstance($uid, $this->app, true);
         }
 
         /**
@@ -98,17 +96,17 @@ namespace Framework\Auth {
         /**
          * {@inheritdoc}
          */
-        public function get_option($key) {
+        public function getOption($key) {
             return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function set_option($key, $value, $storable = false, $save = false) {
+        public function setOption($key, $value, $storable = false, $save = false) {
             $this->options[$key] = [$value, $storable];
 
-            if ($save) {
+            if($save) {
                 // TODO: save to db and or caching
             }
         }

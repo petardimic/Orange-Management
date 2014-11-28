@@ -21,7 +21,7 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class NewsArticle implements \Framework\Pattern\Multition, \Framework\DataStorage\Database\Objects\ObjectInterface {
+    class NewsArticle implements \Framework\Pattern\Multition, \Framework\Object\ObjectInterface {
         /**
          * Article ID
          *
@@ -33,7 +33,7 @@ namespace Modules\News {
         /**
          * Author
          *
-         * @var \Framework\DataStorage\Database\Objects\User\User
+         * @var \Framework\Object\User\User
          * @since 1.0.0
          */
         public $author = null;
@@ -57,7 +57,7 @@ namespace Modules\News {
         /**
          * Last editor
          *
-         * @var \Framework\DataStorage\Database\Objects\User\User
+         * @var \Framework\Object\User\User
          * @since 1.0.0
          */
         public $last_editor = null;

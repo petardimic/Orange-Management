@@ -16,11 +16,26 @@ namespace Framework\Validation {
      * @since      1.0.0
      */
     abstract class ValidatorAbstract implements \Framework\Validation\ValidatorInterface {
+        /**
+         * Error code
+         *
+         * @var int
+         * @since 1.0.0
+         */
         protected static $error = 0;
 
+        /**
+         * Message string
+         *
+         * @var string
+         * @since 1.0.0
+         */
         protected static $msg = '';
 
-        public static function get_message() {
+        /**
+         * {@inheritdoc}
+         */
+        public static function getMessage() {
             return self::$msg;
         }
     }

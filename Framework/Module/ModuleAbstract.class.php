@@ -54,6 +54,9 @@ namespace Framework\Module {
             $this->theme_path = $theme;
         }
 
+        /**
+         * {@inheritdoc}
+         */
         public function callPull() {
             foreach ($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */

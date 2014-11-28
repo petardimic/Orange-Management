@@ -15,7 +15,7 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Employee implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Employee implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Employee ID
          *
@@ -27,7 +27,7 @@ namespace Modules\HumanResources {
          /**
          * User
          *
-         * @var \Framework\DataStorage\Database\Objects\User\User
+         * @var \Framework\Object\User\User
          * @since 1.0.0
          */
         private $user = null;
@@ -47,7 +47,7 @@ namespace Modules\HumanResources {
         }
 
         public function setUser($id) {
-            $this->user = new \Framework\DataStorage\Database\Objects\User\User($id);
+            $this->user = new \Framework\Object\User\User($id);
         }
     }
 }

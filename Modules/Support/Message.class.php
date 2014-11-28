@@ -15,7 +15,7 @@ namespace Modules\Support {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Message implements \Framework\DataStorage\Database\Objects\ObjectInterface, \Framework\Pattern\Multition {
+    class Message implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Name
          *

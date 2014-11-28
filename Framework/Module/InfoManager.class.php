@@ -36,7 +36,7 @@ namespace Framework\Module {
          */
         public function __construct($module) {
             if(file_exists(__DIR__ . '/../../Modules/' . $module . '/info.json')) {
-                $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json');
+                $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json', 'r');
             }
         }
 

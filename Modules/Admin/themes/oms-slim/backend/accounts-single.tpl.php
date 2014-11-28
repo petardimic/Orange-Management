@@ -10,7 +10,7 @@
     </h1>
 
     <div class="bc-1">
-        <?php $account = \Framework\DataStorage\Database\Objects\User\User::getInstance((int)$this->app->request->request['id'], $this->app); ?>
+        <?php $account = \Framework\Object\User\User::getInstance((int)$this->app->request->request['id'], $this->app); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>

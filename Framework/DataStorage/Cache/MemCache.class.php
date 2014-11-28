@@ -30,7 +30,7 @@ namespace Framework\DataStorage\Cache {
          * @var int
          * @since 1.0.0
          */
-        private static $threshold = 10;
+        private $threshold = 10;
 
         /**
          * Constructor
@@ -51,113 +51,63 @@ namespace Framework\DataStorage\Cache {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function add_server($data) {
-            $this->memc->addServer($data['host'], $data['port'], $data['timeout'])
+            $this->memc->addServer($data['host'], $data['port'], $data['timeout']);
         }
 
         /**
-         * Updating or adding cache data
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function set($key, $value, $type = null, $expire = 2592000) {
-            $this->memc->set($key, $value, false, $expire)
+            $this->memc->set($key, $value, false, $expire);
         }
 
         /**
-         * Updating or adding cache data
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @param bool Successful or not?
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function add($key, $value, $type = null, $expire = 2592000) {
-            return $this->memc->add($key, $value, false, $expire)
+            return $this->memc->add($key, $value, false, $expire);
         }
 
         /**
-         * Get cache by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @return mixed Cache value
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function get($key) {
+        public function get($key, $type = null) {
             return $this->memc->get($key);
         }
 
         /**
-         * Remove value by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function delete($key) {
+        public function delete($key, $type = null) {
             $this->memc->delete($key);
         }
 
         /**
-         * Removing all elements from cache (invalidate cache)
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function flush() {
+        public function flush($type = null) {
             $this->memc->flush();
         }
 
         /**
-         * Updating existing value/key
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function replace($key, $value, $type = null) {
-            $this->memc->replace($key, $value, false, $expire)
+        public function replace($key, $value, $type = null, $expire = 2592000) {
+            $this->memc->replace($key, $value, false, $expire);
         }
 
         /**
-         * Requesting cache stats
-         *
-         * @return mixed[] Stats array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function stats() {
             return $this->memc->getExtendedStats();
         }
 
         /**
-         * Get the threshold required to cache data using this cache
-         *
-         * @return int Storage threshold
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function get_threshold() {
-            return self::$threshold;
+            return $this->threshold;
         }
 
         /**

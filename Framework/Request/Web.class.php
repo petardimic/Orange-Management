@@ -41,17 +41,9 @@ namespace Framework\Request {
         private $hash = null;
 
         /**
-         * Request language
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public $lang = 'en';
-
-        /**
          * Browser type
          *
-         * @var \Framework\Http\BrowserType
+         * @var \Framework\Request\BrowserType
          * @since 1.0.0
          */
         public $browser = null;
@@ -59,7 +51,7 @@ namespace Framework\Request {
         /**
          * OS type
          *
-         * @var \Framework\Http\OSType
+         * @var \Framework\Request\OSType
          * @since 1.0.0
          */
         public $os = null;
@@ -97,6 +89,7 @@ namespace Framework\Request {
                     'l7' => '',
                 ];
 
+                /** @noinspection PhpWrongStringConcatenationInspection */
                 $this->request = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->request;
                 $this->type = $this->request['l1'];
                 $this->lang = $this->request['l0'];
@@ -130,7 +123,7 @@ namespace Framework\Request {
         /**
          * Determine request browser
          *
-         * @return \Framework\Http\BrowserType
+         * @return \Framework\Request\BrowserType
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -155,7 +148,7 @@ namespace Framework\Request {
         /**
          * Determine request OS
          *
-         * @return \Framework\Http\OSType
+         * @return \Framework\Request\OSType
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

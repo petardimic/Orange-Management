@@ -22,111 +22,59 @@ namespace Framework\DataStorage\Cache {
          * @var int
          * @since 1.0.0
          */
-        private static $threshold = 50;
+        private $threshold = 50;
 
         /**
-         * Updating or adding cache data
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function set($key, $value, $type = null, $expire = 2592000) {
-
         }
 
         /**
-         * Adding new data if it doesn't exist
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @param bool Successful or not?
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function add($key, $value, $type = null, $expire = 2592000) {
-
         }
 
         /**
-         * Get cache by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @return mixed Cache value
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function get($key) {
-
+        public function get($key, $type = null) {
         }
 
         /**
-         * Remove value by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function delete($key) {
-
+        public function delete($key, $type = null) {
         }
 
         /**
-         * Removing all elements from cache (invalidate cache)
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function flush() {
+        public function flush($type = null) {
             array_map('unlink', glob(__DIR__ . '/../../../Cache/*'));
         }
 
         /**
-         * Updating existing value/key
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function replace($key, $value, $type = null) {
-
         }
 
         /**
-         * Requesting cache stats
-         *
-         * @return mixed[] Stats array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function stats() {
-            $stats = [];
+            $stats          = [];
             $stats['count'] = \Framework\System\FileSystem::get_file_count(__DIR__ . '/../../../Cache');
+
             // size, avg. last change compared to now
+
+            return $stats;
         }
 
         /**
-         * Get the threshold required to cache data using this cache
-         *
-         * @return int Storage threshold
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function get_threshold() {
             return $this->threshold;

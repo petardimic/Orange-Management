@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http\Response {
+namespace Framework\Response {
     /**
      * Response status enum
      *

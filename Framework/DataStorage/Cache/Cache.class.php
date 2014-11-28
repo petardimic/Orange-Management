@@ -54,6 +54,8 @@ namespace Framework\DataStorage\Cache {
         /**
          * Constructor
          *
+         * @param \Framework\ApplicationAbstract $app Application instance
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -64,7 +66,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * Requesting caching instance
          *
-         * @param \Framework\DataStorage\Cache\CacheType $type Cache to request
+         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache to request
          *
          * @return \Framework\DataStorage\Cache\MemCache|\Framework\DataStorage\Cache\FileCache|null
          *
@@ -72,11 +74,11 @@ namespace Framework\DataStorage\Cache {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function get_instance($type = null) {
-            if(($type === null || $type === \Framework\DataStorage\Cache\CacheType::MEMCACHE) && $this->memc !== null) {
+            if(($type === null || $type === \Framework\DataStorage\Cache\CacheStatus::MEMCACHE) && $this->memc !== null) {
                 return $this->memc;
             }
 
-            if(($type === null || $type === \Framework\DataStorage\Cache\CacheType::FILECACHE) && $this->filec !== null) {
+            if(($type === null || $type === \Framework\DataStorage\Cache\CacheStatus::FILECACHE) && $this->filec !== null) {
                 return $this->memc;
             }
 
@@ -98,7 +100,7 @@ namespace Framework\DataStorage\Cache {
                 $sth->execute();
                 $cache_data = $sth->fetchAll();
 
-                $this->set_option('cache:type', (int)$cache_data[0][0]);
+                $this->setOption('cache:type', (int) $cache_data[0][0]);
             } else {
                 $this->options = $options;
             }
@@ -107,118 +109,74 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function set_option($key, $value, $storeable = false, $save = false) {
+        public function setOption($key, $value, $storable = false, $save = false) {
             $this->options[$key] = [$value, $storable];
         }
 
         /**
          * {@inheritdoc}
          */
-        public function get_option($key) {
+        public function getOption($key) {
             return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {}
+        public function update() {
+        }
 
         /**
-         * Updating or adding cache data
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function set($key, $value, $type = null, $expire = 2592000) {
             $this->get_instance($type)->set($key, $value, $type = null, $expire);
         }
 
         /**
-         * Adding new data if it doesn't exist
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         * @param int $expire Valid duration (in s)
-         *
-         * @param bool Successful or not?
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function add($key, $value, $type = null, $expire = 2592000) {
-            return $this->get_instance($type)->add($key, $value, $type = null, $expire);
+            $this->get_instance($type)->add($key, $value, $type = null, $expire);
         }
 
         /**
-         * Get cache by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @return mixed Cache value
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function get($key) {
+        public function get($key, $type = null) {
             return $this->get_instance($type)->get($key);
         }
 
         /**
-         * Remove value by key
-         *
-         * @param mixed $key Unique cache key
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function delete($key) {
+        public function delete($key, $type = null) {
             $this->get_instance($type)->delete($key);
         }
 
         /**
-         * Removing all elements from cache (invalidate cache)
-         * 
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
-        public function flush() {
+        public function flush($type = null) {
             if($type === null) {
                 $this->filec->flush();
                 $this->memc->flush();
-            } elseif($type === \Framework\DataStorage\Cache\CacheType::MEMCACHE) {
+            } elseif($type === \Framework\DataStorage\Cache\CacheStatus::MEMCACHE) {
                 $this->memc->flush();
-            } elseif($type === \Framework\DataStorage\Cache\CacheType::FILECACHE) {
+            } elseif($type === \Framework\DataStorage\Cache\CacheStatus::FILECACHE) {
                 $this->filec->flush();
             }
         }
 
         /**
-         * Updating existing value/key
-         *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\CacheType $type Cache type
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function replace($key, $value, $type = null) {
             $this->get_instance($type)->replace($key, $value);
         }
 
         /**
-         * Requesting cache stats
-         *
-         * @return mixed[] Stats array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function stats() {
             $stats = [];
@@ -235,12 +193,7 @@ namespace Framework\DataStorage\Cache {
         }
 
         /**
-         * Get the threshold required to cache data using this cache
-         *
-         * @return int Storage threshold
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function get_threshold() {
             $threshold = [];
