@@ -95,6 +95,12 @@ namespace Modules\Warehousing {
         }
 
         /**
+         * {@inheritdoc}
+         */
+        public function __clone() {
+        }
+
+        /**
          * Initializing object
          *
          * @param int $id Arrival ID

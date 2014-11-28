@@ -105,7 +105,7 @@ namespace Modules\Warehousing {
         /**
          * Created
          *
-         * @var datetime
+         * @var \Datetime
          * @since 1.0.0
          */
         private $created = null;
@@ -136,6 +136,12 @@ namespace Modules\Warehousing {
          */
         public function __construct($id) {
             $this->id = $id;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function __clone() {
         }
 
         /**

@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Warehouse implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition  {
+    class Warehouse implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
         /**
          * Name
          *
@@ -52,7 +52,7 @@ namespace Modules\Warehousing {
          * Constructor
          *
          * @param int $id Warehouse ID
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -63,7 +63,8 @@ namespace Modules\Warehousing {
         /**
          * {@inheritdoc}
          */
-        public function __clone() {}
+        public function __clone() {
+        }
 
         /**
          * Initializing object
@@ -71,7 +72,7 @@ namespace Modules\Warehousing {
          * @param int $id Warehouse ID
          *
          * @return \Modules\Warehousing\Warehouse
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -87,7 +88,7 @@ namespace Modules\Warehousing {
          * Get ID
          *
          * @return int
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -99,7 +100,7 @@ namespace Modules\Warehousing {
          * Get name
          *
          * @return string
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -111,7 +112,7 @@ namespace Modules\Warehousing {
          * Set name
          *
          * @param string $name Name of the article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -171,35 +172,30 @@ namespace Modules\Warehousing {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function unserialize($data) {
-
         }
     }
 }
