@@ -47,7 +47,7 @@ module.exports = function (grunt) {
             options: {
                 separator: ';'
             },
-            dist: {
+            dev: {
                 src: [
                     'Framework/JavaScript/Framework/a.js',
                     'Framework/JavaScript/Framework/UI/*.js',
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
             options: {
                 banner: '<%= banner %>'
             },
-            dist: {
+            dev: {
                 files: {
                     'Framework/JavaScript/oms.min.js': [
                         'Framework/JavaScript/oms.min.js'
@@ -72,23 +72,23 @@ module.exports = function (grunt) {
             }
         },
         sass: {
-            dist: {
+            dev: {
                 options: {
                     style: 'compressed'
                 },
                 files: [
                     {
                         expand: true,
-                        cwd: 'Content/themes/oms-slim/backend/scss',
+                        cwd: 'Web/themes/oms-slim/backend/scss',
                         src: ['*.scss'],
-                        dest: 'Content/themes/oms-slim/backend/css',
+                        dest: 'Web/themes/oms-slim/backend/css',
                         ext: '.css'
                     }
                 ]
             }
         },
         compress: {
-            dist: {
+            dev: {
                 options: {
                     mode: 'gzip'
                 },
@@ -101,19 +101,13 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: ['Framework/Libs/jquery/*.js'],
-                        dest: '',
-                        ext: '.min.js.gz'
-                    },
-                    {
-                        expand: true,
-                        src: ['Content/themes/oms-slim/backend/js/*.js'],
+                        src: ['Web/themes/oms-slim/backend/js/*.js'],
                         dest: '',
                         ext: '.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['Content/themes/oms-slim/backend/css/*.css'],
+                        src: ['Web/themes/oms-slim/backend/css/*.css'],
                         dest: '',
                         ext: '.css.gz'
                     },
@@ -124,6 +118,49 @@ module.exports = function (grunt) {
                         ext: '.min.css.gz'
                     }
                 ]
+            }
+        },
+        phpcs: {
+            dev: {
+                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+            },
+            options: {
+                bin: 'vendor/bin/phpcs',
+                standard: 'Zend'
+            }
+        },
+        phpmd: {
+            dev: {
+                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+            },
+            options: {
+                rulesets: 'codesize,unusedcode,naming'
+            }
+        },
+        phpdcd: {
+            dev: {
+                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+            },
+            options: {
+                namesExclude: ''
+            }
+        },
+        phpdocumentor: {
+            dev: {
+                options: {
+                    directory : './',
+                    target : 'Docs'
+                }
+            }
+        },
+        phpunit: {
+            dev: {
+                dir: 'Tests/PHPUnit/'
+            },
+            options: {
+                bin: 'vendor/bin/phpunit',
+                bootstrap: 'Tests/PHPUnit/Bootstrap.php',
+                colors: true
             }
         },
         watch: {
@@ -146,7 +183,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask("default", ['uglify:dist', 'sass:dist', 'compress:dist']);
-    grunt.registerTask('dist', ['uglify:dist', 'sass:dist']);
-    grunt.registerTask('push', ['uglify:dist', 'sass:dist']);
+    grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev']);
+    grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'phpunit:dev']);
 };

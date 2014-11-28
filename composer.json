@@ -26,6 +26,10 @@
         "php": ">=5.6.1"
     },
     "require-dev": {
+        "squizlabs/php_codesniffer": "1.*",
+        "phpmd/phpmd" : "@stable",
+        "sebastian/phpdcd": "*",
+        "phpunit/phpunit": "4.3.*"
     },
     "suggest": {
         "ext-zip": "",
