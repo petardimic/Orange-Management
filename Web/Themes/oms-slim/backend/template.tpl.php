@@ -20,7 +20,7 @@
                data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \Framework\Uri\UriFactory::build([$this->app->request->lang, 'backend']); ?>"
+                href="<?= \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(), 'backend']); ?>"
                 itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">

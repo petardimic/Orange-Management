@@ -122,7 +122,7 @@ namespace Modules\Navigation {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getProviding() {
-            return $this->providing;
+            return self::$providing;
         }
 
         /**
@@ -134,7 +134,7 @@ namespace Modules\Navigation {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getDependencies() {
-            return $this->dependencies;
+            return self::$dependencies;
         }
 
         /**

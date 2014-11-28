@@ -66,7 +66,7 @@ namespace Framework\DataStorage\Cache {
          */
         public function stats() {
             $stats          = [];
-            $stats['count'] = \Framework\System\FileSystem::get_file_count(__DIR__ . '/../../../Cache');
+            $stats['count'] = \Framework\System\FileSystem::getFileCount(__DIR__ . '/../../../Cache');
 
             // size, avg. last change compared to now
 

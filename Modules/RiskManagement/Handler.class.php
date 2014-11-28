@@ -22,7 +22,7 @@ namespace Modules\RiskManagement {
          * @var string
          * @since 1.0.0
          */
-        public $providing = [
+        public static $providing = [
             'Content',
             1004400000
         ];
@@ -33,7 +33,7 @@ namespace Modules\RiskManagement {
          * @var string
          * @since 1.0.0
          */
-        public $dependencies = [
+        public static $dependencies = [
         ];
 
         /**
@@ -58,7 +58,7 @@ namespace Modules\RiskManagement {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getProviding() {
-            return $this->providing;
+            return self::$providing;
         }
 
         /**
@@ -70,7 +70,7 @@ namespace Modules\RiskManagement {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getDependencies() {
-            return $this->dependencies;
+            return self::$dependencies;
         }
 
         /**

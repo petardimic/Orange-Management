@@ -18,7 +18,7 @@ if (isset($this->nav[2])) {
         foreach ($this->nav[2][1] as $key2 => $link) {
             if ($link['parent'] === $parent['id']) {
                 echo '<li>';
-                echo '<a href="' . \Framework\Uri\UriFactory::build([$this->app->request->lang, $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">' . $this->app->user->localization->lang[5][$link['name']] . '</a>';
+                echo '<a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(), $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">' . $this->app->user->localization->lang[5][$link['name']] . '</a>';
             }
         }
         echo '</ul>';
