@@ -27,6 +27,8 @@ namespace Content {
         /**
          * Constructor
          *
+         * @param \Framework\WebApplication $app Web application instance
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -59,7 +61,7 @@ namespace Content {
                 case \Framework\Request\WebRequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
-                    $this->app->modules->running[1004400000]->showWeb();
+                    $this->app->modules->running[1004400000]->callWeb();
                     break;
                 default:
             }

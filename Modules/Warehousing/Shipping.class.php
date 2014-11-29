@@ -84,7 +84,7 @@ namespace Modules\Warehousing {
          * Constructor
          *
          * @param int $id Article ID
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -95,7 +95,8 @@ namespace Modules\Warehousing {
         /**
          * {@inheritdoc}
          */
-        public function __clone() {}
+        public function __clone() {
+        }
 
         /**
          * Initializing object
@@ -103,7 +104,7 @@ namespace Modules\Warehousing {
          * @param int $id Article ID
          *
          * @return \Modules\Warehousing\Article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -119,7 +120,7 @@ namespace Modules\Warehousing {
          * Get ID
          *
          * @return int
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -131,7 +132,7 @@ namespace Modules\Warehousing {
          * Get order
          *
          * @return int
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -143,7 +144,7 @@ namespace Modules\Warehousing {
          * Set order
          *
          * @param int $order Order ID
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -179,7 +180,7 @@ namespace Modules\Warehousing {
          * Get To
          *
          * @return \Framework\Datatypes\Address
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -191,7 +192,7 @@ namespace Modules\Warehousing {
          * Set To
          *
          * @param \Framework\Datatypes\Address $to Receiver
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -203,7 +204,7 @@ namespace Modules\Warehousing {
          * Get status
          *
          * @return \Modules\Warehousing\ArrivalStatus
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -214,8 +215,8 @@ namespace Modules\Warehousing {
         /**
          * Set status
          *
-         * @param \Modules\Warehousing\ArrivalStatus
-         * 
+         * @param  \Modules\Warehousing\ArrivalStatus
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -227,7 +228,7 @@ namespace Modules\Warehousing {
          * Get warehouse
          *
          * @return \Modules\Warehousing\Warehouse
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -239,7 +240,7 @@ namespace Modules\Warehousing {
          * Get acceptor
          *
          * @return int
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -251,7 +252,7 @@ namespace Modules\Warehousing {
          * Set sender
          *
          * @param int $sender Person who accepted the consignment
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -263,35 +264,78 @@ namespace Modules\Warehousing {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function unserialize($data) {
+        }
 
+        /**
+         * {@inheritdoc}
+         */
+        public function exportJson($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importJson($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportCvs($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importCvs($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportExcel($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importExcel($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportPdf($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importPdf($path) {
         }
     }
 }

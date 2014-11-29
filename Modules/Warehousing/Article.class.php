@@ -130,7 +130,7 @@ namespace Modules\Warehousing {
          * Constructor
          *
          * @param int $id Article ID
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -150,7 +150,7 @@ namespace Modules\Warehousing {
          * @param int $id Article ID
          *
          * @return \Modules\Warehousing\Article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -166,7 +166,7 @@ namespace Modules\Warehousing {
          * Get ID
          *
          * @return int
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -178,7 +178,7 @@ namespace Modules\Warehousing {
          * Get name
          *
          * @return string
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -190,7 +190,7 @@ namespace Modules\Warehousing {
          * Set name
          *
          * @param string $name Name of the article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -202,7 +202,7 @@ namespace Modules\Warehousing {
          * Get matchcode
          *
          * @return string
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -214,7 +214,7 @@ namespace Modules\Warehousing {
          * Set matchcode
          *
          * @param string $matchcode Matchcode of the article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -226,7 +226,7 @@ namespace Modules\Warehousing {
          * Get description
          *
          * @return string
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -238,7 +238,7 @@ namespace Modules\Warehousing {
          * Set description
          *
          * @param string $description Description of the article
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -250,7 +250,7 @@ namespace Modules\Warehousing {
          * Get created
          *
          * @return \Datetime
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -262,7 +262,7 @@ namespace Modules\Warehousing {
          * Set created
          *
          * @param \Datetime $created Date of when the article got created
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -274,7 +274,7 @@ namespace Modules\Warehousing {
          * Get creator
          *
          * @return \Framework\Object\User
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -286,7 +286,7 @@ namespace Modules\Warehousing {
          * Set creator
          *
          * @param \Framework\Object\User $creator Creator ID
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -298,22 +298,22 @@ namespace Modules\Warehousing {
          * Add price to pricelist
          *
          * @param array $price Price
-         * @param bool $db Update DB and cache?
-         * 
+         * @param bool  $db    Update DB and cache?
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function addPrice($price, $db = true) {
-            $id = 0; /* insert and get id */
+            $id                = 0; /* insert and get id */
             $this->prices[$id] = $price;
         }
 
         /**
          * Remove price from pricelist
          *
-         * @param int $id Price ID
+         * @param int  $id Price ID
          * @param bool $db Update DB and cache?
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -326,10 +326,10 @@ namespace Modules\Warehousing {
         /**
          * Add price to pricelist
          *
-         * @param int $id Price ID
+         * @param int   $id    Price ID
          * @param array $price Price
-         * @param bool $db Update DB and cache?
-         * 
+         * @param bool  $db    Update DB and cache?
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -343,35 +343,78 @@ namespace Modules\Warehousing {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function unserialize($data) {
+        }
 
+        /**
+         * {@inheritdoc}
+         */
+        public function exportJson($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importJson($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportCvs($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importCvs($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportExcel($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importExcel($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function exportPdf($path) {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function importPdf($path) {
         }
     }
 }

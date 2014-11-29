@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Warehousing {
+namespace Modules\Accounting {
     /**
-     * Counting list class
+     * IncomeStatement class
      *
      * PHP Version 5.4
      *
-     * @category   Warehousing
-     * @package    Framework
+     * @category   Module
+     * @package    Accounting
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,16 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class CountingList {
+    abstract class IncomeStatement implements \Framework\Utils\IO\ExchangeInterface {
+        private $id = 0;
+
+        private $date = null;
+
+        private $incomeStatement = [];
+
+        public function __construct() {
+        }
+
         /**
          * {@inheritdoc}
          */
