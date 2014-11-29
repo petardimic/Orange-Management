@@ -131,7 +131,7 @@ namespace Modules\Warehousing {
         }
 
         /**
-         * Get ID
+         * Get order
          *
          * @return int
          *
@@ -283,13 +283,13 @@ namespace Modules\Warehousing {
         /**
          * {@inheritdoc}
          */
-        public function exportCvs($path) {
+        public function exportCsv($path) {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCvs($path) {
+        public function importCsv($path) {
         }
 
         /**

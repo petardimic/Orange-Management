@@ -5,8 +5,8 @@ namespace Modules\Accounting {
      *
      * PHP Version 5.4
      *
-     * @category   Module
-     * @package    Accounting
+     * @category   Modules
+     * @package    Modules\Accounting
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -16,12 +16,65 @@ namespace Modules\Accounting {
      * @since      1.0.0
      */
     abstract class Balance implements \Framework\Utils\IO\ExchangeInterface {
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $id = 0;
 
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getId() {
+            return $this->id;
+        }
+
+        /**
+         * @param int $id
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setId($id) {
+            $this->id = $id;
+        }
+
+        /**
+         * Date of the balance
+         *
+         * @var \Datetime
+         * @since 1.0.0
+         */
         private $date = null;
 
-        private $balance = [];
+        /**
+         * Balance data
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $balance = [
+            'credit' => [
+                'capital' => [],
+                'circulating' => []
+            ],
+            'debit' => [
+                'equity' => [],
+                'debt' => []
+            ]
+        ];
 
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct() {
         }
 
@@ -40,13 +93,13 @@ namespace Modules\Accounting {
         /**
          * {@inheritdoc}
          */
-        public function exportCvs($path) {
+        public function exportCsv($path) {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCvs($path) {
+        public function importCsv($path) {
         }
 
         /**

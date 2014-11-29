@@ -16,10 +16,30 @@ namespace Modules\Accounting {
      * @since      1.0.0
      */
     abstract class AccountAbstract implements \Modules\Accounting\AccountInterface {
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
         protected $id = 0;
 
+        /**
+         * Type
+         *
+         * @var \Modules\Accounting\AccountType
+         * @since 1.0.0
+         */
         protected $type = null;
 
+        /**
+         * Constructor
+         *
+         * @param int $id Arrival ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($id) {
             $this->id = $id;
         }

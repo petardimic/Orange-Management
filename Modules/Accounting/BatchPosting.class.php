@@ -15,8 +15,142 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class BatchPosting implements \Framework\Utils\IO\ExchangeInterface {
+    class BatchPosting implements \Framework\Utils\IO\ExchangeInterface {
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $id = 0;
+
+        /**
+         * Creator
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $creator = null;
+
+        /**
+         * Created
+         *
+         * @var \Datetime
+         * @since 1.0.0
+         */
+        private $created = null;
+
+        /**
+         * Description
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $description = null;
+
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct() {
+        }
+
+        /**
+         * Get id
+         *
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getId() {
+            return $this->id;
+        }
+
+        /**
+         * Set id
+         *
+         * @param int $id Batch ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setId($id) {
+            $this->id = $id;
+        }
+
+        /**
+         * Set description
+         *
+         * @param string $desc Description
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setDescription($desc) {
+
+        }
+
+        /**
+         * Get description
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDescription() {
+            return $this->description;
+        }
+
+        /**
+         * Set creator
+         *
+         * @param \Datetime $created Created
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setCreated($created) {
+            $this->created = $created;
+        }
+
+        /**
+         * Get created
+         *
+         * @return \Datetime
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getCreated() {
+            return $this->created;
+        }
+
+        /**
+         * Get creator
+         *
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getCreator() {
+            return $this->creator;
+        }
+
+        /**
+         * Set creator
+         *
+         * @param int $creator Creator ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setCreator($creator) {
+            $this->creator = $creator;
         }
 
         /**
@@ -34,13 +168,13 @@ namespace Modules\Accounting {
         /**
          * {@inheritdoc}
          */
-        public function exportCvs($path) {
+        public function exportCsv($path) {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCvs($path) {
+        public function importCsv($path) {
         }
 
         /**
