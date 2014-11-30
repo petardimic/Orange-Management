@@ -2,30 +2,25 @@
     "name": "/",
     "description": "",
     "keywords": ["", "", ""],
-    "homepage": "",
+    "homepage": "http://www.spl1nes.com",
     "type": "",
     "license": "",
     "authors": [
         {
-            "name": "",
-            "email": "",
-            "homepage": ""
-        },
-        {
-            "name": "",
-            "email": "",
-            "homepage": ""
+            "name": "Dennis",
+            "email": "spl1nes.com@googlemail.com",
+            "homepage": "http://www.spl1nes.com"
         }
     ],
     "support": {
-        "irc": "",
-        "issues": "",
-        "wiki": ""
+        "issues": "https://github.com/spl1nes/Orange-Management/issues",
+        "wiki": "https://github.com/spl1nes/Orange-Management/wiki"
     },
     "require": {
-        "php": ">=5.6.1"
+        "php": ">=5.5.0"
     },
     "require-dev": {
+        "php": ">=5.5.0",
         "squizlabs/php_codesniffer": "1.*",
         "phpmd/phpmd" : "@stable",
         "sebastian/phpdcd": "*",
