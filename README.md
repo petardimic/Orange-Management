@@ -37,3 +37,7 @@ We are currently looking for new members on our development team in various area
 
 * Customer: spl1nes.com@googlemail.com
 * Developer: spl1nes.com@googlemail.com
+
+## Analysis ##
+
+![Dependency Chart](/Docs/Dependencies/jdependChart.svg)
