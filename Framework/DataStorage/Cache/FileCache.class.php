@@ -25,6 +25,14 @@ namespace Framework\DataStorage\Cache {
         private $threshold = 50;
 
         /**
+         * Cache path
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private static $cache_path = __DIR__  . '/../../../Cache';
+
+        /**
          * {@inheritdoc}
          */
         public function set($key, $value, $type = null, $expire = 2592000) {
@@ -52,7 +60,7 @@ namespace Framework\DataStorage\Cache {
          * {@inheritdoc}
          */
         public function flush($type = null) {
-            array_map('unlink', glob(__DIR__ . '/../../../Cache/*'));
+            array_map('unlink', glob(self::$cache_path . '/*'));
         }
 
         /**
@@ -66,7 +74,7 @@ namespace Framework\DataStorage\Cache {
          */
         public function stats() {
             $stats          = [];
-            $stats['count'] = \Framework\System\FileSystem::getFileCount(__DIR__ . '/../../../Cache');
+            $stats['count'] = \Framework\System\FileSystem::getFileCount(self::$cache_path);
 
             // size, avg. last change compared to now
 

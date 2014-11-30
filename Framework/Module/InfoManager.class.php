@@ -27,6 +27,14 @@ namespace Framework\Module {
         private $fp = null;
 
         /**
+         * Module path
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private static $module_path = __DIR__ . '/../../Modules/';
+
+        /**
          * Object constructor
          *
          * @param string $module Module name
@@ -35,8 +43,8 @@ namespace Framework\Module {
          * @author Dennis Eichhorn
          */
         public function __construct($module) {
-            if(file_exists(__DIR__ . '/../../Modules/' . $module . '/info.json')) {
-                $this->fp = fopen(__DIR__ . '/../../Modules/' . $module . '/info.json', 'r');
+            if(file_exists(self::$module_path . $module . '/info.json')) {
+                $this->fp = fopen(self::$module_path . $module . '/info.json', 'r');
             }
         }
 

@@ -131,6 +131,30 @@ namespace Modules\Warehousing {
         }
 
         /**
+         * Get date of when the consignment arrived
+         *
+         * @return \Datetime Date of arrival
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDate() {
+            return $this->date;
+        }
+
+        /**
+         * Set date of when the consignment arrived
+         *
+         * @param \Datetime $date Date of arrival
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setDate($date) {
+            $this->date = $date;
+        }
+
+        /**
          * Get order
          *
          * @return int

@@ -59,6 +59,14 @@ namespace Framework\Module {
         public $running = null;
 
         /**
+         * Module path
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private static $module_path = __DIR__ . '/../../Modules';
+
+        /**
          * Object constructor
          *
          * @param \Framework\ApplicationAbstract $app Application instance
@@ -163,12 +171,12 @@ namespace Framework\Module {
          */
         public function getAllModules() {
             if($this->all === null) {
-                chdir(__DIR__ . '/../../Modules');
+                chdir(self::$module_path);
                 $files     = glob('*', GLOB_ONLYDIR);
                 $c         = count($files);
 
                 for ($i = 0; $i < $c; $i++) {
-                    $path = __DIR__ . '/../../Modules/' . $files[$i] . '/info.json';
+                    $path = self::$module_path . '/' . $files[$i] . '/info.json';
 
                     if (file_exists($path)) {
                         $json                                 = json_decode(file_get_contents($path), true);

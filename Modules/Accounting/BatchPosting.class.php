@@ -15,7 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class BatchPosting implements \Framework\Utils\IO\ExchangeInterface {
+    class BatchPosting implements \Framework\Utils\IO\ExchangeInterface, \Countable {
         /**
          * ID
          *
@@ -47,6 +47,14 @@ namespace Modules\Accounting {
          * @since 1.0.0
          */
         private $description = null;
+
+        /**
+         * Postings
+         *
+         * @var \Modules\Accounting\PostingAbstract[]
+         * @since 1.0.0
+         */
+        private $postings = [];
 
         /**
          * Constructor
@@ -151,6 +159,51 @@ namespace Modules\Accounting {
          */
         public function setCreator($creator) {
             $this->creator = $creator;
+        }
+
+        /**
+         * Get posting
+         *
+         * @param int $id Posting ID
+         *
+         * @return \Modules\Accounting\PostingAbstract
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getPosting($id) {
+            return $this->postings[$id];
+        }
+
+        /**
+         * Remove posting
+         *
+         * @param int $id Posting ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function removePosting($id) {
+            unset($this->postings[$id]);
+        }
+
+        /**
+         * Add posting
+         *
+         * @param \Modules\Accounting\PostingAbstract $posting Posting
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function addPosting($posting) {
+            $this->postings[] = $posting;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function count() {
+            return count($this->postings);
         }
 
         /**
