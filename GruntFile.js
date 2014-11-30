@@ -161,8 +161,7 @@ module.exports = function (grunt) {
                 summaryXml: 'Docs/Dependencies/summaryXml.xml',
                 ignoreDirectories: [
                     'vendor',
-                    'node_modules',
-                    'Modules'
+                    'node_modules'
                 ]
             },
             dev: {
@@ -200,5 +199,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev']);
-    grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'phpunit:dev']);
+    grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev']);
 };
