@@ -25,7 +25,8 @@
         "phpmd/phpmd" : "@stable",
         "sebastian/phpdcd": "*",
         "phpunit/phpunit": "4.3.*",
-        "pdepend/pdepend" : ">=2.1.3"
+        "pdepend/pdepend" : "*",
+        "phploc/phploc": "*"
     },
     "suggest": {
         "ext-zip": "",

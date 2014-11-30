@@ -10,6 +10,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-phpmd');
     grunt.loadNpmTasks('grunt-phpdcd');
     grunt.loadNpmTasks('grunt-pdepend');
+    grunt.loadNpmTasks('load-grunt-tasks');
     grunt.loadNpmTasks("grunt-phplint");
     grunt.loadNpmTasks('grunt-hashres');
     grunt.loadNpmTasks('grunt-html-validation');
@@ -168,6 +169,17 @@ module.exports = function (grunt) {
                 dir: ['./']
             }
         },
+        shell: {
+            options: {
+                stderr: false
+            },
+            dev: {
+                command: [
+                    'phploc Framework/ > Docs/Stats/FrameworkStats.stats',
+                    'phploc Modules/ > Docs/Stats/ModulesStats.stats'
+                ].join('&&')
+            }
+        },
         phpunit: {
             dev: {
                 dir: 'Tests/PHPUnit/'
@@ -198,6 +210,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev']);
-    grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev']);
+    grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev', 'shell:dev']);
+    grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev', 'shell:dev']);
 };

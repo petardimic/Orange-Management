@@ -21,3 +21,4 @@ node_modules/*
 composer.phar
 Docs/Code/*
 Docs/Dependencies/*
+Docs/Stats/*
