@@ -40,6 +40,5 @@ We are currently looking for new members on our development team in various area
 
 ## Analysis ##
 
-![Dependency Chart](http://spl1nes.github.io/Orange-Management/images/jdependChart.svg)
-
 ![Overview Chart](http://spl1nes.github.io/Orange-Management/images/overviewPyramid.svg)
+![Dependency Chart](http://spl1nes.github.io/Orange-Management/images/jdependChart.svg)
