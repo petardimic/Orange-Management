@@ -19,3 +19,4 @@ content/themes/oms-slim/backend/css/*
 node_modules/*
 .vagrant/*
 composer.phar
+Docs/Code/*

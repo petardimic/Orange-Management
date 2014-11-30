@@ -9,6 +9,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-phpcs');
     grunt.loadNpmTasks('grunt-phpmd');
     grunt.loadNpmTasks('grunt-phpdcd');
+    grunt.loadNpmTasks('grunt-pdepend');
     grunt.loadNpmTasks("grunt-phplint");
     grunt.loadNpmTasks('grunt-hashres');
     grunt.loadNpmTasks('grunt-html-validation');
@@ -131,7 +132,7 @@ module.exports = function (grunt) {
         },
         phpmd: {
             dev: {
-                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+                dir: 'Modules'
             },
             options: {
                 rulesets: 'codesize,unusedcode,naming'
@@ -139,18 +140,33 @@ module.exports = function (grunt) {
         },
         phpdcd: {
             dev: {
-                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+                dir: ['Framework', 'Modules']
             },
             options: {
-                namesExclude: ''
             }
         },
         phpdocumentor: {
             dev: {
                 options: {
-                    directory : './',
-                    target : 'Docs'
+                    directory : 'Framework,Modules',
+                    target : 'Docs/Code'
                 }
+            }
+        },
+        pdepend: {
+            options: {
+                jdependChart: 'Docs/Dependencies/jdependChart.svg',
+                jdependXml: 'Docs/Dependencies/jdependXml.xml',
+                overviewPyramid: 'Docs/Dependencies/overviewPyramid.svg',
+                summaryXml: 'Docs/Dependencies/summaryXml.xml',
+                ignoreDirectories: [
+                    'vendor',
+                    'node_modules',
+                    'Modules'
+                ]
+            },
+            dev: {
+                dir: ['./']
             }
         },
         phpunit: {
