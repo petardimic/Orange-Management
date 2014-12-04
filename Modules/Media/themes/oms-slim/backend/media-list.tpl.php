@@ -1,4 +1,5 @@
 <?php /** @var \Modules\Media\Handler $this */
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000401001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">
@@ -24,19 +25,6 @@
                 );
                 ?>
                 <tbody>
-                <?php
-                /** @var \Framework\Object\User\Users $accounts */ /*
-                $data = $accounts->account_list_get();
-                $url['level'] = array_slice($this->app->request->request, 0, 4);
-                $url['level'][] = 'single';
-                $url['id'] = 'id';
-
-                \Framework\Model\Model::generate_table_content_view(
-                    $data['list'],
-                    ['status', 'id', 'name1', 'lactive', 'created'],
-                    $url
-                );*/
-                ?>
                 <tfoot>
     <tr>
         <td colspan="5" class="cT">

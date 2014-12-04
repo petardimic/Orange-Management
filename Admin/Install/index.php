@@ -5,7 +5,13 @@ require_once __DIR__ . '/../../Framework/Autoloader.class.php';
 $dbHOBJ = new \Framework\DataStorage\Database\Database($CONFIG['db']);
 $instHOBJ = new \Framework\Install\Install($dbHOBJ);
 
+/**
+ * Array with all modules to install
+ *
+ * @var array toInstall
+ */
 $toInstall = [
+    /* Core */
     'Navigation',
     'Admin',
     'BackendDashboard',
@@ -31,6 +37,8 @@ $toInstall = [
     'Warehousing',
     'ProjectManagement',
     'EventManagement',
+    'Support',
+    'ResearchDevelopment',
 ];
 
 $instHOBJ->install_core();

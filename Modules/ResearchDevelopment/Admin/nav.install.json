@@ -12,7 +12,7 @@
         "l4": null,
         "l5": null,
         "icon": "fa fa-flask",
-        "order": 1,
+        "order": 110,
         "from": 1002200000,
         "permission": null,
         "parent": 1000201001,
