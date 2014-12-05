@@ -100,6 +100,9 @@ namespace Modules\Purchase {
                 case 'article':
                     $this->show_backend_article();
                     break;
+                case 'analysis':
+                    $this->show_backend_analysis();
+                    break;
             }
         }
 
@@ -152,6 +155,15 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_client_single() {
+        }
+
+        public function show_backend_analysis() {
+            switch ($this->app->request->request['l4']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/analysis-dashboard.tpl.php';
+                    break;
+            }
         }
     }
 }

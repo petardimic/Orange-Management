@@ -24,64 +24,50 @@
             <!-- @formatter:off -->
             <table class="tc-1">
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['RiskIndex']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['RiskIndex']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['OverallRisk']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['OverallRisk']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['RiskProtection']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['RiskProtection']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['RemainingRisk']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['RemainingRisk']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['RiskAcceptance']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['RiskAcceptance']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Risks']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Risks']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Causes']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Causes']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Solutions']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Solutions']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Processes']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Processes']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Projects']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Projects']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Outdated']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Outdated']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['Critical']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['Critical']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['MainDepartment']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['MainDepartment']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th>
-                        <label><?= $this->app->user->localization->lang[30]['MainCategory']; ?></label>
+                    <th><label><?= $this->app->user->localization->lang[30]['MainCategory']; ?></label>
                      <td>asldkf
                 <tr>
                     <th><label><?= $this->app->user->localization->lang[30]['MainCause']; ?></label>
-                        <td>asldkf
+                    <td>asldkf
             </table>
             <!-- @formatter:on -->
         </div>
@@ -99,19 +85,19 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[30]['Department'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[30]['Category'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[30]['Responsible'], 'sort' => 0]
-                ]
-            );
-            ?>
-            <tbody>
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Department'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Category'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[30]['Responsible'], 'sort' => 0]
+                        ]
+                    );
+                    ?>
+        <tbody>
     </table>
     <div class="bc-1 rT">
         <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>

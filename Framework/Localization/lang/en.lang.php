@@ -10,6 +10,7 @@ $CORELANG[0] = [
     "Filter"     => "Filter",
     "Find"       => "Find",
     "ID"         => "ID",
+    "More"       => "More",
     "Navigation" => "Navigation",
     "Password"   => "Password",
     "Reset"      => "Reset",

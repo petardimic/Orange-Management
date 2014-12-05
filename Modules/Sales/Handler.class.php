@@ -164,7 +164,12 @@ namespace Modules\Sales {
         }
 
         public function show_backend_analysis() {
-            echo 'eeeeeeeeeeee';
+            switch ($this->app->request->request['l4']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/analysis-dashboard.tpl.php';
+                    break;
+            }
         }
     }
 }

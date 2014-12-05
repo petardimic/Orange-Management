@@ -25,7 +25,7 @@
         "phpmd/phpmd" : "@stable",
         "sebastian/phpdcd": "*",
         "phpunit/phpunit": "4.3.*",
-        "pdepend/pdepend" : "*",
+        "pdepend/pdepend" : "dev-master",
         "phploc/phploc": "*"
     },
     "suggest": {
