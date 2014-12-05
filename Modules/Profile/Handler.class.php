@@ -79,7 +79,7 @@ namespace Modules\Profile {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -87,7 +87,7 @@ namespace Modules\Profile {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
@@ -100,7 +100,7 @@ namespace Modules\Profile {
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $accounts = new \Modules\Admin\Users($this->app);
 
-                    if (!isset($this->app->request->request['page'])) {
+                    if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 

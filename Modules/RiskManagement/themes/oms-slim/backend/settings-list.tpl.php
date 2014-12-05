@@ -13,20 +13,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => '', 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Object\User\Users $accounts */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => '', 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -38,7 +38,7 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-            ?>
+        ?>
     </table>
 
     <div class="bc-1 rT">
@@ -58,20 +58,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => '', 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Object\User\Users $accounts */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => '', 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Parent'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -83,7 +83,7 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-            ?>
+        ?>
     </table>
     <div class="bc-1 rT">
         <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
@@ -102,20 +102,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => '', 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => '', 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Object\User\Users $accounts */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => '', 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => '', 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -127,7 +127,7 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-            ?>
+        ?>
     </table>
     <div class="bc-1 rT">
         <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
@@ -146,20 +146,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => '', 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Object\User\Users $accounts */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => '', 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -171,7 +171,7 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-            ?>
+        ?>
     </table>
     <div class="bc-1 rT">
         <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
@@ -190,20 +190,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => '', 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[30]['Probability'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Object\User\Users $accounts */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => '', 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[30]['Probability'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -215,7 +215,7 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-            ?>
+        ?>
     </table>
     <div class="bc-1 rT">
         <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>

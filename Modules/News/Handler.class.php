@@ -39,7 +39,7 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -86,7 +86,7 @@ namespace Modules\News {
         public function news_get($id) {
             $news = null;
 
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -99,7 +99,7 @@ namespace Modules\News {
         }
 
         public function news_list_get($filter = null, $offset = 0, $limit = 100) {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $search = $this->model->generate_sql_filter($filter);
 
@@ -125,7 +125,7 @@ namespace Modules\News {
         public function news_small_get($id) {
             $news = null;
 
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare('SELECT `title`, `author`, `type`, `created` FROM `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -147,7 +147,7 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_edit($id, $data) {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare(
                         'UPDATE `' . $this->app->db->prefix . 'news` SET
@@ -182,7 +182,7 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_create($data) {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'news` (`title`, `author`, `type`, `content`, `created`, `lang`, `featured`) VALUES
@@ -210,7 +210,7 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function news_delete($id) {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare('DELETE `' . $this->app->db->prefix . 'news` WHERE `id` = :id');
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -239,7 +239,7 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -247,7 +247,7 @@ namespace Modules\News {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-dashboard.tpl.php';

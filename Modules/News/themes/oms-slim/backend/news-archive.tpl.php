@@ -12,20 +12,20 @@
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-            <tr>
-                <?php
-                \Framework\Model\Model::generate_table_header_view(
-                    [
-                        ['name' => $this->app->user->localization->lang[7]['Title'], 'sort' => 1, 'full' => true],
-                        ['name' => $this->app->user->localization->lang[7]['Type'], 'sort' => 1],
-                        ['name' => $this->app->user->localization->lang[7]['Author'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[7]['Date'], 'sort' => 0],
-                    ]
-                );
-                ?>
-                <tbody>
-                <?php
-                /** @var \Framework\Object\User\Users $accounts */ /*
+    <tr>
+        <?php
+        \Framework\Model\Model::generate_table_header_view(
+            [
+                ['name' => $this->app->user->localization->lang[7]['Title'], 'sort' => 1, 'full' => true],
+                ['name' => $this->app->user->localization->lang[7]['Type'], 'sort' => 1],
+                ['name' => $this->app->user->localization->lang[7]['Author'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[7]['Date'], 'sort' => 0],
+            ]
+        );
+        ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Object\User\Users $accounts */ /*
                 $data = $accounts->account_list_get();
                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
@@ -36,8 +36,8 @@
                     ['status', 'id', 'name1', 'lactive', 'created'],
                     $url
                 );*/
-                ?>
-                <tfoot>
+        ?>
+        <tfoot>
     <tr>
         <td colspan="4" class="cT">
             <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>

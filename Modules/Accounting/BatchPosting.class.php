@@ -98,7 +98,6 @@ namespace Modules\Accounting {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function setDescription($desc) {
-
         }
 
         /**

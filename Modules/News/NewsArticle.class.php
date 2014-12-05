@@ -1,8 +1,8 @@
 <?php
 namespace Modules\News {
     abstract class NewsType extends \Framework\Datatypes\Enum {
-        const NEWS     = 0;
-        const LINK     = 1;
+        const NEWS = 0;
+        const LINK = 1;
         const HEADLINE = 2;
     }
 
@@ -151,7 +151,7 @@ namespace Modules\News {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getInstance($id) {
-            if (!isset(self::$instances[$id])) {
+            if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
 

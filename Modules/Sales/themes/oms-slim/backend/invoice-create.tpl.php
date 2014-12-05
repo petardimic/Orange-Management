@@ -178,38 +178,38 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-                <tr>
-                    <?php
-                    \Framework\Model\Model::generate_table_header_view(
-                        [
-                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                            ['name' => $this->app->user->localization->lang[16]['Name'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Description'], 'sort' => 0, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[16]['Quantity'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Tax'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['DiscountP'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Discount'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Stock'], 'sort' => 0],
-                            ['name' => '', 'sort' => 0],
-                        ]
-                    );
-                    ?>
-                    <tbody>
-                    <tr>
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 70px; width: 100%">
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 250px; width: 100%">
-                        <td style="padding-left: 5px"><textarea class="full" rows="1" style="height: 17px"></textarea>
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 50px; width: 100%">
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 80px; width: 100%">
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 50px; width: 100%">
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 100px; width: 100%">
-                        <td style="padding-left: 5px"><input type="text" style="min-width: 70px; width: 100%">
-                        <td>
-                        <td>
-                            <button>Add</button>
-                            <?php
-                            /** @var \Modules\Sales\ArticleList $articles */ /*
+        <tr>
+            <?php
+            \Framework\Model\Model::generate_table_header_view(
+                [
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[16]['Name'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['Description'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[16]['Quantity'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['Tax'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['DiscountP'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['Discount'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[16]['Stock'], 'sort' => 0],
+                    ['name' => '', 'sort' => 0],
+                ]
+            );
+            ?>
+            <tbody>
+        <tr>
+            <td style="padding-left: 5px"><input type="text" style="min-width: 70px; width: 100%">
+            <td style="padding-left: 5px"><input type="text" style="min-width: 250px; width: 100%">
+            <td style="padding-left: 5px"><textarea class="full" rows="1" style="height: 17px"></textarea>
+            <td style="padding-left: 5px"><input type="text" style="min-width: 50px; width: 100%">
+            <td style="padding-left: 5px"><input type="text" style="min-width: 80px; width: 100%">
+            <td style="padding-left: 5px"><input type="text" style="min-width: 50px; width: 100%">
+            <td style="padding-left: 5px"><input type="text" style="min-width: 100px; width: 100%">
+            <td style="padding-left: 5px"><input type="text" style="min-width: 70px; width: 100%">
+            <td>
+            <td>
+                <button>Add</button>
+                <?php
+                /** @var \Modules\Sales\ArticleList $articles */ /*
 			                $data = $articles->article_list_get();
 			                $url['level'] = array_slice($this->app->request->request, 0, 4);
 			                $url['level'][] = 'single';
@@ -221,8 +221,8 @@
 			                    ['status', 'id', 'name1', 'lactive', 'created'],
 			                    $url
 			                );*/
-                            ?>
-                            <tfoot>
+                ?>
+                <tfoot>
         <tr>
             <td colspan="10" class="cT">
                 <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']);*/ ?>

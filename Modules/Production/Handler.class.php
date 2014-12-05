@@ -39,7 +39,7 @@ namespace Modules\Production {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -82,7 +82,7 @@ namespace Modules\Production {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -90,7 +90,7 @@ namespace Modules\Production {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
             }
         }
     }

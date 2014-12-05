@@ -39,7 +39,7 @@ namespace Modules\RiskManagement {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -82,7 +82,7 @@ namespace Modules\RiskManagement {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -90,7 +90,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'cockpit':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/cockpit.tpl.php';
@@ -126,7 +126,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_risk() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/risk-list.tpl.php';
@@ -142,7 +142,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_risk_single() {
-            switch ($this->app->request->request['l6']) {
+            switch($this->app->request->request['l6']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/risk-single-dashboard.tpl.php';
@@ -151,7 +151,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_cause() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/cause-list.tpl.php';
@@ -160,7 +160,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_solution() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/solution-list.tpl.php';
@@ -169,7 +169,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_unit() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/unit-list.tpl.php';
@@ -178,7 +178,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_category() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/category-list.tpl.php';
@@ -187,7 +187,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_department() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/department-list.tpl.php';
@@ -196,7 +196,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_project() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/project-list.tpl.php';
@@ -205,7 +205,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_process() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/process-list.tpl.php';
@@ -214,7 +214,7 @@ namespace Modules\RiskManagement {
         }
 
         public function show_backend_settings() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/settings-list.tpl.php';

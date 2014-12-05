@@ -43,7 +43,6 @@ namespace Modules\Surveys {
         private static $instances = [];
 
         public function __construct($id) {
-
         }
 
         public function getInstance($id) {
@@ -78,35 +77,30 @@ namespace Modules\Surveys {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function unserialize($data) {
-
         }
     }
 }

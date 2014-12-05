@@ -12,24 +12,24 @@
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-            <tr>
-                <?php
-                \Framework\Model\Model::generate_table_header_view(
-                    [
-                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                        ['name' => $this->app->user->localization->lang[21]['Matchcode'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[21]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => $this->app->user->localization->lang[21]['Street'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[21]['City'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[21]['ZipCode'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[21]['State'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[21]['Country'], 'sort' => 0]
-                    ]
-                );
-                ?>
-                <tbody>
-                <?php
-                /** @var \Modules\Sales\ArticleList $articles */ /*
+    <tr>
+        <?php
+        \Framework\Model\Model::generate_table_header_view(
+            [
+                ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                ['name' => $this->app->user->localization->lang[21]['Matchcode'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['Name'], 'sort' => 0, 'full' => true],
+                ['name' => $this->app->user->localization->lang[21]['Street'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['City'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['ZipCode'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['State'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['Country'], 'sort' => 0]
+            ]
+        );
+        ?>
+        <tbody>
+        <?php
+        /** @var \Modules\Sales\ArticleList $articles */ /*
                 $data = $articles->article_list_get();
                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
@@ -41,8 +41,8 @@
                     ['id', 'name1', 'lactive', 'created', 'id', 'id', 'id', 'id'],
                     $url
                 );*/
-                ?>
-                <tfoot>
+        ?>
+        <tfoot>
     <tr>
         <td colspan="8" class="cT">
             <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']);*/ ?>

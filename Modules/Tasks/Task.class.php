@@ -56,7 +56,7 @@ namespace Modules\Tasks {
         }
 
         public function remove_element($id) {
-            if (array_key_exists($id, $this->task_elements)) {
+            if(array_key_exists($id, $this->task_elements)) {
                 unset($this->task_elements[$id]);
             }
         }
@@ -65,28 +65,24 @@ namespace Modules\Tasks {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**

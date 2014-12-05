@@ -79,8 +79,8 @@ namespace Modules\GlobalContent {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb($data = null) {
-            if (isset(self::$receiving)) {
-                foreach (self::$receiving as $mid) {
+            if(isset(self::$receiving)) {
+                foreach(self::$receiving as $mid) {
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
                 }
             }

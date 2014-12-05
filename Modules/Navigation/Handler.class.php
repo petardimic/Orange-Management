@@ -50,7 +50,7 @@ namespace Modules\Navigation {
          * @var string[]
          * @since 1.0.0
          */
-        public static  $css = [
+        public static $css = [
         ];
 
         /**
@@ -92,7 +92,7 @@ namespace Modules\Navigation {
         public function __construct($app, $theme_path) {
             parent::__construct($app, $theme_path);
 
-            if (!$this->nav) {
+            if(!$this->nav) {
                 $temp_nav  = null;
                 $this->nav = [];
 
@@ -107,7 +107,7 @@ namespace Modules\Navigation {
                 $sth->execute();
                 $temp_nav = $sth->fetchAll();
 
-                foreach ($temp_nav as $link) {
+                foreach($temp_nav as $link) {
                     $this->nav[$link['type']][$link['subtype']][$link['id']] = $link;
                 }
             }
@@ -146,7 +146,7 @@ namespace Modules\Navigation {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb($data = null) {
-            switch ($data[0]) {
+            switch($data[0]) {
                 case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */
                     require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/top.tpl.php';

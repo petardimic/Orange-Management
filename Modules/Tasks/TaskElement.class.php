@@ -32,35 +32,30 @@ namespace Modules\Tasks {
          * {@inheritdoc}
          */
         public function delete() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function create() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function update() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function serialize() {
-
         }
 
         /**
          * {@inheritdoc}
          */
         public function unserialize($data) {
-
         }
     }
 }

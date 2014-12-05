@@ -74,7 +74,7 @@ namespace Modules\Media {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -82,13 +82,13 @@ namespace Modules\Media {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-single.tpl.php';
                     break;
                 case 'list':
-                    if (!isset($this->app->request->request['page'])) {
+                    if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
@@ -99,7 +99,7 @@ namespace Modules\Media {
         }
 
         public function callPush() {
-            switch ($this->app->request->request['l2']) {
+            switch($this->app->request->request['l2']) {
                 case 'admin':
                     break;
                 case 'profile':
@@ -114,7 +114,7 @@ namespace Modules\Media {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_api() {
-            switch ($this->app->request->type) {
+            switch($this->app->request->type) {
                 case \Framework\RequestType::PUT:
                     $this->api_media_put();
                     break;
@@ -133,14 +133,14 @@ namespace Modules\Media {
             $upload_dir = './tmp/';
             $file_count = count($_FILES['user_file']['name']);
 
-            for ($i = 0; $i < $file_count; $i++) {
+            for($i = 0; $i < $file_count; $i++) {
                 $upload_file = $upload_dir . basename($_FILES['user_file']['name'][$i]);
 
-                if (!preg_match('/(gif|jpg|jpeg|png)$/', $_FILES['user_file']['name'][$i])) {
+                if(!preg_match('/(gif|jpg|jpeg|png)$/', $_FILES['user_file']['name'][$i])) {
                     // not allowed
                 } else {
-                    if (is_uploaded_file($_FILES['user_file']['tmp_name'][$i])) {
-                        if (!move_uploaded_file($_FILES['user_file']['tmp_name'][$i], $upload_file)) {
+                    if(is_uploaded_file($_FILES['user_file']['tmp_name'][$i])) {
+                        if(!move_uploaded_file($_FILES['user_file']['tmp_name'][$i], $upload_file)) {
                             // Failure
                         }
                     } else {

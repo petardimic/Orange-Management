@@ -47,7 +47,7 @@ namespace Modules\Admin {
         public function account_create($name, $pass, $email) {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
@@ -92,7 +92,7 @@ namespace Modules\Admin {
         public function account_list_get($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->app->db->generate_sql_filter($filter, true);
 
@@ -131,10 +131,13 @@ namespace Modules\Admin {
         public function getObject() {
         }
 
-        public function serialize() {}
+        public function serialize() {
+        }
 
-        public function unserialize($data) {}
+        public function unserialize($data) {
+        }
 
-        public function count() {}
+        public function count() {
+        }
     }
 }

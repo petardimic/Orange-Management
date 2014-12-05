@@ -39,7 +39,7 @@ namespace Modules\Sales {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -82,7 +82,7 @@ namespace Modules\Sales {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -90,7 +90,7 @@ namespace Modules\Sales {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'client':
                     $this->show_backend_client();
                     break;
@@ -107,7 +107,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_article() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-list.tpl.php';
@@ -123,7 +123,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_invoice() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/invoice-list.tpl.php';
@@ -139,7 +139,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_client() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/clients-list.tpl.php';
@@ -155,7 +155,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_client_single() {
-            switch ($this->app->request->request['l5']) {
+            switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/clients-single.tpl.php';
@@ -164,7 +164,7 @@ namespace Modules\Sales {
         }
 
         public function show_backend_analysis() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/analysis-dashboard.tpl.php';

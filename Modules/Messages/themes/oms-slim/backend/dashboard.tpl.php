@@ -60,20 +60,20 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => $this->app->user->localization->lang[12]['From'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[12]['Subject'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[12]['Status'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[12]['Date'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Module\Modules $modules */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => $this->app->user->localization->lang[12]['From'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[12]['Subject'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[12]['Status'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[12]['Date'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Module\Modules $modules */ /*
         $modules_installed = $this->app->modules->module_list_installed_get();
         $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
@@ -84,6 +84,6 @@
             ['id', 'name', 'theme', 'version'],
             $url
         );*/
-            ?>
+        ?>
     </table>
 </div>

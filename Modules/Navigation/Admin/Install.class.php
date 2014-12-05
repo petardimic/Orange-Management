@@ -28,7 +28,7 @@ namespace Modules\Navigation\Admin {
         public static function install(&$db, $info) {
             /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
-            switch ($db->getType()) {
+            switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'nav` (
@@ -65,7 +65,7 @@ namespace Modules\Navigation\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install_external(&$db, $data) {
-            foreach ($data as $link) {
+            foreach($data as $link) {
                 self::install_external_link($db, $link, $link['parent']);
             }
         }
@@ -107,7 +107,7 @@ namespace Modules\Navigation\Admin {
 
             $lastInsertID = $db->con->lastInsertId();
 
-            foreach ($data['children'] as $link) {
+            foreach($data['children'] as $link) {
                 $parent = ($link['parent'] == null ? $lastInsertID : $link['parent']);
                 self::install_external_link($db, $link, $parent);
             }

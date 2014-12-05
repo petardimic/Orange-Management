@@ -39,7 +39,7 @@ namespace Modules\Warehousing {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -80,7 +80,7 @@ namespace Modules\Warehousing {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -94,7 +94,7 @@ namespace Modules\Warehousing {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'article':
                     $this->show_backend_articles();
                     break;
@@ -114,7 +114,7 @@ namespace Modules\Warehousing {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_backend_articles() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-list.tpl.php';
@@ -129,7 +129,7 @@ namespace Modules\Warehousing {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_backend_shipping() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/shipping-list.tpl.php';
@@ -144,7 +144,7 @@ namespace Modules\Warehousing {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_backend_arrival() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/arrival-list.tpl.php';

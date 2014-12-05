@@ -79,8 +79,8 @@ namespace Modules\API {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show($data = null) {
-            if (isset($this->receiving)) {
-                foreach ($this->receiving as $mid) {
+            if(isset($this->receiving)) {
+                foreach($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
                 }

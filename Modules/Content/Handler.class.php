@@ -68,8 +68,8 @@ namespace Modules\Content {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb($data = null) {
-            if (isset($this->receiving)) {
-                foreach ($this->receiving as $mid) {
+            if(isset($this->receiving)) {
+                foreach($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
                     \Framework\Module\ModuleFactory::$loaded[$mid]->callWeb();
                 }

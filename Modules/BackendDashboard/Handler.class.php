@@ -39,7 +39,7 @@ namespace Modules\BackendDashboard {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -80,8 +80,8 @@ namespace Modules\BackendDashboard {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            if (isset($this->receiving)) {
-                foreach ($this->receiving as $mid) {
+            if(isset($this->receiving)) {
+                foreach($this->receiving as $mid) {
                     /** @noinspection PhpUndefinedMethodInspection */
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_dashboard();
                 }

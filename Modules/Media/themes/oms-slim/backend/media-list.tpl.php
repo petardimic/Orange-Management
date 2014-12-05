@@ -12,20 +12,20 @@
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
-            <tr>
-                <?php
-                \Framework\Model\Model::generate_table_header_view(
-                    [
-                        ['name' => $this->app->user->localization->lang[4]['Name'], 'sort' => 1, 'full' => true],
-                        ['name' => $this->app->user->localization->lang[4]['Type'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[4]['Size'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[4]['Created'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[4]['Owner'], 'sort' => 0],
-                    ]
-                );
-                ?>
-                <tbody>
-                <tfoot>
+    <tr>
+        <?php
+        \Framework\Model\Model::generate_table_header_view(
+            [
+                ['name' => $this->app->user->localization->lang[4]['Name'], 'sort' => 1, 'full' => true],
+                ['name' => $this->app->user->localization->lang[4]['Type'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[4]['Size'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[4]['Created'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[4]['Owner'], 'sort' => 0],
+            ]
+        );
+        ?>
+        <tbody>
+        <tfoot>
     <tr>
         <td colspan="5" class="cT">
             <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>

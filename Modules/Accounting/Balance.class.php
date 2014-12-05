@@ -60,12 +60,12 @@ namespace Modules\Accounting {
          */
         private $balance = [
             'credit' => [
-                'capital' => [],
+                'capital'     => [],
                 'circulating' => []
             ],
-            'debit' => [
+            'debit'  => [
                 'equity' => [],
-                'debt' => []
+                'debt'   => []
             ]
         ];
 

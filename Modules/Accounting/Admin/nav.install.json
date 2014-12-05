@@ -71,8 +71,7 @@
                         "from": 1002600000,
                         "permission": null,
                         "parent": 1002602001,
-                        "children": [
-                        ]
+                        "children": []
                     },
                     {
                         "id": 1002602201,
@@ -130,8 +129,7 @@
                         "from": 1002600000,
                         "permission": null,
                         "parent": 1002604001,
-                        "children": [
-                        ]
+                        "children": []
                     },
                     {
                         "id": 1002604301,

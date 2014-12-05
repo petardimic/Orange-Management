@@ -14,23 +14,23 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[27]['Matchcode'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Name'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Description'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[27]['Amount'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Stock'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Location'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Module\Modules $modules */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[27]['Matchcode'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Name'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Description'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[27]['Amount'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Stock'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Location'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Module\Modules $modules */ /*
         $modules_installed = $this->app->modules->module_list_installed_get();
         $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
@@ -41,6 +41,6 @@
             ['id', 'name', 'theme', 'version'],
             $url
         );*/
-            ?>
+        ?>
     </table>
 </div>

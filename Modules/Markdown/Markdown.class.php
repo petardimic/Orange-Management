@@ -56,10 +56,10 @@ namespace OMS\Modules {
         /**
          * Constructor
          *
-         * @param \Framework\DataStorage\Database\Database          $db    Database instance
-         * @param \Framework\Model\Model                            $model Model instance
-         * @param \Framework\Object\User\User $user  User instance
-         * @param \Framework\DataStorage\Cache\Cache                $cache Cache instance
+         * @param \Framework\DataStorage\Database\Database $db    Database instance
+         * @param \Framework\Model\Model                   $model Model instance
+         * @param \Framework\Object\User\User              $user  User instance
+         * @param \Framework\DataStorage\Cache\Cache       $cache Cache instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -121,10 +121,10 @@ namespace OMS\Modules {
 
             $block_current = null;
 
-            foreach ($lines as $line) {
+            foreach($lines as $line) {
                 /* Empty line ends opened block */
-                if (rtrim($line) === '') {
-                    if (isset($block_current)) {
+                if(rtrim($line) === '') {
+                    if(isset($block_current)) {
                         $block_current['end'] = true;
                     }
 
@@ -133,7 +133,7 @@ namespace OMS\Modules {
 
                 /* Count indents */
                 $indent_count = 0;
-                while (isset($line[$indent_count]) && $line[$indent_count] === ' ') {
+                while(isset($line[$indent_count]) && $line[$indent_count] === ' ') {
                     $indent_count++;
                 }
             }

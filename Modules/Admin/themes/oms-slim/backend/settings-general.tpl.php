@@ -90,7 +90,7 @@
                 <li>
                     <select name="lang" class="i-1" id="i-lang">
                         <?php /* TODO: Add login msg and status */
-                        foreach ($locals['LANGUAGES_ARRAY'] as $key => $val) {
+                        foreach($locals['LANGUAGES_ARRAY'] as $key => $val) {
                             echo '<option value="' . $key . '"' . ($key === $this->app->settings->config[1000000020] ? ' selected' : '') . '>' . $val;
                         }
                         ?>
@@ -100,7 +100,7 @@
                 <li>
                     <select name="count" class="i-1" id="i-count">
                         <?php
-                        foreach ($locals['COUNTRIES_ARRAY'] as $key => $val) {
+                        foreach($locals['COUNTRIES_ARRAY'] as $key => $val) {
                             echo '<option value="' . $key . '"' . ($key === $this->app->settings->config[1000000019] ? ' selected' : '') . '>' . $val;
                         }
                         ?>
@@ -110,7 +110,7 @@
                 <li>
                     <select name="time" class="i-1" id="i-time">
                         <?php
-                        foreach ($locals['TIMEZONES_ARRAY'] as $key => $val) {
+                        foreach($locals['TIMEZONES_ARRAY'] as $key => $val) {
                             echo '<option value="' . $val . '"' . ($val === $this->app->settings->config[1000000021] ? ' selected' : '') . '>' . $val;
                         }
                         ?>
@@ -128,7 +128,7 @@
                 <li>
                     <select name="curr" class="i-1" id="i-curr">
                         <?php
-                        foreach ($locals['CURRENCIES_ARRAY'] as $key => $val) {
+                        foreach($locals['CURRENCIES_ARRAY'] as $key => $val) {
                             echo '<option value="' . $key . '"' . ($key === $this->app->settings->config[1000000023] ? ' selected' : '') . '>' . $val[0];
                         }
                         ?>

@@ -14,27 +14,27 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <?php
-            \Framework\Model\Model::generate_table_header_view(
-                [
-                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->localization->lang[27]['Type'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Reference'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Consignee'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->localization->lang[27]['Street'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['City'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Zip'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Country'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Order'], 'sort' => 0],
-                    ['name' => $this->app->user->localization->lang[27]['Date'], 'sort' => 0],
-                ]
-            );
-            ?>
-            <tbody>
-            <?php
-            /** @var \Framework\Module\Modules $modules */ /*
+                <tr>
+                    <?php
+                    \Framework\Model\Model::generate_table_header_view(
+                        [
+                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->localization->lang[27]['Type'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Reference'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Consignee'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[27]['Street'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['City'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Zip'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Country'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Order'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[27]['Date'], 'sort' => 0],
+                        ]
+                    );
+                    ?>
+        <tbody>
+        <?php
+        /** @var \Framework\Module\Modules $modules */ /*
         $modules_installed = $this->app->modules->module_list_installed_get();
         $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
@@ -45,6 +45,6 @@
             ['id', 'name', 'theme', 'version'],
             $url
         );*/
-            ?>
+        ?>
     </table>
 </div>

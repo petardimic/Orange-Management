@@ -34,9 +34,7 @@
                 "from": 1001100000,
                 "permission": null,
                 "parent": 0,
-                "children": [
-
-                ]
+                "children": []
             },
             {
                 "id": 1001103001,
@@ -55,9 +53,7 @@
                 "from": 1001100000,
                 "permission": null,
                 "parent": 0,
-                "children": [
-
-                ]
+                "children": []
             },
             {
                 "id": 1001104001,
@@ -76,9 +72,7 @@
                 "from": 1001100000,
                 "permission": null,
                 "parent": 0,
-                "children": [
-
-                ]
+                "children": []
             }
         ]
     }

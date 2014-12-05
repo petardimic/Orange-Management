@@ -51,7 +51,7 @@ namespace Modules\Admin {
         public function group_list_get($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->app->db->generate_sql_filter($filter);
 

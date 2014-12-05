@@ -24,7 +24,7 @@ namespace Modules\HumanResources {
          */
         private $id = null;
 
-         /**
+        /**
          * User
          *
          * @var \Framework\Object\User\User
@@ -35,7 +35,6 @@ namespace Modules\HumanResources {
         private static $instances = [];
 
         public function __construct($id) {
-
         }
 
         public function getInstance($id) {

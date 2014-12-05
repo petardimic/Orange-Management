@@ -17,21 +17,21 @@
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-                <tr>
-                    <?php
-                    \Framework\Model\Model::generate_table_header_view(
-                        [
-                            ['name' => '', 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                            ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[30]['Manager'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[30]['Level'], 'sort' => 0]
-                        ]
-                    );
-                    ?>
-                    <tbody>
-                    <?php
-                    /** @var \Framework\Object\User\Users $accounts */ /*
+        <tr>
+            <?php
+            \Framework\Model\Model::generate_table_header_view(
+                [
+                    ['name' => '', 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->user->localization->lang[30]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->user->localization->lang[30]['Manager'], 'sort' => 0],
+                    ['name' => $this->app->user->localization->lang[30]['Level'], 'sort' => 0]
+                ]
+            );
+            ?>
+            <tbody>
+            <?php
+            /** @var \Framework\Object\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($this->app->request->request, 0, 4);
                     $url['level'][] = 'single';
@@ -43,8 +43,8 @@
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
                     );*/
-                    ?>
-                    <tfoot>
+            ?>
+            <tfoot>
         <tr>
             <td colspan="5" class="cT">
                 <?php /* \Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>

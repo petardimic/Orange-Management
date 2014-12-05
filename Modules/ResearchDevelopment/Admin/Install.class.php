@@ -26,7 +26,7 @@ namespace Modules\ResearchDevelopment\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function install(&$db, $info) {
-            switch ($db->getType()) {
+            switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;

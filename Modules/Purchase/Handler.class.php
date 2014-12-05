@@ -39,7 +39,7 @@ namespace Modules\Purchase {
         /**
          * Constructor
          *
-         * @param string                 $theme_path
+         * @param string                    $theme_path
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
@@ -82,7 +82,7 @@ namespace Modules\Purchase {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
-            switch ($this->app->request->getType()) {
+            switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
                     break;
@@ -90,7 +90,7 @@ namespace Modules\Purchase {
         }
 
         public function show_content_backend() {
-            switch ($this->app->request->request['l3']) {
+            switch($this->app->request->request['l3']) {
                 case 'supplier':
                     $this->show_backend_supplier();
                     break;
@@ -107,7 +107,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_article() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-list.tpl.php';
@@ -123,7 +123,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_invoice() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/invoice-list.tpl.php';
@@ -139,7 +139,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_supplier() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/suppliers-list.tpl.php';
@@ -158,7 +158,7 @@ namespace Modules\Purchase {
         }
 
         public function show_backend_analysis() {
-            switch ($this->app->request->request['l4']) {
+            switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/analysis-dashboard.tpl.php';
