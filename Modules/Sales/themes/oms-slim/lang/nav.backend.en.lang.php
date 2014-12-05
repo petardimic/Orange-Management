@@ -6,7 +6,6 @@ $MODLANG[5] = [
     'Create'   => 'Create',
     'Invoices' => 'Invoices',
     'Invoice'  => 'Invoice',
-    'List'     => 'List',
     'Profile'  => 'Profile',
     'Sales'    => 'Sales',
 ];

@@ -25,7 +25,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->localization->lang[0]['More'] ?></a>
+            <a href="<?= \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(), 'backend', 'sales', 'analysis', 'clients', 'dashboard']); ?>" class="button"><?= $this->app->user->localization->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
