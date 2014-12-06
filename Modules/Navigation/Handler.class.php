@@ -108,7 +108,7 @@ namespace Modules\Navigation {
                 $temp_nav = $sth->fetchAll();
 
                 foreach($temp_nav as $link) {
-                    $this->nav[$link['type']][$link['subtype']][$link['id']] = $link;
+                    $this->nav[$link['type']][$link['subtype']][$link['NavigationID']] = $link;
                 }
             }
         }

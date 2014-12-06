@@ -356,5 +356,9 @@ namespace Framework\Install {
                     break;
             }
         }
+
+        public function installDummy() {
+            \Framework\Install\DummyFactory::generate($this->db, 'Media');
+        }
     }
 }

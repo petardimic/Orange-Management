@@ -32,7 +32,7 @@ namespace Modules\Navigation\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'nav` (
-                            `id` int(11) NOT NULL,
+                            `NavigationID` int(11) NOT NULL,
                             `pid` varchar(40) NOT NULL,
                             `name` varchar(40) NOT NULL,
                             `type` tinyint(1) NOT NULL,
@@ -48,7 +48,7 @@ namespace Modules\Navigation\Admin {
                             `order` tinyint(3) DEFAULT NULL,
                             `parent` int(11) DEFAULT NULL,
                             `permission` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+                            PRIMARY KEY (`NavigationID`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
                     break;
@@ -82,7 +82,7 @@ namespace Modules\Navigation\Admin {
          */
         private static function install_external_link(&$db, $data, $parent = 0) {
             $sth = $db->con->prepare(
-                'INSERT INTO `' . $db->prefix . 'nav` (`id`, `pid`, `name`, `type`, `subtype`, `icon`, `l0`, `l1`, `l2`, `l3`, `l4`, `l5`, `from`, `order`, `parent`, `permission`) VALUES
+                'INSERT INTO `' . $db->prefix . 'nav` (`NavigationID`, `pid`, `name`, `type`, `subtype`, `icon`, `l0`, `l1`, `l2`, `l3`, `l4`, `l5`, `from`, `order`, `parent`, `permission`) VALUES
                         (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :from, :order, :parent, :perm);'
             );
 

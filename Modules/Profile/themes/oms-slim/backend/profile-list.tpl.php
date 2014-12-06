@@ -26,7 +26,7 @@
         <tbody>
         <?php
         /** @var \Modules\Admin\Users $accounts */
-        $data           = $accounts->account_list_get();
+        $data           = $accounts->getAccountList();
         $url['level']   = array_slice($this->app->request->request, 0, 3);
         $url['level'][] = 'single';
         $url['level'][] = 'front';

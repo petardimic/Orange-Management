@@ -94,11 +94,10 @@ namespace Modules\Profile {
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/profile-single.tpl.php';
 
                     $this->callPull();
-
                     break;
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Admin\Users($this->app);
+                    $accounts = new \Modules\Profile\ProfileList($this->app);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
@@ -107,8 +106,6 @@ namespace Modules\Profile {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/profile-list.tpl.php';
                     break;
-                default:
-                    return false;
             }
         }
     }

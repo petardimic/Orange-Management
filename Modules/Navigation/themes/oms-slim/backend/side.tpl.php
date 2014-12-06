@@ -16,7 +16,7 @@ if(isset($this->nav[\Modules\Navigation\NavigationType::SIDE])) {
                     <i class="fa fa-chevron-up max vh"></i>';
 
         foreach($this->nav[\Modules\Navigation\NavigationType::SIDE][\Modules\Navigation\LinkType::LINK] as $key2 => $link) {
-            if($link['parent'] === $parent['id']) {
+            if($link['parent'] === $parent['NavigationID']) {
                 echo '<li>';
                 echo '<a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(), $link['l0'], $link['l1'], $link['l2'], $link['l3'], $link['l4']]) . '">' . $this->app->user->localization->lang[5][$link['name']] . '</a>';
             }

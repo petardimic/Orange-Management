@@ -30,19 +30,20 @@ namespace Modules\Media\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media` (
-                            `id` int(11) NOT NULL,
+                            `MediaID` int(11) NOT NULL AUTO_INCREMENT,
                             `name` datetime NOT NULL,
                             `file` varchar(255) NOT NULL,
-                            `type` text NOT NULL,
-                            `account` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `account` (`account`)
+                            `type` varchar(10) NULL,
+                            `creator` int(11) DEFAULT NULL,
+                            `created` datetime DEFAULT NULL,
+                            PRIMARY KEY (`MediaID`),
+                            KEY `creator` (`creator`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'media`
-                            ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
                     break;
             }

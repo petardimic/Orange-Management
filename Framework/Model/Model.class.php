@@ -192,14 +192,14 @@ namespace Framework\Model {
         public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
             foreach ($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
-                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id', $ele[0][$url['id']]]]) : '#');
+                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id', $ele[$url['id']]]]) : '#');
                 /* TODO: Replace is to slow (most likely) */
                 echo '<tr>';
                 foreach ($cols as $col) {
                     if ($replace == null || !isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . $ele[0][$col] . '</a>';
+                        echo '<td><a href="' . $url_t . '">' . $ele[$col] . '</a>';
                     } elseif (isset($replace[$col])) {
-                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[0][$col]]) ? $replace[$col][$ele[0][$col]] : $ele[0][$col]) . '</a>';
+                        echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[$col]]) ? $replace[$col][$ele[$col]] : $ele[$col]) . '</a>';
                     }
                 }
             }
