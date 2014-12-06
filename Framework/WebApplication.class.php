@@ -65,6 +65,8 @@ namespace Framework {
                 \Framework\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
                 \Framework\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
 
+                echo \Framework\Utils\RnG\Text::generateText(400);
+
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/../Web/Themes' . $this->settings->config[1000000011] . '/Theme.class.php';
                 $this->theme = new \Content\Theme($this);
