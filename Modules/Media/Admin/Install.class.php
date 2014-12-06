@@ -31,9 +31,10 @@ namespace Modules\Media\Admin {
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media` (
                             `MediaID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` datetime NOT NULL,
+                            `name`  varchar(100) NOT NULL,
                             `file` varchar(255) NOT NULL,
                             `type` varchar(10) NULL,
+                            `size` int(11) NULL,
                             `creator` int(11) DEFAULT NULL,
                             `created` datetime DEFAULT NULL,
                             PRIMARY KEY (`MediaID`),

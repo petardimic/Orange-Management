@@ -5,8 +5,8 @@ namespace Modules\Media {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Media
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -92,6 +92,8 @@ namespace Modules\Media {
                         $this->app->request->request['page'] = 1;
                     }
 
+                    $mList = new \Modules\Media\MediaList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-list.tpl.php';
                     break;
@@ -114,7 +116,7 @@ namespace Modules\Media {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function show_api() {
-            switch($this->app->request->type) {
+            switch($this->app->request->getType()) {
                 case \Framework\RequestType::PUT:
                     $this->api_media_put();
                     break;
