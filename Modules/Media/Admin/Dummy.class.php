@@ -5,9 +5,8 @@ namespace Modules\Media\Admin {
             $dataString = '';
             $fileTypes  = ['jpg', 'png', 'pdf', 'doc', 'gif', 'mp4', 'mp3', 'exe', 'zip', 'rar'];
 
-            while($amount > 1) {
+            for($i = 0; $i < $amount-1; $i++) {
                 $dataString .= " ( '" . \Framework\Utils\RnG\String::generateString(5, 15) . "', '', '" . $fileTypes[rand(0, count($fileTypes) - 1)] . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "' ),";
-                $amount--;
             }
 
             $dataString .= " ( '" . \Framework\Utils\RnG\String::generateString(5, 15) . "', '', '" . $fileTypes[rand(0, count($fileTypes) - 1)] . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
