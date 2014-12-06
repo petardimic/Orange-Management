@@ -25,6 +25,66 @@ namespace Framework\Utils\RnG {
         public static $words_west = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'curabitur', 'vel', 'hendrerit', 'libero', 'eleifend', 'blandit', 'nunc', 'ornare', 'odio', 'ut', 'orci', 'gravida', 'imperdiet', 'nullam', 'purus', 'lacinia', 'a', 'pretium', 'quis', 'congue', 'praesent', 'sagittis', 'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros', 'dictum', 'proin', 'accumsan', 'sapien', 'nec', 'massa', 'volutpat', 'venenatis', 'sed', 'eu', 'molestie', 'lacus', 'quisque', 'porttitor', 'ligula', 'dui', 'mollis', 'tempus', 'at', 'magna', 'vestibulum', 'turpis', 'ac', 'diam', 'tincidunt', 'id', 'condimentum', 'enim', 'sodales', 'in', 'hac', 'habitasse', 'platea', 'dictumst', 'aenean', 'neque', 'fusce', 'augue', 'leo', 'eget', 'semper', 'mattis', 'tortor', 'scelerisque', 'nulla', 'interdum', 'tellus', 'malesuada', 'rhoncus', 'porta', 'sem', 'aliquet', 'et', 'nam', 'suspendisse', 'potenti', 'vivamus', 'luctus', 'fringilla', 'erat', 'donec', 'justo', 'vehicula', 'ultricies', 'varius', 'ante', 'primis', 'faucibus', 'ultrices', 'posuere', 'cubilia', 'curae', 'etiam', 'cursus', 'aliquam', 'quam', 'dapibus', 'nisl', 'feugiat', 'egestas', 'class', 'aptent', 'taciti', 'sociosqu', 'ad', 'litora', 'torquent', 'per', 'conubia', 'nostra', 'inceptos', 'himenaeos', 'phasellus', 'nibh', 'pulvinar', 'vitae', 'urna', 'iaculis', 'lobortis', 'nisi', 'viverra', 'arcu', 'morbi', 'pellentesque', 'metus', 'commodo', 'ut', 'facilisis', 'felis', 'tristique', 'ullamcorper', 'placerat', 'aenean', 'convallis', 'sollicitudin', 'integer', 'rutrum', 'duis', 'est', 'etiam', 'bibendum', 'donec', 'pharetra', 'vulputate', 'maecenas', 'mi', 'fermentum', 'consequat', 'suscipit', 'aliquam', 'habitant', 'senectus', 'netus', 'fames', 'quisque', 'euismod', 'curabitur', 'lectus', 'elementum', 'tempor', 'risus', 'cras'];
 
         /**
+         * Text has random formatting
+         *
+         * @var bool
+         * @since 1.0.0
+         */
+        private $hasFormatting = false;
+
+        /**
+         * Text has paragraphs
+         *
+         * @var bool
+         * @since 1.0.0
+         */
+        private $hasParagraphs = false;
+
+        /**
+         * Amount of sentences of the last generated text
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $sentences = 0;
+
+        /**
+         * Set if the text should have formatting
+         *
+         * @param boolean $hasFormatting
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setFormatting($hasFormatting) {
+            $this->hasFormatting = $hasFormatting;
+        }
+
+        /**
+         * Set if the text should have paragraphs
+         *
+         * @param boolean $hasParagraphs
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setParagraphs($hasParagraphs) {
+            $this->hasParagraphs = $hasParagraphs;
+        }
+
+        /**
+         * Amount of sentences of the last generated text
+         *
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getSentences() {
+            return $this->sentences;
+        }
+
+        /**
          * Get a random string
          *
          * @param int $length Text length
@@ -35,13 +95,12 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generateText($length, $words = null) {
+        public function generateText($length, $words = null) {
             if($words === null) {
                 $words = self::$words_west;
             }
 
             $punctuation       = self::generatePunctuation($length);
-            $punctuation_count = ['.' => 0, '!' => 0, '?' => '?'];
             $punctuation_count = array_count_values(
                                      array_map(
                                          function ($item) {
@@ -49,95 +108,121 @@ namespace Framework\Utils\RnG {
                                          },
                                          $punctuation
                                      )
-                                 ) + $punctuation_count;
+                                 ) + ['.' => 0, '!' => 0, '?' => '?'];
 
-            $paragraph = self::generateParagraph($punctuation_count['.'] + $punctuation_count['!'] + $punctuation_count['?']);
+            $this->sentences = $punctuation_count['.'] + $punctuation_count['!'] + $punctuation_count['?'];
 
-            $sentence_count = 0;
-            $text           = '';
-            $pid            = 0;
-            $paid           = 0;
-            $i              = 0;
-            $count          = count($words);
+            if($this->hasParagraphs) {
+                $paragraph = self::generateParagraph($this->sentences);
+            }
 
-            while($i < $length + 1) {
-                $new_sentence = false;
+            if($this->hasFormatting) {
+                $formatting = self::generateFormatting($length);
+            }
 
-                $last = substr($text, -1);
+            $sentenceCount = 0;
+            $text          = '';
+            $puid          = 0;
+            $paid          = 0;
+            $wordCount     = count($words);
 
-                if($last === '.' || $last === '!' || $last === '?' || !$last) {
-                    $new_sentence = true;
+            for($i = 0; $i < $length + 1; $i++) {
+                $newSentence = false;
+
+                $lastChar = substr($text, -1);
+
+                if($lastChar === '.' || $lastChar === '!' || $lastChar === '?' || !$lastChar) {
+                    $newSentence = true;
                 }
 
-                $word = $words[rand(0, $count - 1)];
+                $word = $words[rand(0, $wordCount - 1)];
 
-                if($new_sentence) {
+                if($newSentence) {
                     $word = ucfirst($word);
-                    $sentence_count++;
+                    $sentenceCount++;
 
-                    if($sentence_count === $paragraph[$paid]) {
+                    if($this->hasParagraphs && $sentenceCount === $paragraph[$paid]) {
                         $paid++;
+
                         $text .= '</p><p>';
                     }
                 }
 
+                if($this->hasFormatting && array_key_exists($i, $formatting)) {
+                    $word = '<' . $formatting[$i] . '>' . $word . '</' . $formatting[$i] . '>';
+                }
+
                 $text .= ' ' . $word;
 
-                if($punctuation[$pid][0] === $i) {
-                    $text .= $punctuation[$pid][1];
-                    $pid++;
+                if($punctuation[$puid][0] === $i) {
+                    $text .= $punctuation[$puid][1];
+                    $puid++;
                 }
-
-                $i++;
             }
 
-            return '<p>' . ltrim($text) . '</p>';
+            $text = ltrim($text);
+
+            if($this->hasParagraphs) {
+                $text = '<p>' . $text . '</p>';
+            }
+
+            return $text;
         }
 
-        private static function generatePunctuation($length) {
-            $min_sentence      = 4;
-            $max_sentence      = 20;
-            $min_comma_spacing = 3;
-            $comma_prob        = 0.2;
-            $dot_prob          = 0.8;
-            $ex_prob           = 0.4;
+        /**
+         * Generate punctuation
+         *
+         * @param int $length Text length
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        private function generatePunctuation($length) {
+            $minSentences    = 4;
+            $maxSentences    = 20;
+            $minCommaSpacing = 3;
+            $probComma       = 0.2;
+            $probDot         = 0.8;
+            $probExc         = 0.4;
 
             $punctuation = [];
-            $i           = 0;
 
-            while($length > 0) {
-                $sentence_length = rand($min_sentence, $max_sentence);
+            for($i = 0; $i < $length;) {
+                $sentenceLength = rand($minSentences, $maxSentences);
 
-                if($sentence_length > $length || $length - $sentence_length < $min_sentence) {
-                    $sentence_length = $length;
+                if($i + $sentenceLength > $length || $length - ($i + $sentenceLength) < $minSentences) {
+                    $sentenceLength = $length - $i;
                 }
 
-                $length -= $sentence_length;
-                $i += $sentence_length;
-
-                $comma_here = (rand(0, 100) <= $comma_prob * 100 && $sentence_length >= 2 * $min_comma_spacing ? true : false);
-                $comma_pos  = [];
+                /* Handle comma */
+                $comma_here = (rand(0, 100) <= $probComma * 100 && $sentenceLength >= 2 * $minCommaSpacing ? true : false);
+                $posComma   = [];
 
                 if($comma_here) {
-                    $comma_pos[]   = rand($min_comma_spacing, $sentence_length - $min_comma_spacing);
-                    $punctuation[] = [$i - $sentence_length + $comma_pos[0], ','];
+                    $posComma[]    = rand($minCommaSpacing, $sentenceLength - $minCommaSpacing);
+                    $punctuation[] = [$i + $posComma[0], ','];
 
-                    $comma_here = (rand(0, 100) <= $comma_prob * 100 && $comma_pos[0] + $min_comma_spacing * 2 < $sentence_length ? true : false);
+                    $comma_here = (rand(0, 100) <= $probComma * 100 && $posComma[0] + $minCommaSpacing * 2 < $sentenceLength ? true : false);
 
                     if($comma_here) {
-                        $comma_pos[]   = rand($comma_pos[0] + $min_comma_spacing, $sentence_length - $min_comma_spacing);
-                        $punctuation[] = [$i - $sentence_length + $comma_pos[1], ','];
+                        $posComma[]    = rand($posComma[0] + $minCommaSpacing, $sentenceLength - $minCommaSpacing);
+                        $punctuation[] = [$i + $posComma[1], ','];
                     }
                 }
 
-                $is_dot = (rand(0, 100) <= $dot_prob * 100 ? true : false);
+                $i += $sentenceLength;
+
+                /* Handle sentence ending */
+                $is_dot = (rand(0, 100) <= $probDot * 100 ? true : false);
 
                 if($is_dot) {
                     $punctuation[] = [$i, '.'];
                     continue;
                 }
 
-                $is_ex = (rand(0, 100) <= $ex_prob * 100 ? true : false);
+                $is_ex = (rand(0, 100) <= $probExc * 100 ? true : false);
 
                 if($is_ex) {
                     $punctuation[] = [$i, '!'];
@@ -150,27 +235,72 @@ namespace Framework\Utils\RnG {
             return $punctuation;
         }
 
-        private static function generateParagraph($length) {
-            $min_sentence = 3;
-            $max_sentence = 10;
+        /**
+         * Generate paragraphs
+         *
+         * @param int $length Amount of sentences
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        private function generateParagraph($length) {
+            $minSentence = 3;
+            $maxSentence = 10;
 
             $paragraph = [];
-            $i         = 0;
 
-            while($length > 0) {
-                $paragraph_length = rand($min_sentence, $max_sentence);
+            for($i = 0; $i < $length;) {
+                $paragraphLength = rand($minSentence, $maxSentence);
 
-                if($paragraph_length > $length || $length - $paragraph_length < $min_sentence) {
-                    $paragraph_length = $length + 1;
+                if($i + $paragraphLength > $length || $length - ($i + $paragraphLength) < $minSentence) {
+                    $paragraphLength = $length - $i;
                 }
 
-                $length -= $paragraph_length;
-                $i += $paragraph_length;
-
+                $i += $paragraphLength;
                 $paragraph[] = $i;
             }
 
             return $paragraph;
+        }
+
+        /**
+         * Generate random formatting
+         *
+         * @param int $length Amount of words
+         *
+         * @return string[]
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        private function generateFormatting($length) {
+            $probCursive = 0.005;
+            $probBold    = 0.005;
+            $probUline   = 0.005;
+
+            $formatting = [];
+
+            for($i = 0; $i < $length; $i++) {
+                $isCursive = (rand(0, 1000) <= 1000 * $probCursive ? true : false);
+                $isBold    = (rand(0, 1000) <= 1000 * $probBold ? true : false);
+                $isUline   = (rand(0, 1000) <= 1000 * $probUline ? true : false);
+
+                if($isUline) {
+                    $formatting[$i] = 'u';
+                }
+
+                if($isBold) {
+                    $formatting[$i] = 'b';
+                }
+
+                if($isCursive) {
+                    $formatting[$i] = 'i';
+                }
+            }
+
+            return $formatting;
         }
     }
 }
