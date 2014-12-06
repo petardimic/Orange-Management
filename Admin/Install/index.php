@@ -46,4 +46,8 @@ $instHOBJ->install_core_modules($toInstall);
 $instHOBJ->install_groups();
 $instHOBJ->install_users(); /* TODO: create user 1 = Guest -> 2 = Admin */
 $instHOBJ->install_settings();
-$instHOBJ->installDummy();
+
+$toDummy = [
+    'Media'
+];
+$instHOBJ->installDummy($toDummy);

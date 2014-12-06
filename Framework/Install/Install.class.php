@@ -357,8 +357,10 @@ namespace Framework\Install {
             }
         }
 
-        public function installDummy() {
-            \Framework\Install\DummyFactory::generate($this->db, 'Media');
+        public function installDummy($toDummy) {
+            foreach($toDummy as $dummy) {
+                \Framework\Install\DummyFactory::generate($this->db, $dummy);
+            }
         }
     }
 }
