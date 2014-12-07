@@ -29,15 +29,18 @@ namespace Modules\Media {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter, true);
 
+                    // SQL_CALC_FOUND_ROWS
                     $sth = $this->db->con->prepare(
-                        'SELECT SQL_CALC_FOUND_ROWS
+                        'SELECT 
                             `' . $this->db->prefix . 'media`.*,
                             `' . $this->db->prefix . 'accounts_data`.`name1`,
                             `' . $this->db->prefix . 'accounts_data`.`name2`,
                             `' . $this->db->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->db->prefix . 'media`,
-                            `' . $this->db->prefix . 'accounts_data` '
+                            `' . $this->db->prefix . 'media`
+                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
+                        ON `' . $this->db->prefix . 'media`.`creator` = `' . $this->db->prefix . 'accounts_data`.`account`
+                        GROUP BY `' . $this->db->prefix . 'media`.`MediaID` '
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();

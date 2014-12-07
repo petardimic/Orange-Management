@@ -358,6 +358,32 @@ namespace Framework\Install {
         }
 
         public function installDummy($toDummy) {
+            $this->db->con->beginTransaction();
+
+            $a = "INSERT INTO `" . $this->db->prefix . "accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
+            $b = "INSERT INTO `" . $this->db->prefix . "accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES";
+            $c = "INSERT INTO `" . $this->db->prefix . "accounts_groups` (`group`, `account`) VALUES";
+
+            $valA = '';
+            $valB = '';
+            $valC = '';
+
+            for($i = 2; $i < 996; $i++) {
+                $valA .= " (" . rand(0, 1) . ", " . rand(0, 3) . ", '0000-00-00 00:00:00', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', " . rand(0, 1) . "),";
+                $valB .= " ('" . strtolower(\Framework\Utils\RnG\Name::generateName(['male', 'female'])) . "', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "', '" . \Framework\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
+                $valC .= " (1000101000, 1),";
+            }
+
+            $valA = rtrim($valA, ',');
+            $valB = rtrim($valB, ',');
+            $valC = rtrim($valC, ',');
+
+            $this->db->con->prepare($a . $valA)->execute();
+            $this->db->con->prepare($b . $valB)->execute();
+            $this->db->con->prepare($c . $valC)->execute();
+
+            $this->db->con->commit();
+
             foreach($toDummy as $dummy) {
                 \Framework\Install\DummyFactory::generate($this->db, $dummy);
             }

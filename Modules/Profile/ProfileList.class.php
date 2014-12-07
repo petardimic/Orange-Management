@@ -30,16 +30,16 @@ namespace Modules\Profile {
                     $search = $this->app->db->generate_sql_filter($filter, true);
 
                     $sth = $this->app->db->con->prepare(
-                        'SELECT SQL_CALC_FOUND_ROWS
+                        'SELECT
                             `' . $this->app->db->prefix . 'accounts`.*,
                             `' . $this->app->db->prefix . 'accounts_data`.`name1`,
                             `' . $this->app->db->prefix . 'accounts_data`.`name2`,
                             `' . $this->app->db->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->app->db->prefix . 'accounts`,
-                            `' . $this->app->db->prefix . 'accounts_data`
-                        WHERE
-                            `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`'
+                            `' . $this->app->db->prefix . 'accounts`
+                        LEFT JOIN `' . $this->app->db->prefix . 'accounts_data`
+                        ON `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`
+                        GROUP BY `' . $this->app->db->prefix . 'accounts`.`id` '
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();
