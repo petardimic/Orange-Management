@@ -34,6 +34,7 @@ namespace Modules\News\Admin {
                             `title` varchar(250) NOT NULL,
                             `featured` tinyint(1) DEFAULT NULL,
                             `content` text NOT NULL,
+                            `plain` text NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `lang` tinyint(2) NOT NULL,
                             `publish` datetime NOT NULL,
