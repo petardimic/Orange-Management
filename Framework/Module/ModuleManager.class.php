@@ -102,6 +102,7 @@ namespace Framework\Module {
                         `pid` IN(:pid1, :pid2, :pid3, :pid4)'
                         );
 
+                    /** @noinspection PhpUndefinedMethodInspection */
                     $uri_hash = $this->app->request->getHash();
 
                     $sth->bindValue(':pid1', $uri_hash[0], \PDO::PARAM_STR);

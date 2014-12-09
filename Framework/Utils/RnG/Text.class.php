@@ -141,6 +141,7 @@ namespace Framework\Utils\RnG {
                     $word = ucfirst($word);
                     $sentenceCount++;
 
+                    /** @noinspection PhpUndefinedVariableInspection */
                     if($this->hasParagraphs && $sentenceCount === $paragraph[$paid]) {
                         $paid++;
 
@@ -148,6 +149,7 @@ namespace Framework\Utils\RnG {
                     }
                 }
 
+                /** @noinspection PhpUndefinedVariableInspection */
                 if($this->hasFormatting && array_key_exists($i, $formatting)) {
                     $word = '<' . $formatting[$i] . '>' . $word . '</' . $formatting[$i] . '>';
                 }

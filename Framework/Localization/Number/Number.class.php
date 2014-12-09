@@ -21,8 +21,7 @@ namespace Framework\Localization\Number {
         public function __constructor() {
         }
 
-        public function print($number, $digits = 0) {
-
+        public function format($number, $digits = 0) {
         }
-}
+    }
 }

@@ -55,6 +55,7 @@ namespace Framework\Model {
                 . '<meta name="description" content="' . self::$content['page:desc'] . '">'
                 . '<meta name="keywords" content="' . self::$content['page:keywords'] . '">';
 
+            /** @noinspection PhpUndefinedMethodInspection */
             $os = self::$app->request->getOS();
 
             /* OS specific */
@@ -214,16 +215,19 @@ namespace Framework\Model {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate_table_pagination_view($count) {
+            /** @noinspection PhpUndefinedFieldInspection */
             $pages = self::generate_pagination(self::$app->request->request['page'], $count);
 
             echo '<ul>';
             foreach ($pages as $page) {
                 if ($page > 0) {
+                    /** @noinspection PhpUndefinedFieldInspection */
                     $url = \Framework\Uri\UriFactory::build(self::$app->request->request, [['page', $page]]);
                 } else {
                     $url = '';
                 }
 
+                /** @noinspection PhpUndefinedFieldInspection */
                 echo '<li><a href="' . $url
                     . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)

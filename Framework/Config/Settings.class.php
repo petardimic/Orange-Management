@@ -40,6 +40,8 @@ namespace Framework\Config {
         /**
          * Constructor
          *
+         * @var \Framework\ApplicationAbstract $app Application instance
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -56,14 +58,14 @@ namespace Framework\Config {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function loadSettings($ids) {
-            foreach ($ids as $id) {
-                if (isset($this->config[$id])) {
+            foreach($ids as $id) {
+                if(isset($this->config[$id])) {
                     unset($ids[$id]);
-                } 
+                }
             }
 
             // TODO: implement cache if cache is initialized
-            if (!empty($ids)) {
+            if(!empty($ids)) {
                 $sth = $this->app->db->con->prepare('SELECT `id`, `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
                 $sth->execute();
                 $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
@@ -83,7 +85,7 @@ namespace Framework\Config {
             $this->config += $settings;
 
             /* TODO: change this + implement cache */
-            foreach ($settings as $key => $value) {
+            foreach($settings as $key => $value) {
                 $sth = $this->app->db->con->prepare('UPDATE `' . $this->app->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
                 $sth->execute();
             }

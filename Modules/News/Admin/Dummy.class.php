@@ -26,18 +26,18 @@ namespace Modules\News\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate($db, $amount) {
-            $dataString = '';
-
             $textGenerator = new \Framework\Utils\RnG\Text();
             $textGenerator->setParagraphs(true);
 
+            $titleGenerator = new \Framework\Utils\RnG\Text();
+            $db->con->beginTransaction();
+
             for($i = 0; $i < $amount; $i++) {
-                $dataString .= " ( '" . $textGenerator->generateText(rand(3, 7)) . "', " . rand(0, 1) . ", '" . $textGenerator->generateText(rand(200, 600)) . "', '" . $textGenerator->generateText(rand(200, 600)) . "', " . rand(0, 1) . ", 'en', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1),";
+                $dataString = " ( '" . $titleGenerator->generateText(rand(3, 7)) . "', " . rand(0, 1) . ", '" . $textGenerator->generateText(rand(200, 600)) . "', '" . $textGenerator->generateText(rand(200, 600)) . "', " . rand(0, 1) . ", 'en', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1)";
+                $db->con->prepare('INSERT INTO `' . $db->prefix . 'news` (`title`, `featured`, `content`, `plain`, `type`, `lang`, `publish`, `created`, `author`, `last_changed`, `last_change`) VALUES ' . $dataString)->execute();
             }
 
-            $dataString = rtrim($dataString, ',');
-
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'media` (`title`, `featured`, `content`, `plain`, `type`, `lang`, `publish`, `created`, `author`, `last_changed`, `last_change`) VALUES ' . $dataString)->execute();
+            $db->con->commit();
         }
     }
 }

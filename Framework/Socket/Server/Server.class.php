@@ -70,6 +70,7 @@ namespace Framework\Socket {
             socket_set_nonblock($this->sock);
 
             while($this->run) {
+                /** @var array $read Clients */
                 $read = $this->clients;
 
                 if(socket_select($read, $write = null, $except = null, 0) < 1) {

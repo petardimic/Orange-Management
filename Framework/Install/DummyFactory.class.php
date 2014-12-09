@@ -18,8 +18,19 @@ namespace Framework\Install {
      * @since      1.0.0
      */
     class DummyFactory {
+        /**
+         * Generate dummy data
+         *
+         * @param \Framework\DataStorage\Database\Database $db     Database instance
+         * @param string                                   $module Module name (= directory name)
+         * @param int                                      $amount Amount of dummy data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function generate($db, $module, $amount = 9997) {
             if(file_exists(__DIR__ . '/../../Modules/' . $module . '/Admin/Dummy.class.php')) {
+                /** @var \Framework\Install\DummyInterface $class */
                 $class = '\\Modules\\' . $module . '\\Admin\\Dummy';
                 $class::generate($db, $amount);
             }

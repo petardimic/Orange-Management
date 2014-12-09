@@ -465,16 +465,16 @@ namespace Framework\Object\User {
         public function unserialize($serialized) {
             $plain = json_decode($serialized, true);
 
-            $this->name         = $plain['name'];
-            $this->login_name   = $plain['login_name'];
-            $this->id           = $plain['id'];
-            $this->email        = $plain['email'];
-            $this->status       = $plain['status'];
-            $this->type         = $plain['type'];
-            $this->last_activty = $plain['last_activity'];
-            $this->created      = $plain['created'];
-            $this->tries        = $plain['tries'];
-            $this->groups       = $plain['groups']; /* TODO: This is wrong... check this later */
+            $this->name          = $plain['name'];
+            $this->login_name    = $plain['login_name'];
+            $this->id            = $plain['id'];
+            $this->email         = $plain['email'];
+            $this->status        = $plain['status'];
+            $this->type          = $plain['type'];
+            $this->last_activity = $plain['last_activity'];
+            $this->created       = $plain['created'];
+            $this->tries         = $plain['tries'];
+            $this->groups        = $plain['groups']; /* TODO: This is wrong... check this later */
         }
     }
 }

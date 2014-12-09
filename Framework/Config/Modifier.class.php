@@ -39,6 +39,8 @@ namespace Framework\Config {
         /**
          * Constructor
          *
+         * @param string $file File path
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */

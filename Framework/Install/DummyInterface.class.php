@@ -18,6 +18,15 @@ namespace Framework\Install {
      * @since      1.0.0
      */
     interface DummyInterface {
+        /**
+         * Generate dummy data
+         *
+         * @param \Framework\DataStorage\Database\Database $db     Database instance
+         * @param int                                      $amount Amount of dummy data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public static function generate($db, $amount);
     }
 }

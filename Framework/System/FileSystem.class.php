@@ -39,7 +39,7 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getFileCount($path, $recursive = true, $ignore = array('.', '..', 'cgi-bin', '.DS_Store')) {
+        public static function getFileCount($path, $recursive = true, $ignore = ['.', '..', 'cgi-bin', '.DS_Store']) {
             $size  = 0;
             $files = scandir($path);
 

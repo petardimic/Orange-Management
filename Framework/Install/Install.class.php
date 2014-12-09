@@ -357,6 +357,14 @@ namespace Framework\Install {
             }
         }
 
+        /**
+         * Create dummy data
+         *
+         * @param array $toDummy Dummy data array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function installDummy($toDummy) {
             $this->db->con->beginTransaction();
 

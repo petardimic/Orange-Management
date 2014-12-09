@@ -36,6 +36,7 @@ namespace Framework\Uri {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function getCurrent() {
+            /** @noinspection PhpUndefinedConstantInspection */
             return 'http://' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI];
         }
 

@@ -42,13 +42,13 @@ namespace Framework\Utils\RnG {
 
             switch($distribution) {
                 case \Framework\Utils\RnG\DistributionType::UNIFORM:
-                    $key = rand(0, count($source));
+                    $key = rand(0, count($source)-1);
                     break;
                 default:
                     return false;
             }
 
-            return $source[$key];
+            return $source[$key][0];
         }
 
         public static function generateFileName() {

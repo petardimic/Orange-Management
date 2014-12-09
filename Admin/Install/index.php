@@ -48,6 +48,7 @@ $instHOBJ->install_users(); /* TODO: create user 1 = Guest -> 2 = Admin */
 $instHOBJ->install_settings();
 
 $toDummy = [
-    'Media'
+    'Media',
+    'News'
 ];
 $instHOBJ->installDummy($toDummy);

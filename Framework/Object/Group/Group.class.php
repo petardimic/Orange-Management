@@ -77,12 +77,12 @@ namespace Framework\Object\Group {
          * Initializing a group
          *
          * @param int $id ID to initialize
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function init($id) {
-            $this->id  = (int)$id;
+            $this->id = (int) $id;
 
             $sth = $this->app->db->con->prepare(
                 'SELECT * FROM `' . $this->app->db->prefix . 'groups` WHERE id = :id'
@@ -108,7 +108,7 @@ namespace Framework\Object\Group {
          */
         public static function getInstance($id) {
             /* TODO: Implement caching here */
-            if (!isset(self::$instance[$id])) {
+            if(!isset(self::$instance[$id])) {
                 self::$instance[$id] = new self();
                 self::$instance[$id]->init($id);
             }
@@ -136,8 +136,8 @@ namespace Framework\Object\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function permission_exists($permissions) {
-            foreach ($permissions as $permission) {
-                if (array_key_exists($permission, $this->permissions)) {
+            foreach($permissions as $permission) {
+                if(array_key_exists($permission, $this->permissions)) {
                     return true;
                 }
             }
@@ -152,7 +152,7 @@ namespace Framework\Object\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function create() {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'INSERT INTO `' . $this->app->db->prefix . 'groups` (`name`, `desc`) VALUES
@@ -197,7 +197,7 @@ namespace Framework\Object\Group {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function update() {
-            switch ($this->app->db->getType()) {
+            switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
                         'UPDATE `' . $this->app->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
@@ -239,10 +239,10 @@ namespace Framework\Object\Group {
         public function unserialize($serialized) {
             $plain = json_decode($serialized, true);
 
-            $this->id         = $plain['id'];
-            $this->name       = $plain['name'];
-            $this->desc       = $plain['desc'];
-            $this->permission = $plain['permission'];
+            $this->id          = $plain['id'];
+            $this->name        = $plain['name'];
+            $this->desc        = $plain['desc'];
+            $this->permissions = $plain['permission'];
         }
     }
 }
