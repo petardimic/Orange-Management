@@ -14,28 +14,17 @@
             <i class="fa fa-plus max vh"></i>
     <tr>
         <?php
-        \Framework\Model\Model::generate_table_header_view(
-            [
-                ['name' => $this->app->user->localization->lang[7]['Type'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[7]['Title'], 'sort' => 1, 'full' => true],
-                ['name' => $this->app->user->localization->lang[7]['Author'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[7]['Date'], 'sort' => 0],
-            ]
-        );
+        \Framework\Model\Model::generate_table_header_view([['name' => $this->app->user->localization->lang[7]['Type'], 'sort' => 1], ['name' => $this->app->user->localization->lang[7]['Title'], 'sort' => 1, 'full' => true], ['name' => $this->app->user->localization->lang[7]['Author'], 'sort' => 0], ['name' => $this->app->user->localization->lang[7]['Date'], 'sort' => 0],]);
         ?>
         <tbody>
         <?php
-        /** @var \Framework\Object\User\Users $accounts */
-                $data = $newsList->getList();
-                $url['level'] = array_slice($this->app->request->request, 0, 4);
-                $url['level'][] = 'single';
-                $url['id'] = 'NewsID';
+        /** @var \Modules\News\NewsList $newsList */
+        $data           = $newsList->getList();
+        $url['level']   = array_slice($this->app->request->request, 0, 3);
+        $url['level'][] = 'single';
+        $url['id']      = 'NewsID';
 
-                \Framework\Model\Model::generate_table_content_view(
-                    $data['list'],
-                    ['type', 'title', 'name1', 'created'],
-                    $url
-                );
+        \Framework\Model\Model::generate_table_content_view($data['list'], ['type', 'title', 'name1', 'created'], $url);
         ?>
         <tfoot>
     <tr>

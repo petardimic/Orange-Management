@@ -31,7 +31,7 @@ namespace Modules\News {
 
                     // SQL_CALC_FOUND_ROWS
                     $sth = $this->db->con->prepare(
-                        'SELECT
+                        'SELECT DISTINCT
                             `' . $this->db->prefix . 'news`.*,
                             `' . $this->db->prefix . 'accounts_data`.`name1`,
                             `' . $this->db->prefix . 'accounts_data`.`name2`,
