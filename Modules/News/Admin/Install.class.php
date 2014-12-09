@@ -30,7 +30,7 @@ namespace Modules\News\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `NewsID` int(11) NOT NULL AUTO_INCREMENT,
                             `title` varchar(250) NOT NULL,
                             `featured` tinyint(1) DEFAULT NULL,
                             `content` text NOT NULL,
@@ -42,7 +42,7 @@ namespace Modules\News\Admin {
                             `author` int(11) NOT NULL,
                             `last_changed` datetime NOT NULL,
                             `last_change` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`NewsID`),
                             KEY `author` (`author`, `last_change`),
                             KEY `last_change` (`last_change`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'

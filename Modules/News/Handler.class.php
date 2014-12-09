@@ -249,10 +249,14 @@ namespace Modules\News {
         public function show_content_backend() {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
+                    $newsList = new \Modules\News\NewsList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-dashboard.tpl.php';
                     break;
                 case 'archive':
+                    $newsList = new \Modules\News\NewsList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-archive.tpl.php';
                     break;

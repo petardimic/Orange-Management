@@ -9,6 +9,15 @@
     </h1>
 
     <div class="bc-1">
+        <?php $list = $newsList->getList(); ?>
+        <table>
+            <?php for($i = 0; $i < 10; $i++) { ?>
+            <tr>
+                <td class="full"><?= $list['list'][$i]['title']; ?>
+                <td><?= $list['list'][$i]['name1']; ?>
+                <td class="nowrap"><?= $list['list'][$i]['created']; ?>
+            <?php } ?>
+        </table>
     </div>
 </div>
 
@@ -20,5 +29,13 @@
     </h1>
 
     <div class="bc-1">
+        <table>
+            <?php for($i = 0; $i < 10; $i++) { ?>
+            <tr>
+                <td class="full"><?= $list['list'][$i]['title']; ?>
+                <td><?= $list['list'][$i]['name1']; ?>
+                <td class="nowrap"><?= $list['list'][$i]['created']; ?>
+            <?php } ?>
+        </table>
     </div>
 </div>
