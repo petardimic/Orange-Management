@@ -129,9 +129,9 @@ namespace Modules\Admin {
                 case 'module':
                     $this->show_backend_module();
                     break;
-                default:
-                    return false;
             }
+
+            return false;
         }
 
         /**

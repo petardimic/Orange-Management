@@ -121,7 +121,7 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function get_locals() {
+        public static function getLocals() {
             if(!isset(self::$locals)) {
                 include_once __DIR__ . '/Localization.array.php';
 

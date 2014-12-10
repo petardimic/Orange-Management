@@ -31,12 +31,14 @@ namespace Framework\Uri {
          * {@inheritdoc}
          */
         public static function create($data, $query = null) {
+            return null;
         }
 
         /**
          * {@inheritdoc}
          */
         public static function isValid($uri) {
+            return true;
         }
 
         /**

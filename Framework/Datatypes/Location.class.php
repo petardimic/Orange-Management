@@ -16,16 +16,52 @@ namespace Framework\Datatypes {
      * @since      1.0.0
      */
     class Location {
+        /**
+         * Zip or postal
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $postal = null;
 
+        /**
+         * Name of city
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $city = null;
 
+        /**
+         * Name of the country
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $country = null;
 
+        /**
+         * Street & district
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $address = null;
 
+        /**
+         * State
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $state = null;
 
-        public $geo_coord = null;
+        /**
+         * Geo coordinates
+         *
+         * @var float[]
+         * @since 1.0.0
+         */
+        public $geo= null;
     }
 }

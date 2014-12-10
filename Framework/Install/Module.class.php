@@ -74,7 +74,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install_providing(&$db, $path, $id) {
+        public static function installProviding(&$db, $path, $id) {
             $install = json_decode(file_get_contents($path), true);
             $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
@@ -83,7 +83,7 @@ namespace Framework\Install {
             /**
              * @var \Framework\Module\ModuleAbstract $class
              */
-            $class::install_external($db, $install);
+            $class::installExternal($db, $install);
         }
 
         /**
@@ -95,7 +95,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install_external(&$db, $data) {
+        public static function installExternal(&$db, $data) {
         }
 
         /**
@@ -155,7 +155,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function delete_account($id) {
+        public static function deleteAccount($id) {
         }
 
         /**
@@ -168,7 +168,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function delete_module($id) {
+        public static function deleteModule($id) {
         }
     }
 }

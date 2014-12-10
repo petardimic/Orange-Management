@@ -16,9 +16,28 @@ namespace Framework\Datatypes {
      * @since      1.0.0
      */
     class Address {
-        public $id = null;
+        /**
+         * Name of the receiver
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $name = null;
+
+        /**
+         * Sub of the address
+         *
+         * @var string
+         * @since 1.0.0
+         */
         public $sub = null;
+
+        /**
+         * Location
+         *
+         * @var \Framework\Datatypes\Location
+         * @since 1.0.0
+         */
         public $location = null;
     }
 }

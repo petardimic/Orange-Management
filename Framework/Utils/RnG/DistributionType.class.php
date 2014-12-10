@@ -17,5 +17,6 @@ namespace Framework\Utils\RnG {
      */
     abstract class DistributionType extends \Framework\Datatypes\Enum {
         const UNIFORM = 0;
+        const NORMAL = 1;
     }
 }

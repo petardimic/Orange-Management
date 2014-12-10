@@ -42,7 +42,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function install_core() {
+        public function installCore() {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
@@ -246,7 +246,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function install_core_modules($modules) {
+        public function installModules($modules) {
             foreach($modules as $module) {
                 /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
                 \Framework\Install\Module::install($this->db, $module);
@@ -259,7 +259,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function install_groups() {
+        public function installGroups() {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
@@ -284,7 +284,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function install_users() {
+        public function installUsers() {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch($this->db->getType()) {
@@ -317,7 +317,7 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function install_settings() {
+        public function installSettings() {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();

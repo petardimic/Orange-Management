@@ -41,11 +41,11 @@ $toInstall = [
     'ResearchDevelopment',
 ];
 
-$instHOBJ->install_core();
-$instHOBJ->install_core_modules($toInstall);
-$instHOBJ->install_groups();
-$instHOBJ->install_users(); /* TODO: create user 1 = Guest -> 2 = Admin */
-$instHOBJ->install_settings();
+$instHOBJ->installCore();
+$instHOBJ->installModules($toInstall);
+$instHOBJ->installGroups();
+$instHOBJ->installUsers(); /* TODO: create user 1 = Guest -> 2 = Admin */
+$instHOBJ->installSettings();
 
 $toDummy = [
     'Media',
