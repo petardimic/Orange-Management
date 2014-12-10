@@ -254,6 +254,13 @@ namespace Modules\News {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-dashboard.tpl.php';
                     break;
+                case 'single':
+                    $article = new \Modules\News\Article($this->app->db);
+                    $article->init($this->app->request->request['id']);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-single.tpl.php';
+                    break;
                 case 'archive':
                     $newsList = new \Modules\News\NewsList($this->app->db);
 

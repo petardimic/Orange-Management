@@ -1,12 +1,12 @@
 <?php
-namespace Modules\News {
+namespace Modules\Media {
     /**
-     * News article class
+     * Media class
      *
      * PHP Version 5.4
      *
-     * @category   Module
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Media
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,20 +15,25 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Article implements \Framework\Object\ObjectInterface {
+    class Media implements \Framework\Object\ObjectInterface {
         private $db = null;
         private $id = 0;
-        private $title = '';
-        private $content = '';
-        private $plain = '';
-        private $type = null;
-        private $lang = 'en';
-        private $publish = null;
-        private $created = null;
+        private $name = '';
+        private $extension = null;
+        private $size = 0;
         private $author = 0;
+        private $created = null;
+        private $permissions = ['visibile' => ['groups' => [],
+                                               'users'  => []],
+                                'editable' => ['groups' => [],
+                                               'users'  => []]];
 
         public function __construct($db) {
             $this->db = $db;
+        }
+
+        public function getID() {
+            return $this->id;
         }
 
         public function init($id) {
@@ -37,10 +42,10 @@ namespace Modules\News {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->db->con->prepare('SELECT
-                            `' . $this->db->prefix . 'news`.*
+                            `' . $this->db->prefix . 'media`.*
                         FROM
-                            `' . $this->db->prefix . 'news`
-                       WHERE `' . $this->db->prefix . 'news`.`NewsID` = :id');
+                            `' . $this->db->prefix . 'media`
+                       WHERE `' . $this->db->prefix . 'media`.`MediaID` = :id');
 
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                     $sth->execute();
@@ -49,14 +54,11 @@ namespace Modules\News {
                     break;
             }
 
-            $this->title   = $data['title'];
-            $this->author  = $data['author'];
-            $this->content = $data['content'];
-            $this->plain   = $data['plain'];
-            $this->type    = $data['type'];
-            $this->lang    = $data['lang'];
-            $this->publish = new \DateTime($data['publish']);
-            $this->created = new \DateTime($data['created']);
+            $this->name      = $data['name'];
+            $this->extension = $data['type'];
+            $this->author    = $data['creator'];
+            $this->created   = new \DateTime($data['created']);
+            $this->size      = $data['size'];
         }
 
         /**
@@ -70,16 +72,6 @@ namespace Modules\News {
         }
 
         /**
-         * @return string
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getContent() {
-            return $this->content;
-        }
-
-        /**
          * @return null
          *
          * @since  1.0.0
@@ -90,63 +82,33 @@ namespace Modules\News {
         }
 
         /**
+         * @return null
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getExtension() {
+            return $this->extension;
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getName() {
+            return $this->name;
+        }
+
+        /**
          * @return int
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
-            return $this->id;
-        }
-
-        /**
-         * @return string
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getLanguage() {
-            return $this->lang;
-        }
-
-        /**
-         * @return string
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getPlain() {
-            return $this->plain;
-        }
-
-        /**
-         * @return null
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getPublish() {
-            return $this->publish;
-        }
-
-        /**
-         * @return string
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getTitle() {
-            return $this->title;
-        }
-
-        /**
-         * @return null
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getType() {
-            return $this->type;
+        public function getSize() {
+            return $this->size;
         }
 
         /**

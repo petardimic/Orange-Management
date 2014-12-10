@@ -84,6 +84,9 @@ namespace Modules\Media {
         public function show_content_backend() {
             switch($this->app->request->request['l3']) {
                 case 'single':
+                    $media = new \Modules\Media\Media($this->app->db);
+                    $media->init($this->app->request->request['id']);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-single.tpl.php';
                     break;
