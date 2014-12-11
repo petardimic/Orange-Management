@@ -24,8 +24,8 @@
         ?>
         <tbody>
         <?php
-        /** @var \Framework\Object\User\Users $accounts */
-        $data           = $accounts->account_list_get();
+        /** @var \Modules\Admin\UserList $accounts */
+        $data           = $accounts->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['id']      = 'id';

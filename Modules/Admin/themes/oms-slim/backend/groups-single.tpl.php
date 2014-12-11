@@ -1,4 +1,8 @@
-<?php /** @var \Modules\Admin\Handler $this */
+<?php
+/**
+ * @var \Modules\Admin\Handler $this
+ * @var \Framework\Object\Group\Group $group
+ */
 /** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
 
@@ -74,8 +78,8 @@
         ?>
         <tbody>
         <?php
-        /** @var \Framework\Object\User\Users $accounts */
-        $data           = $accounts->account_list_get();
+        /** @var \Modules\Admin\UserList $accounts */
+        $data           = $accounts->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['id']      = 'id';
