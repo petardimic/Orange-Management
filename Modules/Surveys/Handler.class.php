@@ -39,14 +39,14 @@ namespace Modules\Surveys {
         /**
          * Constructor
          *
-         * @param string                    $theme_path
+         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -93,11 +93,11 @@ namespace Modules\Surveys {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/surveys-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-dashboard.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/surveys-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-create.tpl.php';
                     break;
             }
         }

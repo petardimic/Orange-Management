@@ -1,4 +1,4 @@
-<?php $locals = \Framework\Localization\Localization::get_locals(); ?>
+<?php $locals = \Framework\Localization\Localization::getLocals(); ?>
 <div class="b b-1 c1-1 c1" id="i1-1-1">
     <h1>
         <?php

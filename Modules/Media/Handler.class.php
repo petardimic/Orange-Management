@@ -39,8 +39,8 @@ namespace Modules\Media {
         /**
          * Constructor
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -88,7 +88,7 @@ namespace Modules\Media {
                     $media->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-single.tpl.php';
                     break;
                 case 'list':
                     if(!isset($this->app->request->request['page'])) {
@@ -98,7 +98,7 @@ namespace Modules\Media {
                     $mList = new \Modules\Media\MediaList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/media-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-list.tpl.php';
                     break;
             }
         }

@@ -43,22 +43,22 @@ namespace Framework\Module {
         /**
          * Constructor
          *
-         * @param \Framework\ApplicationAbstract $app Application instance
-         * @param string $theme Theme name/path
+         * @param \Framework\ApplicationAbstract $app   Application instance
+         * @param string                         $theme Theme name/path
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
         public function __construct($app, $theme) {
-            $this->app = $app;
-            $this->theme_path = $theme;
+            $this->app       = $app;
+            $this->themePath = $theme;
         }
 
         /**
          * {@inheritdoc}
          */
         public function callPull() {
-            foreach ($this->receiving as $mid) {
+            foreach($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */
                 \Framework\Module\ModuleFactory::$loaded[$mid]->callPush();
             }

@@ -39,14 +39,14 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param string                    $theme_path
+         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -252,24 +252,24 @@ namespace Modules\News {
                     $newsList = new \Modules\News\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-dashboard.tpl.php';
                     break;
                 case 'single':
                     $article = new \Modules\News\Article($this->app->db);
                     $article->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-single.tpl.php';
                     break;
                 case 'archive':
                     $newsList = new \Modules\News\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-archive.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-archive.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/news-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-create.tpl.php';
                     break;
             }
         }

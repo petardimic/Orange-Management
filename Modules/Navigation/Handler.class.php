@@ -84,13 +84,13 @@ namespace Modules\Navigation {
         /**
          * Constructor
          *
-         * @param string $theme_path
+         * @param string $themePath
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
 
             if(!$this->nav) {
                 $temp_nav  = null;
@@ -149,19 +149,19 @@ namespace Modules\Navigation {
             switch($data[0]) {
                 case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/top.tpl.php';
+                    require __DIR__ . '/themes/' . $this->themePath . '/' . $this->app->request->getType() . '/top.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::SIDE:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/side.tpl.php';
+                    require __DIR__ . '/themes/' . $this->themePath . '/' . $this->app->request->getType() . '/side.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::CONTENT:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/mid.tpl.php';
+                    require __DIR__ . '/themes/' . $this->themePath . '/' . $this->app->request->getType() . '/mid.tpl.php';
                     break;
                 case \Modules\Navigation\NavigationType::CONTENT_SIDE:
                     /** @noinspection PhpIncludeInspection */
-                    require __DIR__ . '/themes/' . $this->theme_path . '/' . $this->app->request->getType() . '/mid-side.tpl.php';
+                    require __DIR__ . '/themes/' . $this->themePath . '/' . $this->app->request->getType() . '/mid-side.tpl.php';
                     break;
             }
         }

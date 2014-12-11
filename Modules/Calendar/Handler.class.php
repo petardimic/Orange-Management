@@ -39,14 +39,14 @@ namespace Modules\Calendar {
         /**
          * Constructor
          *
-         * @param string                    $theme_path
+         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -93,7 +93,7 @@ namespace Modules\Calendar {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/calendar-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/calendar-dashboard.tpl.php';
                     break;
             }
         }

@@ -1,4 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */
+
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000103001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
@@ -26,8 +27,8 @@
         ?>
         <tbody>
         <?php
-        /** @var \Framework\DataStorage\Database\Objects\Group\Groups $groups */
-        $data           = $groups->group_list_get();
+        /** @var \Modules\Admin\GroupList $groups */
+        $data           = $groups->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';

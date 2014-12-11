@@ -39,14 +39,14 @@ namespace Modules\Warehousing {
         /**
          * Constructor
          *
-         * @param string                    $theme_path
+         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -117,7 +117,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
             }
         }
@@ -132,7 +132,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/shipping-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/shipping-list.tpl.php';
                     break;
             }
         }
@@ -147,7 +147,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/arrival-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/arrival-list.tpl.php';
                     break;
             }
         }

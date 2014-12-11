@@ -84,13 +84,13 @@ namespace OMS\Modules {
         /**
          * Initializes object
          *
-         * @param string $theme_path
+         * @param string $themePath
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($theme_path) {
-            $this->theme_path = $theme_path;
+        public function init($themePath) {
+            $this->themePath = $themePath;
         }
 
         public function markdown($text) {
