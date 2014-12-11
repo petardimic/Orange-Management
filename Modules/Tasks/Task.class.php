@@ -51,11 +51,11 @@ namespace Modules\Tasks {
             $this->id = $id;
         }
 
-        public function add_element($element) {
+        public function addElement($element) {
             $this->task_elements[] = $element;
         }
 
-        public function remove_element($id) {
+        public function removeElement($id) {
             if(array_key_exists($id, $this->task_elements)) {
                 unset($this->task_elements[$id]);
             }

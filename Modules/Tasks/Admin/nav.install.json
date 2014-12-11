@@ -19,10 +19,10 @@
         "children": [
             {
                 "id": 1001102001,
-                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "pid": "43ec7cda8be033d7b20996708a2fca644e5dde86",
                 "type": 3,
                 "subtype": 1,
-                "name": "Front",
+                "name": "Tasks",
                 "l0": "backend",
                 "l1": "task",
                 "l2": "dashboard",
@@ -33,12 +33,32 @@
                 "order": 1,
                 "from": 1001100000,
                 "permission": null,
-                "parent": 0,
-                "children": []
+                "parent": 1001101001,
+                "children": [
+                    {
+                        "id": 1001105001,
+                        "pid": "43ec7cda8be033d7b20996708a2fca644e5dde86",
+                        "type": 0,
+                        "subtype": 1,
+                        "name": "Tasks",
+                        "l0": "backend",
+                        "l1": "task",
+                        "l2": "single",
+                        "l3": null,
+                        "l4": null,
+                        "l5": null,
+                        "icon": null,
+                        "order": 1,
+                        "from": 1001100000,
+                        "permission": null,
+                        "parent": 1001102001,
+                        "children": []
+                    }
+                ]
             },
             {
                 "id": 1001103001,
-                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "pid": "43ec7cda8be033d7b20996708a2fca644e5dde86",
                 "type": 3,
                 "subtype": 1,
                 "name": "Create",
@@ -49,15 +69,15 @@
                 "l4": null,
                 "l5": null,
                 "icon": null,
-                "order": 1,
+                "order": 10,
                 "from": 1001100000,
                 "permission": null,
-                "parent": 0,
+                "parent": 1001101001,
                 "children": []
             },
             {
                 "id": 1001104001,
-                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "pid": "43ec7cda8be033d7b20996708a2fca644e5dde86",
                 "type": 3,
                 "subtype": 1,
                 "name": "Analysis",
@@ -68,10 +88,10 @@
                 "l4": null,
                 "l5": null,
                 "icon": null,
-                "order": 1,
+                "order": 5,
                 "from": 1001100000,
                 "permission": null,
-                "parent": 0,
+                "parent": 1001101001,
                 "children": []
             }
         ]

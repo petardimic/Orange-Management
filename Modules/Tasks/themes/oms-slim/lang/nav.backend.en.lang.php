@@ -1,4 +1,4 @@
 <?php
-$MODLANG[5] = [
-    "Tasks" => "Tasks",
-];
+$MODLANG[5] = ["Analysis" => "Analysis",
+               "Create"   => "Create",
+               "Tasks"    => "Tasks",];

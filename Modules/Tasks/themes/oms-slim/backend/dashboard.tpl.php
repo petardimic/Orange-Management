@@ -1,4 +1,6 @@
 <?php /** @var \Modules\Tasks\Handler $this */
+/** @noinspection PhpUndefinedMethodInspection */
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1001101001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">
@@ -83,8 +85,8 @@
         <?php
         /** @var \Modules\Tasks\TaskList $tasks */
         $data = $tasks->getList();
-        $url['level'] = array_slice($this->app->request->request, 0, 4);
-        $url['level'][] = 'front';
+        $url['level'] = array_slice($this->app->request->request, 0, 3);
+        $url['level'][] = 'single';
         $url['id'] = 'TaskID';
 
         \Framework\Model\Model::generate_table_content_view(
