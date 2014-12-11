@@ -59,7 +59,7 @@
     <table class="t t-1 c11-1 c11" id="i11-1-1">
         <thead>
         <tr>
-            <th colspan="7" class="lT">
+            <th colspan="5" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
                 <h1><?= $this->app->user->localization->lang[11]['Tasks']; ?></h1>
@@ -73,27 +73,25 @@
                             ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
                             ['name' => $this->app->user->localization->lang[11]['Priority'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[11]['Title'], 'sort' => 0, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[11]['Receiver'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[11]['Group'], 'sort' => 0],
+                            ['name' => $this->app->user->localization->lang[11]['Status'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[11]['Creator'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[11]['Created'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[11]['Due'], 'sort' => 0],
                         ]
                     );
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Module\Modules $modules */ /*
-        $modules_installed = $this->app->modules->module_list_installed_get();
+        /** @var \Modules\Tasks\TaskList $tasks */
+        $data = $tasks->getList();
         $url['level'] = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'front';
-        $url['id'] = 'class';
+        $url['id'] = 'TaskID';
 
         \Framework\Model\Model::generate_table_content_view(
-            $modules_installed['list'],
-            ['id', 'name', 'theme', 'version'],
+            $data['list'],
+            ['TaskID', 'due', 'title', 'status', 'creator', 'created'],
             $url
-        );*/
+        );
         ?>
     </table>
 </div>

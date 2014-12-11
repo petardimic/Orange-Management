@@ -17,6 +17,7 @@ $MODLANG[11] = [
     "Receiver"           => "Receiver",
     "Redirected"         => "Redirected",
     "Statistics"         => "Statistics",
+    "Status"             => "Status",
     "Task"               => "Task",
     "Tasks"              => "Tasks",
     "Title"              => "Title",

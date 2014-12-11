@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Profile {
+namespace Modules\Tasks {
     /**
-     * Profile class
+     * Task list class
      *
      * PHP Version 5.4
      *
      * @category   Modules
-     * @package    Profile
+     * @package    Tasks
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\Profile {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ProfileList {
+    class TaskList {
         /**
          * Database instance
          *
@@ -59,15 +59,13 @@ namespace Modules\Profile {
 
                     $sth = $this->db->con->prepare(
                         'SELECT
-                            `' . $this->db->prefix . 'accounts`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->db->prefix . 'tasks`.*, `' . $this->db->prefix . 'tasks_element`.`forwarded`
                         FROM
-                            `' . $this->db->prefix . 'accounts`
-                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
-                        ON `' . $this->db->prefix . 'accounts`.`id` = `' . $this->db->prefix . 'accounts_data`.`account`
-                        GROUP BY `' . $this->db->prefix . 'accounts`.`id` '
+                            `' . $this->db->prefix . 'tasks`
+                        LEFT JOIN `' . $this->db->prefix . 'tasks_element`
+                        ON `' . $this->db->prefix . 'tasks`.`TaskID` = `' . $this->db->prefix . 'tasks_element`.`task`
+                        AND `' . $this->db->prefix . 'tasks_element`.`forwarded` = 1
+                        GROUP BY `' . $this->db->prefix . 'tasks`.`TaskID` '
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();

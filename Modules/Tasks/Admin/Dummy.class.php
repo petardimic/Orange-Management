@@ -34,7 +34,7 @@ namespace Modules\Tasks\Admin {
             $db->con->beginTransaction();
 
             for($i = 0; $i < $amount; $i++) {
-                $dataString = " ('" . $titleGenerator->generateText(rand(3, 7)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', " . rand(0, 3) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
+                $dataString = " ('" . $titleGenerator->generateText(rand(3, 15)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', " . rand(0, 3) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
                 $db->con->prepare('INSERT INTO `' . $db->prefix . 'tasks` (`title`, `desc`, `plain`, `status`, `due`, `done`, `creator`, `created`) VALUES ' . $dataString)->execute();
 
                 $max = rand(0, 5);

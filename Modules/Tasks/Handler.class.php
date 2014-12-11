@@ -92,6 +92,8 @@ namespace Modules\Tasks {
         public function show_content_backend() {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
+                    $tasks = new \Modules\Tasks\TaskList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/dashboard.tpl.php';
                     break;
