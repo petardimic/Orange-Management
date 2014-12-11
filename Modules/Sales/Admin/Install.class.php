@@ -30,10 +30,10 @@ namespace Modules\Sales\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'clients` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `ClientID` int(11) NOT NULL AUTO_INCREMENT,
                             `matchcode` varchar(50) DEFAULT NULL,
                             `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`ClientID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -45,14 +45,14 @@ namespace Modules\Sales\Admin {
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
                             `matchcode` varchar(50) DEFAULT NULL,
                             `class` tinyint(3) DEFAULT NULL,
                             `group` tinyint(3) DEFAULT NULL,
                             `subgroup` tinyint(3) DEFAULT NULL,
                             `article` tinyint(3) DEFAULT NULL,
                             KEY `article` (`article`),
-                            PRIMARY KEY (`id`)
+                            PRIMARY KEY (`SalesArticleID`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
@@ -136,7 +136,7 @@ namespace Modules\Sales\Admin {
                     break;
             }
 
-            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
+            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

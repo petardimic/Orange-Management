@@ -100,7 +100,7 @@ namespace Modules\Profile\Admin {
                     break;
             }
 
-            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
+            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }

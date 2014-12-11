@@ -5,8 +5,8 @@ namespace Modules\Tasks\Admin {
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Module
+     * @package    Tasks
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -28,11 +28,57 @@ namespace Modules\Tasks\Admin {
         public static function install(&$db, $info) {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    $db->con->beginTransaction();
 
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks` (
+                            `TaskID` int(11) NOT NULL AUTO_INCREMENT,
+                            `title` varchar(30) DEFAULT NULL,
+                            `desc` varchar(255) NOT NULL,
+                            `status` tinyint(3) NOT NULL,
+                            `due` datetime NOT NULL,
+                            `done` datetime NOT NULL,
+                            `creator` int(11) NOT NULL,
+                            `created` datetime NOT NULL,
+                            PRIMARY KEY (`ClientID`),
+                            KEY `creator` (`creator`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'tasks`
+                            ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks_element` (
+                            `TaskelementID` int(11) NOT NULL AUTO_INCREMENT,
+                            `desc` text NOT NULL,
+                            `task` int(11) NOT NULL,
+                            `creator` int(11) NOT NULL,
+                            `status` tinyint(3) NOT NULL,
+                            `priority` datetime NOT NULL,
+                            `forwarded` int(11) NOT NULL,
+                            `created` datetime NOT NULL,
+                            PRIMARY KEY (`ClientID`),
+                            KEY `task` (`task`),
+                            KEY `creator` (`creator`),
+                            KEY `forwarded` (`forwarded`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'tasks_element`
+                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`task`) REFERENCES `' . $db->prefix . 'tasks` (`TaskID`),
+                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`forwarded`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->commit();
                     break;
             }
 
-            parent::install_providing($db, __DIR__ . '/nav.install.json', 'Navigation');
+            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
 }
