@@ -1,6 +1,6 @@
 <div class="b b-5 c7-1 c7" id="i7-1-1">
     <h1>
-        <?= $article->getTitle(); ?>
+        <?= /** @var \Modules\News\Article $article */ $article->getTitle(); ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>

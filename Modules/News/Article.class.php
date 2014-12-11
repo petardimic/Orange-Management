@@ -16,23 +16,109 @@ namespace Modules\News {
      * @since      1.0.0
      */
     class Article implements \Framework\Object\ObjectInterface {
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
         private $db = null;
+
+        /**
+         * Article ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $id = 0;
+
+        /**
+         * Title
+         *
+         * @var string
+         * @since 1.0.0
+         */
         private $title = '';
+
+        /**
+         * Content
+         *
+         * @var string
+         * @since 1.0.0
+         */
         private $content = '';
+
+        /**
+         * Plain
+         *
+         * @var string
+         * @since 1.0.0
+         */
         private $plain = '';
+
+        /**
+         * News type
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $type = null;
+
+        /**
+         * Language
+         *
+         * @var string
+         * @since 1.0.0
+         */
         private $lang = 'en';
+
+        /**
+         * Published
+         *
+         * @var \DateTime
+         * @since 1.0.0
+         */
         private $publish = null;
+
+        /**
+         * Created
+         *
+         * @var \DateTime
+         * @since 1.0.0
+         */
         private $created = null;
+
+        /**
+         * Author
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $author = 0;
 
+        /**
+         * Constructor
+         *
+         * @param \Framework\DataStorage\Database\Database $db Database instance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($db) {
             $this->db = $db;
         }
 
+        /**
+         * Init article
+         *
+         * @param int $id Article ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function init($id) {
             $this->id = $id;
+            $data = null;
 
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:

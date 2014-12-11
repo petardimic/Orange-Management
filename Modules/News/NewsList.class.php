@@ -16,12 +16,40 @@ namespace Modules\News {
      * @since      1.0.0
      */
     class NewsList {
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
         private $db = null;
 
+        /**
+         * Constructor
+         *
+         * @param \Framework\DataStorage\Database\Database $db Database instance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($db) {
             $this->db = $db;
         }
 
+        /**
+         * Get all news
+         *
+         * This function gets all accounts in a range
+         *
+         * @param array $filter Filter for search results
+         * @param int   $offset Offset for first account
+         * @param int   $limit  Limit for results
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getList($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 

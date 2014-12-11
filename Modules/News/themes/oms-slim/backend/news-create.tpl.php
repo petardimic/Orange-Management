@@ -1,4 +1,5 @@
 <?php /** @var \Modules\Media\Handler $this */
+/** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000701001]); ?>
 
 <?php /** @var \Modules\Tasks\Handler $this */
