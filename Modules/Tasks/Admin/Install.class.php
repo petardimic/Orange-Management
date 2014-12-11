@@ -34,7 +34,8 @@ namespace Modules\Tasks\Admin {
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks` (
                             `TaskID` int(11) NOT NULL AUTO_INCREMENT,
                             `title` varchar(30) DEFAULT NULL,
-                            `desc` varchar(255) NOT NULL,
+                            `desc` text NOT NULL,
+                            `plain` text NOT NULL,
                             `status` tinyint(3) NOT NULL,
                             `due` datetime NOT NULL,
                             `done` datetime NOT NULL,
@@ -54,10 +55,11 @@ namespace Modules\Tasks\Admin {
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks_element` (
                             `TaskelementID` int(11) NOT NULL AUTO_INCREMENT,
                             `desc` text NOT NULL,
+                            `plain` text NOT NULL,
                             `task` int(11) NOT NULL,
                             `creator` int(11) NOT NULL,
                             `status` tinyint(3) NOT NULL,
-                            `priority` datetime NOT NULL,
+                            `due` datetime NOT NULL,
                             `forwarded` int(11) NOT NULL,
                             `created` datetime NOT NULL,
                             PRIMARY KEY (`TaskelementID`),

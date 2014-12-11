@@ -26,6 +26,25 @@ namespace Modules\Tasks\Admin {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public static function generate($db, $amount) {
+            $textGenerator = new \Framework\Utils\RnG\Text();
+            $textGenerator->setParagraphs(true);
+
+            $titleGenerator = new \Framework\Utils\RnG\Text();
+
+            $db->con->beginTransaction();
+
+            for($i = 0; $i < $amount; $i++) {
+                $dataString = " ('" . $titleGenerator->generateText(rand(3, 7)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', '" . $textGenerator->generateText(rand(20, 200)) . "', " . rand(0, 3) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
+                $db->con->prepare('INSERT INTO `' . $db->prefix . 'tasks` (`title`, `desc`, `plain`, `status`, `due`, `done`, `creator`, `created`) VALUES ' . $dataString)->execute();
+
+                $max = rand(0, 5);
+                for($c = 0; $c < $max; $c++) {
+                    $dataString = " ('" . $textGenerator->generateText(rand(20, 200)) . "','" . $textGenerator->generateText(rand(20, 200)) . "', " . ($i + 1) . ", 1, " . rand(0, 3) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
+                    $db->con->prepare('INSERT INTO `' . $db->prefix . 'tasks_element` (`desc`, `plain`, `task`, `creator`, `status`, `due`, `forwarded`, `created`) VALUES ' . $dataString)->execute();
+                }
+            }
+
+            $db->con->commit();
         }
     }
 }

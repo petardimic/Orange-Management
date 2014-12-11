@@ -49,6 +49,7 @@ $instHOBJ->installSettings();
 
 $toDummy = [
     'Media',
-    'News'
+    'News',
+    'Tasks',
 ];
 $instHOBJ->installDummy($toDummy);
