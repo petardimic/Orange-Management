@@ -38,7 +38,7 @@ namespace Framework\Module {
          * @var string
          * @since 1.0.0
          */
-        protected $theme_path = null;
+        protected $themePath = null;
 
         /**
          * Constructor

@@ -39,14 +39,14 @@ namespace Modules\Admin {
         /**
          * Constructor
          *
-         * @param string                    $theme_path
+         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $theme_path) {
-            parent::__construct($app, $theme_path);
+        public function __construct($app, $themePath) {
+            parent::__construct($app, $themePath);
         }
 
         /**
@@ -74,34 +74,6 @@ namespace Modules\Admin {
         }
 
         /**
-         * Activate module
-         *
-         * This function activates a inactive module
-         *
-         * @param int $id Account ID
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function module_active_set($id) {
-            \Framework\Module\ModuleAbstract::activate($this->db, $id);
-        }
-
-        /**
-         * Deactivate module
-         *
-         * This function deactivates a active module
-         *
-         * @param int $id Account ID
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function module_inactive_set($id) {
-            \Framework\Module\ModuleAbstract::deactivate($this->db, $id);
-        }
-
-        /**
          * Shows module content
          *
          * @since  1.0.0
@@ -110,24 +82,30 @@ namespace Modules\Admin {
         public function callWeb() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend() {
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'account':
-                    $this->show_backend_account();
+                    $this->showBackendAccount();
                     break;
                 case 'group':
-                    $this->show_backend_group();
+                    $this->showBackendGroup();
                     break;
                 case 'settings':
-                    $this->show_backend_settings();
+                    $this->showBackendSettings();
                     break;
                 case 'module':
-                    $this->show_backend_module();
+                    $this->showBackendModule();
                     break;
             }
 
@@ -142,7 +120,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_settings() {
+        public function showBackendSettings() {
             $this->app->settings->loadSettings([
                 1000000006,
                 1000000007,
@@ -168,7 +146,7 @@ namespace Modules\Admin {
                     \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/settings-general.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/settings-general.tpl.php';
                     break;
             }
         }
@@ -181,27 +159,27 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_account() {
+        public function showBackendAccount() {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Admin\Users($this->app);
+                    $accounts = new \Modules\Admin\UserList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/accounts-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_backend_account_single();
+                    $this->showBackendAccountSingle();
                     $this->callPull();
 
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/accounts-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-create.tpl.php';
                     break;
             }
         }
@@ -214,11 +192,11 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_account_single() {
+        public function showBackendAccountSingle() {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/accounts-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-single.tpl.php';
                     break;
             }
         }
@@ -231,7 +209,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_module() {
+        public function showBackendModule() {
             if(empty($this->app->request->request['l4'])) {
                 $this->app->request->request['l5'] = 'front';
             }
@@ -243,13 +221,13 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/modules-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/modules-list.tpl.php';
                     break;
                 case 'front':
-                    //$info = $this->app->modules->module_info_get((int)$this->app->request->request['id']);
+                    //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/modules-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/modules-single.tpl.php';
                     break;
             }
         }
@@ -262,25 +240,25 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_group() {
+        public function showBackendGroup() {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $groups = new \Modules\Admin\Groups($this->app);
+                    $groups = new \Modules\Admin\GroupList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/groups-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_backend_group_single();
+                    $this->showBackendGroupSingle();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/groups-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-create.tpl.php';
                     break;
             }
         }
@@ -293,21 +271,21 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_group_single() {
+        public function showBackendGroupSingle() {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Admin\Users($this->app);
+                    $accounts = new \Modules\Admin\UserList($this->app->db);
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $group = new \Framework\DataStorage\Database\Objects\Group\Group((int) $this->app->request->request['id'], $this->app);
+                    $group = new \Framework\Object\Group\Group((int) $this->app->request->request['id'], $this->app);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->theme_path . '/backend/groups-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-single.tpl.php';
                     break;
             }
         }
@@ -318,19 +296,19 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_api() {
+        public function showApi() {
             switch($this->app->request->request['l3']) {
                 case 'account':
-                    $this->api_account();
+                    $this->apiAccount();
                     break;
                 case 'group':
-                    $this->api_group();
+                    $this->apiGroup();
                     break;
                 case 'settings':
-                    $this->api_settings();
+                    $this->apiSettings();
                     break;
                 case 'module':
-                    $this->api_module();
+                    $this->apiModule();
                     break;
                 default:
                     return false;
@@ -345,17 +323,19 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_account() {
+        public function apiAccount() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
-                    $this->api_account_put();
+                    $this->apiPutAccount();
                     break;
                 case \Framework\Request\RequestType::DELETE:
-                    $this->api_account_delete();
+                    $this->apiDeleteAccount();
                     break;
                 case \Framework\Request\RequestType::POST:
+                    $this->apiPostAccount();
                     break;
                 case \Framework\Request\RequestType::GET:
+                    $this->apiGetAccount();
                     break;
                 default:
                     return false;
@@ -370,16 +350,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_account_put() {
-            $accounts = \Modules\Admin\Users::getInstance();
-
-            switch($this->app->request->request['l4']) {
-                case 'user':
-                    break;
-                default:
-                    $accounts->account_create($this->app->request->post['name'], $this->app->request->post['pass'], $this->app->request->post['email']);
-                    break;
-            }
+        public function apiPutAccount() {
         }
 
         /**
@@ -388,16 +359,25 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_account_delete() {
-            $accounts = \Modules\Admin\Users::getInstance();
+        public function apiDeleteAccount() {
+        }
 
-            switch($this->app->request->request['l4']) {
-                case 'user':
-                    break;
-                default:
-                    $accounts->account_delete((int) $this->app->request->post['id']);
-                    break;
-            }
+        /**
+         * Handle api account modification
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function apiPostAccount() {
+        }
+
+        /**
+         * Handle api account get
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function apiGetAccount() {
         }
 
         /**
@@ -406,18 +386,19 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_group() {
+        public function apiGroup() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
-                    $this->api_group_put();
+                    $this->apiPutGroup();
                     break;
                 case \Framework\Request\RequestType::DELETE:
-                    $this->api_group_delete();
+                    $this->apiDeleteGroup();
                     break;
                 case \Framework\Request\RequestType::POST:
-                    $this->api_group_post();
+                    $this->apiPostGroup();
                     break;
                 case \Framework\Request\RequestType::GET:
+                    $this->apiGetGroup();
                     break;
                 default:
                     return false;
@@ -432,16 +413,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_group_put() {
-            $groups = \Modules\Admin\Groups::getInstance();
-
-            switch($this->app->request->request['l4']) {
-                case 'user':
-                    break;
-                default:
-                    $groups->group_create($this->app->request->post['name'], $this->app->request->post['desc'], $this->app->request->post['perm']);
-                    break;
-            }
+        public function apiPutGroup() {
         }
 
         /**
@@ -450,16 +422,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_group_delete() {
-            $groups = \Modules\Admin\Groups::getInstance();
-
-            switch($this->app->request->request['l4']) {
-                case 'user':
-                    break;
-                default:
-                    $groups->group_edit((int) $this->app->request->post['id'], $this->app->request->post['name'], $this->app->request->post['desc']);
-                    break;
-            }
+        public function apiDeleteGroup() {
         }
 
         /**
@@ -468,16 +431,16 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_group_post() {
-            $groups = \Modules\Admin\Groups::getInstance();
+        public function apiPostGroup() {
+        }
 
-            switch($this->app->request->request['l4']) {
-                case 'user':
-                    break;
-                default:
-                    $groups->group_delete((int) $this->app->request->post['id']);
-                    break;
-            }
+        /**
+         * Handle api group get
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function apiGetGroup() {
         }
 
         /**
@@ -486,20 +449,20 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_settings() {
+        public function apiSettings() {
             $settings = \Framework\Config\Settings::getInstance();
 
             switch($this->app->request->request['l4']) {
                 case 'core':
-                    $settings->settings_set($this->app->request->post['settigns']);
+                    $settings->setSettings($this->app->request->request['settigns']);
 
-                    $json_ret = [
+                    $jsonRet = [
                         'type'   => 1,
                         'status' => 1,
                         'msg'    => $this->app->user->localization->lang[1]['i:SettingsSet']
                     ];
 
-                    echo json_encode($json_ret);
+                    echo json_encode($jsonRet);
                     break;
                 case 'modules':
                     break;
@@ -516,18 +479,18 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function api_module() {
+        public function apiModule() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
-                    \Framework\Install\Module::install($this->app->db, $this->app->request->data['id']);
+                    \Framework\Install\Module::install($this->app->db, $this->app->request->request['id']);
 
-                    $json_ret = [
+                    $jsonRet = [
                         'type'   => 1,
                         'status' => 1,
-                        'msg'    => str_replace('{$1}', $this->app->request->data['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
+                        'msg'    => str_replace('{$1}', $this->app->request->request['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
                     ];
 
-                    echo json_encode($json_ret);
+                    echo json_encode($jsonRet);
                     break;
                 case \Framework\Request\RequestType::DELETE:
                     echo '1';

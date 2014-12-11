@@ -5,6 +5,8 @@ namespace Framework\Request {
      *
      * PHP Version 5.4
      *
+     * @property mixed request
+     *
      * @category   Request
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
@@ -68,7 +70,7 @@ namespace Framework\Request {
          * {@inheritdoc}
          */
         public function getRequestSource() {
-           return self::$source;
+            return self::$source;
         }
 
         /**
