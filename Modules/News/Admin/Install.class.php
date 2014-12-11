@@ -43,7 +43,7 @@ namespace Modules\News\Admin {
                             `last_changed` datetime NOT NULL,
                             `last_change` int(11) NOT NULL,
                             PRIMARY KEY (`NewsID`),
-                            KEY `author` (`author`, `last_change`),
+                            KEY `author` (`author`),
                             KEY `last_change` (`last_change`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();

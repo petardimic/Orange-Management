@@ -184,7 +184,7 @@ namespace Framework\Install {
                             `group` int(11) NOT NULL,
                             `account` int(11) NOT NULL,
                             PRIMARY KEY (`id`),
-                            KEY `group` (`group`,`account`),
+                            KEY `group` (`group`),
                             KEY `account` (`account`)
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -222,7 +222,7 @@ namespace Framework\Install {
                             `content` varchar(255) NOT NULL,
                             `group` int(11) DEFAULT NULL,
                             PRIMARY KEY (`id`),
-                            KEY `module` (`module`, `group`),
+                            KEY `module` (`module`),
                             KEY `group` (`group`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
                     )->execute();
