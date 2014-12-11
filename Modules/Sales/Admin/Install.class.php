@@ -92,7 +92,7 @@ namespace Modules\Sales\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_articles_desc`
-                            ADD CONSTRAINT `sales_articles_desc_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`id`);'
+                            ADD CONSTRAINT `sales_articles_desc_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -111,7 +111,7 @@ namespace Modules\Sales\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_articles_prices`
-                            ADD CONSTRAINT `sales_articles_prices_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`id`);'
+                            ADD CONSTRAINT `sales_articles_prices_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -131,7 +131,7 @@ namespace Modules\Sales\Admin {
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_invoices`
                             ADD CONSTRAINT `sales_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'clients` (`id`);'
+                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'clients` (`ClientID`);'
                     )->execute();
                     break;
             }

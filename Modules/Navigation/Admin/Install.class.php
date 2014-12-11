@@ -64,9 +64,9 @@ namespace Modules\Navigation\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install_external(&$db, $data) {
+        public static function installExternal(&$db, $data) {
             foreach($data as $link) {
-                self::install_external_link($db, $link, $link['parent']);
+                self::installExternal_link($db, $link, $link['parent']);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Modules\Navigation\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private static function install_external_link(&$db, $data, $parent = 0) {
+        private static function installExternal_link(&$db, $data, $parent = 0) {
             $sth = $db->con->prepare(
                 'INSERT INTO `' . $db->prefix . 'nav` (`NavigationID`, `pid`, `name`, `type`, `subtype`, `icon`, `l0`, `l1`, `l2`, `l3`, `l4`, `l5`, `from`, `order`, `parent`, `permission`) VALUES
                         (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :from, :order, :parent, :perm);'
@@ -109,7 +109,7 @@ namespace Modules\Navigation\Admin {
 
             foreach($data['children'] as $link) {
                 $parent = ($link['parent'] == null ? $lastInsertID : $link['parent']);
-                self::install_external_link($db, $link, $parent);
+                self::installExternal_link($db, $link, $parent);
             }
         }
     }

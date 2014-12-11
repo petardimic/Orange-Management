@@ -40,7 +40,7 @@ namespace Modules\Tasks\Admin {
                             `done` datetime NOT NULL,
                             `creator` int(11) NOT NULL,
                             `created` datetime NOT NULL,
-                            PRIMARY KEY (`ClientID`),
+                            PRIMARY KEY (`TaskID`),
                             KEY `creator` (`creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -60,7 +60,7 @@ namespace Modules\Tasks\Admin {
                             `priority` datetime NOT NULL,
                             `forwarded` int(11) NOT NULL,
                             `created` datetime NOT NULL,
-                            PRIMARY KEY (`ClientID`),
+                            PRIMARY KEY (`TaskelementID`),
                             KEY `task` (`task`),
                             KEY `creator` (`creator`),
                             KEY `forwarded` (`forwarded`)
@@ -70,8 +70,8 @@ namespace Modules\Tasks\Admin {
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'tasks_element`
                             ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`task`) REFERENCES `' . $db->prefix . 'tasks` (`TaskID`),
-                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`forwarded`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `tasks_element_ibfk_2` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `tasks_element_ibfk_3` FOREIGN KEY (`forwarded`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     $db->con->commit();
