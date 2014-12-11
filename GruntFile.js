@@ -193,19 +193,11 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ['Framework/JavaScript/Framework/UI/*.js', 'Framework/JavaScript/Framework/Utils/*.js'],
-                tasks: ['concat:dist', 'uglify:dist', 'compress:dist']
+                tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {
                 files: ['Content/themes/oms-slim/backend/scss/*.scss'],
-                tasks: ['sass:dist', 'compress:dist']
-            },
-            img: {
-                files: [],
-                tasks: []
-            },
-            general: {
-                files: [],
-                tasks: []
+                tasks: ['sass:dev', 'compress:dev']
             }
         }
     });
