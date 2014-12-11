@@ -16,6 +16,14 @@ namespace Modules\Tasks {
      * @since      1.0.0
      */
     class TaskElement implements \Framework\Object\ObjectInterface {
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
+        private $db = null;
+
         public $id = null;
         public $title = null;
         public $creator = null;

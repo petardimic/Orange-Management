@@ -17,6 +17,14 @@ namespace Modules\Tasks {
      */
     class Task implements \Framework\Object\ObjectInterface {
         /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
+        private $db = null;
+
+        /**
          * ID
          *
          * @var int
