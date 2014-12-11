@@ -61,6 +61,7 @@ namespace Content {
                 case \Framework\Request\WebRequestPage::API:
                     header('Content-Type: application/json; charset=utf-8');
 
+                    /** @noinspection PhpUndefinedMethodInspection */
                     $this->app->modules->running[1004400000]->callWeb();
                     break;
                 default:

@@ -91,7 +91,7 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function account_list_get($filter = null, $offset = 0, $limit = 100) {
+        public function getList($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
             switch($this->db->getType()) {

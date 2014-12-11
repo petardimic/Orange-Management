@@ -3,7 +3,6 @@
 ?>
 
 <div class="tabview">
-<!--suppress HtmlUnknownTarget -->
 <ul class="tab-links">
     <li class="active">
         <a href=".tab-1"><?= $this->app->user->localization->lang[30]['Front'] ?></a>
@@ -66,7 +65,6 @@
     </h1>
 
     <div class="bc-1">
-        <!--suppress HtmlUnknownTag -->
         <table class="tc-1">
             <tr>
                 <th><label><?= $this->app->user->localization->lang[30]['Severity']; ?></label>

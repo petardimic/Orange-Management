@@ -7,7 +7,8 @@ $account = \Framework\Object\User\User::getInstance((int) $this->app->request->r
                 <img src="/Modules/Profile/themes/oms-slim/backend/img/profile-default-small.jpg" itemprop="image">
             </div>
         </div>
-        <?php \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT_SIDE, 1000301001]); ?>
+        <?php /** @noinspection PhpUndefinedMethodInspection */
+        \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT_SIDE, 1000301001]); ?>
     </div>
     <div class="b-6" id="i3-2-2">
         <div class="b b-2 c3-2 c3" id="i3-2-3">

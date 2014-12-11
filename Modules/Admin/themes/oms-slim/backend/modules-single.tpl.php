@@ -1,10 +1,10 @@
 <?php
 /* TODO: Check 'id' with sanitizer for [A-Za-z] */
 /** @var \Modules\Admin\Handler $this */
-/** @var \Framework\Module\Modules $modules */
 $modules_all = $this->app->modules->getAllModules();
 
 if(array_key_exists($this->app->request->request['id'], $modules_all)) {
+    /** @noinspection PhpUndefinedMethodInspection */
     \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000105001]);
 }
 ?>

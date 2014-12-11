@@ -1,4 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */
+/** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000104001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
@@ -26,8 +27,8 @@
         ?>
         <tbody>
         <?php
-        /** @var \Framework\Object\User\Users $accounts */
-        $data           = $accounts->account_list_get();
+        /** @var \Modules\Admin\UserList $accounts */
+        $data           = $accounts->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';

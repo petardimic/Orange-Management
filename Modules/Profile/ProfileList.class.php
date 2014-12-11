@@ -16,37 +16,65 @@ namespace Modules\Profile {
      * @since      1.0.0
      */
     class ProfileList {
-        private $app = null;
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
+        private $db = null;
 
-        public function __construct($app) {
-            $this->app = $app;
+        /**
+         * Constructor
+         *
+         * @param \Framework\DataStorage\Database\Database $db Database instance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct($db) {
+            $this->db = $db;
         }
 
-        public function getAccountList($filter = null, $offset = 0, $limit = 100) {
+        /**
+         * Get all accounts
+         *
+         * This function gets all accounts in a range
+         *
+         * @param array $filter Filter for search results
+         * @param int   $offset Offset for first account
+         * @param int   $limit  Limit for results
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getList($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
-            switch($this->app->db->getType()) {
+            switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $search = $this->app->db->generate_sql_filter($filter, true);
+                    $search = $this->db->generate_sql_filter($filter, true);
 
-                    $sth = $this->app->db->con->prepare(
+                    $sth = $this->db->con->prepare(
                         'SELECT
-                            `' . $this->app->db->prefix . 'accounts`.*,
-                            `' . $this->app->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->app->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->app->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->db->prefix . 'accounts`.*,
+                            `' . $this->db->prefix . 'accounts_data`.`name1`,
+                            `' . $this->db->prefix . 'accounts_data`.`name2`,
+                            `' . $this->db->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->app->db->prefix . 'accounts`
-                        LEFT JOIN `' . $this->app->db->prefix . 'accounts_data`
-                        ON `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`
-                        GROUP BY `' . $this->app->db->prefix . 'accounts`.`id` '
+                            `' . $this->db->prefix . 'accounts`
+                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
+                        ON `' . $this->db->prefix . 'accounts`.`id` = `' . $this->db->prefix . 'accounts_data`.`account`
+                        GROUP BY `' . $this->db->prefix . 'accounts`.`id` '
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();
 
-                    $sth = $this->app->db->con->prepare(
+                    $sth = $this->db->con->prepare(
                         'SELECT FOUND_ROWS();'
                     );
                     $sth->execute();

@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */
-
+/** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000103001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 

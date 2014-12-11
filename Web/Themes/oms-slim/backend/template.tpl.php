@@ -9,10 +9,12 @@
 </head>
 <body>
 <div class="vh" id="dim"></div>
-<?php \Framework\Module\ModuleFactory::$loaded['GlobalContent']->callWeb(); ?>
+<?php /** @noinspection PhpUndefinedMethodInspection */
+\Framework\Module\ModuleFactory::$loaded['GlobalContent']->callWeb(); ?>
 <div id="h">
     <div id="bar-s">
-        <?php \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::TOP]); ?>
+        <?php /** @noinspection PhpUndefinedMethodInspection */
+        \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::TOP]); ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
@@ -34,9 +36,11 @@
     </div>
 </div>
 <div id="out">
-    <?php \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::SIDE]); ?>
+    <?php /** @noinspection PhpUndefinedMethodInspection */
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::SIDE]); ?>
     <div id="cont" role="main">
-        <?php \Framework\Module\ModuleFactory::$loaded['Content']->callWeb(); ?>
+        <?php /** @noinspection PhpUndefinedMethodInspection */
+        \Framework\Module\ModuleFactory::$loaded['Content']->callWeb(); ?>
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>

@@ -39,6 +39,7 @@ namespace Modules\Profile {
         /**
          * Constructor
          *
+         * @param \Framework\ApplicationAbstract $app Application instance
          * @param string $themePath
          *
          * @since  1.0.0
@@ -81,12 +82,18 @@ namespace Modules\Profile {
         public function callWeb() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend() {
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
@@ -97,7 +104,7 @@ namespace Modules\Profile {
                     break;
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Profile\ProfileList($this->app);
+                    $accounts = new \Modules\Profile\ProfileList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;

@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Admin\Handler $this */
-/** @var \Framework\DataStorage\Database\Objects\Group\Group $group */
+/** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
