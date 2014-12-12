@@ -48,8 +48,7 @@ namespace Modules\HumanResources\Admin {
                             `HRStaffID` int(11) NOT NULL AUTO_INCREMENT,
                             `status` tinyint(2) DEFAULT NULL,
                             `person` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`HRStaffID`),
-                            KEY `parent` (`parent`)
+                            PRIMARY KEY (`HRStaffID`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
