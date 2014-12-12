@@ -57,24 +57,19 @@ namespace Modules\Tasks {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter, true);
 
-                    $sth = $this->db->con->prepare(
-                        'SELECT
+                    $sth = $this->db->con->prepare('SELECT
                             `' . $this->db->prefix . 'tasks`.*, `' . $this->db->prefix . 'tasks_element`.`forwarded`
                         FROM
                             `' . $this->db->prefix . 'tasks`
                         LEFT JOIN `' . $this->db->prefix . 'tasks_element`
                         ON `' . $this->db->prefix . 'tasks`.`TaskID` = `' . $this->db->prefix . 'tasks_element`.`task`
                         AND `' . $this->db->prefix . 'tasks_element`.`forwarded` = 1
-                        GROUP BY `' . $this->db->prefix . 'tasks`.`TaskID` '
-                        . $search . 'LIMIT ' . $offset . ',' . $limit
-                    );
+                        GROUP BY `' . $this->db->prefix . 'tasks`.`TaskID` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();
 
-                    $sth = $this->db->con->prepare(
-                        'SELECT FOUND_ROWS();'
-                    );
+                    $sth = $this->db->con->prepare('SELECT FOUND_ROWS();');
                     $sth->execute();
 
                     $result['count'] = $sth->fetchAll()[0][0];
@@ -82,6 +77,17 @@ namespace Modules\Tasks {
             }
 
             return $result;
+        }
+
+        /**
+         * Get task stats
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getStats() {
         }
     }
 }

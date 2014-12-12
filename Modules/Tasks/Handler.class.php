@@ -105,6 +105,7 @@ namespace Modules\Tasks {
                 case 'single':
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $task = new \Modules\Tasks\Task($this->app->db);
+                    $task->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/task-single.tpl.php';
