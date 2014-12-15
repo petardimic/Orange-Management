@@ -28,14 +28,32 @@ namespace Modules\HumanResources\Admin {
         public static function generate($db, $amount) {
             $db->con->beginTransaction();
 
-            $dataString = " ('Human Resource Department', NULL')," . "('Accounting Department', NULL)," . "('Accounting (debitor) Department', 2)," . "('Accounting (creditor) Department', 2)," . "('Sales Department', NULL)," . "('Sales (national) Department', 5)," . "('Sales (international) Department', 5)," . "('Purchasing Department', NULL)," . "('Warehousing', NULL)," . "('Shipping Department', 9)," . "('Arrival Department', 9)," . "('Quality Management Department', NULL)," . "('Research & Development Department', NULL)," . "('Service Department', NULL)," . "('Support Department', NULL)," . "('Administration', NULL)," . "('Management', NULL)," . "('Controlling', 17)," . "('IT Department', NULL)";
+            $dataString = " ('Human Resource Department', NULL),"
+                          . "('Accounting Department', NULL),"
+                          . "('Accounting (debitor) Department', 2),"
+                          . "('Accounting (creditor) Department', 2),"
+                          . "('Sales Department', NULL),"
+                          . "('Sales (national) Department', 5),"
+                          . "('Sales (international) Department', 5),"
+                          . "('Purchasing Department', NULL),"
+                          . "('Warehousing', NULL),"
+                          . "('Shipping Department', 9),"
+                          . "('Arrival Department', 9),"
+                          . "('Quality Management Department', NULL),"
+                          . "('Research & Development Department', NULL),"
+                          . "('Service Department', NULL),"
+                          . "('Support Department', NULL),"
+                          . "('Administration', NULL),"
+                          . "('Management', NULL),"
+                          . "('Controlling', 17),"
+                          . "('IT Department', NULL)";
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'hr_department` (`name`, `parent`) VALUES ' . $dataString)->execute();
 
-            $amount = 997;
+            $amount = 197;
             $uid    = [];
 
             for($i = 0; $i < $amount; $i++) {
-                $id = rand(1, 9997);
+                $id = rand(1, 995);
 
                 if(in_array($id, $uid)) {
                     continue;

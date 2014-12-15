@@ -1,6 +1,9 @@
 <?php
 $MODLANG[5] = [
+    "Departments"    => "Departments",
     "HumanResources" => "Human Resources",
-    "Staff"          => "Staff",
     "Planning"       => "Planning",
+    "Positions"      => "Positions",
+    "Staff"          => "Staff",
+    "Structure"      => "Structure",
 ];

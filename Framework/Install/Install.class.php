@@ -376,7 +376,7 @@ namespace Framework\Install {
             $valB = '';
             $valC = '';
 
-            for($i = 2; $i < 996; $i++) {
+            for($i = 2; $i < 998; $i++) {
                 $valA .= " (" . rand(0, 1) . ", " . rand(0, 3) . ", '0000-00-00 00:00:00', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', " . rand(0, 1) . "),";
                 $valB .= " ('" . strtolower(\Framework\Utils\RnG\Name::generateName(['male', 'female'])) . "', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "', '" . \Framework\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
                 $valC .= " (1000101000, 1),";

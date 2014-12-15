@@ -1,3 +1,8 @@
 <?php
-$MODLANG[26] = [
+$MODLANG[24] = [
+    'Departments' => 'Departments',
+    'Employees'   => 'Employees',
+    'Name'        => 'Name',
+    'Parent'      => 'Parent',
+    'Status'      => 'Status'
 ];

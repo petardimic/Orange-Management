@@ -84,13 +84,27 @@ namespace Modules\HumanResources {
         public function callWeb() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend() {
+        public function showContentBackend() {
             switch($this->app->request->request['l3']) {
+                case 'departments':
+                    $this->showContentBackendDepartments();
+                    break;
+            }
+        }
+
+        public function showContentBackendDepartments() {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/department-list.tpl.php';
+                    break;
             }
         }
     }

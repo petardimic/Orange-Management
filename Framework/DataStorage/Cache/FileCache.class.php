@@ -30,7 +30,7 @@ namespace Framework\DataStorage\Cache {
          * @var string
          * @since 1.0.0
          */
-        private static $cache_path = __DIR__  . '/../../../Cache';
+        private static $cachePath = __DIR__  . '/../../../Cache';
 
         /**
          * {@inheritdoc}
@@ -60,7 +60,7 @@ namespace Framework\DataStorage\Cache {
          * {@inheritdoc}
          */
         public function flush($type = null) {
-            array_map('unlink', glob(self::$cache_path . '/*'));
+            array_map('unlink', glob(self::$cachePath . '/*'));
         }
 
         /**
@@ -74,7 +74,7 @@ namespace Framework\DataStorage\Cache {
          */
         public function stats() {
             $stats          = [];
-            $stats['count'] = \Framework\System\FileSystem::getFileCount(self::$cache_path);
+            $stats['count'] = \Framework\System\FileSystem::getFileCount(self::$cachePath);
 
             // size, avg. last change compared to now
 
