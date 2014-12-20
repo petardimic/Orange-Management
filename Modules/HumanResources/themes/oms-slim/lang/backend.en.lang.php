@@ -4,5 +4,9 @@ $MODLANG[24] = [
     'Employees'   => 'Employees',
     'Name'        => 'Name',
     'Parent'      => 'Parent',
-    'Status'      => 'Status'
+    'Personnel'   => 'Personnel',
+    'Shifts'      => 'Shifts',
+    'Staff'       => 'Staff',
+    'Status'      => 'Status',
+    'Vacation'    => 'Vacation',
 ];

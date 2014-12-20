@@ -81,6 +81,12 @@ namespace Modules\Media {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function show_content_backend() {
             switch($this->app->request->request['l3']) {
                 case 'single':
@@ -95,6 +101,7 @@ namespace Modules\Media {
                         $this->app->request->request['page'] = 1;
                     }
 
+                    /** @noinspection PhpUnusedLocalVariableInspection */
                     $mList = new \Modules\Media\MediaList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */

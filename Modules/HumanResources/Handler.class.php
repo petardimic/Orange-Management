@@ -91,19 +91,53 @@ namespace Modules\HumanResources {
 
         public function showContentBackend() {
             switch($this->app->request->request['l3']) {
-                case 'departments':
-                    $this->showContentBackendDepartments();
+                case 'structure':
+                    $this->showContentBackendStrcture();
+                    break;
+                case 'staff':
+                    $this->showContentBackendStaff();
+                    break;
+                case 'planning':
+                    $this->showContentBackendPlanning();
                     break;
             }
         }
 
-        public function showContentBackendDepartments() {
+        public function showContentBackendStrcture() {
             switch($this->app->request->request['l4']) {
+                case 'department':
+                    $this->showContentBackendDepartment();
+                    break;
+            }
+        }
+
+        public function showContentBackendDepartment() {
+            switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/department-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function showContentBackendStaff() {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $staff = new \Modules\HumanResources\StaffList($this->app->db);
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-list.tpl.php';
+                    break;
+            }
+        }
+
+        public function showContentBackendPlanning() {
+            switch($this->app->request->request['l4']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/planning-dashboard.tpl.php';
                     break;
             }
         }

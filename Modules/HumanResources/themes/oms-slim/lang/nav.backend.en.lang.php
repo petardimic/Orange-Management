@@ -4,6 +4,7 @@ $MODLANG[5] = [
     "HumanResources" => "Human Resources",
     "Planning"       => "Planning",
     "Positions"      => "Positions",
+    "Shifts"         => "Shifts",
     "Staff"          => "Staff",
     "Structure"      => "Structure",
 ];

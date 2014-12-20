@@ -37,7 +37,7 @@ namespace Modules\HumanResources {
         }
 
         /**
-         * Get all departments
+         * Get all staff members
          *
          * This function gets all accounts in a range
          *
@@ -58,9 +58,9 @@ namespace Modules\HumanResources {
                     $search = $this->db->generate_sql_filter($filter, true);
 
                     $sth = $this->db->con->prepare('SELECT
-                            `' . $this->db->prefix . 'hr_department`.*
+                            `' . $this->db->prefix . 'hr_staff`.*
                         FROM
-                            `' . $this->db->prefix . 'hr_department` '
+                            `' . $this->db->prefix . 'hr_staff` '
                                                    . $search . 'LIMIT ' . $offset . ',' . $limit);
                     $sth->execute();
 

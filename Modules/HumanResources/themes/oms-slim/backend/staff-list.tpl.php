@@ -1,6 +1,6 @@
 <?php /** @var \Modules\HumanResources\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1002404001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000401001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">
@@ -9,7 +9,7 @@
         <th colspan="3" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[24]['Departments'] ?></h1>
+            <h1><?= $this->app->user->localization->lang[24]['Staff'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -26,16 +26,16 @@
         ?>
         <tbody>
         <?php
-        /** @var \Modules\HumanResources\DepartmentList $departments */
-        $data           = $departments->getList();
-        $url['level']   = array_slice($this->app->request->request, 0, 3);
+        /** @var \Modules\HumanResources\StaffList $staff */
+        $data           = $staff->getList();
+        $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
-        $url['id']      = 'HRDepartmentID';
+        $url['id']      = 'HRStaffID';
 
         \Framework\Model\Model::generate_table_content_view(
             $data['list'],
-            ['HRDepartmentID', 'name', 'parent', 'parent'],
+            ['HRStaffID', 'HRStaffID', 'HRStaffID', 'HRStaffID'],
             $url
         );
         ?>

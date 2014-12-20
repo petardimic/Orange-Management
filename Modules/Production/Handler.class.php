@@ -76,21 +76,46 @@ namespace Modules\Production {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend() {
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend() {
             switch($this->app->request->request['l3']) {
+                case 'process':
+                    $this->showBackendProcess();
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendProcess() {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $pList = new \Modules\Production\ProductionList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-list.tpl.php';
+                    break;
             }
         }
     }
