@@ -76,8 +76,6 @@ namespace Modules\News {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -89,6 +87,12 @@ namespace Modules\News {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':

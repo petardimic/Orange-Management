@@ -32,14 +32,14 @@
         <?php
         /** @var \Modules\Production\ProductionList $pList */
         $data           = $pList->getList();
-        $url['level']   = array_slice($this->app->request->request, 0, 3);
+        $url['level']   = array_slice($this->app->request->request, 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
-        $url['id']      = 'MediaID';
+        $url['id']      = 'ProcessID';
 
         \Framework\Model\Model::generate_table_content_view(
             $data['list'],
-            ['name', 'type', 'size', 'name3', 'created'],
+            ['status', 'product', 'product', 'quantity', 'for', 'orderer', 'ordered', 'due'],
             $url
         );
         ?>

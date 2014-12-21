@@ -98,6 +98,9 @@ namespace Modules\Production {
                 case 'process':
                     $this->showBackendProcess();
                     break;
+                case 'guideline':
+                    $this->showBackendGuideline();
+                    break;
             }
         }
 
@@ -115,6 +118,32 @@ namespace Modules\Production {
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/process-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-single.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendGuideline() {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $pList = new \Modules\Production\ProductionList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-single.tpl.php';
                     break;
             }
         }

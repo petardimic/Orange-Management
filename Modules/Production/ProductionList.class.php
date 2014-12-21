@@ -16,12 +16,40 @@ namespace Modules\Production {
      * @since      1.0.0
      */
     class ProductionList {
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
         private $db = null;
 
+        /**
+         * Constructor
+         *
+         * @param \Framework\DataStorage\Database\Database $db Database instance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($db) {
             $this->db = $db;
         }
 
+        /**
+         * Get all news
+         *
+         * This function gets all accounts in a range
+         *
+         * @param array $filter Filter for search results
+         * @param int   $offset Offset for first account
+         * @param int   $limit  Limit for results
+         *
+         * @return array
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function getList($filter = null, $offset = 0, $limit = 100) {
             $result = null;
 
@@ -29,7 +57,24 @@ namespace Modules\Production {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $search = $this->db->generate_sql_filter($filter, true);
 
+                    // SQL_CALC_FOUND_ROWS
+                    $sth = $this->db->con->prepare(
+                        'SELECT
+                            `' . $this->db->prefix . 'production_process`.*
+                        FROM
+                            `' . $this->db->prefix . 'production_process` '
+                        . $search . 'LIMIT ' . $offset . ',' . $limit
+                    );
+                    $sth->execute();
 
+                    $result['list'] = $sth->fetchAll();
+
+                    $sth = $this->db->con->prepare(
+                        'SELECT FOUND_ROWS();'
+                    );
+                    $sth->execute();
+
+                    $result['count'] = $sth->fetchAll()[0][0];
                     break;
             }
 

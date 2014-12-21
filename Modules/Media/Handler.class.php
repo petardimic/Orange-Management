@@ -38,6 +38,12 @@ namespace Modules\Media {
 
         /**
          * Constructor
+         *
+         * @param \Framework\ApplicationAbstract $app Application instance
+         * @param string $themePath
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function __construct($app, $themePath) {
             parent::__construct($app, $themePath);

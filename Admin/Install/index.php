@@ -52,5 +52,6 @@ $toDummy = [
     'News',
     'Tasks',
     'HumanResources',
+    'Production',
 ];
 $instHOBJ->installDummy($toDummy);
