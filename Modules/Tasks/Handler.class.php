@@ -100,7 +100,7 @@ namespace Modules\Tasks {
                     $tasks = new \Modules\Tasks\TaskList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-dashboard.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -109,6 +109,14 @@ namespace Modules\Tasks {
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/task-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-create.tpl.php';
+                    break;
+                case 'analysis':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-analysis.tpl.php';
                     break;
             }
         }

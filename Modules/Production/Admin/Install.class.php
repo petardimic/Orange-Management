@@ -57,7 +57,7 @@ namespace Modules\Production\Admin {
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'production_guideline` (
                             `ProductionGuidelineID` int(11) NOT NULL AUTO_INCREMENT,
                             `product` int(11) NOT NULL,
-                            PRIMARY KEY (`ProcessID`),
+                            PRIMARY KEY (`ProductionGuidelineID`),
                             KEY `product` (`product`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
@@ -69,7 +69,7 @@ namespace Modules\Production\Admin {
                             `title` varchar(50) NOT NULL,
                             `text` text NOT NULL,
                             `order` tinyint(3) NOT NULL,
-                            PRIMARY KEY (`ProcessID`),
+                            PRIMARY KEY (`ProductionStepID`),
                             KEY `guideline` (`guideline`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();

@@ -16,28 +16,106 @@ namespace Modules\Media {
      * @since      1.0.0
      */
     class Media implements \Framework\Object\ObjectInterface {
+        /**
+         * Database instance
+         *
+         * @var \Framework\DataStorage\Database\Database
+         * @since 1.0.0
+         */
         private $db = null;
+
+        /**
+         * ID
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $id = 0;
+
+        /**
+         * Name
+         *
+         * @var string
+         * @since 1.0.0
+         */
         private $name = '';
-        private $extension = null;
+
+        /**
+         * Extension
+         *
+         * @var string
+         * @since 1.0.0
+         */
+        private $extension = '';
+
+        /**
+         * File size in bytes
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $size = 0;
+
+        /**
+         * Author
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $author = 0;
+
+        /**
+         * Uploaded
+         *
+         * @var \DateTime
+         * @since 1.0.0
+         */
         private $created = null;
+
+        /**
+         * Permissions
+         *
+         * @var array
+         * @since 1.0.0
+         */
         private $permissions = ['visibile' => ['groups' => [],
                                                'users'  => []],
                                 'editable' => ['groups' => [],
                                                'users'  => []]];
 
+        /**
+         * Constructor
+         *
+         * @param \Framework\DataStorage\Database\Database $db Database instance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __construct($db) {
             $this->db = $db;
         }
 
-        public function getID() {
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getId() {
             return $this->id;
         }
 
+        /**
+         * Init task
+         *
+         * @param int $id Article ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function init($id) {
             $this->id = $id;
+            $data = null;
 
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:

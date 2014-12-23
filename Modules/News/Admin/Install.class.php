@@ -54,6 +54,9 @@ namespace Modules\News\Admin {
                             ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`last_change`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
+                    // create tags
+                    // create categories
+
                     break;
             }
 

@@ -113,6 +113,10 @@ namespace Modules\Media {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/media-list.tpl.php';
                     break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-create.tpl.php';
+                    break;
             }
         }
 
