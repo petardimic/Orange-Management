@@ -17,13 +17,7 @@ namespace Modules\Production\Admin {
      */
     class Dummy implements \Framework\Install\DummyInterface {
         /**
-         * Generate dummy data
-         *
-         * @param \Framework\DataStorage\Database\Database $db     Database instance
-         * @param int                                      $amount Amount of dummy entries
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public static function generate($db, $amount) {
             for($i = 0; $i < $amount; $i++) {

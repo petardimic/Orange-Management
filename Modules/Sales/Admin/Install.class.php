@@ -29,18 +29,18 @@ namespace Modules\Sales\Admin {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'clients` (
-                            `ClientID` int(11) NOT NULL AUTO_INCREMENT,
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_client` (
+                            `SalesClientID` int(11) NOT NULL AUTO_INCREMENT,
                             `matchcode` varchar(50) DEFAULT NULL,
                             `account` int(11) NOT NULL,
-                            PRIMARY KEY (`ClientID`),
+                            PRIMARY KEY (`SalesClientID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'clients`
-                            ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_client`
+                            ADD CONSTRAINT `sales_client_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -123,7 +123,7 @@ namespace Modules\Sales\Admin {
                             `creator` int(11) NOT NULL,
                             `client` int(11) NOT NULL,
                             PRIMARY KEY (`id`),
-                            KEY `creator` (`creator`, `client`),
+                            KEY `creator` (`creator`),
                             KEY `client` (`client`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -131,7 +131,7 @@ namespace Modules\Sales\Admin {
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_invoices`
                             ADD CONSTRAINT `sales_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'clients` (`ClientID`);'
+                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`);'
                     )->execute();
                     break;
             }

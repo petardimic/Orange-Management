@@ -53,5 +53,6 @@ $toDummy = [
     'Tasks',
     'HumanResources',
     'Production',
+    'Sales',
 ];
 $instHOBJ->installDummy($toDummy);

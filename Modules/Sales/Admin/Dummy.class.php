@@ -17,15 +17,18 @@ namespace Modules\Sales\Admin {
      */
     class Dummy implements \Framework\Install\DummyInterface {
         /**
-         * Generate dummy data
-         *
-         * @param \Framework\DataStorage\Database\Database $db     Database instance
-         * @param int                                      $amount Amount of dummy entries
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public static function generate($db, $amount) {
+            $dataString = '';
+
+            for($i = 0; $i < $amount; $i++) {
+                $dataString .= " ('" . \Framework\Utils\RnG\String::generateString(5, 15) . "', " . rand(1, $amount - 1) . "),";
+            }
+
+            $dataString = rtrim($dataString, ',');
+
+            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $dataString)->execute();
         }
     }
 }

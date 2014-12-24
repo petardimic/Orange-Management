@@ -84,36 +84,49 @@ namespace Modules\Sales {
         public function callWeb() {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend() {
+        /**
+         * Shows module content
+         *
+         * @para   array $data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'client':
-                    $this->show_backend_client();
+                    $this->showBackendClient();
                     break;
                 case 'invoice':
-                    $this->show_backend_invoice();
+                    $this->showBackendInvoice();
                     break;
                 case 'article':
-                    $this->show_backend_article();
+                    $this->showBackendArticle();
                     break;
                 case 'analysis':
-                    $this->show_backend_analysis();
+                    $this->showBackendAnalysis();
                     break;
             }
         }
 
-        public function show_backend_article() {
+        /**
+         * Shows module content
+         *
+         * @para   array $data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendArticle() {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
-                    break;
-                case 'single':
-                    $this->show_backend_client_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
@@ -122,14 +135,19 @@ namespace Modules\Sales {
             }
         }
 
-        public function show_backend_invoice() {
+        /**
+         * Shows module content
+         *
+         * @para   array $data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendInvoice() {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
-                    break;
-                case 'single':
-                    $this->show_backend_client_single();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
@@ -138,14 +156,26 @@ namespace Modules\Sales {
             }
         }
 
-        public function show_backend_client() {
+        /**
+         * Shows module content
+         *
+         * @para   array $data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendClient() {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $clientList = new \Modules\Sales\ClientList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_backend_client_single();
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
@@ -154,16 +184,15 @@ namespace Modules\Sales {
             }
         }
 
-        public function show_backend_client_single() {
-            switch($this->app->request->request['l5']) {
-                case 'front':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-single.tpl.php';
-                    break;
-            }
-        }
-
-        public function show_backend_analysis() {
+        /**
+         * Shows module content
+         *
+         * @para   array $data
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendAnalysis() {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
