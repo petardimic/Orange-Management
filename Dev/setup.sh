@@ -42,6 +42,8 @@ sudo apt-get install curl
 
 sudo apt-get install php5 php5-cli php5-xsl
 
+curl -sS https://getcomposer.org/installer | php
+
 php composer.phar install
 
 sudo apt-get install pdepend
