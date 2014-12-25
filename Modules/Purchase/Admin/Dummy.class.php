@@ -31,7 +31,7 @@ namespace Modules\Purchase\Admin {
             $suppliers  = rtrim($suppliers, ',');
             $invoices = rtrim($invoices, ',');
 
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_supplier` (`matchcode`, `account`) VALUES ' . $suppliers)->execute();
+            $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_suppliers` (`matchcode`, `account`) VALUES ' . $suppliers)->execute();
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_invoices` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `supplier`, `referer`) VALUES ' . $invoices)->execute();
         }
     }

@@ -36,11 +36,11 @@
                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
-                $url['id'] = 'PurchaseInvoice';
+                $url['id'] = 'PurchaseInvoiceID';
 
                 \Framework\Model\Model::generate_table_content_view(
                     $data['list'],
-                    ['PurchaseInvoice', 'printed', 'type', 'status', 'client', 'client', 'price', 'creator', 'created'],
+                    ['PurchaseInvoiceID', 'printed', 'type', 'status', 'supplier', 'supplier', 'price', 'creator', 'created'],
                     $url
                 );
         ?>

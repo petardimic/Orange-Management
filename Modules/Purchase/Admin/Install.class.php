@@ -64,7 +64,7 @@ namespace Modules\Purchase\Admin {
                             `referer` int(11) NOT NULL,
                             PRIMARY KEY (`PurchaseInvoiceID`),
                             KEY `creator` (`creator`),
-                            KEY `client` (`client`),
+                            KEY `supplier` (`supplier`),
                             KEY `referer` (`referer`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();

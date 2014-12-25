@@ -1,5 +1,6 @@
 <?php
 $MODLANG[21] = [
+    "Area"         => "Area",
     "Article"      => "Article",
     "Articles"     => "Articles",
     "Available"    => "Available",

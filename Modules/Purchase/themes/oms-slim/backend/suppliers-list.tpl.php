@@ -18,14 +18,14 @@
         \Framework\Model\Model::generate_table_header_view(
             [
                 ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[16]['Matchcode'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Name'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->localization->lang[16]['Street'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['City'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['ZipCode'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['State'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Country'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Area'], 'sort' => 0]
+                ['name' => $this->app->user->localization->lang[21]['Matchcode'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['Name'], 'sort' => 0, 'full' => true],
+                ['name' => $this->app->user->localization->lang[21]['Street'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['City'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['ZipCode'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['State'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['Country'], 'sort' => 0],
+                ['name' => $this->app->user->localization->lang[21]['Area'], 'sort' => 0]
             ]
         );
         ?>
