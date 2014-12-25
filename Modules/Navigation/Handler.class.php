@@ -140,7 +140,7 @@ namespace Modules\Navigation {
         /**
          * Shows module content
          *
-         * @para   array $data
+         * @param   array $data Navigation data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

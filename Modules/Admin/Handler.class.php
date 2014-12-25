@@ -115,8 +115,6 @@ namespace Modules\Admin {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -154,8 +152,6 @@ namespace Modules\Admin {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -187,8 +183,6 @@ namespace Modules\Admin {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -203,8 +197,6 @@ namespace Modules\Admin {
 
         /**
          * Shows module content
-         *
-         * @para   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -235,8 +227,6 @@ namespace Modules\Admin {
         /**
          * Shows group content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -265,8 +255,6 @@ namespace Modules\Admin {
 
         /**
          * Shows group single content
-         *
-         * @para   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

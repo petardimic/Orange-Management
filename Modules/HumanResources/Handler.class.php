@@ -76,8 +76,6 @@ namespace Modules\HumanResources {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -89,6 +87,12 @@ namespace Modules\HumanResources {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'structure':
@@ -103,6 +107,12 @@ namespace Modules\HumanResources {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackendStrcture() {
             switch($this->app->request->request['l4']) {
                 case 'department':
@@ -111,6 +121,12 @@ namespace Modules\HumanResources {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackendDepartment() {
             switch($this->app->request->request['l5']) {
                 case 'list':
@@ -122,6 +138,12 @@ namespace Modules\HumanResources {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackendStaff() {
             switch($this->app->request->request['l4']) {
                 case 'list':
@@ -133,6 +155,12 @@ namespace Modules\HumanResources {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showContentBackendPlanning() {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':

@@ -76,8 +76,6 @@ namespace Modules\Sales {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -91,8 +89,6 @@ namespace Modules\Sales {
 
         /**
          * Shows module content
-         *
-         * @para   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -117,8 +113,6 @@ namespace Modules\Sales {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -137,8 +131,6 @@ namespace Modules\Sales {
 
         /**
          * Shows module content
-         *
-         * @para   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -166,8 +158,6 @@ namespace Modules\Sales {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -193,8 +183,6 @@ namespace Modules\Sales {
 
         /**
          * Shows module content
-         *
-         * @para   array $data
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
