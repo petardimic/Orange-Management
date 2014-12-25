@@ -34,24 +34,24 @@
                     </form>
 
                     <!-- @formatter:off -->
-            <table class="tc-1">
-                <tr>
-                    <th><label><?= $this->app->user->localization->lang[21]['Name']; ?></label>
-                        <td>Duck, Donald
-                <tr>
-                    <th><label><?= $this->app->user->localization->lang[21]['FAO']; ?></label>
-                        <td>-
-                <tr>
-                    <th><label><?= $this->app->user->localization->lang[21]['Street']; ?></label>
-                        <td>Gosling 12
-                <tr>
-                    <th><label><?= $this->app->user->localization->lang[21]['City']; ?></label>
-                        <td>13468 Duckburg CA
-                <tr>
-                    <th><label><?= $this->app->user->localization->lang[21]['Country']; ?></label>
-                    <td>USA
-            </table>
-            <!-- @formatter:on -->
+                <table class="tc-1">
+                    <tr>
+                        <th><label><?= $this->app->user->localization->lang[21]['Name']; ?></label>
+                            <td>Duck, Donald
+                    <tr>
+                        <th><label><?= $this->app->user->localization->lang[21]['FAO']; ?></label>
+                            <td>-
+                    <tr>
+                        <th><label><?= $this->app->user->localization->lang[21]['Street']; ?></label>
+                            <td>Gosling 12
+                    <tr>
+                        <th><label><?= $this->app->user->localization->lang[21]['City']; ?></label>
+                            <td>13468 Duckburg CA
+                    <tr>
+                        <th><label><?= $this->app->user->localization->lang[21]['Country']; ?></label>
+                        <td>USA
+                </table>
+                <!-- @formatter:on -->
                 </div>
             </div>
 
@@ -211,17 +211,17 @@
                         <button>Add</button>
                         <?php
                         /** @var \Modules\Sales\ArticleList $articles */ /*
-			                $data = $articles->article_list_get();
-			                $url['level'] = array_slice($this->app->request->request, 0, 4);
-			                $url['level'][] = 'single';
-			                $url['level'][] = 'front';
-			                $url['id'] = 'id';
+                                $data = $articles->article_list_get();
+                                $url['level'] = array_slice($this->app->request->request, 0, 4);
+                                $url['level'][] = 'single';
+                                $url['level'][] = 'front';
+                                $url['id'] = 'id';
 
-			                \Framework\Model\Model::generate_table_content_view(
-			                    $data['list'],
-			                    ['status', 'id', 'name1', 'lactive', 'created'],
-			                    $url
-			                );*/
+                                \Framework\Model\Model::generate_table_content_view(
+                                    $data['list'],
+                                    ['status', 'id', 'name1', 'lactive', 'created'],
+                                    $url
+                                );*/
                         ?>
                         <tfoot>
                 <tr>

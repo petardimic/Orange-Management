@@ -110,6 +110,12 @@ namespace Modules\Purchase {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showBackendArticle() {
             switch($this->app->request->request['l4']) {
                 case 'list':
@@ -126,6 +132,12 @@ namespace Modules\Purchase {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showBackendInvoice() {
             switch($this->app->request->request['l4']) {
                 case 'list':
@@ -145,6 +157,12 @@ namespace Modules\Purchase {
             }
         }
 
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showBackendSupplier() {
             switch($this->app->request->request['l4']) {
                 case 'list':
@@ -155,7 +173,8 @@ namespace Modules\Purchase {
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_backend_client_single();
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
@@ -164,9 +183,12 @@ namespace Modules\Purchase {
             }
         }
 
-        public function show_backend_client_single() {
-        }
-
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function showBackendAnalysis() {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
