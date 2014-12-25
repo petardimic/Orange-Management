@@ -152,6 +152,10 @@ namespace Modules\Sales {
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
+                    break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-create.tpl.php';
