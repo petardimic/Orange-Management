@@ -36,31 +36,44 @@ namespace Modules\Purchase\Admin {
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'suppliers` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_suppliers` (
+                            `PurchaseSupplierID` int(11) NOT NULL AUTO_INCREMENT,
+                            `matchcode` varchar(50) DEFAULT NULL,
                             `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`PurchaseSupplierID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'suppliers`
-                            ADD CONSTRAINT `suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'purchase_suppliers`
+                            ADD CONSTRAINT `purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoices` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `account` (`account`)
+                            `PurchaseInvoiceID` int(11) NOT NULL AUTO_INCREMENT,
+                            `status` tinyint(2) DEFAULT NULL,
+                            `type` tinyint(2) DEFAULT NULL,
+                            `created` datetime DEFAULT NULL,
+                            `printed` datetime DEFAULT NULL,
+                            `price` decimal(9,2) DEFAULT NULL,
+                            `currency` varchar(3) DEFAULT NULL,
+                            `creator` int(11) NOT NULL,
+                            `supplier` int(11) NOT NULL,
+                            `referer` int(11) NOT NULL,
+                            PRIMARY KEY (`PurchaseInvoiceID`),
+                            KEY `creator` (`creator`),
+                            KEY `client` (`client`),
+                            KEY `referer` (`referer`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'purchase_invoices`
-                            ADD CONSTRAINT `purchase_invoices_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `purchase_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `purchase_invoices_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`),
+                            ADD CONSTRAINT `purchase_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     break;

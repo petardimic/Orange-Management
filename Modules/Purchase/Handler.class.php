@@ -96,21 +96,21 @@ namespace Modules\Purchase {
         public function showContentBackend() {
             switch($this->app->request->request['l3']) {
                 case 'supplier':
-                    $this->show_backend_supplier();
+                    $this->showBackendSupplier();
                     break;
                 case 'invoice':
-                    $this->show_backend_invoice();
+                    $this->showBackendInvoice();
                     break;
                 case 'article':
-                    $this->show_backend_article();
+                    $this->showBackendArticle();
                     break;
                 case 'analysis':
-                    $this->show_backend_analysis();
+                    $this->showBackendAnalysis();
                     break;
             }
         }
 
-        public function show_backend_article() {
+        public function showBackendArticle() {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -126,9 +126,12 @@ namespace Modules\Purchase {
             }
         }
 
-        public function show_backend_invoice() {
+        public function showBackendInvoice() {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $invoiceList = new \Modules\Purchase\InvoiceList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;
@@ -142,9 +145,12 @@ namespace Modules\Purchase {
             }
         }
 
-        public function show_backend_supplier() {
+        public function showBackendSupplier() {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $supplierList = new \Modules\Purchase\SupplierList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-list.tpl.php';
                     break;
@@ -161,7 +167,7 @@ namespace Modules\Purchase {
         public function show_backend_client_single() {
         }
 
-        public function show_backend_analysis() {
+        public function showBackendAnalysis() {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
