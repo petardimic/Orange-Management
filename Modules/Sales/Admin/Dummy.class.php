@@ -20,15 +20,19 @@ namespace Modules\Sales\Admin {
          * {@inheritdoc}
          */
         public static function generate($db, $amount) {
-            $dataString = '';
+            $clients  = '';
+            $invoices = '';
 
             for($i = 0; $i < $amount; $i++) {
-                $dataString .= " ('" . \Framework\Utils\RnG\String::generateString(5, 15) . "', " . rand(1, $amount - 1) . "),";
+                $clients .= " ('" . \Framework\Utils\RnG\String::generateString(5, 15) . "', " . rand(1, $amount - 1) . "),";
+                $invoices .= " (" . (rand(1, 7)) . ", " . (rand(1, 5)) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', " . (rand(0, 100000) / 10) . ", 'usd', " . rand(1, 50) . ", " . rand(1, 1000) . ", " . rand(1, 50) . "),";
             }
 
-            $dataString = rtrim($dataString, ',');
+            $clients  = rtrim($clients, ',');
+            $invoices = rtrim($invoices, ',');
 
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $dataString)->execute();
+            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $clients)->execute();
+            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_invoices` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `client`, `referer`) VALUES ' . $invoices)->execute();
         }
     }
 }

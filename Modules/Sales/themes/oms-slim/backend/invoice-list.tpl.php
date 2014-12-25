@@ -1,4 +1,5 @@
 <?php /** @var \Modules\Sales\Handler $this */
+/** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1001604001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
@@ -30,18 +31,18 @@
         ?>
         <tbody>
         <?php
-        /** @var \Modules\Sales\ArticleList $articles */ /*
-                $data = $articles->article_list_get();
+        /** @var \Modules\Sales\InvoiceList $invoiceList */
+                $data = $invoiceList->getList();
                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
-                $url['id'] = 'id';
+                $url['id'] = 'SalesInvoiceID';
 
                 \Framework\Model\Model::generate_table_content_view(
                     $data['list'],
-                    ['status', 'id', 'name1', 'lactive', 'created'],
+                    ['SalesInvoiceID', 'printed', 'type', 'status', 'client', 'client', 'price', 'creator', 'created'],
                     $url
-                );*/
+                );
         ?>
         <tfoot>
     <tr>

@@ -146,6 +146,9 @@ namespace Modules\Sales {
         public function showBackendInvoice() {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $invoiceList = new \Modules\Sales\InvoiceList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;

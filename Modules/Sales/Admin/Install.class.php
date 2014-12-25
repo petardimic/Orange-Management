@@ -116,22 +116,28 @@ namespace Modules\Sales\Admin {
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoices` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `SalesInvoiceID` int(11) NOT NULL AUTO_INCREMENT,
+                            `status` tinyint(2) DEFAULT NULL,
+                            `type` tinyint(2) DEFAULT NULL,
                             `created` datetime DEFAULT NULL,
+                            `printed` datetime DEFAULT NULL,
                             `price` decimal(9,2) DEFAULT NULL,
                             `currency` varchar(3) DEFAULT NULL,
                             `creator` int(11) NOT NULL,
                             `client` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
+                            `referer` int(11) NOT NULL,
+                            PRIMARY KEY (`SalesInvoiceID`),
                             KEY `creator` (`creator`),
-                            KEY `client` (`client`)
+                            KEY `client` (`client`),
+                            KEY `referer` (`referer`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_invoices`
                             ADD CONSTRAINT `sales_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`);'
+                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`),
+                            ADD CONSTRAINT `sales_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
                     break;
             }
