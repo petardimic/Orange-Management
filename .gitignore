@@ -2,6 +2,7 @@
 *.aux
 *.gz
 *.zip
+*.jar
 *.exe
 *.stackdump
 *.index
