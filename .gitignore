@@ -3,7 +3,6 @@
 *.gz
 *.zip
 *.exe
-*.jar
 *.stackdump
 *.index
 *.name
