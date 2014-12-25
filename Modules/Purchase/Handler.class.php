@@ -148,7 +148,8 @@ namespace Modules\Purchase {
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
-                    $this->show_backend_client_single();
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */

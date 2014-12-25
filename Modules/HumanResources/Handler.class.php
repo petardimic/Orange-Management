@@ -149,8 +149,13 @@ namespace Modules\HumanResources {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $staff = new \Modules\HumanResources\StaffList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-single.tpl.php';
                     break;
             }
         }
