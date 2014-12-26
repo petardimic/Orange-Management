@@ -126,6 +126,8 @@ namespace Modules\Purchase {
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
                 case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */

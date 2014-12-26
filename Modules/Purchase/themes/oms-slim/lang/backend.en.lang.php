@@ -57,6 +57,7 @@ $MODLANG[21] = [
     "Orders"               => "Orders",
     "Ordered"              => "Ordered",
     "OrderedBy"            => "Ordered By",
+    "OrderedDate"          => "Ordered Date",
     "Payment"              => "Payment",
     "Price"                => "Price",
     "Priority"             => "Priority",
