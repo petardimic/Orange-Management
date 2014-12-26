@@ -60,6 +60,7 @@ $MODLANG[21] = [
     "Payment"              => "Payment",
     "Price"                => "Price",
     "Priority"             => "Priority",
+    "Purchases"            => "Purchases",
     "Quantity"             => "Quantity",
     "Receipt"              => "Receipt",
     "Reference"            => "Reference",

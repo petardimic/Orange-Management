@@ -30,10 +30,14 @@ namespace Modules\Purchase\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_articles` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            PRIMARY KEY (`id`)
+                            `PurchaseArticleID` int(11) NOT NULL AUTO_INCREMENT,
+                            `article` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`PurchaseArticleID`),
+                            KEY `article` (`article`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
+
+                    /* TODO: add constraint */
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_suppliers` (

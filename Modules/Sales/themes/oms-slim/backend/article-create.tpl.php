@@ -20,34 +20,19 @@
 
                 <div class="bc-1">
                     <form class="f-1">
+                        <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li>
-                                <label
-                                    for="i-status"><?= $this->app->user->localization->lang[0]['ID']; ?></label>
-                            <li>
-                                <input name="active" class="i-1 t-i" id="i-active" type="text">
-                            <li>
-                                <label
-                                    for="i-active"><?= $this->app->user->localization->lang[16]['Matchcode']; ?></label>
-                            <li>
-                                <input name="active" class="i-1 t-i" id="i-active" type="text">
-                            <li>
-                                <label
-                                    for="i-created"><?= $this->app->user->localization->lang[16]['Class']; ?></label>
-                            <li>
-                                <input name="created" class="i-1 t-i" id="i-created" type="text">
-                            <li>
-                                <label
-                                    for="i-created"><?= $this->app->user->localization->lang[16]['Group']; ?></label>
-                            <li>
-                                <input name="created" class="i-1 t-i" id="i-created" type="text">
-                            <li>
-                                <label
-                                    for="i-created"><?= $this->app->user->localization->lang[16]['Subgroup']; ?></label>
-                            <li>
-                                <input name="created" class="i-1 t-i" id="i-created" type="text">
+                            <li><label for="i-status"><?= $this->app->user->localization->lang[0]['ID']; ?></label>
+                            <li><input name="active" class="i-1 t-i" id="i-active" type="text">
+                            <li><label for="i-created"><?= $this->app->user->localization->lang[16]['Class']; ?></label>
+                            <li><input name="created" class="i-1 t-i" id="i-created" type="text">
+                            <li><label for="i-created"><?= $this->app->user->localization->lang[16]['Group']; ?></label>
+                            <li><input name="created" class="i-1 t-i" id="i-created" type="text">
+                            <li><label for="i-created"><?= $this->app->user->localization->lang[16]['Subgroup']; ?></label>
+                            <li><input name="created" class="i-1 t-i" id="i-created" type="text">
                             <li>
                         </ul>
+                        <!-- @formatter:on -->
                     </form>
                 </div>
             </div>
@@ -61,10 +46,9 @@
 
                 <div class="bc-1">
                     <form class="f-1">
+                        <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li>
-                                <label
-                                    for="i-status"><?= $this->app->user->localization->lang[16]['Language']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Language']; ?></label>
                             <li>
                                 <select>
                                     <?php require __DIR__ . '/../../../sales_price_names.php';
@@ -73,19 +57,13 @@
                                     }
                                     ?>
                                 </select>
-                            <li>
-                                <label
-                                    for="i-type"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
-                            <li>
-                                <input name="active" class="i-1 t-i" id="i-active" type="text">
-                            <li>
-                                <label
-                                    for="i-active"><?= $this->app->user->localization->lang[16]['Description']; ?></label>
-                            <li>
-                                <textarea name="active" class="i-1 t-i" id="i-active"></textarea>
-                            <li>
-                                <button><?= $this->app->user->localization->lang[0]['Add']; ?></button>
+                            <li><label for="i-type"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
+                            <li><input name="active" class="i-1 t-i" id="i-active" type="text">
+                            <li><label for="i-active"><?= $this->app->user->localization->lang[16]['Description']; ?></label>
+                            <li><textarea name="active" class="i-1 t-i" id="i-active"></textarea>
+                            <li><button><?= $this->app->user->localization->lang[0]['Add']; ?></button>
                         </ul>
+                        <!-- @formatter:on -->
                     </form>
                 </div>
             </div>
@@ -99,10 +77,9 @@
 
                 <div class="bc-1">
                     <form class="f-1">
+                        <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li>
-                                <label
-                                    for="i-login"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
+                            <li><label for="i-login"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
                             <li>
                                 <select>
                                     <?php require __DIR__ . '/../../../sales_price_names.php';
@@ -111,35 +88,21 @@
                                     }
                                     ?>
                                 </select>
-                            <li>
-                                <label
-                                    for="i-login"><?= $this->app->user->localization->lang[16]['Priority']; ?></label>
+                            <li><label for="i-login"><?= $this->app->user->localization->lang[16]['Priority']; ?></label>
                             <li>
                                 <input type="checkbox" name="vehicle" value="Bike">
                                 <label><?= $this->app->user->localization->lang[16]['IsDefault']; ?></label>
-                            <li>
-                                <label
-                                    for="i-login"><?= $this->app->user->localization->lang[16]['Price']; ?></label>
-                            <li>
-                                <input name="login" class="i-1 t-i" id="i-login" type="text">
-                            <li>
-                                <label
-                                    for="i-name1"><?= $this->app->user->localization->lang[16]['DiscountP']; ?></label>
-                            <li>
-                                <input name="name1" class="i-1 t-i" id="i-name1" type="text">
-                            <li>
-                                <label
-                                    for="i-name2"><?= $this->app->user->localization->lang[16]['Discount']; ?></label>
-                            <li>
-                                <input name="name2" class="i-1 t-i" id="i-name2" type="text">
-                            <li>
-                                <label
-                                    for="i-name3"><?= $this->app->user->localization->lang[16]['MinPrice']; ?></label>
-                            <li>
-                                <input name="name3" class="i-1 t-i" id="i-name3" type="text">
-                            <li>
-                                <button><?= $this->app->user->localization->lang[0]['Add']; ?></button>
+                            <li><label for="i-login"><?= $this->app->user->localization->lang[16]['Price']; ?></label>
+                            <li><input name="login" class="i-1 t-i" id="i-login" type="text">
+                            <li><label for="i-name1"><?= $this->app->user->localization->lang[16]['DiscountP']; ?></label>
+                            <li><input name="name1" class="i-1 t-i" id="i-name1" type="text">
+                            <li><label for="i-name2"><?= $this->app->user->localization->lang[16]['Discount']; ?></label>
+                            <li><input name="name2" class="i-1 t-i" id="i-name2" type="text">
+                            <li><label for="i-name3"><?= $this->app->user->localization->lang[16]['MinPrice']; ?></label>
+                            <li><input name="name3" class="i-1 t-i" id="i-name3" type="text">
+                            <li><button><?= $this->app->user->localization->lang[0]['Add']; ?></button>
                         </ul>
+                        <!-- @formatter:on -->
                     </form>
                 </div>
             </div>
