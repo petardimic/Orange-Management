@@ -33,7 +33,7 @@
             <tbody>
             <?php
             /** @var \Modules\Purchase\ArticleList $articleList */
-                $data = $articleList->article_list_get();
+                $data = $articleList->getList();
                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
