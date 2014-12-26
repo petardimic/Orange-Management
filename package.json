@@ -38,6 +38,15 @@
     "grunt-phpunit": "^0.3.6",
     "grunt-shell": "^1.1.1",
     "grunt-vagrant": "^0.2.1",
-    "grunt-vagrantup": "^0.2.0"
-  }
+    "grunt-vagrantup": "^0.2.0",
+    "load-grunt-tasks": "^2.0.0"
+  },
+  "main": "GruntFile.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
 }

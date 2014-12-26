@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-composer');
     grunt.loadNpmTasks('grunt-vagrant');
     grunt.loadNpmTasks('grunt-vagrantup');
+    grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks("grunt-jscs");
     grunt.loadNpmTasks('grunt-phpcs');
     grunt.loadNpmTasks('grunt-phpmd');
@@ -175,6 +176,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 command: [
+                    'mkdir Docs/Stats',
                     'phploc Framework/ > Docs/Stats/FrameworkStats.stats',
                     'phploc Modules/ > Docs/Stats/ModulesStats.stats'
                 ].join('&&')

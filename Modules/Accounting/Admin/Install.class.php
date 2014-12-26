@@ -55,6 +55,17 @@ namespace Modules\Accounting\Admin {
                         'ALTER TABLE `' . $db->prefix . 'accounting_creditor`
                             ADD CONSTRAINT `accounting_creditor_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`);'
                     )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accounting_accounts` (
+                            `AccountingAccountID` int(11) NOT NULL AUTO_INCREMENT,
+                            `name` varchar(25) NOT NULL,
+                            `description` varchar(255) NOT NULL,
+                            `pnl` tinyint(1) NOT NULL,
+                            `pnl` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`AccountingAccountID`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
                     break;
             }
 
