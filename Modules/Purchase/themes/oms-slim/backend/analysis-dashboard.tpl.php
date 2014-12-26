@@ -8,7 +8,7 @@
         <!-- @formatter:off -->
         <table class="tc-1" style="margin-top: 5px">
             <tr>
-                <th><label>Test string</label>
+                <th><label><?= $this->app->user->localization->lang[21]['Amount'] ?></label>
                 <td>asldkf
             <tr>
                 <th><label>Test string</label>

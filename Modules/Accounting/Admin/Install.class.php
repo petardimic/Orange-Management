@@ -28,7 +28,33 @@ namespace Modules\Accounting\Admin {
         public static function install(&$db, $info) {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accounting_debitor` (
+                            `AccountingDebitorID` int(11) NOT NULL AUTO_INCREMENT,
+                            `account` int(11) NOT NULL,
+                            PRIMARY KEY (`AccountingDebitorID`),
+                            KEY `account` (`account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
 
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'accounting_debitor`
+                            ADD CONSTRAINT `accounting_debitor_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accounting_creditor` (
+                            `AccountingCreditorID` int(11) NOT NULL AUTO_INCREMENT,
+                            `account` int(11) NOT NULL,
+                            PRIMARY KEY (`AccountingCreditorID`),
+                            KEY `account` (`account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'accounting_creditor`
+                            ADD CONSTRAINT `accounting_creditor_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`);'
+                    )->execute();
                     break;
             }
 
