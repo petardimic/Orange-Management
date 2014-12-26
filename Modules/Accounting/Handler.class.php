@@ -140,7 +140,7 @@ namespace Modules\Accounting {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $debitorList = new \Modules\Accounting\CreditorList($this->app->db);
+                    $debitorList = new \Modules\Accounting\DebitorList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/debitor-list.tpl.php';
