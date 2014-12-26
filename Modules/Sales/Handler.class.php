@@ -119,8 +119,15 @@ namespace Modules\Sales {
         public function showBackendArticle() {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $articleList = new \Modules\Sales\ArticleList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */

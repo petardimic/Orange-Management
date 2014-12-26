@@ -46,20 +46,46 @@ namespace Modules\Sales\Admin {
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles` (
                             `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `matchcode` varchar(50) DEFAULT NULL,
                             `class` tinyint(3) DEFAULT NULL,
                             `group` tinyint(3) DEFAULT NULL,
                             `subgroup` tinyint(3) DEFAULT NULL,
-                            `article` tinyint(3) DEFAULT NULL,
-                            KEY `article` (`article`),
-                            PRIMARY KEY (`SalesArticleID`)
+                            `article` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`SalesArticleID`),
+                            KEY `article` (`article`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
+
+                    /* TODO: remember to give warehousing articles a name as well! */
 
                     /*$db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_articles`
                             ADD CONSTRAINT `sales_articles_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'stock_articles` (`id`);'
                     )->execute();*/
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_single` (
+                            `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
+                            `type` tinyint(1) DEFAULT NULL,
+                            `lot` varchar(30) DEFAULT NULL,
+                            `lotext` varchar(30) DEFAULT NULL,
+                            `created` datetime DEFAULT NULL,
+                            `durability` datetime DEFAULT NULL,
+                            `checked` int(11) DEFAULT NULL,
+                            `status` tinyint(1) DEFAULT NULL,
+                            `inspected` datetime DEFAULT NULL,
+                            `stock` int(11) DEFAULT NULL,
+                            `location` int(11) DEFAULT NULL,
+                            `amount` int(11) DEFAULT NULL,
+                            `article` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`SalesArticleID`),
+                            KEY `article` (`article`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'sales_articles_single`
+                            ADD CONSTRAINT `sales_articles_single_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
+                    )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_classification` (
