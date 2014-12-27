@@ -15,7 +15,8 @@ namespace Modules\Support {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Issue implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class Issue implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * Name
          *
@@ -50,10 +51,12 @@ namespace Modules\Support {
 
         private static $instances = [];
 
-        public function __construct($id) {
+        public function __construct($id)
+        {
         }
 
-        public function getInstance($id) {
+        public function getInstance($id)
+        {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -61,62 +64,74 @@ namespace Modules\Support {
             return self::$instances[$id];
         }
 
-        public function getID() {
+        public function getID()
+        {
             return $this->id;
         }
 
-        public function getName() {
+        public function getName()
+        {
             return $this->name;
         }
 
-        public function setName($name) {
+        public function setName($name)
+        {
             $this->name = $name;
         }
 
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
-        public function setCreated($created) {
+        public function setCreated($created)
+        {
             $this->created = $created;
         }
 
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
-        public function setCreator($creator) {
+        public function setCreator($creator)
+        {
             $this->creator = $creator;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

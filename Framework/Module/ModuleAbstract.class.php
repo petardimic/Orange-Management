@@ -15,7 +15,8 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ModuleAbstract implements \Framework\Module\ModuleInterface {
+    abstract class ModuleAbstract implements \Framework\Module\ModuleInterface
+    {
         /**
          * Application instance
          *
@@ -49,7 +50,8 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __construct($app, $theme) {
+        public function __construct($app, $theme)
+        {
             $this->app       = $app;
             $this->themePath = $theme;
         }
@@ -57,7 +59,8 @@ namespace Framework\Module {
         /**
          * {@inheritdoc}
          */
-        public function callPull() {
+        public function callPull()
+        {
             foreach($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */
                 \Framework\Module\ModuleFactory::$loaded[$mid]->callPush();

@@ -11,7 +11,8 @@
  * @since  1.0.0
  * @author Dennis Eichhorn <d.eichhorn@oms.com>
  */
-function in_array_r($needle, $haystack, $id = null) {
+function in_array_r($needle, $haystack, $id = null)
+{
     $found = false;
 
     if(isset($id) && isset($haystack[$id]) && $haystack[$id] === $needle) {

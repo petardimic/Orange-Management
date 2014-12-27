@@ -15,11 +15,13 @@ namespace Modules\HumanResources\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Dummy implements \Framework\Install\DummyInterface {
+    class Dummy implements \Framework\Install\DummyInterface
+    {
         /**
          * {@inheritdoc}
          */
-        public static function generate($db, $amount) {
+        public static function generate($db, $amount)
+        {
             $db->con->beginTransaction();
 
             $dataString = " ('Human Resource Department', NULL),"

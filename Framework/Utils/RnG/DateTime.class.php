@@ -15,7 +15,8 @@ namespace Framework\Utils\RnG {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class DateTime {
+    class DateTime
+    {
         /**
          * Get a random string
          *
@@ -27,7 +28,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generateDateTime($start, $end) {
+        public static function generateDateTime($start, $end)
+        {
             $startDate = strtotime($start);
             $endDate   = strtotime($end);
 

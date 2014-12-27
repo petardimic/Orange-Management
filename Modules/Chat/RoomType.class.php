@@ -15,7 +15,8 @@ namespace Modules\Chat {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class RoomType extends \Framework\Datatypes\Enum {
+    abstract class RoomType extends \Framework\Datatypes\Enum
+    {
         const PUBLIC_CHAT = 0;
         const PRIVATE_CHAT = 1;
         const TEMP_CHAT = 2;

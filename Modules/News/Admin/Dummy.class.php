@@ -15,11 +15,13 @@ namespace Modules\News\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Dummy implements \Framework\Install\DummyInterface {
+    class Dummy implements \Framework\Install\DummyInterface
+    {
         /**
          * {@inheritdoc}
          */
-        public static function generate($db, $amount) {
+        public static function generate($db, $amount)
+        {
             $textGenerator = new \Framework\Utils\RnG\Text();
             $textGenerator->setParagraphs(true);
 

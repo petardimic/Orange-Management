@@ -15,7 +15,8 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ConsoleApplication extends \Framework\ApplicationAbstract {
+    class ConsoleApplication extends \Framework\ApplicationAbstract
+    {
         /**
          * Constructor
          *
@@ -24,7 +25,8 @@ namespace Framework {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($config) {
+        public function __construct($config)
+        {
         }
     }
 }

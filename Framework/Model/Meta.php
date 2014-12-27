@@ -1,4 +1,3 @@
 <?php
 namespace Framework\Model {
-
 }

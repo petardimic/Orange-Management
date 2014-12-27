@@ -17,7 +17,8 @@ namespace Framework\DataStorage\Database {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class DatabaseType extends \Framework\Datatypes\Enum {
+    abstract class DatabaseType extends \Framework\Datatypes\Enum
+    {
         const MYSQL = 0; /* MySQL */
         const SQLITE = 1; /* SQLITE */
         const PGSQL = 2; /* PostgreSQL */

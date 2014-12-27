@@ -15,7 +15,8 @@ namespace Modules\GlobalContent {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -42,7 +43,8 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -54,7 +56,8 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -66,7 +69,8 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -78,7 +82,8 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb($data = null) {
+        public function callWeb($data = null)
+        {
             if(isset(self::$receiving)) {
                 foreach(self::$receiving as $mid) {
                     \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);

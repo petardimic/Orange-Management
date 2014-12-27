@@ -17,14 +17,16 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class UriFactory {
+    class UriFactory
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        private function __construct() {
+        private function __construct()
+        {
         }
 
         /**
@@ -39,7 +41,8 @@ namespace Framework\Uri {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function build($data, $query = null, $scheme = \Framework\Uri\UriScheme::HTTP) {
+        public static function build($data, $query = null, $scheme = \Framework\Uri\UriScheme::HTTP)
+        {
             switch($scheme) {
                 case \Framework\Uri\UriScheme::HTTP:
                     return \Framework\Uri\Http::create($data, $query);
@@ -85,7 +88,8 @@ namespace Framework\Uri {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function isValid($uri, $scheme = \Framework\Uri\UriScheme::HTTP) {
+        public static function isValid($uri, $scheme = \Framework\Uri\UriScheme::HTTP)
+        {
             switch($scheme) {
                 case \Framework\Uri\UriScheme::HTTP:
                     return \Framework\Uri\Http::isValid($uri);

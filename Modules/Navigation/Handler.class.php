@@ -15,7 +15,8 @@ namespace Modules\Navigation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -89,7 +90,8 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
 
             if(!$this->nav) {
@@ -121,7 +123,8 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -133,7 +136,8 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -145,7 +149,8 @@ namespace Modules\Navigation {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb($data = null) {
+        public function callWeb($data = null)
+        {
             switch($data[0]) {
                 case \Modules\Navigation\NavigationType::TOP:
                     /** @noinspection PhpIncludeInspection */

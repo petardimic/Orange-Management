@@ -15,7 +15,8 @@ namespace Framework\Utils\IO\Cvs {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface CvsInterface {
+    interface CvsInterface
+    {
         /**
          * Export Csv
          *

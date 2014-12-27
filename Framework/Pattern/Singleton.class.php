@@ -15,7 +15,8 @@ namespace Framework\Pattern {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface Singleton {
+    interface Singleton
+    {
         /**
          * Get instance
          *

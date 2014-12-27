@@ -15,7 +15,8 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ModuleInterface {
+    interface ModuleInterface
+    {
         /**
          * Get modules this module is providing for
          *

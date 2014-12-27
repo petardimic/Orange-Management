@@ -17,7 +17,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class OSType extends \Framework\Datatypes\Enum {
+    abstract class OSType extends \Framework\Datatypes\Enum
+    {
         const WINDOWS_81 = 'windows nt 6.3'; /* Windows 8.1 */
         const WINDOWS_8 = 'windows nt 6.2'; /* Windows 8 */
         const WINDOWS_7 = 'windows nt 6.1'; /* Windows 7 */

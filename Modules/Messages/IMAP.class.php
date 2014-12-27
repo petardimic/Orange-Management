@@ -15,33 +15,41 @@ namespace Modules\Messages {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class IMAP implements \Modules\Messages\Email {
+    class IMAP implements \Modules\Messages\Email
+    {
         private $con = null;
 
-        public function __construct() {
+        public function __construct()
+        {
         }
 
-        public function connect($host, $port, $user, $password) {
+        public function connect($host, $port, $user, $password)
+        {
             $this->con = imap_open('{' . $host . ':' . $port . '}', $user, $password);
         }
 
-        public function getListNew() {
+        public function getListNew()
+        {
             // TODO: Implement getListNew() method.
         }
 
-        public function getListAll() {
+        public function getListAll()
+        {
             // TODO: Implement getListAll() method.
         }
 
-        public function getMessage() {
+        public function getMessage()
+        {
             // TODO: Implement getMessage() method.
         }
 
-        public function removeMessage() {
+        public function removeMessage()
+        {
             // TODO: Implement removeMessage() method.
         }
 
-        public function setStatus() {
+        public function setStatus()
+        {
             // TODO: Implement setStatus() method.
         }
     }

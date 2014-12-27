@@ -17,7 +17,8 @@ namespace Framework\Install {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class DummyFactory {
+    class DummyFactory
+    {
         /**
          * Generate dummy data
          *
@@ -28,7 +29,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generate($db, $module, $amount = 9997) {
+        public static function generate($db, $module, $amount = 9997)
+        {
             if(file_exists(__DIR__ . '/../../Modules/' . $module . '/Admin/Dummy.class.php')) {
                 /** @var \Framework\Install\DummyInterface $class */
                 $class = '\\Modules\\' . $module . '\\Admin\\Dummy';

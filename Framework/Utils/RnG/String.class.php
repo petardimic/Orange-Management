@@ -15,7 +15,8 @@ namespace Framework\Utils\RnG {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class String {
+    class String
+    {
         /**
          * Get a random string
          *
@@ -28,7 +29,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generateString($min = 10, $max = 10, $charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+        public static function generateString($min = 10, $max = 10, $charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        {
             $length           = rand($min, $max);
             $charactersLength = strlen($charset);
             $randomString     = '';

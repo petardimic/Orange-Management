@@ -15,7 +15,8 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Balance implements \Framework\Utils\IO\ExchangeInterface {
+    abstract class Balance implements \Framework\Utils\IO\ExchangeInterface
+    {
         /**
          * ID
          *
@@ -30,7 +31,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -40,7 +42,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setId($id) {
+        public function setId($id)
+        {
             $this->id = $id;
         }
 
@@ -75,55 +78,64 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportJson($path) {
+        public function exportJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importJson($path) {
+        public function importJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportCsv($path) {
+        public function exportCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCsv($path) {
+        public function importCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportExcel($path) {
+        public function exportExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importExcel($path) {
+        public function importExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportPdf($path) {
+        public function exportPdf($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importPdf($path) {
+        public function importPdf($path)
+        {
         }
     }
 }

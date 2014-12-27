@@ -17,7 +17,8 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class InfoManager {
+    class InfoManager
+    {
         /**
          * File pointer
          *
@@ -42,13 +43,15 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __construct($module) {
+        public function __construct($module)
+        {
             if(file_exists(self::$module_path . $module . '/info.json')) {
                 $this->fp = fopen(self::$module_path . $module . '/info.json', 'r');
             }
         }
 
-        public function update() {
+        public function update()
+        {
             // TODO: update file (convert to json)
         }
 
@@ -58,7 +61,8 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             $this->fp->close();
         }
     }

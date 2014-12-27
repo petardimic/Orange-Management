@@ -15,53 +15,62 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class CountingList {
+    class CountingList
+    {
         /**
          * {@inheritdoc}
          */
-        public function exportJson($path) {
+        public function exportJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importJson($path) {
+        public function importJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportCsv($path) {
+        public function exportCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCsv($path) {
+        public function importCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportExcel($path) {
+        public function exportExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importExcel($path) {
+        public function importExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportPdf($path) {
+        public function exportPdf($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importPdf($path) {
+        public function importPdf($path)
+        {
         }
     }
 }

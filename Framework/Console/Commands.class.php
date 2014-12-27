@@ -15,7 +15,8 @@ namespace Framework\Console {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Commands implements \Countable {
+    class Commands implements \Countable
+    {
         /**
          * Commands
          *
@@ -38,21 +39,22 @@ namespace Framework\Console {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
-
+        public function __construct()
+        {
         }
 
         /**
          * Attach new command
          *
-         * @param string $cmd Command ID
-         * @param mixed $callback Function callback
-         * @param mixed $source Provider
+         * @param string $cmd      Command ID
+         * @param mixed  $callback Function callback
+         * @param mixed  $source   Provider
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function attach($cmd, $callback, $source) {
+        public function attach($cmd, $callback, $source)
+        {
             $this->commands[$cmd] = [$callback, $source];
             $this->count++;
         }
@@ -60,13 +62,14 @@ namespace Framework\Console {
         /**
          * Detach existing command
          *
-         * @param string $cmd Command ID
-         * @param mixed $source Provider
+         * @param string $cmd    Command ID
+         * @param mixed  $source Provider
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function detach($cmd, $source) {
+        public function detach($cmd, $source)
+        {
             if(array_key_exists($cmd, $this->commands)) {
                 unset($this->commands[$cmd]);
                 $this->count--;
@@ -76,15 +79,16 @@ namespace Framework\Console {
         /**
          * Detach existing command
          *
-         * @param string $cmd Command ID
-         * @param mixed $para Parameters to pass
+         * @param string $cmd  Command ID
+         * @param mixed  $para Parameters to pass
          *
          * @return \Framework\Response\ResponseStatus::WRONG_REQUEST|mixed
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function trigger($cmd, $para) {
+        public function trigger($cmd, $para)
+        {
             if(array_key_exists($cmd, $this->commands)) {
                 return $this->commands[$cmd][0]($para);
             }
@@ -100,7 +104,8 @@ namespace Framework\Console {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function count() {
+        public function count()
+        {
             return $this->count;
         }
     }

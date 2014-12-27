@@ -17,7 +17,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class BrowserType extends \Framework\Datatypes\Enum {
+    abstract class BrowserType extends \Framework\Datatypes\Enum
+    {
         const IE = 'msie'; /* Internet Explorer */
         const FIREFOX = 'firefox'; /* Firefox */
         const SAFARI = 'safari'; /* Safari */

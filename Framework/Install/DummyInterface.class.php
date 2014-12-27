@@ -17,7 +17,8 @@ namespace Framework\Install {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface DummyInterface {
+    interface DummyInterface
+    {
         /**
          * Generate dummy data
          *

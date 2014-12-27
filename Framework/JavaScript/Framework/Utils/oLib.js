@@ -213,8 +213,8 @@ var oLib = {
     isNode: function (ele) {
         return (
             typeof Node === "object" ? ele instanceof Node :
-                ele && typeof ele === "object" && typeof ele.nodeType === "number" && typeof ele.nodeName === "string"
-            );
+            ele && typeof ele === "object" && typeof ele.nodeType === "number" && typeof ele.nodeName === "string"
+        );
     },
 
     /**
@@ -232,7 +232,7 @@ var oLib = {
     isElement: function (o) {
         return (
             typeof HTMLElement === "object" ? o instanceof HTMLElement : o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
-            );
+        );
     },
 
     /**

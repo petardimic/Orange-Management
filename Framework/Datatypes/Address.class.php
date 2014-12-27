@@ -15,7 +15,8 @@ namespace Framework\Datatypes {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Address {
+    class Address
+    {
         /**
          * Name of the receiver
          *

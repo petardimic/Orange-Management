@@ -18,7 +18,8 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Autoloader {
+    class Autoloader
+    {
         /**
          * Loading classes by namespace + class name
          *
@@ -27,7 +28,8 @@ namespace Framework {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function default_autoloader($class) {
+        public static function default_autoloader($class)
+        {
             $class = ltrim($class, '\\');
 
             /** @noinspection PhpIncludeInspection */

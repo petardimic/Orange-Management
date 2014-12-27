@@ -18,7 +18,8 @@ namespace OMS\Modules {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Markdown extends Module {
+    class Markdown extends Module
+    {
         /**
          * Dependencies
          *
@@ -64,7 +65,8 @@ namespace OMS\Modules {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct(&$db, &$model, &$user, &$cache) {
+        public function __construct(&$db, &$model, &$user, &$cache)
+        {
             parent::initialize($db, $model, $user, $cache);
         }
 
@@ -77,7 +79,8 @@ namespace OMS\Modules {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install(&$db, $info) {
+        public static function install(&$db, $info)
+        {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 1000500000);
         }
 
@@ -89,11 +92,13 @@ namespace OMS\Modules {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($themePath) {
+        public function init($themePath)
+        {
             $this->themePath = $themePath;
         }
 
-        public function markdown($text) {
+        public function markdown($text)
+        {
             /* Standardize line breaks */
             $text = str_replace('\r\n', '\n', $text);
             $text = str_replace('\r', '\n', $text);
@@ -116,7 +121,8 @@ namespace OMS\Modules {
             return $markup;
         }
 
-        public function markdown_lines($lines) {
+        public function markdown_lines($lines)
+        {
             $markup = '';
 
             $block_current = null;

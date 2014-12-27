@@ -18,7 +18,8 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Modifier {
+    class Modifier
+    {
 
         /**
          * Config file
@@ -44,7 +45,8 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($file) {
+        public function __construct($file)
+        {
             $this->file = $file;
 
             include __DIR__ . '/../../config.php';
@@ -61,7 +63,8 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function write_config() {
+        public function write_config()
+        {
             $output = '<' . '?php' . PHP_EOL
                 .= '/**' . PHP_EOL
                 .= ' * Global config file' . PHP_EOL

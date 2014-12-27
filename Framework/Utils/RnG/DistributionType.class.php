@@ -15,7 +15,8 @@ namespace Framework\Utils\RnG {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class DistributionType extends \Framework\Datatypes\Enum {
+    abstract class DistributionType extends \Framework\Datatypes\Enum
+    {
         const UNIFORM = 0;
         const NORMAL = 1;
     }

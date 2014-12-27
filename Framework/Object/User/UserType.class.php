@@ -15,7 +15,8 @@ namespace Framework\Object\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class UserType extends \Framework\Datatypes\Enum {
+    abstract class UserType extends \Framework\Datatypes\Enum
+    {
         const PERSON = 0; /* Account belongs to real person */
         const ORGANIZATION = 1; /* Account belongs to a organization */
         const COMPANY = 2; /* Account belongs to a company */

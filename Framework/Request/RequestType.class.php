@@ -17,7 +17,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class RequestType extends \Framework\Datatypes\Enum {
+    abstract class RequestType extends \Framework\Datatypes\Enum
+    {
         const GET = 'GET'; /* GET */
         const POST = 'POST'; /* POST */
         const PUT = 'PUT'; /* PUT */

@@ -15,7 +15,8 @@ namespace Framework\Localization {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Localization {
+    class Localization
+    {
         /**
          * Application instance
          *
@@ -108,7 +109,8 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id, $app) {
+        public function __construct($id, $app)
+        {
             $this->app             = $app;
             $this->localization_id = $id;
             $this->language        = $this->app->request->getLanguage();
@@ -121,7 +123,8 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getLocals() {
+        public static function getLocals()
+        {
             if(!isset(self::$locals)) {
                 include_once __DIR__ . '/Localization.array.php';
 
@@ -141,7 +144,8 @@ namespace Framework\Localization {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function loadLanguage($language, $files) {
+        public function loadLanguage($language, $files)
+        {
             if(!$this->lang && !empty($files)) {
                 $this->lang = [];
 

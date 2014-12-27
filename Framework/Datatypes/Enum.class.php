@@ -17,7 +17,8 @@ namespace Framework\Datatypes {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Enum {
+    abstract class Enum
+    {
         /**
          * Caching constant values
          *
@@ -34,7 +35,8 @@ namespace Framework\Datatypes {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getConstants() {
+        public static function getConstants()
+        {
             if(self::$constCache === null) {
                 $reflect          = new \ReflectionClass(get_called_class());
                 self::$constCache = $reflect->getConstants();
@@ -55,7 +57,8 @@ namespace Framework\Datatypes {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function isValidName($name) {
+        public static function isValidName($name)
+        {
             $constants = self::getConstants();
 
             return array_key_exists($name, $constants);
@@ -73,7 +76,8 @@ namespace Framework\Datatypes {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function isValidValue($value) {
+        public static function isValidValue($value)
+        {
             $values = array_values(self::getConstants());
 
             return in_array($value, $values, $strict = true);

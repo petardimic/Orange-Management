@@ -17,7 +17,8 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface UriInterface {
+    interface UriInterface
+    {
         /**
          * Create URI
          *

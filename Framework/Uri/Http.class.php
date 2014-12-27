@@ -17,14 +17,16 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Http implements \Framework\Uri\UriInterface {
+    class Http implements \Framework\Uri\UriInterface
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -35,7 +37,8 @@ namespace Framework\Uri {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getCurrent() {
+        public static function getCurrent()
+        {
             /** @noinspection PhpUndefinedConstantInspection */
             return 'http://' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI];
         }
@@ -43,7 +46,8 @@ namespace Framework\Uri {
         /**
          * {@inheritdoc}
          */
-        public static function create($data, $query = null) {
+        public static function create($data, $query = null)
+        {
             $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
 
             if(isset($query)) {
@@ -65,25 +69,29 @@ namespace Framework\Uri {
         /**
          * {@inheritdoc}
          */
-        public static function isValid($uri) {
+        public static function isValid($uri)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function parse($uri) {
+        public function parse($uri)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function toString() {
+        public function toString()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function resolve($base) {
+        public function resolve($base)
+        {
         }
     }
 }

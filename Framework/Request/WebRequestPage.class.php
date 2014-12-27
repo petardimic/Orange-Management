@@ -17,7 +17,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class WebRequestPage extends \Framework\Datatypes\Enum {
+    abstract class WebRequestPage extends \Framework\Datatypes\Enum
+    {
         const WEBSITE = 'website'; /* Website */
         const API = 'api'; /* API */
         const SHOP = 'shop'; /* Shop */

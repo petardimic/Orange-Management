@@ -15,7 +15,8 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Commands implements \Countable {
+    class Commands implements \Countable
+    {
         /**
          * Commands
          *
@@ -38,7 +39,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -51,7 +53,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function attach($cmd, $callback, $source) {
+        public function attach($cmd, $callback, $source)
+        {
             $this->commands[$cmd] = [$callback, $source];
             $this->count++;
         }
@@ -65,7 +68,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function detach($cmd, $source) {
+        public function detach($cmd, $source)
+        {
             if(array_key_exists($cmd, $this->commands)) {
                 unset($this->commands[$cmd]);
                 $this->count--;
@@ -83,7 +87,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function trigger($cmd, $para) {
+        public function trigger($cmd, $para)
+        {
             if(array_key_exists($cmd, $this->commands)) {
                 return $this->commands[$cmd][0]($para);
             }
@@ -99,7 +104,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function count() {
+        public function count()
+        {
             return $this->count;
         }
     }

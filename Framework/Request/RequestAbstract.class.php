@@ -17,7 +17,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class RequestAbstract implements \Framework\Request\RequestInterface {
+    abstract class RequestAbstract implements \Framework\Request\RequestInterface
+    {
         /**
          * Request type
          *
@@ -56,41 +57,47 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getUri() {
+        public function getUri()
+        {
             return $this->uri;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getRequestSource() {
+        public function getRequestSource()
+        {
             return self::$source;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function setRequestSource($source) {
+        public function setRequestSource($source)
+        {
             self::$source = $source;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getType() {
+        public function getType()
+        {
             return $this->type;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getLanguage() {
+        public function getLanguage()
+        {
             return $this->lang;
         }
     }

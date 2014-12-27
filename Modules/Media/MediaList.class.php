@@ -15,14 +15,17 @@ namespace Modules\Media {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class MediaList {
+    class MediaList
+    {
         private $db = null;
 
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
-        public function getList($filter = null, $offset = 0, $limit = 100) {
+        public function getList($filter = null, $offset = 0, $limit = 100)
+        {
             $result = null;
 
             switch($this->db->getType()) {

@@ -15,7 +15,8 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface OptionsInterface {
+    interface OptionsInterface
+    {
         /**
          * Updating or adding settings
          *

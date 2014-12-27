@@ -15,7 +15,8 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -45,7 +46,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -57,7 +59,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -69,7 +72,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -79,7 +83,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb() {
+        public function callWeb()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->showContentBackend();
@@ -93,7 +98,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackend() {
+        public function showContentBackend()
+        {
             switch($this->app->request->request['l3']) {
                 case 'account':
                     $this->showBackendAccount();
@@ -118,7 +124,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendSettings() {
+        public function showBackendSettings()
+        {
             $this->app->settings->loadSettings([
                 1000000006,
                 1000000007,
@@ -155,7 +162,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendAccount() {
+        public function showBackendAccount()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -186,7 +194,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendAccountSingle() {
+        public function showBackendAccountSingle()
+        {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
@@ -201,7 +210,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendModule() {
+        public function showBackendModule()
+        {
             if(empty($this->app->request->request['l4'])) {
                 $this->app->request->request['l5'] = 'front';
             }
@@ -230,7 +240,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendGroup() {
+        public function showBackendGroup()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -259,7 +270,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendGroupSingle() {
+        public function showBackendGroupSingle()
+        {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -284,7 +296,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showApi() {
+        public function showApi()
+        {
             switch($this->app->request->request['l3']) {
                 case 'account':
                     $this->apiAccount();
@@ -311,7 +324,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiAccount() {
+        public function apiAccount()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
                     $this->apiPutAccount();
@@ -338,7 +352,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiPutAccount() {
+        public function apiPutAccount()
+        {
         }
 
         /**
@@ -347,7 +362,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiDeleteAccount() {
+        public function apiDeleteAccount()
+        {
         }
 
         /**
@@ -356,7 +372,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiPostAccount() {
+        public function apiPostAccount()
+        {
         }
 
         /**
@@ -365,7 +382,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiGetAccount() {
+        public function apiGetAccount()
+        {
         }
 
         /**
@@ -374,7 +392,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiGroup() {
+        public function apiGroup()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
                     $this->apiPutGroup();
@@ -401,7 +420,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiPutGroup() {
+        public function apiPutGroup()
+        {
         }
 
         /**
@@ -410,7 +430,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiDeleteGroup() {
+        public function apiDeleteGroup()
+        {
         }
 
         /**
@@ -419,7 +440,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiPostGroup() {
+        public function apiPostGroup()
+        {
         }
 
         /**
@@ -428,7 +450,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiGetGroup() {
+        public function apiGetGroup()
+        {
         }
 
         /**
@@ -437,7 +460,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiSettings() {
+        public function apiSettings()
+        {
             $settings = \Framework\Config\Settings::getInstance();
 
             switch($this->app->request->request['l4']) {
@@ -467,7 +491,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function apiModule() {
+        public function apiModule()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\RequestType::PUT:
                     \Framework\Install\Module::install($this->app->db, $this->app->request->request['id']);

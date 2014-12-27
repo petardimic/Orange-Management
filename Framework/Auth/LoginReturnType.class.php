@@ -17,7 +17,8 @@ namespace Framework\Auth {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class LoginReturnType extends \Framework\Datatypes\Enum {
+    abstract class LoginReturnType extends \Framework\Datatypes\Enum
+    {
         const OK = 0; /* Everything is ok and the user got authed */
         const FAILURE = 1; /* Authentication resulted in a unexpected failure */
         const WRONG_PASSWORD = 2; /* Authentication with wrong password */

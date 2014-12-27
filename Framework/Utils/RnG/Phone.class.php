@@ -15,7 +15,8 @@ namespace Framework\Utils\RnG {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Phone {
+    class Phone
+    {
         /**
          * Get a random phone number
          *
@@ -28,7 +29,12 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generatePhone($isInt = true, $layout = ['struct' => '+$1 ($2) $3-$4', 'size' => [null, [3, 4], [3, 5], [3, 8]]], $countries = null) {
+        public static function generatePhone($isInt = true, $layout = ['struct' => '+$1 ($2) $3-$4',
+                                                                       'size'   => [null,
+                                                                                    [3, 4],
+                                                                                    [3, 5],
+                                                                                    [3, 8]]], $countries = null)
+        {
             $numberString = $layout['struct'];
 
             if($isInt) {

@@ -15,7 +15,8 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ApplicationAbstract {
+    class ApplicationAbstract
+    {
         /**
          * Database object
          *

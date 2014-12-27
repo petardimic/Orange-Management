@@ -15,6 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface PostingInterface extends \Framework\Utils\IO\ExchangeInterface {
+    interface PostingInterface extends \Framework\Utils\IO\ExchangeInterface
+    {
     }
 }

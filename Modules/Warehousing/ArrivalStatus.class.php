@@ -15,7 +15,8 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ArrivalStatus extends \Framework\Datatypes\Enum {
+    abstract class ArrivalStatus extends \Framework\Datatypes\Enum
+    {
         const NONE = 0;
         const PENDING = 1;
         const CHECKING = 2;

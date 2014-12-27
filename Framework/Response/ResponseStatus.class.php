@@ -15,7 +15,8 @@ namespace Framework\Response {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ResponseStatus extends \Framework\Datatypes\Enum {
+    abstract class ResponseStatus extends \Framework\Datatypes\Enum
+    {
         const OK = 0; /* Response is OK */
         const FAILURE = 1; /* Response failed (unknown reason) */
         const WRONG_PERMISSION = 2; /* Permission lacking */

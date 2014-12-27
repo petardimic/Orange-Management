@@ -15,7 +15,8 @@ namespace Modules\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class UserList {
+    class UserList
+    {
         /**
          * Database instance
          *
@@ -32,7 +33,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -46,7 +48,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function account_create($name, $pass, $email) {
+        public function account_create($name, $pass, $email)
+        {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch($this->db->getType()) {
@@ -74,7 +77,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function account_delete($id) {
+        public function account_delete($id)
+        {
         }
 
         /**
@@ -91,7 +95,8 @@ namespace Modules\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getList($filter = null, $offset = 0, $limit = 100) {
+        public function getList($filter = null, $offset = 0, $limit = 100)
+        {
             $result = null;
 
             switch($this->db->getType()) {
@@ -130,31 +135,36 @@ namespace Modules\Admin {
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

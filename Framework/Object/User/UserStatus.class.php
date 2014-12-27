@@ -15,7 +15,8 @@ namespace Framework\Object\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class UserStatus extends \Framework\Datatypes\Enum {
+    abstract class UserStatus extends \Framework\Datatypes\Enum
+    {
         const ACTIVE = 0; /* Account is active */
         const INACTIVE = 1; /* Account is inactive */
         const BANNED = 2; /* Account is banned */

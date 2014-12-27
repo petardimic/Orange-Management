@@ -18,7 +18,8 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Cache implements \Framework\DataStorage\Cache\CacheInterface, \Framework\Config\OptionsInterface {
+    class Cache implements \Framework\DataStorage\Cache\CacheInterface, \Framework\Config\OptionsInterface
+    {
         use \Framework\Config\OptionsTrait;
 
         /**
@@ -53,7 +54,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app) {
+        public function __construct($app)
+        {
             $this->app = $app;
         }
 
@@ -67,7 +69,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function get_instance($type = null) {
+        public function get_instance($type = null)
+        {
             if(($type === null || $type === \Framework\DataStorage\Cache\CacheStatus::MEMCACHE) && $this->memc !== null) {
                 return $this->memc;
             }
@@ -87,7 +90,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($options = null) {
+        public function init($options = null)
+        {
             if($options === null) {
                 /* This is costing me 1ms, maybe init settings first cause i'm making another settings call later on -> same call 2 times */
                 $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
@@ -103,41 +107,47 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function set($key, $value, $type = null, $expire = 2592000) {
+        public function set($key, $value, $type = null, $expire = 2592000)
+        {
             $this->get_instance($type)->set($key, $value, $type = null, $expire);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function add($key, $value, $type = null, $expire = 2592000) {
+        public function add($key, $value, $type = null, $expire = 2592000)
+        {
             $this->get_instance($type)->add($key, $value, $type = null, $expire);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function get($key, $type = null) {
+        public function get($key, $type = null)
+        {
             return $this->get_instance($type)->get($key);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete($key, $type = null) {
+        public function delete($key, $type = null)
+        {
             $this->get_instance($type)->delete($key);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function flush($type = null) {
+        public function flush($type = null)
+        {
             if($type === null) {
                 $this->filec->flush();
                 $this->memc->flush();
@@ -151,14 +161,16 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function replace($key, $value, $type = null) {
+        public function replace($key, $value, $type = null)
+        {
             $this->get_instance($type)->replace($key, $value);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function stats() {
+        public function stats()
+        {
             $stats = [];
 
             if($this->memc !== null) {
@@ -175,7 +187,8 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function getThreshold() {
+        public function getThreshold()
+        {
             $threshold = [];
 
             if($this->memc !== null) {

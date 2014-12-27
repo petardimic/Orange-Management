@@ -15,7 +15,8 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class AccountAbstract implements \Modules\Accounting\AccountInterface {
+    abstract class AccountAbstract implements \Modules\Accounting\AccountInterface
+    {
         /**
          * ID
          *
@@ -40,7 +41,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id) {
+        public function __construct($id)
+        {
             $this->id = $id;
         }
     }

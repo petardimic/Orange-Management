@@ -15,7 +15,8 @@ namespace Modules\RiskManagement {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -45,7 +46,8 @@ namespace Modules\RiskManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -57,7 +59,8 @@ namespace Modules\RiskManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -69,7 +72,8 @@ namespace Modules\RiskManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -79,7 +83,8 @@ namespace Modules\RiskManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb() {
+        public function callWeb()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->showContentBackend();
@@ -93,7 +98,8 @@ namespace Modules\RiskManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackend() {
+        public function showContentBackend()
+        {
             switch($this->app->request->request['l4']) {
                 case 'cockpit':
                     /** @noinspection PhpIncludeInspection */
@@ -129,7 +135,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_risk() {
+        public function show_backend_risk()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -145,7 +152,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_risk_single() {
+        public function show_backend_risk_single()
+        {
             switch($this->app->request->request['l6']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
@@ -154,7 +162,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_cause() {
+        public function show_backend_cause()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -163,7 +172,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_solution() {
+        public function show_backend_solution()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -172,7 +182,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_unit() {
+        public function show_backend_unit()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -181,7 +192,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_category() {
+        public function show_backend_category()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -190,7 +202,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_department() {
+        public function show_backend_department()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -199,7 +212,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_project() {
+        public function show_backend_project()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -208,7 +222,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_process() {
+        public function show_backend_process()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
@@ -217,7 +232,8 @@ namespace Modules\RiskManagement {
             }
         }
 
-        public function show_backend_settings() {
+        public function show_backend_settings()
+        {
             switch($this->app->request->request['l5']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */

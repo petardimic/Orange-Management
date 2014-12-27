@@ -18,7 +18,8 @@ namespace Framework\Install {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Module {
+    abstract class Module
+    {
         /**
          * Install module
          *
@@ -28,21 +29,22 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install(&$db, $module) {
-            if (file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
+        public static function install(&$db, $module)
+        {
+            if(file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
                 $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
 
-                switch ($db->getType()) {
+                switch($db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                         $db->con->beginTransaction();
 
                         $db->con->prepare(
                             'INSERT INTO `' . $db->prefix . 'modules` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
-                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int)$info['lang'] . ', ' . (int)$info['js'] . ', ' . (int)$info['css'] . ');'
+                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
                         )->execute();
 
-                        foreach ($info['load'] as $val) {
-                            foreach ($val['pid'] as $pid) {
+                        foreach($info['load'] as $val) {
+                            foreach($val['pid'] as $pid) {
                                 $db->con->prepare(
                                     'INSERT INTO `' . $db->prefix . 'modules_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
                                         (\'' . $pid . '\', ' . $val['type'] . ', ' . $val['from'] . ', ' . $val['for'] . ', \'' . $val['file'] . '\');'
@@ -74,7 +76,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function installProviding(&$db, $path, $id) {
+        public static function installProviding(&$db, $path, $id)
+        {
             $install = json_decode(file_get_contents($path), true);
             $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
@@ -95,7 +98,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function installExternal(&$db, $data) {
+        public static function installExternal(&$db, $data)
+        {
         }
 
         /**
@@ -104,7 +108,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function uninstall() {
+        public static function uninstall()
+        {
         }
 
         /**
@@ -116,8 +121,9 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function activate(&$db, $id) {
-            switch ($db->getType()) {
+        public static function activate(&$db, $id)
+        {
+            switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 1 WHERE `id` = ' . $id . ';'
@@ -135,8 +141,9 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function deactivate(&$db, $id) {
-            switch ($db->getType()) {
+        public static function deactivate(&$db, $id)
+        {
+            switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
                         'UPDATE `' . $db->prefix . 'modules` SET `active` = 0 WHERE `id` = ' . $id . ';'
@@ -155,7 +162,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function deleteAccount($id) {
+        public static function deleteAccount($id)
+        {
         }
 
         /**
@@ -168,7 +176,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function deleteModule($id) {
+        public static function deleteModule($id)
+        {
         }
     }
 }

@@ -15,7 +15,8 @@ namespace Framework\Install {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Install {
+    class Install
+    {
         /**
          * Database object
          *
@@ -32,7 +33,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct(&$db) {
+        public function __construct(&$db)
+        {
             $this->db = $db;
         }
 
@@ -42,7 +44,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installCore() {
+        public function installCore()
+        {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
@@ -246,7 +249,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installModules($modules) {
+        public function installModules($modules)
+        {
             foreach($modules as $module) {
                 /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
                 \Framework\Install\Module::install($this->db, $module);
@@ -259,7 +263,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installGroups() {
+        public function installGroups()
+        {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
@@ -284,7 +289,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installUsers() {
+        public function installUsers()
+        {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch($this->db->getType()) {
@@ -317,7 +323,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installSettings() {
+        public function installSettings()
+        {
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
@@ -365,7 +372,8 @@ namespace Framework\Install {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installDummy($toDummy) {
+        public function installDummy($toDummy)
+        {
             $this->db->con->beginTransaction();
 
             $a = "INSERT INTO `" . $this->db->prefix . "accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
@@ -378,7 +386,10 @@ namespace Framework\Install {
 
             for($i = 2; $i < 9998; $i++) {
                 $valA .= " (" . rand(0, 1) . ", " . rand(0, 3) . ", '0000-00-00 00:00:00', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', " . rand(0, 1) . "),";
-                $valB .= " ('" . strtolower(\Framework\Utils\RnG\Name::generateName(['male', 'female'])) . "', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "', '" . \Framework\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \Framework\Utils\RnG\Name::generateName(['male', 'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
+                $valB .= " ('" . strtolower(\Framework\Utils\RnG\Name::generateName(['male',
+                                                                                     'female'])) . "', '" . \Framework\Utils\RnG\Name::generateName(['male',
+                                                                                                                                                     'female']) . "', '" . \Framework\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \Framework\Utils\RnG\Name::generateName(['male',
+                                                                                                                                                                                                                                                                                                                        'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
                 $valC .= " (1000101000, 1),";
             }
 

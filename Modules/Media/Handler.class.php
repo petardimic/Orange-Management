@@ -15,7 +15,8 @@ namespace Modules\Media {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -45,7 +46,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -57,7 +59,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -69,7 +72,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -79,7 +83,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb() {
+        public function callWeb()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->show_content_backend();
@@ -93,7 +98,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content_backend() {
+        public function show_content_backend()
+        {
             switch($this->app->request->request['l3']) {
                 case 'single':
                     $media = new \Modules\Media\Media($this->app->db);
@@ -120,7 +126,8 @@ namespace Modules\Media {
             }
         }
 
-        public function callPush() {
+        public function callPush()
+        {
             switch($this->app->request->request['l2']) {
                 case 'admin':
                     break;
@@ -135,7 +142,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_api() {
+        public function show_api()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\RequestType::PUT:
                     $this->api_media_put();
@@ -147,11 +155,13 @@ namespace Modules\Media {
             return true;
         }
 
-        private function api_media_put() {
+        private function api_media_put()
+        {
             $this->upload_file();
         }
 
-        private function upload_file() {
+        private function upload_file()
+        {
             $upload_dir = './tmp/';
             $file_count = count($_FILES['user_file']['name']);
 

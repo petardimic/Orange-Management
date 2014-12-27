@@ -15,14 +15,192 @@ namespace Framework\Utils\RnG {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Text {
+    class Text
+    {
         /**
          * Vocabulary
          *
          * @var string[]
          * @since 1.0.0
          */
-        public static $words_west = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'curabitur', 'vel', 'hendrerit', 'libero', 'eleifend', 'blandit', 'nunc', 'ornare', 'odio', 'ut', 'orci', 'gravida', 'imperdiet', 'nullam', 'purus', 'lacinia', 'a', 'pretium', 'quis', 'congue', 'praesent', 'sagittis', 'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros', 'dictum', 'proin', 'accumsan', 'sapien', 'nec', 'massa', 'volutpat', 'venenatis', 'sed', 'eu', 'molestie', 'lacus', 'quisque', 'porttitor', 'ligula', 'dui', 'mollis', 'tempus', 'at', 'magna', 'vestibulum', 'turpis', 'ac', 'diam', 'tincidunt', 'id', 'condimentum', 'enim', 'sodales', 'in', 'hac', 'habitasse', 'platea', 'dictumst', 'aenean', 'neque', 'fusce', 'augue', 'leo', 'eget', 'semper', 'mattis', 'tortor', 'scelerisque', 'nulla', 'interdum', 'tellus', 'malesuada', 'rhoncus', 'porta', 'sem', 'aliquet', 'et', 'nam', 'suspendisse', 'potenti', 'vivamus', 'luctus', 'fringilla', 'erat', 'donec', 'justo', 'vehicula', 'ultricies', 'varius', 'ante', 'primis', 'faucibus', 'ultrices', 'posuere', 'cubilia', 'curae', 'etiam', 'cursus', 'aliquam', 'quam', 'dapibus', 'nisl', 'feugiat', 'egestas', 'class', 'aptent', 'taciti', 'sociosqu', 'ad', 'litora', 'torquent', 'per', 'conubia', 'nostra', 'inceptos', 'himenaeos', 'phasellus', 'nibh', 'pulvinar', 'vitae', 'urna', 'iaculis', 'lobortis', 'nisi', 'viverra', 'arcu', 'morbi', 'pellentesque', 'metus', 'commodo', 'ut', 'facilisis', 'felis', 'tristique', 'ullamcorper', 'placerat', 'aenean', 'convallis', 'sollicitudin', 'integer', 'rutrum', 'duis', 'est', 'etiam', 'bibendum', 'donec', 'pharetra', 'vulputate', 'maecenas', 'mi', 'fermentum', 'consequat', 'suscipit', 'aliquam', 'habitant', 'senectus', 'netus', 'fames', 'quisque', 'euismod', 'curabitur', 'lectus', 'elementum', 'tempor', 'risus', 'cras'];
+        public static $words_west = ['lorem',
+                                     'ipsum',
+                                     'dolor',
+                                     'sit',
+                                     'amet',
+                                     'consectetur',
+                                     'adipiscing',
+                                     'elit',
+                                     'curabitur',
+                                     'vel',
+                                     'hendrerit',
+                                     'libero',
+                                     'eleifend',
+                                     'blandit',
+                                     'nunc',
+                                     'ornare',
+                                     'odio',
+                                     'ut',
+                                     'orci',
+                                     'gravida',
+                                     'imperdiet',
+                                     'nullam',
+                                     'purus',
+                                     'lacinia',
+                                     'a',
+                                     'pretium',
+                                     'quis',
+                                     'congue',
+                                     'praesent',
+                                     'sagittis',
+                                     'laoreet',
+                                     'auctor',
+                                     'mauris',
+                                     'non',
+                                     'velit',
+                                     'eros',
+                                     'dictum',
+                                     'proin',
+                                     'accumsan',
+                                     'sapien',
+                                     'nec',
+                                     'massa',
+                                     'volutpat',
+                                     'venenatis',
+                                     'sed',
+                                     'eu',
+                                     'molestie',
+                                     'lacus',
+                                     'quisque',
+                                     'porttitor',
+                                     'ligula',
+                                     'dui',
+                                     'mollis',
+                                     'tempus',
+                                     'at',
+                                     'magna',
+                                     'vestibulum',
+                                     'turpis',
+                                     'ac',
+                                     'diam',
+                                     'tincidunt',
+                                     'id',
+                                     'condimentum',
+                                     'enim',
+                                     'sodales',
+                                     'in',
+                                     'hac',
+                                     'habitasse',
+                                     'platea',
+                                     'dictumst',
+                                     'aenean',
+                                     'neque',
+                                     'fusce',
+                                     'augue',
+                                     'leo',
+                                     'eget',
+                                     'semper',
+                                     'mattis',
+                                     'tortor',
+                                     'scelerisque',
+                                     'nulla',
+                                     'interdum',
+                                     'tellus',
+                                     'malesuada',
+                                     'rhoncus',
+                                     'porta',
+                                     'sem',
+                                     'aliquet',
+                                     'et',
+                                     'nam',
+                                     'suspendisse',
+                                     'potenti',
+                                     'vivamus',
+                                     'luctus',
+                                     'fringilla',
+                                     'erat',
+                                     'donec',
+                                     'justo',
+                                     'vehicula',
+                                     'ultricies',
+                                     'varius',
+                                     'ante',
+                                     'primis',
+                                     'faucibus',
+                                     'ultrices',
+                                     'posuere',
+                                     'cubilia',
+                                     'curae',
+                                     'etiam',
+                                     'cursus',
+                                     'aliquam',
+                                     'quam',
+                                     'dapibus',
+                                     'nisl',
+                                     'feugiat',
+                                     'egestas',
+                                     'class',
+                                     'aptent',
+                                     'taciti',
+                                     'sociosqu',
+                                     'ad',
+                                     'litora',
+                                     'torquent',
+                                     'per',
+                                     'conubia',
+                                     'nostra',
+                                     'inceptos',
+                                     'himenaeos',
+                                     'phasellus',
+                                     'nibh',
+                                     'pulvinar',
+                                     'vitae',
+                                     'urna',
+                                     'iaculis',
+                                     'lobortis',
+                                     'nisi',
+                                     'viverra',
+                                     'arcu',
+                                     'morbi',
+                                     'pellentesque',
+                                     'metus',
+                                     'commodo',
+                                     'ut',
+                                     'facilisis',
+                                     'felis',
+                                     'tristique',
+                                     'ullamcorper',
+                                     'placerat',
+                                     'aenean',
+                                     'convallis',
+                                     'sollicitudin',
+                                     'integer',
+                                     'rutrum',
+                                     'duis',
+                                     'est',
+                                     'etiam',
+                                     'bibendum',
+                                     'donec',
+                                     'pharetra',
+                                     'vulputate',
+                                     'maecenas',
+                                     'mi',
+                                     'fermentum',
+                                     'consequat',
+                                     'suscipit',
+                                     'aliquam',
+                                     'habitant',
+                                     'senectus',
+                                     'netus',
+                                     'fames',
+                                     'quisque',
+                                     'euismod',
+                                     'curabitur',
+                                     'lectus',
+                                     'elementum',
+                                     'tempor',
+                                     'risus',
+                                     'cras'];
 
         /**
          * Text has random formatting
@@ -56,7 +234,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setFormatting($hasFormatting) {
+        public function setFormatting($hasFormatting)
+        {
             $this->hasFormatting = $hasFormatting;
         }
 
@@ -68,7 +247,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setParagraphs($hasParagraphs) {
+        public function setParagraphs($hasParagraphs)
+        {
             $this->hasParagraphs = $hasParagraphs;
         }
 
@@ -80,7 +260,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getSentences() {
+        public function getSentences()
+        {
             return $this->sentences;
         }
 
@@ -95,7 +276,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function generateText($length, $words = null) {
+        public function generateText($length, $words = null)
+        {
             if($words === null) {
                 $words = self::$words_west;
             }
@@ -181,7 +363,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function generatePunctuation($length) {
+        private function generatePunctuation($length)
+        {
             $minSentences    = 4;
             $maxSentences    = 20;
             $minCommaSpacing = 3;
@@ -247,7 +430,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function generateParagraph($length) {
+        private function generateParagraph($length)
+        {
             $minSentence = 3;
             $maxSentence = 10;
 
@@ -277,7 +461,8 @@ namespace Framework\Utils\RnG {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function generateFormatting($length) {
+        private function generateFormatting($length)
+        {
             $probCursive = 0.005;
             $probBold    = 0.005;
             $probUline   = 0.005;

@@ -15,7 +15,8 @@ namespace Modules\Purchase {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ArticleList {
+    class ArticleList
+    {
         /**
          * Database instance
          *
@@ -32,7 +33,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -50,7 +52,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getList($filter = null, $offset = 0, $limit = 100) {
+        public function getList($filter = null, $offset = 0, $limit = 100)
+        {
             $result = null;
 
             switch($this->db->getType()) {

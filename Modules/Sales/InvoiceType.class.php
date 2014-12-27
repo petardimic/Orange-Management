@@ -15,7 +15,8 @@ namespace Modules\Sales {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class InvoiceType extends \Framework\Datatypes\Enum {
+    abstract class InvoiceType extends \Framework\Datatypes\Enum
+    {
         const OFFER = 0;
         const CONTRACT_NOTE = 1;
         const DELIVERY_NOTE = 2;

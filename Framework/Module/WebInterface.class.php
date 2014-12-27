@@ -15,7 +15,8 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface WebInterface {
+    interface WebInterface
+    {
         /**
          * Answer web request
          *

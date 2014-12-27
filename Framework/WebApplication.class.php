@@ -15,7 +15,8 @@ namespace Framework {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class WebApplication extends \Framework\ApplicationAbstract {
+    class WebApplication extends \Framework\ApplicationAbstract
+    {
         /**
          * Theme controller
          *
@@ -32,14 +33,15 @@ namespace Framework {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($config) {
+        public function __construct($config)
+        {
             $this->request = new \Framework\Request\Web();
             $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
 
             \Framework\Module\ModuleFactory::$app = $this;
             \Framework\Model\Model::$app          = $this;
 
-            if ($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
+            if($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
                 $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
                 $this->settings = new \Framework\Config\Settings($this);
                 $this->session  = new \Framework\DataStorage\Session\Session();

@@ -17,7 +17,8 @@ namespace Framework\DataStorage\Database {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class DatabaseStatus extends \Framework\Datatypes\Enum {
+    abstract class DatabaseStatus extends \Framework\Datatypes\Enum
+    {
         const OK = 0; /* Database connection successful */
         const MISSING_DATABASE = 1; /* Couldn't find database */
         const MISSING_TABLE = 2; /* One of the core tables couldn't be found */

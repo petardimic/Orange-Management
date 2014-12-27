@@ -17,7 +17,8 @@ namespace Framework\Model {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Model {
+    class Model
+    {
         /**
          * Application instance
          *
@@ -40,11 +41,12 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function load_header() {
+        public static function load_header()
+        {
             /* Everyone */
             echo '<title>' . self::$content['page:title'] . '</title>'
-                . '<meta name="viewport" content="initial-scale=1.0,width=device-width,height=device-height,user-scalable=yes">'
-                . '<meta charset="UTF-8">';
+                 . '<meta name="viewport" content="initial-scale=1.0,width=device-width,height=device-height,user-scalable=yes">'
+                 . '<meta charset="UTF-8">';
 
             /* TODO: Create page specific meta keyword tags maybe even create a meta tag class */
             self::$content['page:desc']     = '';
@@ -52,33 +54,33 @@ namespace Framework\Model {
 
             /* Everyone */
             echo '<meta name="application-name" content="' . self::$content['core:oname'] . '"/>'
-                . '<meta name="description" content="' . self::$content['page:desc'] . '">'
-                . '<meta name="keywords" content="' . self::$content['page:keywords'] . '">';
+                 . '<meta name="description" content="' . self::$content['page:desc'] . '">'
+                 . '<meta name="keywords" content="' . self::$content['page:keywords'] . '">';
 
             /** @noinspection PhpUndefinedMethodInspection */
             $os = self::$app->request->getOS();
 
             /* OS specific */
-            if ($os === \Framework\Request\OSType::WINDOWS_8 || $os === \Framework\Request\OSType::WINDOWS_81) {
+            if($os === \Framework\Request\OSType::WINDOWS_8 || $os === \Framework\Request\OSType::WINDOWS_81) {
                 echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
-                    . '<meta name="msapplication-square70x70logo" content="/Web/Startup/win_tiny.png"/>'
-                    . '<meta name="msapplication-square150x150logo" content="/Web/Startup/win_square.png"/>'
-                    . '<meta name="msapplication-wide310x150logo" content="/Web/Startup/win_wide.png"/>'
-                    . '<meta name="msapplication-square310x310logo" content="/Web/Startup/win_large.png"/>';
-            } elseif ($os === \Framework\Request\OSType::IPHONE || $os === \Framework\Request\OSType::MAC_OS_X || $os === \Framework\Request\OSType::MAC_OS_X_2 || $os === \Framework\Request\OSType::IPAD) {
+                     . '<meta name="msapplication-square70x70logo" content="/Web/Startup/win_tiny.png"/>'
+                     . '<meta name="msapplication-square150x150logo" content="/Web/Startup/win_square.png"/>'
+                     . '<meta name="msapplication-wide310x150logo" content="/Web/Startup/win_wide.png"/>'
+                     . '<meta name="msapplication-square310x310logo" content="/Web/Startup/win_large.png"/>';
+            } elseif($os === \Framework\Request\OSType::IPHONE || $os === \Framework\Request\OSType::MAC_OS_X || $os === \Framework\Request\OSType::MAC_OS_X_2 || $os === \Framework\Request\OSType::IPAD) {
                 echo '<link rel="apple-touch-icon" href="/Web/Startup/apple_icon.png">'
-                    . '<link rel="apple-touch-startup-image" href="/Web/Startup/apple_startup.png">'
-                    . '<meta name="apple-mobile-web-app-capable" content="yes">'
-                    . '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+                     . '<link rel="apple-touch-startup-image" href="/Web/Startup/apple_startup.png">'
+                     . '<meta name="apple-mobile-web-app-capable" content="yes">'
+                     . '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
             }
 
             /* Everyone */
             echo '<link rel="shortcut icon" href="/Content/Startup/favicon.ico">'
-                . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
-                . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
-                . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
-                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/d3/d3.min.js"></script>'
-                . '<script src="' . self::$content['page:addr:url'] . '/Framework/Javascript/Framework/Utils/oLib.js"></script>';
+                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
+                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
+                 . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
+                 . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/d3/d3.min.js"></script>'
+                 . '<script src="' . self::$content['page:addr:url'] . '/Framework/Javascript/Framework/Utils/oLib.js"></script>';
 
             ob_flush();
         }
@@ -92,7 +94,8 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function load_style_small() {
+        public static function load_style_small()
+        {
             /** @noinspection PhpIncludeInspection */
             include __DIR__ . '/../../Web/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '-small.css';
         }
@@ -105,12 +108,13 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function load_footer() {
+        public static function load_footer()
+        {
             echo '<script src="' . self::$content['page:addr:url'] . '/Framework/JavaScript/oms.min.js"></script>';
 
             //var_dump(self::$app->modules->running);
 
-            foreach (self::$app->modules->running as $key => $val) {
+            foreach(self::$app->modules->running as $key => $val) {
                 //var_dump($val);
             }
 
@@ -129,25 +133,26 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public static function generate_pagination($current, $count, $limit = 100) {
+        public static function generate_pagination($current, $count, $limit = 100)
+        {
             $pagination = [];
 
-            $pages   = (int)\ceil($count / $limit);
+            $pages   = (int) \ceil($count / $limit);
             $space   = 2;
             $start   = ($current - $space > 0 ? $current - $space : 1);
             $end     = ($pages - $current - $space > 0 ? $current + $space : $pages);
             $p_space = ($current - $space - 1 > 0 ? true : false);
             $n_space = ($pages - $current - $space - 1 > 0 ? true : false);
 
-            if ($p_space) {
+            if($p_space) {
                 array_push($pagination, 1, -1);
             }
 
-            for ($i = $start; $i <= $end; $i++) {
+            for($i = $start; $i <= $end; $i++) {
                 $pagination[] = $i;
             }
 
-            if ($n_space) {
+            if($n_space) {
                 array_push($pagination, -2, $pages);
             }
 
@@ -165,16 +170,17 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public static function generate_table_header_view($title) {
-            foreach ($title as $head) {
+        public static function generate_table_header_view($title)
+        {
+            foreach($title as $head) {
                 echo '<td' . (isset($head['full']) ? ' class="full"' : '') . '>'
-                    . '<span>' . $head['name'] . '</span>';
+                     . '<span>' . $head['name'] . '</span>';
 
-                if ($head['sort'] > -1) {
+                if($head['sort'] > -1) {
                     echo '<i class="fa fa-sort' . ($head['sort'] == 1 ? '' : ' vh') . '"></i>'
-                        . '<i class="fa fa-caret-up' . ($head['sort'] == 2 ? '' : ' vh') . '"></i>'
-                        . '<i class="fa fa-caret-down' . ($head['sort'] == 3 ? '' : ' vh') . '"></i>'
-                        . '<i class="fa fa-times' . ($head['sort'] > 0 ? '' : ' vh') . '"></i>';
+                         . '<i class="fa fa-caret-up' . ($head['sort'] == 2 ? '' : ' vh') . '"></i>'
+                         . '<i class="fa fa-caret-down' . ($head['sort'] == 3 ? '' : ' vh') . '"></i>'
+                         . '<i class="fa fa-times' . ($head['sort'] > 0 ? '' : ' vh') . '"></i>';
                 }
             }
         }
@@ -190,16 +196,18 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generate_table_content_view($data, $cols, $url = null, $replace = null) {
-            foreach ($data as $ele) {
+        public static function generate_table_content_view($data, $cols, $url = null, $replace = null)
+        {
+            foreach($data as $ele) {
                 /* TODO handle 'no url' differently, this isn't nice */
-                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id', $ele[$url['id']]]]) : '#');
+                $url_t = ($url != null ? \Framework\Uri\UriFactory::build($url['level'], [['id',
+                                                                                           $ele[$url['id']]]]) : '#');
                 /* TODO: Replace is to slow (most likely) */
                 echo '<tr>';
-                foreach ($cols as $col) {
-                    if ($replace == null || !isset($replace[$col])) {
+                foreach($cols as $col) {
+                    if($replace == null || !isset($replace[$col])) {
                         echo '<td><a href="' . $url_t . '">' . $ele[$col] . '</a>';
-                    } elseif (isset($replace[$col])) {
+                    } elseif(isset($replace[$col])) {
                         echo '<td><a href="' . $url_t . '">' . (isset($replace[$col][$ele[$col]]) ? $replace[$col][$ele[$col]] : $ele[$col]) . '</a>';
                     }
                 }
@@ -214,13 +222,14 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generate_table_pagination_view($count) {
+        public static function generate_table_pagination_view($count)
+        {
             /** @noinspection PhpUndefinedFieldInspection */
             $pages = self::generate_pagination(self::$app->request->request['page'], $count);
 
             echo '<ul>';
-            foreach ($pages as $page) {
-                if ($page > 0) {
+            foreach($pages as $page) {
+                if($page > 0) {
                     /** @noinspection PhpUndefinedFieldInspection */
                     $url = \Framework\Uri\UriFactory::build(self::$app->request->request, [['page', $page]]);
                 } else {
@@ -229,9 +238,9 @@ namespace Framework\Model {
 
                 /** @noinspection PhpUndefinedFieldInspection */
                 echo '<li><a href="' . $url
-                    . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
-                    . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
-                    . '</a>';
+                     . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
+                     . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
+                     . '</a>';
             }
             echo '</ul>';
         }
@@ -242,7 +251,8 @@ namespace Framework\Model {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function generate_table_filter_view() {
+        public static function generate_table_filter_view()
+        {
             echo '<div class="b pop vh" id="t-f">
                     <h1>' . self::$app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
                     <div class="bc-1">

@@ -15,7 +15,8 @@ namespace Framework\Log {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Logging implements \Framework\Pattern\Singleton {
+    class Logging implements \Framework\Pattern\Singleton
+    {
         /**
          * Timing array
          *
@@ -55,7 +56,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __construct($path) {
+        public function __construct($path)
+        {
             $this->fp = fopen($path . '/' . date("Y-m-d") . '.log', 'a');
         }
 
@@ -67,7 +69,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             fclose($this->fp);
         }
 
@@ -81,7 +84,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($path = null) {
+        public static function getInstance($path = null)
+        {
             if(self::$instance === null) {
                 self::$instance = new self($path);
             }
@@ -95,7 +99,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __clone() {
+        public function __clone()
+        {
         }
 
         /**
@@ -118,7 +123,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function log($fields) {
+        public function log($fields)
+        {
             // TODO: make screen and socket log possible
             fputcsv($this->fp, $fields, ';');
         }
@@ -131,7 +137,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function startTimeLog($id = '') {
+        public function startTimeLog($id = '')
+        {
             $mtime = explode(" ", microtime());
             $mtime = $mtime[1] + $mtime[0];
 
@@ -148,7 +155,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function endTimeLog($id = '') {
+        public function endTimeLog($id = '')
+        {
             $mtime = explode(" ", microtime());
             $mtime = $mtime[1] + $mtime[0];
 
@@ -169,7 +177,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        private function orderSort($a, $b) {
+        private function orderSort($a, $b)
+        {
             if($a['time'] == $b['time']) {
                 return 0;
             }
@@ -185,7 +194,8 @@ namespace Framework\Log {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function timingSort(&$timings) {
+        public function timingSort(&$timings)
+        {
             uasort($timings, [$this, 'orderSort']);
         }
     }

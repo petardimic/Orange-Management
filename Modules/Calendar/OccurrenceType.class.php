@@ -15,7 +15,8 @@ namespace Modules\Calendar\OccurrenceType {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class OccurrenceType extends \Framework\Datatypes\Enum {
+    abstract class OccurrenceType extends \Framework\Datatypes\Enum
+    {
         const SINGLE = 0;
         const DAILY = 1;
         const WEEKLY = 2;

@@ -15,7 +15,8 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    trait OptionsTrait {
+    trait OptionsTrait
+    {
         /**
          * Options
          *
@@ -27,14 +28,16 @@ namespace Framework\Config {
         /**
          * {@inheritdoc}
          */
-        public function getOption($key) {
+        public function getOption($key)
+        {
             return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function setOption($key, $value, $storable = false, $save = false) {
+        public function setOption($key, $value, $storable = false, $save = false)
+        {
             $this->options[$key] = [$value, $storable];
 
             if($save) {

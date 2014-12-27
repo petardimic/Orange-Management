@@ -17,14 +17,16 @@ namespace Framework\Version {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Version {
+    class Version
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private function __construct() {
+        private function __construct()
+        {
         }
 
         /**
@@ -37,7 +39,8 @@ namespace Framework\Version {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getVersion($path) {
+        public static function getVersion($path)
+        {
             return json_decode(file_get_contents($path), true);
         }
 
@@ -51,7 +54,8 @@ namespace Framework\Version {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function setVersion($type, $version, $path) {
+        public static function setVersion($type, $version, $path)
+        {
             $versions        = self::getVersion($path);
             $versions[$type] = $version;
             file_put_contents($path, json_encode($versions));
@@ -68,20 +72,21 @@ namespace Framework\Version {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function compare($ver1, $ver2) {
+        public static function compare($ver1, $ver2)
+        {
             $split1 = explode('.', $ver1);
             $split2 = explode('.', $ver2);
 
-            if (count($split1) > count($split2)) {
+            if(count($split1) > count($split2)) {
                 return 1;
-            } elseif (count($split1) < count($split2)) {
+            } elseif(count($split1) < count($split2)) {
                 return -1;
             }
 
-            foreach ($split1 as $key => $val) {
-                if ($val > $split2[$key]) {
+            foreach($split1 as $key => $val) {
+                if($val > $split2[$key]) {
                     return 1;
-                } elseif ($val < $split2[$key]) {
+                } elseif($val < $split2[$key]) {
                     return -1;
                 }
             }

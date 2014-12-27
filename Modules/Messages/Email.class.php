@@ -15,7 +15,8 @@ namespace Modules\Messages {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface Email {
+    interface Email
+    {
         public function connect($host, $port, $user, $password);
 
         public function getListNew();

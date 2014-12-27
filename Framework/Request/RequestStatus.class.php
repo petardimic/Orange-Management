@@ -15,7 +15,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class RequestStatus extends \Framework\Datatypes\Enum {
+    abstract class RequestStatus extends \Framework\Datatypes\Enum
+    {
         const OK = 0; /* Request is OK */
         const FAILURE = 1; /* Request failed (unknown reason) */
     }

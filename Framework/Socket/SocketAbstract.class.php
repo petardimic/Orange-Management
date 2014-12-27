@@ -15,7 +15,8 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class SocketAbstract implements \Framework\Socket\SocketInterface {
+    abstract class SocketAbstract implements \Framework\Socket\SocketInterface
+    {
         /**
          * Socket ip
          *
@@ -51,7 +52,8 @@ namespace Framework\Socket {
         /**
          * {@inheritdoc}
          */
-        public function create($ip, $port) {
+        public function create($ip, $port)
+        {
             $this->ip   = $ip;
             $this->port = $port;
 
@@ -62,7 +64,8 @@ namespace Framework\Socket {
         /**
          * {@inheritdoc}
          */
-        public function close() {
+        public function close()
+        {
             if($this->sock !== null) {
                 socket_close($this->sock);
                 $this->sock = null;
@@ -75,7 +78,8 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             $this->close();
         }
     }

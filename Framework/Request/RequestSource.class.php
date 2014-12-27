@@ -15,7 +15,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class RequestSource extends \Framework\Datatypes\Enum {
+    abstract class RequestSource extends \Framework\Datatypes\Enum
+    {
         const WEB = 0; /* This is a http request */
         const CONSOLE = 1; /* Request is a console command */
         const SOCKET = 2; /* Request through socket connection */

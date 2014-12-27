@@ -17,7 +17,8 @@ namespace Framework\System {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ArrayParser {
+    class ArrayParser
+    {
         /**
          * File path
          *
@@ -43,7 +44,8 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($file, $arr_name) {
+        public function __construct($file, $arr_name)
+        {
             if(file_exists($file)) {
                 $this->file = $file;
 
@@ -65,7 +67,8 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function set($id, $val) {
+        public function set($id, $val)
+        {
             $this->array[$id] = $val;
         }
 
@@ -77,7 +80,8 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function delete($id) {
+        public function delete($id)
+        {
             unset($this->array[$id]);
         }
 
@@ -89,7 +93,8 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function save($name) {
+        public function save($name)
+        {
             $arr = '<' . '?php' . PHP_EOL
                    . '$' . $name . ' = [' . PHP_EOL
                    . $this->serializeArray($this->array)
@@ -108,7 +113,8 @@ namespace Framework\System {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function serializeArray($arr) {
+        public function serializeArray($arr)
+        {
             foreach($arr as $key => $val) {
                 if(is_array($val)) {
                     if(is_string($key)) {

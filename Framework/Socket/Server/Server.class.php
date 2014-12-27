@@ -17,7 +17,8 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Server extends \Framework\Socket\SocketAbstract {
+    class Server extends \Framework\Socket\SocketAbstract
+    {
         /**
          * Socket connection limit
          *
@@ -40,13 +41,15 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create($ip, $port) {
+        public function create($ip, $port)
+        {
             parent::create($ip, $port);
         }
 
@@ -58,14 +61,16 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setLimit($limit) {
+        public function setLimit($limit)
+        {
             $this->limit = $limit;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function run() {
+        public function run()
+        {
             socket_listen($this->sock);
             socket_set_nonblock($this->sock);
 
@@ -112,14 +117,16 @@ namespace Framework\Socket {
         /**
          * {@inheritdoc}
          */
-        public function close() {
+        public function close()
+        {
             parent::close();
         }
 
         /**
          * {@inheritdoc}
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             parent::__destruct();
         }
     }

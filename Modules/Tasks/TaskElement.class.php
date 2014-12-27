@@ -15,7 +15,8 @@ namespace Modules\Tasks {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class TaskElement implements \Framework\Object\ObjectInterface {
+    class TaskElement implements \Framework\Object\ObjectInterface
+    {
         /**
          * Database instance
          *
@@ -96,7 +97,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -108,7 +110,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
         }
 
         /**
@@ -117,7 +120,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -127,7 +131,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreated($created) {
+        public function setCreated($created)
+        {
             $this->created = $created;
         }
 
@@ -137,7 +142,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
@@ -147,7 +153,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreator($creator) {
+        public function setCreator($creator)
+        {
             $this->creator = $creator;
         }
 
@@ -157,7 +164,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDescription() {
+        public function getDescription()
+        {
             return $this->description;
         }
 
@@ -167,7 +175,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setDescription($description) {
+        public function setDescription($description)
+        {
             $this->description = $description;
         }
 
@@ -177,7 +186,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDue() {
+        public function getDue()
+        {
             return $this->due;
         }
 
@@ -187,7 +197,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setDue($due) {
+        public function setDue($due)
+        {
             $this->due = $due;
         }
 
@@ -197,7 +208,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getForwarded() {
+        public function getForwarded()
+        {
             return $this->forwarded;
         }
 
@@ -207,7 +219,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setForwarded($forwarded) {
+        public function setForwarded($forwarded)
+        {
             $this->forwarded = $forwarded;
         }
 
@@ -217,7 +230,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -227,7 +241,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setId($id) {
+        public function setId($id)
+        {
             $this->id = $id;
         }
 
@@ -237,7 +252,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getStatus() {
+        public function getStatus()
+        {
             return $this->status;
         }
 
@@ -247,7 +263,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setStatus($status) {
+        public function setStatus($status)
+        {
             $this->status = $status;
         }
 
@@ -257,7 +274,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getTask() {
+        public function getTask()
+        {
             return $this->task;
         }
 
@@ -267,38 +285,44 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setTask($task) {
+        public function setTask($task)
+        {
             $this->task = $task;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

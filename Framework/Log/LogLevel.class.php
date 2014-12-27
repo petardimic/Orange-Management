@@ -15,7 +15,8 @@ namespace Framework\Log {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class LogLevel extends \Framework\Datatypes\Enum {
+    abstract class LogLevel extends \Framework\Datatypes\Enum
+    {
         const DEBUG = 0; /* Everything with higher priority gets logged */
         const INFO = 1; /* Everything with higher priority gets logged */
         const WARNING = 2; /* Everything with higher priority gets logged */

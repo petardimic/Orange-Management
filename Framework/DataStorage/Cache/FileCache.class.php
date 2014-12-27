@@ -15,7 +15,8 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class FileCache implements \Framework\DataStorage\Cache\CacheInterface {
+    class FileCache implements \Framework\DataStorage\Cache\CacheInterface
+    {
         /**
          * Only cache if data is larger than threshold (0-100)
          *
@@ -30,49 +31,56 @@ namespace Framework\DataStorage\Cache {
          * @var string
          * @since 1.0.0
          */
-        private static $cachePath = __DIR__  . '/../../../Cache';
+        private static $cachePath = __DIR__ . '/../../../Cache';
 
         /**
          * {@inheritdoc}
          */
-        public function set($key, $value, $type = null, $expire = 2592000) {
+        public function set($key, $value, $type = null, $expire = 2592000)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function add($key, $value, $type = null, $expire = 2592000) {
+        public function add($key, $value, $type = null, $expire = 2592000)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function get($key, $type = null) {
+        public function get($key, $type = null)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete($key, $type = null) {
+        public function delete($key, $type = null)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function flush($type = null) {
+        public function flush($type = null)
+        {
             array_map('unlink', glob(self::$cachePath . '/*'));
         }
 
         /**
          * {@inheritdoc}
          */
-        public function replace($key, $value, $type = null) {
+        public function replace($key, $value, $type = null)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function stats() {
+        public function stats()
+        {
             $stats          = [];
             $stats['count'] = \Framework\System\FileSystem::getFileCount(self::$cachePath);
 
@@ -84,7 +92,8 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function getThreshold() {
+        public function getThreshold()
+        {
             return $this->threshold;
         }
     }

@@ -17,7 +17,8 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class CacheStatus extends \Framework\Datatypes\Enum {
+    abstract class CacheStatus extends \Framework\Datatypes\Enum
+    {
         const INACTIVE = 0; /* Caching is disabled */
         const ERROR = 1; /* Caching failed */
         const MEMCACHE = 2; /* Caching OK */

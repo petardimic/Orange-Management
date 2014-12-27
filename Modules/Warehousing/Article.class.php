@@ -15,7 +15,8 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Article implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class Article implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * Article ID
          *
@@ -134,14 +135,16 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($id) {
+        public function __construct($id)
+        {
             $this->id = $id;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function __clone() {
+        public function __clone()
+        {
         }
 
         /**
@@ -154,7 +157,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getInstance($id) {
+        public function getInstance($id)
+        {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -170,7 +174,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getID() {
+        public function getID()
+        {
             return $this->id;
         }
 
@@ -182,7 +187,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getName() {
+        public function getName()
+        {
             return $this->name;
         }
 
@@ -194,7 +200,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setName($name) {
+        public function setName($name)
+        {
             $this->name = $name;
         }
 
@@ -206,7 +213,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getMatchcode() {
+        public function getMatchcode()
+        {
             return $this->matchcode;
         }
 
@@ -218,7 +226,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setMatchcode($matchcode) {
+        public function setMatchcode($matchcode)
+        {
             $this->matchcode = $matchcode;
         }
 
@@ -230,7 +239,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDescription() {
+        public function getDescription()
+        {
             return $this->description;
         }
 
@@ -242,7 +252,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setDescription($desc) {
+        public function setDescription($desc)
+        {
             $this->description = $desc;
         }
 
@@ -254,7 +265,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -266,7 +278,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreated($created) {
+        public function setCreated($created)
+        {
             $this->created = $created;
         }
 
@@ -278,7 +291,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
@@ -290,7 +304,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreator($creator) {
+        public function setCreator($creator)
+        {
             $this->creator = $creator;
         }
 
@@ -303,7 +318,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function addPrice($price, $db = true) {
+        public function addPrice($price, $db = true)
+        {
             $id                = 0; /* insert and get id */
             $this->prices[$id] = $price;
         }
@@ -317,7 +333,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function removePrice($id, $db = true) {
+        public function removePrice($id, $db = true)
+        {
             if(isset($this->prices[$id])) {
                 unset($this->prices[$id]);
             }
@@ -333,7 +350,8 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function editPrice($id, $price, $db = true) {
+        public function editPrice($id, $price, $db = true)
+        {
             if(isset($this->prices[$id])) {
                 $this->prices[$id] = $price;
             }
@@ -342,79 +360,92 @@ namespace Modules\Warehousing {
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportJson($path) {
+        public function exportJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importJson($path) {
+        public function importJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportCsv($path) {
+        public function exportCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCsv($path) {
+        public function importCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportExcel($path) {
+        public function exportExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importExcel($path) {
+        public function importExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportPdf($path) {
+        public function exportPdf($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importPdf($path) {
+        public function importPdf($path)
+        {
         }
     }
 }

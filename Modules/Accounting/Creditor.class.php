@@ -15,56 +15,66 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Creditor implements \Framework\Utils\IO\ExchangeInterface {
-        public function __construct() {
+    abstract class Creditor implements \Framework\Utils\IO\ExchangeInterface
+    {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportJson($path) {
+        public function exportJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importJson($path) {
+        public function importJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportCsv($path) {
+        public function exportCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCsv($path) {
+        public function importCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportExcel($path) {
+        public function exportExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importExcel($path) {
+        public function importExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportPdf($path) {
+        public function exportPdf($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importPdf($path) {
+        public function importPdf($path)
+        {
         }
     }
 }

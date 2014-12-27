@@ -15,7 +15,8 @@ namespace Framework\Object\Group {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class Group implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * Application instance
          *
@@ -70,7 +71,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -81,7 +83,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
             $this->id = (int) $id;
 
             $sth = $this->app->db->con->prepare(
@@ -106,7 +109,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($id) {
+        public static function getInstance($id)
+        {
             /* TODO: Implement caching here */
             if(!isset(self::$instance[$id])) {
                 self::$instance[$id] = new self();
@@ -122,7 +126,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __clone() {
+        public function __clone()
+        {
         }
 
         /**
@@ -135,7 +140,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function permission_exists($permissions) {
+        public function permission_exists($permissions)
+        {
             foreach($permissions as $permission) {
                 if(array_key_exists($permission, $this->permissions)) {
                     return true;
@@ -151,7 +157,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function create() {
+        public function create()
+        {
             switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
@@ -175,7 +182,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function delete() {
+        public function delete()
+        {
             /* TODO: delete permissions */
             $sth = $this->app->db->con->prepare(
                 'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
@@ -196,7 +204,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function update() {
+        public function update()
+        {
             switch($this->app->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $sth = $this->app->db->con->prepare(
@@ -217,7 +226,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function serialize() {
+        public function serialize()
+        {
             $toSerialize = [
                 'id'          => $this->id,
                 'name'        => $this->name,
@@ -236,7 +246,8 @@ namespace Framework\Object\Group {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function unserialize($serialized) {
+        public function unserialize($serialized)
+        {
             $plain = json_decode($serialized, true);
 
             $this->id          = $plain['id'];

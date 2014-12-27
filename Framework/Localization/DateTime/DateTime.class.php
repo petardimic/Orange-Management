@@ -15,7 +15,8 @@ namespace Framework\Localization\DateTime {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class DateTime {
+    class DateTime
+    {
         /**
          * Local id
          *
@@ -30,7 +31,8 @@ namespace Framework\Localization\DateTime {
          * @var string
          * @since 1.0.0
          */
-        public function __constructor() {
+        public function __constructor()
+        {
         }
 
         /**
@@ -41,7 +43,8 @@ namespace Framework\Localization\DateTime {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setLocal($local) {
+        public function setLocal($local)
+        {
             $this->local = $local;
         }
 
@@ -56,7 +59,8 @@ namespace Framework\Localization\DateTime {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function format($date, $local = null) {
+        public function format($date, $local = null)
+        {
             $format = 'Y-m-d H:i:s';
 
             if($local == null) {

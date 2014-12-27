@@ -15,7 +15,8 @@ namespace Modules\EventManagement {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Event implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class Event implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * ID
          *
@@ -74,10 +75,12 @@ namespace Modules\EventManagement {
 
         private static $instances = [];
 
-        public function __construct($id) {
+        public function __construct($id)
+        {
         }
 
-        public function getInstance($id) {
+        public function getInstance($id)
+        {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -85,65 +88,80 @@ namespace Modules\EventManagement {
             return self::$instances[$id];
         }
 
-        public function getID() {
+        public function getID()
+        {
             return $this->id;
         }
 
-        public function getName() {
+        public function getName()
+        {
             return $name;
         }
 
-        public function setName($name) {
+        public function setName($name)
+        {
             $this->name = $name;
         }
 
-        public function getDescription() {
+        public function getDescription()
+        {
             return $this->description;
         }
 
-        public function setDescription($desc) {
+        public function setDescription($desc)
+        {
             $this->descritpion = $desc;
         }
 
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
-        public function setCreated($created) {
+        public function setCreated($created)
+        {
             $this->created = $created;
         }
 
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
-        public function setCreator($creator) {
+        public function setCreator($creator)
+        {
             $this->creator = $creator;
         }
 
-        public function getCalendar() {
+        public function getCalendar()
+        {
             return $this->calender;
         }
 
-        public function setCalender($calender) {
+        public function setCalender($calender)
+        {
             $this->calender = $calender;
         }
 
-        public function getPeople() {
+        public function getPeople()
+        {
             return $this->people;
         }
 
-        public function setPeople($people) {
+        public function setPeople($people)
+        {
             $this->people = $people;
         }
 
-        public function addPerson($person) {
+        public function addPerson($person)
+        {
             if(!isset($this->people[$person['id']])) {
                 $this->people[$person['id']] = $person;
             }
         }
 
-        public function removePerson($id) {
+        public function removePerson($id)
+        {
             if(isset($this->people[$id])) {
                 unset($this->people[$id]);
             }
@@ -152,31 +170,36 @@ namespace Modules\EventManagement {
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

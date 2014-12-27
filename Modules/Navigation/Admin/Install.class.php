@@ -15,7 +15,8 @@ namespace Modules\Navigation\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Install extends \Framework\Install\Module {
+    class Install extends \Framework\Install\Module
+    {
         /**
          * Install module
          *
@@ -25,7 +26,8 @@ namespace Modules\Navigation\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install(&$db, $info) {
+        public static function install(&$db, $info)
+        {
             /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
             switch($db->getType()) {
@@ -64,7 +66,8 @@ namespace Modules\Navigation\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function installExternal(&$db, $data) {
+        public static function installExternal(&$db, $data)
+        {
             foreach($data as $link) {
                 self::installExternal_link($db, $link, $link['parent']);
             }
@@ -80,7 +83,8 @@ namespace Modules\Navigation\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        private static function installExternal_link(&$db, $data, $parent = 0) {
+        private static function installExternal_link(&$db, $data, $parent = 0)
+        {
             $sth = $db->con->prepare(
                 'INSERT INTO `' . $db->prefix . 'nav` (`NavigationID`, `pid`, `name`, `type`, `subtype`, `icon`, `l0`, `l1`, `l2`, `l3`, `l4`, `l5`, `from`, `order`, `parent`, `permission`) VALUES
                         (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :from, :order, :parent, :perm);'

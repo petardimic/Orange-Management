@@ -15,6 +15,7 @@ namespace Framework\Utils\IO {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ExchangeInterface extends \Framework\Utils\IO\Cvs\CvsInterface, \Framework\Utils\IO\Json\JsonInterface, \Framework\Utils\IO\Excel\ExcelInterface, \Framework\Utils\IO\Pdf\PdfInterface {
+    interface ExchangeInterface extends \Framework\Utils\IO\Cvs\CvsInterface, \Framework\Utils\IO\Json\JsonInterface, \Framework\Utils\IO\Excel\ExcelInterface, \Framework\Utils\IO\Pdf\PdfInterface
+    {
     }
 }

@@ -15,7 +15,8 @@ namespace Modules\BackendDashboard\Admin {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Install extends \Framework\Install\Module {
+    class Install extends \Framework\Install\Module
+    {
         /**
          * Install module
          *
@@ -25,7 +26,8 @@ namespace Modules\BackendDashboard\Admin {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function install(&$db, $info) {
+        public static function install(&$db, $info)
+        {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }

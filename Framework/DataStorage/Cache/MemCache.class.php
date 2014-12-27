@@ -15,7 +15,8 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class MemCache implements \Framework\DataStorage\Cache\CacheInterface {
+    class MemCache implements \Framework\DataStorage\Cache\CacheInterface
+    {
         /**
          * Memcache instance
          *
@@ -38,7 +39,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
             $this->memc = new Memcache();
         }
 
@@ -50,63 +52,72 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function addServer($data) {
+        public function addServer($data)
+        {
             $this->memc->addServer($data['host'], $data['port'], $data['timeout']);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function set($key, $value, $type = null, $expire = 2592000) {
+        public function set($key, $value, $type = null, $expire = 2592000)
+        {
             $this->memc->set($key, $value, false, $expire);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function add($key, $value, $type = null, $expire = 2592000) {
+        public function add($key, $value, $type = null, $expire = 2592000)
+        {
             return $this->memc->add($key, $value, false, $expire);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function get($key, $type = null) {
+        public function get($key, $type = null)
+        {
             return $this->memc->get($key);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete($key, $type = null) {
+        public function delete($key, $type = null)
+        {
             $this->memc->delete($key);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function flush($type = null) {
+        public function flush($type = null)
+        {
             $this->memc->flush();
         }
 
         /**
          * {@inheritdoc}
          */
-        public function replace($key, $value, $type = null, $expire = 2592000) {
+        public function replace($key, $value, $type = null, $expire = 2592000)
+        {
             $this->memc->replace($key, $value, false, $expire);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function stats() {
+        public function stats()
+        {
             return $this->memc->getExtendedStats();
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getThreshold() {
+        public function getThreshold()
+        {
             return $this->threshold;
         }
 
@@ -116,7 +127,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function close() {
+        public function close()
+        {
             if($this->memc !== null) {
                 $this->memc->close();
                 $this->memc = null;
@@ -129,7 +141,8 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             $this->close();
         }
     }

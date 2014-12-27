@@ -15,14 +15,17 @@ namespace Framework\Install {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Update {
+    class Update
+    {
         /* TODO: remove relative elements (security) and only allow paths in this application */
-        public static function replace($old, $new) {
+        public static function replace($old, $new)
+        {
             unlink($old);
             rename('somewhere_in_temp_folder/' . $new, $old);
         }
 
-        public static function remove($old) {
+        public static function remove($old)
+        {
             unlink($old);
         }
     }

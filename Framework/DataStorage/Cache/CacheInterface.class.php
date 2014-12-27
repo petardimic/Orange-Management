@@ -15,14 +15,15 @@ namespace Framework\DataStorage\Cache {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface CacheInterface {
+    interface CacheInterface
+    {
         /**
          * Updating or adding cache data
          *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache type
-         * @param int $expire Valid duration (in s)
+         * @param mixed                                    $key    Unique cache key
+         * @param mixed                                    $value  Cache value
+         * @param \Framework\DataStorage\Cache\CacheStatus $type   Cache type
+         * @param int                                      $expire Valid duration (in s)
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -32,12 +33,12 @@ namespace Framework\DataStorage\Cache {
         /**
          * Adding new data if it doesn't exist
          *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\Cache\CacheStatus $type Cache type
-         * @param int $expire Valid duration (in s)
+         * @param mixed                                    $key    Unique cache key
+         * @param mixed                                    $value  Cache value
+         * @param \Framework\DataStorage\Cache\CacheStatus $type   Cache type
+         * @param int                                      $expire Valid duration (in s)
          *
-         * @param bool
+         * @param                                          bool
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -47,11 +48,11 @@ namespace Framework\DataStorage\Cache {
         /**
          * Get cache by key
          *
-         * @param mixed $key Unique cache key
+         * @param mixed                                    $key  Unique cache key
          * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
          *
          * @return mixed Cache value
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -60,7 +61,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * Remove value by key
          *
-         * @param mixed $key Unique cache key
+         * @param mixed                                    $key  Unique cache key
          * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
          *
          * @since  1.0.0
@@ -72,7 +73,7 @@ namespace Framework\DataStorage\Cache {
          * Removing all elements from cache (invalidate cache)
          *
          * @param \Framework\DataStorage\Cache\CacheStatus $type Cache status/type
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -81,9 +82,9 @@ namespace Framework\DataStorage\Cache {
         /**
          * Updating existing value/key
          *
-         * @param mixed $key Unique cache key
-         * @param mixed $value Cache value
-         * @param \Framework\DataStorage\Cache\CacheType $type Cache type
+         * @param mixed                                  $key   Unique cache key
+         * @param mixed                                  $value Cache value
+         * @param \Framework\DataStorage\Cache\CacheType $type  Cache type
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -17,7 +17,8 @@ namespace Framework\Module {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class ModuleFactory {
+    class ModuleFactory
+    {
         /**
          * Module instances
          *
@@ -48,7 +49,8 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($module, $theme) {
+        public static function getInstance($module, $theme)
+        {
             if(!isset(self::$loaded[$module])) {
                 $class = '\\Modules\\' . $module . '\\Handler';
 

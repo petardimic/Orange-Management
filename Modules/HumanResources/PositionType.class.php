@@ -15,7 +15,8 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class PositionType extends \Framework\Datatypes\Enum {
+    abstract class PositionType extends \Framework\Datatypes\Enum
+    {
         const INTERN = 0;
         const APPRENTICE = 1;
         const JUNIOR = 2;

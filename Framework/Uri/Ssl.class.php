@@ -17,46 +17,53 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Ssl implements \Framework\Uri\UriInterface {
+    class Ssl implements \Framework\Uri\UriInterface
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public static function create($data, $query = null) {
+        public static function create($data, $query = null)
+        {
             return null;
         }
 
         /**
          * {@inheritdoc}
          */
-        public static function isValid($uri) {
+        public static function isValid($uri)
+        {
             return true;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function parse($uri) {
+        public function parse($uri)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function toString() {
+        public function toString()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function resolve($base) {
+        public function resolve($base)
+        {
         }
     }
 }

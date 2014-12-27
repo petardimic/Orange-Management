@@ -15,7 +15,8 @@ namespace Framework\Object\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class User implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class User implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * User ID
          *
@@ -146,7 +147,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app) {
+        public function __construct($app)
+        {
             $this->app = $app;
         }
 
@@ -158,7 +160,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
             $this->id = $id;
 
             $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
@@ -206,7 +209,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($id, $app, $is_current = false) {
+        public static function getInstance($id, $app, $is_current = false)
+        {
             /* TODO: implement the cache loading right here. smart idea! */
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($app);
@@ -226,7 +230,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __clone() {
+        public function __clone()
+        {
         }
 
         /**
@@ -237,7 +242,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function account_permission_get() {
+        public function account_permission_get()
+        {
             if(!isset($this->perm)) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
@@ -259,7 +265,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function is_allowed($req) {
+        public function is_allowed($req)
+        {
             if(!isset($this->perm)) {
                 $this->account_permission_get();
             }
@@ -283,7 +290,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function account_edit_base($account) {
+        public function account_edit_base($account)
+        {
             switch($this->app->db->getType()) {
                 case 1:
                     $sth = $this->app->db->con->prepare(
@@ -307,7 +315,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function add_group($id) {
+        public function add_group($id)
+        {
             if(!array_key_exists($id, $this->groups)) {
                 $this->groups[$id] = \Framework\Object\Group\Group::getInstance($id);
             }
@@ -331,7 +340,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function create() {
+        public function create()
+        {
             $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
             switch($this->app->db->getType()) {
@@ -381,7 +391,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function delete() {
+        public function delete()
+        {
             /* TODO: call all installed modules user_delete function */
             // TODO: remove from cache
 
@@ -410,7 +421,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function update() {
+        public function update()
+        {
             $sth = $this->app->db->con->prepare(
                 'UPDATE `' . $this->app->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
             );
@@ -437,7 +449,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function serialize() {
+        public function serialize()
+        {
             $toSerialize = [
                 'name'          => $this->name,
                 'login_name'    => $this->login_name,
@@ -462,7 +475,8 @@ namespace Framework\Object\User {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function unserialize($serialized) {
+        public function unserialize($serialized)
+        {
             $plain = json_decode($serialized, true);
 
             $this->name          = $plain['name'];

@@ -18,10 +18,11 @@ namespace Framework\Object {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ObjectInterface extends \Serializable {
+    interface ObjectInterface extends \Serializable
+    {
         /**
          * Removing the current object from cache and database
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -29,7 +30,7 @@ namespace Framework\Object {
 
         /**
          * Creating the current object in cache and database
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -37,7 +38,7 @@ namespace Framework\Object {
 
         /**
          * Updating the current object in cache and database
-         * 
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */

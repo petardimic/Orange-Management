@@ -15,7 +15,8 @@ namespace Framework\Datatypes {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Location {
+    class Location
+    {
         /**
          * Zip or postal
          *
@@ -62,6 +63,6 @@ namespace Framework\Datatypes {
          * @var float[]
          * @since 1.0.0
          */
-        public $geo= null;
+        public $geo = null;
     }
 }

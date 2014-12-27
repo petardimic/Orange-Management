@@ -15,7 +15,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Web extends \Framework\Request\RequestAbstract {
+    class Web extends \Framework\Request\RequestAbstract
+    {
         /**
          * Request information
          *
@@ -62,7 +63,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
             parent::__construct();
             $this->uri = new \Framework\Uri\Http();
             $this->getRequest();
@@ -76,7 +78,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getRequest() {
+        public function getRequest()
+        {
             if($this->request === null) {
                 $this->request = [
                     'l0' => '',
@@ -91,15 +94,22 @@ namespace Framework\Request {
 
                 /** @noinspection PhpWrongStringConcatenationInspection */
                 $this->request = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->request;
-                $this->type = $this->request['l1'];
-                $this->lang = $this->request['l0'];
+                $this->type    = $this->request['l1'];
+                $this->lang    = $this->request['l0'];
 
                 $this->hash = [
                     $this->hashRequest([$this->request['l1']]),
                     $this->hashRequest([$this->request['l1'], $this->request['l2']]),
                     $this->hashRequest([$this->request['l1'], $this->request['l2'], $this->request['l3']]),
-                    $this->hashRequest([$this->request['l1'], $this->request['l2'], $this->request['l3'], $this->request['l4']]),
-                    $this->hashRequest([$this->request['l1'], $this->request['l2'], $this->request['l3'], $this->request['l4'], $this->request['l5']]),
+                    $this->hashRequest([$this->request['l1'],
+                                        $this->request['l2'],
+                                        $this->request['l3'],
+                                        $this->request['l4']]),
+                    $this->hashRequest([$this->request['l1'],
+                                        $this->request['l2'],
+                                        $this->request['l3'],
+                                        $this->request['l4'],
+                                        $this->request['l5']]),
                 ];
             }
 
@@ -116,7 +126,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function hashRequest($request) {
+        public function hashRequest($request)
+        {
             return sha1(implode('', $request));
         }
 
@@ -128,14 +139,15 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getBrowser() {
-            if ($this->browser == null) {
+        public function getBrowser()
+        {
+            if($this->browser == null) {
                 $arr = BrowserType::getConstants();
 
                 $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-                foreach ($arr as $key => $val) {
-                    if (stripos($http_request_type, $val)) {
+                foreach($arr as $key => $val) {
+                    if(stripos($http_request_type, $val)) {
                         $this->browser = $val;
                         break;
                     }
@@ -153,14 +165,15 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getOS() {
-            if ($this->os == null) {
+        public function getOS()
+        {
+            if($this->os == null) {
                 $arr = OSType::getConstants();
 
                 $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-                foreach ($arr as $key => $val) {
-                    if (stripos($http_request_type, $val)) {
+                foreach($arr as $key => $val) {
+                    if(stripos($http_request_type, $val)) {
                         $this->os = $val;
                         break;
                     }
@@ -178,10 +191,11 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getRequestInfo() {
+        public function getRequestInfo()
+        {
             if($this->request_info === null) {
-               $this->request_info['browser'] = $this->getBrowser();
-               $this->request_info['os'] = $this->getOS();
+                $this->request_info['browser'] = $this->getBrowser();
+                $this->request_info['os']      = $this->getOS();
             }
 
             return $this->request_info;
@@ -195,7 +209,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getHash() {
+        public function getHash()
+        {
             return $this->hash;
         }
     }

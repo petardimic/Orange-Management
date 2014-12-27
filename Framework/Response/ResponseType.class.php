@@ -15,7 +15,8 @@ namespace Framework\Http\Response {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ResponseType extends \Framework\Datatypes\Enum {
+    abstract class ResponseType extends \Framework\Datatypes\Enum
+    {
         const HTTP = 0; /* HTTP */
         const JSON = 1; /* JSON */
         const SOCKET = 2; /* Socket */

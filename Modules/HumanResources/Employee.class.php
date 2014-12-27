@@ -15,7 +15,8 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Employee implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition {
+    class Employee implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    {
         /**
          * Employee ID
          *
@@ -34,10 +35,12 @@ namespace Modules\HumanResources {
 
         private static $instances = [];
 
-        public function __construct($id) {
+        public function __construct($id)
+        {
         }
 
-        public function getInstance($id) {
+        public function getInstance($id)
+        {
             if(!isset(self::$instances[$id])) {
                 self::$instances[$id] = new self($id);
             }
@@ -45,7 +48,8 @@ namespace Modules\HumanResources {
             return self::$instances[$id];
         }
 
-        public function setUser($id) {
+        public function setUser($id)
+        {
             $this->user = new \Framework\Object\User\User($id);
         }
     }

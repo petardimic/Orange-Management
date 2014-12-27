@@ -15,7 +15,8 @@ namespace Modules\Media {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Media implements \Framework\Object\ObjectInterface {
+    class Media implements \Framework\Object\ObjectInterface
+    {
         /**
          * Database instance
          *
@@ -91,7 +92,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -101,7 +103,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -113,7 +116,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
             $this->id = $id;
             $data     = null;
 
@@ -145,7 +149,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getAuthor() {
+        public function getAuthor()
+        {
             return $this->author;
         }
 
@@ -155,7 +160,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -165,7 +171,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getExtension() {
+        public function getExtension()
+        {
             return $this->extension;
         }
 
@@ -175,7 +182,8 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getName() {
+        public function getName()
+        {
             return $this->name;
         }
 
@@ -185,38 +193,44 @@ namespace Modules\Media {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getSize() {
+        public function getSize()
+        {
             return $this->size;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

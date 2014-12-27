@@ -15,13 +15,16 @@ namespace Framework\Localization\Number {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Number {
+    class Number
+    {
         private $local;
 
-        public function __constructor() {
+        public function __constructor()
+        {
         }
 
-        public function format($number, $digits = 0) {
+        public function format($number, $digits = 0)
+        {
         }
     }
 }

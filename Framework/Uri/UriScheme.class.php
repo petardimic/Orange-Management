@@ -15,7 +15,8 @@ namespace Framework\Uri {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class UriScheme extends \Framework\Datatypes\Enum {
+    abstract class UriScheme extends \Framework\Datatypes\Enum
+    {
         const HTTP = 0; /* Http */
         const FILE = 1; /* File */
         const MAILTO = 2; /* Mail */

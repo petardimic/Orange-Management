@@ -15,7 +15,8 @@ namespace Modules\Tasks {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Task implements \Framework\Object\ObjectInterface {
+    class Task implements \Framework\Object\ObjectInterface
+    {
         /**
          * Database instance
          *
@@ -104,7 +105,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -116,7 +118,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
             $this->id = $id;
             $data     = null;
             $elements = null;
@@ -176,7 +179,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -186,7 +190,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
@@ -196,7 +201,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDescription() {
+        public function getDescription()
+        {
             return $this->description;
         }
 
@@ -206,7 +212,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDone() {
+        public function getDone()
+        {
             return $this->done;
         }
 
@@ -216,7 +223,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDue() {
+        public function getDue()
+        {
             return $this->due;
         }
 
@@ -226,7 +234,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -236,7 +245,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getStatus() {
+        public function getStatus()
+        {
             return $this->status;
         }
 
@@ -246,7 +256,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getTitle() {
+        public function getTitle()
+        {
             return $this->title;
         }
 
@@ -258,7 +269,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function addElement($element) {
+        public function addElement($element)
+        {
             if(!array_key_exists($element->getId(), $this->task_elements)) {
                 $this->task_elements[$element->getId()] = $element;
             }
@@ -272,7 +284,8 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function removeElement($id) {
+        public function removeElement($id)
+        {
             if(array_key_exists($id, $this->task_elements)) {
                 unset($this->task_elements[$id]);
             }
@@ -286,38 +299,44 @@ namespace Modules\Tasks {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getTaskElements() {
+        public function getTaskElements()
+        {
             return $this->task_elements;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

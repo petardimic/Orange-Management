@@ -15,7 +15,8 @@ namespace Modules\Tasks {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class TaskPriority extends \Framework\Datatypes\Enum {
+    abstract class TaskPriority extends \Framework\Datatypes\Enum
+    {
         const VLOW = 1;
         const LOW = 2;
         const MEDIUM = 3;

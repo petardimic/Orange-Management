@@ -15,7 +15,8 @@ namespace Framework\Utils\IO\Json {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface JsonInterface {
+    interface JsonInterface
+    {
         /**
          * Export Json
          *

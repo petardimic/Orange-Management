@@ -15,7 +15,8 @@ namespace Framework\Socket {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface SocketInterface {
+    interface SocketInterface
+    {
         /**
          * Create the socket
          *

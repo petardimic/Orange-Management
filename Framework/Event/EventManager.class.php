@@ -15,7 +15,8 @@ namespace Framework\Event {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class EventManager implements \Countable {
+    class EventManager implements \Countable
+    {
         /**
          * Listener count
          *
@@ -31,7 +32,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -48,7 +50,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function attach($event, $callback, $source) {
+        public function attach($event, $callback, $source)
+        {
         }
 
         /**
@@ -63,7 +66,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function trigger($event, $callback = null, $source = null) {
+        public function trigger($event, $callback = null, $source = null)
+        {
         }
 
         /**
@@ -78,7 +82,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function trigger_until($event, $callback = null, $source = null) {
+        public function trigger_until($event, $callback = null, $source = null)
+        {
         }
 
         /**
@@ -91,7 +96,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function detach($id, $event = null, $source = null) {
+        public function detach($id, $event = null, $source = null)
+        {
         }
 
         /**
@@ -102,7 +108,8 @@ namespace Framework\Event {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function count() {
+        public function count()
+        {
             return $this->count;
         }
     }

@@ -20,7 +20,8 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Settings {
+    class Settings
+    {
         /**
          * Application instance
          *
@@ -45,7 +46,8 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app) {
+        public function __construct($app)
+        {
             $this->app = $app;
         }
 
@@ -57,7 +59,8 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function loadSettings($ids) {
+        public function loadSettings($ids)
+        {
             foreach($ids as $id) {
                 if(isset($this->config[$id])) {
                     unset($ids[$id]);
@@ -81,7 +84,8 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setSettings($settings) {
+        public function setSettings($settings)
+        {
             $this->config += $settings;
 
             /* TODO: change this + implement cache */

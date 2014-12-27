@@ -15,7 +15,8 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -45,7 +46,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -57,7 +59,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -69,7 +72,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -79,7 +83,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb() {
+        public function callWeb()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->showContentBackend();
@@ -93,7 +98,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackend() {
+        public function showContentBackend()
+        {
             switch($this->app->request->request['l3']) {
                 case 'structure':
                     $this->showContentBackendStrcture();
@@ -113,7 +119,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendStrcture() {
+        public function showContentBackendStrcture()
+        {
             switch($this->app->request->request['l4']) {
                 case 'department':
                     $this->showContentBackendDepartment();
@@ -127,7 +134,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendDepartment() {
+        public function showContentBackendDepartment()
+        {
             switch($this->app->request->request['l5']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -144,7 +152,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendStaff() {
+        public function showContentBackendStaff()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -166,7 +175,8 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendPlanning() {
+        public function showContentBackendPlanning()
+        {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */

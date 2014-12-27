@@ -15,7 +15,8 @@ namespace Framework\Stdlib {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class PriorityQueue implements \Countable, \Serializable {
+    class PriorityQueue implements \Countable, \Serializable
+    {
         /**
          * Queue elements
          *
@@ -38,7 +39,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -52,7 +54,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function insert($data, $priority = 0.0) {
+        public function insert($data, $priority = 0.0)
+        {
             do {
                 $key = rand();
             } while(array_key_exists($key, $this->queue));
@@ -83,7 +86,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function increaseAll($increase) {
+        public function increaseAll($increase)
+        {
             foreach($this->queue as $key => &$ele) {
                 $ele['priority'] += $increase;
             }
@@ -97,7 +101,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function get() {
+        public function get()
+        {
             $ele                      = array_pop($this->queue);
             $this->queue[$ele['key']] = $ele;
         }
@@ -110,7 +115,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function delete($id = null) {
+        public function delete($id = null)
+        {
             if($id === null) {
                 $this->remove();
             } else {
@@ -124,7 +130,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function remove() {
+        public function remove()
+        {
             return array_pop($this->queue);
         }
 
@@ -137,7 +144,8 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setPriority($id, $priority) {
+        public function setPriority($id, $priority)
+        {
             $this->queue[$id]['priority'] = $priority;
         }
 
@@ -151,28 +159,32 @@ namespace Framework\Stdlib {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getPriority($id) {
+        public function getPriority($id)
+        {
             return $this->queue[$id]['priority'];
         }
 
         /**
          * {@inheritdoc}
          */
-        public function count() {
+        public function count()
+        {
             return $this->count;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
             return json_encode($this->queue);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
             $this->queue = json_decode($data);
             $this->count = count($this->queue);
         }

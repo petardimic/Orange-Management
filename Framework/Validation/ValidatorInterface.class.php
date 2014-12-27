@@ -15,7 +15,8 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ValidatorInterface {
+    interface ValidatorInterface
+    {
         /**
          * Check if value is valid
          *

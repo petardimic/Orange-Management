@@ -15,7 +15,8 @@ namespace Modules\Purchase {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface {
+    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    {
         /**
          * Providing
          *
@@ -45,7 +46,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath) {
+        public function __construct($app, $themePath)
+        {
             parent::__construct($app, $themePath);
         }
 
@@ -57,7 +59,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getProviding() {
+        public function getProviding()
+        {
             return self::$providing;
         }
 
@@ -69,7 +72,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDependencies() {
+        public function getDependencies()
+        {
             return self::$dependencies;
         }
 
@@ -79,7 +83,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb() {
+        public function callWeb()
+        {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
                     $this->showContentBackend();
@@ -93,7 +98,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackend() {
+        public function showContentBackend()
+        {
             switch($this->app->request->request['l3']) {
                 case 'supplier':
                     $this->showBackendSupplier();
@@ -116,7 +122,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendArticle() {
+        public function showBackendArticle()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -142,7 +149,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendInvoice() {
+        public function showBackendInvoice()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -168,7 +176,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendSupplier() {
+        public function showBackendSupplier()
+        {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -194,7 +203,8 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendAnalysis() {
+        public function showBackendAnalysis()
+        {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */

@@ -15,7 +15,8 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class ValidatorAbstract implements \Framework\Validation\ValidatorInterface {
+    abstract class ValidatorAbstract implements \Framework\Validation\ValidatorInterface
+    {
         /**
          * Error code
          *
@@ -35,7 +36,8 @@ namespace Framework\Validation {
         /**
          * {@inheritdoc}
          */
-        public static function getMessage() {
+        public static function getMessage()
+        {
             return self::$msg;
         }
     }

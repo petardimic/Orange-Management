@@ -15,7 +15,8 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Article implements \Framework\Object\ObjectInterface {
+    class Article implements \Framework\Object\ObjectInterface
+    {
         /**
          * Database instance
          *
@@ -104,7 +105,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->db = $db;
         }
 
@@ -116,7 +118,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function init($id) {
+        public function init($id)
+        {
             $this->id = $id;
             $data     = null;
 
@@ -151,7 +154,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getAuthor() {
+        public function getAuthor()
+        {
             return $this->author;
         }
 
@@ -161,7 +165,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getContent() {
+        public function getContent()
+        {
             return $this->content;
         }
 
@@ -171,7 +176,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -181,7 +187,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -191,7 +198,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getLanguage() {
+        public function getLanguage()
+        {
             return $this->lang;
         }
 
@@ -201,7 +209,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getPlain() {
+        public function getPlain()
+        {
             return $this->plain;
         }
 
@@ -211,7 +220,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getPublish() {
+        public function getPublish()
+        {
             return $this->publish;
         }
 
@@ -221,7 +231,8 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getTitle() {
+        public function getTitle()
+        {
             return $this->title;
         }
 
@@ -231,38 +242,44 @@ namespace Modules\News {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getType() {
+        public function getType()
+        {
             return $this->type;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function delete() {
+        public function delete()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function create() {
+        public function create()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function serialize() {
+        public function serialize()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function unserialize($data) {
+        public function unserialize($data)
+        {
         }
     }
 }

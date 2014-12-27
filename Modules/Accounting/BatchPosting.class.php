@@ -15,7 +15,8 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class BatchPosting implements \Framework\Utils\IO\ExchangeInterface, \Countable {
+    class BatchPosting implements \Framework\Utils\IO\ExchangeInterface, \Countable
+    {
         /**
          * ID
          *
@@ -62,7 +63,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
@@ -73,7 +75,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getId() {
+        public function getId()
+        {
             return $this->id;
         }
 
@@ -85,7 +88,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setId($id) {
+        public function setId($id)
+        {
             $this->id = $id;
         }
 
@@ -97,7 +101,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setDescription($desc) {
+        public function setDescription($desc)
+        {
         }
 
         /**
@@ -108,7 +113,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getDescription() {
+        public function getDescription()
+        {
             return $this->description;
         }
 
@@ -120,7 +126,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreated($created) {
+        public function setCreated($created)
+        {
             $this->created = $created;
         }
 
@@ -132,7 +139,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreated() {
+        public function getCreated()
+        {
             return $this->created;
         }
 
@@ -144,7 +152,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getCreator() {
+        public function getCreator()
+        {
             return $this->creator;
         }
 
@@ -156,7 +165,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setCreator($creator) {
+        public function setCreator($creator)
+        {
             $this->creator = $creator;
         }
 
@@ -170,7 +180,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getPosting($id) {
+        public function getPosting($id)
+        {
             return $this->postings[$id];
         }
 
@@ -182,7 +193,8 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function removePosting($id) {
+        public function removePosting($id)
+        {
             unset($this->postings[$id]);
         }
 
@@ -194,63 +206,73 @@ namespace Modules\Accounting {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function addPosting($posting) {
+        public function addPosting($posting)
+        {
             $this->postings[] = $posting;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function count() {
+        public function count()
+        {
             return count($this->postings);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportJson($path) {
+        public function exportJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importJson($path) {
+        public function importJson($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportCsv($path) {
+        public function exportCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importCsv($path) {
+        public function importCsv($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportExcel($path) {
+        public function exportExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importExcel($path) {
+        public function importExcel($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function exportPdf($path) {
+        public function exportPdf($path)
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public function importPdf($path) {
+        public function importPdf($path)
+        {
         }
     }
 }

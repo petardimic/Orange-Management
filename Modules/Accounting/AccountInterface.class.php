@@ -15,7 +15,8 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface AccountInterface {
+    interface AccountInterface
+    {
         /**
          * Get all groups
          *

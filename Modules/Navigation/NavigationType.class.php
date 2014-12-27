@@ -15,7 +15,8 @@ namespace Modules\Navigation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class NavigationType extends \Framework\Datatypes\Enum {
+    abstract class NavigationType extends \Framework\Datatypes\Enum
+    {
         const TOP = 1;
         const SIDE = 2;
         const CONTENT = 3;

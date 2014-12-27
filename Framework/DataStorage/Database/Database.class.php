@@ -18,7 +18,8 @@ namespace Framework\DataStorage\Database {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Database {
+    class Database
+    {
         /**
          * Connection object
          *
@@ -73,7 +74,8 @@ namespace Framework\DataStorage\Database {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($dbdata) {
+        public function __construct($dbdata)
+        {
             $this->dbdata = $dbdata;
             $this->prefix = $dbdata['prefix'];
 
@@ -109,7 +111,8 @@ namespace Framework\DataStorage\Database {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getType() {
+        public function getType()
+        {
             return $this->type;
         }
 
@@ -121,7 +124,8 @@ namespace Framework\DataStorage\Database {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __destruct() {
+        public function __destruct()
+        {
             $this->con = null;
         }
 
@@ -136,7 +140,8 @@ namespace Framework\DataStorage\Database {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function generate_sql_filter($filter, $pre = false) {
+        public function generate_sql_filter($filter, $pre = false)
+        {
             if(!isset($filter)) {
                 return '';
             }
@@ -144,7 +149,8 @@ namespace Framework\DataStorage\Database {
             return '';
         }
 
-        public function create_table() {
+        public function create_table()
+        {
             switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
@@ -152,7 +158,8 @@ namespace Framework\DataStorage\Database {
             }
         }
 
-        public function insert() {
+        public function insert()
+        {
             switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
@@ -160,7 +167,8 @@ namespace Framework\DataStorage\Database {
             }
         }
 
-        public function select() {
+        public function select()
+        {
             switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
@@ -168,7 +176,8 @@ namespace Framework\DataStorage\Database {
             }
         }
 
-        public function update() {
+        public function update()
+        {
             switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
@@ -176,7 +185,8 @@ namespace Framework\DataStorage\Database {
             }
         }
 
-        public function delete() {
+        public function delete()
+        {
             switch($this->type) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 

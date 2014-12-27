@@ -15,21 +15,24 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Email extends \Framework\Validation\ValidatorAbstract {
+    abstract class Email extends \Framework\Validation\ValidatorAbstract
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public static function isValid($value) {
-    		return filter_var($value, FILTER_VALIDATE_EMAIL);
-    	}
+        public static function isValid($value)
+        {
+            return filter_var($value, FILTER_VALIDATE_EMAIL);
+        }
     }
 }

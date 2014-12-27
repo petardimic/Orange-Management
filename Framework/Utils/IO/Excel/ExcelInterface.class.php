@@ -15,7 +15,8 @@ namespace Framework\Utils\IO\Excel {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface ExcelInterface {
+    interface ExcelInterface
+    {
         /**
          * Export Excel
          *

@@ -15,7 +15,8 @@ namespace Modules\News {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class NewsType extends \Framework\Datatypes\Enum {
+    abstract class NewsType extends \Framework\Datatypes\Enum
+    {
         const NEWS = 0;
         const LINK = 1;
         const HEADLINE = 2;

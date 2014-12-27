@@ -15,7 +15,8 @@ namespace Modules\Sales {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class InvoiceStatus extends \Framework\Datatypes\Enum {
+    abstract class InvoiceStatus extends \Framework\Datatypes\Enum
+    {
         const BLOCKED = 0; /* Invoice needs approval */
         const DRAFT = 1; /* Invoice is still in draft */
         const READY = 2; /* Invoice is ready for accounting transfer */

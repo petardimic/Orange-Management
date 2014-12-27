@@ -15,7 +15,8 @@ namespace Framework\Utils\IO\Pdf {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface PdfInterface {
+    interface PdfInterface
+    {
         /**
          * Export Pdf
          *

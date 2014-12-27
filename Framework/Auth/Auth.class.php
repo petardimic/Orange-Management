@@ -17,7 +17,8 @@ namespace Framework\Auth {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Auth implements \Framework\Config\OptionsInterface {
+    class Auth implements \Framework\Config\OptionsInterface
+    {
         use \Framework\Config\OptionsTrait;
 
         /**
@@ -36,7 +37,8 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app) {
+        public function __construct($app)
+        {
             $this->app = $app;
         }
 
@@ -48,7 +50,8 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function authenticate() {
+        public function authenticate()
+        {
             $uid = $this->app->session->getValue('user_id');
 
             if($uid === null) {
@@ -69,7 +72,8 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function login($username, $password) {
+        public function login($username, $password)
+        {
             // TODO: get password from db based on $username which is = loginname which can be email or number or name
 
             // TODO: save to session
@@ -84,15 +88,15 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function logout($uid) {
+        public function logout($uid)
+        {
         }
-
-
 
         /**
          * {@inheritdoc}
          */
-        public function update() {
+        public function update()
+        {
         }
     }
 }

@@ -15,20 +15,23 @@ namespace Framework\Validation {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class BIC extends \Framework\Validation\ValidatorAbstract {
+    class BIC extends \Framework\Validation\ValidatorAbstract
+    {
         /**
          * Constructor
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct() {
+        public function __construct()
+        {
         }
 
         /**
          * {@inheritdoc}
          */
-        public static function isValid($value) {
+        public static function isValid($value)
+        {
             return (bool) preg_match('/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value);
         }
     }

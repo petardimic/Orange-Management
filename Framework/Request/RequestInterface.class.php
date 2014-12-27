@@ -15,7 +15,8 @@ namespace Framework\Request {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface RequestInterface {
+    interface RequestInterface
+    {
         /**
          * Get request source
          *

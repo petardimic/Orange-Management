@@ -15,12 +15,14 @@ namespace Framework\DataStorage\Session {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Session {
-        public function __construct() {
-
+    class Session
+    {
+        public function __construct()
+        {
         }
 
-        public function getValue($id) {
+        public function getValue($id)
+        {
             return null;
         }
     }
