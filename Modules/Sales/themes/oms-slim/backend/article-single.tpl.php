@@ -10,6 +10,7 @@
         <li class="active"><a href=".tab-1"><?= $this->app->user->localization->lang[16]['CoreData'] ?></a>
         <li><a href=".tab-2"><?= $this->app->user->localization->lang[16]['Localization'] ?></a>
         <li><a href=".tab-3"><?= $this->app->user->localization->lang[16]['Price'] ?></a>
+        <li><a href=".tab-4"><?= $this->app->user->localization->lang[16]['Analysis'] ?></a>
     </ul>
     <!-- @formatter:on -->
 
@@ -73,6 +74,32 @@
                     </form>
                 </div>
             </div>
+
+            <div class="lf b-3 c16-1 c16" id="i16-1-1">
+                <table class="t t-1 c1-2 c1" id="i16-1-3">
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="lT">
+                            <i class="fa fa-filter p f dim"></i>
+
+                            <h1><?= $this->app->user->localization->lang[16]['Localization'] ?></h1>
+                        <th class="rT">
+                            <i class="fa fa-minus min"></i>
+                            <i class="fa fa-plus max vh"></i>
+                    <tr>
+                        <?php
+                        \Framework\Model\Model::generate_table_header_view(
+                            [
+                                ['name' => $this->app->user->localization->lang[16]['Language'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['Name'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['Description'],
+                                 'sort' => 0,
+                                 'full' => true],
+                            ]
+                        );
+                        ?>
+                </table>
+            </div>
         </div>
 
         <div class="tab tab-3">
@@ -115,33 +142,35 @@
                 </div>
             </div>
 
-            <!-- TODO: make 50% -->
-            <table class="t t-1 c1-2 c1" id="i16-1-3">
-                <thead>
-                <tr>
-                    <th colspan="8" class="lT">
-                        <i class="fa fa-filter p f dim"></i>
+            <div class="lf b-3 c16-1 c16" id="i16-1-1">
+                <table class="t t-1 c1-2 c1" id="i16-1-3">
+                    <thead>
+                    <tr>
+                        <th colspan="8" class="lT">
+                            <i class="fa fa-filter p f dim"></i>
 
-                        <h1><?= $this->app->user->localization->lang[16]['Articles'] ?></h1>
-                    <th class="rT">
-                        <i class="fa fa-minus min"></i>
-                        <i class="fa fa-plus max vh"></i>
-                <tr>
-                    <?php
-                    \Framework\Model\Model::generate_table_header_view(
-                        [
-                            ['name' => $this->app->user->localization->lang[16]['Name'], 'sort' => 1, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[16]['Priority'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['DiscountP'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['Discount'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[16]['MinPrice'], 'sort' => 0],
-                        ]
-                    );
-                    ?>
-                    <tbody>
-                    <?php
-                    /** @var \Modules\Sales\ArticleList $articles */ /*
+                            <h1><?= $this->app->user->localization->lang[16]['Articles'] ?></h1>
+                        <th class="rT">
+                            <i class="fa fa-minus min"></i>
+                            <i class="fa fa-plus max vh"></i>
+                    <tr>
+                        <?php
+                        \Framework\Model\Model::generate_table_header_view(
+                            [
+                                ['name' => $this->app->user->localization->lang[16]['Name'],
+                                 'sort' => 1,
+                                 'full' => true],
+                                ['name' => $this->app->user->localization->lang[16]['Priority'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['DiscountP'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['Discount'], 'sort' => 0],
+                                ['name' => $this->app->user->localization->lang[16]['MinPrice'], 'sort' => 0],
+                            ]
+                        );
+                        ?>
+                        <tbody>
+                        <?php
+                        /** @var \Modules\Sales\ArticleList $articles */ /*
                                 $data = $articles->article_list_get();
                                 $url['level'] = array_slice($this->app->request->request, 0, 4);
                                 $url['level'][] = 'single';
@@ -153,12 +182,15 @@
                                     ['status', 'id', 'name1', 'lactive', 'created'],
                                     $url
                                 );*/
-                    ?>
-                    <tfoot>
-                <tr>
-                    <td colspan="9" class="cT">
-                        <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
-            </table>
+                        ?>
+                        <tfoot>
+                    <tr>
+                        <td colspan="9" class="cT">
+                            <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
+                </table>
+            </div>
+        </div>
+        <div class="tab tab-4">
         </div>
     </div>
 </div>

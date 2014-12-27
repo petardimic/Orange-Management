@@ -107,6 +107,44 @@ namespace Modules\Accounting {
                 case 'debitor':
                     $this->showBackendDebitor();
                     break;
+                case 'account':
+                    $this->showBackendAccount();
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendAccount()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $accountList = new \Modules\Accounting\AccountList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-list.tpl.php';
+                    break;
+                case 'postings':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-postings.tpl.php';
+                    break;
+                case 'balance':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-balance.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-create.tpl.php';
+                    break;
             }
         }
 
