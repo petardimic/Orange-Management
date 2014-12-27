@@ -18,6 +18,6 @@ namespace Modules\Navigation {
     abstract class LinkType extends \Framework\Datatypes\Enum
     {
         const CATEGORY = 0;
-        const LINK = 1;
+        const LINK     = 1;
     }
 }

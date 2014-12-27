@@ -17,11 +17,11 @@ namespace Modules\Support {
      */
     abstract class SupportStatus extends \Framework\Datatypes\Enum
     {
-        const OPEN = 0;
-        const REVIEW = 1;
-        const LIVE = 2;
+        const OPEN       = 0;
+        const REVIEW     = 1;
+        const LIVE       = 2;
         const UNSOLVABLE = 3;
-        const SOLVED = 4;
-        const CLOSED = 5;
+        const SOLVED     = 4;
+        const CLOSED     = 5;
     }
 }

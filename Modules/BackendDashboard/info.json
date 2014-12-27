@@ -1,45 +1,45 @@
 {
-  "name": {
-    "internal": 1000200000,
-    "external": "OMS Backend Dashboard"
-  },
-  "version": "1.0.0",
-  "requirements": {
-    "framework": "1.0.0",
-    "db": "1.0.0",
-    "db_mysql": "5.0.27",
-    "db_sqlite": "3.0.0",
-    "php": "5.4.0",
-    "fontawesome": "4.1.0",
-    "dthree": "3.4.11",
-    "jquery": "2.1.1"
-  },
-  "creator": "Orange Management",
-  "theme": {
-    "name": "oms-slim",
-    "path": "/oms-slim"
-  },
-  "description": "The backend dashboard module.",
-  "class": "BackendDashboard",
-  "dependencies": [],
-  "providing": [],
-  "load": [
-    {
-      "pid": ["3788e96aebafcdf3acc1a87861d559695e9a531f"],
-      "type": 4,
-      "for": 0,
-      "from": "1000200000",
-      "file": "BackendDashboard"
+    "name": {
+        "internal": 1000200000,
+        "external": "OMS Backend Dashboard"
     },
-    {
-      "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-      "type": 5,
-      "from": 1000200000,
-      "for": 1000500000,
-      "file": "nav.backend"
-    }
-  ],
-  "lang": true,
-  "js": false,
-  "css": false
+    "version": "1.0.0",
+    "requirements": {
+        "framework": "1.0.0",
+        "db": "1.0.0",
+        "db_mysql": "5.0.27",
+        "db_sqlite": "3.0.0",
+        "php": "5.4.0",
+        "fontawesome": "4.1.0",
+        "dthree": "3.4.11",
+        "jquery": "2.1.1"
+    },
+    "creator": "Orange Management",
+    "theme": {
+        "name": "oms-slim",
+        "path": "/oms-slim"
+    },
+    "description": "The backend dashboard module.",
+    "class": "BackendDashboard",
+    "dependencies": [],
+    "providing": [],
+    "load": [
+        {
+            "pid": ["3788e96aebafcdf3acc1a87861d559695e9a531f"],
+            "type": 4,
+            "for": 0,
+            "from": "1000200000",
+            "file": "BackendDashboard"
+        },
+        {
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 5,
+            "from": 1000200000,
+            "for": 1000500000,
+            "file": "nav.backend"
+        }
+    ],
+    "lang": true,
+    "js": false,
+    "css": false
 }

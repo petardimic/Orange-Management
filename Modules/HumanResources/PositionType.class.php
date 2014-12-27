@@ -17,13 +17,13 @@ namespace Modules\HumanResources {
      */
     abstract class PositionType extends \Framework\Datatypes\Enum
     {
-        const INTERN = 0;
+        const INTERN     = 0;
         const APPRENTICE = 1;
-        const JUNIOR = 2;
-        const REGULAR = 3;
-        const SENIOR = 4;
-        const ASSISTANT = 5;
+        const JUNIOR     = 2;
+        const REGULAR    = 3;
+        const SENIOR     = 4;
+        const ASSISTANT  = 5;
         const TEAMLEADER = 6;
-        const HEAD = 7;
+        const HEAD       = 7;
     }
 }

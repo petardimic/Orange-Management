@@ -17,9 +17,9 @@ namespace Modules\Sales {
      */
     abstract class InvoiceType extends \Framework\Datatypes\Enum
     {
-        const OFFER = 0;
+        const OFFER         = 0;
         const CONTRACT_NOTE = 1;
         const DELIVERY_NOTE = 2;
-        const BILL = 3;
+        const BILL          = 3;
     }
 }

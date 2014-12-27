@@ -17,10 +17,10 @@ namespace Modules\Warehousing {
      */
     abstract class ArrivalStatus extends \Framework\Datatypes\Enum
     {
-        const NONE = 0;
-        const PENDING = 1;
+        const NONE     = 0;
+        const PENDING  = 1;
         const CHECKING = 2;
-        const SORTING = 3;
+        const SORTING  = 3;
         const FINISHED = 4;
     }
 }

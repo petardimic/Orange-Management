@@ -17,11 +17,11 @@ namespace Modules\Tasks {
      */
     abstract class TaskStatus extends \Framework\Datatypes\Enum
     {
-        const UNSEEN = 0;
-        const SEEN = 1;
-        const WORKING = 2;
+        const UNSEEN    = 0;
+        const SEEN      = 1;
+        const WORKING   = 2;
         const SUSPENDED = 3;
-        const CANCELED = 4;
-        const DONE = 5;
+        const CANCELED  = 4;
+        const DONE      = 5;
     }
 }

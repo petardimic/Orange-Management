@@ -17,8 +17,8 @@ namespace Modules\News {
      */
     abstract class NewsType extends \Framework\Datatypes\Enum
     {
-        const NEWS = 0;
-        const LINK = 1;
+        const NEWS     = 0;
+        const LINK     = 1;
         const HEADLINE = 2;
     }
 }

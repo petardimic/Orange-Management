@@ -18,7 +18,7 @@ namespace Modules\Calendar {
     abstract class AvailableStatus extends \Framework\Datatypes\Enum
     {
         const AVAILABLE = 0;
-        const BUSY = 1;
-        const AWAY = 2;
+        const BUSY      = 1;
+        const AWAY      = 2;
     }
 }

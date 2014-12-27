@@ -17,10 +17,10 @@ namespace Modules\Warehousing {
      */
     abstract class PackagingStatus extends \Framework\Datatypes\Enum
     {
-        const PENDING = 0;
-        const PACKING = 1;
-        const PACKED = 2;
+        const PENDING   = 0;
+        const PACKING   = 1;
+        const PACKED    = 2;
         const SUSPENDED = 3;
-        const CANCELED = 4;
+        const CANCELED  = 4;
     }
 }

@@ -18,6 +18,6 @@ namespace Modules\Calendar {
     abstract class AcceptStatus extends \Framework\Datatypes\Enum
     {
         const ACCEPTED = 0;
-        const DENIED = 1;
+        const DENIED   = 1;
     }
 }
