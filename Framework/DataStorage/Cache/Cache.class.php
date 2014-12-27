@@ -19,6 +19,8 @@ namespace Framework\DataStorage\Cache {
      * @since      1.0.0
      */
     class Cache implements \Framework\DataStorage\Cache\CacheInterface, \Framework\Config\OptionsInterface {
+        use \Framework\Config\OptionsTrait;
+
         /**
          * MemCache instance
          *
@@ -42,14 +44,6 @@ namespace Framework\DataStorage\Cache {
          * @since 1.0.0
          */
         private $app = null;
-
-        /**
-         * Options array
-         *
-         * @var mixed[]
-         * @since 1.0.0
-         */
-        private $options = [];
 
         /**
          * Constructor
@@ -104,20 +98,6 @@ namespace Framework\DataStorage\Cache {
             } else {
                 $this->options = $options;
             }
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function setOption($key, $value, $storable = false, $save = false) {
-            $this->options[$key] = [$value, $storable];
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function getOption($key) {
-            return (isset($this->options[$key]) ? $this->options[$key] : null);
         }
 
         /**
@@ -195,15 +175,15 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function get_threshold() {
+        public function getThreshold() {
             $threshold = [];
 
             if($this->memc !== null) {
-                $threshold['memc'] = $this->memc->get_threshold();
+                $threshold['memc'] = $this->memc->getThreshold();
             }
 
             if($this->filec !== null) {
-                $threshold['filec'] = $this->filec->get_threshold();
+                $threshold['filec'] = $this->filec->getThreshold();
             }
 
             return $threshold;

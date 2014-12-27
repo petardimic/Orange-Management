@@ -48,11 +48,14 @@ foreach($elements as $element) {
 <div class="b b-3 c7-1 c7" id="i7-1-1">
     <div class="bc-1">
         <ul class="l-1">
-            <li><lable><?= $this->app->user->localization->lang[11]['Receiver']; ?></lable>
+            <li>
+                <lable><?= $this->app->user->localization->lang[11]['Receiver']; ?></lable>
             <li><input type="text">
-            <li><lable><?= $this->app->user->localization->lang[11]['Due']; ?></lable>
+            <li>
+                <lable><?= $this->app->user->localization->lang[11]['Due']; ?></lable>
             <li><input type="text">
-            <li><lable><?= $this->app->user->localization->lang[11]['Message']; ?></lable>
+            <li>
+                <lable><?= $this->app->user->localization->lang[11]['Message']; ?></lable>
             <li><textarea style="width: 100%"></textarea>
         </ul>
         <button class="rf"><?= $this->app->user->localization->lang[0]['Submit']; ?></button>

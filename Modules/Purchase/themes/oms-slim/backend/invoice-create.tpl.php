@@ -1,6 +1,7 @@
 <?php /** @var \Modules\Sales\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1002104001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1002104001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="tabview">
@@ -185,7 +186,9 @@
                         [
                             ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
                             ['name' => $this->app->user->localization->lang[21]['Name'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[21]['Description'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[21]['Description'],
+                             'sort' => 0,
+                             'full' => true],
                             ['name' => $this->app->user->localization->lang[21]['Quantity'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[21]['Price'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[21]['Tax'], 'sort' => 0],

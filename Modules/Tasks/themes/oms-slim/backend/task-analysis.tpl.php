@@ -1,10 +1,12 @@
 <?php /** @var \Modules\Tasks\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1001101001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1001101001]);
 ?>
 
 <div class="b b-4 c7-1 c7" id="i7-1-1">
     <h1><?= $this->app->user->localization->lang[11]['Task']; ?></h1>
+
     <div class="bc-1">
         <!-- @formatter:off -->
         <ul class="l-1">
@@ -27,6 +29,7 @@
 <!-- Analyse how many tasks that a user created got finished in time in order to see if he/she creates realistic estimates -->
 <div class="b b-4 c7-1 c7" id="i7-1-1">
     <h1><?= $this->app->user->localization->lang[11]['Task']; ?></h1>
+
     <div class="bc-1">
         <!-- @formatter:off -->
         <table class="tc-1">

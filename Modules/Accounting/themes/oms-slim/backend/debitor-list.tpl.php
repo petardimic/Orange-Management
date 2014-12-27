@@ -1,10 +1,13 @@
 <?php /** @var \Modules\Sales\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1002602001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1002602001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">
-    <?= /** @noinspection PhpUndefinedMethodInspection */ \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT_SIDE, 1003003001]); ?>
+    <?= /** @noinspection PhpUndefinedMethodInspection */
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT_SIDE,
+                                                                     1003003001]); ?>
 </div>
 <div class="b-6">
     <table class="t t-1 c1-2 c1" id="i1-2-1">
@@ -36,25 +39,25 @@
             <tbody>
             <?php
             /** @var \Modules\Accounting\DebitorList $debitorList */
-                $data = $debitorList->getList();
-                $url['level'] = array_slice($this->app->request->request, 0, 4);
-                $url['level'][] = 'single';
-                $url['level'][] = 'front';
-                $url['id'] = 'AccountingDebitorID';
+            $data           = $debitorList->getList();
+            $url['level']   = array_slice($this->app->request->request, 0, 4);
+            $url['level'][] = 'single';
+            $url['level'][] = 'front';
+            $url['id']      = 'AccountingDebitorID';
 
-                \Framework\Model\Model::generate_table_content_view(
-                    $data['list'],
-                    ['AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID',
-                     'AccountingDebitorID'],
-                    $url
-                );
+            \Framework\Model\Model::generate_table_content_view(
+                $data['list'],
+                ['AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID',
+                 'AccountingDebitorID'],
+                $url
+            );
             ?>
             <tfoot>
         <tr>

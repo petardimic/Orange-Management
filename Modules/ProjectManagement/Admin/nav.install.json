@@ -1,8 +1,26 @@
 [
-    {
-        "id": 1001701001,
-        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
-        "type": 2,
+  {
+    "id": 1001701001,
+    "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+    "type": 2,
+    "subtype": 1,
+    "name": "ProjectManagement",
+    "l0": "backend",
+    "l1": "projectmanagement",
+    "l2": "dashboard",
+    "l3": null,
+    "l4": null,
+    "l5": null,
+    "icon": null,
+    "order": 60,
+    "from": 1001700000,
+    "permission": null,
+    "parent": 1000201001,
+    "children": [
+      {
+        "id": 1001702001,
+        "pid": "e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a",
+        "type": 3,
         "subtype": 1,
         "name": "ProjectManagement",
         "l0": "backend",
@@ -12,49 +30,31 @@
         "l4": null,
         "l5": null,
         "icon": null,
-        "order": 60,
+        "order": 1,
         "from": 1001700000,
         "permission": null,
-        "parent": 1000201001,
-        "children": [
-            {
-                "id": 1001702001,
-                "pid": "e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a",
-                "type": 3,
-                "subtype": 1,
-                "name": "ProjectManagement",
-                "l0": "backend",
-                "l1": "projectmanagement",
-                "l2": "dashboard",
-                "l3": null,
-                "l4": null,
-                "l5": null,
-                "icon": null,
-                "order": 1,
-                "from": 1001700000,
-                "permission": null,
-                "parent": 1001701001,
-                "children": []
-            },
-            {
-                "id": 1001703001,
-                "pid": "e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a",
-                "type": 3,
-                "subtype": 1,
-                "name": "Create",
-                "l0": "backend",
-                "l1": "projectmanagement",
-                "l2": "create",
-                "l3": null,
-                "l4": null,
-                "l5": null,
-                "icon": null,
-                "order": 5,
-                "from": 1001700000,
-                "permission": null,
-                "parent": 1001701001,
-                "children": []
-            }
-        ]
-    }
+        "parent": 1001701001,
+        "children": []
+      },
+      {
+        "id": 1001703001,
+        "pid": "e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a",
+        "type": 3,
+        "subtype": 1,
+        "name": "Create",
+        "l0": "backend",
+        "l1": "projectmanagement",
+        "l2": "create",
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "icon": null,
+        "order": 5,
+        "from": 1001700000,
+        "permission": null,
+        "parent": 1001701001,
+        "children": []
+      }
+    ]
+  }
 ]

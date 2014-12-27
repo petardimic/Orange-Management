@@ -20,16 +20,16 @@ namespace Modules\Accounting\Admin {
          * {@inheritdoc}
          */
         public static function generate($db, $amount) {
-            $debitors = '';
-            $creditors  = '';
+            $debitors  = '';
+            $creditors = '';
 
             for($i = 0; $i < $amount; $i++) {
                 $debitors .= " (" . rand(1, $amount - 1) . "),";
                 $creditors .= " (" . rand(1, $amount - 1) . "),";
             }
 
-            $debitors = rtrim($debitors, ',');
-            $creditors  = rtrim($creditors, ',');
+            $debitors  = rtrim($debitors, ',');
+            $creditors = rtrim($creditors, ',');
 
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'accounting_debitor` (`account`) VALUES ' . $debitors)->execute();
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'accounting_creditor` (`account`) VALUES ' . $creditors)->execute();

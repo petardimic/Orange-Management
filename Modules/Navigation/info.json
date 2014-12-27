@@ -1,38 +1,38 @@
 {
-    "name": {
-        "internal": 1000500000,
-        "external": "OMS Navigation"
-    },
-    "version": "1.0.0",
-    "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
-    },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
-    },
-    "description": "The navigation module.",
-    "class": "Navigation",
-    "dependencies": [],
-    "providing": [],
-    "load": [
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type": 4,
-            "for": 0,
-            "file": "Navigation",
-            "from": "1000500000"
-        }
-    ],
-    "lang": false,
-    "js": true,
-    "css": false
+  "name": {
+    "internal": 1000500000,
+    "external": "OMS Navigation"
+  },
+  "version": "1.0.0",
+  "requirements": {
+    "framework": "1.0.0",
+    "db": "1.0.0",
+    "db_mysql": "5.0.27",
+    "db_sqlite": "3.0.0",
+    "php": "5.4.0",
+    "fontawesome": "4.1.0",
+    "dthree": "3.4.11",
+    "jquery": "2.1.1"
+  },
+  "creator": "Orange Management",
+  "theme": {
+    "name": "oms-slim",
+    "path": "/oms-slim"
+  },
+  "description": "The navigation module.",
+  "class": "Navigation",
+  "dependencies": [],
+  "providing": [],
+  "load": [
+    {
+      "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+      "type": 4,
+      "for": 0,
+      "file": "Navigation",
+      "from": "1000500000"
+    }
+  ],
+  "lang": false,
+  "js": true,
+  "css": false
 }

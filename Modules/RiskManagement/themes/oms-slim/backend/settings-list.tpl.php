@@ -1,5 +1,6 @@
 <?php /** @var \Modules\RiskManagement\Handler $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1003001001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b b-2 c30-1 c30 lf" id="i30-1-1">

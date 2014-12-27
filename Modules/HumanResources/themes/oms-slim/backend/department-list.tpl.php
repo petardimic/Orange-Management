@@ -1,6 +1,7 @@
 <?php /** @var \Modules\HumanResources\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1002404001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1002404001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">

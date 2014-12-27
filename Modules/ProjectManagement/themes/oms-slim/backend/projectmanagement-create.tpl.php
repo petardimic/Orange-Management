@@ -1,5 +1,6 @@
 <?php /** @var \Modules\ProjectManagement\Handler $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1001701001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1001701001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="tabview">

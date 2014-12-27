@@ -61,7 +61,7 @@ namespace Modules\HumanResources {
                             `' . $this->db->prefix . 'hr_department`.*
                         FROM
                             `' . $this->db->prefix . 'hr_department` '
-                       . $search . 'LIMIT ' . $offset . ',' . $limit);
+                                                   . $search . 'LIMIT ' . $offset . ',' . $limit);
                     $sth->execute();
 
                     $result['list'] = $sth->fetchAll();

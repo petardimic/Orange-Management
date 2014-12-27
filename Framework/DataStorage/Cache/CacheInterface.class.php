@@ -108,6 +108,6 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function get_threshold();
+        public function getThreshold();
     }
 }

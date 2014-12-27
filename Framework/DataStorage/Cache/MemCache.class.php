@@ -50,7 +50,7 @@ namespace Framework\DataStorage\Cache {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function add_server($data) {
+        public function addServer($data) {
             $this->memc->addServer($data['host'], $data['port'], $data['timeout']);
         }
 
@@ -106,7 +106,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function get_threshold() {
+        public function getThreshold() {
             return $this->threshold;
         }
 

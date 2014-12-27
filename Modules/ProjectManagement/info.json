@@ -1,52 +1,52 @@
 {
-    "name": {
-        "internal": 1001700000,
-        "external": "OMS Project Management"
+  "name": {
+    "internal": 1001700000,
+    "external": "OMS Project Management"
+  },
+  "version": "1.0.0",
+  "requirements": {
+    "framework": "1.0.0",
+    "db": "1.0.0",
+    "db_mysql": "5.0.27",
+    "db_sqlite": "3.0.0",
+    "php": "5.4.0",
+    "fontawesome": "4.1.0",
+    "dthree": "3.4.11",
+    "jquery": "2.1.1"
+  },
+  "creator": "Orange Management",
+  "theme": {
+    "name": "oms-slim",
+    "path": "/oms-slim"
+  },
+  "description": "Project Management module.",
+  "class": "ProjectManagement",
+  "dependencies": [],
+  "providing": [],
+  "load": [
+    {
+      "pid": ["e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a"],
+      "type": 4,
+      "for": 1004100000,
+      "from": 1001700000,
+      "file": "ProjectManagement"
     },
-    "version": "1.0.0",
-    "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
+    {
+      "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+      "type": 5,
+      "from": 1001700000,
+      "for": 1000500000,
+      "file": "nav.backend"
     },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
-    },
-    "description": "Project Management module.",
-    "class": "ProjectManagement",
-    "dependencies": [],
-    "providing": [],
-    "load": [
-        {
-            "pid": ["e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a"],
-            "type": 4,
-            "for": 1004100000,
-            "from": 1001700000,
-            "file": "ProjectManagement"
-        },
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type": 5,
-            "from": 1001700000,
-            "for": 1000500000,
-            "file": "nav.backend"
-        },
-        {
-            "pid": ["e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a"],
-            "type": 5,
-            "for": 1004100000,
-            "file": "backend",
-            "from": 1001700000
-        }
-    ],
-    "lang": true,
-    "js": false,
-    "css": true
+    {
+      "pid": ["e8f8b3f93644a55dcaa84f20c2d7736fbd9ee62a"],
+      "type": 5,
+      "for": 1004100000,
+      "file": "backend",
+      "from": 1001700000
+    }
+  ],
+  "lang": true,
+  "js": false,
+  "css": true
 }

@@ -1,38 +1,38 @@
 {
-    "name": {
-        "internal": 1004400000,
-        "external": "OMS API"
-    },
-    "version": "1.0.0",
-    "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
-    },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
-    },
-    "description": "The API module.",
-    "class": "API",
-    "dependencies": [],
-    "providing": [],
-    "load": [
-        {
-            "pid": ["a033a528b603fed46f861d4b3542c417b99d41c8"],
-            "type": 4,
-            "for": 0,
-            "from": "1004400000",
-            "file": "API"
-        }
-    ],
-    "lang": false,
-    "js": false,
-    "css": false
+  "name": {
+    "internal": 1004400000,
+    "external": "OMS API"
+  },
+  "version": "1.0.0",
+  "requirements": {
+    "framework": "1.0.0",
+    "db": "1.0.0",
+    "db_mysql": "5.0.27",
+    "db_sqlite": "3.0.0",
+    "php": "5.4.0",
+    "fontawesome": "4.1.0",
+    "dthree": "3.4.11",
+    "jquery": "2.1.1"
+  },
+  "creator": "Orange Management",
+  "theme": {
+    "name": "oms-slim",
+    "path": "/oms-slim"
+  },
+  "description": "The API module.",
+  "class": "API",
+  "dependencies": [],
+  "providing": [],
+  "load": [
+    {
+      "pid": ["a033a528b603fed46f861d4b3542c417b99d41c8"],
+      "type": 4,
+      "for": 0,
+      "from": "1004400000",
+      "file": "API"
+    }
+  ],
+  "lang": false,
+  "js": false,
+  "css": false
 }

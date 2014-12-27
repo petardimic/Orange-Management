@@ -65,7 +65,9 @@
                     \Framework\Model\Model::generate_table_header_view(
                         [
                             ['name' => $this->app->user->localization->lang[12]['From'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[12]['Subject'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->localization->lang[12]['Subject'],
+                             'sort' => 0,
+                             'full' => true],
                             ['name' => $this->app->user->localization->lang[12]['Status'], 'sort' => 0],
                             ['name' => $this->app->user->localization->lang[12]['Date'], 'sort' => 0],
                         ]

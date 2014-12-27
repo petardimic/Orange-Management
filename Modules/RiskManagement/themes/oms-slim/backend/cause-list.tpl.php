@@ -1,6 +1,7 @@
 <?php /** @var \Modules\RiskManagement\Handler $this */
 \Framework\Model\Model::generate_table_filter_view();
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1003001001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1003001001]);
 ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">

@@ -5,7 +5,8 @@ $modules_all = $this->app->modules->getAllModules();
 
 if(array_key_exists($this->app->request->request['id'], $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000105001]);
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                     1000105001]);
 }
 ?>
 
@@ -45,13 +46,13 @@ if(array_key_exists($this->app->request->request['id'], $modules_all)) {
                     <?php } else { ?>
                 <li><a href="<?=
                     \Framework\Uri\UriFactory::build([
-                            $this->app->request->request['l0'],
-                            $this->app->request->request['l1'],
-                            $this->app->request->request['l2'],
-                            $this->app->request->request['l3'],
-                            $this->app->request->request['l4'],
-                            'settings'
-                        ],
+                        $this->app->request->request['l0'],
+                        $this->app->request->request['l1'],
+                        $this->app->request->request['l2'],
+                        $this->app->request->request['l3'],
+                        $this->app->request->request['l4'],
+                        'settings'
+                    ],
                         [['id', $this->app->request->request['id']]]
                     );
                     ?>"><?= $this->app->user->localization->lang[1]['Settings']; ?></a>

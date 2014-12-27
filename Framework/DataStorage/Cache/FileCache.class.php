@@ -84,7 +84,7 @@ namespace Framework\DataStorage\Cache {
         /**
          * {@inheritdoc}
          */
-        public function get_threshold() {
+        public function getThreshold() {
             return $this->threshold;
         }
     }

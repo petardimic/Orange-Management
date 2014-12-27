@@ -39,7 +39,7 @@ namespace Modules\Accounting {
         /**
          * Constructor
          *
-         * @param \Framework\WebApplication $app        Application reference
+         * @param \Framework\WebApplication $app       Application reference
          * @param string                    $themePath Theme path
          *
          * @since  1.0.0

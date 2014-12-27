@@ -1,66 +1,66 @@
 {
-    "name": {
-        "internal": 1000100000,
-        "external": "OMS Admin"
+  "name": {
+    "internal": 1000100000,
+    "external": "OMS Admin"
+  },
+  "version": "1.0.0",
+  "requirements": {
+    "framework": "1.0.0",
+    "db": "1.0.0",
+    "db_mysql": "5.0.27",
+    "db_sqlite": "3.0.0",
+    "php": "5.4.0",
+    "fontawesome": "4.1.0",
+    "dthree": "3.4.11",
+    "jquery": "2.1.1"
+  },
+  "creator": "Orange Management",
+  "theme": {
+    "name": "oms-slim",
+    "path": "/oms-slim"
+  },
+  "description": "The administration module.",
+  "class": "Admin",
+  "dependencies": [],
+  "providing": [],
+  "load": [
+    {
+      "pid": ["1854402adfd24425fd13776a2d3787151609b360"],
+      "type": 4,
+      "for": 1004100000,
+      "file": "Admin",
+      "from": 1000100000
     },
-    "version": "1.0.0",
-    "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
+    {
+      "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
+      "type": 4,
+      "for": 1004400000,
+      "file": "Admin",
+      "from": 1000100000
     },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
+    {
+      "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+      "type": 5,
+      "for": 1004100000,
+      "file": "backend",
+      "from": 1000100000
     },
-    "description": "The administration module.",
-    "class": "Admin",
-    "dependencies": [],
-    "providing": [],
-    "load": [
-        {
-            "pid": ["1854402adfd24425fd13776a2d3787151609b360"],
-            "type": 4,
-            "for": 1004100000,
-            "file": "Admin",
-            "from": 1000100000
-        },
-        {
-            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
-            "type": 4,
-            "for": 1004400000,
-            "file": "Admin",
-            "from": 1000100000
-        },
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type": 5,
-            "for": 1004100000,
-            "file": "backend",
-            "from": 1000100000
-        },
-        {
-            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
-            "type": 5,
-            "for": 1004400000,
-            "file": "api",
-            "from": 1000100000
-        },
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type": 5,
-            "from": 1000100000,
-            "for": 1000500000,
-            "file": "nav.backend"
-        }
-    ],
-    "lang": true,
-    "js": false,
-    "css": false
+    {
+      "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
+      "type": 5,
+      "for": 1004400000,
+      "file": "api",
+      "from": 1000100000
+    },
+    {
+      "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+      "type": 5,
+      "from": 1000100000,
+      "for": 1000500000,
+      "file": "nav.backend"
+    }
+  ],
+  "lang": true,
+  "js": false,
+  "css": false
 }

@@ -118,7 +118,7 @@ namespace Modules\News {
          */
         public function init($id) {
             $this->id = $id;
-            $data = null;
+            $data     = null;
 
             switch($this->db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:

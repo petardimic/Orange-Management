@@ -18,6 +18,8 @@ namespace Framework\Auth {
      * @since      1.0.0
      */
     class Auth implements \Framework\Config\OptionsInterface {
+        use \Framework\Config\OptionsTrait;
+
         /**
          * Application instance
          *
@@ -25,8 +27,6 @@ namespace Framework\Auth {
          * @since 1.0.0
          */
         private $app = null;
-
-        use \Framework\Config\OptionsTrait;
 
         /**
          * Constructor

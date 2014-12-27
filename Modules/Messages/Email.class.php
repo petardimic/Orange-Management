@@ -17,10 +17,15 @@ namespace Modules\Messages {
      */
     interface Email {
         public function connect($host, $port, $user, $password);
+
         public function getListNew();
+
         public function getListAll();
+
         public function getMessage();
+
         public function removeMessage();
+
         public function setStatus();
     }
 }

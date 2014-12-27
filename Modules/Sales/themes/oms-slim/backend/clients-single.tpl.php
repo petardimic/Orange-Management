@@ -441,7 +441,8 @@
                     <div class="bc-1">
                         <ul class="l-1">
                             <li><label><?= $this->app->user->localization->lang[0]['ID']; ?></label>
-                            <li><input type="text"> <button><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
+                            <li><input type="text">
+                                <button><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
                         </ul>
 
                         <!-- @formatter:off -->

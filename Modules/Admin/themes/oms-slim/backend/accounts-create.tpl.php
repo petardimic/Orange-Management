@@ -1,6 +1,7 @@
 <?php /** @var \Modules\Admin\Handler $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT, 1000104001]);
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\NavigationType::CONTENT,
+                                                                 1000104001]);
 ?>
 
 <div class="b b-2 c1-8 c1" id="i1-8-2">

@@ -40,7 +40,7 @@ namespace Modules\Profile {
          * Constructor
          *
          * @param \Framework\ApplicationAbstract $app Application instance
-         * @param string $themePath
+         * @param string                         $themePath
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
