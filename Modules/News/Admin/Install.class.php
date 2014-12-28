@@ -71,6 +71,20 @@ namespace Modules\News\Admin {
                             ADD CONSTRAINT `news_tag_ibfk_1` FOREIGN KEY (`news`) REFERENCES `' . $db->prefix . 'news` (`NewsID`);'
                     )->execute();
 
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_group` (
+                            `NewsGroupID` int(11) NOT NULL AUTO_INCREMENT,
+                            `news` int(11) NOT NULL,
+                            `group` int(11) NOT NULL,
+                            PRIMARY KEY (`NewsGroupID`),
+                            KEY `news` (`news`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'news_group`
+                            ADD CONSTRAINT `news_group_ibfk_1` FOREIGN KEY (`news`) REFERENCES `' . $db->prefix . 'news` (`NewsID`);'
+                    )->execute();
                     break;
             }
 

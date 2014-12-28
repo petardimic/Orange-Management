@@ -32,12 +32,12 @@ namespace Modules\Profile\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account` (
-                            `id` int(11) NOT NULL,
+                            `ProfileAccountID` int(11) NOT NULL,
                             `begin` datetime NOT NULL,
                             `image` varchar(255) NOT NULL,
                             `cv` text NOT NULL,
                             `account` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`ProfileAccountID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
@@ -49,11 +49,11 @@ namespace Modules\Profile\Admin {
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_phone` (
-                            `id` int(11) NOT NULL,
+                            `ProfilePhoneID` int(11) NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `number` varchar(50) NOT NULL,
                             `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`ProfilePhoneID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -65,7 +65,7 @@ namespace Modules\Profile\Admin {
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_address` (
-                            `id` int(11) NOT NULL,
+                            `ProfileAddressID` int(11) NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `address` varchar(50) NOT NULL,
                             `street` varchar(50) NOT NULL,
@@ -73,7 +73,7 @@ namespace Modules\Profile\Admin {
                             `zip` varchar(50) NOT NULL,
                             `country` varchar(50) NOT NULL,
                             `account` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`ProfileAddressID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -85,11 +85,11 @@ namespace Modules\Profile\Admin {
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account_relations` (
-                            `id` int(11) NOT NULL,
+                            `ProfileAccountRelationID` int(11) NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `relation` int(11) DEFAULT NULL,
                             `account` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`ProfileAccountRelationID`),
                             KEY `account` (`account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -99,6 +99,22 @@ namespace Modules\Profile\Admin {
                             ADD CONSTRAINT `profile_account_relations_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account_settings` (
+                            `ProfileAccountSettingID` int(11) NOT NULL,
+                            `module` int(11) NOT NULL,
+                            `type` varchar(20) NOT NULL,
+                            `value` varchar(32) DEFAULT NULL,
+                            `account` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`ProfileAccountSettingID`),
+                            KEY `account` (`account`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'profile_account_settings`
+                            ADD CONSTRAINT `profile_account_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
                     break;
             }
 

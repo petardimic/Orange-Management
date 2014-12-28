@@ -48,6 +48,23 @@ namespace Modules\Media\Admin {
                         'ALTER TABLE `' . $db->prefix . 'media`
                             ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media_permission` (
+                            `MediaPermissionID` int(11) NOT NULL AUTO_INCREMENT,
+                            `type`  tinyint(1) NOT NULL,
+                            `reference` int(11) NOT NULL,
+                            `permission` tinyint(2) NOT NULL,
+                            `media` int(11) NOT NULL,
+                            PRIMARY KEY (`MediaPermissionID`),
+                            KEY `media` (`media`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'media_permission`
+                            ADD CONSTRAINT `media_permission_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
+                    )->execute();
                     break;
             }
 

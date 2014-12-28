@@ -19,6 +19,7 @@ $toInstall = [
     'GlobalContent',
     'API',
     /* TESTING */
+    'Media',
     'News',
     'Tasks',
     'Profile',
@@ -29,7 +30,6 @@ $toInstall = [
     'Sales',
     'Surveys',
     'Marketing',
-    'Media',
     'Messages',
     'HumanResources',
     'Calendar',
