@@ -162,6 +162,27 @@ namespace Modules\HumanResources\Admin {
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_clocking`
                             ADD CONSTRAINT `hr_staff_clocking_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff_payroll` (
+                            `HRStaffCPayrollID` int(11) NOT NULL AUTO_INCREMENT,
+                            `person` int(11) DEFAULT NULL,
+                            `reference` int(11) DEFAULT NULL,
+                            `start` datetime DEFAULT NULL,
+                            `end` datetime DEFAULT NULL,
+                            `type` tinyint(1) NOT NULL,
+                            `amount` decimal(11,2) NOT NULL,
+                            PRIMARY KEY (`HRStaffClockingID`),
+                            KEY `person` (`person`),
+                            KEY `reference` (`reference`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'hr_staff_payroll`
+                            ADD CONSTRAINT `hr_staff_payroll_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `hr_staff_payroll_ibfk_2` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'hr_staff_payroll` (`HRStaffCPayrollID`);'
+                    )->execute();
                     break;
             }
 
