@@ -35,6 +35,8 @@ namespace Modules\Purchase {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Media',
+            'Warehousing'
         ];
 
         /**

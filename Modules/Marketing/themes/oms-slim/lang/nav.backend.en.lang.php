@@ -1,4 +1,8 @@
 <?php
 $MODLANG[5] = [
-    "Marketing" => "Marketing",
+    "Analysis"   => "Analysis",
+    "Create"     => "Create",
+    "Events"     => "Events",
+    "Marketing"  => "Marketing",
+    "Promotions" => "Promotions",
 ];

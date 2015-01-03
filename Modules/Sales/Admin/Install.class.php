@@ -143,29 +143,71 @@ namespace Modules\Sales\Admin {
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoices` (
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice` (
                             `SalesInvoiceID` int(11) NOT NULL AUTO_INCREMENT,
                             `status` tinyint(2) DEFAULT NULL,
+                            `shipTo` varchar(50) DEFAULT NULL,
+                            `shipFAO` varchar(30) DEFAULT NULL,
+                            `shipAddr` varchar(50) DEFAULT NULL,
+                            `shipCity` varchar(20) DEFAULT NULL,
+                            `shipZip` varchar(20) DEFAULT NULL,
+                            `shipCountry` varchar(30) DEFAULT NULL,
+                            `billTo` varchar(50) DEFAULT NULL,
+                            `billFAO` varchar(30) DEFAULT NULL,
+                            `billAddr` varchar(50) DEFAULT NULL,
+                            `billCity` varchar(20) DEFAULT NULL,
+                            `billZip` varchar(20) DEFAULT NULL,
+                            `billCountry` varchar(30) DEFAULT NULL,
                             `type` tinyint(2) DEFAULT NULL,
                             `created` datetime DEFAULT NULL,
                             `printed` datetime DEFAULT NULL,
                             `price` decimal(9,2) DEFAULT NULL,
                             `currency` varchar(3) DEFAULT NULL,
+                            `freightage` decimal(9,2) DEFAULT NULL,
+                            `info` text DEFAULT NULL,
+                            `voucher` int(11) DEFAULT NULL,
+                            `promotion` int(11) DEFAULT NULL,
                             `creator` int(11) NOT NULL,
                             `client` int(11) NOT NULL,
                             `referer` int(11) NOT NULL,
+                            `reference` int(11) NOT NULL,
                             PRIMARY KEY (`SalesInvoiceID`),
                             KEY `creator` (`creator`),
                             KEY `client` (`client`),
-                            KEY `referer` (`referer`)
+                            KEY `referer` (`referer`),
+                            KEY `reference` (`reference`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_invoices`
-                            ADD CONSTRAINT `sales_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoices_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`),
-                            ADD CONSTRAINT `sales_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_invoice`
+                            ADD CONSTRAINT `sales_invoice_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `sales_invoice_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`),
+                            ADD CONSTRAINT `sales_invoice_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
+                            ADD CONSTRAINT `sales_invoice_ibfk_4` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article` (
+                            `SalesInvoiceAricleID` int(11) NOT NULL AUTO_INCREMENT,
+                            `position` smallint(5) NOT NULL,
+                            `article` int(11) NOT NULL,
+                            `name` varchar(30) NOT NULL,
+                            `description` text NOT NULL,
+                            `quantity` int(11) NOT NULL,
+                            `price` decimal(11,2) NOT NULL,
+                            `tax` decimal(5,2) NOT NULL,
+                            `discountp` decimal(5,2) NOT NULL,
+                            `discount` decimal(11,2) NOT NULL,
+                            `invoice` int(11) NOT NULL,
+                            PRIMARY KEY (`SalesInvoiceAricleID`),
+                            KEY `invoice` (`invoice`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article`
+                            ADD CONSTRAINT `sales_invoice_article_ibfk_1` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
                     )->execute();
                     break;
             }

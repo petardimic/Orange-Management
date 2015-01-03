@@ -35,6 +35,7 @@ namespace Modules\Accounting {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Media'
         ];
 
         /**

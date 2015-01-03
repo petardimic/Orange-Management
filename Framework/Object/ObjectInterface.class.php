@@ -21,6 +21,18 @@ namespace Framework\Object {
     interface ObjectInterface extends \Serializable
     {
         /**
+         * Init object by ID
+         *
+         * This usually happens from DB or cache
+         *
+         * @param int $id Object ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function init($id);
+
+        /**
          * Removing the current object from cache and database
          *
          * @since  1.0.0

@@ -1,4 +1,5 @@
-abstract Polygon implements Shape2D {
+<?php
+abstract class Polygon implements Shape2D {
     private $coord = null;
     private $perimeter = null;
     private $surface = null;
@@ -39,17 +40,17 @@ abstract Polygon implements Shape2D {
     }
 
     public function getSurface() {
-        $this->area = 0;
+        $this->surface = 0;
         $count = count($this->coord);
         
         for($i = 0; $i < $count - 2; $i++) {
-            $area += $this->coord[$i]['x'] * $this->coord[$i+1]['y'] - $this->coord[$i+1]['x'] * $this->coord[$i]['y']
+            $this->surface += $this->coord[$i]['x'] * $this->coord[$i+1]['y'] - $this->coord[$i+1]['x'] * $this->coord[$i]['y']
         }
         
-        $this->area /= 2;
-        $this->area = abs($this->area);
+        $this->surface /= 2;
+        $this->surface = abs($this->surface);
         
-        return $this->area;
+        return $this->surface;
     }
     
     public function getSurfaceFormula() {

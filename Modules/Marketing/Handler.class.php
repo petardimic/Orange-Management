@@ -35,6 +35,7 @@ namespace Modules\Marketing {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Sales'
         ];
 
         /**
