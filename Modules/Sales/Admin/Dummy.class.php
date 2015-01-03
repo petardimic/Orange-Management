@@ -37,7 +37,7 @@ namespace Modules\Sales\Admin {
             $articles = rtrim($articles, ',');
 
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $clients)->execute();
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_invoices` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `client`, `referer`) VALUES ' . $invoices)->execute();
+            $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_invoice` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `client`, `referer`) VALUES ' . $invoices)->execute();
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_articles` (`class`, `group`, `subgroup`, `article`) VALUES ' . $articles)->execute();
         }
     }
