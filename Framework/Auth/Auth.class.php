@@ -52,7 +52,7 @@ namespace Framework\Auth {
          */
         public function authenticate()
         {
-            $uid = $this->app->session->getValue('user_id');
+            $uid = $this->app->session->getValue('UID');
 
             if($uid === null) {
                 $uid = -1;
@@ -64,7 +64,7 @@ namespace Framework\Auth {
         /**
          * Login user
          *
-         * @param string $username Username
+         * @param string $login Username
          * @param string $password Password
          *
          * @return int Login code
@@ -72,12 +72,56 @@ namespace Framework\Auth {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function login($username, $password)
+        public function login($login, $password)
         {
-            // TODO: get password from db based on $username which is = loginname which can be email or number or name
+            try {
+                $result = null;
 
-            // TODO: save to session
-            // TODO: reload page
+                switch($this->app->db->getType()) {
+                    case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+
+                        $sth = $this->app->db->con->prepare(
+                            'SELECT
+                            `' . $this->app->db->prefix . 'accounts_data`.*,
+                            `' . $this->app->db->prefix . 'accounts`.*
+                        FROM
+                            `' . $this->app->db->prefix . 'accounts_data`
+                        LEFT JOIN
+                            `' . $this->app->db->prefix . 'accounts`
+                        ON
+                            `' . $this->app->db->prefix . 'accounts_data`.`account` = `' . $this->app->db->prefix . 'accounts_`.`id`
+                        WHERE
+                            `' . $this->app->db->prefix . 'accounts_data`.`login` = :login'
+                        );
+                        $sth->bindValue(':login', $login, \PDO::PARAM_STR);
+                        $sth->execute();
+
+                        $result = $sth->fetchAll()[0];
+                        break;
+                }
+
+                // TODO: check if user is allowed to login on THIS page (backend|frontend|etc...)
+
+                if($result === null) {
+                    return \Framework\Auth\LoginReturnType::WRONG_USERNAME;
+                }
+
+                if($result['tries'] <= 0) {
+                    return \Framework\Auth\LoginReturnType::WRONG_INPUT_EXCEEDED;
+                }
+
+                if(password_verify($password, $result['password'])) {
+                    if($result['status'] === \Framework\Auth\LoginReturnType::OK) {
+                        $this->app->session->setValue('UID', $result['account']);
+                    }
+
+                    return $result['status'];
+                }
+
+                return \Framework\Auth\LoginReturnType::WRONG_PASSWORD;
+            } catch(\Exception $e) {
+                return \Framework\Auth\LoginReturnType::FAILURE;
+            }
         }
 
         /**
@@ -90,13 +134,8 @@ namespace Framework\Auth {
          */
         public function logout($uid)
         {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function update()
-        {
+            // TODO: logout other users? If admin wants to kick a user for updates etc.
+            $this->app->session->deleteValue('UID');
         }
     }
 }

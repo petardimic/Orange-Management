@@ -44,5 +44,12 @@ namespace Framework\Config {
                 // TODO: save to db and or caching
             }
         }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function update() {
+
+        }
     }
 }

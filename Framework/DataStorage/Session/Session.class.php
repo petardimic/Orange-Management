@@ -25,5 +25,13 @@ namespace Framework\DataStorage\Session {
         {
             return null;
         }
+
+        public function setValue($id, $value)
+        {
+        }
+
+        public function deleteValue($id)
+        {
+        }
     }
 }
