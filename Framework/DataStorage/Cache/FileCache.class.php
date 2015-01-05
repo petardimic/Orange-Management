@@ -3,10 +3,10 @@ namespace Framework\DataStorage\Cache {
     /**
      * Filecache class
      *
-     * PHP Version 5.4
+     * PHP Version 5.6
      *
-     * @category   DataStorage
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\DataStorage\Cache
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013

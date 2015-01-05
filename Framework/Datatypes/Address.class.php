@@ -5,8 +5,8 @@ namespace Framework\Datatypes {
      *
      * PHP Version 5.4
      *
-     * @category   Datatypes
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Datatypes
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -23,7 +23,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $name = null;
+        private $recipient = null;
 
         /**
          * Sub of the address
@@ -31,7 +31,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $sub = null;
+        private $fao = null;
 
         /**
          * Location
@@ -39,6 +39,99 @@ namespace Framework\Datatypes {
          * @var \Framework\Datatypes\Location
          * @since 1.0.0
          */
-        public $location = null;
+        private $location = null;
+
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct()
+        {
+            $this->$location = new \Framework\Datatypes\Location();
+        }
+
+        /**
+         * Set recipient
+         *
+         * @param string $recipient Recipient
+         *
+         * @return bool
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setRecipient($recipient)
+        {
+            $this->recipient = $recipient;
+
+            return true;
+        }
+
+        /**
+         * Get recipient
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getRecipient()
+        {
+            return $this->recipient;
+        }
+
+        /**
+         * Set FAO
+         *
+         * @param string $fao FAO
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setFAO($fao)
+        {
+            $this->fao = $fao;
+        }
+
+        /**
+         * Get FAO
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getFAO()
+        {
+            return $this->fao;
+        }
+
+        /**
+         * Set location
+         *
+         * @param \Framework\Datatypes\Location $location Location
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setLocation($location)
+        {
+            $this->location = $location;
+        }
+
+        /**
+         * Get location
+         *
+         * @return \Framework\Datatypes\Location
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getLocation()
+        {
+            return $this->location;
+        }
     }
 }

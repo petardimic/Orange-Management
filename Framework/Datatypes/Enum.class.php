@@ -7,8 +7,8 @@ namespace Framework\Datatypes {
      *
      * PHP Version 5.4
      *
-     * @category   Datatypes
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Datatypes
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013

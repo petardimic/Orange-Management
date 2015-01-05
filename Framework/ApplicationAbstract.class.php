@@ -60,7 +60,7 @@ namespace Framework {
         /**
          * Auth instance
          *
-         * @var \Framework\Auth\Auth
+         * @var \Framework\Auth\AuthInterface
          * @since 1.0.0
          */
         public $auth = null;
@@ -88,5 +88,13 @@ namespace Framework {
          * @since 1.0.0
          */
         public $session = null;
+
+        /**
+         * Eventmanager
+         *
+         * @var \Framework\Event\EventManager
+         * @since 1.0.0
+         */
+        public $event = null;
     }
 }

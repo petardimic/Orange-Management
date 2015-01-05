@@ -5,8 +5,8 @@ namespace Framework\Event {
      *
      * PHP Version 5.4
      *
-     * @category   Event
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Event
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -17,14 +17,15 @@ namespace Framework\Event {
      */
     class EventManager implements \Countable
     {
+        // TODO: implement persistent events (store in cache and/or db)
+
         /**
-         * Listener count
+         * Events
          *
-         * @var int
+         * @var array
          * @since 1.0.0
          */
-        private $count = 0;
-        // TODO: implement persistent events (store in cache and/or db)
+        private $events = [];
 
         /**
          * Constructor
@@ -43,15 +44,18 @@ namespace Framework\Event {
          *
          * @param string   $event    Event ID
          * @param callback $callback Function to call if the event gets triggered
-         * @param string   $source   What class is attaching this listener
+         * @param string   $listener What class is attaching this listener
          *
          * @return int UID for the listener
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function attach($event, $callback, $source)
+        public function attach($event, $callback, $listener)
         {
+            $this->events[$event][$listener] = $callback;
+
+            return $event.'/'.$listener;
         }
 
         /**
@@ -68,6 +72,11 @@ namespace Framework\Event {
          */
         public function trigger($event, $callback = null, $source = null)
         {
+            foreach($this->events[$event] as $event) {
+                $event($source);
+            }
+
+            if($callback !== null) $callback();
         }
 
         /**
@@ -84,24 +93,32 @@ namespace Framework\Event {
          */
         public function trigger_until($event, $callback = null, $source = null)
         {
+            $run = true;
+
+            do {
+                foreach($this->events[$event] as $event) {
+                    $run = $event($source);
+                }
+            } while($run);
+
+             if($callback !== null) $callback();
         }
 
         /**
          * Removing a listener
          *
          * @param int    $id     ID of the listener
-         * @param string $event  Event ID
-         * @param string $source What class is detaching this listener
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function detach($id, $event = null, $source = null)
+        public function detach($id)
         {
+            $this->events = \Framework\Utils\ArrayUtils::unset_array($id, $this->events, '/');
         }
 
         /**
-         * Count listeners
+         * Count event listenings
          *
          * @return int
          *
@@ -110,7 +127,7 @@ namespace Framework\Event {
          */
         public function count()
         {
-            return $this->count;
+            return count($this->events);
         }
     }
 }

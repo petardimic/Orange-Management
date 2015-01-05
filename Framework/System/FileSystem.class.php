@@ -29,6 +29,70 @@ namespace Framework\System {
         {
         }
 
+        public function copy()
+        {
+        }
+
+        public function rename()
+        {
+        }
+
+        public function move()
+        {
+        }
+
+        public function delete()
+        {
+        }
+
+        public function touch()
+        {
+        }
+
+        public function mkdir()
+        {
+        }
+
+        public function exists()
+        {
+        }
+
+        public function chmod()
+        {
+        }
+
+        public function chown()
+        {
+        }
+
+        public function chgrp()
+        {
+        }
+
+        public function symlink()
+        {
+        }
+
+        public function toRelative()
+        {
+        }
+
+        public function toAbsolute()
+        {
+        }
+
+        public function isRelative()
+        {
+        }
+
+        public function isAbsolute()
+        {
+        }
+
+        public function dump()
+        {
+        }
+
         /**
          * Get file count inside path
          *

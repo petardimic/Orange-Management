@@ -62,7 +62,7 @@ namespace Content {
                     header('Content-Type: application/json; charset=utf-8');
 
                     /** @noinspection PhpUndefinedMethodInspection */
-                    $this->app->modules->running[1004400000]->callWeb();
+                    $this->app->modules->running[1004400000]->callAPI();
                     break;
                 default:
             }

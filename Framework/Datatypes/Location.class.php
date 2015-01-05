@@ -5,8 +5,8 @@ namespace Framework\Datatypes {
      *
      * PHP Version 5.4
      *
-     * @category   Datatypes
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Datatypes
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -23,7 +23,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $postal = null;
+        private $postal = null;
 
         /**
          * Name of city
@@ -31,7 +31,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $city = null;
+        private $city = null;
 
         /**
          * Name of the country
@@ -39,7 +39,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $country = null;
+        private $country = null;
 
         /**
          * Street & district
@@ -47,7 +47,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $address = null;
+        private $address = null;
 
         /**
          * State
@@ -55,7 +55,7 @@ namespace Framework\Datatypes {
          * @var string
          * @since 1.0.0
          */
-        public $state = null;
+        private $state = null;
 
         /**
          * Geo coordinates
@@ -63,6 +63,148 @@ namespace Framework\Datatypes {
          * @var float[]
          * @since 1.0.0
          */
-        public $geo = null;
+        private $geo = null;
+
+        /**
+         * Constructor
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct()
+        {
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getPostal()
+        {
+            return $this->postal;
+        }
+
+        /**
+         * @param string $postal
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setPostal($postal)
+        {
+            $this->postal = $postal;
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getCity()
+        {
+            return $this->city;
+        }
+
+        /**
+         * @param string $city
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setCity($city)
+        {
+            $this->city = $city;
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getCountry()
+        {
+            return $this->country;
+        }
+
+        /**
+         * @param string $country
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setCountry($country)
+        {
+            $this->country = $country;
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getAddress()
+        {
+            return $this->address;
+        }
+
+        /**
+         * @param string $address
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setAddress($address)
+        {
+            $this->address = $address;
+        }
+
+        /**
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getState()
+        {
+            return $this->state;
+        }
+
+        /**
+         * @param string $state
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setState($state)
+        {
+            $this->state = $state;
+        }
+
+        /**
+         * @return \float[]
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getGeo()
+        {
+            return $this->geo;
+        }
+
+        /**
+         * @param \float[] $geo
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setGeo($geo)
+        {
+            $this->geo = $geo;
+        }
     }
 }

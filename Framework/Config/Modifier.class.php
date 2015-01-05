@@ -8,8 +8,8 @@ namespace Framework\Config {
      *
      * PHP Version 5.4
      *
-     * @category   Config
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Config
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -20,7 +20,6 @@ namespace Framework\Config {
      */
     class Modifier
     {
-
         /**
          * Config file
          *
@@ -63,7 +62,7 @@ namespace Framework\Config {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function write_config()
+        public function writeConfig()
         {
             $output = '<' . '?php' . PHP_EOL
                 .= '/**' . PHP_EOL

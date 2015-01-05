@@ -35,7 +35,7 @@ namespace Framework {
          */
         public function __construct($config)
         {
-            $this->request = new \Framework\Request\Web();
+            $this->request = new \Framework\Request\Http();
             $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
 
             \Framework\Module\ModuleFactory::$app = $this;
@@ -46,7 +46,8 @@ namespace Framework {
                 $this->settings = new \Framework\Config\Settings($this);
                 $this->session  = new \Framework\DataStorage\Session\Session();
                 $this->modules  = new \Framework\Module\ModuleManager($this);
-                $this->auth     = new \Framework\Auth\Auth($this);
+                $this->event    = new \Framework\Event\EventManager();
+                $this->auth     = new \Framework\Auth\Http($this);
                 $this->user     = $this->auth->authenticate();
 
                 $toLoad = $this->modules->getUriLoads($this->request->request);

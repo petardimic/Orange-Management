@@ -7,8 +7,8 @@ namespace Framework\DataStorage\Database {
      *
      * PHP Version 5.4
      *
-     * @category   DataStorage
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\DataStorage\Database
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -19,9 +19,9 @@ namespace Framework\DataStorage\Database {
      */
     abstract class DatabaseType extends \Framework\Datatypes\Enum
     {
-        const MYSQL = 0; /* MySQL */
+        const MYSQL  = 0; /* MySQL */
         const SQLITE = 1; /* SQLITE */
-        const PGSQL = 2; /* PostgreSQL */
+        const PGSQL  = 2; /* PostgreSQL */
         const ORACLE = 3; /* Oracle */
         const SQLSRV = 4; /* Microsoft SQL Server */
     }

@@ -1,12 +1,14 @@
 <?php
-namespace Framework\Config {
+namespace Framework\Auth {
     /**
-     * Options class
+     * Auth interface
+     *
+     * Responsible for authenticating and initializing the connection
      *
      * PHP Version 5.4
      *
      * @category   Framework
-     * @package    Framework\Config
+     * @package    Framework\Auth
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,39 +17,39 @@ namespace Framework\Config {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    interface OptionsInterface
+    interface AuthInterface
     {
         /**
-         * Updating or adding settings
+         * Authenticates user
          *
-         * @param mixed $key      Unique option key
-         * @param mixed $value    Option value
-         * @param bool  $storable Is this option storable inside DB or cache
-         * @param bool  $save     Should this update the database/cache
+         * @return \Framework\Object\User\User
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setOption($key, $value, $storable = false, $save = false);
+        public function authenticate();
 
         /**
-         * Get option by key
+         * Login user
          *
-         * @param mixed $key Unique option key
+         * @param string $login Username
+         * @param string $password Password
          *
-         * @return mixed Option value
+         * @return int Login code
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getOption($key);
+        public function login($login, $password);
 
         /**
-         * Update options (push them into DB and Cache)
+         * Logout the given user
+         *
+         * @param int $uid User ID
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function update();
+        public function logout($uid);
     }
 }

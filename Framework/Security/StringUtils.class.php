@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Utils\Converter {
+namespace Framework\Security {
     /**
-     * File converter
+     * String utils
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Framework\Utils\Converter {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class File
+    class StringUtils
     {
         /**
          * Constructor
@@ -28,26 +28,39 @@ namespace Framework\Utils\Converter {
         }
 
         /**
-         * Get file size string
+         * Compare two strings
          *
-         * @param int $bytes Amount of bytes
+         * This utilizes a constant time algroithm
          *
-         * @return string
+         * @param string $a First string
+         * @param string $b Second string
+         *
+         * @return bool
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function byteSizeToString($bytes)
+        public static function equals($a, $b)
         {
-            if($bytes < 1000) {
-                return $bytes . 'b';
-            } elseif($bytes > 999 && $bytes < 1000000) {
-                return $bytes / 1000 . 'kb';
-            } elseif($bytes > 999999 && $bytes < 1000000000) {
-                return $bytes / 1000000 . 'mb';
-            } else {
-                return $bytes / 1000000000 . 'gb';
+            $a = (string) $a;
+            $b = (string) $b;
+
+            if(function_exists('hash_equals')) {
+                return hash_equals($a, $b);
             }
+
+            $aLength = strlen($a);
+            $bLength = strlen($b);
+
+            $a .= $b;
+
+            $result = $aLength - $bLength;
+
+            for($i = 0; $i < $bLength; $i++) {
+                $result |= (ord($a[$i]) ^ ord($b[$i]));
+            }
+
+            return $result === 0;
         }
     }
 }
