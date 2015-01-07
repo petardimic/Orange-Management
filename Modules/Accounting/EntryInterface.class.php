@@ -1,12 +1,12 @@
 <?php
 namespace Modules\Accounting {
     /**
-     * Creditor account class
+     * Entry interface
      *
      * PHP Version 5.4
      *
      * @category   Modules
-     * @package    Modules\Accounting
+     * @package    Accounting
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,18 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class CreditorAccount extends \Modules\Accounting\PersonalAccount
+    interface EntryInterface
     {
-        public function __construct()
-        {
-        }
-
-        public function getPDO()
-        {
-        }
-
-        public function getDefault()
-        {
-        }
     }
 }

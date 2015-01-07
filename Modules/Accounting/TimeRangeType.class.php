@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Accounting {
     /**
-     * Creditor account class
+     * Time range type enum
      *
      * PHP Version 5.4
      *
@@ -15,18 +15,11 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class CreditorAccount extends \Modules\Accounting\PersonalAccount
+    abstract class TimeRangeType extends \Framework\Datatypes\Enum
     {
-        public function __construct()
-        {
-        }
-
-        public function getPDO()
-        {
-        }
-
-        public function getDefault()
-        {
-        }
+        const ENTRY_DATE      = 0; /* Date of when the entry happened */
+        const DUE_DATE        = 1; /* Date of when the entry is due (only for invoices) */
+        const RECEIPT_DATE    = 2; /* Date of the receipt */
+        const ASSOCIATED_DATE = 3; /* Date of the association (e.g. when did the articles arrive) */
     }
 }

@@ -5,8 +5,8 @@ namespace Modules\Accounting {
      *
      * PHP Version 5.4
      *
-     * @category   Module
-     * @package    Accounting
+     * @category   Modules
+     * @package    Modules\Accounting
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,23 +15,47 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class AccountBalance implements \Modules\Accounting\AccountInterface
+    abstract class AccountBalance
     {
         /**
-         * ID
+         * Time range start
          *
-         * @var int
+         * @var \DateTime
          * @since 1.0.0
          */
-        protected $id = 0;
+        private $start = null;
 
         /**
-         * Type
+         * Time range end
          *
-         * @var \Modules\Accounting\AccountType
+         * @var \DateTime
          * @since 1.0.0
          */
-        protected $type = null;
+        private $end = null;
+
+        /**
+         * Time range type
+         *
+         * @var \Modules\Accounting\TimeRangeType
+         * @since 1.0.0
+         */
+        private $rangetype = null;
+
+        /**
+         * Account
+         *
+         * @var \Modules\Accounting\AccountInterface
+         * @since 1.0.0
+         */
+        private $account = null;
+
+        /**
+         * Balance
+         *
+         * @var float
+         * @since 1.0.0
+         */
+        private $balance = null;
 
         /**
          * Constructor
@@ -45,5 +69,117 @@ namespace Modules\Accounting {
         {
             $this->id = $id;
         }
+
+        /**
+         * @return \DateTime
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getStart()
+        {
+            return $this->start;
+        }
+
+        /**
+         * @param \DateTime $start
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setStart($start)
+        {
+            $this->start = $start;
+        }
+
+        /**
+         * @return \DateTime
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getEnd()
+        {
+            return $this->end;
+        }
+
+        /**
+         * @param \DateTime $end
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setEnd($end)
+        {
+            $this->end = $end;
+        }
+
+        /**
+         * @return TimeRangeType
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getRangetype()
+        {
+            return $this->rangetype;
+        }
+
+        /**
+         * @param TimeRangeType $rangetype
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setRangetype($rangetype)
+        {
+            $this->rangetype = $rangetype;
+        }
+
+        /**
+         * @return AccountInterface
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getAccount()
+        {
+            return $this->account;
+        }
+
+        /**
+         * @param AccountInterface $account
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setAccount($account)
+        {
+            $this->account = $account;
+        }
+
+        /**
+         * @return float
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getBalance()
+        {
+            return $this->balance;
+        }
+
+        /**
+         * @param float $balance
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setBalance($balance)
+        {
+            $this->balance = $balance;
+        }
+
+
     }
 }

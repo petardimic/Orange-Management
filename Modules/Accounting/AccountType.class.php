@@ -18,7 +18,8 @@ namespace Modules\Accounting {
     abstract class AccountType extends \Framework\Datatypes\Enum
     {
         const IMPERSONAL = 0;
-        const CREDITOR   = 1;
-        const DEBITOR    = 2;
+        const PERSONAL   = 1;
+        const CREDITOR   = 2;
+        const DEBITOR    = 3;
     }
 }

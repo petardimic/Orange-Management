@@ -18,7 +18,7 @@ namespace Modules\Accounting {
     abstract class AccountAbstract implements \Modules\Accounting\AccountInterface
     {
         /**
-         * ID
+         * Account ID
          *
          * @var int
          * @since 1.0.0
@@ -34,9 +34,17 @@ namespace Modules\Accounting {
         protected $type = null;
 
         /**
+         * Entry list
+         *
+         * @var \Modules\Accounting\EntryInterface[]
+         * @since 1.0.0
+         */
+        protected $entryList = 0;
+
+        /**
          * Constructor
          *
-         * @param int $id Arrival ID
+         * @param int $id Account ID
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -44,6 +52,34 @@ namespace Modules\Accounting {
         public function __construct($id)
         {
             $this->id = $id;
+        }
+
+        /**
+         * Get entry
+         *
+         * @param int $id Entry ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getEntryByID($id)
+        {
+        }
+
+        /**
+         * Get entry
+         *
+         * @param \DateTime $start Interval start
+         * @param \DateTime $end   Interval end
+         * @param int       $dateType
+         *
+         * @internal \Modules\Accounting\TimeRangeType $dateTime Time range type
+         *
+         * @since    1.0.0
+         * @author   Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getEntriesByDate($start, $end, $dateType = \Modules\Accounting\TimeRangeType::RECEIPT_DATE)
+        {
         }
     }
 }

@@ -5,8 +5,8 @@ namespace Modules\Accounting {
      *
      * PHP Version 5.4
      *
-     * @category   Module
-     * @package    Accounting
+     * @category   Modules
+     * @package    Modules\Accounting
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,65 +15,21 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class DebitorAccount implements \Framework\Utils\IO\ExchangeInterface
+    abstract class DebitorAccount extends \Modules\Accounting\PersonalAccount
     {
         public function __construct()
         {
         }
 
-        /**
-         * {@inheritdoc}
-         */
-        public function exportJson($path)
+        public function getDSO()
         {
         }
 
-        /**
-         * {@inheritdoc}
-         */
-        public function importJson($path)
+        public function getDefault()
         {
         }
 
-        /**
-         * {@inheritdoc}
-         */
-        public function exportCsv($path)
-        {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function importCsv($path)
-        {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function exportExcel($path)
-        {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function importExcel($path)
-        {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function exportPdf($path)
-        {
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function importPdf($path)
+        public function getNetReceivable()
         {
         }
     }
