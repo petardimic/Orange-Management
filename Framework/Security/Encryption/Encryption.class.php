@@ -3,7 +3,7 @@ namespace Framework\Security\Encryption {
     /**
      * Encrpyion/Decryption class
      *
-     * PHP Version 5.4
+     * PHP Version 5.6
      *
      * @category   Framework
      * @package    Framework\Security\Encryption
@@ -258,13 +258,10 @@ namespace Framework\Security\Encryption {
          */
         private function validMac($payload)
         {
-            if(!function_exists('openssl_random_pseudo_bytes')) {
-                throw new \RuntimeException('OpenSSL extension is required.');
-            }
             $bytes   = openssl_random_pseudo_bytes(16);
             $calcMac = hash_hmac('sha256', $this->hash($payload['iv'], $payload['value']), $bytes, true);
 
-            return \Framework\Security\StringUtils::equals(hash_hmac('sha256', $payload['mac'], $bytes, true), $calcMac);
+            return hash_equals(hash_hmac('sha256', $payload['mac'], $bytes, true), $calcMac);
         }
 
         /**
@@ -309,9 +306,11 @@ namespace Framework\Security\Encryption {
             if(defined('MCRYPT_DEV_URANDOM')) {
                 return MCRYPT_DEV_URANDOM;
             }
+
             if(defined('MCRYPT_DEV_RANDOM')) {
                 return MCRYPT_DEV_RANDOM;
             }
+
             mt_srand();
 
             return MCRYPT_RAND;

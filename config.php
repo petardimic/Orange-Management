@@ -13,6 +13,8 @@
  * @since      1.0.0
  */
 
+define('ROOT_PATH', __DIR__);
+
 $CONFIG = [
 	"db" => [
 	    "db"       => "mysql", /* db type */
