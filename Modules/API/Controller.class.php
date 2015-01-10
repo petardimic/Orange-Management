@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Chat {
+namespace Modules\API {
     /**
-     * Sales class
+     * Navigation class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\Chat {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -24,8 +24,6 @@ namespace Modules\Chat {
          * @since 1.0.0
          */
         public static $providing = [
-            'Content',
-            1004400000
         ];
 
         /**
@@ -40,8 +38,7 @@ namespace Modules\Chat {
         /**
          * Constructor
          *
-         * @param string                    $themePath
-         * @param \Framework\WebApplication $app Application reference
+         * @param string $themePath
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -85,18 +82,13 @@ namespace Modules\Chat {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb()
+        public function callWeb($data = null)
         {
-            switch($this->app->request->getType()) {
-                case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
-                    break;
-            }
-        }
-
-        public function show_content_backend()
-        {
-            switch($this->app->request->request['l3']) {
+            if(isset($this->receiving)) {
+                foreach($this->receiving as $mid) {
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
+                }
             }
         }
     }

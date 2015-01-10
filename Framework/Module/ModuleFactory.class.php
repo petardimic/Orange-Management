@@ -52,7 +52,7 @@ namespace Framework\Module {
         public static function getInstance($module, $theme)
         {
             if(!isset(self::$loaded[$module])) {
-                $class = '\\Modules\\' . $module . '\\Handler';
+                $class = '\\Modules\\' . $module . '\\Controller';
 
                 /**
                  * @var \Framework\Module\ModuleAbstract $obj

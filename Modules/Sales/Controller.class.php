@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Purchase {
+namespace Modules\Sales {
     /**
-     * Purchase class
+     * Sales class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Sales
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\Purchase {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,7 +35,6 @@ namespace Modules\Purchase {
          * @since 1.0.0
          */
         public static $dependencies = [
-            'Media',
             'Warehousing'
         ];
 
@@ -103,8 +102,8 @@ namespace Modules\Purchase {
         public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
-                case 'supplier':
-                    $this->showBackendSupplier();
+                case 'client':
+                    $this->showBackendClient();
                     break;
                 case 'invoice':
                     $this->showBackendInvoice();
@@ -129,7 +128,7 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $articleList = new \Modules\Purchase\ArticleList($this->app->db);
+                    $articleList = new \Modules\Sales\ArticleList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
@@ -156,7 +155,7 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $invoiceList = new \Modules\Purchase\InvoiceList($this->app->db);
+                    $invoiceList = new \Modules\Sales\InvoiceList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
@@ -178,23 +177,23 @@ namespace Modules\Purchase {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendSupplier()
+        public function showBackendClient()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $supplierList = new \Modules\Purchase\SupplierList($this->app->db);
+                    $clientList = new \Modules\Sales\ClientList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-create.tpl.php';
                     break;
             }
         }

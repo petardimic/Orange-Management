@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Tasks {
+namespace Modules\ResearchDevelopment {
     /**
-     * Task class
+     * Sales class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\Tasks {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -80,6 +80,8 @@ namespace Modules\Tasks {
         /**
          * Shows module content
          *
+         * @para   array $data
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -87,43 +89,14 @@ namespace Modules\Tasks {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->showContentBackend();
+                    $this->show_content_backend();
                     break;
             }
         }
 
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackend()
+        public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
-                case 'dashboard':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $tasks = new \Modules\Tasks\TaskList($this->app->db);
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-dashboard.tpl.php';
-                    break;
-                case 'single':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $task = new \Modules\Tasks\Task($this->app->db);
-                    $task->init($this->app->request->request['id']);
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-single.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-create.tpl.php';
-                    break;
-                case 'analysis':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-analysis.tpl.php';
-                    break;
             }
         }
     }

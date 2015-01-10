@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Sales {
+namespace Modules\Production {
     /**
      * Sales class
      *
      * PHP Version 5.4
      *
-     * @category   Modules
-     * @package    Modules\Sales
+     * @category   Base
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\Sales {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,7 +35,6 @@ namespace Modules\Sales {
          * @since 1.0.0
          */
         public static $dependencies = [
-            'Warehousing'
         ];
 
         /**
@@ -102,17 +101,11 @@ namespace Modules\Sales {
         public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
-                case 'client':
-                    $this->showBackendClient();
+                case 'process':
+                    $this->showBackendProcess();
                     break;
-                case 'invoice':
-                    $this->showBackendInvoice();
-                    break;
-                case 'article':
-                    $this->showBackendArticle();
-                    break;
-                case 'analysis':
-                    $this->showBackendAnalysis();
+                case 'guideline':
+                    $this->showBackendGuideline();
                     break;
             }
         }
@@ -123,23 +116,19 @@ namespace Modules\Sales {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendArticle()
+        public function showBackendProcess()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $articleList = new \Modules\Sales\ArticleList($this->app->db);
+                    $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-single.tpl.php';
                     break;
             }
         }
@@ -150,66 +139,19 @@ namespace Modules\Sales {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showBackendInvoice()
+        public function showBackendGuideline()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $invoiceList = new \Modules\Sales\InvoiceList($this->app->db);
+                    $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-create.tpl.php';
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showBackendClient()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $clientList = new \Modules\Sales\ClientList($this->app->db);
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-list.tpl.php';
-                    break;
-                case 'single':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-single.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-create.tpl.php';
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showBackendAnalysis()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'dashboard':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-single.tpl.php';
                     break;
             }
         }

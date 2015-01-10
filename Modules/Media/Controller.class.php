@@ -15,7 +15,7 @@ namespace Modules\Media {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing

@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Calendar {
+namespace Modules\News {
     /**
-     * Sales class
+     * News class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    News
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\Calendar {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -80,8 +80,6 @@ namespace Modules\Calendar {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -89,17 +87,44 @@ namespace Modules\Calendar {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend()
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $newsList = new \Modules\News\NewsList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/calendar-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-dashboard.tpl.php';
+                    break;
+                case 'single':
+                    $article = new \Modules\News\Article($this->app->db);
+                    $article->init($this->app->request->request['id']);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-single.tpl.php';
+                    break;
+                case 'archive':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $newsList = new \Modules\News\NewsList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-archive.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-create.tpl.php';
                     break;
             }
         }

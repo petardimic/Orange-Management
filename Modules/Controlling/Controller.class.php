@@ -1,7 +1,7 @@
 <?php
-namespace Modules\GlobalContent {
+namespace Modules\Controlling {
     /**
-     * Navigation class
+     * Controlling class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\GlobalContent {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -24,6 +24,8 @@ namespace Modules\GlobalContent {
          * @since 1.0.0
          */
         public static $providing = [
+            'Content',
+            1004400000
         ];
 
         /**
@@ -38,7 +40,8 @@ namespace Modules\GlobalContent {
         /**
          * Constructor
          *
-         * @param string $themePath
+         * @param string                    $themePath
+         * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -82,12 +85,18 @@ namespace Modules\GlobalContent {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function callWeb($data = null)
+        public function callWeb()
         {
-            if(isset(self::$receiving)) {
-                foreach(self::$receiving as $mid) {
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
-                }
+            switch($this->app->request->getType()) {
+                case \Framework\Request\WebRequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public function show_content_backend()
+        {
+            switch($this->app->request->request['l3']) {
             }
         }
     }

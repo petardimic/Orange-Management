@@ -1,7 +1,7 @@
 <?php
-namespace Modules\BackendDashboard {
+namespace Modules\Surveys {
     /**
-     * Dashboard class
+     * Sales class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\BackendDashboard {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -80,19 +80,31 @@ namespace Modules\BackendDashboard {
         /**
          * Shows module content
          *
+         * @para   array $data
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function callWeb()
         {
-            if(isset($this->receiving)) {
-                foreach($this->receiving as $mid) {
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_dashboard();
-                }
-            } else {
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/themes/' . $this->themePath . '/default.php';
+            switch($this->app->request->getType()) {
+                case \Framework\Request\WebRequestPage::BACKEND:
+                    $this->show_content_backend();
+                    break;
+            }
+        }
+
+        public function show_content_backend()
+        {
+            switch($this->app->request->request['l3']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-dashboard.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-create.tpl.php';
+                    break;
             }
         }
     }

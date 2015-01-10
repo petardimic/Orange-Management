@@ -1,7 +1,7 @@
 <?php
-namespace Modules\ProjectManagement {
+namespace Modules\Controlling {
     /**
-     * Sales class
+     * Controlling class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\ProjectManagement {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -80,6 +80,8 @@ namespace Modules\ProjectManagement {
         /**
          * Shows module content
          *
+         * @para   array $data
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -87,28 +89,14 @@ namespace Modules\ProjectManagement {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->showContentBackend();
+                    $this->show_content_backend();
                     break;
             }
         }
 
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackend()
+        public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
-                case 'dashboard':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/projectmanagement-dashboard.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/projectmanagement-create.tpl.php';
-                    break;
             }
         }
     }

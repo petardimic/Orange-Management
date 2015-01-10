@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Messages {
+namespace Modules\ProjectManagement {
     /**
      * Sales class
      *
      * PHP Version 5.4
      *
-     * @category   Messages
+     * @category   Base
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,7 +15,7 @@ namespace Modules\Messages {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -87,23 +87,27 @@ namespace Modules\Messages {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
         /**
-         * Shows backend module content
+         * Shows module content
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content_backend()
+        public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/projectmanagement-dashboard.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/projectmanagement-create.tpl.php';
                     break;
             }
         }

@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Support {
+namespace Modules\Profile {
     /**
-     * Sales class
+     * Profile class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\Support {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -40,8 +40,8 @@ namespace Modules\Support {
         /**
          * Constructor
          *
-         * @param string                    $themePath
-         * @param \Framework\WebApplication $app Application reference
+         * @param \Framework\ApplicationAbstract $app Application instance
+         * @param string                         $themePath
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -80,8 +80,6 @@ namespace Modules\Support {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -89,14 +87,38 @@ namespace Modules\Support {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
 
-        public function show_content_backend()
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
+                case 'single':
+                    /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-single.tpl.php';
+
+                    $this->callPull();
+                    break;
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $accounts = new \Modules\Profile\ProfileList($this->app->db);
+
+                    if(!isset($this->app->request->request['page'])) {
+                        $this->app->request->request['page'] = 1;
+                    }
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-list.tpl.php';
+                    break;
             }
         }
     }

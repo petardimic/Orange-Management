@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Production {
+namespace Modules\EventManagement {
     /**
-     * Sales class
+     * Event Management class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\Production {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -101,57 +101,13 @@ namespace Modules\Production {
         public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
-                case 'process':
-                    $this->showBackendProcess();
-                    break;
-                case 'guideline':
-                    $this->showBackendGuideline();
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showBackendProcess()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $pList = new \Modules\Production\ProductionList($this->app->db);
-
+                case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-dashboard.tpl.php';
                     break;
-                case 'single':
+                case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-single.tpl.php';
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showBackendGuideline()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $pList = new \Modules\Production\ProductionList($this->app->db);
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-list.tpl.php';
-                    break;
-                case 'single':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-create.tpl.php';
                     break;
             }
         }

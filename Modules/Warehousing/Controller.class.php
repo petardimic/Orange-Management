@@ -1,12 +1,12 @@
 <?php
-namespace Modules\EventManagement {
+namespace Modules\Warehousing {
     /**
-     * Event Management class
+     * Sales class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Module
+     * @package    Warehousing
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\EventManagement {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -87,7 +87,7 @@ namespace Modules\EventManagement {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->showContentBackend();
+                    $this->show_content_backend();
                     break;
             }
         }
@@ -98,16 +98,65 @@ namespace Modules\EventManagement {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackend()
+        public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
-                case 'dashboard':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-dashboard.tpl.php';
+                case 'article':
+                    $this->show_backend_articles();
                     break;
-                case 'create':
+                case 'shipping':
+                    $this->show_backend_shipping();
+                    break;
+                case 'arrival':
+                    $this->show_backend_arrival();
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_articles()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-create.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_shipping()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/shipping-list.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function show_backend_arrival()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/arrival-list.tpl.php';
                     break;
             }
         }

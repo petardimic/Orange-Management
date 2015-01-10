@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Marketing {
+namespace Modules\Messages {
     /**
      * Sales class
      *
      * PHP Version 5.4
      *
-     * @category   Base
+     * @category   Messages
      * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -15,7 +15,7 @@ namespace Modules\Marketing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,7 +35,6 @@ namespace Modules\Marketing {
          * @since 1.0.0
          */
         public static $dependencies = [
-            'Sales'
         ];
 
         /**
@@ -81,8 +80,6 @@ namespace Modules\Marketing {
         /**
          * Shows module content
          *
-         * @para   array $data
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -95,9 +92,19 @@ namespace Modules\Marketing {
             }
         }
 
+        /**
+         * Shows backend module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/dashboard.tpl.php';
+                    break;
             }
         }
     }

@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Warehousing {
+namespace Modules\Purchase {
     /**
-     * Sales class
+     * Purchase class
      *
      * PHP Version 5.4
      *
-     * @category   Module
-     * @package    Warehousing
+     * @category   Base
+     * @package    Framework
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -15,7 +15,7 @@ namespace Modules\Warehousing {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,6 +35,8 @@ namespace Modules\Warehousing {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Media',
+            'Warehousing'
         ];
 
         /**
@@ -87,7 +89,7 @@ namespace Modules\Warehousing {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->show_content_backend();
+                    $this->showContentBackend();
                     break;
             }
         }
@@ -98,17 +100,20 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_content_backend()
+        public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
+                case 'supplier':
+                    $this->showBackendSupplier();
+                    break;
+                case 'invoice':
+                    $this->showBackendInvoice();
+                    break;
                 case 'article':
-                    $this->show_backend_articles();
+                    $this->showBackendArticle();
                     break;
-                case 'shipping':
-                    $this->show_backend_shipping();
-                    break;
-                case 'arrival':
-                    $this->show_backend_arrival();
+                case 'analysis':
+                    $this->showBackendAnalysis();
                     break;
             }
         }
@@ -119,28 +124,23 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_articles()
+        public function showBackendArticle()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $articleList = new \Modules\Purchase\ArticleList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function show_backend_shipping()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'list':
+                case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/shipping-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-create.tpl.php';
                     break;
             }
         }
@@ -151,12 +151,66 @@ namespace Modules\Warehousing {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function show_backend_arrival()
+        public function showBackendInvoice()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $invoiceList = new \Modules\Purchase\InvoiceList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/arrival-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-create.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendSupplier()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $supplierList = new \Modules\Purchase\SupplierList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-create.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendAnalysis()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'dashboard':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
                     break;
             }
         }

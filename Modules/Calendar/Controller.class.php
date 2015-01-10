@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Profile {
+namespace Modules\Calendar {
     /**
-     * Profile class
+     * Sales class
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Modules\Profile {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -40,8 +40,8 @@ namespace Modules\Profile {
         /**
          * Constructor
          *
-         * @param \Framework\ApplicationAbstract $app Application instance
-         * @param string                         $themePath
+         * @param string                    $themePath
+         * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -80,6 +80,8 @@ namespace Modules\Profile {
         /**
          * Shows module content
          *
+         * @para   array $data
+         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
@@ -87,37 +89,17 @@ namespace Modules\Profile {
         {
             switch($this->app->request->getType()) {
                 case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->showContentBackend();
+                    $this->show_content_backend();
                     break;
             }
         }
 
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackend()
+        public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
-                case 'single':
-                    /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
+                case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-single.tpl.php';
-
-                    $this->callPull();
-                    break;
-                case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Profile\ProfileList($this->app->db);
-
-                    if(!isset($this->app->request->request['page'])) {
-                        $this->app->request->request['page'] = 1;
-                    }
-
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/calendar-dashboard.tpl.php';
                     break;
             }
         }

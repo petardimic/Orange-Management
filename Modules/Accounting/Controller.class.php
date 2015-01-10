@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources {
+namespace Modules\Accounting {
     /**
      * Sales class
      *
@@ -15,7 +15,7 @@ namespace Modules\HumanResources {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,13 +35,14 @@ namespace Modules\HumanResources {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Media'
         ];
 
         /**
          * Constructor
          *
-         * @param string                    $themePath
-         * @param \Framework\WebApplication $app Application reference
+         * @param \Framework\WebApplication $app       Application reference
+         * @param string                    $themePath Theme path
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -101,29 +102,14 @@ namespace Modules\HumanResources {
         public function showContentBackend()
         {
             switch($this->app->request->request['l3']) {
-                case 'structure':
-                    $this->showContentBackendStrcture();
+                case 'creditor':
+                    $this->showBackendCreditor();
                     break;
-                case 'staff':
-                    $this->showContentBackendStaff();
+                case 'debitor':
+                    $this->showBackendDebitor();
                     break;
-                case 'planning':
-                    $this->showContentBackendPlanning();
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackendStrcture()
-        {
-            switch($this->app->request->request['l4']) {
-                case 'department':
-                    $this->showContentBackendDepartment();
+                case 'account':
+                    $this->showBackendAccount();
                     break;
             }
         }
@@ -134,37 +120,31 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendDepartment()
-        {
-            switch($this->app->request->request['l5']) {
-                case 'list':
-                    /** @noinspection PhpUnusedLocalVariableInspection */
-                    $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/department-list.tpl.php';
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackendStaff()
+        public function showBackendAccount()
         {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $staff = new \Modules\HumanResources\StaffList($this->app->db);
+                    $accountList = new \Modules\Accounting\AccountList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-list.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-list.tpl.php';
+                    break;
+                case 'postings':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-postings.tpl.php';
+                    break;
+                case 'balance':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-balance.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-single.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/account-create.tpl.php';
                     break;
             }
         }
@@ -175,12 +155,50 @@ namespace Modules\HumanResources {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function showContentBackendPlanning()
+        public function showBackendCreditor()
         {
             switch($this->app->request->request['l4']) {
-                case 'dashboard':
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $creditorList = new \Modules\Accounting\CreditorList($this->app->db);
+
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/planning-dashboard.tpl.php';
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/creditor-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/creditor-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/creditor-create.tpl.php';
+                    break;
+            }
+        }
+
+        /**
+         * Shows module content
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function showBackendDebitor()
+        {
+            switch($this->app->request->request['l4']) {
+                case 'list':
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    $debitorList = new \Modules\Accounting\DebitorList($this->app->db);
+
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/debitor-list.tpl.php';
+                    break;
+                case 'single':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/debitor-single.tpl.php';
+                    break;
+                case 'create':
+                    /** @noinspection PhpIncludeInspection */
+                    include __DIR__ . '/themes/' . $this->themePath . '/backend/debitor-create.tpl.php';
                     break;
             }
         }

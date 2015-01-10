@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Content {
+namespace Modules\GlobalContent {
     /**
      * Navigation class
      *
@@ -15,7 +15,7 @@ namespace Modules\Content {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -24,7 +24,6 @@ namespace Modules\Content {
          * @since 1.0.0
          */
         public static $providing = [
-            1004400000
         ];
 
         /**
@@ -35,6 +34,19 @@ namespace Modules\Content {
          */
         public static $dependencies = [
         ];
+
+        /**
+         * Constructor
+         *
+         * @param string $themePath
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function __construct($app, $themePath)
+        {
+            parent::__construct($app, $themePath);
+        }
 
         /**
          * Get modules this module is providing for
@@ -72,10 +84,9 @@ namespace Modules\Content {
          */
         public function callWeb($data = null)
         {
-            if(isset($this->receiving)) {
-                foreach($this->receiving as $mid) {
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$loaded[$mid]->callWeb();
+            if(isset(self::$receiving)) {
+                foreach(self::$receiving as $mid) {
+                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_global($data);
                 }
             }
         }

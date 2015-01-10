@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Surveys {
+namespace Modules\Marketing {
     /**
      * Sales class
      *
@@ -15,7 +15,7 @@ namespace Modules\Surveys {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Handler extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
     {
         /**
          * Providing
@@ -35,6 +35,7 @@ namespace Modules\Surveys {
          * @since 1.0.0
          */
         public static $dependencies = [
+            'Sales'
         ];
 
         /**
@@ -97,14 +98,6 @@ namespace Modules\Surveys {
         public function show_content_backend()
         {
             switch($this->app->request->request['l3']) {
-                case 'dashboard':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-dashboard.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/surveys-create.tpl.php';
-                    break;
             }
         }
     }
