@@ -110,6 +110,25 @@
                         "permission": null,
                         "parent": 1002606001,
                         "children": []
+                    },
+                    {
+                        "id": 1002606501,
+                        "pid": "2b2b1ba818089aa7176d744c993f95e30ef8f511",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Outstandings",
+                        "l0": "backend",
+                        "l1": "accounting",
+                        "l2": "account",
+                        "l3": "outstanding",
+                        "l4": "list",
+                        "l5": null,
+                        "icon": null,
+                        "order": 15,
+                        "from": 1002600000,
+                        "permission": null,
+                        "parent": 1002606001,
+                        "children": []
                     }
                 ]
             },
@@ -234,7 +253,7 @@
                 "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
                 "type": 2,
                 "subtype": 1,
-                "name": "BatchPostings",
+                "name": "Postings",
                 "l0": "backend",
                 "l1": "accounting",
                 "l2": "postings",
@@ -246,7 +265,46 @@
                 "from": 1002600000,
                 "permission": null,
                 "parent": 1002601001,
-                "children": []
+                "children": [
+                    {
+                        "id": 1002605101,
+                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "BatchPostings",
+                        "l0": "backend",
+                        "l1": "accounting",
+                        "l2": "postings",
+                        "l3": "batch",
+                        "l4": "list",
+                        "l5": null,
+                        "icon": null,
+                        "order": 15,
+                        "from": 1002600000,
+                        "permission": null,
+                        "parent": 1002605001,
+                        "children": []
+                    },
+                    {
+                        "id": 1002605201,
+                        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Postings",
+                        "l0": "backend",
+                        "l1": "accounting",
+                        "l2": "postings",
+                        "l3": "list",
+                        "l4": null,
+                        "l5": null,
+                        "icon": null,
+                        "order": 15,
+                        "from": 1002600000,
+                        "permission": null,
+                        "parent": 1002605001,
+                        "children": []
+                    }
+                ]
             },
             {
                 "id": 1002607001,
