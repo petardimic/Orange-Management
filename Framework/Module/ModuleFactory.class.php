@@ -49,7 +49,7 @@ namespace Framework\Module {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public static function getInstance($module, $theme)
+        public static function getInstance($module)
         {
             if(!isset(self::$loaded[$module])) {
                 $class = '\\Modules\\' . $module . '\\Controller';
@@ -57,7 +57,7 @@ namespace Framework\Module {
                 /**
                  * @var \Framework\Module\ModuleAbstract $obj
                  */
-                $obj                   = new $class(self::$app, $theme);
+                $obj                   = new $class(self::$app);
                 self::$loaded[$module] = $obj;
 
                 /* TODO: find dependencies or load them inside module? */

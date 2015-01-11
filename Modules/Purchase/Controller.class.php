@@ -42,15 +42,14 @@ namespace Modules\Purchase {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -132,15 +131,15 @@ namespace Modules\Purchase {
                     $articleList = new \Modules\Purchase\Models\ArticleList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/article-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/article-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/article-create.tpl.php';
                     break;
             }
         }
@@ -159,15 +158,15 @@ namespace Modules\Purchase {
                     $invoiceList = new \Modules\Purchase\Models\InvoiceList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/invoice-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/invoice-create.tpl.php';
                     break;
             }
         }
@@ -186,15 +185,15 @@ namespace Modules\Purchase {
                     $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/suppliers-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/suppliers-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/suppliers-create.tpl.php';
                     break;
             }
         }
@@ -210,7 +209,7 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';
                     break;
             }
         }

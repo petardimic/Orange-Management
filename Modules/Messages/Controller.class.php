@@ -40,15 +40,14 @@ namespace Modules\Messages {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -103,7 +102,7 @@ namespace Modules\Messages {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/dashboard.tpl.php';
                     break;
             }
         }

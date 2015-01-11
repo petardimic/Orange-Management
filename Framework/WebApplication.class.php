@@ -54,7 +54,7 @@ namespace Framework {
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \Framework\Module\ModuleFactory::getInstance($module['file'], 'oms-slim');
+                        \Framework\Module\ModuleFactory::getInstance($module['file']);
                     }
                 }
 

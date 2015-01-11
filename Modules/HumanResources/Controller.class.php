@@ -40,15 +40,14 @@ namespace Modules\HumanResources {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -141,7 +140,7 @@ namespace Modules\HumanResources {
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/department-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/department-list.tpl.php';
                     break;
             }
         }
@@ -160,11 +159,11 @@ namespace Modules\HumanResources {
                     $staff = new \Modules\HumanResources\StaffList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/staff-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/staff-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/staff-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/staff-single.tpl.php';
                     break;
             }
         }
@@ -180,7 +179,7 @@ namespace Modules\HumanResources {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/planning-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/planning-dashboard.tpl.php';
                     break;
             }
         }

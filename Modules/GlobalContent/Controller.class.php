@@ -38,14 +38,12 @@ namespace Modules\GlobalContent {
         /**
          * Constructor
          *
-         * @param string $themePath
-         *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**

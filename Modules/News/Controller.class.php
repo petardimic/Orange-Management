@@ -40,15 +40,14 @@ namespace Modules\News {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -106,25 +105,25 @@ namespace Modules\News {
                     $newsList = new \Modules\News\Models\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/news-dashboard.tpl.php';
                     break;
                 case 'single':
                     $article = new \Modules\News\Models\Article($this->app->db);
                     $article->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/news-single.tpl.php';
                     break;
                 case 'archive':
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $newsList = new \Modules\News\Models\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-archive.tpl.php';
+                    include __DIR__ . '/Theme/backend/news-archive.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/news-create.tpl.php';
                     break;
             }
         }

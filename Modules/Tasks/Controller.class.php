@@ -40,15 +40,14 @@ namespace Modules\Tasks {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -106,7 +105,7 @@ namespace Modules\Tasks {
                     $tasks = new \Modules\Tasks\Models\TaskList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/task-dashboard.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -114,15 +113,15 @@ namespace Modules\Tasks {
                     $task->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/task-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/task-create.tpl.php';
                     break;
                 case 'analysis':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-analysis.tpl.php';
+                    include __DIR__ . '/Theme/backend/task-analysis.tpl.php';
                     break;
             }
         }

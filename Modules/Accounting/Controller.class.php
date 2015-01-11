@@ -42,14 +42,13 @@ namespace Modules\Accounting {
          * Constructor
          *
          * @param \Framework\WebApplication $app       Application reference
-         * @param string                    $themePath Theme path
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -125,26 +124,26 @@ namespace Modules\Accounting {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accountList = new \Modules\Accounting\AccountList($this->app->db);
+                    $accountList = new \Modules\Accounting\Models\AccountList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/account-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/account-list.tpl.php';
                     break;
                 case 'postings':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/account-postings.tpl.php';
+                    include __DIR__ . '/Theme/backend/account-postings.tpl.php';
                     break;
                 case 'balance':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/account-balance.tpl.php';
+                    include __DIR__ . '/Theme/backend/account-balance.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/account-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/account-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/account-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/account-create.tpl.php';
                     break;
             }
         }
@@ -160,18 +159,18 @@ namespace Modules\Accounting {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $creditorList = new \Modules\Accounting\CreditorList($this->app->db);
+                    $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/creditor-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/creditor-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/creditor-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/creditor-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/creditor-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/creditor-create.tpl.php';
                     break;
             }
         }
@@ -187,18 +186,18 @@ namespace Modules\Accounting {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $debitorList = new \Modules\Accounting\DebitorList($this->app->db);
+                    $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/debitor-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/debitor-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/debitor-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/debitor-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/debitor-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/debitor-create.tpl.php';
                     break;
             }
         }

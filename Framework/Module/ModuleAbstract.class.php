@@ -34,26 +34,16 @@ namespace Framework\Module {
         public $receiving = [];
 
         /**
-         * Theme path
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        protected $themePath = null;
-
-        /**
          * Constructor
          *
-         * @param \Framework\ApplicationAbstract $app   Application instance
-         * @param string                         $theme Theme name/path
+         * @param \Framework\ApplicationAbstract $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function __construct($app, $theme)
+        public function __construct($app)
         {
-            $this->app       = $app;
-            $this->themePath = $theme;
+            $this->app = $app;
         }
 
         /**

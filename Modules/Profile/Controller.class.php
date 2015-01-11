@@ -46,9 +46,9 @@ namespace Modules\Profile {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -104,7 +104,7 @@ namespace Modules\Profile {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/profile-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/profile-single.tpl.php';
 
                     $this->callPull();
                     break;
@@ -117,7 +117,7 @@ namespace Modules\Profile {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/profile-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/profile-list.tpl.php';
                     break;
             }
         }

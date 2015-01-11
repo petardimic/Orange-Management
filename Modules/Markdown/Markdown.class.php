@@ -86,8 +86,7 @@ namespace OMS\Modules {
 
         /**
          * Initializes object
-         *
-         * @param string $themePath
+
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

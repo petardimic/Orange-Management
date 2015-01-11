@@ -40,15 +40,14 @@ namespace Modules\EventManagement {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -103,11 +102,11 @@ namespace Modules\EventManagement {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/eventmanagement-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/backend/eventmanagement-dashboard.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/eventmanagement-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/eventmanagement-create.tpl.php';
                     break;
             }
         }

@@ -40,15 +40,14 @@ namespace Modules\Admin {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -151,7 +150,7 @@ namespace Modules\Admin {
                     \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/settings-general.tpl.php';
+                    include __DIR__ . '/Theme/backend/settings-general.tpl.php';
                     break;
             }
         }
@@ -174,7 +173,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/accounts-list.tpl.php';
                     break;
                 case 'single':
                     $this->showBackendAccountSingle();
@@ -183,7 +182,7 @@ namespace Modules\Admin {
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/accounts-create.tpl.php';
                     break;
             }
         }
@@ -199,7 +198,7 @@ namespace Modules\Admin {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
                     break;
             }
         }
@@ -223,13 +222,13 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/modules-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/modules-list.tpl.php';
                     break;
                 case 'front':
                     //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/modules-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/modules-single.tpl.php';
                     break;
             }
         }
@@ -252,14 +251,14 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/groups-list.tpl.php';
                     break;
                 case 'single':
                     $this->showBackendGroupSingle();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-create.tpl.php';
+                    include __DIR__ . '/Theme/backend/groups-create.tpl.php';
                     break;
             }
         }
@@ -285,7 +284,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/groups-single.tpl.php';
                     break;
             }
         }

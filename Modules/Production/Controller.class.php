@@ -40,15 +40,14 @@ namespace Modules\Production {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -124,11 +123,11 @@ namespace Modules\Production {
                     $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/process-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/process-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/process-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/process-single.tpl.php';
                     break;
             }
         }
@@ -147,11 +146,11 @@ namespace Modules\Production {
                     $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/guideline-list.tpl.php';
+                    include __DIR__ . '/Theme/backend/guideline-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/guideline-single.tpl.php';
+                    include __DIR__ . '/Theme/backend/guideline-single.tpl.php';
                     break;
             }
         }

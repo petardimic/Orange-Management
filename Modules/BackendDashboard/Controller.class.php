@@ -40,15 +40,14 @@ namespace Modules\BackendDashboard {
         /**
          * Constructor
          *
-         * @param string                    $themePath
          * @param \Framework\WebApplication $app Application reference
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($app, $themePath)
+        public function __construct($app)
         {
-            parent::__construct($app, $themePath);
+            parent::__construct($app);
         }
 
         /**
@@ -92,7 +91,7 @@ namespace Modules\BackendDashboard {
                 }
             } else {
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/' . $this->themePath . '/default.php';
+                include __DIR__ . '/Theme/default.php';
             }
         }
     }
