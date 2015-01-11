@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * Account balance class
      *
      * PHP Version 5.4
      *
      * @category   Modules
-     * @package    Modules\Accounting
+     * @package    Modules\Accounting\Models
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -36,7 +36,7 @@ namespace Modules\Accounting {
         /**
          * Time range type
          *
-         * @var \Modules\Accounting\TimeRangeType
+         * @var \Modules\Accounting\Models\TimeRangeType
          * @since 1.0.0
          */
         private $rangetype = null;
@@ -44,7 +44,7 @@ namespace Modules\Accounting {
         /**
          * Account
          *
-         * @var \Modules\Accounting\AccountInterface
+         * @var \Modules\Accounting\Models\AccountInterface
          * @since 1.0.0
          */
         private $account = null;

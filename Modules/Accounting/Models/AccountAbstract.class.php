@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * Account abstraction class
      *
@@ -15,7 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class AccountAbstract implements \Modules\Accounting\AccountInterface
+    abstract class AccountAbstract implements \Modules\Accounting\Models\AccountInterface
     {
         /**
          * Account ID
@@ -28,7 +28,7 @@ namespace Modules\Accounting {
         /**
          * Type
          *
-         * @var \Modules\Accounting\AccountType
+         * @var \Modules\Accounting\Models\AccountType
          * @since 1.0.0
          */
         protected $type = null;
@@ -36,7 +36,7 @@ namespace Modules\Accounting {
         /**
          * Entry list
          *
-         * @var \Modules\Accounting\EntryInterface[]
+         * @var \Modules\Accounting\Models\EntryInterface[]
          * @since 1.0.0
          */
         protected $entryList = 0;
@@ -73,12 +73,12 @@ namespace Modules\Accounting {
          * @param \DateTime $end   Interval end
          * @param int       $dateType
          *
-         * @internal \Modules\Accounting\TimeRangeType $dateTime Time range type
+         * @internal \Modules\Accounting\Models\TimeRangeType $dateTime Time range type
          *
          * @since    1.0.0
          * @author   Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getEntriesByDate($start, $end, $dateType = \Modules\Accounting\TimeRangeType::RECEIPT_DATE)
+        public function getEntriesByDate($start, $end, $dateType = \Modules\Accounting\Models\TimeRangeType::RECEIPT_DATE)
         {
         }
     }

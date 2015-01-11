@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * Invoice posting simple class
      *
@@ -15,7 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class InvoicePostingSimple extends \Modules\Accounting\PostingAbstract
+    abstract class InvoicePostingSimple extends \Modules\Accounting\Models\PostingAbstract
     {
         public function __construct()
         {

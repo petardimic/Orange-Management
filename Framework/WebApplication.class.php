@@ -20,7 +20,7 @@ namespace Framework {
         /**
          * Theme controller
          *
-         * @var \Content\Theme
+         * @var \Web\Theme\Theme
          * @since 1.0.0
          */
         private $theme = null;
@@ -73,6 +73,9 @@ namespace Framework {
                 header('HTTP/1.0 503 Service Temporarily Unavailable');
                 header('Status: 503 Service Temporarily Unavailable');
                 header('Retry-After: 300');
+
+                // TODO: inform admin
+
                 include __DIR__ . '/../Web/Theme/Error/503.php';
             }
         }

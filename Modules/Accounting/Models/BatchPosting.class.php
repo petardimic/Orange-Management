@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * BatchPosting class
      *
@@ -52,7 +52,7 @@ namespace Modules\Accounting {
         /**
          * Postings
          *
-         * @var \Modules\Accounting\PostingAbstract[]
+         * @var \Modules\Accounting\Models\PostingAbstract[]
          * @since 1.0.0
          */
         private $postings = [];
@@ -175,7 +175,7 @@ namespace Modules\Accounting {
          *
          * @param int $id Posting ID
          *
-         * @return \Modules\Accounting\PostingAbstract
+         * @return \Modules\Accounting\Models\PostingAbstract
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -201,7 +201,7 @@ namespace Modules\Accounting {
         /**
          * Add posting
          *
-         * @param \Modules\Accounting\PostingAbstract $posting Posting
+         * @param \Modules\Accounting\Models\PostingAbstract $posting Posting
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

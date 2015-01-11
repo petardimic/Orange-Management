@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * Posting class
      *
@@ -15,7 +15,7 @@ namespace Modules\Accounting {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    abstract class Posting extends \Modules\Accounting\PostingAbstract
+    abstract class Posting extends \Modules\Accounting\Models\PostingAbstract
     {
         public function __construct()
         {

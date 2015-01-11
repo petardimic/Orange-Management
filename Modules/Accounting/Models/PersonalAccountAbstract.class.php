@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting\Models {
     /**
      * ImpersonalAccount class
      *
      * PHP Version 5.4
      *
      * @category   Modules
-     * @package    Modules\Accounting
+     * @package    Modules\Accounting\Models
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
