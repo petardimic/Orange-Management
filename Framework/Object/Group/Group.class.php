@@ -15,7 +15,7 @@ namespace Framework\Object\Group {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class Group implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
     {
         /**
          * Application instance

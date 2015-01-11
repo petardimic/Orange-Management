@@ -213,5 +213,23 @@ namespace Framework\Request {
         {
             return $this->hash;
         }
+
+        /**
+         * Is request made via https
+         *
+         * @param int $port Secure port
+         *
+         * @return bool
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function isHttps($port = 443) {
+            return
+                (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                || (empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+                || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')
+                || $_SERVER['SERVER_PORT'] == $port;
+        }
     }
 }

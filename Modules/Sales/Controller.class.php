@@ -128,18 +128,18 @@ namespace Modules\Sales {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $articleList = new \Modules\Sales\ArticleList($this->app->db);
+                    $articleList = new \Modules\Sales\Models\ArticleList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-create.tpl.php';
                     break;
             }
         }
@@ -155,18 +155,18 @@ namespace Modules\Sales {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $invoiceList = new \Modules\Sales\InvoiceList($this->app->db);
+                    $invoiceList = new \Modules\Sales\Models\InvoiceList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-create.tpl.php';
                     break;
             }
         }
@@ -182,18 +182,18 @@ namespace Modules\Sales {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $clientList = new \Modules\Sales\ClientList($this->app->db);
+                    $clientList = new \Modules\Sales\Models\ClientList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/clients-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/clients-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/clients-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/clients-create.tpl.php';
                     break;
             }
         }
@@ -209,7 +209,7 @@ namespace Modules\Sales {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
                     break;
             }
         }

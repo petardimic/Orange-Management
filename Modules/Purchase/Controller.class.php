@@ -129,18 +129,18 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $articleList = new \Modules\Purchase\ArticleList($this->app->db);
+                    $articleList = new \Modules\Purchase\Models\ArticleList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-create.tpl.php';
                     break;
             }
         }
@@ -156,18 +156,18 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $invoiceList = new \Modules\Purchase\InvoiceList($this->app->db);
+                    $invoiceList = new \Modules\Purchase\Models\InvoiceList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/invoice-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/invoice-create.tpl.php';
                     break;
             }
         }
@@ -183,18 +183,18 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $supplierList = new \Modules\Purchase\SupplierList($this->app->db);
+                    $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/suppliers-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/suppliers-create.tpl.php';
                     break;
             }
         }
@@ -210,7 +210,7 @@ namespace Modules\Purchase {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/analysis-dashboard.tpl.php';
                     break;
             }
         }

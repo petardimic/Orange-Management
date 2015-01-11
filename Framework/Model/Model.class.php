@@ -63,20 +63,20 @@ namespace Framework\Model {
             /* OS specific */
             if($os === \Framework\Request\OSType::WINDOWS_8 || $os === \Framework\Request\OSType::WINDOWS_81) {
                 echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
-                     . '<meta name="msapplication-square70x70logo" content="/Web/Startup/win_tiny.png"/>'
-                     . '<meta name="msapplication-square150x150logo" content="/Web/Startup/win_square.png"/>'
-                     . '<meta name="msapplication-wide310x150logo" content="/Web/Startup/win_wide.png"/>'
-                     . '<meta name="msapplication-square310x310logo" content="/Web/Startup/win_large.png"/>';
+                     . '<meta name="msapplication-square70x70logo" content="/Web/Theme/Startup/win_tiny.png"/>'
+                     . '<meta name="msapplication-square150x150logo" content="/Web/Theme/Startup/win_square.png"/>'
+                     . '<meta name="msapplication-wide310x150logo" content="/Web/Theme/Startup/win_wide.png"/>'
+                     . '<meta name="msapplication-square310x310logo" content="/Web/Theme/Startup/win_large.png"/>';
             } elseif($os === \Framework\Request\OSType::IPHONE || $os === \Framework\Request\OSType::MAC_OS_X || $os === \Framework\Request\OSType::MAC_OS_X_2 || $os === \Framework\Request\OSType::IPAD) {
-                echo '<link rel="apple-touch-icon" href="/Web/Startup/apple_icon.png">'
-                     . '<link rel="apple-touch-startup-image" href="/Web/Startup/apple_startup.png">'
+                echo '<link rel="apple-touch-icon" href="/Web/Theme/Startup/apple_icon.png">'
+                     . '<link rel="apple-touch-startup-image" href="/Web/Theme/Startup/apple_startup.png">'
                      . '<meta name="apple-mobile-web-app-capable" content="yes">'
                      . '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
             }
 
             /* Everyone */
             echo '<link rel="shortcut icon" href="/Content/Startup/favicon.ico">'
-                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
+                 . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Theme/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
                  . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
                  . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
                  . '<script src="' . self::$content['page:addr:url'] . '/Framework/Libs/d3/d3.min.js"></script>'
@@ -97,7 +97,7 @@ namespace Framework\Model {
         public static function load_style_small()
         {
             /** @noinspection PhpIncludeInspection */
-            include __DIR__ . '/../../Web/Themes' . self::$content['theme:path'] . '/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '-small.css';
+            include __DIR__ . '/../../Web/Theme/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '-small.css';
         }
 
         /**

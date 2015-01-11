@@ -103,26 +103,26 @@ namespace Modules\Tasks {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $tasks = new \Modules\Tasks\TaskList($this->app->db);
+                    $tasks = new \Modules\Tasks\Models\TaskList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-dashboard.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $task = new \Modules\Tasks\Task($this->app->db);
+                    $task = new \Modules\Tasks\Models\Task($this->app->db);
                     $task->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-single.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-create.tpl.php';
                     break;
                 case 'analysis':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/task-analysis.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/task-analysis.tpl.php';
                     break;
             }
         }

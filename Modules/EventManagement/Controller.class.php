@@ -103,11 +103,11 @@ namespace Modules\EventManagement {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/eventmanagement-dashboard.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/eventmanagement-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/eventmanagement-create.tpl.php';
                     break;
             }
         }

@@ -15,7 +15,7 @@ namespace Framework\Object\User {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class User implements \Framework\Object\ObjectInterface, \Framework\Pattern\Multition
+    class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
     {
         /**
          * User ID

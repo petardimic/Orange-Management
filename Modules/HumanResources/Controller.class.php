@@ -141,7 +141,7 @@ namespace Modules\HumanResources {
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/department-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/department-list.tpl.php';
                     break;
             }
         }
@@ -160,11 +160,11 @@ namespace Modules\HumanResources {
                     $staff = new \Modules\HumanResources\StaffList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/staff-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/staff-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/staff-single.tpl.php';
                     break;
             }
         }
@@ -180,7 +180,7 @@ namespace Modules\HumanResources {
             switch($this->app->request->request['l4']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/planning-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/planning-dashboard.tpl.php';
                     break;
             }
         }

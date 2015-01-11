@@ -92,7 +92,7 @@ namespace Modules\BackendDashboard {
                 }
             } else {
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/themes/' . $this->themePath . '/default.php';
+                include __DIR__ . '/Theme/' . $this->themePath . '/default.php';
             }
         }
     }

@@ -104,20 +104,20 @@ namespace Modules\Profile {
                 case 'single':
                     /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/profile-single.tpl.php';
 
                     $this->callPull();
                     break;
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Profile\ProfileList($this->app->db);
+                    $accounts = new \Modules\Profile\Models\ProfileList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/profile-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/profile-list.tpl.php';
                     break;
             }
         }

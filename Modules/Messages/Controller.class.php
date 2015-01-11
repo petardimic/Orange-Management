@@ -103,7 +103,7 @@ namespace Modules\Messages {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/dashboard.tpl.php';
                     break;
             }
         }

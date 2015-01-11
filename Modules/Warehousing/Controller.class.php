@@ -124,7 +124,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/article-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/article-list.tpl.php';
                     break;
             }
         }
@@ -140,7 +140,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/shipping-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/shipping-list.tpl.php';
                     break;
             }
         }
@@ -156,7 +156,7 @@ namespace Modules\Warehousing {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/arrival-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/arrival-list.tpl.php';
                     break;
             }
         }

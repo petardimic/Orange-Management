@@ -102,11 +102,11 @@ namespace Modules\Media {
         {
             switch($this->app->request->request['l3']) {
                 case 'single':
-                    $media = new \Modules\Media\Media($this->app->db);
+                    $media = new \Modules\Media\Models\Media($this->app->db);
                     $media->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/media-single.tpl.php';
                     break;
                 case 'list':
                     if(!isset($this->app->request->request['page'])) {
@@ -114,14 +114,14 @@ namespace Modules\Media {
                     }
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $mList = new \Modules\Media\MediaList($this->app->db);
+                    $mList = new \Modules\Media\Models\MediaList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/media-list.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/media-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/media-create.tpl.php';
                     break;
             }
         }

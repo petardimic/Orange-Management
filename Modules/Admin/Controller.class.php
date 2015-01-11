@@ -151,7 +151,7 @@ namespace Modules\Admin {
                     \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/settings-general.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/settings-general.tpl.php';
                     break;
             }
         }
@@ -167,14 +167,14 @@ namespace Modules\Admin {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Admin\UserList($this->app->db);
+                    $accounts = new \Modules\Admin\Models\UserList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-list.tpl.php';
                     break;
                 case 'single':
                     $this->showBackendAccountSingle();
@@ -183,7 +183,7 @@ namespace Modules\Admin {
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-create.tpl.php';
                     break;
             }
         }
@@ -199,7 +199,7 @@ namespace Modules\Admin {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/accounts-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/accounts-single.tpl.php';
                     break;
             }
         }
@@ -223,13 +223,13 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/modules-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/modules-list.tpl.php';
                     break;
                 case 'front':
                     //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/modules-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/modules-single.tpl.php';
                     break;
             }
         }
@@ -245,21 +245,21 @@ namespace Modules\Admin {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $groups = new \Modules\Admin\GroupList($this->app->db);
+                    $groups = new \Modules\Admin\Models\GroupList($this->app->db);
 
                     if(!isset($this->app->request->request['page'])) {
                         $this->app->request->request['page'] = 1;
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-list.tpl.php';
                     break;
                 case 'single':
                     $this->showBackendGroupSingle();
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-create.tpl.php';
                     break;
             }
         }
@@ -275,7 +275,7 @@ namespace Modules\Admin {
             switch($this->app->request->request['l5']) {
                 case 'front':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $accounts = new \Modules\Admin\UserList($this->app->db);
+                    $accounts = new \Modules\Admin\Models\UserList($this->app->db);
 
                     /** @noinspection PhpUnusedLocalVariableInspection */
                     $group = new \Framework\Object\Group\Group((int) $this->app->request->request['id'], $this->app);
@@ -285,7 +285,7 @@ namespace Modules\Admin {
                     }
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/groups-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/groups-single.tpl.php';
                     break;
             }
         }

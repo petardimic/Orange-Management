@@ -160,7 +160,7 @@ namespace Framework\Localization {
                     /** @noinspection PhpIncludeInspection */
                     /** @var string[] $MODLANG */
                     /* TODO: change, store name inside instead of id */
-                    require __DIR__ . '/../../Modules/' . $active_modules[$file['from']][0]['class'] . '/themes/' . $active_modules[$file['from']][0]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
+                    require __DIR__ . '/../../Modules/' . $active_modules[$file['from']][0]['class'] . '/Theme/' . $active_modules[$file['from']][0]['theme'] . '/lang/' . $file['file'] . '.' . $language . '.lang.php';
                     /** @noinspection PhpUndefinedVariableInspection */
                     $key = (int) ($file['for'] / 100000 - 10000);
                     if(!isset($this->lang[$key])) {

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Controlling {
+namespace Modules\Budgeting {
     /**
      * Controlling class
      *

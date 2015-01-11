@@ -103,28 +103,28 @@ namespace Modules\News {
             switch($this->app->request->request['l3']) {
                 case 'dashboard':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $newsList = new \Modules\News\NewsList($this->app->db);
+                    $newsList = new \Modules\News\Models\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-dashboard.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-dashboard.tpl.php';
                     break;
                 case 'single':
-                    $article = new \Modules\News\Article($this->app->db);
+                    $article = new \Modules\News\Models\Article($this->app->db);
                     $article->init($this->app->request->request['id']);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-single.tpl.php';
                     break;
                 case 'archive':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $newsList = new \Modules\News\NewsList($this->app->db);
+                    $newsList = new \Modules\News\Models\NewsList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-archive.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-archive.tpl.php';
                     break;
                 case 'create':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/news-create.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/news-create.tpl.php';
                     break;
             }
         }

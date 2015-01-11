@@ -124,11 +124,11 @@ namespace Modules\Production {
                     $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/process-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/process-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/process-single.tpl.php';
                     break;
             }
         }
@@ -147,11 +147,11 @@ namespace Modules\Production {
                     $pList = new \Modules\Production\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-list.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/guideline-list.tpl.php';
                     break;
                 case 'single':
                     /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/themes/' . $this->themePath . '/backend/guideline-single.tpl.php';
+                    include __DIR__ . '/Theme/' . $this->themePath . '/backend/guideline-single.tpl.php';
                     break;
             }
         }
