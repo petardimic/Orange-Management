@@ -86,5 +86,15 @@ namespace Framework\Request {
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
         public function getLanguage();
+
+        /**
+         * Get request origin
+         *
+         * @return string
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getOrigin();
     }
 }

@@ -26,6 +26,14 @@ namespace Framework\Views {
         protected $template = null;
 
         /**
+         * Views
+         *
+         * @var \Framework\Views\ViewAbstract[]
+         * @since 1.0.0
+         */
+        protected $views = null;
+
+        /**
          * Get the template
          *
          * @return string
@@ -49,6 +57,56 @@ namespace Framework\Views {
         public function setTemplate($template)
         {
             $this->template = $template;
+        }
+
+        /**
+         * @return ViewAbstract[]
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getViews()
+        {
+            return $this->views;
+        }
+
+        /**
+         * @param string $id View ID
+         *
+         * @return ViewAbstract
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getView($id)
+        {
+            return $this->views[$id];
+        }
+
+        /**
+         * Remove view
+         *
+         * @param string $id View ID
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function removeView($id)
+        {
+            unset($this->views[$id]);
+        }
+
+        /**
+         * @param string $id View ID
+         *
+         * @param ViewAbstract $view
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function addView($id, $view)
+        {
+            $this->views[$id] = $view;
         }
 
         /**

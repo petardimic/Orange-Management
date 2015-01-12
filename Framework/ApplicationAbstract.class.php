@@ -42,6 +42,14 @@ namespace Framework {
         public $request = null;
 
         /**
+         * Request instance
+         *
+         * @var \Framework\Response\ResponseAbstract
+         * @since 1.0.0
+         */
+        public $response = null;
+
+        /**
          * Settings instance
          *
          * @var \Framework\Config\Settings

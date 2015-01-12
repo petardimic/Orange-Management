@@ -80,6 +80,7 @@ namespace Framework\Socket {
          * Detach existing command
          *
          * @param string $cmd  Command ID
+         * @param mixed  $conn Client ID
          * @param mixed  $para Parameters to pass
          *
          * @return \Framework\Response\ResponseStatus::WRONG_REQUEST|mixed
@@ -87,10 +88,10 @@ namespace Framework\Socket {
          * @since  1.0.0
          * @author Dennis Eichhorn
          */
-        public function trigger($cmd, $para)
+        public function trigger($cmd, $conn, $para)
         {
             if(array_key_exists($cmd, $this->commands)) {
-                return $this->commands[$cmd][0]($para);
+                return $this->commands[$cmd][0]($conn, $para);
             }
 
             return \Framework\Response\ResponseStatus::WRONG_REQUEST;

@@ -28,5 +28,9 @@ $CONFIG = [
 		 '127.0.0.1', /* remote address */
     	'127.0.0.1', /* local address */
     	__DIR__ /* root of the web application */
+	],
+	'socket' => [
+		'limit' => 300,
+		'port' => 431
 	]
 ];

@@ -58,7 +58,6 @@ namespace Framework\Socket {
             $this->port = $port;
 
             $this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_bind($this->sock, $this->ip, $this->port);
         }
 
         /**

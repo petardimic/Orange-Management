@@ -71,12 +71,7 @@ namespace Framework\Request {
         }
 
         /**
-         * Get request
-         *
-         * @return array $request_info (Browser and OS data)
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function getRequest()
         {
@@ -126,7 +121,7 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function hashRequest($request)
+        private function hashRequest($request)
         {
             return sha1(implode('', $request));
         }
@@ -184,12 +179,7 @@ namespace Framework\Request {
         }
 
         /**
-         * Get request information
-         *
-         * @return array $request_info (Browser and OS data)
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         * {@inheritdoc}
          */
         public function getRequestInfo()
         {
@@ -215,6 +205,14 @@ namespace Framework\Request {
         }
 
         /**
+         * {@inheritdoc}
+         */
+        public function getOrigin()
+        {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+
+        /**
          * Is request made via https
          *
          * @param int $port Secure port
@@ -224,7 +222,8 @@ namespace Framework\Request {
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function isHttps($port = 443) {
+        public function isHttps($port = 443)
+        {
             return
                 (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
                 || (empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')

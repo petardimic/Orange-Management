@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket {
+namespace Framework\Socket\Server {
     /**
      * Server class
      *
@@ -28,12 +28,22 @@ namespace Framework\Socket {
         private $limit = 10;
 
         /**
+         * Client connections
+         *
+         * @var array
+         * @since 1.0.0
+         */
+        private $conn = [];
+
+        /**
          * Clients
          *
-         * @var resource
+         * @var array
          * @since 1.0.0
          */
         private $clients = [];
+
+        public $commands = null;
 
         /**
          * Constructor
@@ -43,6 +53,27 @@ namespace Framework\Socket {
          */
         public function __construct()
         {
+            $this->commands = new \Framework\Socket\Commands();
+
+            $this->commands->attach('disconnect', function ($conn, $para) {
+                $this->disconnect($conn);
+            }, $this);
+
+            $this->commands->attach('help', function ($conn, $para) {
+                $this->help($conn);
+            }, $this);
+
+            $this->commands->attach('version', function ($conn, $para) {
+                $this->version($conn);
+            }, $this);
+
+            $this->commands->attach('help', function ($conn, $para) {
+                $this->kick($conn, $para);
+            }, $this);
+
+            $this->commands->attach('restart', function ($conn, $para) {
+                $this->restart($conn);
+            }, $this);
         }
 
         /**
@@ -51,6 +82,7 @@ namespace Framework\Socket {
         public function create($ip, $port)
         {
             parent::create($ip, $port);
+            socket_bind($this->sock, $this->ip, $this->port);
         }
 
         /**
@@ -73,32 +105,36 @@ namespace Framework\Socket {
         {
             socket_listen($this->sock);
             socket_set_nonblock($this->sock);
+            $this->conn[] = $this->sock;
 
             while($this->run) {
-                /** @var array $read Clients */
-                $read = $this->clients;
+                $read = $this->conn;
 
                 if(socket_select($read, $write = null, $except = null, 0) < 1) {
-                    continue;
+                    // error
+                    // socket_last_error();
+                    // socket_strerror(socket_last_error());
                 }
 
                 if(in_array($this->sock, $read)) {
-                    $this->clients[] = $newc = socket_accept($this->sock);
+                    $this->conn[] = $newc = socket_accept($this->sock);
 
-                    socket_write($newc, 'msg to new client');
+                    $welcome = "Welcome to the server.\n";
+                    socket_write($newc, $welcome, strlen($welcome));
                     socket_getpeername($newc, $ip);
 
-                    $key = array_search($this->sock, $read);
-                    unset($read[$key]);
+                    unset($read[0]);
                 }
 
-                foreach($read as $read_sock) {
-                    $data = @socket_read($read_sock, 1024, PHP_NORMAL_READ);
+                foreach($read as $key => $client) {
+                    $data = socket_read($client, 1024);
 
-                    /* Client disconnected */
+                    if($this->clientReadError($key)) {
+                        continue;
+                    }
+
+                    /* Client no data */
                     if($data === false) {
-                        $key = array_search($read_sock, $this->clients);
-                        unset($this->clients[$key]);
                         continue;
                     }
 
@@ -106,7 +142,8 @@ namespace Framework\Socket {
                     $data = trim($data);
 
                     if(!empty($data)) {
-                        // TODO: handle data
+                        $data = explode(' ', $data);
+                        $this->commands->trigger($data[0], $key, $data);
                     }
                 }
             }
@@ -128,6 +165,26 @@ namespace Framework\Socket {
         public function __destruct()
         {
             parent::__destruct();
+        }
+
+        private function disconnect($key)
+        {
+            socket_write($this->conn[$key], 'disconnect', strlen('disconnect'));
+            unset($this->conn[$key]);
+            $this->conn = array_values($this->conn);
+        }
+
+        private function clientReadError($key)
+        {
+            if(socket_last_error() === 10054) {
+                socket_clear_error();
+                unset($this->conn[$key]);
+                $this->conn = array_values($this->conn);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -17,16 +17,34 @@ namespace Framework {
      */
     class SocketApplication extends \Framework\ApplicationAbstract
     {
+        private $type;
+
         /**
          * Constructor
          *
          * @param array $config Core config
+         * @param int   $type   Socket type
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function __construct($config)
+        public function __construct($config, $type)
         {
+            $this->type = $type;
+            $socket = null;
+
+            if($type == \Framework\Socket\SocketType::SERVER) {
+                $socket = new \Framework\Socket\Server\Server();
+                $socket->create('127.0.0.1', $config['socket']['port']);
+                $socket->setLimit($config['socket']['limit']);
+            } elseif($type == \Framework\Socket\SocketType::CLIENT) {
+                $socket = new \Framework\Socket\Client\Client();
+                $socket->create('127.0.0.1', $config['socket']['port']);
+            } else {
+                exit();
+            }
+
+            $socket->run();
         }
     }
 }
