@@ -114,6 +114,7 @@ namespace Framework\Socket\Server {
                     // error
                     // socket_last_error();
                     // socket_strerror(socket_last_error());
+                    // socket_clear_error();
                 }
 
                 if(in_array($this->sock, $read)) {
