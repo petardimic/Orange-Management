@@ -34,6 +34,8 @@ namespace Framework {
             $socket = null;
 
             if($type == \Framework\Socket\SocketType::SERVER) {
+                // TODO: load all modules + other stuff
+
                 $socket = new \Framework\Socket\Server\Server();
                 $socket->create('127.0.0.1', $config['socket']['port']);
                 $socket->setLimit($config['socket']['limit']);
