@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar\OccurrenceType {
+namespace Modules\Calendar\Models {
     /**
      * Occurrence type enum
      *

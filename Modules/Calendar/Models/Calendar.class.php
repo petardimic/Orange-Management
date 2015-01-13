@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar {
+namespace Modules\Calendar\Models {
     /**
      * Calendar class
      *

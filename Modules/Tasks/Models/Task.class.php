@@ -68,7 +68,7 @@ namespace Modules\Tasks\Models {
         /**
          * Status
          *
-         * @var \Modules\Tasks\TaskStatus
+         * @var \Modules\Tasks\Models\TaskStatus
          * @since 1.0.0
          */
         public $status = null;
@@ -92,7 +92,7 @@ namespace Modules\Tasks\Models {
         /**
          * Task elements
          *
-         * @var \Modules\Tasks\TaskElement[]
+         * @var \Modules\Tasks\Models\TaskElement[]
          * @since 1.0.0
          */
         private $task_elements = [];
@@ -264,7 +264,7 @@ namespace Modules\Tasks\Models {
         /**
          * Adding new task element
          *
-         * @param \Modules\Tasks\TaskElement $element Task element
+         * @param \Modules\Tasks\Models\TaskElement $element Task element
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>

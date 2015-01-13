@@ -1,4 +1,4 @@
-<?php /** @var \Modules\EventManager\Controller $this */
+<?php /** @var \Modules\EventManagement\Controller $this */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1004201001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>

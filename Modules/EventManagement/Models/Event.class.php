@@ -60,7 +60,7 @@ namespace Modules\EventManagement {
         /**
          * Calendar
          *
-         * @var \Modules\Calender\Calender
+         * @var \Modules\Calender\Models\Calender
          * @since 1.0.0
          */
         private $calendar = null;

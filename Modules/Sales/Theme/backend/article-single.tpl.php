@@ -58,7 +58,7 @@
                             <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Language']; ?></label>
                             <li>
                                 <select>
-                                    <?php require __DIR__ . '/../../../sales_price_names.php';
+                                    <?php require __DIR__ . '/../../Models/sales_price_names.php';
                                     foreach($SalesPriceNames as $key => $val) {
                                         echo '<option value="' . $key . '">' . $this->app->user->localization->lang[16][$val];
                                     }
@@ -117,7 +117,7 @@
                             <li><label for="i-login"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
                             <li>
                                 <select>
-                                    <?php require __DIR__ . '/../../../sales_price_names.php';
+                                    <?php
                                     foreach($SalesPriceNames as $key => $val) {
                                         echo '<option value="' . $key . '">' . $this->app->user->localization->lang[16][$val];
                                     }
