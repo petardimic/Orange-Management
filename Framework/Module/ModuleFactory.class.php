@@ -41,7 +41,6 @@ namespace Framework\Module {
          * Gets and initializes modules
          *
          * @param string $module Module ID
-         * @param string $theme  Module theme
          *
          * @return \Framework\Module\ModuleAbstract
          *

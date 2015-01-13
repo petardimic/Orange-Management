@@ -3,6 +3,8 @@ namespace Framework\Request {
     /**
      * Request class
      *
+     * @todo: to i really need the interface or should i just define these function as abstract public function blabla();
+     *
      * PHP Version 5.4
      *
      * @property mixed request

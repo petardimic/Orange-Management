@@ -23,51 +23,45 @@ namespace Framework\Socket\Packets {
 
         private $sendTo = null;
 
+        /**
+         * Packet size
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $length = 0;
 
+        /**
+         * Packet type
+         *
+         * @var \Framework\Socket\Packets\PacketType
+         * @since 1.0.0
+         */
         private $type = 0;
 
+        /**
+         * Packet subtype
+         *
+         * @var int
+         * @since 1.0.0
+         */
         private $subtype = 0;
 
-        /**
-         * @return null
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
         public function getSendFrom()
         {
             return $this->sendFrom;
         }
 
-        /**
-         * @param null $sendFrom
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
         public function setSendFrom($sendFrom)
         {
             $this->sendFrom = $sendFrom;
         }
 
-        /**
-         * @return null
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
         public function getSendTo()
         {
             return $this->sendTo;
         }
 
-        /**
-         * @param null $sendTo
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
         public function setSendTo($sendTo)
         {
             $this->sendTo = $sendTo;
@@ -117,18 +111,62 @@ namespace Framework\Socket\Packets {
             $this->type = $type;
         }
 
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getSubtype()
+        {
+            return $this->subtype;
+        }
 
+        /**
+         * @param int $subtype
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setSubtype($subtype)
+        {
+            $this->subtype = $subtype;
+        }
 
+        /**
+         * Jsonfy object
+         *
+         * @return string Json serialization
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function __toString()
         {
             return '';
         }
 
+        /**
+         * Serializing header
+         *
+         * @return string Json serialization
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function serialize()
         {
             return $this->__toString();
         }
 
+        /**
+         * Unserializing json string
+         *
+         * @param string $string String to unserialize
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         public function unserialize($string)
         {
         }

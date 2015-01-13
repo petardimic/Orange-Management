@@ -116,6 +116,12 @@ namespace Framework\Socket\Client {
             parent::__destruct();
         }
 
+        /**
+         * Disconnect from server
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         private function disconnect()
         {
             $this->run = false;

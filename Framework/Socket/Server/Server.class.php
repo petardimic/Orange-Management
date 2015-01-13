@@ -168,6 +168,14 @@ namespace Framework\Socket\Server {
             parent::__destruct();
         }
 
+        /**
+         * Disconnect client
+         *
+         * @param mixed $key Client key
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         private function disconnect($key)
         {
             socket_write($this->conn[$key], 'disconnect', strlen('disconnect'));
@@ -175,6 +183,16 @@ namespace Framework\Socket\Server {
             $this->conn = array_values($this->conn);
         }
 
+        /**
+         * Handle client read error
+         *
+         * @param mixed $key Client key
+         *
+         * @return bool
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
         private function clientReadError($key)
         {
             if(socket_last_error() === 10054) {

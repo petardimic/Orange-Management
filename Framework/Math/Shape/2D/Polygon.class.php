@@ -44,7 +44,7 @@ abstract class Polygon implements Shape2D {
         $count = count($this->coord);
         
         for($i = 0; $i < $count - 2; $i++) {
-            $this->surface += $this->coord[$i]['x'] * $this->coord[$i+1]['y'] - $this->coord[$i+1]['x'] * $this->coord[$i]['y']
+            $this->surface += $this->coord[$i]['x'] * $this->coord[$i+1]['y'] - $this->coord[$i+1]['x'] * $this->coord[$i]['y'];
         }
         
         $this->surface /= 2;
@@ -65,7 +65,7 @@ abstract class Polygon implements Shape2D {
             $this->perimeter += sqrt(($this->coord[$i+1]['x'] - $this->coord[$i]['x']) ** 2 + ($this->coord[$i+1]['y'] - $this->coord[$i]['y']) ** 2);
         }
         
-        return $this->area;
+        return $this->perimeter;
     }
     
     public function getPerimeterFormula() {
@@ -92,8 +92,8 @@ abstract class Polygon implements Shape2D {
         
         for($i = 0; $i < $count - 2; $i++) {
             $mult = ($this->coord[$i]['x'] * $this->coord[$i+1]['y'] - $this->coord[$i+1]['x'] * $this->coord[$i]['y']);
-            $this->barycenter['x'] += ($this->coord[$i]['x'] + $this->coord[$i+1]['x']) * mult;
-            $this->barycenter['y'] += ($this->coord[$i]['y'] + $this->coord[$i+1]['y']) * mult;
+            $this->barycenter['x'] += ($this->coord[$i]['x'] + $this->coord[$i+1]['x']) * $mult;
+            $this->barycenter['y'] += ($this->coord[$i]['y'] + $this->coord[$i+1]['y']) * $mult;
         }
     
         return $this->barycenter;

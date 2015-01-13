@@ -27,13 +27,61 @@ namespace Framework\Socket\Packets {
          */
         private $header = null;
 
+        /**
+         * Stringify packet
+         *
+         * This is using a json format
+         *
+         * @var \Framework\Socket\Packets\Header
+         * @since 1.0.0
+         */
         abstract public function __toString();
 
+        /**
+         * Stringify packet
+         *
+         * This is using a json format
+         *
+         * @return string Json string
+         *
+         * @var \Framework\Socket\Packets\Header
+         * @since 1.0.0
+         */
+        abstract public function serialize();
+
+        /**
+         * Unserialize packet
+         *
+         * This is using a json format
+         *
+         * @param string $string Json string
+         *
+         * @var \Framework\Socket\Packets\Header
+         * @since 1.0.0
+         */
+        abstract public function unserialize($string);
+
+        /**
+         * Get packet header
+         *
+         * @return \Framework\Socket\Packets\Header
+         *
+         * @var \Framework\Socket\Packets\Header
+         * @since 1.0.0
+         */
         public function getHeader()
         {
             return $this->header;
         }
 
+        /**
+         * Set packet header
+         *
+         * @param \Framework\Socket\Packets\Header $header Header
+         *
+         * @var \Framework\Socket\Packets\Header
+         * @since 1.0.0
+         */
         public function setHeader($header)
         {
             $this->header = $header;
