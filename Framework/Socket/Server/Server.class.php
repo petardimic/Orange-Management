@@ -50,6 +50,14 @@ namespace Framework\Socket\Server {
         private $commands = null;
 
         /**
+         * Packet manager
+         *
+         * @var \Framework\Socket\Packets\PacketManager
+         * @since 1.0.0
+         */
+        private $packetManager = null;
+
+        /**
          * Constructor
          *
          * @since  1.0.0
@@ -57,7 +65,8 @@ namespace Framework\Socket\Server {
          */
         public function __construct()
         {
-            $this->commands = new \Framework\Socket\CommandManager();
+            $this->commands      = new \Framework\Socket\CommandManager();
+            $this->packetManager = new \Framework\Socket\Packets\PacketManager($this->commands, $this->clients);
 
             /** @noinspection PhpUnusedParameterInspection */
             $this->commands->attach('disconnect', function ($conn, $para) {
@@ -142,18 +151,7 @@ namespace Framework\Socket\Server {
                         continue;
                     }
 
-                    /* Client no data */
-                    if($data === false) {
-                        continue;
-                    }
-
-                    /* Normalize */
-                    $data = trim($data);
-
-                    if(!empty($data)) {
-                        $data = explode(' ', $data);
-                        $this->commands->trigger($data[0], $key, $data);
-                    }
+                    $this->packetManager->handle(trim($data), $key);
                 }
             }
 
