@@ -99,6 +99,13 @@ namespace Modules\Warehousing\Models {
         /**
          * {@inheritdoc}
          */
+        public function init($id)
+        {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
         public function __clone()
         {
         }

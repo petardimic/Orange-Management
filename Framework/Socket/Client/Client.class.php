@@ -1,14 +1,12 @@
 <?php
 namespace Framework\Socket\Client {
     /**
-     * Server class
-     *
-     * Parsing/serializing arrays to and from php file
+     * Client socket class
      *
      * PHP Version 5.4
      *
-     * @category   System
-     * @package    Framework
+     * @category   Framework
+     * @package    Framework\Socket\Client
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -27,16 +25,19 @@ namespace Framework\Socket\Client {
          */
         public function __construct()
         {
-            $this->commands = new \Framework\Socket\Commands();
+            $this->commands = new \Framework\Socket\CommandManager();
 
+            /** @noinspection PhpUnusedParameterInspection */
             $this->commands->attach('disconnect', function ($conn, $para) {
                 $this->disconnect();
             }, $this);
 
+            /** @noinspection PhpUnusedParameterInspection */
             $this->commands->attach('help', function ($conn, $para) {
                 $this->help($conn);
             }, $this);
 
+            /** @noinspection PhpUnusedParameterInspection */
             $this->commands->attach('version', function ($conn, $para) {
                 $this->version($conn);
             }, $this);
@@ -45,6 +46,7 @@ namespace Framework\Socket\Client {
                 $this->kick($conn, $para);
             }, $this);
 
+            /** @noinspection PhpUnusedParameterInspection */
             $this->commands->attach('restart', function ($conn, $para) {
                 $this->restart($conn);
             }, $this);

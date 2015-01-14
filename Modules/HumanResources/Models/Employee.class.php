@@ -48,9 +48,63 @@ namespace Modules\HumanResources {
             return self::$instances[$id];
         }
 
+        /**
+         * {@inheritdoc}
+         */
+        public function init($id)
+        {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function __clone()
+        {
+        }
+
         public function setUser($id)
         {
             $this->user = new \Framework\Object\User\User($id);
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function serialize()
+        {
+            // TODO: Implement serialize() method.
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function unserialize($serialized)
+        {
+            // TODO: Implement unserialize() method.
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function delete()
+        {
+            // TODO: Implement delete() method.
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function create()
+        {
+            // TODO: Implement create() method.
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function update()
+        {
+            // TODO: Implement update() method.
         }
     }
 }

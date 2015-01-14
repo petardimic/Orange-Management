@@ -2,36 +2,14 @@
 module.exports = function (grunt) {
     "use strict";
 
-    grunt.loadNpmTasks('grunt-composer');
-    grunt.loadNpmTasks('grunt-vagrant');
-    grunt.loadNpmTasks('grunt-vagrantup');
-    grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks("grunt-jscs");
-    grunt.loadNpmTasks('grunt-phpcs');
-    grunt.loadNpmTasks('grunt-phpmd');
-    grunt.loadNpmTasks('grunt-phpdcd');
-    grunt.loadNpmTasks('grunt-pdepend');
-    grunt.loadNpmTasks('load-grunt-tasks');
-    grunt.loadNpmTasks("grunt-phplint");
-    grunt.loadNpmTasks('grunt-hashres');
-    grunt.loadNpmTasks('grunt-html-validation');
-    grunt.loadNpmTasks('grunt-phpdocumentor');
-    grunt.loadNpmTasks("grunt-contrib-uglify");
-    grunt.loadNpmTasks("grunt-contrib-cssmin");
-    grunt.loadNpmTasks("grunt-contrib-concat");
-    grunt.loadNpmTasks("grunt-contrib-imagemin");
-    grunt.loadNpmTasks("grunt-contrib-htmlmin");
-    grunt.loadNpmTasks("grunt-contrib-sass");
-    grunt.loadNpmTasks("grunt-contrib-compass");
-    grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks('grunt-jslint');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks("grunt-contrib-compress");
-    grunt.loadNpmTasks('grunt-include-source');
-    grunt.loadNpmTasks('grunt-phpunit');
-    grunt.loadNpmTasks('grunt-newer');
+    require('load-grunt-tasks')(grunt);
+
+    var globalConfig = {
+        baseSass: 'assets/sass',
+        baseStyles: 'assets/css'
+    };
+
+    //<%= globalConfig.baseStyles %> - inside ' ... '
 
     //noinspection JSUnresolvedFunction
     grunt.initConfig({

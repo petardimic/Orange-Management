@@ -44,7 +44,7 @@ namespace Modules\Calendar\Models {
         /**
          * Created
          *
-         * @var datetime
+         * @var \Datetime
          * @since 1.0.0
          */
         private $created = null;
@@ -60,7 +60,7 @@ namespace Modules\Calendar\Models {
         /**
          * Events
          *
-         * @var \Modules\Calendar\Event[]
+         * @var \Modules\Calendar\Models\Event[]
          * @since 1.0.0
          */
         private $events = [];
@@ -78,6 +78,20 @@ namespace Modules\Calendar\Models {
             }
 
             return self::$instances[$id];
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function init($id)
+        {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function __clone()
+        {
         }
 
         public function getID()

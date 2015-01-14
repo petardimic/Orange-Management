@@ -88,6 +88,20 @@ namespace Modules\Chat {
             return self::$instances[$id];
         }
 
+        /**
+         * {@inheritdoc}
+         */
+        public function init($id)
+        {
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function __clone()
+        {
+        }
+
         public function getID()
         {
             return $this->id;
