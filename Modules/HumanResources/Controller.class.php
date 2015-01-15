@@ -156,7 +156,7 @@ namespace Modules\HumanResources {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $staff = new \Modules\HumanResources\StaffList($this->app->db);
+                    $staff = new \Modules\HumanResources\Models\StaffList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/Theme/backend/staff-list.tpl.php';

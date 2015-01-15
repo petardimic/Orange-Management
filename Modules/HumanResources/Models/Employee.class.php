@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources {
+namespace Modules\HumanResources\Models {
     /**
      * Employee class
      *
