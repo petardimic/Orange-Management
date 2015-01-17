@@ -9,6 +9,8 @@ oLib.each(nodes, function (ele) {
             return true;
         }
 
+        // TODO: create request object
+
         var request_type = e.getAttribute('data-request'),
             http_type = e.getAttribute('data-http'),
             request_uri = '',

@@ -18,6 +18,30 @@ namespace Web\Views {
     class ListView extends \Framework\Views\ViewAbstract
     {
         /**
+         * List id
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $id = 0;
+
+        /**
+         * Module
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $module = 0;
+
+        /**
+         * Page
+         *
+         * @var int
+         * @since 1.0.0
+         */
+        private $pageId = 0;
+
+        /**
          * List title
          *
          * @var string
@@ -26,20 +50,12 @@ namespace Web\Views {
         private $title = null;
 
         /**
-         * Navigation
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        private $navigation = [];
-
-        /**
-         * Pagination
+         * Footer
          *
          * @var \Web\Views\PaginationView
          * @since 1.0.0
          */
-        private $pagination = null;
+        private $footer = null;
 
         /**
          * Header
@@ -56,6 +72,72 @@ namespace Web\Views {
          * @since 1.0.0
          */
         private $elements = null;
+
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
+
+        /**
+         * @param int $id
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setId($id)
+        {
+            $this->id = $id;
+        }
+
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getModule()
+        {
+            return $this->module;
+        }
+
+        /**
+         * @param int $module
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setModule($module)
+        {
+            $this->module = $module;
+        }
+
+        /**
+         * @return int
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getPageId()
+        {
+            return $this->pageId;
+        }
+
+        /**
+         * @param int $pageId
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function setPageId($pageId)
+        {
+            $this->pageId = $pageId;
+        }
 
         /**
          * @return string
@@ -80,47 +162,25 @@ namespace Web\Views {
         }
 
         /**
-         * @return array
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getNavigation()
-        {
-            return $this->navigation;
-        }
-
-        /**
-         * @param array $navigation
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function setNavigation($navigation)
-        {
-            $this->navigation = $navigation;
-        }
-
-        /**
          * @return PaginationView
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function getPagination()
+        public function getFooter()
         {
-            return $this->pagination;
+            return $this->footer;
         }
 
         /**
-         * @param PaginationView $pagination
+         * @param PaginationView $footer
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function setPagination($pagination)
+        public function setFooter($footer)
         {
-            $this->pagination = $pagination;
+            $this->footer = $footer;
         }
 
         /**
