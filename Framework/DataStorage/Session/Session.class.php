@@ -21,6 +21,13 @@ namespace Framework\DataStorage\Session {
         {
         }
 
+        public function init()
+        {
+            session_start();
+            // TODO: get session data
+            session_write_close();
+        }
+
         public function getValue($id)
         {
             return null;
@@ -32,6 +39,13 @@ namespace Framework\DataStorage\Session {
 
         public function deleteValue($id)
         {
+        }
+
+        public function close()
+        {
+            session_start();
+            // TODO write session data
+            session_write_close();
         }
     }
 }

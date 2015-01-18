@@ -1,7 +1,7 @@
 <?php
-namespace Web\Views {
+namespace Web\Views\Lists {
     /**
-     * Pagination view
+     * Header view
      *
      * PHP Version 5.4
      *
@@ -15,7 +15,7 @@ namespace Web\Views {
      * @link       http://orange-management.com
      * @since      1.0.0
      */
-    class PaginationView extends \Framework\Views\ViewAbstract
+    class HeaderView extends \Framework\Views\ViewAbstract
     {
 
 

@@ -17,7 +17,7 @@
     <?php if($this->footer): ?>
         <tfoot>
         <tr>
-            <td>
+            <td colspan="<?= count($this->header->elements); ?>">
                 <?= $this->footer->getResponse(); ?>
             </td>
         </tr>

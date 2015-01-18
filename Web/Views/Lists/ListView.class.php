@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views {
+namespace Web\Views\Lists {
     /**
      * List view
      *
@@ -52,7 +52,7 @@ namespace Web\Views {
         /**
          * Footer
          *
-         * @var \Web\Views\PaginationView
+         * @var \Web\Views\Lists\PaginationView
          * @since 1.0.0
          */
         private $footer = null;
@@ -60,7 +60,7 @@ namespace Web\Views {
         /**
          * Header
          *
-         * @var array
+         * @var \Web\Views\Lists\HeaderView
          * @since 1.0.0
          */
         private $header = null;

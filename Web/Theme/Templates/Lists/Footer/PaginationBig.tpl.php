@@ -1,7 +1,7 @@
 <?php $allowedPages = ($this->maxPages - 3) / 2; ?>
 <ul>
     <li>1<!-- how many pages are allowed between now and 1 >= how many pages are between now and 1 -->
-        <?php if ($allowedPages < $this->page - 1 - 1): ?>
+        <?php if ($allowedPages < $this->page - 2): ?>
     <li>...
         <?php endif; ?>
         <?php for ($i = $this->page - $allowedPages;
