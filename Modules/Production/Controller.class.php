@@ -120,7 +120,7 @@ namespace Modules\Production {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $pList = new \Modules\Production\ProductionList($this->app->db);
+                    $pList = new \Modules\Production\Models\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/Theme/backend/process-list.tpl.php';
@@ -143,7 +143,7 @@ namespace Modules\Production {
             switch($this->app->request->request['l4']) {
                 case 'list':
                     /** @noinspection PhpUnusedLocalVariableInspection */
-                    $pList = new \Modules\Production\ProductionList($this->app->db);
+                    $pList = new \Modules\Production\Models\ProductionList($this->app->db);
 
                     /** @noinspection PhpIncludeInspection */
                     include __DIR__ . '/Theme/backend/guideline-list.tpl.php';

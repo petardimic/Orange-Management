@@ -187,6 +187,7 @@ namespace Modules\Accounting\Admin {
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accounting_invoices_process` (
                             `AccountingInvoiceProcessID` int(11) NOT NULL AUTO_INCREMENT,
+                            `arrival` int(11) DEFAULT NULL,
                             `media` int(11) DEFAULT NULL,
                             `type` tinyint(1) DEFAULT NULL,
                             `supplier` int(11) DEFAULT NULL,

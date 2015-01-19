@@ -64,6 +64,7 @@ namespace Modules\Sales\Admin {
                             ADD CONSTRAINT `sales_articles_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'stock_articles` (`id`);'
                     )->execute();*/
 
+                    /* TODO: change (compare to warehousing and reduce fields?) */
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_single` (
                             `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
@@ -201,13 +202,15 @@ namespace Modules\Sales\Admin {
                             `discount` decimal(11,2) NOT NULL,
                             `invoice` int(11) NOT NULL,
                             PRIMARY KEY (`SalesInvoiceAricleID`),
+                            KEY `article` (`article`),
                             KEY `invoice` (`invoice`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_invoice_article`
-                            ADD CONSTRAINT `sales_invoice_article_ibfk_1` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
+                            ADD CONSTRAINT `sales_invoice_article_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `sales_invoice_article_ibfk_2` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
                     )->execute();
                     break;
             }

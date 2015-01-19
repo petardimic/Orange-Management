@@ -56,6 +56,7 @@ namespace Modules\Purchase\Admin {
                             ADD CONSTRAINT `purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
+                    /* These are the invoices that get created by the purchasing department */
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoices` (
                             `PurchaseInvoiceID` int(11) NOT NULL AUTO_INCREMENT,

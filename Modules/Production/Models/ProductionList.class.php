@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Production {
+namespace Modules\Production\Models {
     /**
      * Media list class
      *
