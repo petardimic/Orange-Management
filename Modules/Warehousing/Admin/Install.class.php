@@ -152,13 +152,15 @@ namespace Modules\Warehousing\Admin {
                             `invoice` int(11) DEFAULT NULL,
                             `shipped` int(11) DEFAULT NULL,
                             PRIMARY KEY (`WarehousingShippingID`),
+                            KEY `shipFrom` (`shipFrom`),
                             KEY `shipped` (`shipped`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_shipping`
-                            ADD CONSTRAINT `warehousing_shipping_ibfk_1` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'account` (`id`);'
+                            ADD CONSTRAINT `warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $db->prefix . 'admin_address` (`AdminAddressID`),
+                            ADD CONSTRAINT `warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'account` (`id`);'
                     )->execute();
 
                     break;
