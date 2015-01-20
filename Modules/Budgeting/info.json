@@ -1,7 +1,7 @@
 {
     "name": {
-        "internal": 1002800000,
-        "external": "OMS Controlling"
+        "internal": 1004600000,
+        "external": "OMS Budgeting"
     },
     "version": "1.0.0",
     "requirements": {
@@ -19,8 +19,8 @@
         "name": "oms-slim",
         "path": "/oms-slim"
     },
-    "description": "Controlling module.",
-    "class": "Controlling",
+    "description": "Budgeting module.",
+    "class": "Budgeting",
     "dependencies": [],
     "providing": [],
     "load": [
@@ -28,13 +28,13 @@
             "pid": ["a5dd2992c4ffd521e23894599418f28a07e0ff1a"],
             "type": 4,
             "for": 0,
-            "from": 1002800000,
-            "file": "Controlling"
+            "from": 1004600000,
+            "file": "Budgeting"
         },
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,
-            "from": 1002800000,
+            "from": 1004600000,
             "for": 1000500000,
             "file": "nav.backend"
         },
@@ -43,7 +43,7 @@
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1002800000
+            "from": 1004600000
         }
     ],
     "lang": true,

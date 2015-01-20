@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Controlling\Admin {
+namespace Modules\Budgeting\Admin {
     /**
      * Navigation class
      *

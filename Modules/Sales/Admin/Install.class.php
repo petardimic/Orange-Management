@@ -212,6 +212,24 @@ namespace Modules\Sales\Admin {
                             ADD CONSTRAINT `sales_invoice_article_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
                             ADD CONSTRAINT `sales_invoice_article_ibfk_2` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
                     )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_batch` (
+                            `SalesInvoiceAricleBatchID` int(11) NOT NULL AUTO_INCREMENT,
+                            `article` int(11) NOT NULL,
+                            `stock` varchar(30) NOT NULL,
+                            `quantity` int(11) NOT NULL,
+                            PRIMARY KEY (`SalesInvoiceAricleBatchID`),
+                            KEY `article` (`article`),
+                            KEY `stock` (`invoice`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article_batch`
+                            ADD CONSTRAINT `sales_invoice_article_batch_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_invoice_article` (`SalesInvoiceAricleID`),
+                            ADD CONSTRAINT `sales_invoice_article_batch_ibfk_2` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`);'
+                    )->execute();
                     break;
             }
 

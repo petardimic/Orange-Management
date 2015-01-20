@@ -30,7 +30,209 @@ namespace Modules\RiskManagement\Admin {
         {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_unit` (
+                            `RiskMngmtUnitID` int(11) NOT NULL,
+                            `unit` int(11) NOT NULL,
+                            `responsible` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtUnitID`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
 
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `riskmngmt_unit_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
+                            ADD CONSTRAINT `riskmngmt_unit_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_department` (
+                            `RiskMngmtDepartmentID` int(11) NOT NULL,
+                            `department` varchar(50) NOT NULL,
+                            `responsible` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtDepartmentID`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `riskmngmt_department_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'business_department` (`BusinessDepartmentID`),
+                            ADD CONSTRAINT `riskmngmt_department_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_category` (
+                            `RiskMngmtCategoryID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `parent` int(11) DEFAULT NULL,
+                            `responsible` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtDepartmentID`),
+                            KEY `parent` (`parent`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `riskmngmt_department_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'riskmngmt_category` (`RiskMngmtCategoryID`),
+                            ADD CONSTRAINT `riskmngmt_department_ibfk_2` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
+                            ADD CONSTRAINT `riskmngmt_department_ibfk_3` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    // TODO: more (media, start, end etc...)
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_project` (
+                            `RiskMngmtProjectID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `description` text NOT NULL,
+                            `unit` int(11) NOT NULL,
+                            `responsible` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtDepartmentID`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `riskmngmt_project_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
+                            ADD CONSTRAINT `riskmngmt_project_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    // TODO: more (media, start, end etc...)
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_process` (
+                            `RiskMngmtProcessID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `description` text NOT NULL,
+                            `unit` int(11) NOT NULL,
+                            `responsible` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtProcessID`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
+                            ADD CONSTRAINT `riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk` (
+                            `RiskMngmtRiskID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `description` text NOT NULL,
+                            `unit` int(11) NOT NULL,
+                            `deptartment` int(11) NOT NULL,
+                            `category` int(11) NOT NULL,
+                            `project` int(11) NOT NULL,
+                            `process` int(11) NOT NULL,
+                            `responsible` int(11) NOT NULL,
+                            `backup` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtRiskID`),
+                            KEY `unit` (`unit`),
+                            KEY `responsible` (`responsible`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk`
+                            ADD CONSTRAINT `riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
+                            ADD CONSTRAINT `riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_object` (
+                            `RiskMngmtRiskObjectID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `risk` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtRiskObjectID`),
+                            KEY `risk` (`risk`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_object`
+                            ADD CONSTRAINT `riskmngmt_risk_object_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_evaluation` (
+                            `RiskMngmtRiskEvaluationID` int(11) NOT NULL,
+                            `val` decimal(11,4) NOT NULL,
+                            `object` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtRiskEvaluationID`),
+                            KEY `object` (`object`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_evaluation`
+                            ADD CONSTRAINT `riskmngmt_risk_evaluation_ibfk_1` FOREIGN KEY (`object`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_object` (`RiskMngmtRiskObjectID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_media` (
+                            `RiskMngmtRiskMediaID` int(11) NOT NULL,
+                            `media` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtProcessID`),
+                            KEY `media` (`media`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_media`
+                            ADD CONSTRAINT `riskmngmt_risk_media_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'Media` (`MediaID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_cause` (
+                            `RiskMngmtRiskCauseID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `description` text NOT NULL,
+                            `probability` smallint(6) NOT NULL,
+                            `deptartment` int(11) NOT NULL,
+                            `category` int(11) NOT NULL,
+                            `risk` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtRiskCauseID`),
+                            KEY `deptartment` (`deptartment`),
+                            KEY `category` (`category`),
+                            KEY `risk` (`risk`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_cause`
+                            ADD CONSTRAINT `riskmngmt_risk_cause_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_solution` (
+                            `RiskMngmtRiskCauseID` int(11) NOT NULL,
+                            `name` varchar(50) NOT NULL,
+                            `description` text NOT NULL,
+                            `probability` smallint(6) NOT NULL,
+                            `effect` decimal(11,4) NOT NULL,
+                            `cause` int(11) NOT NULL,
+                            `risk` int(11) NOT NULL,
+                            PRIMARY KEY (`RiskMngmtRiskCauseID`),
+                            KEY `cause` (`cause`),
+                            KEY `risk` (`risk`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_solution`
+                            ADD CONSTRAINT `riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`cause`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_cause` (`RiskMngmtRiskCauseID`),
+                            ADD CONSTRAINT `riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                    )->execute();
                     break;
             }
 

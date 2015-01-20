@@ -56,6 +56,7 @@ namespace Modules\Purchase\Admin {
                             ADD CONSTRAINT `purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
+                    // TODO: create reference between WE, RG and Order?????
                     /* These are the invoices that get created by the purchasing department */
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoices` (
@@ -81,6 +82,27 @@ namespace Modules\Purchase\Admin {
                             ADD CONSTRAINT `purchase_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
                             ADD CONSTRAINT `purchase_invoices_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`),
                             ADD CONSTRAINT `purchase_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    /* status - maybe something like already checked or no one from purchasing has seen this */
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_dnote` (
+                            `PurchaseDnoteID` int(11) NOT NULL AUTO_INCREMENT,
+                            `status` tinyint(1) DEFAULT NULL,
+                            `media` int(11) DEFAULT NULL,
+                            `supplier` int(11) DEFAULT NULL,
+                            `sname` varchar(32) DEFAULT NULL,
+                            `optained` datetime NOT NULL,
+                            `invoicedate` datetime NOT NULL,
+                            `internalref` int(11) NOT NULL,
+                            PRIMARY KEY (`PurchaseDnoteID`),
+                            KEY `media` (`media`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'purchase_dnote`
+                            ADD CONSTRAINT `purchase_dnote_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
                     )->execute();
                     break;
             }

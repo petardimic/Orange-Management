@@ -83,31 +83,34 @@ namespace Modules\Warehousing\Admin {
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
+                    // WE kann von client oder supplier kommen, deswegen type
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_arrival` (
                             `WarehousingArrivalID` int(11) NOT NULL AUTO_INCREMENT,
                             `arrivaldate` datetime DEFAULT NULL,
-                            `supplier` int(11) DEFAULT NULL,
+                            `from` int(11) DEFAULT NULL,
+                            `type` tinyint(1) DEFAULT NULL,
                             `media` int(11) DEFAULT NULL,
                             `pcondition` tinyint(1) DEFAULT NULL,
                             `acondition` tinyint(1) DEFAULT NULL,
                             `amount` tinyint(1) DEFAULT NULL,
                             `checked` int(11) DEFAULT NULL,
+                            `dnote` int(11) DEFAULT NULL,
                             PRIMARY KEY (`WarehousingArrivalID`),
-                            KEY `supplier` (`supplier`),
-                            KEY `checked` (`checked`)
+                            KEY `checked` (`checked`),
+                            KEY `dnote` (`dnote`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_1` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`id`),
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_2` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'account` (`id`);'
+                            ADD CONSTRAINT `warehousing_arrival_ibfk_1` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'account` (`id`),
+                            ADD CONSTRAINT `warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'account` (`id`);'
                     )->execute();
 
                     /* info: amount will get increased and reduced based on invoices -> will result in a high amount of entries where the amount is 0 -> long lookup times for available lot lookup?! */
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_article_stock` (
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_article_stock` (
                             `WarehousingArticleStockID` int(11) NOT NULL AUTO_INCREMENT,
                             `article` int(11) DEFAULT NULL,
                             `lot` varchar(256) DEFAULT NULL,
@@ -121,13 +124,68 @@ namespace Modules\Warehousing\Admin {
                             KEY `arrival` (`arrival`),
                             KEY `location` (`location`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'warehousing_stock_sublocation`
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_article_stock`
                             ADD CONSTRAINT `warehousing_article_stock_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article` (`WarehousingArticleID`),
                             ADD CONSTRAINT `warehousing_article_stock_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`),
                             ADD CONSTRAINT `warehousing_article_stock_ibfk_3` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_stock_location` (`WarehousingStockLocationID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_arrival_transfer` (
+                            `WarehousingArrivalTransferID` int(11) NOT NULL AUTO_INCREMENT,
+                            `location` int(11) DEFAULT NULL,
+                            `amount` int(11) DEFAULT NULL,
+                            `arrival` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`WarehousingArticleStockID`),
+                            KEY `location` (`location`),
+                            KEY `arrival` (`arrival`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer_single`
+                            ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_1` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_article_transfer` (
+                            `WarehousingArticleTransferID` int(11) NOT NULL AUTO_INCREMENT,
+                            `name` varchar(50) DEFAULT NULL,
+                            `creator` int(11) DEFAULT NULL,
+                            `created` datetime DEFAULT NULL,
+                            PRIMARY KEY (`WarehousingArticleTransferID`),
+                            KEY `creator` (`creator`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer`
+                            ADD CONSTRAINT `warehousing_article_transfer_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'warehousing_article_transfer_single` (
+                            `WarehousingArticleStockID` int(11) NOT NULL AUTO_INCREMENT,
+                            `old` int(11) DEFAULT NULL,
+                            `new` int(11) DEFAULT NULL,
+                            `amount` int(11) DEFAULT NULL,
+                            `transfer` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`WarehousingArticleStockID`),
+                            KEY `old` (`old`),
+                            KEY `new` (`new`),
+                            KEY `transfer` (`transfer`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer_single`
+                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_1` FOREIGN KEY (`old`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_2` FOREIGN KEY (`new`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_3` FOREIGN KEY (`transfer`) REFERENCES `' . $db->prefix . 'warehousing_article_transfer` (`WarehousingArticleTransferID`);'
                     )->execute();
 
                     // TODO: maybe consider chaning shipCountry varchar to size 55 (based on ISO 3166-1) (same goes for sales department tables)

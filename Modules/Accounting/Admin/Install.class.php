@@ -184,10 +184,12 @@ namespace Modules\Accounting\Admin {
                      *  payed-notok
                      * }
                      */
+                    /*
+                     * TODO: Purchasing can create. person who creates automatically get's permission for these to read.
+                     */
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accounting_invoices_process` (
                             `AccountingInvoiceProcessID` int(11) NOT NULL AUTO_INCREMENT,
-                            `arrival` int(11) DEFAULT NULL,
                             `media` int(11) DEFAULT NULL,
                             `type` tinyint(1) DEFAULT NULL,
                             `supplier` int(11) DEFAULT NULL,
@@ -201,14 +203,23 @@ namespace Modules\Accounting\Admin {
                             `duediscount` datetime NOT NULL,
                             `amount` decimal(11,3) NOT NULL,
                             `amountdiscount` decimal(11,3) NOT NULL,
+                            `order` int(11) DEFAULT NULL,
+                            `arrival` int(11) DEFAULT NULL,
+                            `dnote` int(11) DEFAULT NULL,
                             PRIMARY KEY (`AccountingInvoiceProcessID`),
-                            KEY `media` (`media`)
+                            KEY `media` (`media`),
+                            KEY `order` (`order`),
+                            KEY `arrival` (`arrival`),
+                            KEY `dnote` (`dnote`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'accounting_invoices_process`
-                            ADD CONSTRAINT `accounting_invoices_process_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
+                            ADD CONSTRAINT `accounting_invoices_process_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`),
+                            ADD CONSTRAINT `accounting_invoices_process_ibfk_2` FOREIGN KEY (`order`) REFERENCES `' . $db->prefix . 'purchase_invoices` (`PurchaseInvoiceID`),
+                            ADD CONSTRAINT `accounting_invoices_process_ibfk_3` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`),
+                            ADD CONSTRAINT `accounting_invoices_process_ibfk_4` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'purchase_dnote` (`PurchaseDnoteID`);'
                     )->execute();
 
                     $db->con->prepare(
