@@ -104,8 +104,7 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_1` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'account` (`id`),
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'account` (`id`);'
+                            ADD CONSTRAINT `warehousing_arrival_ibfk_1` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     /* info: amount will get increased and reduced based on invoices -> will result in a high amount of entries where the amount is 0 -> long lookup times for available lot lookup?! */
@@ -139,14 +138,14 @@ namespace Modules\Warehousing\Admin {
                             `location` int(11) DEFAULT NULL,
                             `amount` int(11) DEFAULT NULL,
                             `arrival` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`WarehousingArticleStockID`),
+                            PRIMARY KEY (`WarehousingArrivalTransferID`),
                             KEY `location` (`location`),
                             KEY `arrival` (`arrival`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer_single`
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_arrival_transfer`
                             ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_1` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
                             ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`);'
                     )->execute();
@@ -217,8 +216,8 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_shipping`
-                            ADD CONSTRAINT `warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $db->prefix . 'admin_address` (`AdminAddressID`),
-                            ADD CONSTRAINT `warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'account` (`id`);'
+                            ADD CONSTRAINT `warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $db->prefix . 'business_address` (`BusinessAddressID`),
+                            ADD CONSTRAINT `warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
                     )->execute();
 
                     break;

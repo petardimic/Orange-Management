@@ -217,11 +217,11 @@ namespace Modules\Sales\Admin {
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_batch` (
                             `SalesInvoiceAricleBatchID` int(11) NOT NULL AUTO_INCREMENT,
                             `article` int(11) NOT NULL,
-                            `stock` varchar(30) NOT NULL,
+                            `stock` int(11) NOT NULL,
                             `quantity` int(11) NOT NULL,
                             PRIMARY KEY (`SalesInvoiceAricleBatchID`),
                             KEY `article` (`article`),
-                            KEY `stock` (`invoice`)
+                            KEY `stock` (`stock`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 

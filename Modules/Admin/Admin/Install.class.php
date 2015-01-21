@@ -30,38 +30,6 @@ namespace Modules\Admin\Admin {
         {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'admin_company` (
-                            `AdminCompanyID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `name` varchar(50) DEFAULT NULL,
-                            PRIMARY KEY (`AdminCompanyID`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'admin_address` (
-                            `AdminAddressID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `name` varchar(50) DEFAULT NULL,
-                            `fao` varchar(30) DEFAULT NULL,
-                            `addr` varchar(50) DEFAULT NULL,
-                            `city` varchar(20) DEFAULT NULL,
-                            `zip` varchar(20) DEFAULT NULL,
-                            `state` varchar(20) DEFAULT NULL,
-                            `country` varchar(30) DEFAULT NULL,
-                            `company` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`AdminAddressID`),
-                            KEY `company` (`company`),
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'marketing_promotion_client`
-                            ADD CONSTRAINT `admin_address_ibfk_1` FOREIGN KEY (`company`) REFERENCES `' . $db->prefix . 'admin_company` (`AdminCompanyID`);'
-                    )->execute();
                     break;
             }
 

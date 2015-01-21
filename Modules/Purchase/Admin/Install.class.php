@@ -104,6 +104,13 @@ namespace Modules\Purchase\Admin {
                         'ALTER TABLE `' . $db->prefix . 'purchase_dnote`
                             ADD CONSTRAINT `purchase_dnote_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
                     )->execute();
+
+                    // TODO: FIX THIS AT least check if exists
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
+                            ADD CONSTRAINT `warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'purchase_dnote` (`PurchaseDnoteID`);'
+                    )->execute();
                     break;
             }
 
