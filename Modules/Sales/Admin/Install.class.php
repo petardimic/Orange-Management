@@ -161,6 +161,7 @@ namespace Modules\Sales\Admin {
                             `billCountry` varchar(30) DEFAULT NULL,
                             `type` tinyint(2) DEFAULT NULL,
                             `created` datetime DEFAULT NULL,
+                            `shippdate` datetime DEFAULT NULL,
                             `printed` datetime DEFAULT NULL,
                             `price` decimal(9,2) DEFAULT NULL,
                             `currency` varchar(3) DEFAULT NULL,
@@ -213,6 +214,7 @@ namespace Modules\Sales\Admin {
                             ADD CONSTRAINT `sales_invoice_article_ibfk_2` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
                     )->execute();
 
+                    // Picking item from warehouse and assign it to a article in an invoice (this allows multiple lots for one article in the invoice)
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_batch` (
                             `SalesInvoiceAricleBatchID` int(11) NOT NULL AUTO_INCREMENT,
@@ -229,6 +231,30 @@ namespace Modules\Sales\Admin {
                         'ALTER TABLE `' . $db->prefix . 'sales_invoice_article_batch`
                             ADD CONSTRAINT `sales_invoice_article_batch_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_invoice_article` (`SalesInvoiceAricleID`),
                             ADD CONSTRAINT `sales_invoice_article_batch_ibfk_2` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`);'
+                    )->execute();
+
+                    // Reserve articles in case they are not in stock or you want to ship this item on another day
+                    // stock relation may only get added if someone wants to ship something on a specific date
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_reserved` (
+                            `SalesInvoiceAricleReservedID` int(11) NOT NULL AUTO_INCREMENT,
+                            `invoice` int(11) NOT NULL,
+                            `article` int(11) NOT NULL,
+                            `stock` int(11) DEFAULT NULL,
+                            `amount` int(11) NOT NULL,
+                            `active` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`SalesInvoiceAricleReservedID`),
+                            KEY `invoice` (`invoice`),
+                            KEY `article` (`article`),
+                            KEY `stock` (`stock`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article_reserved`
+                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_1` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice_article` (`SalesInvoiceAricleID`),
+                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_2` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article` (`WarehousingArticleID`),
+                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_3` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`);'
                     )->execute();
                     break;
             }

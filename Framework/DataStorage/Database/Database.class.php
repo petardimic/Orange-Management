@@ -95,12 +95,6 @@ namespace Framework\DataStorage\Database {
                 $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_DATABASE;
                 $this->con    = null;
             }
-
-            try {
-                $this->con->query('SELECT 1 FROM ' . $this->prefix . 'settings LIMIT 1');
-            } catch(\PDOException $e) {
-                $this->status = \Framework\DataStorage\Database\DatabaseStatus::MISSING_TABLE;
-            }
         }
 
         /**

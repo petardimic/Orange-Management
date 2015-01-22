@@ -6,4 +6,5 @@ $MODLANG[5] = [
     "BatchPostings"   => "Batch Postings",
     "Creditors"       => "Creditors",
     "Debitors"        => "Debitors",
+    "Postings"        => "Postings",
 ];
