@@ -12,6 +12,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE])) {
 
     foreach($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE] as $key => $parent) {
         foreach($parent as $link) {
+            /** @var array $data */
             if($link['nav_parent'] == $data[1]) {
                 echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
                                                                          $link['nav_l0'],

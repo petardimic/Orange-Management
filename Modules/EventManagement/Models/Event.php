@@ -96,7 +96,7 @@ class Event implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
 
     public function getName()
     {
-        return $name;
+        return $this->name;
     }
 
     public function setName($name)

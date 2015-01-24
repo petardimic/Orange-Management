@@ -76,7 +76,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @para   array $data
+     * @param   array $data
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -86,6 +86,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */
+                /** @noinspection PhpUndefinedFieldInspection */
                 \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
             }
         }

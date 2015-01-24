@@ -245,14 +245,14 @@ class Install
     /**
      * Install the core module
      *
-     * @param array $module Array of all module to install
+     * @param array $modules Array of all module to install
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function installModules($module)
+    public function installModules($modules)
     {
-        foreach($module as $module) {
+        foreach($modules as $module) {
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
             \Framework\Install\Module::install($this->db, $module);
         }

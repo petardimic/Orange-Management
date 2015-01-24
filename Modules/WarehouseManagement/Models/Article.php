@@ -255,7 +255,7 @@ class Article implements \Framework\Object\MapperInterface, \Framework\Pattern\M
     /**
      * Set description
      *
-     * @param string $description Description of the article
+     * @param string $desc Description of the article
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

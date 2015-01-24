@@ -185,7 +185,7 @@ class Arrival implements \Framework\Object\MapperInterface, \Framework\Pattern\M
     /**
      * Set order
      *
-     * @return int
+     * @param int $order Order Id
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -211,7 +211,7 @@ class Arrival implements \Framework\Object\MapperInterface, \Framework\Pattern\M
     /**
      * Set From
      *
-     * @return \Framework\Datatypes\Address
+     * @param \Framework\Datatypes\Address $from Consignor
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -45,7 +45,7 @@ class Event implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
     /**
      * Created
      *
-     * @var datetime
+     * @var \Datetime
      * @since 1.0.0
      */
     private $created = null;
@@ -101,7 +101,7 @@ class Event implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
     /**
      * Occurence
      *
-     * @var \Modules\Calendar\OccurenceType
+     * @var \Modules\Calendar\Models\OccurrenceType
      * @since 1.0.0
      */
     private $occurence = null;

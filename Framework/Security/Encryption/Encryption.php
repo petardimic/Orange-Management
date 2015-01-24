@@ -262,6 +262,7 @@ class Encryption
         $bytes   = openssl_random_pseudo_bytes(16);
         $calcMac = hash_hmac('sha256', $this->hash($payload['iv'], $payload['value']), $bytes, true);
 
+        /** @noinspection PhpUndefinedFunctionInspection */
         return hash_equals(hash_hmac('sha256', $payload['mac'], $bytes, true), $calcMac);
     }
 
