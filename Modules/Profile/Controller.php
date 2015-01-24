@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Profile {
+namespace Modules\Profile;
     /**
      * Profile class
      *
@@ -95,4 +95,3 @@ namespace Modules\Profile {
             }
         }
     }
-}

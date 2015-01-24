@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News\Admin {
+namespace Modules\News\Admin;
     /**
      * Dummy class
      *
@@ -36,4 +36,3 @@ namespace Modules\News\Admin {
             $db->con->commit();
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Response {
+namespace Framework\Response;
     /**
      * Response interface
      *
@@ -16,5 +16,5 @@ namespace Framework\Response {
      * @since      1.0.0
      */
     interface ResponseInterface {
+
     }
-}

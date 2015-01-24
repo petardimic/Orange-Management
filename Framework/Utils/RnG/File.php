@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * File generator
      *
@@ -129,4 +129,3 @@ namespace Framework\Utils\RnG {
         {
         }
     }
-}

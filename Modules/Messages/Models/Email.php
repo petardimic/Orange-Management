@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Messages {
+namespace Modules\Messages;
     /**
      * Email interface
      *
@@ -29,4 +29,3 @@ namespace Modules\Messages {
 
         public function setStatus();
     }
-}

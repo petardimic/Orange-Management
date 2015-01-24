@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Http\Response {
+namespace Framework\Http\Response;
     /**
      * Request type enum
      *
@@ -21,5 +21,5 @@ namespace Framework\Http\Response {
         const JSON = 1; /* JSON */
         const SOCKET = 2; /* Socket */
         const CONSOLE = 3; /* Console */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Database {
+namespace Framework\DataStorage\Database;
     /**
      * Database handler
      *
@@ -188,4 +188,3 @@ namespace Framework\DataStorage\Database {
             }
         }
     }
-}

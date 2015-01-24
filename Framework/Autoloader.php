@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework {
+namespace Framework;
     spl_autoload_register('\Framework\Autoloader::default_autoloader');
 
     /**
@@ -36,4 +36,3 @@ namespace Framework {
             include __DIR__ . '/../' . $class . '.php';
         }
     }
-}

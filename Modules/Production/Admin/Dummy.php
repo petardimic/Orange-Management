@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Production\Admin {
+namespace Modules\Production\Admin;
     /**
      * Dummy class
      *
@@ -28,4 +28,3 @@ namespace Modules\Production\Admin {
             }
         }
     }
-}

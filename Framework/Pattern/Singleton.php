@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Pattern {
+namespace Framework\Pattern;
     /**
      * Singleton interface (pattern)
      *
@@ -35,4 +35,3 @@ namespace Framework\Pattern {
          */
         public function __clone();
     }
-}

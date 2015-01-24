@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Version {
+namespace Framework\Version;
     /**
      * Version class
      *
@@ -94,4 +94,3 @@ namespace Framework\Version {
             return 0;
         }
     }
-}

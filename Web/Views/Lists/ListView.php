@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views\Lists {
+namespace Web\Views\Lists;
     /**
      * List view
      *
@@ -227,4 +227,3 @@ namespace Web\Views\Lists {
             $this->elements = $elements;
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * DateTime generator
      *
@@ -36,4 +36,3 @@ namespace Framework\Utils\RnG {
             return new \DateTime(date('Y-m-d H:i:s', rand($startDate, $endDate)));
         }
     }
-}

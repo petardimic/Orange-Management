@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Budgeting {
+namespace Modules\Budgeting;
     /**
      * Controlling class
      *
@@ -99,4 +99,3 @@ namespace Modules\Budgeting {
             }
         }
     }
-}

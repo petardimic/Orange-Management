@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Localization {
+namespace Framework\Localization;
     /**
      * Localization class
      *
@@ -173,4 +173,3 @@ namespace Framework\Localization {
             }
         }
     }
-}

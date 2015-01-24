@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News {
+namespace Modules\News;
     /**
      * News class
      *
@@ -102,4 +102,3 @@ namespace Modules\News {
             }
         }
     }
-}

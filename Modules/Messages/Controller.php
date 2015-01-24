@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Messages {
+namespace Modules\Messages;
     /**
      * Sales class
      *
@@ -81,4 +81,3 @@ namespace Modules\Messages {
             }
         }
     }
-}

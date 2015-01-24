@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * Modules class
      *
@@ -207,4 +207,3 @@ namespace Framework\Module {
         {
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources\Models {
+namespace Modules\HumanResources\Models;
     /**
      * Staff list class
      *
@@ -91,4 +91,3 @@ namespace Modules\HumanResources\Models {
         {
         }
     }
-}

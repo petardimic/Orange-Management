@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar\Admin {
+namespace Modules\Calendar\Admin;
     /**
      * Calendar install class
      *
@@ -121,4 +121,3 @@ namespace Modules\Calendar\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

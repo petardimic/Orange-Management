@@ -1,5 +1,5 @@
 <?php
-namespace Modules\RiskManagement {
+namespace Modules\RiskManagement;
     /**
      * RiskManagement class
      *
@@ -215,4 +215,3 @@ namespace Modules\RiskManagement {
             }
         }
     }
-}

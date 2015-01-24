@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * Text generator
      *
@@ -490,5 +490,4 @@ namespace Framework\Utils\RnG {
             return $formatting;
         }
     }
-}
 

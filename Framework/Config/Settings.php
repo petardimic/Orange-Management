@@ -1,6 +1,6 @@
 <?php
 // TODO: Maybe remove this class entirely
-namespace Framework\Config {
+namespace Framework\Config;
     /**
      * Settings class
      *
@@ -95,4 +95,3 @@ namespace Framework\Config {
             }
         }
     }
-}

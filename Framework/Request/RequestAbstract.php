@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request class
      *
@@ -103,4 +103,3 @@ namespace Framework\Request {
             return $this->lang;
         }
     }
-}

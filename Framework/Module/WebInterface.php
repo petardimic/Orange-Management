@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * Web module interface
      *
@@ -25,4 +25,3 @@ namespace Framework\Module {
          */
         public function callWeb();
     }
-}

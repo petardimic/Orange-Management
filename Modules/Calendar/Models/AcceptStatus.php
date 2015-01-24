@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar\Models {
+namespace Modules\Calendar\Models;
     /**
      * Accept status enum
      *
@@ -19,5 +19,5 @@ namespace Modules\Calendar\Models {
     {
         const ACCEPTED = 0;
         const DENIED   = 1;
+
     }
-}

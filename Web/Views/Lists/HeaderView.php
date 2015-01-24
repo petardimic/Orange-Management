@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views\Lists {
+namespace Web\Views\Lists;
     /**
      * Header view
      *
@@ -18,6 +18,4 @@ namespace Web\Views\Lists {
     class HeaderView extends \Framework\Views\ViewAbstract
     {
 
-
     }
-}

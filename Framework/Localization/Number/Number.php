@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Localization\Number {
+namespace Framework\Localization\Number;
     /**
      * Localization class
      *
@@ -27,4 +27,3 @@ namespace Framework\Localization\Number {
         {
         }
     }
-}

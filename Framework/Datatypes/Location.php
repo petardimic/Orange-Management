@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Datatypes {
+namespace Framework\Datatypes;
     /**
      * Location class
      *
@@ -207,4 +207,3 @@ namespace Framework\Datatypes {
             $this->geo = $geo;
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Production {
+namespace Modules\Production;
     /**
      * Sales class
      *
@@ -129,4 +129,3 @@ namespace Modules\Production {
             }
         }
     }
-}

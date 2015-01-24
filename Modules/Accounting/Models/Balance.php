@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Balance class
      *
@@ -138,4 +138,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

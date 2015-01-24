@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Install {
+namespace Framework\Install;
     /**
      * Dummy data factory
      *
@@ -38,4 +38,3 @@ namespace Framework\Install {
             }
         }
     }
-}

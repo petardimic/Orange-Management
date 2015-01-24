@@ -1,5 +1,5 @@
 <?php
-namespace Framework\System {
+namespace Framework\System;
     /**
      * Array parser class
      *
@@ -140,4 +140,3 @@ namespace Framework\System {
             return null;
         }
     }
-}

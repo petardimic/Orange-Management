@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object\Group {
+namespace Framework\Object\Group;
     /**
      * Group class
      *
@@ -256,4 +256,3 @@ namespace Framework\Object\Group {
             $this->permissions = $plain['permission'];
         }
     }
-}

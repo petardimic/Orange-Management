@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Purchase\Admin {
+namespace Modules\Purchase\Admin;
     /**
      * Dummy class
      *
@@ -41,4 +41,3 @@ namespace Modules\Purchase\Admin {
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_articles` (`article`) VALUES ' . $articles)->execute();
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request page enum
      *
@@ -34,5 +34,5 @@ namespace Framework\Request {
         const PROFILE  = 'profile';     /* User profile page */
         const CHAT     = 'chat';        /* Chat page */
         const GALLERY  = 'gallery';     /* Chat page */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Content {
+namespace Modules\Content;
     /**
      * Navigation class
      *
@@ -54,4 +54,3 @@ namespace Modules\Content {
             }
         }
     }
-}

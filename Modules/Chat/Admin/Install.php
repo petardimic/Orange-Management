@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Chat\Admin {
+namespace Modules\Chat\Admin;
     /**
      * Navigation class
      *
@@ -71,4 +71,3 @@ namespace Modules\Chat\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

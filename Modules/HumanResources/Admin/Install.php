@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources\Admin {
+namespace Modules\HumanResources\Admin;
     /**
      * Navigation class
      *
@@ -130,22 +130,9 @@ namespace Modules\HumanResources\Admin {
                         'ALTER TABLE `' . $db->prefix . 'hr_planning_staff`
                             ADD CONSTRAINT `' . $db->prefix . 'hr_planning_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff_clocking` (
-                            `HRStaffClockingID` int(11) NOT NULL AUTO_INCREMENT,
-                            `person` int(11) DEFAULT NULL,
-                            `start` datetime DEFAULT NULL,
-                            `end` datetime DEFAULT NULL,
-                            `type` tinyint(1) NOT NULL,
-                            PRIMARY KEY (`HRStaffClockingID`),
-                            KEY `person` (`person`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
-                    )->execute();
                     break;
             }
 
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Purchase {
+namespace Modules\Purchase;
     /**
      * Purchase class
      *
@@ -188,4 +188,3 @@ namespace Modules\Purchase {
             }
         }
     }
-}

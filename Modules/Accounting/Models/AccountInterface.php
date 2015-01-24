@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Account interface
      *
@@ -37,4 +37,3 @@ namespace Modules\Accounting\Models {
          */
         public function closeOut();
     }
-}

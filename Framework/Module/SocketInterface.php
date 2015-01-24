@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * Socket module interface
      *
@@ -25,4 +25,3 @@ namespace Framework\Module {
          */
         public function callSock();
     }
-}

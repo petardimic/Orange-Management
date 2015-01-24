@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Database {
+namespace Framework\DataStorage\Database;
     /**
      * Database type enum
      *
@@ -24,5 +24,5 @@ namespace Framework\DataStorage\Database {
         const PGSQL  = 2; /* PostgreSQL */
         const ORACLE = 3; /* Oracle */
         const SQLSRV = 4; /* Microsoft SQL Server */
+
     }
-}

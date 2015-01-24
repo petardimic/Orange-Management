@@ -1,5 +1,5 @@
 <?php
-namespace Modules\BackendDashboard {
+namespace Modules\BackendDashboard;
     /**
      * Dashboard class
      *
@@ -69,4 +69,3 @@ namespace Modules\BackendDashboard {
             }
         }
     }
-}

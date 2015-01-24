@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Sales\Models {
+namespace Modules\Sales\Models;
     /**
      * Sales client list class
      *
@@ -90,4 +90,3 @@ namespace Modules\Sales\Models {
             return $result;
         }
     }
-}

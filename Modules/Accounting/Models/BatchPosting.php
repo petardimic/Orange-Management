@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * BatchPosting class
      *
@@ -275,4 +275,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

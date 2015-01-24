@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Purchase\Models {
+namespace Modules\Purchase\Models;
     /**
      * Purchase article list class
      *
@@ -84,4 +84,3 @@ namespace Modules\Purchase\Models {
             return $result;
         }
     }
-}

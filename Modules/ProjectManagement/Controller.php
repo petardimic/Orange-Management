@@ -1,5 +1,5 @@
 <?php
-namespace Modules\ProjectManagement {
+namespace Modules\ProjectManagement;
     /**
      * Sales class
      *
@@ -85,4 +85,3 @@ namespace Modules\ProjectManagement {
             }
         }
     }
-}

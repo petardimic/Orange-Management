@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing\Models {
+namespace Modules\Warehousing\Models;
     /**
      * Arrival status enum
      *
@@ -22,5 +22,5 @@ namespace Modules\Warehousing\Models {
         const CHECKING = 2;
         const SORTING  = 3;
         const FINISHED = 4;
+
     }
-}

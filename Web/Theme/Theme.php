@@ -1,5 +1,5 @@
 <?php
-namespace Web\Theme {
+namespace Web\Theme;
     /**
      * Theme class
      *
@@ -68,4 +68,3 @@ namespace Web\Theme {
             }
         }
     }
-}

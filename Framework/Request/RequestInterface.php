@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request interface
      *
@@ -97,4 +97,3 @@ namespace Framework\Request {
          */
         public function getOrigin();
     }
-}

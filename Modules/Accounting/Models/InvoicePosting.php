@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Invoice posting class
      *
@@ -77,4 +77,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Controlling {
+namespace Modules\Controlling;
     /**
      * Controlling class
      *
@@ -73,4 +73,3 @@ namespace Modules\Controlling {
             }
         }
     }
-}

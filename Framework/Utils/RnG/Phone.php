@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * Phone generator
      *
@@ -54,4 +54,3 @@ namespace Framework\Utils\RnG {
             return $numberString;
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Auth {
+namespace Framework\Auth;
     /**
      * Auth interface
      *
@@ -52,4 +52,3 @@ namespace Framework\Auth {
          */
         public function logout($uid);
     }
-}

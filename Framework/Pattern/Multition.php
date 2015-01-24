@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Pattern {
+namespace Framework\Pattern;
     /**
      * Multition interface (pattern)
      *
@@ -25,4 +25,3 @@ namespace Framework\Pattern {
          */
         public function __clone();
     }
-}

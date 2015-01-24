@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing\Models {
+namespace Modules\Warehousing\Models;
     /**
      * Counting list class
      *
@@ -73,4 +73,3 @@ namespace Modules\Warehousing\Models {
         {
         }
     }
-}

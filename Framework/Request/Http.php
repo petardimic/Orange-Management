@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request class
      *
@@ -231,4 +231,3 @@ namespace Framework\Request {
                 || $_SERVER['SERVER_PORT'] == $port;
         }
     }
-}

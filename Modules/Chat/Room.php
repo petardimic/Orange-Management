@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Chat {
+namespace Modules\Chat;
     /**
      * Room class
      *
@@ -182,4 +182,3 @@ namespace Modules\Chat {
         {
         }
     }
-}

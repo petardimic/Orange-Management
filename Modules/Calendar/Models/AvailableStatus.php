@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar\Models {
+namespace Modules\Calendar\Models;
     /**
      * Available status enum
      *
@@ -20,5 +20,5 @@ namespace Modules\Calendar\Models {
         const AVAILABLE = 0;
         const BUSY      = 1;
         const AWAY      = 2;
+
     }
-}

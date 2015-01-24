@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * OS type enum
      *
@@ -42,5 +42,5 @@ namespace Framework\Request {
         const ANDROID = 'android'; /* Android */
         const BLACKBERRY = 'blackberry'; /* Blackberry */
         const MOBILE = 'webos'; /* Mobile */
+
     }
-}

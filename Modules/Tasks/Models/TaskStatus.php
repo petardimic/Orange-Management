@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Tasks\Models {
+namespace Modules\Tasks\Models;
     /**
      * Task status enum
      *
@@ -23,5 +23,5 @@ namespace Modules\Tasks\Models {
         const SUSPENDED = 3;
         const CANCELED  = 4;
         const DONE      = 5;
+
     }
-}

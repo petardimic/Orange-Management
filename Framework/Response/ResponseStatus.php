@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Response {
+namespace Framework\Response;
     /**
      * Response status enum
      *
@@ -21,5 +21,5 @@ namespace Framework\Response {
         const FAILURE = 1; /* Response failed (unknown reason) */
         const WRONG_PERMISSION = 2; /* Permission lacking */
         const WRONG_REQUEST = 3; /* No response for this request */
+
     }
-}

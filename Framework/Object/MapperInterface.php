@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object {
+namespace Framework\Object;
     /**
      * Object interface
      *
@@ -56,4 +56,3 @@ namespace Framework\Object {
          */
         public function update();
     }
-}

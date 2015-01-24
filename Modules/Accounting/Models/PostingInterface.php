@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Posting interface
      *
@@ -17,5 +17,5 @@ namespace Modules\Accounting\Models {
      */
     interface PostingInterface extends \Framework\Utils\IO\ExchangeInterface
     {
+
     }
-}

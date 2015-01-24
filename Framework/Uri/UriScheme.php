@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Uri {
+namespace Framework\Uri;
     /**
      * Uri scheme
      *
@@ -32,5 +32,5 @@ namespace Framework\Uri {
         const GEO = 12; /* Geo location */
         const MARKET = 13; /* Android Market */
         const ITMS = 14; /* iTunes */
+
     }
-}

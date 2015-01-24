@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Surveys {
+namespace Modules\Surveys;
     /**
      * Section class
      *
@@ -116,4 +116,3 @@ namespace Modules\Surveys {
         {
         }
     }
-}

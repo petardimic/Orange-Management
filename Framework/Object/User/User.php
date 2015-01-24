@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object\User {
+namespace Framework\Object\User;
     /**
      * User class
      *
@@ -491,4 +491,3 @@ namespace Framework\Object\User {
             $this->groups        = $plain['groups']; /* TODO: This is wrong... check this later */
         }
     }
-}

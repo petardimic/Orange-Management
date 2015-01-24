@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Support {
+namespace Modules\Support;
     /**
      * Support status enum
      *
@@ -23,5 +23,5 @@ namespace Modules\Support {
         const UNSOLVABLE = 3;
         const SOLVED     = 4;
         const CLOSED     = 5;
+
     }
-}

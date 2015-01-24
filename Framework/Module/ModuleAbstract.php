@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * Module abstraction class
      *
@@ -83,4 +83,3 @@ namespace Framework\Module {
             return static::$dependencies;
         }
     }
-}

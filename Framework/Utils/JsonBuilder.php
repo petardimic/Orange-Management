@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils {
+namespace Framework\Utils;
     /**
      * Json builder class
      *
@@ -89,4 +89,3 @@ namespace Framework\Utils {
             return json_encode($this->json);
         }
     }
-}

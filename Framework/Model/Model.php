@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Model {
+namespace Framework\Model;
     /**
      * Model class
      *
@@ -267,4 +267,3 @@ namespace Framework\Model {
                 </div>';
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\EventManagement {
+namespace Modules\EventManagement;
     /**
      * Event class
      *
@@ -202,4 +202,3 @@ namespace Modules\EventManagement {
         {
         }
     }
-}

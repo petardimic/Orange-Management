@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Install {
+namespace Framework\Install;
     /**
      * Install class
      *
@@ -408,4 +408,3 @@ namespace Framework\Install {
             }
         }
     }
-}

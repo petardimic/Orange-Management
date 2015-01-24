@@ -1,5 +1,5 @@
 <?php
-namespace Framework\System {
+namespace Framework\System;
     /**
      * Filesystem class
      *
@@ -126,4 +126,3 @@ namespace Framework\System {
             return $size;
         }
     }
-}

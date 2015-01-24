@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils {
+namespace Framework\Utils;
     /**
      * Array utils
      *
@@ -84,4 +84,3 @@ namespace Framework\Utils {
             return $found;
         }
     }
-}

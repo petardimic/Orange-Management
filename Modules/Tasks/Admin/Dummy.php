@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Tasks\Admin {
+namespace Modules\Tasks\Admin;
     /**
      * Dummy class
      *
@@ -43,4 +43,3 @@ namespace Modules\Tasks\Admin {
             $db->con->commit();
         }
     }
-}

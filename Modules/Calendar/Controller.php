@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar {
+namespace Modules\Calendar;
     /**
      * Sales class
      *
@@ -77,4 +77,3 @@ namespace Modules\Calendar {
             }
         }
     }
-}

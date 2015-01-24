@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Cache {
+namespace Framework\DataStorage\Cache;
     /**
      * Memcache class
      *
@@ -146,4 +146,3 @@ namespace Framework\DataStorage\Cache {
             $this->close();
         }
     }
-}

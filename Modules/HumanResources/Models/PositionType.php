@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources\Models {
+namespace Modules\HumanResources\Models;
     /**
      * Position type enum
      *
@@ -25,5 +25,5 @@ namespace Modules\HumanResources\Models {
         const ASSISTANT  = 5;
         const TEAMLEADER = 6;
         const HEAD       = 7;
+
     }
-}

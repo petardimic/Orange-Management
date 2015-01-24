@@ -1,5 +1,5 @@
 <?php
-namespace Framework {
+namespace Framework;
     /**
      * Controller class
      *
@@ -104,5 +104,5 @@ namespace Framework {
          * @since 1.0.0
          */
         public $event = null;
+
     }
-}

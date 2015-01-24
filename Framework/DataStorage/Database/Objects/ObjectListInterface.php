@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Database\Objects {
+namespace Framework\DataStorage\Database\Objects;
     /**
      * Object list interface
      *
@@ -23,4 +23,3 @@ namespace Framework\DataStorage\Database\Objects {
 
         public function instantiate();
     }
-}

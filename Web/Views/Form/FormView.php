@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views\Form {
+namespace Web\Views\Form;
     /**
      * Form view
      *
@@ -18,5 +18,5 @@ namespace Web\Views\Form {
     class FormView extends \Framework\Views\ViewAbstract
     {
         private $title = null;
+
     }
-}

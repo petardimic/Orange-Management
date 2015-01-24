@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Sales\Models {
+namespace Modules\Sales\Models;
     /**
      * Sales invoice class
      *
@@ -476,4 +476,3 @@ namespace Modules\Sales\Models {
             $this->status = $status;
         }
     }
-}

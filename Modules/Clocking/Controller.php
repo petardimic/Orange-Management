@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Clocking {
+namespace Modules\Clocking;
     /**
      * Navigation class
      *
@@ -60,4 +60,3 @@ namespace Modules\Clocking {
         {
         }
     }
-}

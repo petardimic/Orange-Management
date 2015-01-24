@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Browser type enum
      *
@@ -28,5 +28,5 @@ namespace Framework\Request {
         const MAXTHON = 'maxthon'; /* Maxthon */
         const KONQUEROR = 'konqueror'; /* Konqueror */
         const HANDHELD = 'mobile'; /* Handheld Browser */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\API\Admin {
+namespace Modules\API\Admin;
     /**
      * Navigation class
      *
@@ -30,4 +30,3 @@ namespace Modules\API\Admin {
         {
         }
     }
-}

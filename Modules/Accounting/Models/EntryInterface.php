@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Entry interface
      *
@@ -17,5 +17,5 @@ namespace Modules\Accounting\Models {
      */
     interface EntryInterface
     {
+
     }
-}

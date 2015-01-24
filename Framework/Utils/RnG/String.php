@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * String generator
      *
@@ -42,4 +42,3 @@ namespace Framework\Utils\RnG {
             return $randomString;
         }
     }
-}

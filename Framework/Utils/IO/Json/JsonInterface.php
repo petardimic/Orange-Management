@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\IO\Json {
+namespace Framework\Utils\IO\Json;
     /**
      * Cvs interface
      *
@@ -37,4 +37,3 @@ namespace Framework\Utils\IO\Json {
          */
         public function importJson($path);
     }
-}

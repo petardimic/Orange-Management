@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Navigation\Admin {
+namespace Modules\Navigation\Admin;
     /**
      * Navigation class
      *
@@ -117,4 +117,3 @@ namespace Modules\Navigation\Admin {
             }
         }
     }
-}

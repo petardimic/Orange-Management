@@ -1,5 +1,5 @@
 <?php
-namespace Modules\AccountsPayable {
+namespace Modules\AccountsPayable;
     /**
      * Sales class
      *
@@ -76,4 +76,3 @@ namespace Modules\AccountsPayable {
         {
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\IO\Pdf {
+namespace Framework\Utils\IO\Pdf;
     /**
      * Pdf interface
      *
@@ -27,4 +27,3 @@ namespace Framework\Utils\IO\Pdf {
          */
         public function exportPdf($path);
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Sales\Models {
+namespace Modules\Sales\Models;
     /**
      * Invoice types enum
      *
@@ -21,5 +21,5 @@ namespace Modules\Sales\Models {
         const CONTRACT_NOTE = 1;
         const DELIVERY_NOTE = 2;
         const BILL          = 3;
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Validation {
+namespace Framework\Validation;
     /**
      * Validator interface
      *
@@ -39,4 +39,3 @@ namespace Framework\Validation {
          */
         public static function getMessage();
     }
-}

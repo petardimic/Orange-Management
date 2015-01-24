@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Chat {
+namespace Modules\Chat;
     /**
      * Room type enum
      *
@@ -20,5 +20,5 @@ namespace Modules\Chat {
         const PUBLIC_CHAT  = 0;
         const PRIVATE_CHAT = 1;
         const TEMP_CHAT    = 2;
+
     }
-}

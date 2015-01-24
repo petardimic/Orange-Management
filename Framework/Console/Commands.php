@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Console {
+namespace Framework\Console;
     /**
      * Commands class
      *
@@ -109,4 +109,3 @@ namespace Framework\Console {
             return $this->count;
         }
     }
-}

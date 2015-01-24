@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Uri {
+namespace Framework\Uri;
     /**
      * Uri interface
      *
@@ -78,4 +78,3 @@ namespace Framework\Uri {
          */
         public function resolve($base);
     }
-}

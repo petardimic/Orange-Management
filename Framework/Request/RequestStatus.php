@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request status enum
      *
@@ -19,5 +19,5 @@ namespace Framework\Request {
     {
         const OK = 0; /* Request is OK */
         const FAILURE = 1; /* Request failed (unknown reason) */
+
     }
-}

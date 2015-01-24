@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object\User {
+namespace Framework\Object\User;
     /**
      * User type enum
      *
@@ -22,5 +22,5 @@ namespace Framework\Object\User {
         const COMPANY = 2; /* Account belongs to a company */
         const GROUP = 3; /* Account belongs to a group */
         const CHILD = 4; /* Child account of existing account (e.g. employees of company) */
+
     }
-}

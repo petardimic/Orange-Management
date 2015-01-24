@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * Name generator
      *
@@ -4442,4 +4442,3 @@ namespace Framework\Utils\RnG {
             return self::$names[$origin][$type[$rndType]][rand(0, count(self::$names[$origin][$type[$rndType]]) - 1)];
         }
     }
-}

@@ -1,6 +1,6 @@
 <?php
 /* This logging class will not be in the release or dev version!!!! Use a logging library/framework for that */
-namespace Framework\Log {
+namespace Framework\Log;
     /**
      * Logging class
      *
@@ -200,4 +200,3 @@ namespace Framework\Log {
             uasort($timings, [$this, 'orderSort']);
         }
     }
-}

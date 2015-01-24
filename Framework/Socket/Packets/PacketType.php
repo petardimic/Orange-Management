@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket\Packets {
+namespace Framework\Socket\Packets;
     /**
      * Packet type enum
      *
@@ -28,5 +28,5 @@ namespace Framework\Socket\Packets {
         const LOGOUT     = 8; /* Logout (server/sender) */
         const ACCMODIFY  = 9; /* Account modification (server/sender (admin)/user) */
         const MODULE     = 999999999; /* Module packet ??? */
+
     }
-}

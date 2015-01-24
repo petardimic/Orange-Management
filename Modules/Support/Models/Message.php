@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Support {
+namespace Modules\Support;
     /**
      * Issue class
      *
@@ -134,4 +134,3 @@ namespace Modules\Support {
         {
         }
     }
-}

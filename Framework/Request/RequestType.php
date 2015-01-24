@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request type enum
      *
@@ -25,5 +25,5 @@ namespace Framework\Request {
         const DELETE = 'DELETE'; /* DELETE */
         const HEAD   = 'HEAD';   /* HEAD */
         const TRACE  = 'TRACE';  /* TRACE */
+
     }
-}

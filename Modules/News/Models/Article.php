@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News\Models {
+namespace Modules\News\Models;
     /**
      * News article class
      *
@@ -282,4 +282,3 @@ namespace Modules\News\Models {
         {
         }
     }
-}

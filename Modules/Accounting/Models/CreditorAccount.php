@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Creditor account class
      *
@@ -29,4 +29,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Surveys {
+namespace Modules\Surveys;
     /**
      * Answer class
      *
@@ -130,4 +130,3 @@ namespace Modules\Surveys {
         {
         }
     }
-}

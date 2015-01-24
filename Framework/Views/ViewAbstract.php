@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Views {
+namespace Framework\Views;
     /**
      * List view
      *
@@ -126,4 +126,3 @@ namespace Framework\Views {
             return ob_get_clean();
         }
     }
-}

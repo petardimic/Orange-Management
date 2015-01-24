@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Validation {
+namespace Framework\Validation;
     /**
      * Validator abstract
      *
@@ -35,4 +35,3 @@ namespace Framework\Validation {
             return (bool) preg_match('/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value);
         }
     }
-}

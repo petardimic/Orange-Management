@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket\Packets {
+namespace Framework\Socket\Packets;
     /**
      * Server class
      *
@@ -171,4 +171,3 @@ namespace Framework\Socket\Packets {
         {
         }
     }
-}

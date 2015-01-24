@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Cache {
+namespace Framework\DataStorage\Cache;
     /**
      * Cache interface
      *
@@ -111,4 +111,3 @@ namespace Framework\DataStorage\Cache {
          */
         public function getThreshold();
     }
-}

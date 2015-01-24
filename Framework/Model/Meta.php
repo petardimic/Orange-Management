@@ -1,3 +1,2 @@
 <?php
-namespace Framework\Model {
-}
+namespace Framework\Model;

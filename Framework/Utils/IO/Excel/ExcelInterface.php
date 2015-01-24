@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\IO\Excel {
+namespace Framework\Utils\IO\Excel;
     /**
      * Excel interface
      *
@@ -37,4 +37,3 @@ namespace Framework\Utils\IO\Excel {
          */
         public function importExcel($path);
     }
-}

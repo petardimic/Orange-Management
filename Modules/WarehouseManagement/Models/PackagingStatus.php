@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing\Models {
+namespace Modules\Warehousing\Models;
     /**
      * Packaging status enum
      *
@@ -22,5 +22,5 @@ namespace Modules\Warehousing\Models {
         const PACKED    = 2;
         const SUSPENDED = 3;
         const CANCELED  = 4;
+
     }
-}

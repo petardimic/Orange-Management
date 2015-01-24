@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Navigation\Models {
+namespace Modules\Navigation\Models;
     /**
      * Navigation type enum
      *
@@ -23,5 +23,5 @@ namespace Modules\Navigation\Models {
         const TAB          = 4;
         const CONTENT_SIDE = 5;
         const BOTTOM       = 6;
+
     }
-}

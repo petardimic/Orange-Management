@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Validation {
+namespace Framework\Validation;
     /**
      * Validator abstract
      *
@@ -35,4 +35,3 @@ namespace Framework\Validation {
             return filter_var($value, FILTER_VALIDATE_IP);
         }
     }
-}

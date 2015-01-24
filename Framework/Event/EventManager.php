@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Event {
+namespace Framework\Event;
     /**
      * EventManager class
      *
@@ -130,4 +130,3 @@ namespace Framework\Event {
             return count($this->events);
         }
     }
-}

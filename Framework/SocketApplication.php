@@ -1,5 +1,5 @@
 <?php
-namespace Framework {
+namespace Framework;
     /**
      * Controller class
      *
@@ -49,4 +49,3 @@ namespace Framework {
             $socket->run();
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Security\Encryption {
+namespace Framework\Security\Encryption;
     /**
      * Encrpyion/Decryption class
      *
@@ -406,4 +406,3 @@ namespace Framework\Security\Encryption {
             }
         }
     }
-}

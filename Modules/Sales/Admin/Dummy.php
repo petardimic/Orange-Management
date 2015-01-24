@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Sales\Admin {
+namespace Modules\Sales\Admin;
     /**
      * Dummy class
      *
@@ -41,4 +41,3 @@ namespace Modules\Sales\Admin {
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_articles` (`class`, `group`, `subgroup`, `article`) VALUES ' . $articles)->execute();
         }
     }
-}

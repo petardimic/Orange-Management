@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Tasks {
+namespace Modules\Tasks;
     /**
      * Task class
      *
@@ -100,4 +100,3 @@ namespace Modules\Tasks {
             }
         }
     }
-}

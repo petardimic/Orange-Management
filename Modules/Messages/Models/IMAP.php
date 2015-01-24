@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Messages {
+namespace Modules\Messages;
     /**
      * IMAP class
      *
@@ -53,4 +53,3 @@ namespace Modules\Messages {
             // TODO: Implement setStatus() method.
         }
     }
-}

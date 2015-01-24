@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * Module class
      *
@@ -45,4 +45,3 @@ namespace Framework\Module {
          */
         public function callPull();
     }
-}

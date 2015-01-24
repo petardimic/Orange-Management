@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Media\Admin {
+namespace Modules\Media\Admin;
     /**
      * Dummy class
      *
@@ -33,4 +33,3 @@ namespace Modules\Media\Admin {
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'media` (`name`, `file`, `type`, `size`, `creator`, `created`) VALUES ' . $dataString)->execute();
         }
     }
-}

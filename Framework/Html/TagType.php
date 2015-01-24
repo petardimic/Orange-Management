@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Html {
+namespace Framework\Html;
     /**
      * Tag type enum
      *
@@ -24,5 +24,5 @@ namespace Framework\Html {
         const TEXTAREA = 4; /* <textarea>; */
         const SELECT   = 5; /* <select>; */
         const LABEL    = 6; /* <label>; */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Auth {
+namespace Framework\Auth;
     /**
      * Login return types enum
      *
@@ -29,5 +29,5 @@ namespace Framework\Auth {
         const TIMEOUTED            = 7; /* User received a timeout and can not log in until a certain date */
         const BANNED               = 8; /* User is banned */
         const INACTIVE             = 9; /* User is inactive */
+
     }
-}

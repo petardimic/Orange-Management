@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\Converter {
+namespace Framework\Utils\Converter;
     /**
      * File converter
      *
@@ -50,4 +50,3 @@ namespace Framework\Utils\Converter {
             }
         }
     }
-}

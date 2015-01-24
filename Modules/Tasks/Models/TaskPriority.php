@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Tasks\Models {
+namespace Modules\Tasks\Models;
     /**
      * Task priority enum
      *
@@ -22,5 +22,5 @@ namespace Modules\Tasks\Models {
         const MEDIUM = 3;
         const HIGH   = 4;
         const VHIGH  = 5;
+
     }
-}

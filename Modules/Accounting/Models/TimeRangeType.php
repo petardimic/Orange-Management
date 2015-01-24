@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Time range type enum
      *
@@ -21,5 +21,5 @@ namespace Modules\Accounting\Models {
         const DUE_DATE        = 1; /* Date of when the entry is due (only for invoices) */
         const RECEIPT_DATE    = 2; /* Date of the receipt */
         const ASSOCIATED_DATE = 3; /* Date of the association (e.g. when did the articles arrive) */
+
     }
-}

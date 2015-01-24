@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket\Server {
+namespace Framework\Socket\Server;
     /**
      * Server class
      *
@@ -212,4 +212,3 @@ namespace Framework\Socket\Server {
             return false;
         }
     }
-}

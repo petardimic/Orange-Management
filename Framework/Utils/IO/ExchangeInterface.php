@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\IO {
+namespace Framework\Utils\IO;
     /**
      * Exchange interface
      *
@@ -17,5 +17,5 @@ namespace Framework\Utils\IO {
      */
     interface ExchangeInterface extends \Framework\Utils\IO\Cvs\CvsInterface, \Framework\Utils\IO\Json\JsonInterface, \Framework\Utils\IO\Excel\ExcelInterface, \Framework\Utils\IO\Pdf\PdfInterface
     {
+
     }
-}

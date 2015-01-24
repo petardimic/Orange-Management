@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Account abstraction class
      *
@@ -82,4 +82,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

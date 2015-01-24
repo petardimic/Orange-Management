@@ -1,5 +1,5 @@
 <?php
-namespace Modules\AccountsPayable\Admin {
+namespace Modules\AccountsPayable\Admin;
     /**
      * Accounts payable install class
      *
@@ -49,4 +49,3 @@ namespace Modules\AccountsPayable\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

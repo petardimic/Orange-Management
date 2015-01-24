@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Billing\Admin {
+namespace Modules\Billing\Admin;
     /**
      * Install warehousing specific tables
      *
@@ -75,4 +75,3 @@ namespace Modules\Billing\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

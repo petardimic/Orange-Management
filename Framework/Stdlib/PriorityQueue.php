@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Stdlib {
+namespace Framework\Stdlib;
     /**
      * PriorityQueue class
      *
@@ -189,4 +189,3 @@ namespace Framework\Stdlib {
             $this->count = count($this->queue);
         }
     }
-}

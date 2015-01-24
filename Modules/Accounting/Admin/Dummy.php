@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Admin {
+namespace Modules\Accounting\Admin;
     /**
      * Dummy class
      *
@@ -37,4 +37,3 @@ namespace Modules\Accounting\Admin {
             $db->con->prepare('INSERT INTO `' . $db->prefix . 'accounting_creditor` (`account`) VALUES ' . $creditors)->execute();
         }
     }
-}

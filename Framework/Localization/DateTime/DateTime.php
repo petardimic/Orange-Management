@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Localization\DateTime {
+namespace Framework\Localization\DateTime;
     /**
      * DateTime localization class
      *
@@ -86,4 +86,3 @@ namespace Framework\Localization\DateTime {
             return null;
         }
     }
-}

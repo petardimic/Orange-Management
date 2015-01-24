@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News\Models {
+namespace Modules\News\Models;
     /**
      * News type enum
      *
@@ -20,5 +20,5 @@ namespace Modules\News\Models {
         const NEWS     = 0;
         const LINK     = 1;
         const HEADLINE = 2;
+
     }
-}

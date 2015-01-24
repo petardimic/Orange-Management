@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Navigation {
+namespace Modules\Navigation;
     /**
      * Navigation class
      *
@@ -145,4 +145,3 @@ namespace Modules\Navigation {
             }
         }
     }
-}

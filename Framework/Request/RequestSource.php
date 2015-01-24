@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request {
+namespace Framework\Request;
     /**
      * Request source enum
      *
@@ -20,5 +20,5 @@ namespace Framework\Request {
         const WEB = 0; /* This is a http request */
         const CONSOLE = 1; /* Request is a console command */
         const SOCKET = 2; /* Request through socket connection */
+
     }
-}

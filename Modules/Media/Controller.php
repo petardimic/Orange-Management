@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Media {
+namespace Modules\Media;
     /**
      * Media class
      *
@@ -155,4 +155,3 @@ namespace Modules\Media {
             }
         }
     }
-}

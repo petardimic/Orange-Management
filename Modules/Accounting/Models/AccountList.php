@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Accounting account list class
      *
@@ -84,4 +84,3 @@ namespace Modules\Accounting\Models {
             return $result;
         }
     }
-}

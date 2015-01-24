@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Navigation\Models {
+namespace Modules\Navigation\Models;
     /**
      * Link type enum
      *
@@ -19,5 +19,5 @@ namespace Modules\Navigation\Models {
     {
         const CATEGORY = 0;
         const LINK     = 1;
+
     }
-}

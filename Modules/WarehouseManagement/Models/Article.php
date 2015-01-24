@@ -1,5 +1,5 @@
 <?php /* TODO: maybe make this a framework object? and let warehousing, sales, purchase extend this */
-namespace Modules\Warehousing\Models {
+namespace Modules\Warehousing\Models;
     /**
      * Article class
      *
@@ -455,4 +455,3 @@ namespace Modules\Warehousing\Models {
         {
         }
     }
-}

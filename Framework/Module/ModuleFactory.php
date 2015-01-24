@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * ModuleFactory class
      *
@@ -86,4 +86,3 @@ namespace Framework\Module {
             return self::$loaded[$module];
         }
     }
-}

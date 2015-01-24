@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * ImpersonalAccount class
      *
@@ -97,4 +97,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

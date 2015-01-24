@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Auth {
+namespace Framework\Auth;
     /**
      * Auth class
      *
@@ -120,4 +120,3 @@ namespace Framework\Auth {
             $this->app->session->deleteValue('UID');
         }
     }
-}

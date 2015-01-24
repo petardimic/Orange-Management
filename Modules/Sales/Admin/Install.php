@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Sales\Admin {
+namespace Modules\Sales\Admin;
     /**
      * Sales module class
      *
@@ -121,4 +121,3 @@ namespace Modules\Sales\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\ResearchDevelopment {
+namespace Modules\ResearchDevelopment;
     /**
      * Sales class
      *
@@ -73,4 +73,3 @@ namespace Modules\ResearchDevelopment {
             }
         }
     }
-}

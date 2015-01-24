@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Posting abstract class
      *
@@ -21,4 +21,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

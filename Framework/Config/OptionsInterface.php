@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Config {
+namespace Framework\Config;
     /**
      * Options class
      *
@@ -50,4 +50,3 @@ namespace Framework\Config {
          */
         public function update();
     }
-}

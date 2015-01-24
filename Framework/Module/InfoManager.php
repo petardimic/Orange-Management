@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Module {
+namespace Framework\Module;
     /**
      * InfoManager class
      *
@@ -66,4 +66,3 @@ namespace Framework\Module {
             $this->fp->close();
         }
     }
-}

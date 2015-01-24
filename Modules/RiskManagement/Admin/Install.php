@@ -1,5 +1,5 @@
 <?php
-namespace Modules\RiskManagement\Admin {
+namespace Modules\RiskManagement\Admin;
     /**
      * Navigation class
      *
@@ -237,4 +237,3 @@ namespace Modules\RiskManagement\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Config {
+namespace Framework\Config;
     /**
      * Config modifer class
      *
@@ -95,4 +95,3 @@ namespace Framework\Config {
             file_put_contents($this->file, $output);
         }
     }
-}

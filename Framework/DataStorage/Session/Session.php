@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Session {
+namespace Framework\DataStorage\Session;
     /**
      * Session class
      *
@@ -48,4 +48,3 @@ namespace Framework\DataStorage\Session {
             session_write_close();
         }
     }
-}

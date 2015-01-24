@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting {
+namespace Modules\Accounting;
     /**
      * Sales class
      *
@@ -176,4 +176,3 @@ namespace Modules\Accounting {
             }
         }
     }
-}

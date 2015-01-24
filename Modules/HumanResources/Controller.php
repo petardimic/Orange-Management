@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources {
+namespace Modules\HumanResources;
     /**
      * Sales class
      *
@@ -158,4 +158,3 @@ namespace Modules\HumanResources {
             }
         }
     }
-}

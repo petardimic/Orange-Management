@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing\Models {
+namespace Modules\Warehousing\Models;
     /**
      * Warehouse class
      *
@@ -374,4 +374,3 @@ namespace Modules\Warehousing\Models {
         {
         }
     }
-}

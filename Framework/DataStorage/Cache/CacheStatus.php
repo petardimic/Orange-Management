@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Cache {
+namespace Framework\DataStorage\Cache;
     /**
      * Cache status enum
      *
@@ -23,5 +23,5 @@ namespace Framework\DataStorage\Cache {
         const ERROR     = 1; /* Caching failed */
         const MEMCACHE  = 2; /* Caching OK */
         const FILECACHE = 2; /* Caching OK */
+
     }
-}

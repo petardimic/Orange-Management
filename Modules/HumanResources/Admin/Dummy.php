@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources\Admin {
+namespace Modules\HumanResources\Admin;
     /**
      * Dummy class
      *
@@ -62,4 +62,3 @@ namespace Modules\HumanResources\Admin {
             $db->con->commit();
         }
     }
-}

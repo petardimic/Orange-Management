@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Account balance class
      *
@@ -179,7 +179,4 @@ namespace Modules\Accounting\Models {
         {
             $this->balance = $balance;
         }
-
-
     }
-}

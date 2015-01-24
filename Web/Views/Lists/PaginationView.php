@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views\Lists {
+namespace Web\Views\Lists;
     /**
      * Pagination view
      *
@@ -18,6 +18,4 @@ namespace Web\Views\Lists {
     class PaginationView extends \Framework\Views\ViewAbstract
     {
 
-
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Response {
+namespace Framework\Response;
     /**
      * Response class
      *
@@ -215,5 +215,5 @@ namespace Framework\Response {
         {
             return $this->autoPush;
         }
-    }
+
 }

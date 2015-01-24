@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket {
+namespace Framework\Socket;
     /**
      * Socket type enum
      *
@@ -19,5 +19,5 @@ namespace Framework\Socket {
     {
         const SERVER = 0; /* Server socket */
         const CLIENT = 1; /* Client socket */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Admin\Models {
+namespace Modules\Admin\Models;
     /**
      * Groups class
      *
@@ -101,4 +101,3 @@ namespace Modules\Admin\Models {
         {
         }
     }
-}

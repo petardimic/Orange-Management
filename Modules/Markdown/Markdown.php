@@ -1,5 +1,5 @@
 <?php
-namespace OMS\Modules {
+namespace OMS\Modules;
     require_once __DIR__ . '/../Module.class.php';
     require_once __DIR__ . '/../../core/Account.class.php';
 
@@ -146,4 +146,3 @@ namespace OMS\Modules {
             return $markup;
         }
     }
-}

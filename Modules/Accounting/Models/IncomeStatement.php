@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * IncomeStatement class
      *
@@ -83,4 +83,3 @@ namespace Modules\Accounting\Models {
         {
         }
     }
-}

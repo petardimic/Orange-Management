@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Uri {
+namespace Framework\Uri;
     /**
      * UriFactory class
      *
@@ -124,4 +124,3 @@ namespace Framework\Uri {
             return false;
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Utils\RnG {
+namespace Framework\Utils\RnG;
     /**
      * Distribution type enum
      *
@@ -19,5 +19,5 @@ namespace Framework\Utils\RnG {
     {
         const UNIFORM = 0;
         const NORMAL = 1;
+
     }
-}

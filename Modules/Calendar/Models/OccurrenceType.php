@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Calendar\Models {
+namespace Modules\Calendar\Models;
     /**
      * Occurrence type enum
      *
@@ -23,5 +23,5 @@ namespace Modules\Calendar\Models {
         const MONTHLY   = 3;
         const QUARTERLY = 4;
         const YEARLY    = 5;
+
     }
-}

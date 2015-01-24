@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket {
+namespace Framework\Socket;
     /**
      * CommandManager class
      *
@@ -110,4 +110,3 @@ namespace Framework\Socket {
             return $this->count;
         }
     }
-}

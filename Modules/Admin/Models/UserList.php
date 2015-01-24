@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Admin\Models {
+namespace Modules\Admin\Models;
     /**
      * Users class
      *
@@ -167,4 +167,3 @@ namespace Modules\Admin\Models {
         {
         }
     }
-}

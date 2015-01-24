@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Install {
+namespace Framework\Install;
     /**
      * Update class
      *
@@ -29,4 +29,3 @@ namespace Framework\Install {
             unlink($old);
         }
     }
-}

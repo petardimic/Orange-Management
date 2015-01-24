@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Datatypes {
+namespace Framework\Datatypes;
     /**
      * Address class
      *
@@ -134,4 +134,3 @@ namespace Framework\Datatypes {
             return $this->location;
         }
     }
-}

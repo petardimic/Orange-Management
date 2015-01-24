@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Business {
+namespace Modules\Business;
     /**
      * Navigation class
      *
@@ -60,4 +60,3 @@ namespace Modules\Business {
         {
         }
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Validation {
+namespace Framework\Validation;
     /**
      * Validator abstract
      *
@@ -41,4 +41,3 @@ namespace Framework\Validation {
             return self::$msg;
         }
     }
-}

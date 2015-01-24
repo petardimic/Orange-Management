@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Profile\Models {
+namespace Modules\Profile\Models;
     /**
      * Profile class
      *
@@ -89,4 +89,3 @@ namespace Modules\Profile\Models {
             return $result;
         }
     }
-}

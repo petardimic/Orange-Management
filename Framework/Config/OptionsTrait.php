@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Config {
+namespace Framework\Config;
     /**
      * Options trait
      *
@@ -52,4 +52,3 @@ namespace Framework\Config {
 
         }
     }
-}

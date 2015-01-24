@@ -1,5 +1,5 @@
 <?php
-namespace Modules\ItemReference {
+namespace Modules\ItemReference;
     /**
      * Event Management class
      *
@@ -64,4 +64,3 @@ namespace Modules\ItemReference {
             }
         }
     }
-}

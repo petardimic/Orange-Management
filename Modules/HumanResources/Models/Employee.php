@@ -1,5 +1,5 @@
 <?php
-namespace Modules\HumanResources\Models {
+namespace Modules\HumanResources\Models;
     /**
      * Employee class
      *
@@ -107,4 +107,3 @@ namespace Modules\HumanResources\Models {
             // TODO: Implement update() method.
         }
     }
-}

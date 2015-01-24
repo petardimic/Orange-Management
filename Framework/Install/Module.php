@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Install {
+namespace Framework\Install;
     /**
      * Module install abstraction class
      *
@@ -180,4 +180,3 @@ namespace Framework\Install {
         {
         }
     }
-}

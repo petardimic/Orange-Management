@@ -1,6 +1,6 @@
 <?php
 /* This logging class will not be in the release or dev version!!!! Use a logging library/framework for that */
-namespace Framework\Log {
+namespace Framework\Log;
     /**
      * Log level enum
      *
@@ -23,5 +23,5 @@ namespace Framework\Log {
         const WARNING = 2; /* Everything with higher priority gets logged */
         const ERROR = 3; /* Everything with higher priority gets logged */
         const FATAL = 4; /* Only this gets logged */
+
     }
-}

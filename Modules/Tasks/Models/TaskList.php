@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Tasks\Models {
+namespace Modules\Tasks\Models;
     /**
      * Task list class
      *
@@ -94,4 +94,3 @@ namespace Modules\Tasks\Models {
         {
         }
     }
-}

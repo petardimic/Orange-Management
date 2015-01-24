@@ -1,89 +1,55 @@
 <?php
-namespace Modules\Business\Admin {
+namespace Modules\Clocking\Admin;
+
+/**
+ * Human resources employee clocking install class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Base
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Install extends \Framework\Install\Module
+{
     /**
-     * Navigation class
+     * Install module
      *
-     * PHP Version 5.4
+     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param array                                    $info Module info
      *
-     * @category   Base
-     * @package    Framework
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    class Install extends \Framework\Install\Module
+    public static function install(&$db, $info)
     {
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info)
-        {
-            switch($db->getType()) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_unit` (
-                            `business_unit_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `business_unit_status` tinyint(2) DEFAULT NULL,
-                            `business_unit_matchcode` varchar(50) DEFAULT NULL,
-                            `business_unit_name` varchar(50) DEFAULT NULL,
-                            PRIMARY KEY (`business_unit_id`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+        switch($db->getType()) {
+            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'clocking` (
+                            `clocking_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `clocking_employee` int(11) DEFAULT NULL,
+                            `clocking_start` datetime DEFAULT NULL,
+                            `clocking_end` datetime DEFAULT NULL,
+                            `clocking_type` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`clocking_id`),
+                            KEY `clocking_employee` (`clocking_employee`)
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_department` (
-                            `business_department_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `business_department_name` varchar(30) DEFAULT NULL,
-                            `business_department_parent` int(11) DEFAULT NULL,
-                            `business_department_unit` int(11) NOT NULL,
-                            PRIMARY KEY (`business_department_id`),
-                            KEY `business_department_parent` (`business_department_parent`),
-                            KEY `business_department_unit` (`business_department_unit`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'business_department`
-                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_1` FOREIGN KEY (`business_department_parent`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_2` FOREIGN KEY (`business_department_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_address` (
-                            `business_address_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `business_address_status` tinyint(2) DEFAULT NULL,
-                            `business_address_matchcode` varchar(50) DEFAULT NULL,
-                            `business_address_name` varchar(50) DEFAULT NULL,
-                            `business_address_fao` varchar(30) DEFAULT NULL,
-                            `business_address_addr` varchar(50) DEFAULT NULL,
-                            `business_address_city` varchar(20) DEFAULT NULL,
-                            `business_address_zip` varchar(20) DEFAULT NULL,
-                            `business_address_state` varchar(20) DEFAULT NULL,
-                            `business_address_country` varchar(30) DEFAULT NULL,
-                            `business_address_unit` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`business_address_id`),
-                            KEY `business_address_unit` (`business_address_unit`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'business_address`
-                            ADD CONSTRAINT `' . $db->prefix . 'business_address_ibfk_1` FOREIGN KEY (`business_address_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
-                    )->execute();
-                    break;
-            }
-
-            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'clocking`
+                            ADD CONSTRAINT `' . $db->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_employee`) REFERENCES `' . $db->prefix . 'hr_staff` (`hr_staff_id`);'
+                )->execute();
+                break;
         }
+
+        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

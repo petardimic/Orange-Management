@@ -1,5 +1,5 @@
 <?php
-namespace Modules\EventManagement\Admin {
+namespace Modules\EventManagement\Admin;
     /**
      * Event Management class
      *
@@ -37,4 +37,3 @@ namespace Modules\EventManagement\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

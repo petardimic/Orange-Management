@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Controlling\Admin {
+namespace Modules\Controlling\Admin;
     /**
      * Navigation class
      *
@@ -37,4 +37,3 @@ namespace Modules\Controlling\Admin {
             parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
         }
     }
-}

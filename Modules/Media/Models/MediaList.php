@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Media\Models {
+namespace Modules\Media\Models;
     /**
      * Media list class
      *
@@ -62,4 +62,3 @@ namespace Modules\Media\Models {
             return $result;
         }
     }
-}

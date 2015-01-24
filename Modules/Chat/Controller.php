@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Chat {
+namespace Modules\Chat;
     /**
      * Sales class
      *
@@ -73,4 +73,3 @@ namespace Modules\Chat {
             }
         }
     }
-}

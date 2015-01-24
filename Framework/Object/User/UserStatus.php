@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object\User {
+namespace Framework\Object\User;
     /**
      * User status enum
      *
@@ -22,5 +22,5 @@ namespace Framework\Object\User {
         const BANNED = 2; /* Account is banned */
         const TIMEOUTED = 3; /* Account is banned for a certain time */
         const VIRTUAL = 4; /* Account can not log in */
+
     }
-}

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\News\Models {
+namespace Modules\News\Models;
     /**
      * News list class
      *
@@ -90,4 +90,3 @@ namespace Modules\News\Models {
             return $result;
         }
     }
-}

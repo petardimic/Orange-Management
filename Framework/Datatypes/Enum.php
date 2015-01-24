@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Datatypes {
+namespace Framework\Datatypes;
     /**
      * Enum class
      *
@@ -83,4 +83,3 @@ namespace Framework\Datatypes {
             return in_array($value, $values, $strict = true);
         }
     }
-}

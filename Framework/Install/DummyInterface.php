@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Install {
+namespace Framework\Install;
     /**
      * Dummy data interface
      *
@@ -30,4 +30,3 @@ namespace Framework\Install {
          */
         public static function generate($db, $amount);
     }
-}

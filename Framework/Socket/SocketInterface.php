@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket {
+namespace Framework\Socket;
     /**
      * Socket class
      *
@@ -44,4 +44,3 @@ namespace Framework\Socket {
          */
         public function run();
     }
-}

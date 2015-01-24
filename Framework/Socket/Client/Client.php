@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Socket\Client {
+namespace Framework\Socket\Client;
     /**
      * Client socket class
      *
@@ -129,4 +129,3 @@ namespace Framework\Socket\Client {
             $this->run = false;
         }
     }
-}

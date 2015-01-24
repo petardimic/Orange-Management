@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounting\Models {
+namespace Modules\Accounting\Models;
     /**
      * Account type enum
      *
@@ -21,5 +21,5 @@ namespace Modules\Accounting\Models {
         const PERSONAL   = 1;
         const CREDITOR   = 2;
         const DEBITOR    = 3;
+
     }
-}

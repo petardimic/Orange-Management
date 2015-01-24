@@ -1,5 +1,5 @@
 <?php
-namespace Framework\DataStorage\Cache {
+namespace Framework\DataStorage\Cache;
     /**
      * Filecache class
      *
@@ -97,4 +97,3 @@ namespace Framework\DataStorage\Cache {
             return $this->threshold;
         }
     }
-}
