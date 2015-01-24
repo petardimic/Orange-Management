@@ -24,7 +24,7 @@ class ListView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $id = 0;
+    protected $id = 0;
 
     /**
      * Module
@@ -32,7 +32,7 @@ class ListView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $module = 0;
+    protected $module = 0;
 
     /**
      * Page
@@ -40,7 +40,7 @@ class ListView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $pageId = 0;
+    protected $pageId = 0;
 
     /**
      * List title
@@ -48,23 +48,7 @@ class ListView extends \Framework\Views\ViewAbstract
      * @var string
      * @since 1.0.0
      */
-    private $title = null;
-
-    /**
-     * Footer
-     *
-     * @var \Web\Views\Lists\PaginationView
-     * @since 1.0.0
-     */
-    private $footer = null;
-
-    /**
-     * Header
-     *
-     * @var \Web\Views\Lists\HeaderView
-     * @since 1.0.0
-     */
-    private $header = null;
+    protected $title = null;
 
     /**
      * List elements
@@ -72,7 +56,7 @@ class ListView extends \Framework\Views\ViewAbstract
      * @var array
      * @since 1.0.0
      */
-    private $elements = null;
+    protected $elements = null;
 
     /**
      * @return int
@@ -160,50 +144,6 @@ class ListView extends \Framework\Views\ViewAbstract
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    /**
-     * @return PaginationView
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getFooter()
-    {
-        return $this->footer;
-    }
-
-    /**
-     * @param PaginationView $footer
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setFooter($footer)
-    {
-        $this->footer = $footer;
-    }
-
-    /**
-     * @return array
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getHeader()
-    {
-        return $this->header;
-    }
-
-    /**
-     * @param array $header
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setHeader($header)
-    {
-        $this->header = $header;
     }
 
     /**

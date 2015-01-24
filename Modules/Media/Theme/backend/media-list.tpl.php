@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Media\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+/*\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000401001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
@@ -28,7 +28,7 @@
         ?>
         <tbody>
         <?php
-        /** @var \Modules\Media\MediaList $mList */
+        /** @var \Modules\Media\MediaList $mList *//*
         $data           = $mList->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 3);
         $url['level'][] = 'single';
@@ -45,4 +45,8 @@
     <tr>
         <td colspan="5" class="cT">
             <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
-</table>
+</table>*/
+
+/** @var \Framework\Views\ViewAbstract $this */
+$listView = $this->getView('list');
+echo $listView->getResponse();

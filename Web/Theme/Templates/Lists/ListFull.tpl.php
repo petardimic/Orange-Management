@@ -1,7 +1,11 @@
+<?php /** @var \Web\Views\Lists\ListView $this */ ?>
 <table class="t-1 m-<?= $this->getModule(); ?> mp-<?= ($this->getModule() + $this->getPageId()); ?>"
        id="i-<?= ($this->getModule() + $this->getId()); ?>">
-    <?php if($this->header) {
-        echo $this->header->getResponse();
+    <?php
+    $header = $this->getView('header');
+    $footer = $this->getView('footer');
+    if($header) {
+        echo $header->getResponse();
     } ?>
     <?php if(isset($this->elements)): ?>
         <tbody>
@@ -14,11 +18,11 @@
         <?php endforeach; ?>
         </tbody>
     <?php endif; ?>
-    <?php if($this->footer): ?>
+    <?php if($footer): ?>
         <tfoot>
         <tr>
-            <td colspan="<?= count($this->header->elements); ?>">
-                <?= $this->footer->getResponse(); ?>
+            <td colspan="<?= count($header->elements); ?>">
+                <?= $footer->getResponse(); ?>
             </td>
         </tr>
         </tfoot>

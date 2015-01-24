@@ -16,7 +16,7 @@ namespace Framework\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class ViewAbstract
+class ViewAbstract
 {
     /**
      * Template
@@ -122,7 +122,7 @@ abstract class ViewAbstract
     {
         ob_start();
         /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../' . $this->template;
+        include __DIR__ . '/../..' . $this->template . '.tpl.php';
 
         return ob_get_clean();
     }

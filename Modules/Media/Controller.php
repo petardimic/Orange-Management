@@ -61,7 +61,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($this->app->request->getType()) {
             case \Framework\Request\WebRequestPage::BACKEND:
-                $this->show_content_backend();
+                $this->showContentBackend();
                 break;
         }
     }
@@ -72,7 +72,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function show_content_backend()
+    public function showContentBackend()
     {
         switch($this->app->request->request['l3']) {
             case 'single':
@@ -83,6 +83,24 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
                 break;
             case 'list':
+                $view = new \Framework\Views\ViewAbstract();
+                $view->setTemplate('/Modules/Media/Theme/backend/media-list');
+
+                $listView = new \Web\Views\Lists\ListView();
+                $listView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+
+                $listHeaderView = new \Web\Views\Lists\HeaderView();
+                $listHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+
+                $listFooterView = new \Web\Views\Lists\PaginationView();
+                $listFooterView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
+
+                $listView->addView('header', $listHeaderView);
+                $listView->addView('footer', $listFooterView);
+
+                $view->addView('list', $listView);
+                echo $view->getResponse();
+
                 if(!isset($this->app->request->request['page'])) {
                     $this->app->request->request['page'] = 1;
                 }
@@ -91,7 +109,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $mList = new \Modules\Media\Models\MediaList($this->app->db);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/media-list.tpl.php';
+                //include __DIR__ . '/Theme/backend/media-list.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
