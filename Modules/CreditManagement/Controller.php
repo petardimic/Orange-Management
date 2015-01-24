@@ -1,13 +1,13 @@
 <?php
-namespace Modules\ResearchDevelopment;
+namespace Modules\CreditManagement;
 
 /**
- * Sales class
+ * Credit Management controller class
  *
  * PHP Version 5.4
  *
- * @category   Base
- * @package    Framework
+ * @category   Modules
+ * @package    Modules\CreditManagement
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -52,32 +52,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Get modules this module is providing for
-     *
-     * @return array Providing
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getProviding()
-    {
-        return self::$providing;
-    }
-
-    /**
-     * Get dependencies for this module
-     *
-     * @return array Dependencies
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getDependencies()
-    {
-        return self::$dependencies;
-    }
-
-    /**
      * Shows module content
      *
      * @para   array $data
@@ -89,12 +63,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($this->app->request->getType()) {
             case \Framework\Request\WebRequestPage::BACKEND:
-                $this->show_content_backend();
+                $this->showContentBackend();
                 break;
         }
     }
 
-    public function show_content_backend()
+    public function showContentBackend()
     {
         switch($this->app->request->request['l3']) {
         }

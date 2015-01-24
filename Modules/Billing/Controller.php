@@ -1,13 +1,13 @@
 <?php
-namespace Modules\AccountsPayable;
+namespace Modules\Billing;
 
 /**
- * Sales class
+ * Billing controller class
  *
  * PHP Version 5.4
  *
  * @category   Modules
- * @package    Modules\Accountsreceivable
+ * @package    Modules\Billing
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

@@ -2,7 +2,7 @@
 namespace Modules\ItemReference\Admin;
 
 /**
- * Navigation class
+ * Item Reference install class
  *
  * PHP Version 5.4
  *

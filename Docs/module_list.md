@@ -20,7 +20,7 @@
 * 1002000000 - 
 * 1002100000 - OMS Purchase
 * 1002200000 - OMS Research & Development
-* 1002300000 - 
+* 1002300000 - OMS Credit Management
 * 1002400000 - OMS Human Resources
 * 1002500000 - OMS Clocking
 * 1002600000 - OMS Accounting

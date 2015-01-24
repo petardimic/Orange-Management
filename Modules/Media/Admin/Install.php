@@ -2,12 +2,12 @@
 namespace Modules\Media\Admin;
 
 /**
- * Install class
+ * Media install class
  *
  * PHP Version 5.4
  *
  * @category   Modules
- * @package    Media
+ * @package    Modules\Media
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

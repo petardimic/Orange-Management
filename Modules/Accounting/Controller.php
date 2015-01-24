@@ -6,7 +6,7 @@ namespace Modules\Accounting;
  *
  * PHP Version 5.4
  *
- * @category   Base
+ * @category   Modules
  * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>

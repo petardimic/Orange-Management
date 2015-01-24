@@ -2,12 +2,12 @@
 namespace Modules\RiskManagement\Admin;
 
 /**
- * Navigation class
+ * Risk Management install class
  *
  * PHP Version 5.4
  *
- * @category   Base
- * @package    Framework
+ * @category   Modules
+ * @package    Modules\RiskManagement
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -33,7 +33,7 @@ class Install extends \Framework\Install\Module
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                 $db->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_unit` (
-                            `RiskMngmtUnitID` int(11) NOT NULL,
+                            `riskmngmt_unit_id` int(11) NOT NULL,
                             `unit` int(11) NOT NULL,
                             `responsible` int(11) NOT NULL,
                             PRIMARY KEY (`RiskMngmtUnitID`),

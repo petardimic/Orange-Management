@@ -1,7 +1,7 @@
 {
     "name": {
-        "internal": 1002200000,
-        "external": "OMS Research & Development"
+        "internal": 1002300000,
+        "external": "OMS Credit Management"
     },
     "version": "1.0.0",
     "requirements": {
@@ -20,7 +20,7 @@
         "path": "/oms-slim"
     },
     "description": "Research & Development module.",
-    "class": "ResearchDevelopment",
+    "class": "CreditManagement",
     "dependencies": [],
     "providing": [],
     "load": [
@@ -28,13 +28,13 @@
             "pid": ["a5dd2992c4ffd521e23894599418f28a07e0ff1a"],
             "type": 4,
             "for": 0,
-            "from": 1002200000,
-            "file": "ResearchDevelopment"
+            "from": 1002300000,
+            "file": "CreditManagement"
         },
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,
-            "from": 1002200000,
+            "from": 1002300000,
             "for": 1000500000,
             "file": "nav.backend"
         },
@@ -43,7 +43,7 @@
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1002200000
+            "from": 1002300000
         }
     ],
     "lang": true,

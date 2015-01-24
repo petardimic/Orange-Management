@@ -2,12 +2,12 @@
 namespace Modules\Marketing;
 
 /**
- * Sales class
+ * Marketing controller class
  *
  * PHP Version 5.4
  *
- * @category   Base
- * @package    Framework
+ * @category   Modules
+ * @package    Modules\Marketing
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

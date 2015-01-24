@@ -2,12 +2,12 @@
 namespace Modules\Tasks\Admin;
 
 /**
- * Navigation class
+ * Tasks install class
  *
  * PHP Version 5.4
  *
- * @category   Module
- * @package    Tasks
+ * @category   Modules
+ * @package    Modules\Tasks
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

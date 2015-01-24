@@ -2,7 +2,7 @@
 namespace Modules\Clocking;
 
 /**
- * Navigation class
+ * Clocking controller class
  *
  * PHP Version 5.4
  *

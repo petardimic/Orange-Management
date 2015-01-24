@@ -2,12 +2,12 @@
 namespace Modules\News;
 
 /**
- * News class
+ * News controller class
  *
  * PHP Version 5.4
  *
  * @category   Modules
- * @package    News
+ * @package    Modules\News
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

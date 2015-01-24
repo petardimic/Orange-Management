@@ -2,7 +2,7 @@
 namespace Modules\ItemReference;
 
 /**
- * Event Management class
+ * Item Reference controller class
  *
  * PHP Version 5.4
  *

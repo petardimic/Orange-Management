@@ -2,7 +2,7 @@
 namespace Modules\Billing\Admin;
 
 /**
- * Accounts payable install class
+ * Billing install class
  *
  * PHP Version 5.4
  *

@@ -2,12 +2,12 @@
 namespace Modules\BackendDashboard;
 
 /**
- * Dashboard class
+ * Dashboard controller class
  *
  * PHP Version 5.4
  *
- * @category   Base
- * @package    Framework
+ * @category   Modules
+ * @package    Modules\BackendDashboard
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

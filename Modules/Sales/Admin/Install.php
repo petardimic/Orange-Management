@@ -2,7 +2,7 @@
 namespace Modules\Sales\Admin;
 
 /**
- * Sales module class
+ * Sales install class
  *
  * PHP Version 5.4
  *
