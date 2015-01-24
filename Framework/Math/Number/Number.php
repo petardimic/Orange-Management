@@ -1,5 +1,5 @@
 class Number {
-    public static function getType($number) {
-        
-    }
+public static function getType($number) {
+
+}
 }

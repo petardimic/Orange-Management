@@ -79,8 +79,8 @@
                 <li>
                     <label for="i-pass"><?= $this->app->user->localization->lang[0]['Password']; ?></label>
                 <li>
-                    <input name="pass" class="i-1 t-i" id="i-pass" type="password">
-                    <input type="button" value="<?= $this->app->user->localization->lang[0]['Create']; ?>">
+                    <input name="pass" class="i-1 t-i" id="i-pass" type="password"> <input type="button"
+                                                                                           value="<?= $this->app->user->localization->lang[0]['Create']; ?>">
                 <li>
             </ul>
         </form>

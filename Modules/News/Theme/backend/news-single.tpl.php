@@ -7,8 +7,7 @@
     </h1>
 
     <div class="bc-1">
-        <span><?= $article->getPublish()->format('Y-m-d H:i:s'); ?></span>
-        <span><?= $article->getAuthor(); ?></span>
+        <span><?= $article->getPublish()->format('Y-m-d H:i:s'); ?></span> <span><?= $article->getAuthor(); ?></span>
         <?= $article->getContent(); ?>
     </div>
 </div>

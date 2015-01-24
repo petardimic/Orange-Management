@@ -1,67 +1,68 @@
 <?php
 namespace Modules\Purchase\Admin;
+
+/**
+ * Navigation class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Base
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Install extends \Framework\Install\Module
+{
     /**
-     * Navigation class
+     * Install module
      *
-     * PHP Version 5.4
+     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param array                                    $info Module info
      *
-     * @category   Base
-     * @package    Framework
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    class Install extends \Framework\Install\Module
+    public static function install(&$db, $info)
     {
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info)
-        {
-            switch($db->getType()) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_article` (
+        switch($db->getType()) {
+            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_article` (
                             `purchase_article_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_article_item` int(11) DEFAULT NULL,
                             PRIMARY KEY (`purchase_article_id`),
                             KEY `purchase_article_item` (`purchase_article_item`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_article`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'purchase_article`
                             ADD CONSTRAINT `' . $db->prefix . 'purchase_article_ibfk_1` FOREIGN KEY (`purchase_article_item`) REFERENCES `' . $db->prefix . 'itemreference` (`itemreference_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_supplier` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_supplier` (
                             `purchase_supplier_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_supplier_account` int(11) NOT NULL,
                             PRIMARY KEY (`purchase_supplier_id`),
                             KEY `account` (`purchase_supplier_account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_supplier`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'purchase_supplier`
                             ADD CONSTRAINT `' . $db->prefix . 'purchase_supplier_ibfk_1` FOREIGN KEY (`purchase_supplier_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
+                )->execute();
 
-                    // TODO: create reference between WE, RG and Order?????
-                    /* These are the invoices that get created by the purchasing department */
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoice` (
+                // TODO: create reference between WE, RG and Order?????
+                /* These are the invoices that get created by the purchasing department */
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoice` (
                             `purchase_invoice_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_invoice_status` tinyint(2) DEFAULT NULL,
                             `purchase_invoice_type` tinyint(2) DEFAULT NULL,
@@ -77,17 +78,17 @@ namespace Modules\Purchase\Admin;
                             KEY `purchase_invoice_supplier` (`purchase_invoice_supplier`),
                             KEY `purchase_invoice_referer` (`purchase_invoice_referer`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_invoice`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'purchase_invoice`
                             ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_1` FOREIGN KEY (`purchase_invoice_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $db->prefix . 'purchase_supplier` (`purchase_supplier`),
                             ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_3` FOREIGN KEY (`purchase_invoice_referer`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
-                    break;
-            }
-
-            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+                )->execute();
+                break;
         }
+
+        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
     }
+}

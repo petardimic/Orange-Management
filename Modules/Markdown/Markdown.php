@@ -1,148 +1,148 @@
 <?php
 namespace OMS\Modules;
-    require_once __DIR__ . '/../Module.class.php';
-    require_once __DIR__ . '/../../core/Account.class.php';
+
+require_once __DIR__ . '/../Module.class.php';
+require_once __DIR__ . '/../../core/Account.class.php';
+
+/**
+ * Navigation class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Base
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Markdown extends Module
+{
+    /**
+     * Dependencies
+     *
+     * @var int[]
+     * @since 1.0.0
+     */
+    protected static $dependencies = null;
 
     /**
-     * Navigation class
+     * Receiving
      *
-     * PHP Version 5.4
-     *
-     * @category   Base
-     * @package    Framework
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @var int[]
+     * @since 1.0.0
      */
-    class Markdown extends Module
+    public static $receiving = null;
+
+    /**
+     * Providing
+     *
+     * @var int[]
+     * @since 1.0.0
+     */
+    protected static $providing = [
+        1004100000 => true
+    ];
+
+    /**
+     * Installed Modules
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    private $installed = null;
+
+    /**
+     * Constructor
+     *
+     * @param \Framework\DataStorage\Database\Database $db    Database instance
+     * @param \Framework\Model\Model                   $model Model instance
+     * @param \Framework\Object\User\User              $user  User instance
+     * @param \Framework\DataStorage\Cache\Cache       $cache Cache instance
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct(&$db, &$model, &$user, &$cache)
     {
-        /**
-         * Dependencies
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        protected static $dependencies = null;
+        parent::initialize($db, $model, $user, $cache);
+    }
 
-        /**
-         * Receiving
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        public static $receiving = null;
+    /**
+     * Install module
+     *
+     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param array                                    $info Module info
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function install(&$db, $info)
+    {
+        parent::installProviding($db, __DIR__ . '/nav.install.json', 1000500000);
+    }
 
-        /**
-         * Providing
-         *
-         * @var int[]
-         * @since 1.0.0
-         */
-        protected static $providing = [
-            1004100000 => true
-        ];
+    /**
+     * Initializes object
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function init($themePath)
+    {
+        $this->themePath = $themePath;
+    }
 
-        /**
-         * Installed Modules
-         *
-         * @var array
-         * @since 1.0.0
-         */
-        private $installed = null;
+    public function markdown($text)
+    {
+        /* Standardize line breaks */
+        $text = str_replace('\r\n', '\n', $text);
+        $text = str_replace('\r', '\n', $text);
 
-        /**
-         * Constructor
-         *
-         * @param \Framework\DataStorage\Database\Database $db    Database instance
-         * @param \Framework\Model\Model                   $model Model instance
-         * @param \Framework\Object\User\User              $user  User instance
-         * @param \Framework\DataStorage\Cache\Cache       $cache Cache instance
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function __construct(&$db, &$model, &$user, &$cache)
-        {
-            parent::initialize($db, $model, $user, $cache);
-        }
+        /* Standardize tabs */
+        $text = str_replace('\t', '    ', $text);
 
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info)
-        {
-            parent::installProviding($db, __DIR__ . '/nav.install.json', 1000500000);
-        }
+        /* Remove surroundings */
+        $text = rtrim($text);
+        $text = trim($text, '\n');
 
-        /**
-         * Initializes object
+        $lines = explode('\n', $text);
 
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function init($themePath)
-        {
-            $this->themePath = $themePath;
-        }
+        $markup = $this->markdown_lines($lines);
 
-        public function markdown($text)
-        {
-            /* Standardize line breaks */
-            $text = str_replace('\r\n', '\n', $text);
-            $text = str_replace('\r', '\n', $text);
+        /* Remove surroundings after */
+        $markup = rtrim($markup);
+        $markup = trim($markup, '\n');
 
-            /* Standardize tabs */
-            $text = str_replace('\t', '    ', $text);
+        return $markup;
+    }
 
-            /* Remove surroundings */
-            $text = rtrim($text);
-            $text = trim($text, '\n');
+    public function markdown_lines($lines)
+    {
+        $markup = '';
 
-            $lines = explode('\n', $text);
+        $block_current = null;
 
-            $markup = $this->markdown_lines($lines);
-
-            /* Remove surroundings after */
-            $markup = rtrim($markup);
-            $markup = trim($markup, '\n');
-
-            return $markup;
-        }
-
-        public function markdown_lines($lines)
-        {
-            $markup = '';
-
-            $block_current = null;
-
-            foreach($lines as $line) {
-                /* Empty line ends opened block */
-                if(rtrim($line) === '') {
-                    if(isset($block_current)) {
-                        $block_current['end'] = true;
-                    }
-
-                    continue;
+        foreach($lines as $line) {
+            /* Empty line ends opened block */
+            if(rtrim($line) === '') {
+                if(isset($block_current)) {
+                    $block_current['end'] = true;
                 }
 
-                /* Count indents */
-                $indent_count = 0;
-                while(isset($line[$indent_count]) && $line[$indent_count] === ' ') {
-                    $indent_count++;
-                }
+                continue;
             }
 
-            return $markup;
+            /* Count indents */
+            $indent_count = 0;
+            while(isset($line[$indent_count]) && $line[$indent_count] === ' ') {
+                $indent_count++;
+            }
         }
+
+        return $markup;
     }
+}

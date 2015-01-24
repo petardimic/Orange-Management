@@ -51,8 +51,7 @@
                     <label for="i-recache"><?= $this->app->user->localization->lang[1]['ReCache']; ?></label>
                 <li>
                     <input id="i-recache" type="checkbox" name="recache"
-                           value="rc">
-                    <label><?= $this->app->user->localization->lang[1]['i:rc']; ?></label>
+                           value="rc"> <label><?= $this->app->user->localization->lang[1]['i:rc']; ?></label>
                 <li>
                     <label for="i-email"><?= $this->app->user->localization->lang[1]['EmailAdmin']; ?></label>
                 <li>

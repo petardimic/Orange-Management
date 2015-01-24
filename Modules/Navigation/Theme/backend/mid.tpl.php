@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \Modules\Navigation\Controller $this
- * @var array $data
+ * @var array                          $data
  */
 
 /* Looping through all links */

@@ -99,8 +99,8 @@
                     <label for="i-pass"><?= $this->app->user->localization->lang[0]['Password']; ?></label>
                 <li>
                     <input name="pass" class="i-1 t-i" id="i-pass" type="password"
-                           value="blank_password41?^A" disabled>
-                    <input type="button" value="<?= $this->app->user->localization->lang[0]['Reset']; ?>">
+                           value="blank_password41?^A" disabled> <input type="button"
+                                                                        value="<?= $this->app->user->localization->lang[0]['Reset']; ?>">
                 <li>
                     <input type="button" value="<?= $this->app->user->localization->lang[0]['Submit']; ?>">
             </ul>

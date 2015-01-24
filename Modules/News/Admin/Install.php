@@ -1,37 +1,38 @@
 <?php
 namespace Modules\News\Admin;
+
+/**
+ * Navigation class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Base
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Install extends \Framework\Install\Module
+{
     /**
-     * Navigation class
+     * Install module
      *
-     * PHP Version 5.4
+     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param array                                    $info Module info
      *
-     * @category   Base
-     * @package    Framework
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    class Install extends \Framework\Install\Module
+    public static function install(&$db, $info)
     {
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info)
-        {
-            switch($db->getType()) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
+        switch($db->getType()) {
+            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
                             `news_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_title` varchar(250) NOT NULL,
                             `news_featured` tinyint(1) DEFAULT NULL,
@@ -48,46 +49,46 @@ namespace Modules\News\Admin;
                             KEY `news_author` (`news_author`),
                             KEY `news_last_change` (`news_last_change`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'news`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'news`
                             ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_1` FOREIGN KEY (`news_author`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_2` FOREIGN KEY (`news_last_change`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_tag` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_tag` (
                             `news_tag_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_tag_news` int(11) NOT NULL,
                             `news_tag_tag` varchar(20) NOT NULL,
                             PRIMARY KEY (`news_tag_id`),
                             KEY `news_tag_news` (`news_tag_news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'news_tag`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'news_tag`
                             ADD CONSTRAINT `' . $db->prefix . 'news_tag_ibfk_1` FOREIGN KEY (`news_tag_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_group` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_group` (
                             `news_group_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_group_news` int(11) NOT NULL,
                             `news_group_group` int(11) NOT NULL,
                             PRIMARY KEY (`news_group_id`),
                             KEY `news_group_news` (`news_group_news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'news_group`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'news_group`
                             ADD CONSTRAINT `' . $db->prefix . 'news_group_ibfk_1` FOREIGN KEY (`news_group_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
-                    )->execute();
-                    break;
-            }
-
-            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+                )->execute();
+                break;
         }
+
+        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
     }
+}

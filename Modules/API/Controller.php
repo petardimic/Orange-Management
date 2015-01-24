@@ -1,92 +1,93 @@
 <?php
 namespace Modules\API;
+
+/**
+ * Navigation class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Base
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+{
     /**
-     * Navigation class
+     * Providing
      *
-     * PHP Version 5.4
-     *
-     * @category   Base
-     * @package    Framework
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @var string
+     * @since 1.0.0
      */
-    class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+    protected static $providing = [
+    ];
+
+    /**
+     * Dependencies
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $dependencies = [
+    ];
+
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct($app)
     {
-        /**
-         * Providing
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        protected static $providing = [
-        ];
+        parent::__construct($app);
+    }
 
-        /**
-         * Dependencies
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        protected static $dependencies = [
-        ];
+    /**
+     * Get modules this module is providing for
+     *
+     * @return array Providing
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getProviding()
+    {
+        return self::$providing;
+    }
 
-        /**
-         * Constructor
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function __construct($app)
-        {
-            parent::__construct($app);
-        }
+    /**
+     * Get dependencies for this module
+     *
+     * @return array Dependencies
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getDependencies()
+    {
+        return self::$dependencies;
+    }
 
-        /**
-         * Get modules this module is providing for
-         *
-         * @return array Providing
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getProviding()
-        {
-            return self::$providing;
-        }
-
-        /**
-         * Get dependencies for this module
-         *
-         * @return array Dependencies
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getDependencies()
-        {
-            return self::$dependencies;
-        }
-
-        /**
-         * Shows module content
-         *
-         * @para   array $data
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function callWeb($data = null)
-        {
-            if(isset($this->receiving)) {
-                foreach($this->receiving as $mid) {
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
-                }
+    /**
+     * Shows module content
+     *
+     * @para   array $data
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function callWeb($data = null)
+    {
+        if(isset($this->receiving)) {
+            foreach($this->receiving as $mid) {
+                /** @noinspection PhpUndefinedMethodInspection */
+                \Framework\Module\ModuleFactory::$initialized[$mid]->show_api();
             }
         }
     }
+}

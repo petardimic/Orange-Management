@@ -27,9 +27,7 @@
                 itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">
-            <label>
-                <input type="text" autofocus="autofocus">
-            </label>
+            <label> <input type="text" autofocus="autofocus"> </label>
             <input type="submit" value="<?= $this->app->user->localization->lang[0]['Search'] ?>">
         </span>
 

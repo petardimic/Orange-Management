@@ -1,11 +1,11 @@
-var KeyboardManager = function() {
+var KeyboardManager = function () {
 
 };
 
-KeyboardManager.prototype.attach = function(element, keys, callback) {
+KeyboardManager.prototype.attach = function (element, keys, callback) {
 
 };
 
-KeyboardManager.prototype.detach = function(eventId) {
+KeyboardManager.prototype.detach = function (eventId) {
 
 };

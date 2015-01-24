@@ -1,37 +1,38 @@
 <?php
 namespace Modules\Calendar\Admin;
+
+/**
+ * Calendar install class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Modules
+ * @package    Modules\Calendar
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Install extends \Framework\Install\Module
+{
     /**
-     * Calendar install class
+     * Install module
      *
-     * PHP Version 5.4
+     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param array                                    $info Module info
      *
-     * @category   Modules
-     * @package    Modules\Calendar
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    class Install extends \Framework\Install\Module
+    public static function install(&$db, $info)
     {
-        /**
-         * Install module
-         *
-         * @param \Framework\DataStorage\Database\Database $db   Database instance
-         * @param array                                    $info Module info
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public static function install(&$db, $info)
-        {
-            switch($db->getType()) {
-                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar` (
+        switch($db->getType()) {
+            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar` (
                             `calendar_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_name` varchar(25) NOT NULL,
                             `calendar_password` varchar(64) NOT NULL,
@@ -41,15 +42,15 @@ namespace Modules\Calendar\Admin;
                             PRIMARY KEY (`calendar_id`),
                             KEY `calendar_creator` (`calendar_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'calendar`
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_ibfk_1` FOREIGN KEY (`calendar_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_permission` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_permission` (
                             `calendar_permission_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_permission_account` int(11) NOT NULL,
                             `calendar_permission_calendar` int(11) NOT NULL,
@@ -58,16 +59,16 @@ namespace Modules\Calendar\Admin;
                             KEY `calendar_permission_account` (`calendar_permission_account`),
                             KEY `calendar_permission_calendar` (`calendar_permission_calendar`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_permission`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'calendar_permission`
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_1` FOREIGN KEY (`calendar_permission_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_2` FOREIGN KEY (`calendar_permission_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event` (
                             `calendar_event_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_event_name` varchar(25) NOT NULL,
                             `calendar_event_description` varchar(255) NOT NULL,
@@ -90,16 +91,16 @@ namespace Modules\Calendar\Admin;
                             KEY `calendar_event_creator` (`calendar_event_creator`),
                             KEY `calendar_event_calendar` (`calendar_event_calendar`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_event`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'calendar_event`
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_1` FOREIGN KEY (`calendar_event_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_2` FOREIGN KEY (`calendar_event_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event_participant` (
+                $db->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event_participant` (
                             `calendar_event_participant_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_event_participant_event` int(11) NOT NULL,
                             `calendar_event_participant_person` int(11) NOT NULL,
@@ -108,16 +109,16 @@ namespace Modules\Calendar\Admin;
                             KEY `calendar_event_participant_event` (`calendar_event_participant_event`),
                             KEY `calendar_event_participant_person` (`calendar_event_participant_person`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
+                )->execute();
 
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_event_participant`
+                $db->con->prepare(
+                    'ALTER TABLE `' . $db->prefix . 'calendar_event_participant`
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_1` FOREIGN KEY (`calendar_event_participant_event`) REFERENCES `' . $db->prefix . 'calendar_event` (`calendar_event_id`),
                             ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_2` FOREIGN KEY (`calendar_event_participant_person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
-                    break;
-            }
-
-            parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+                )->execute();
+                break;
         }
+
+        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
     }
+}

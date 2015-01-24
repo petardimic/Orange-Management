@@ -1,11 +1,11 @@
-var MouseManager = function() {
+var MouseManager = function () {
 
 };
 
-MouseManager.prototype.attach = function(clickType, element, callback) {
+MouseManager.prototype.attach = function (clickType, element, callback) {
 
 };
 
-MouseManager.prototype.detach = function(eventId) {
+MouseManager.prototype.detach = function (eventId) {
 
 };

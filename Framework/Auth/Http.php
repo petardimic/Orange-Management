@@ -1,74 +1,75 @@
 <?php
 namespace Framework\Auth;
+
+/**
+ * Auth class
+ *
+ * Responsible for authenticating and initializing the connection
+ *
+ * PHP Version 5.4
+ *
+ * @category   Framework
+ * @package    Framework\Auth
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsInterface
+{
+    use \Framework\Config\OptionsTrait;
+
     /**
-     * Auth class
+     * Application instance
      *
-     * Responsible for authenticating and initializing the connection
-     *
-     * PHP Version 5.4
-     *
-     * @category   Framework
-     * @package    Framework\Auth
-     * @author     OMS Development Team <dev@oms.com>
-     * @author     Dennis Eichhorn <d.eichhorn@oms.com>
-     * @copyright  2013
-     * @license    OMS License 1.0
-     * @version    1.0.0
-     * @link       http://orange-management.com
-     * @since      1.0.0
+     * @var \Framework\WebApplication
+     * @since 1.0.0
      */
-    class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsInterface
+    private $app = null;
+
+    /**
+     * Constructor
+     *
+     * @param \Framework\WebApplication $app Application reference
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct($app)
     {
-        use \Framework\Config\OptionsTrait;
+        $this->app = $app;
+    }
 
-        /**
-         * Application instance
-         *
-         * @var \Framework\WebApplication
-         * @since 1.0.0
-         */
-        private $app = null;
+    /**
+     * {@inheritdoc}
+     */
+    public function authenticate()
+    {
+        $uid = $this->app->session->getValue('UID');
 
-        /**
-         * Constructor
-         *
-         * @param \Framework\WebApplication $app Application reference
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function __construct($app)
-        {
-            $this->app = $app;
+        if($uid === null) {
+            $uid = -1;
         }
 
-        /**
-         * {@inheritdoc}
-         */
-        public function authenticate()
-        {
-            $uid = $this->app->session->getValue('UID');
+        return \Framework\Object\User\User::getInstance($uid, $this->app, true);
+    }
 
-            if($uid === null) {
-                $uid = -1;
-            }
+    /**
+     * {@inheritdoc}
+     */
+    public function login($login, $password)
+    {
+        try {
+            $result = null;
 
-            return \Framework\Object\User\User::getInstance($uid, $this->app, true);
-        }
+            switch($this->app->db->getType()) {
+                case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
-        /**
-         * {@inheritdoc}
-         */
-        public function login($login, $password)
-        {
-            try {
-                $result = null;
-
-                switch($this->app->db->getType()) {
-                    case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-
-                        $sth = $this->app->db->con->prepare(
-                            'SELECT
+                    $sth = $this->app->db->con->prepare(
+                        'SELECT
                             `' . $this->app->db->prefix . 'accounts_data`.*,
                             `' . $this->app->db->prefix . 'accounts`.*
                         FROM
@@ -79,44 +80,44 @@ namespace Framework\Auth;
                             `' . $this->app->db->prefix . 'accounts_data`.`account` = `' . $this->app->db->prefix . 'accounts_`.`id`
                         WHERE
                             `' . $this->app->db->prefix . 'accounts_data`.`login` = :login'
-                        );
-                        $sth->bindValue(':login', $login, \PDO::PARAM_STR);
-                        $sth->execute();
+                    );
+                    $sth->bindValue(':login', $login, \PDO::PARAM_STR);
+                    $sth->execute();
 
-                        $result = $sth->fetchAll()[0];
-                        break;
-                }
-
-                // TODO: check if user is allowed to login on THIS page (backend|frontend|etc...)
-
-                if($result === null) {
-                    return \Framework\Auth\LoginReturnType::WRONG_USERNAME;
-                }
-
-                if($result['tries'] <= 0) {
-                    return \Framework\Auth\LoginReturnType::WRONG_INPUT_EXCEEDED;
-                }
-
-                if(password_verify($password, $result['password'])) {
-                    if($result['status'] === \Framework\Auth\LoginReturnType::OK) {
-                        $this->app->session->setValue('UID', $result['account']);
-                    }
-
-                    return $result['status'];
-                }
-
-                return \Framework\Auth\LoginReturnType::WRONG_PASSWORD;
-            } catch(\Exception $e) {
-                return \Framework\Auth\LoginReturnType::FAILURE;
+                    $result = $sth->fetchAll()[0];
+                    break;
             }
-        }
 
-        /**
-         * {@inheritdoc}
-         */
-        public function logout($uid)
-        {
-            // TODO: logout other users? If admin wants to kick a user for updates etc.
-            $this->app->session->deleteValue('UID');
+            // TODO: check if user is allowed to login on THIS page (backend|frontend|etc...)
+
+            if($result === null) {
+                return \Framework\Auth\LoginReturnType::WRONG_USERNAME;
+            }
+
+            if($result['tries'] <= 0) {
+                return \Framework\Auth\LoginReturnType::WRONG_INPUT_EXCEEDED;
+            }
+
+            if(password_verify($password, $result['password'])) {
+                if($result['status'] === \Framework\Auth\LoginReturnType::OK) {
+                    $this->app->session->setValue('UID', $result['account']);
+                }
+
+                return $result['status'];
+            }
+
+            return \Framework\Auth\LoginReturnType::WRONG_PASSWORD;
+        } catch(\Exception $e) {
+            return \Framework\Auth\LoginReturnType::FAILURE;
         }
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function logout($uid)
+    {
+        // TODO: logout other users? If admin wants to kick a user for updates etc.
+        $this->app->session->deleteValue('UID');
+    }
+}

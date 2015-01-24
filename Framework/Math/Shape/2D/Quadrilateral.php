@@ -1,7 +1,7 @@
 abstract class Quadrilateral extends Polygon {
-    public function __construct() {
-        
-    }
-    
-    
+public function __construct() {
+
+}
+
+
 }

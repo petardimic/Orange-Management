@@ -22,8 +22,7 @@
     <div class="bc-1">
         <span><?= $task->getCreated()->format('Y-m-d H:i:s'); ?></span>
         <span><?= $task->getDue()->format('Y-m-d H:i:s'); ?></span>
-        <span><?= $task->getDone()->format('Y-m-d H:i:s'); ?></span>
-        <span><?= $task->getStatus(); ?></span>
+        <span><?= $task->getDone()->format('Y-m-d H:i:s'); ?></span> <span><?= $task->getStatus(); ?></span>
         <span><?= $task->getCreator(); ?></span>
         <?= $task->getDescription(); ?>
     </div>
@@ -36,10 +35,8 @@ foreach($elements as $element) {
     <div class="b b-3 c7-1 c7" id="i7-1-1">
         <div class="bc-1">
             <span><?= $element->getCreated()->format('Y-m-d H:i:s'); ?></span>
-            <span><?= $element->getDue()->format('Y-m-d H:i:s'); ?></span>
-            <span><?= $element->getStatus(); ?></span>
-            <span><?= $element->getForwarded(); ?></span>
-            <span><?= $element->getCreator(); ?></span>
+            <span><?= $element->getDue()->format('Y-m-d H:i:s'); ?></span> <span><?= $element->getStatus(); ?></span>
+            <span><?= $element->getForwarded(); ?></span> <span><?= $element->getCreator(); ?></span>
             <?= $element->getDescription(); ?>
         </div>
     </div>
