@@ -32,58 +32,58 @@ namespace Modules\HumanResources\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff` (
-                            `HRStaffID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `person` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`HRStaffID`),
-                            KEY `person` (`person`)
+                            `hr_staff_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `hr_staff_status` tinyint(2) DEFAULT NULL,
+                            `hr_staff_account` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`hr_staff_id`),
+                            KEY `hr_staff_account` (`hr_staff_account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff`
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_ibfk_1` FOREIGN KEY (`hr_staff_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff_history` (
-                            `HRStaffHistID` int(11) NOT NULL AUTO_INCREMENT,
-                            `staff` int(11) DEFAULT NULL,
-                            `position` int(11) DEFAULT NULL,
-                            `department` int(11) DEFAULT NULL,
-                            `start` datetime DEFAULT NULL,
-                            `end` datetime DEFAULT NULL,
-                            PRIMARY KEY (`HRStaffHistID`),
-                            KEY `staff` (`staff`)
+                            `hr_staff_history_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `hr_staff_history_staff` int(11) DEFAULT NULL,
+                            `hr_staff_history_position` int(11) DEFAULT NULL,
+                            `hr_staff_history_department` int(11) DEFAULT NULL,
+                            `hr_staff_history_start` datetime DEFAULT NULL,
+                            `hr_staff_history_end` datetime DEFAULT NULL,
+                            PRIMARY KEY (`hr_staff_history_id`),
+                            KEY `hr_staff_history_staff` (`hr_staff_history_staff`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_history`
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_history_ibfk_1` FOREIGN KEY (`staff`) REFERENCES `' . $db->prefix . 'hr_staff` (`HRStaffID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_history_ibfk_1` FOREIGN KEY (`hr_staff_history_staff`) REFERENCES `' . $db->prefix . 'hr_staff` (`hr_staff_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff_contract` (
-                            `HRStaffContractID` int(11) NOT NULL AUTO_INCREMENT,
-                            `stype` tinyint(1) DEFAULT NULL,
-                            `salary` decimal(8,2) DEFAULT NULL,
-                            `cformingbenefits` decimal(8,2) DEFAULT NULL,
-                            `working_hours` int(11) DEFAULT NULL,
-                            `vacation` tinyint(3) DEFAULT NULL,
-                            `vtype` tinyint(3) DEFAULT NULL,
-                            `personal_time` tinyint(3) DEFAULT NULL,
-                            `start` datetime DEFAULT NULL,
-                            `end` datetime DEFAULT NULL,
-                            `person` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`HRStaffContractID`),
-                            KEY `person` (`person`)
+                            `hr_staff_contract_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `hr_staff_contract_stype` tinyint(1) DEFAULT NULL,
+                            `hr_staff_contract_salary` decimal(8,2) DEFAULT NULL,
+                            `hr_staff_contract_cformingbenefits` decimal(8,2) DEFAULT NULL,
+                            `hr_staff_contract_working_hours` int(11) DEFAULT NULL,
+                            `hr_staff_contract_vacation` tinyint(3) DEFAULT NULL,
+                            `hr_staff_contract_vtype` tinyint(3) DEFAULT NULL,
+                            `hr_staff_contract_personal_time` tinyint(3) DEFAULT NULL,
+                            `hr_staff_contract_start` datetime DEFAULT NULL,
+                            `hr_staff_contract_end` datetime DEFAULT NULL,
+                            `hr_staff_contract_employee` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`hr_staff_contract_id`),
+                            KEY `hr_staff_contract_employee` (`hr_staff_contract_employee`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_contract`
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_contract_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_contract_ibfk_1` FOREIGN KEY (`hr_staff_contract_employee`) REFERENCES `' . $db->prefix . 'hr_staff` (`hr_staff_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -141,32 +141,6 @@ namespace Modules\HumanResources\Admin {
                             PRIMARY KEY (`HRStaffClockingID`),
                             KEY `person` (`person`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'hr_staff_clocking`
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_clocking_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff_payroll` (
-                            `HRStaffPayrollID` int(11) NOT NULL AUTO_INCREMENT,
-                            `person` int(11) DEFAULT NULL,
-                            `reference` int(11) DEFAULT NULL,
-                            `start` datetime DEFAULT NULL,
-                            `end` datetime DEFAULT NULL,
-                            `type` tinyint(1) NOT NULL,
-                            `amount` decimal(11,2) NOT NULL,
-                            PRIMARY KEY (`HRStaffPayrollID`),
-                            KEY `person` (`person`),
-                            KEY `reference` (`reference`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'hr_staff_payroll`
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_payroll_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_payroll_ibfk_2` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'hr_staff_payroll` (`HRStaffPayrollID`);'
                     )->execute();
                     break;
             }

@@ -23,7 +23,7 @@ namespace Modules\AccountsPayable {
          * @var string
          * @since 1.0.0
          */
-        public static $providing = [
+        protected static $providing = [
             'Content',
             1004400000
         ];
@@ -34,7 +34,7 @@ namespace Modules\AccountsPayable {
          * @var string
          * @since 1.0.0
          */
-        public static $dependencies = [
+        protected static $dependencies = [
             'Media'
         ];
 
@@ -49,32 +49,6 @@ namespace Modules\AccountsPayable {
         public function __construct($app)
         {
             parent::__construct($app);
-        }
-
-        /**
-         * Get modules this module is providing for
-         *
-         * @return array Providing
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getProviding()
-        {
-            return self::$providing;
-        }
-
-        /**
-         * Get dependencies for this module
-         *
-         * @return array Dependencies
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function getDependencies()
-        {
-            return self::$dependencies;
         }
 
         /**

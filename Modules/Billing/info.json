@@ -20,7 +20,7 @@
         "path": "/oms-slim"
     },
     "description": "Accounting module.",
-    "class": "Accounting",
+    "class": "Billing",
     "dependencies": [],
     "providing": [],
     "load": [

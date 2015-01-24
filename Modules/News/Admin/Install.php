@@ -45,23 +45,23 @@ namespace Modules\News\Admin {
                             `news_last_changed` datetime NOT NULL,
                             `news_last_change` int(11) NOT NULL,
                             PRIMARY KEY (`news_id`),
-                            KEY `author` (`author`),
-                            KEY `last_change` (`last_change`)
+                            KEY `news_author` (`news_author`),
+                            KEY `news_last_change` (`news_last_change`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'news`
-                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_1` FOREIGN KEY (`news_idauthor`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_2` FOREIGN KEY (`news_idlast_change`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_1` FOREIGN KEY (`news_author`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_2` FOREIGN KEY (`news_last_change`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_tag` (
                             `news_tag_id` int(11) NOT NULL AUTO_INCREMENT,
-                            ``news_tag_news` int(11) NOT NULL,
-                            ``news_tag_tag` varchar(20) NOT NULL,
-                            PRIMARY KEY (``news_tag_id`),
+                            `news_tag_news` int(11) NOT NULL,
+                            `news_tag_tag` varchar(20) NOT NULL,
+                            PRIMARY KEY (`news_tag_id`),
                             KEY `news_tag_news` (`news_tag_news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
@@ -76,8 +76,8 @@ namespace Modules\News\Admin {
                             `news_group_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_group_news` int(11) NOT NULL,
                             `news_group_group` int(11) NOT NULL,
-                            PRIMARY KEY (`NewsGroupID`),
-                            KEY `news` (`news`)
+                            PRIMARY KEY (`news_group_id`),
+                            KEY `news_group_news` (`news_group_news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 

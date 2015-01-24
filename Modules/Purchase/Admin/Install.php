@@ -31,87 +31,60 @@ namespace Modules\Purchase\Admin {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_articles` (
-                            `PurchaseArticleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `article` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`PurchaseArticleID`),
-                            KEY `article` (`article`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    /* TODO: add constraint */
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_suppliers` (
-                            `PurchaseSupplierID` int(11) NOT NULL AUTO_INCREMENT,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `account` int(11) NOT NULL,
-                            PRIMARY KEY (`PurchaseSupplierID`),
-                            KEY `account` (`account`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_article` (
+                            `purchase_article_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `purchase_article_item` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`purchase_article_id`),
+                            KEY `purchase_article_item` (`purchase_article_item`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_suppliers`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                        'ALTER TABLE `' . $db->prefix . 'purchase_article`
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_article_ibfk_1` FOREIGN KEY (`purchase_article_item`) REFERENCES `' . $db->prefix . 'itemreference` (`itemreference_id`);'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_supplier` (
+                            `purchase_supplier_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `purchase_supplier_account` int(11) NOT NULL,
+                            PRIMARY KEY (`purchase_supplier_id`),
+                            KEY `account` (`purchase_supplier_account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'purchase_supplier`
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_supplier_ibfk_1` FOREIGN KEY (`purchase_supplier_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     // TODO: create reference between WE, RG and Order?????
                     /* These are the invoices that get created by the purchasing department */
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoices` (
-                            `PurchaseInvoiceID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `type` tinyint(2) DEFAULT NULL,
-                            `created` datetime DEFAULT NULL,
-                            `printed` datetime DEFAULT NULL,
-                            `price` decimal(9,2) DEFAULT NULL,
-                            `currency` varchar(3) DEFAULT NULL,
-                            `creator` int(11) NOT NULL,
-                            `supplier` int(11) NOT NULL,
-                            `referer` int(11) NOT NULL,
-                            PRIMARY KEY (`PurchaseInvoiceID`),
-                            KEY `creator` (`creator`),
-                            KEY `supplier` (`supplier`),
-                            KEY `referer` (`referer`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoice` (
+                            `purchase_invoice_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `purchase_invoice_status` tinyint(2) DEFAULT NULL,
+                            `purchase_invoice_type` tinyint(2) DEFAULT NULL,
+                            `purchase_invoice_created` datetime DEFAULT NULL,
+                            `purchase_invoice_printed` datetime DEFAULT NULL,
+                            `purchase_invoice_price` decimal(9,2) DEFAULT NULL,
+                            `purchase_invoice_currency` varchar(3) DEFAULT NULL,
+                            `purchase_invoice_creator` int(11) NOT NULL,
+                            `purchase_invoice_supplier` int(11) NOT NULL,
+                            `purchase_invoice_referer` int(11) NOT NULL,
+                            PRIMARY KEY (`purchase_invoice_id`),
+                            KEY `purchase_invoice_creator` (`purchase_invoice_creator`),
+                            KEY `purchase_invoice_supplier` (`purchase_invoice_supplier`),
+                            KEY `purchase_invoice_referer` (`purchase_invoice_referer`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_invoices`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`),
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                        'ALTER TABLE `' . $db->prefix . 'purchase_invoice`
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_1` FOREIGN KEY (`purchase_invoice_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $db->prefix . 'purchase_supplier` (`purchase_supplier`),
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_3` FOREIGN KEY (`purchase_invoice_referer`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
-
-                    /* status - maybe something like already checked or no one from purchasing has seen this */
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_dnote` (
-                            `PurchaseDnoteID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(1) DEFAULT NULL,
-                            `media` int(11) DEFAULT NULL,
-                            `supplier` int(11) DEFAULT NULL,
-                            `sname` varchar(32) DEFAULT NULL,
-                            `optained` datetime NOT NULL,
-                            `invoicedate` datetime NOT NULL,
-                            `internalref` int(11) NOT NULL,
-                            PRIMARY KEY (`PurchaseDnoteID`),
-                            KEY `media` (`media`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'purchase_dnote`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_dnote_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`media_id`);'
-                    )->execute();
-
-                    // TODO: FIX THIS AT least check if exists
-                    // TODO: move to extra install script
-/*
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
-                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'purchase_dnote` (`PurchaseDnoteID`);'
-                    )->execute();*/
                     break;
             }
 

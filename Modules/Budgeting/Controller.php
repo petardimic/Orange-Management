@@ -23,7 +23,7 @@ namespace Modules\Budgeting {
          * @var string
          * @since 1.0.0
          */
-        public static $providing = [
+        protected static $providing = [
             'Content',
             1004400000
         ];
@@ -34,7 +34,7 @@ namespace Modules\Budgeting {
          * @var string
          * @since 1.0.0
          */
-        public static $dependencies = [
+        protected static $dependencies = [
         ];
 
         /**

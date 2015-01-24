@@ -23,7 +23,7 @@ namespace Modules\API {
          * @var string
          * @since 1.0.0
          */
-        public static $providing = [
+        protected static $providing = [
         ];
 
         /**
@@ -32,7 +32,7 @@ namespace Modules\API {
          * @var string
          * @since 1.0.0
          */
-        public static $dependencies = [
+        protected static $dependencies = [
         ];
 
         /**

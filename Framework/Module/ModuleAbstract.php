@@ -56,5 +56,31 @@ namespace Framework\Module {
                 \Framework\Module\ModuleFactory::$loaded[$mid]->callPush();
             }
         }
+
+        /**
+         * Get modules this module is providing for
+         *
+         * @return array Providing
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getProviding()
+        {
+            return static::$providing;
+        }
+
+        /**
+         * Get dependencies for this module
+         *
+         * @return array Dependencies
+         *
+         * @since  1.0.0
+         * @author Dennis Eichhorn <d.eichhorn@oms.com>
+         */
+        public function getDependencies()
+        {
+            return static::$dependencies;
+        }
     }
 }

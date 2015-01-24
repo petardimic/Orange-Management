@@ -1,12 +1,12 @@
 <?php
-namespace Modules\EventManagement {
+namespace Modules\Clocking {
     /**
-     * Event Management class
+     * Navigation class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Clocking
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -40,7 +40,7 @@ namespace Modules\EventManagement {
         /**
          * Constructor
          *
-         * @param \Framework\WebApplication $app Application reference
+         * @param \Framework\WebApplication $app Application instance
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -58,31 +58,6 @@ namespace Modules\EventManagement {
          */
         public function callWeb()
         {
-            switch($this->app->request->getType()) {
-                case \Framework\Request\WebRequestPage::BACKEND:
-                    $this->showContentBackend();
-                    break;
-            }
-        }
-
-        /**
-         * Shows module content
-         *
-         * @since  1.0.0
-         * @author Dennis Eichhorn <d.eichhorn@oms.com>
-         */
-        public function showContentBackend()
-        {
-            switch($this->app->request->request['l3']) {
-                case 'dashboard':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/backend/eventmanagement-dashboard.tpl.php';
-                    break;
-                case 'create':
-                    /** @noinspection PhpIncludeInspection */
-                    include __DIR__ . '/Theme/backend/eventmanagement-create.tpl.php';
-                    break;
-            }
         }
     }
 }

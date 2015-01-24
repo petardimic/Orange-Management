@@ -26,7 +26,7 @@ namespace OMS\Modules {
          * @var int[]
          * @since 1.0.0
          */
-        public static $dependencies = null;
+        protected static $dependencies = null;
 
         /**
          * Receiving
@@ -42,7 +42,7 @@ namespace OMS\Modules {
          * @var int[]
          * @since 1.0.0
          */
-        public static $providing = [
+        protected static $providing = [
             1004100000 => true
         ];
 

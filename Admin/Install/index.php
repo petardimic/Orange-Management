@@ -37,6 +37,8 @@ $toInstall = [
     'ProjectManagement',
     'EventManagement',
     'Chat',
+    'News',
+    'BackendDashboard',
 ];
 
 $instHOBJ->installCore();
