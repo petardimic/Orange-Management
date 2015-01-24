@@ -127,7 +127,7 @@ namespace Modules\Media\Models {
                             `' . $this->db->prefix . 'media`.*
                         FROM
                             `' . $this->db->prefix . 'media`
-                       WHERE `' . $this->db->prefix . 'media`.`MediaID` = :id');
+                       WHERE `' . $this->db->prefix . 'media`.`media_id` = :id');
 
                     $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                     $sth->execute();

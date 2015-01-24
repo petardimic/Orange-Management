@@ -1,12 +1,12 @@
 <?php
 namespace Modules\Calendar\Admin {
     /**
-     * Navigation class
+     * Calendar install class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Calendar
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -32,88 +32,88 @@ namespace Modules\Calendar\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar` (
-                            `CalendarID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `password` varchar(64) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `created` datetime NOT NULL,
-                            PRIMARY KEY (`CalendarID`),
-                            KEY `creator` (`creator`)
+                            `calendar_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `calendar_name` varchar(25) NOT NULL,
+                            `calendar_password` varchar(64) NOT NULL,
+                            `calendar_description` varchar(255) NOT NULL,
+                            `calendar_creator` int(11) NOT NULL,
+                            `calendar_created` datetime NOT NULL,
+                            PRIMARY KEY (`calendar_id`),
+                            KEY `calendar_creator` (`calendar_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'calendar`
-                            ADD CONSTRAINT `calendar_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_ibfk_1` FOREIGN KEY (`calendar_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_permissions` (
-                            `CalendarPermissionID` int(11) NOT NULL AUTO_INCREMENT,
-                            `person` int(11) NOT NULL,
-                            `calendar` int(11) NOT NULL,
-                            `permission` tinyint(2) NOT NULL,
-                            PRIMARY KEY (`CalendarPermissionID`),
-                            KEY `person` (`person`),
-                            KEY `calendar` (`calendar`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_permission` (
+                            `calendar_permission_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `calendar_permission_account` int(11) NOT NULL,
+                            `calendar_permission_calendar` int(11) NOT NULL,
+                            `calendar_permission_permission` tinyint(2) NOT NULL,
+                            PRIMARY KEY (`calendar_permission_id`),
+                            KEY `calendar_permission_account` (`calendar_permission_account`),
+                            KEY `calendar_permission_calendar` (`calendar_permission_calendar`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_permissions`
-                            ADD CONSTRAINT `calendar_permissions_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `calendar_permissions_ibfk_2` FOREIGN KEY (`calendar`) REFERENCES `' . $db->prefix . 'calendar` (`CalendarID`);'
+                        'ALTER TABLE `' . $db->prefix . 'calendar_permission`
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_1` FOREIGN KEY (`calendar_permission_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_2` FOREIGN KEY (`calendar_permission_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event` (
-                            `CalendarEventID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `start` datetime NOT NULL,
-                            `end` datetime NOT NULL,
-                            `status` tinyint(1) NOT NULL,
-                            `repeat` tinyint(1) NOT NULL,
-                            `rep_interval` tinyint(3) NOT NULL,
-                            `rep_monday` tinyint(1) NOT NULL,
-                            `rep_tuesday` tinyint(1) NOT NULL,
-                            `rep_wednesday` tinyint(1) NOT NULL,
-                            `rep_thursday` tinyint(1) NOT NULL,
-                            `rep_friday` tinyint(1) NOT NULL,
-                            `rep_saturday` tinyint(1) NOT NULL,
-                            `rep_sunday` tinyint(1) NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `created` datetime NOT NULL,
-                            `calendar` int(11) NOT NULL,
-                            PRIMARY KEY (`CalendarEventID`),
-                            KEY `creator` (`creator`),
-                            KEY `calendar` (`calendar`)
+                            `calendar_event_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `calendar_event_name` varchar(25) NOT NULL,
+                            `calendar_event_description` varchar(255) NOT NULL,
+                            `calendar_event_start` datetime NOT NULL,
+                            `calendar_event_end` datetime NOT NULL,
+                            `calendar_event_status` tinyint(1) NOT NULL,
+                            `calendar_event_repeat` tinyint(1) NOT NULL,
+                            `calendar_event_rep_interval` tinyint(3) NOT NULL,
+                            `calendar_event_rep_monday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_tuesday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_wednesday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_thursday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_friday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_saturday` tinyint(1) NOT NULL,
+                            `calendar_event_rep_sunday` tinyint(1) NOT NULL,
+                            `calendar_event_creator` int(11) NOT NULL,
+                            `calendar_event_created` datetime NOT NULL,
+                            `calendar_event_calendar` int(11) NOT NULL,
+                            PRIMARY KEY (`calendar_event_id`),
+                            KEY `calendar_event_creator` (`calendar_event_creator`),
+                            KEY `calendar_event_calendar` (`calendar_event_calendar`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'calendar_event`
-                            ADD CONSTRAINT `calendar_event_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `calendar_event_ibfk_2` FOREIGN KEY (`calendar`) REFERENCES `' . $db->prefix . 'calendar` (`CalendarID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_1` FOREIGN KEY (`calendar_event_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_2` FOREIGN KEY (`calendar_event_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event_participants` (
-                            `CalendarEventParticipantsID` int(11) NOT NULL AUTO_INCREMENT,
-                            `event` int(11) NOT NULL,
-                            `person` int(11) NOT NULL,
-                            `status` tinyint(1) NOT NULL,
-                            PRIMARY KEY (`CalendarEventParticipantsID`),
-                            KEY `event` (`event`),
-                            KEY `person` (`person`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event_participant` (
+                            `calendar_event_participant_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `calendar_event_participant_event` int(11) NOT NULL,
+                            `calendar_event_participant_person` int(11) NOT NULL,
+                            `calendar_event_participant_status` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`calendar_event_participant_id`),
+                            KEY `calendar_event_participant_event` (`calendar_event_participant_event`),
+                            KEY `calendar_event_participant_person` (`calendar_event_participant_person`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_event_participants`
-                            ADD CONSTRAINT `calendar_event_participants_ibfk_1` FOREIGN KEY (`event`) REFERENCES `' . $db->prefix . 'calendar_event` (`CalendarEventID`),
-                            ADD CONSTRAINT `calendar_event_participants_ibfk_2` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'calendar_event_participant`
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_1` FOREIGN KEY (`calendar_event_participant_event`) REFERENCES `' . $db->prefix . 'calendar_event` (`calendar_event_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_2` FOREIGN KEY (`calendar_event_participant_person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
                     break;
             }

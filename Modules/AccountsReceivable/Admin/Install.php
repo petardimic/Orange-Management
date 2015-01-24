@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Marketing\Admin {
+namespace Modules\AccountsReceivable\Admin {
     /**
-     * Navigation class
+     * Accounts receivable install class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\AccountsReceivable
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -31,15 +31,17 @@ namespace Modules\Marketing\Admin {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'marketing_promotion` (
-                            `marketing_promotion_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `marketing_promotion_name`  varchar(30) NOT NULL,
-                            `marketing_promotion_description` text DEFAULT NULL,
-                            `marketing_promotion_start` datetime DEFAULT NULL,
-                            `marketing_promotion_end` datetime DEFAULT NULL,
-                            `marketing_promotion_type` tinyint(1) DEFAULT NULL,
-                            PRIMARY KEY (`marketing_promotion_id`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accountsreceivable` (
+                            `accountsreceivable_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accountsreceivable_account` int(11) NOT NULL,
+                            PRIMARY KEY (`accountsreceivable_id`),
+                            KEY `account` (`accountsreceivable_account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                    )->execute();
+
+                    $db->con->prepare(
+                        'ALTER TABLE `' . $db->prefix . 'accountsreceivable`
+                            ADD CONSTRAINT `' . $db->prefix . 'accountsreceivable_ibfk_1` FOREIGN KEY (`accountsreceivable_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
                     break;
             }

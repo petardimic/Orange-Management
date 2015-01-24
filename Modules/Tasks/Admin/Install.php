@@ -33,49 +33,49 @@ namespace Modules\Tasks\Admin {
                     $db->con->beginTransaction();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks` (
-                            `TaskID` int(11) NOT NULL AUTO_INCREMENT,
-                            `title` varchar(30) DEFAULT NULL,
-                            `desc` text NOT NULL,
-                            `plain` text NOT NULL,
-                            `status` tinyint(3) NOT NULL,
-                            `due` datetime NOT NULL,
-                            `done` datetime NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `created` datetime NOT NULL,
-                            PRIMARY KEY (`TaskID`),
-                            KEY `creator` (`creator`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'task` (
+                            `task_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `task_title` varchar(30) DEFAULT NULL,
+                            `task_desc` text NOT NULL,
+                            `task_plain` text NOT NULL,
+                            `task_status` tinyint(3) NOT NULL,
+                            `task_due` datetime NOT NULL,
+                            `task_done` datetime NOT NULL,
+                            `task_creator` int(11) NOT NULL,
+                            `task_created` datetime NOT NULL,
+                            PRIMARY KEY (`task_id`),
+                            KEY `task_creator` (`task_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'tasks`
-                            ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'task`
+                            ADD CONSTRAINT `' . $db->prefix . 'task_ibfk_1` FOREIGN KEY (`task_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks_element` (
-                            `TaskelementID` int(11) NOT NULL AUTO_INCREMENT,
-                            `desc` text NOT NULL,
-                            `plain` text NOT NULL,
-                            `task` int(11) NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `status` tinyint(3) NOT NULL,
-                            `due` datetime NOT NULL,
-                            `forwarded` int(11) NOT NULL,
-                            `created` datetime NOT NULL,
-                            PRIMARY KEY (`TaskelementID`),
-                            KEY `task` (`task`),
-                            KEY `creator` (`creator`),
-                            KEY `forwarded` (`forwarded`)
+                            `tasks_element_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `tasks_element_desc` text NOT NULL,
+                            `tasks_element_plain` text NOT NULL,
+                            `tasks_element_task` int(11) NOT NULL,
+                            `tasks_element_creator` int(11) NOT NULL,
+                            `tasks_element_status` tinyint(3) NOT NULL,
+                            `tasks_element_due` datetime NOT NULL,
+                            `tasks_element_forwarded` int(11) NOT NULL,
+                            `tasks_element_created` datetime NOT NULL,
+                            PRIMARY KEY (`tasks_element_id`),
+                            KEY `tasks_element_task` (`tasks_element_task`),
+                            KEY `tasks_element_creator` (`tasks_element_creator`),
+                            KEY `tasks_element_forwarded` (`tasks_element_forwarded`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'tasks_element`
-                            ADD CONSTRAINT `tasks_element_ibfk_1` FOREIGN KEY (`task`) REFERENCES `' . $db->prefix . 'tasks` (`TaskID`),
-                            ADD CONSTRAINT `tasks_element_ibfk_2` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `tasks_element_ibfk_3` FOREIGN KEY (`forwarded`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_1` FOREIGN KEY (`tasks_element_task`) REFERENCES `' . $db->prefix . 'task` (`task_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_2` FOREIGN KEY (`tasks_element_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_3` FOREIGN KEY (`tasks_element_forwarded`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->commit();

@@ -100,7 +100,7 @@ namespace Modules\Navigation {
 
                 $uri_hash = $this->app->request->getHash();
 
-                $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `order` ASC');
+                $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `nav_pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `nav_order` ASC');
                 $sth->bindValue(':pidA', $uri_hash[0], \PDO::PARAM_STR);
                 $sth->bindValue(':pidB', $uri_hash[1], \PDO::PARAM_STR);
                 $sth->bindValue(':pidC', $uri_hash[2], \PDO::PARAM_STR);
@@ -110,7 +110,7 @@ namespace Modules\Navigation {
                 $temp_nav = $sth->fetchAll();
 
                 foreach($temp_nav as $link) {
-                    $this->nav[$link['type']][$link['subtype']][$link['NavigationID']] = $link;
+                    $this->nav[$link['nav_type']][$link['nav_subtype']][$link['nav_id']] = $link;
                 }
             }
         }

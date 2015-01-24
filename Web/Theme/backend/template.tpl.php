@@ -10,7 +10,8 @@
 <body>
 <div class="vh" id="dim"></div>
 <?php /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['GlobalContent']->callWeb(); ?>
+// TODO: use content module with paramenter in order to call global content
+//\Framework\Module\ModuleFactory::$loaded['GlobalContent']->callWeb(); ?>
 <div id="h">
     <div id="bar-s">
         <?php /** @noinspection PhpUndefinedMethodInspection */

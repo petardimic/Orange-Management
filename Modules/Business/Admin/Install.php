@@ -32,53 +32,53 @@ namespace Modules\Business\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_unit` (
-                            `BusinessUnitID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `name` varchar(50) DEFAULT NULL,
-                            PRIMARY KEY (`BusinessUnitID`)
+                            `business_unit_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `business_unit_status` tinyint(2) DEFAULT NULL,
+                            `business_unit_matchcode` varchar(50) DEFAULT NULL,
+                            `business_unit_name` varchar(50) DEFAULT NULL,
+                            PRIMARY KEY (`business_unit_id`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_department` (
-                            `BusinessDepartmentID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(30) DEFAULT NULL,
-                            `parent` int(11) DEFAULT NULL,
-                            `unit` int(11) NOT NULL,
-                            PRIMARY KEY (`BusinessDepartmentID`),
-                            KEY `parent` (`parent`),
-                            KEY `unit` (`unit`)
+                            `business_department_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `business_department_name` varchar(30) DEFAULT NULL,
+                            `business_department_parent` int(11) DEFAULT NULL,
+                            `business_department_unit` int(11) NOT NULL,
+                            PRIMARY KEY (`business_department_id`),
+                            KEY `business_department_parent` (`business_department_parent`),
+                            KEY `business_department_unit` (`business_department_unit`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'business_department`
-                            ADD CONSTRAINT `business_department_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'business_department` (`BusinessDepartmentID`),
-                            ADD CONSTRAINT `business_department_ibfk_2` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_1` FOREIGN KEY (`business_department_parent`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_2` FOREIGN KEY (`business_department_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_address` (
-                            `BusinessAddressID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `name` varchar(50) DEFAULT NULL,
-                            `fao` varchar(30) DEFAULT NULL,
-                            `addr` varchar(50) DEFAULT NULL,
-                            `city` varchar(20) DEFAULT NULL,
-                            `zip` varchar(20) DEFAULT NULL,
-                            `state` varchar(20) DEFAULT NULL,
-                            `country` varchar(30) DEFAULT NULL,
-                            `unit` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`BusinessAddressID`),
-                            KEY `unit` (`unit`)
+                            `business_address_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `business_address_status` tinyint(2) DEFAULT NULL,
+                            `business_address_matchcode` varchar(50) DEFAULT NULL,
+                            `business_address_name` varchar(50) DEFAULT NULL,
+                            `business_address_fao` varchar(30) DEFAULT NULL,
+                            `business_address_addr` varchar(50) DEFAULT NULL,
+                            `business_address_city` varchar(20) DEFAULT NULL,
+                            `business_address_zip` varchar(20) DEFAULT NULL,
+                            `business_address_state` varchar(20) DEFAULT NULL,
+                            `business_address_country` varchar(30) DEFAULT NULL,
+                            `business_address_unit` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`business_address_id`),
+                            KEY `business_address_unit` (`business_address_unit`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'business_address`
-                            ADD CONSTRAINT `business_address_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'business_address_ibfk_1` FOREIGN KEY (`business_address_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
                     )->execute();
                     break;
             }

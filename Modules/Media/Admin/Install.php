@@ -32,38 +32,38 @@ namespace Modules\Media\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media` (
-                            `MediaID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name`  varchar(100) NOT NULL,
-                            `file` varchar(255) NOT NULL,
-                            `type` varchar(10) NULL,
-                            `size` int(11) NULL,
-                            `creator` int(11) DEFAULT NULL,
-                            `created` datetime DEFAULT NULL,
-                            PRIMARY KEY (`MediaID`),
-                            KEY `creator` (`creator`)
+                            `media_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `media_name`  varchar(100) NOT NULL,
+                            `media_file` varchar(255) NOT NULL,
+                            `media_type` varchar(10) NULL,
+                            `media_size` int(11) NULL,
+                            `media_creator` int(11) DEFAULT NULL,
+                            `media_created` datetime DEFAULT NULL,
+                            PRIMARY KEY (`media_id`),
+                            KEY `media_creator` (`media_creator`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'media`
-                            ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'media_ibfk_1` FOREIGN KEY (`media_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media_permission` (
-                            `MediaPermissionID` int(11) NOT NULL AUTO_INCREMENT,
-                            `type`  tinyint(1) NOT NULL,
-                            `reference` int(11) NOT NULL,
-                            `permission` tinyint(2) NOT NULL,
-                            `media` int(11) NOT NULL,
-                            PRIMARY KEY (`MediaPermissionID`),
-                            KEY `media` (`media`)
+                            `media_permission_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `media_permission_type`  tinyint(1) NOT NULL,
+                            `media_permission_reference` int(11) NOT NULL,
+                            `media_permission_permission` tinyint(2) NOT NULL,
+                            `media_permission_media` int(11) NOT NULL,
+                            PRIMARY KEY (`media_permission_id`),
+                            KEY `media_permission_media` (`media_permission_media`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'media_permission`
-                            ADD CONSTRAINT `media_permission_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'media_permission_ibfk_1` FOREIGN KEY (`media_permission_media`) REFERENCES `' . $db->prefix . 'media` (`media_id`);'
                     )->execute();
                     break;
             }

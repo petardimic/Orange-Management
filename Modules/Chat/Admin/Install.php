@@ -32,38 +32,38 @@ namespace Modules\Chat\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'chat_room` (
-                            `ChatRoomID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `password` varchar(64) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `created` datetime NOT NULL,
-                            PRIMARY KEY (`ChatRoomID`),
-                            KEY `creator` (`creator`)
+                            `chat_room_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `chat_room_name` varchar(25) NOT NULL,
+                            `chat_room_password` varchar(64) NOT NULL,
+                            `chat_room_description` varchar(255) NOT NULL,
+                            `chat_room_creator` int(11) NOT NULL,
+                            `chat_room_created` datetime NOT NULL,
+                            PRIMARY KEY (`chat_room_id`),
+                            KEY `chat_room_creator` (`chat_room_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar`
-                            ADD CONSTRAINT `chat_room_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'chat_room`
+                            ADD CONSTRAINT `' . $db->prefix . 'chat_room_ibfk_1` FOREIGN KEY (`chat_room_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'chat_room_permissions` (
-                            `ChatRoomPermissionID` int(11) NOT NULL AUTO_INCREMENT,
-                            `person` int(11) NOT NULL,
-                            `room` int(11) NOT NULL,
-                            `permission` tinyint(1) NOT NULL,
-                            PRIMARY KEY (`ChatRoomPermissionID`),
-                            KEY `person` (`person`),
-                            KEY `room` (`room`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'chat_room_permission` (
+                            `chat_room_permission_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `chat_room_permission_account` int(11) NOT NULL,
+                            `chat_room_permission_room` int(11) NOT NULL,
+                            `chat_room_permission_permission` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`chat_room_permission_id`),
+                            KEY `chat_room_permission_account` (`chat_room_permission_account`),
+                            KEY `chat_room_permission_room` (`chat_room_permission_room`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'calendar_permissions`
-                            ADD CONSTRAINT `chat_room_permissions_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `chat_room_permissions_ibfk_2` FOREIGN KEY (`room`) REFERENCES `' . $db->prefix . 'chat_room` (`ChatRoomID`);'
+                        'ALTER TABLE `' . $db->prefix . 'chat_room_permission`
+                            ADD CONSTRAINT `' . $db->prefix . 'chat_room_permission_ibfk_1` FOREIGN KEY (`chat_room_permission_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'chat_room_permission_ibfk_2` FOREIGN KEY (`chat_room_permission_room`) REFERENCES `' . $db->prefix . 'chat_room` (`chat_room_id`);'
                     )->execute();
                     break;
             }

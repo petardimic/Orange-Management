@@ -8,17 +8,17 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::TOP])) {
     foreach($this->nav[\Modules\Navigation\Models\NavigationType::TOP] as $key => $parent) {
         foreach($parent as $link) {
             echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
-                                                                     $link['l0'],
-                                                                     $link['l1'],
-                                                                     $link['l2'],
-                                                                     $link['l3'],
-                                                                     $link['l4']]) . '">';
+                                                                     $link['nav_l0'],
+                                                                     $link['nav_l1'],
+                                                                     $link['nav_l2'],
+                                                                     $link['nav_l3'],
+                                                                     $link['nav_l4']]) . '">';
 
-            if(isset($link['icon'])) {
-                echo '<i class="' . $link['icon'] . '"></i>';
+            if(isset($link['nav_icon'])) {
+                echo '<i class="' . $link['nav_icon'] . '"></i>';
             }
 
-            echo $this->app->user->localization->lang[5][$link['name']] . '</a>';
+            echo $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
         }
     }
 

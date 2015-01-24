@@ -53,7 +53,7 @@ namespace Modules\Purchase\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'purchase_suppliers`
-                            ADD CONSTRAINT `purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_suppliers_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     // TODO: create reference between WE, RG and Order?????
@@ -79,9 +79,9 @@ namespace Modules\Purchase\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'purchase_invoices`
-                            ADD CONSTRAINT `purchase_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `purchase_invoices_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`),
-                            ADD CONSTRAINT `purchase_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `' . $db->prefix . 'purchase_suppliers` (`PurchaseSupplierID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoices_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     /* status - maybe something like already checked or no one from purchasing has seen this */
@@ -102,15 +102,16 @@ namespace Modules\Purchase\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'purchase_dnote`
-                            ADD CONSTRAINT `purchase_dnote_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'purchase_dnote_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`media_id`);'
                     )->execute();
 
                     // TODO: FIX THIS AT least check if exists
-
+                    // TODO: move to extra install script
+/*
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'purchase_dnote` (`PurchaseDnoteID`);'
-                    )->execute();
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_arrival_ibfk_2` FOREIGN KEY (`dnote`) REFERENCES `' . $db->prefix . 'purchase_dnote` (`PurchaseDnoteID`);'
+                    )->execute();*/
                     break;
             }
 

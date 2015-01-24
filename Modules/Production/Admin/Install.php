@@ -52,7 +52,7 @@ namespace Modules\Production\Admin {
 
                     /*$db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'production_process`
-                            ADD CONSTRAINT `production_process_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'production_process_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();*/
 
                     $db->con->prepare(
@@ -78,7 +78,7 @@ namespace Modules\Production\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'production_guideline_step`
-                            ADD CONSTRAINT `production_guideline_step_ibfk_1` FOREIGN KEY (`guideline`) REFERENCES `' . $db->prefix . 'production_guideline` (`ProductionGuidelineID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'production_guideline_step_ibfk_1` FOREIGN KEY (`guideline`) REFERENCES `' . $db->prefix . 'production_guideline` (`ProductionGuidelineID`);'
                     )->execute();
                     break;
             }

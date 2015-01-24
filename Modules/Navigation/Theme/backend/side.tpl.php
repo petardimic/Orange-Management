@@ -8,22 +8,22 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::SIDE])) {
     foreach($this->nav[\Modules\Navigation\Models\NavigationType::SIDE][\Modules\Navigation\Models\LinkType::CATEGORY] as $key => $parent) {
         echo '<li><ul><li>';
 
-        if(isset($parent['icon'])) {
-            echo '<i class="' . $parent['icon'] . '"></i>';
+        if(isset($parent['nav_icon'])) {
+            echo '<i class="' . $parent['nav_icon'] . '"></i>';
         }
 
-        echo $this->app->user->localization->lang[5][$parent['name']] . '<i class="fa fa-chevron-down min"></i>
+        echo $this->app->user->localization->lang[5][$parent['nav_name']] . '<i class="fa fa-chevron-down min"></i>
                     <i class="fa fa-chevron-up max vh"></i>';
 
         foreach($this->nav[\Modules\Navigation\Models\NavigationType::SIDE][\Modules\Navigation\Models\LinkType::LINK] as $key2 => $link) {
-            if($link['parent'] === $parent['NavigationID']) {
+            if($link['nav_parent'] === $parent['nav_id']) {
                 echo '<li>';
                 echo '<a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
-                                                                     $link['l0'],
-                                                                     $link['l1'],
-                                                                     $link['l2'],
-                                                                     $link['l3'],
-                                                                     $link['l4']]) . '">' . $this->app->user->localization->lang[5][$link['name']] . '</a>';
+                                                                     $link['nav_l0'],
+                                                                     $link['nav_l1'],
+                                                                     $link['nav_l2'],
+                                                                     $link['nav_l3'],
+                                                                     $link['nav_l4']]) . '">' . $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
             }
         }
         echo '</ul>';

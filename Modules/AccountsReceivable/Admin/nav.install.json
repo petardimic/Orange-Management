@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1004906001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 1,
+        "name": "AccountsReceivable",
+        "l0": "backend",
+        "l1": "accounting",
+        "l2": "account",
+        "l3": "receivable",
+        "l4": "list",
+        "l5": null,
+        "icon": null,
+        "order": 1,
+        "from": 1004900000,
+        "permission": null,
+        "parent": 1004901001,
+        "children": [
+        ]
+    }
+]

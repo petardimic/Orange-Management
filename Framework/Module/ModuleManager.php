@@ -98,9 +98,9 @@ namespace Framework\Module {
                         /* TODO: make join in order to see if they are active */
                         $sth = $this->app->db->con->prepare(
                             'SELECT
-                        `' . $this->app->db->prefix . 'modules_load`.`type`, `' . $this->app->db->prefix . 'modules_load`.*
+                        `' . $this->app->db->prefix . 'module_load`.`type`, `' . $this->app->db->prefix . 'module_load`.*
                         FROM
-                        `' . $this->app->db->prefix . 'modules_load`
+                        `' . $this->app->db->prefix . 'module_load`
                         WHERE
                         `pid` IN(:pid1, :pid2, :pid3, :pid4)'
                         );
@@ -134,7 +134,7 @@ namespace Framework\Module {
             if($this->installed === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                        $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'modules`');
+                        $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'module`');
                         $sth->execute();
                         $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                         break;
@@ -157,7 +157,7 @@ namespace Framework\Module {
             if($this->active === null) {
                 switch($this->app->db->getType()) {
                     case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                        $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'modules` WHERE `active` = 1');
+                        $sth = $this->app->db->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->db->prefix . 'module` WHERE `active` = 1');
                         $sth->execute();
                         $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                         break;

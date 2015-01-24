@@ -31,43 +31,43 @@ namespace Modules\Messages\Admin {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'messages` (
-                            `MessageID` int(11) NOT NULL AUTO_INCREMENT,
-                            `type`  tinyint(11) NOT NULL,
-                            `person` int(11) DEFAULT NULL,
-                            `email` varchar(256) NULL,
-                            `sent` datetime NULL,
-                            `cc` varchar(256) DEFAULT NULL,
-                            `bcc` varchar(256) DEFAULT NULL,
-                            `content` text DEFAULT NULL,
-                            `reference` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`MessageID`),
-                            KEY `person` (`person`),
-                            KEY `reference` (`reference`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'message` (
+                            `message_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `message_type`  tinyint(11) NOT NULL,
+                            `message_account` int(11) DEFAULT NULL,
+                            `message_email` varchar(256) NULL,
+                            `message_sent` datetime NULL,
+                            `message_cc` varchar(256) DEFAULT NULL,
+                            `message_bcc` varchar(256) DEFAULT NULL,
+                            `message_content` text DEFAULT NULL,
+                            `message_reference` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`message_id`),
+                            KEY `message_account` (`message_account`),
+                            KEY `message_reference` (`message_reference`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'messages`
-                            ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'messages` (`MessageID`);'
+                        'ALTER TABLE `' . $db->prefix . 'message`
+                            ADD CONSTRAINT `' . $db->prefix . 'message_ibfk_1` FOREIGN KEY (`message_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'message_ibfk_2` FOREIGN KEY (`message_reference`) REFERENCES `' . $db->prefix . 'message` (`message_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'messages_attachment` (
-                            `MessageAttachmentID` int(11) NOT NULL AUTO_INCREMENT,
-                            `media` int(11) DEFAULT NULL,
-                            `email` int(11) NULL,
-                            PRIMARY KEY (`MessageAttachmentID`),
-                            KEY `media` (`media`),
-                            KEY `email` (`email`)
+                            `messages_attachment_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `messages_attachment_media` int(11) DEFAULT NULL,
+                            `messages_attachment_message` int(11) NULL,
+                            PRIMARY KEY (`messages_attachment_id`),
+                            KEY `messages_attachment_media` (`messages_attachment_media`),
+                            KEY `messages_attachment_message` (`messages_attachment_message`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'messages_attachment`
-                            ADD CONSTRAINT `messages_attachment_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'media` (`MediaID`),
-                            ADD CONSTRAINT `messages_attachment_ibfk_2` FOREIGN KEY (`email`) REFERENCES `' . $db->prefix . 'messages` (`MessageID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'messages_attachment_ibfk_1` FOREIGN KEY (`messages_attachment_media`) REFERENCES `' . $db->prefix . 'media` (`media_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'messages_attachment_ibfk_2` FOREIGN KEY (`messages_attachment_message`) REFERENCES `' . $db->prefix . 'message` (`message_id`);'
                     )->execute();
                     break;
             }

@@ -33,7 +33,7 @@
         $url['level']   = array_slice($this->app->request->request, 0, 3);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
-        $url['id']      = 'MediaID';
+        $url['id']      = 'media_id';
 
         \Framework\Model\Model::generate_table_content_view(
             $data['list'],

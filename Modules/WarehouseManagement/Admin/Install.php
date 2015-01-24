@@ -50,7 +50,7 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_stock_location`
-                            ADD CONSTRAINT `warehousing_stock_location_ibfk_1` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_stock` (`WarehousingStockID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_stock_location_ibfk_1` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_stock` (`WarehousingStockID`);'
                     )->execute();
 
                     // TODO: complete
@@ -104,7 +104,7 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_arrival`
-                            ADD CONSTRAINT `warehousing_arrival_ibfk_1` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_arrival_ibfk_1` FOREIGN KEY (`checked`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     /* info: amount will get increased and reduced based on invoices -> will result in a high amount of entries where the amount is 0 -> long lookup times for available lot lookup?! */
@@ -127,9 +127,9 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_article_stock`
-                            ADD CONSTRAINT `warehousing_article_stock_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article` (`WarehousingArticleID`),
-                            ADD CONSTRAINT `warehousing_article_stock_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`),
-                            ADD CONSTRAINT `warehousing_article_stock_ibfk_3` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_stock_location` (`WarehousingStockLocationID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_stock_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article` (`WarehousingArticleID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_stock_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_stock_ibfk_3` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_stock_location` (`WarehousingStockLocationID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -146,8 +146,8 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_arrival_transfer`
-                            ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_1` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
-                            ADD CONSTRAINT `warehousing_arrival_transfer_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_arrival_transfer_ibfk_1` FOREIGN KEY (`location`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_arrival_transfer_ibfk_2` FOREIGN KEY (`arrival`) REFERENCES `' . $db->prefix . 'warehousing_arrival` (`WarehousingArrivalID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -163,7 +163,7 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer`
-                            ADD CONSTRAINT `warehousing_article_transfer_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_transfer_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -182,9 +182,9 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_article_transfer_single`
-                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_1` FOREIGN KEY (`old`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
-                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_2` FOREIGN KEY (`new`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
-                            ADD CONSTRAINT `warehousing_article_transfer_single_ibfk_3` FOREIGN KEY (`transfer`) REFERENCES `' . $db->prefix . 'warehousing_article_transfer` (`WarehousingArticleTransferID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_transfer_single_ibfk_1` FOREIGN KEY (`old`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_transfer_single_ibfk_2` FOREIGN KEY (`new`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_article_transfer_single_ibfk_3` FOREIGN KEY (`transfer`) REFERENCES `' . $db->prefix . 'warehousing_article_transfer` (`WarehousingArticleTransferID`);'
                     )->execute();
 
                     // TODO: maybe consider chaning shipCountry varchar to size 55 (based on ISO 3166-1) (same goes for sales department tables)
@@ -216,8 +216,8 @@ namespace Modules\Warehousing\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'warehousing_shipping`
-                            ADD CONSTRAINT `warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $db->prefix . 'business_address` (`BusinessAddressID`),
-                            ADD CONSTRAINT `warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $db->prefix . 'business_address` (`BusinessAddressID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     break;

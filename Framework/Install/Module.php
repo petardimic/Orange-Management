@@ -39,14 +39,14 @@ namespace Framework\Install {
                         $db->con->beginTransaction();
 
                         $db->con->prepare(
-                            'INSERT INTO `' . $db->prefix . 'modules` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
+                            'INSERT INTO `' . $db->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
                                 (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
                         )->execute();
 
                         foreach($info['load'] as $val) {
                             foreach($val['pid'] as $pid) {
                                 $db->con->prepare(
-                                    'INSERT INTO `' . $db->prefix . 'modules_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
+                                    'INSERT INTO `' . $db->prefix . 'module_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
                                         (\'' . $pid . '\', ' . $val['type'] . ', ' . $val['from'] . ', ' . $val['for'] . ', \'' . $val['file'] . '\');'
                                 )->execute();
                             }
@@ -126,7 +126,7 @@ namespace Framework\Install {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
-                        'UPDATE `' . $db->prefix . 'modules` SET `active` = 1 WHERE `id` = ' . $id . ';'
+                        'UPDATE `' . $db->prefix . 'module` SET `active` = 1 WHERE `id` = ' . $id . ';'
                     );
                     break;
             }
@@ -146,7 +146,7 @@ namespace Framework\Install {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->query(
-                        'UPDATE `' . $db->prefix . 'modules` SET `active` = 0 WHERE `id` = ' . $id . ';'
+                        'UPDATE `' . $db->prefix . 'module` SET `active` = 0 WHERE `id` = ' . $id . ';'
                     );
                     break;
             }

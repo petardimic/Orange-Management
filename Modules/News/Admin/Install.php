@@ -32,19 +32,19 @@ namespace Modules\News\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
-                            `NewsID` int(11) NOT NULL AUTO_INCREMENT,
-                            `title` varchar(250) NOT NULL,
-                            `featured` tinyint(1) DEFAULT NULL,
-                            `content` text NOT NULL,
-                            `plain` text NOT NULL,
-                            `type` tinyint(2) NOT NULL,
-                            `lang` tinyint(2) NOT NULL,
-                            `publish` datetime NOT NULL,
-                            `created` datetime NOT NULL,
-                            `author` int(11) NOT NULL,
-                            `last_changed` datetime NOT NULL,
-                            `last_change` int(11) NOT NULL,
-                            PRIMARY KEY (`NewsID`),
+                            `news_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `news_title` varchar(250) NOT NULL,
+                            `news_featured` tinyint(1) DEFAULT NULL,
+                            `news_content` text NOT NULL,
+                            `news_plain` text NOT NULL,
+                            `news_type` tinyint(2) NOT NULL,
+                            `news_lang` tinyint(2) NOT NULL,
+                            `news_publish` datetime NOT NULL,
+                            `news_created` datetime NOT NULL,
+                            `news_author` int(11) NOT NULL,
+                            `news_last_changed` datetime NOT NULL,
+                            `news_last_change` int(11) NOT NULL,
+                            PRIMARY KEY (`news_id`),
                             KEY `author` (`author`),
                             KEY `last_change` (`last_change`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
@@ -52,30 +52,30 @@ namespace Modules\News\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'news`
-                            ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`last_change`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_1` FOREIGN KEY (`news_idauthor`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_2` FOREIGN KEY (`news_idlast_change`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_tag` (
-                            `NewsTagID` int(11) NOT NULL AUTO_INCREMENT,
-                            `news` int(11) NOT NULL,
-                            `tag` varchar(20) NOT NULL,
-                            PRIMARY KEY (`NewsTagID`),
-                            KEY `news` (`news`)
+                            `news_tag_id` int(11) NOT NULL AUTO_INCREMENT,
+                            ``news_tag_news` int(11) NOT NULL,
+                            ``news_tag_tag` varchar(20) NOT NULL,
+                            PRIMARY KEY (``news_tag_id`),
+                            KEY `news_tag_news` (`news_tag_news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'news_tag`
-                            ADD CONSTRAINT `news_tag_ibfk_1` FOREIGN KEY (`news`) REFERENCES `' . $db->prefix . 'news` (`NewsID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'news_tag_ibfk_1` FOREIGN KEY (`news_tag_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_group` (
-                            `NewsGroupID` int(11) NOT NULL AUTO_INCREMENT,
-                            `news` int(11) NOT NULL,
-                            `group` int(11) NOT NULL,
+                            `news_group_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `news_group_news` int(11) NOT NULL,
+                            `news_group_group` int(11) NOT NULL,
                             PRIMARY KEY (`NewsGroupID`),
                             KEY `news` (`news`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
@@ -83,7 +83,7 @@ namespace Modules\News\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'news_group`
-                            ADD CONSTRAINT `news_group_ibfk_1` FOREIGN KEY (`news`) REFERENCES `' . $db->prefix . 'news` (`NewsID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'news_group_ibfk_1` FOREIGN KEY (`news_group_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
                     )->execute();
                     break;
             }

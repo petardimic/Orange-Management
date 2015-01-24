@@ -31,21 +31,6 @@ namespace Modules\HumanResources\Admin {
             switch($db->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_department` (
-                            `HRDepartmentID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name`  varchar(30) NOT NULL,
-                            `parent` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`HRDepartmentID`),
-                            KEY `parent` (`parent`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'hr_department`
-                            ADD CONSTRAINT `hr_department_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'hr_department` (`HRDepartmentID`);'
-                    )->execute();
-
-                    $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'hr_staff` (
                             `HRStaffID` int(11) NOT NULL AUTO_INCREMENT,
                             `status` tinyint(2) DEFAULT NULL,
@@ -57,7 +42,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff`
-                            ADD CONSTRAINT `hr_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -75,7 +60,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_history`
-                            ADD CONSTRAINT `hr_staff_history_ibfk_1` FOREIGN KEY (`staff`) REFERENCES `' . $db->prefix . 'hr_staff` (`HRStaffID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_history_ibfk_1` FOREIGN KEY (`staff`) REFERENCES `' . $db->prefix . 'hr_staff` (`HRStaffID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -98,7 +83,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_contract`
-                            ADD CONSTRAINT `hr_staff_contract_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_contract_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -116,7 +101,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_planning_shift`
-                            ADD CONSTRAINT `hr_planning_shift_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'hr_department` (`HRDepartmentID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_planning_shift_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -143,7 +128,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_planning_staff`
-                            ADD CONSTRAINT `hr_planning_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_planning_staff_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -160,7 +145,7 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_clocking`
-                            ADD CONSTRAINT `hr_staff_clocking_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_clocking_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -180,8 +165,8 @@ namespace Modules\HumanResources\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'hr_staff_payroll`
-                            ADD CONSTRAINT `hr_staff_payroll_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `hr_staff_payroll_ibfk_2` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'hr_staff_payroll` (`HRStaffPayrollID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_payroll_ibfk_1` FOREIGN KEY (`person`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'hr_staff_payroll_ibfk_2` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'hr_staff_payroll` (`HRStaffPayrollID`);'
                     )->execute();
                     break;
             }

@@ -43,7 +43,7 @@ namespace Modules\Media\Models {
                             `' . $this->db->prefix . 'media`
                         LEFT JOIN `' . $this->db->prefix . 'accounts_data`
                         ON `' . $this->db->prefix . 'media`.`creator` = `' . $this->db->prefix . 'accounts_data`.`account`
-                        GROUP BY `' . $this->db->prefix . 'media`.`MediaID` '
+                        GROUP BY `' . $this->db->prefix . 'media`.`media_id` '
                         . $search . 'LIMIT ' . $offset . ',' . $limit
                     );
                     $sth->execute();

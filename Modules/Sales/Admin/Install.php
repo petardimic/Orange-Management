@@ -1,12 +1,12 @@
 <?php
 namespace Modules\Sales\Admin {
     /**
-     * Navigation class
+     * Sales module class
      *
      * PHP Version 5.4
      *
-     * @category   Base
-     * @package    Framework
+     * @category   Modules
+     * @package    Modules\Sales
      * @author     OMS Development Team <dev@oms.com>
      * @author     Dennis Eichhorn <d.eichhorn@oms.com>
      * @copyright  2013
@@ -32,229 +32,88 @@ namespace Modules\Sales\Admin {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_client` (
-                            `SalesClientID` int(11) NOT NULL AUTO_INCREMENT,
-                            `matchcode` varchar(50) DEFAULT NULL,
-                            `account` int(11) NOT NULL,
-                            PRIMARY KEY (`SalesClientID`),
-                            KEY `account` (`account`)
+                            `sales_client_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `sales_client_matchcode` varchar(50) DEFAULT NULL,
+                            `sales_client_account` int(11) NOT NULL,
+                            PRIMARY KEY (`sales_client_id`),
+                            KEY `sales_client_account` (`sales_client_account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'sales_client`
-                            ADD CONSTRAINT `sales_client_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'sales_client_ibfk_1` FOREIGN KEY (`sales_client_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles` (
-                            `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `class` tinyint(3) DEFAULT NULL,
-                            `group` tinyint(3) DEFAULT NULL,
-                            `subgroup` tinyint(3) DEFAULT NULL,
-                            `article` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`SalesArticleID`),
-                            KEY `article` (`article`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    /* TODO: remember to give warehousing articles a name as well! */
-
-                    /*$db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_articles`
-                            ADD CONSTRAINT `sales_articles_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'stock_articles` (`id`);'
-                    )->execute();*/
-
-                    /* TODO: change (compare to warehousing and reduce fields?) */
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_single` (
-                            `SalesArticleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `type` tinyint(1) DEFAULT NULL,
-                            `lot` varchar(30) DEFAULT NULL,
-                            `lotext` varchar(30) DEFAULT NULL,
-                            `created` datetime DEFAULT NULL,
-                            `durability` datetime DEFAULT NULL,
-                            `checked` int(11) DEFAULT NULL,
-                            `status` tinyint(1) DEFAULT NULL,
-                            `inspected` datetime DEFAULT NULL,
-                            `stock` int(11) DEFAULT NULL,
-                            `location` int(11) DEFAULT NULL,
-                            `amount` int(11) DEFAULT NULL,
-                            `article` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`SalesArticleID`),
-                            KEY `article` (`article`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article` (
+                            `sales_article_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `sales_article_class` tinyint(3) DEFAULT NULL,
+                            `sales_article_group` tinyint(3) DEFAULT NULL,
+                            `sales_article_subgroup` tinyint(3) DEFAULT NULL,
+                            `sales_article_item` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`sales_article_id`),
+                            KEY `sales_article_item` (`sales_article_item`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_articles_single`
-                            ADD CONSTRAINT `sales_articles_single_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_article`
+                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_ibfk_1` FOREIGN KEY (`sales_article_item`) REFERENCES `' . $db->prefix . 'itemreference` (`itemreference_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_classification` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `type` tinyint(1) DEFAULT NULL,
-                            `name` varchar(50) DEFAULT NULL,
-                            `desc` varchar(250) DEFAULT NULL,
-                            `parent` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_class` (
+                            `sales_article_class_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `sales_article_class_type` tinyint(1) DEFAULT NULL,
+                            `sales_article_class_name` varchar(50) DEFAULT NULL,
+                            `sales_article_class_desc` varchar(250) DEFAULT NULL,
+                            `sales_article_class_parent` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`sales_article_class_id`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_articles_classification`
-                            ADD CONSTRAINT `sales_articles_classification_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'sales_articles_classification` (`id`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_article_class`
+                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_class_ibfk_1` FOREIGN KEY (`sales_article_class_parent`) REFERENCES `' . $db->prefix . 'sales_article_class` (`sales_article_class_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_desc` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `name1` varchar(50) DEFAULT NULL,
-                            `name2` varchar(50) DEFAULT NULL,
-                            `desc` varchar(250) DEFAULT NULL,
-                            `lang` varchar(2) DEFAULT NULL,
-                            `article` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `article` (`article`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_desc` (
+                            `sales_article_desc_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `sales_article_desc_name1` varchar(50) DEFAULT NULL,
+                            `sales_article_desc_name2` varchar(50) DEFAULT NULL,
+                            `sales_article_desc_desc` varchar(250) DEFAULT NULL,
+                            `sales_article_desc_lang` varchar(2) DEFAULT NULL,
+                            `sales_article_desc_article` int(11) NOT NULL,
+                            PRIMARY KEY (`sales_article_desc_id`),
+                            KEY `sales_article_desc_article` (`sales_article_desc_article`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_articles_desc`
-                            ADD CONSTRAINT `sales_articles_desc_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_article_desc`
+                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_desc_ibfk_1` FOREIGN KEY (`sales_article_desc_article`) REFERENCES `' . $db->prefix . 'sales_article` (`sales_article_id`);'
                     )->execute();
 
                     $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_articles_prices` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `type` tinyint(2) NOT NULL,
-                            `default` tinyint(1) NOT NULL,
-                            `price` decimal(9, 2) DEFAULT NULL,
-                            `discountp` decimal(5, 2) DEFAULT NULL,
-                            `discount` decimal(9, 2) DEFAULT NULL,
-                            `mprice` decimal(9, 2) DEFAULT NULL,
-                            `article` int(11) NOT NULL,
-                            PRIMARY KEY (`id`)
+                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_price` (
+                            `sales_article_price_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `sales_article_price_type` tinyint(2) NOT NULL,
+                            `sales_article_price_default` tinyint(1) NOT NULL,
+                            `sales_article_price_price` decimal(9, 2) DEFAULT NULL,
+                            `sales_article_price_discountp` decimal(5, 2) DEFAULT NULL,
+                            `sales_article_price_discount` decimal(9, 2) DEFAULT NULL,
+                            `sales_article_price_mprice` decimal(9, 2) DEFAULT NULL,
+                            `sales_article_price_article` int(11) NOT NULL,
+                            PRIMARY KEY (`sales_article_price_id`),
+                            KEY `sales_article_price_article` (`sales_article_price_article`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_articles_prices`
-                            ADD CONSTRAINT `sales_articles_prices_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_articles` (`SalesArticleID`);'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice` (
-                            `SalesInvoiceID` int(11) NOT NULL AUTO_INCREMENT,
-                            `status` tinyint(2) DEFAULT NULL,
-                            `shipTo` varchar(50) DEFAULT NULL,
-                            `shipFAO` varchar(30) DEFAULT NULL,
-                            `shipAddr` varchar(50) DEFAULT NULL,
-                            `shipCity` varchar(20) DEFAULT NULL,
-                            `shipZip` varchar(20) DEFAULT NULL,
-                            `shipCountry` varchar(30) DEFAULT NULL,
-                            `billTo` varchar(50) DEFAULT NULL,
-                            `billFAO` varchar(30) DEFAULT NULL,
-                            `billAddr` varchar(50) DEFAULT NULL,
-                            `billCity` varchar(20) DEFAULT NULL,
-                            `billZip` varchar(20) DEFAULT NULL,
-                            `billCountry` varchar(30) DEFAULT NULL,
-                            `type` tinyint(2) DEFAULT NULL,
-                            `created` datetime DEFAULT NULL,
-                            `shippdate` datetime DEFAULT NULL,
-                            `printed` datetime DEFAULT NULL,
-                            `price` decimal(9,2) DEFAULT NULL,
-                            `currency` varchar(3) DEFAULT NULL,
-                            `freightage` decimal(9,2) DEFAULT NULL,
-                            `info` text DEFAULT NULL,
-                            `voucher` int(11) DEFAULT NULL,
-                            `promotion` int(11) DEFAULT NULL,
-                            `creator` int(11) NOT NULL,
-                            `client` int(11) NOT NULL,
-                            `referer` int(11) DEFAULT NULL,
-                            `reference` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`SalesInvoiceID`),
-                            KEY `creator` (`creator`),
-                            KEY `client` (`client`),
-                            KEY `referer` (`referer`),
-                            KEY `reference` (`reference`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_invoice`
-                            ADD CONSTRAINT `sales_invoice_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoice_ibfk_2` FOREIGN KEY (`client`) REFERENCES `' . $db->prefix . 'sales_client` (`SalesClientID`),
-                            ADD CONSTRAINT `sales_invoice_ibfk_3` FOREIGN KEY (`referer`) REFERENCES `' . $db->prefix . 'accounts` (`id`),
-                            ADD CONSTRAINT `sales_invoice_ibfk_4` FOREIGN KEY (`reference`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article` (
-                            `SalesInvoiceAricleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `position` smallint(5) NOT NULL,
-                            `article` int(11) NOT NULL,
-                            `name` varchar(30) NOT NULL,
-                            `description` text NOT NULL,
-                            `quantity` int(11) NOT NULL,
-                            `price` decimal(11,2) NOT NULL,
-                            `tax` decimal(5,2) NOT NULL,
-                            `discountp` decimal(5,2) NOT NULL,
-                            `discount` decimal(11,2) NOT NULL,
-                            `invoice` int(11) NOT NULL,
-                            PRIMARY KEY (`SalesInvoiceAricleID`),
-                            KEY `article` (`article`),
-                            KEY `invoice` (`invoice`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article`
-                            ADD CONSTRAINT `sales_invoice_article_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`),
-                            ADD CONSTRAINT `sales_invoice_article_ibfk_2` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice` (`SalesInvoiceID`);'
-                    )->execute();
-
-                    // Picking item from warehouse and assign it to a article in an invoice (this allows multiple lots for one article in the invoice)
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_batch` (
-                            `SalesInvoiceAricleBatchID` int(11) NOT NULL AUTO_INCREMENT,
-                            `article` int(11) NOT NULL,
-                            `stock` int(11) NOT NULL,
-                            `quantity` int(11) NOT NULL,
-                            PRIMARY KEY (`SalesInvoiceAricleBatchID`),
-                            KEY `article` (`article`),
-                            KEY `stock` (`stock`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article_batch`
-                            ADD CONSTRAINT `sales_invoice_article_batch_ibfk_1` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'sales_invoice_article` (`SalesInvoiceAricleID`),
-                            ADD CONSTRAINT `sales_invoice_article_batch_ibfk_2` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`);'
-                    )->execute();
-
-                    // Reserve articles in case they are not in stock or you want to ship this item on another day
-                    // stock relation may only get added if someone wants to ship something on a specific date
-                    $db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_invoice_article_reserved` (
-                            `SalesInvoiceAricleReservedID` int(11) NOT NULL AUTO_INCREMENT,
-                            `invoice` int(11) NOT NULL,
-                            `article` int(11) NOT NULL,
-                            `stock` int(11) DEFAULT NULL,
-                            `amount` int(11) NOT NULL,
-                            `active` tinyint(1) NOT NULL,
-                            PRIMARY KEY (`SalesInvoiceAricleReservedID`),
-                            KEY `invoice` (`invoice`),
-                            KEY `article` (`article`),
-                            KEY `stock` (`stock`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                    )->execute();
-
-                    $db->con->prepare(
-                        'ALTER TABLE `' . $db->prefix . 'sales_invoice_article_reserved`
-                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_1` FOREIGN KEY (`invoice`) REFERENCES `' . $db->prefix . 'sales_invoice_article` (`SalesInvoiceAricleID`),
-                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_2` FOREIGN KEY (`article`) REFERENCES `' . $db->prefix . 'warehousing_article` (`WarehousingArticleID`),
-                            ADD CONSTRAINT `sales_invoice_article_reserved_ibfk_3` FOREIGN KEY (`stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`WarehousingArticleStockID`);'
+                        'ALTER TABLE `' . $db->prefix . 'sales_article_price`
+                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_price_ibfk_1` FOREIGN KEY (`sales_article_price_article`) REFERENCES `' . $db->prefix . 'sales_article` (`sales_article_id`);'
                     )->execute();
                     break;
             }

@@ -43,8 +43,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `riskmngmt_unit_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
-                            ADD CONSTRAINT `riskmngmt_unit_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_unit_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_unit_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -60,8 +60,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_department`
-                            ADD CONSTRAINT `riskmngmt_department_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'business_department` (`BusinessDepartmentID`),
-                            ADD CONSTRAINT `riskmngmt_department_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_department_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_department_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -78,8 +78,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_category`
-                            ADD CONSTRAINT `riskmngmt_category_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'riskmngmt_category` (`RiskMngmtCategoryID`),
-                            ADD CONSTRAINT `riskmngmt_category_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_category_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'riskmngmt_category` (`RiskMngmtCategoryID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_category_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     // TODO: more (media, start, end etc...)
@@ -98,8 +98,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `riskmngmt_project_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
-                            ADD CONSTRAINT `riskmngmt_project_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_project_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_project_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     // TODO: more (media, start, end etc...)
@@ -118,8 +118,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
-                            ADD CONSTRAINT `riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -142,8 +142,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk`
-                            ADD CONSTRAINT `riskmngmt_risk_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`BusinessUnitID`),
-                            ADD CONSTRAINT `riskmngmt_risk_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'accounts` (`id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -158,7 +158,7 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_object`
-                            ADD CONSTRAINT `riskmngmt_risk_object_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_object_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -173,21 +173,21 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_evaluation`
-                            ADD CONSTRAINT `riskmngmt_risk_evaluation_ibfk_1` FOREIGN KEY (`object`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_object` (`RiskMngmtRiskObjectID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_evaluation_ibfk_1` FOREIGN KEY (`object`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_object` (`RiskMngmtRiskObjectID`);'
                     )->execute();
 
                     $db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_media` (
-                            `RiskMngmtRiskMediaID` int(11) NOT NULL,
+                            `RiskMngmtRiskmedia_id` int(11) NOT NULL,
                             `media` int(11) NOT NULL,
-                            PRIMARY KEY (`RiskMngmtRiskMediaID`),
+                            PRIMARY KEY (`RiskMngmtRiskmedia_id`),
                             KEY `media` (`media`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                     )->execute();
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_media`
-                            ADD CONSTRAINT `riskmngmt_risk_media_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'Media` (`MediaID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_media_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'Media` (`media_id`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -208,7 +208,7 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_cause`
-                            ADD CONSTRAINT `riskmngmt_risk_cause_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_cause_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                     )->execute();
 
                     $db->con->prepare(
@@ -228,8 +228,8 @@ namespace Modules\RiskManagement\Admin {
 
                     $db->con->prepare(
                         'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_solution`
-                            ADD CONSTRAINT `riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`cause`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_cause` (`RiskMngmtRiskCauseID`),
-                            ADD CONSTRAINT `riskmngmt_risk_solution_ibfk_2` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`cause`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_cause` (`RiskMngmtRiskCauseID`),
+                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_solution_ibfk_2` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                     )->execute();
                     break;
             }

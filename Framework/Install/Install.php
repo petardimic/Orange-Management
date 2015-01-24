@@ -50,9 +50,9 @@ namespace Framework\Install {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     $this->db->con->beginTransaction();
 
-                    /* Create groups table */
+                    /* Create group table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'groups` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `name` varchar(50) NOT NULL,
                             `desc` varchar(100) DEFAULT NULL,
@@ -60,9 +60,9 @@ namespace Framework\Install {
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
-                    /* Create groups relations table */
+                    /* Create group relations table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'groups_relations` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group_relations` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `group` int(11) DEFAULT NULL,
                             `parent` int(11) DEFAULT NULL,
@@ -72,13 +72,13 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'groups_relations`
-                            ADD CONSTRAINT `groups_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'groups` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'group_relations`
+                            ADD CONSTRAINT `' . $this->db->prefix . '' . $this->db->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
                     )->execute();
 
-                    /* Create groups permissions table */
+                    /* Create group permission table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'groups_permissions` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group_permission` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `permission` int(11) NOT NULL,
                             `group` int(11) NOT NULL,
@@ -88,12 +88,12 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'groups_permissions`
-                            ADD CONSTRAINT `groups_permissions_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'groups` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'group_permission`
+                            ADD CONSTRAINT `' . $this->db->prefix . 'group_permission_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
                     )->execute();
 
                     /* Create ips table
-                       This gets used in order to prevent unauthorized access for user groups. */
+                       This gets used in order to prevent unauthorized access for user group. */
                     $this->db->con->prepare(
                         'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'ips` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -107,12 +107,12 @@ namespace Framework\Install {
 
                     $this->db->con->prepare(
                         'ALTER TABLE `' . $this->db->prefix . 'ips`
-                            ADD CONSTRAINT `ips_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'groups` (`id`);'
+                            ADD CONSTRAINT `' . $this->db->prefix . 'ips_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
                     )->execute();
 
-                    /* Create modules table */
+                    /* Create module table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'modules` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'module` (
                             `id` int(11) NOT NULL,
                             `name` varchar(100) NOT NULL,
                             `theme` varchar(100) DEFAULT NULL,
@@ -129,7 +129,7 @@ namespace Framework\Install {
 
                     /* Create module load table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'modules_load` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'module_load` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `pid` varchar(40) NOT NULL,
                             `type` tinyint(1) NOT NULL,
@@ -142,25 +142,25 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'modules_load`
-                            ADD CONSTRAINT `modules_load_ibfk_1` FOREIGN KEY (`from`) REFERENCES `' . $this->db->prefix . 'modules` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'module_load`
+                            ADD CONSTRAINT `' . $this->db->prefix . 'module_load_ibfk_1` FOREIGN KEY (`from`) REFERENCES `' . $this->db->prefix . 'module` (`id`);'
                     )->execute();
 
-                    /* Create accounts table */
+                    /* Create account table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'accounts` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account` (
+                            `account_id` int(11) NOT NULL AUTO_INCREMENT,
                             `status` tinyint(2) NOT NULL,
                             `type` tinyint(2) NOT NULL,
                             `lactive` datetime NOT NULL,
                             `created` datetime NOT NULL,
                             `changed` tinyint(1) DEFAULT 1,
-                            PRIMARY KEY (`id`)
+                            PRIMARY KEY (`account_id`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                     )->execute();
 
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'accounts_data` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_data` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `login` varchar(30) NOT NULL,
                             `name1` varchar(50) NOT NULL,
@@ -176,13 +176,13 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'accounts_data`
-                            ADD CONSTRAINT `accounts_data_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'account_data`
+                            ADD CONSTRAINT `' . $this->db->prefix . 'account_data_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
                     )->execute();
 
-                    /* Create accounts groups table */
+                    /* Create account group table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'accounts_groups` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_group` (
                             `id` bigint(20) NOT NULL AUTO_INCREMENT,
                             `group` int(11) NOT NULL,
                             `account` int(11) NOT NULL,
@@ -193,14 +193,14 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'accounts_groups`
-                            ADD CONSTRAINT `accounts_groups_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'groups` (`id`),
-                            ADD CONSTRAINT `accounts_groups_ibfk_2` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'account_group`
+                            ADD CONSTRAINT `' . $this->db->prefix . 'account_group_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`),
+                            ADD CONSTRAINT `' . $this->db->prefix . 'account_group_ibfk_2` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
                     )->execute();
 
-                    /* Create accounts settings table */
+                    /* Create account settings table */
                     $this->db->con->prepare(
-                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'accounts_settings` (
+                        'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_settings` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `name` varchar(30) NOT NULL,
                             `content` varchar(250) NOT NULL,
@@ -212,8 +212,8 @@ namespace Framework\Install {
                     )->execute();
 
                     $this->db->con->prepare(
-                        'ALTER TABLE `' . $this->db->prefix . 'accounts_settings`
-                            ADD CONSTRAINT `accounts_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'accounts` (`id`);'
+                        'ALTER TABLE `' . $this->db->prefix . 'account_settings`
+                            ADD CONSTRAINT `' . $this->db->prefix . 'account_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
                     )->execute();
 
                     /* Create settings table */
@@ -232,8 +232,8 @@ namespace Framework\Install {
 
                     $this->db->con->prepare(
                         'ALTER TABLE `' . $this->db->prefix . 'settings`
-                            ADD CONSTRAINT `settings_ibfk_1` FOREIGN KEY (`module`) REFERENCES `' . $this->db->prefix . 'modules` (`id`),
-                            ADD CONSTRAINT `settings_ibfk_2` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'groups` (`id`);'
+                            ADD CONSTRAINT `' . $this->db->prefix . 'settings_ibfk_1` FOREIGN KEY (`module`) REFERENCES `' . $this->db->prefix . 'module` (`id`),
+                            ADD CONSTRAINT `' . $this->db->prefix . 'settings_ibfk_2` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
                     )->execute();
 
                     $this->db->con->commit();
@@ -242,23 +242,23 @@ namespace Framework\Install {
         }
 
         /**
-         * Install the core modules
+         * Install the core module
          *
-         * @param array $modules Array of all modules to install
+         * @param array $module Array of all module to install
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
          */
-        public function installModules($modules)
+        public function installModules($module)
         {
-            foreach($modules as $module) {
+            foreach($module as $module) {
                 /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
                 \Framework\Install\Module::install($this->db, $module);
             }
         }
 
         /**
-         * Setup the core groups
+         * Setup the core group
          *
          * @since  1.0.0
          * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -270,7 +270,7 @@ namespace Framework\Install {
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'groups` (`id`, `name`, `desc`) VALUES
+                        'INSERT INTO `' . $this->db->prefix . 'group` (`id`, `name`, `desc`) VALUES
                             (1000000000, \'anonymous\', NULL),
                             (1000101000, \'user\', NULL),
                             (1000102000, \'admin\', NULL),
@@ -298,17 +298,17 @@ namespace Framework\Install {
                     $this->db->con->beginTransaction();
 
                     $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts` (`id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
+                        'INSERT INTO `' . $this->db->prefix . 'account` (`account_id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
                             (1, 0, 0, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                     )->execute();
 
                     $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                        'INSERT INTO `' . $this->db->prefix . 'account_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
                             (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'yellowOrange\', \'admin@email.com\', 5, 1);'
                     )->execute();
 
                     $this->db->con->prepare(
-                        'INSERT INTO `' . $this->db->prefix . 'accounts_groups` (`id`, `group`, `account`) VALUES
+                        'INSERT INTO `' . $this->db->prefix . 'account_group` (`id`, `group`, `account`) VALUES
                             (1, 1000101000, 1)'
                     )->execute();
 
@@ -376,9 +376,9 @@ namespace Framework\Install {
         {
             $this->db->con->beginTransaction();
 
-            $a = "INSERT INTO `" . $this->db->prefix . "accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
-            $b = "INSERT INTO `" . $this->db->prefix . "accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES";
-            $c = "INSERT INTO `" . $this->db->prefix . "accounts_groups` (`group`, `account`) VALUES";
+            $a = "INSERT INTO `" . $this->db->prefix . "account` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
+            $b = "INSERT INTO `" . $this->db->prefix . "account_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES";
+            $c = "INSERT INTO `" . $this->db->prefix . "account_group` (`group`, `account`) VALUES";
 
             $valA = '';
             $valB = '';

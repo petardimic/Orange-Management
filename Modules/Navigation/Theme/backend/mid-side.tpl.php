@@ -12,14 +12,14 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE])) {
 
     foreach($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE] as $key => $parent) {
         foreach($parent as $link) {
-            if($link['parent'] == $data[1]) {
+            if($link['nav_parent'] == $data[1]) {
                 echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
-                                                                         $link['l0'],
-                                                                         $link['l1'],
-                                                                         $link['l2'],
-                                                                         $link['l3'],
-                                                                         $link['l4']]) . '">'
-                     . $this->app->user->localization->lang[5][$link['name']] . '</a>';
+                                                                         $link['nav_l0'],
+                                                                         $link['nav_l1'],
+                                                                         $link['nav_l2'],
+                                                                         $link['nav_l3'],
+                                                                         $link['nav_l4']]) . '">'
+                     . $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
             }
         }
     }
