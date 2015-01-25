@@ -42,7 +42,7 @@ class Install extends \Framework\Install\Module
 
                 $db->con->prepare(
                     'ALTER TABLE `' . $db->prefix . 'accountspayable`
-                            ADD CONSTRAINT `' . $db->prefix . 'accountspayable_ibfk_1` FOREIGN KEY (`accountspayable_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $db->prefix . 'accountspayable_ibfk_1` FOREIGN KEY (`accountspayable_account`) REFERENCES `' . $db->prefix . 'sales_client` (`sales_client_id`);'
                 )->execute();
                 break;
         }

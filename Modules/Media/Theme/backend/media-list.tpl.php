@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Media\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-/*\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000401001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
@@ -28,7 +28,7 @@
         ?>
         <tbody>
         <?php
-        /** @var \Modules\Media\MediaList $mList *//*
+        /** @var \Modules\Media\MediaList $mList */
         $data           = $mList->getList();
         $url['level']   = array_slice($this->app->request->request, 0, 3);
         $url['level'][] = 'single';
@@ -45,8 +45,26 @@
     <tr>
         <td colspan="5" class="cT">
             <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
-</table>*/
+</table>
 
-/** @var \Framework\Views\ViewAbstract $this */
+<?php
+/**
+ * @var \Framework\Views\ViewAbstract $this
+ */
+/*
+$listView = new \Web\Views\Lists\ListView();
+$listView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+
+$listHeaderView = new \Web\Views\Lists\HeaderView();
+$listHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+
+$listFooterView = new \Web\Views\Lists\PaginationView();
+$listFooterView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
+
+$listView->addView('header', $listHeaderView);
+$listView->addView('footer', $listFooterView);
+
+$this->addView('list', $listView);
+
 $listView = $this->getView('list');
-echo $listView->getResponse();
+echo $listView->getResponse();*/

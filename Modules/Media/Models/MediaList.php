@@ -18,13 +18,41 @@ namespace Modules\Media\Models;
  */
 class MediaList
 {
+    /**
+     * Database
+     *
+     * @var \Framework\DataStorage\Database\Database
+     * @since 1.0.0
+     */
     private $db = null;
 
+    /**
+     * Constructor
+     *
+     * @param \Framework\DataStorage\Database\Database $db Database instance
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __construct($db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Get all news
+     *
+     * This function gets all accounts in a range
+     *
+     * @param array $filter Filter for search results
+     * @param int   $offset Offset for first account
+     * @param int   $limit  Limit for results
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getList($filter = null, $offset = 0, $limit = 100)
     {
         $result = null;
@@ -37,13 +65,13 @@ class MediaList
                 $sth = $this->db->con->prepare(
                     'SELECT
                             `' . $this->db->prefix . 'media`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->db->prefix . 'account_data`.`name1`,
+                            `' . $this->db->prefix . 'account_data`.`name2`,
+                            `' . $this->db->prefix . 'account_data`.`name3`
                         FROM
                             `' . $this->db->prefix . 'media`
-                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
-                        ON `' . $this->db->prefix . 'media`.`creator` = `' . $this->db->prefix . 'accounts_data`.`account`
+                        LEFT JOIN `' . $this->db->prefix . 'account_data`
+                        ON `' . $this->db->prefix . 'media`.`media_creator` = `' . $this->db->prefix . 'account_data`.`account`
                         GROUP BY `' . $this->db->prefix . 'media`.`media_id` '
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );

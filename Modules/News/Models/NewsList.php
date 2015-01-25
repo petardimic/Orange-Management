@@ -65,14 +65,14 @@ class NewsList
                 $sth = $this->db->con->prepare(
                     'SELECT DISTINCT
                             `' . $this->db->prefix . 'news`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->db->prefix . 'account_data`.`name1`,
+                            `' . $this->db->prefix . 'account_data`.`name2`,
+                            `' . $this->db->prefix . 'account_data`.`name3`
                         FROM
                             `' . $this->db->prefix . 'news`
-                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
-                        ON `' . $this->db->prefix . 'news`.`author` = `' . $this->db->prefix . 'accounts_data`.`account`
-                        GROUP BY `' . $this->db->prefix . 'news`.`NewsID` '
+                        LEFT JOIN `' . $this->db->prefix . 'account_data`
+                        ON `' . $this->db->prefix . 'news`.`news_author` = `' . $this->db->prefix . 'account_data`.`account`
+                        GROUP BY `' . $this->db->prefix . 'news`.`news_id` '
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();

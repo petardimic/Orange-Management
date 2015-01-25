@@ -61,7 +61,7 @@ class GroupList
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                 $search = $this->db->generate_sql_filter($filter);
 
-                $sth = $this->db->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->db->prefix . 'groups` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
+                $sth = $this->db->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->db->prefix . 'group` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
