@@ -68,6 +68,7 @@ abstract class ModuleAbstract implements \Framework\Module\ModuleInterface
      */
     public function getProviding()
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         return static::$providing;
     }
 
@@ -81,6 +82,17 @@ abstract class ModuleAbstract implements \Framework\Module\ModuleInterface
      */
     public function getDependencies()
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         return static::$dependencies;
+    }
+
+    /**
+     * Install external
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function installExternal() {
+        return false;
     }
 }

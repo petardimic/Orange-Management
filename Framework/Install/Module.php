@@ -80,7 +80,7 @@ abstract class Module
     public static function installProviding(&$db, $path, $id)
     {
         $install = json_decode(file_get_contents($path), true);
-        $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
+        // TODO: maybe remove? $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
         $class = '\\Modules\\' . $id . '\\Admin\\Install';
 

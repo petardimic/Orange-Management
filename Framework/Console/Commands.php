@@ -83,7 +83,7 @@ class Commands implements \Countable
      * @param string $cmd  Command ID
      * @param mixed  $para Parameters to pass
      *
-     * @return \Framework\Message\Response\ResponseStatus::WRONG_REQUEST|mixed
+     * @return \Framework\Message\ResponseStatus::WRONG_REQUEST|mixed
      *
      * @since  1.0.0
      * @author Dennis Eichhorn
@@ -94,7 +94,7 @@ class Commands implements \Countable
             return $this->commands[$cmd][0]($para);
         }
 
-        return \Framework\Message\Response\ResponseStatus::WRONG_REQUEST;
+        return \Framework\Message\ResponseStatus::WRONG_REQUEST;
     }
 
     /**

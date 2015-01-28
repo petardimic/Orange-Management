@@ -20,15 +20,46 @@ namespace Framework\Socket\Packets;
  */
 class PacketManager
 {
+    /**
+     * Command Manager
+     *
+     * @var \Framework\Socket\CommandManager
+     * @since 1.0.0
+     */
     private $commandManager = null;
-    private $clientManager  = null;
 
+    /**
+     * Client Manager
+     *
+     * @var \Framework\Socket\Server\ClientManager
+     * @since 1.0.0
+     */
+    private $clientManager = null;
+
+    /**
+     * Constructor
+     *
+     * @param \Framework\Socket\CommandManager       $cmd  Command Manager
+     * @param \Framework\Socket\Server\ClientManager $user Client Manager
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __construct($cmd, $user)
     {
         $this->commandManager = $cmd;
         $this->clientManager  = $user;
     }
 
+    /**
+     * Handle package
+     *
+     * @param array $data Package data
+     * @param mixed $key  Client Id
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function handle($data, $key)
     {
         if(!empty($data)) {

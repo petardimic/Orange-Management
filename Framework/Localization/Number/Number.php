@@ -18,13 +18,36 @@ namespace Framework\Localization\Number;
  */
 class Number
 {
-    private $local;
+    /**
+     * Local Id
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $local = 'US';
 
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __constructor()
     {
     }
 
+    /**
+     * Format number
+     *
+     * @param float|int $number Number to format
+     * @param int       $digits Amount of digits
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function format($number, $digits = 0)
     {
+        if($this->local === 'US') {
+        }
     }
 }

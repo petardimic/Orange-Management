@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Set MySQL root password
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
+debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password s4b3r?'
+debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password s4b3r?'
 
 # Install packages
 apt-get update

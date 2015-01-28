@@ -29,16 +29,16 @@ class Session
         session_write_close();
     }
 
-    public function getValue($id)
+    public function get($key)
     {
         return null;
     }
 
-    public function setValue($id, $value)
+    public function set($key, $value)
     {
     }
 
-    public function deleteValue($id)
+    public function remove($key)
     {
     }
 

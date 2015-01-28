@@ -48,7 +48,7 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
      */
     public function authenticate()
     {
-        $uid = $this->app->session->getValue('UID');
+        $uid = $this->app->session->get('UID');
 
         if($uid === null) {
             $uid = -1;
@@ -100,7 +100,7 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
 
             if(password_verify($password, $result['password'])) {
                 if($result['status'] === \Framework\Auth\LoginReturnType::OK) {
-                    $this->app->session->setValue('UID', $result['account']);
+                    $this->app->session->set('UID', $result['account']);
                 }
 
                 return $result['status'];
@@ -118,6 +118,6 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
     public function logout($uid)
     {
         // TODO: logout other users? If admin wants to kick a user for updates etc.
-        $this->app->session->deleteValue('UID');
+        $this->app->session->remove('UID');
     }
 }

@@ -51,7 +51,7 @@ class WebApplication extends \Framework\ApplicationAbstract
             $this->auth     = new \Framework\Auth\Http($this);
             $this->user     = $this->auth->authenticate();
 
-            $toLoad = $this->modules->getUriLoads($this->request->data);
+            $toLoad = $this->modules->getUriLoads($this->request);
 
             if(isset($toLoad[4])) {
                 foreach($toLoad[4] as $module) {

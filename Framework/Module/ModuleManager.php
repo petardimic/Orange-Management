@@ -84,7 +84,7 @@ class ModuleManager
     /**
      * Get modules that run on this page
      *
-     * @param array $request Request
+     * @param \Framework\Message\RequestAbstract $request Request
      *
      * @return array
      *
@@ -107,7 +107,7 @@ class ModuleManager
                     );
 
                     /** @noinspection PhpUndefinedMethodInspection */
-                    $uri_hash = $this->app->request->getHash();
+                    $uri_hash = $request->getHash();
 
                     $sth->bindValue(':pid1', $uri_hash[0], \PDO::PARAM_STR);
                     $sth->bindValue(':pid2', $uri_hash[1], \PDO::PARAM_STR);

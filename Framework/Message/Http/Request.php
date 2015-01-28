@@ -90,8 +90,8 @@ class Request extends \Framework\Message\RequestAbstract
 
             /** @noinspection PhpWrongStringConcatenationInspection */
             $this->data = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->data;
-            $this->type    = $this->data['l1'];
-            $this->lang    = $this->data['l0'];
+            $this->type = $this->data['l1'];
+            $this->lang = $this->data['l0'];
 
             $this->hash = [
                 $this->hashRequest([$this->data['l1']]),
