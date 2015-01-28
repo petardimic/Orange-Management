@@ -36,7 +36,7 @@ class WebApplication extends \Framework\ApplicationAbstract
      */
     public function __construct($config)
     {
-        $this->request = new \Framework\Request\Http();
+        $this->request = new \Framework\Message\Http\Request();
         $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
 
         \Framework\Module\ModuleFactory::$app = $this;
@@ -51,7 +51,7 @@ class WebApplication extends \Framework\ApplicationAbstract
             $this->auth     = new \Framework\Auth\Http($this);
             $this->user     = $this->auth->authenticate();
 
-            $toLoad = $this->modules->getUriLoads($this->request->request);
+            $toLoad = $this->modules->getUriLoads($this->request->data);
 
             if(isset($toLoad[4])) {
                 foreach($toLoad[4] as $module) {

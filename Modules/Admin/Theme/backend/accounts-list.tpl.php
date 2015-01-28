@@ -30,7 +30,7 @@
         <?php
         /** @var \Modules\Admin\UserList $accounts */
         $data           = $accounts->getList();
-        $url['level']   = array_slice($this->app->request->request, 0, 4);
+        $url['level']   = array_slice($this->app->request->data, 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
         $url['id']      = 'id';

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Request;
+namespace Framework\Message\Http;
 
 /**
  * Request class
@@ -16,7 +16,7 @@ namespace Framework\Request;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Http extends \Framework\Request\RequestAbstract
+class Request extends \Framework\Message\RequestAbstract
 {
     /**
      * Request information
@@ -24,7 +24,7 @@ class Http extends \Framework\Request\RequestAbstract
      * @var string[]
      * @since 1.0.0
      */
-    private $request_info = null;
+    private $info = null;
 
     /**
      * Request
@@ -32,7 +32,7 @@ class Http extends \Framework\Request\RequestAbstract
      * @var array
      * @since 1.0.0
      */
-    public $request = null;
+    public $data = null;
 
     /**
      * Request hash
@@ -45,7 +45,7 @@ class Http extends \Framework\Request\RequestAbstract
     /**
      * Browser type
      *
-     * @var \Framework\Request\BrowserType
+     * @var \Framework\Message\Http\BrowserType
      * @since 1.0.0
      */
     public $browser = null;
@@ -53,7 +53,7 @@ class Http extends \Framework\Request\RequestAbstract
     /**
      * OS type
      *
-     * @var \Framework\Request\OSType
+     * @var \Framework\Message\Http\OSType
      * @since 1.0.0
      */
     public $os = null;
@@ -76,8 +76,8 @@ class Http extends \Framework\Request\RequestAbstract
      */
     public function getRequest()
     {
-        if($this->request === null) {
-            $this->request = [
+        if($this->data === null) {
+            $this->data = [
                 'l0' => '',
                 'l1' => '',
                 'l2' => '',
@@ -89,27 +89,27 @@ class Http extends \Framework\Request\RequestAbstract
             ];
 
             /** @noinspection PhpWrongStringConcatenationInspection */
-            $this->request = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->request;
-            $this->type    = $this->request['l1'];
-            $this->lang    = $this->request['l0'];
+            $this->data = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->data;
+            $this->type    = $this->data['l1'];
+            $this->lang    = $this->data['l0'];
 
             $this->hash = [
-                $this->hashRequest([$this->request['l1']]),
-                $this->hashRequest([$this->request['l1'], $this->request['l2']]),
-                $this->hashRequest([$this->request['l1'], $this->request['l2'], $this->request['l3']]),
-                $this->hashRequest([$this->request['l1'],
-                                    $this->request['l2'],
-                                    $this->request['l3'],
-                                    $this->request['l4']]),
-                $this->hashRequest([$this->request['l1'],
-                                    $this->request['l2'],
-                                    $this->request['l3'],
-                                    $this->request['l4'],
-                                    $this->request['l5']]),
+                $this->hashRequest([$this->data['l1']]),
+                $this->hashRequest([$this->data['l1'], $this->data['l2']]),
+                $this->hashRequest([$this->data['l1'], $this->data['l2'], $this->data['l3']]),
+                $this->hashRequest([$this->data['l1'],
+                                    $this->data['l2'],
+                                    $this->data['l3'],
+                                    $this->data['l4']]),
+                $this->hashRequest([$this->data['l1'],
+                                    $this->data['l2'],
+                                    $this->data['l3'],
+                                    $this->data['l4'],
+                                    $this->data['l5']]),
             ];
         }
 
-        return $this->request;
+        return $this->data;
     }
 
     /**
@@ -130,7 +130,7 @@ class Http extends \Framework\Request\RequestAbstract
     /**
      * Determine request browser
      *
-     * @return \Framework\Request\BrowserType
+     * @return \Framework\Message\Http\BrowserType
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -156,7 +156,7 @@ class Http extends \Framework\Request\RequestAbstract
     /**
      * Determine request OS
      *
-     * @return \Framework\Request\OSType
+     * @return \Framework\Message\Http\OSType
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -184,12 +184,12 @@ class Http extends \Framework\Request\RequestAbstract
      */
     public function getRequestInfo()
     {
-        if($this->request_info === null) {
-            $this->request_info['browser'] = $this->getBrowser();
-            $this->request_info['os']      = $this->getOS();
+        if($this->info === null) {
+            $this->info['browser'] = $this->getBrowser();
+            $this->info['os']      = $this->getOS();
         }
 
-        return $this->request_info;
+        return $this->info;
     }
 
     /**

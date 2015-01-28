@@ -49,7 +49,7 @@ class Theme
     public function load()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 header('Content-Type: text/html; charset=utf-8');
 
                 $this->app->settings->loadSettings([1000000009]);
@@ -62,7 +62,7 @@ class Theme
                 /** @noinspection PhpIncludeInspection */
                 require __DIR__ . '/backend/template.tpl.php';
                 break;
-            case \Framework\Request\WebRequestPage::API:
+            case \Framework\Message\Http\WebRequestPage::API:
                 header('Content-Type: application/json; charset=utf-8');
 
                 /** @noinspection PhpUndefinedMethodInspection */

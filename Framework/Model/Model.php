@@ -62,13 +62,13 @@ class Model
         $os = self::$app->request->getOS();
 
         /* OS specific */
-        if($os === \Framework\Request\OSType::WINDOWS_8 || $os === \Framework\Request\OSType::WINDOWS_81) {
+        if($os === \Framework\Message\Http\OSType::WINDOWS_8 || $os === \Framework\Message\Http\OSType::WINDOWS_81) {
             echo '<meta name="msapplication-TileColor" content="#ffffff"/>'
                  . '<meta name="msapplication-square70x70logo" content="/Web/Theme/Startup/win_tiny.png"/>'
                  . '<meta name="msapplication-square150x150logo" content="/Web/Theme/Startup/win_square.png"/>'
                  . '<meta name="msapplication-wide310x150logo" content="/Web/Theme/Startup/win_wide.png"/>'
                  . '<meta name="msapplication-square310x310logo" content="/Web/Theme/Startup/win_large.png"/>';
-        } elseif($os === \Framework\Request\OSType::IPHONE || $os === \Framework\Request\OSType::MAC_OS_X || $os === \Framework\Request\OSType::MAC_OS_X_2 || $os === \Framework\Request\OSType::IPAD) {
+        } elseif($os === \Framework\Message\Http\OSType::IPHONE || $os === \Framework\Message\Http\OSType::MAC_OS_X || $os === \Framework\Message\Http\OSType::MAC_OS_X_2 || $os === \Framework\Message\Http\OSType::IPAD) {
             echo '<link rel="apple-touch-icon" href="/Web/Theme/Startup/apple_icon.png">'
                  . '<link rel="apple-touch-startup-image" href="/Web/Theme/Startup/apple_startup.png">'
                  . '<meta name="apple-mobile-web-app-capable" content="yes">'
@@ -226,20 +226,20 @@ class Model
     public static function generate_table_pagination_view($count)
     {
         /** @noinspection PhpUndefinedFieldInspection */
-        $pages = self::generate_pagination(self::$app->request->request['page'], $count);
+        $pages = self::generate_pagination(self::$app->request->data['page'], $count);
 
         echo '<ul>';
         foreach($pages as $page) {
             if($page > 0) {
                 /** @noinspection PhpUndefinedFieldInspection */
-                $url = \Framework\Uri\UriFactory::build(self::$app->request->request, [['page', $page]]);
+                $url = \Framework\Uri\UriFactory::build(self::$app->request->data, [['page', $page]]);
             } else {
                 $url = '';
             }
 
             /** @noinspection PhpUndefinedFieldInspection */
             echo '<li><a href="' . $url
-                 . '"' . ($page == self::$app->request->request['page'] ? ' class="a"' : '') . '>'
+                 . '"' . ($page == self::$app->request->data['page'] ? ' class="a"' : '') . '>'
                  . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
                  . '</a>';
         }

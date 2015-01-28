@@ -3,7 +3,7 @@
 /** @var \Modules\Admin\Controller $this */
 $modules_all = $this->app->modules->getAllModules();
 
-if(array_key_exists($this->app->request->request['id'], $modules_all)) {
+if(array_key_exists($this->app->request->data['id'], $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
     \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                      1000105001]);
@@ -19,7 +19,7 @@ if(array_key_exists($this->app->request->request['id'], $modules_all)) {
 
     <div class="bc-1">
         <img alt="<?= $this->app->user->localization->lang[1]['Module']; ?>"
-             src="/Modules/<?= $this->app->request->request['id']; ?>/img/module_teaser_small.png" class="lf img-1">
+             src="/Modules/<?= $this->app->request->data['id']; ?>/img/module_teaser_small.png" class="lf img-1">
         <span class="lf">
             <h1><?=
                 /** @var array $info */
@@ -31,13 +31,13 @@ if(array_key_exists($this->app->request->request['id'], $modules_all)) {
             <ul>
                 <?php
                 /** @var \Framework\Module\Modules $modules */
-                if (!array_key_exists($this->app->request->request['id'], $this->app->modules->getInstalledModules())) {
+                if (!array_key_exists($this->app->request->data['id'], $this->app->modules->getInstalledModules())) {
                 ?>
                 <li>
                     <button data-http="PUT" data-request="DYN"
-                            data-json='{"id":"<?= $this->app->request->request['id']; ?>"}' data-uri="<?=
+                            data-json='{"id":"<?= $this->app->request->data['id']; ?>"}' data-uri="<?=
                     \Framework\Uri\UriFactory::build([
-                            $this->app->request->request['l0'],
+                            $this->app->request->data['l0'],
                             'api',
                             'admin',
                             'module'
@@ -46,14 +46,14 @@ if(array_key_exists($this->app->request->request['id'], $modules_all)) {
                     <?php } else { ?>
                 <li><a href="<?=
                     \Framework\Uri\UriFactory::build([
-                        $this->app->request->request['l0'],
-                        $this->app->request->request['l1'],
-                        $this->app->request->request['l2'],
-                        $this->app->request->request['l3'],
-                        $this->app->request->request['l4'],
+                        $this->app->request->data['l0'],
+                        $this->app->request->data['l1'],
+                        $this->app->request->data['l2'],
+                        $this->app->request->data['l3'],
+                        $this->app->request->data['l4'],
                         'settings'
                     ],
-                        [['id', $this->app->request->request['id']]]
+                        [['id', $this->app->request->data['id']]]
                     );
                     ?>"><?= $this->app->user->localization->lang[1]['Settings']; ?></a>
                     <?php } ?>

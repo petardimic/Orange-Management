@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend();
                 break;
         }
@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'structure':
                 $this->showContentBackendStrcture();
                 break;
@@ -95,7 +95,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackendStrcture()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'department':
                 $this->showContentBackendDepartment();
                 break;
@@ -110,7 +110,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackendDepartment()
     {
-        switch($this->app->request->request['l5']) {
+        switch($this->app->request->data['l5']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
@@ -128,7 +128,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackendStaff()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $staff = new \Modules\HumanResources\Models\StaffList($this->app->db);
@@ -151,7 +151,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackendPlanning()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/planning-dashboard.tpl.php';

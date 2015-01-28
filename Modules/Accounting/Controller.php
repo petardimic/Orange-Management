@@ -61,7 +61,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend();
                 break;
         }
@@ -75,7 +75,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'creditor':
                 $this->showBackendCreditor();
                 break;
@@ -96,7 +96,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendAccount()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accountList = new \Modules\Accounting\Models\AccountList($this->app->db);
@@ -131,7 +131,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendCreditor()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->db);
@@ -158,7 +158,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendDebitor()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->db);

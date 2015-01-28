@@ -2,7 +2,10 @@ User-Agent: *
 Disallow: 
 Disallow: /Admin
 Disallow: /Cache
+Disallow: /Console
 Disallow: /Dev
 Disallow: /Docs
 Disallow: /Framework
 Disallow: /Modules
+Disallow: /Socket
+Disallow: /Web

@@ -34,10 +34,11 @@ class ApplicationAbstract
      */
     public $cache = null;
 
+    // TODO: maybe move these to to WebApplication since socket will have multiple requests nad responses.
     /**
      * Request instance
      *
-     * @var \Framework\Request\RequestAbstract
+     * @var \Framework\Message\RequestAbstract
      * @since 1.0.0
      */
     public $request = null;
@@ -45,7 +46,7 @@ class ApplicationAbstract
     /**
      * Request instance
      *
-     * @var \Framework\Response\ResponseAbstract
+     * @var \Framework\Message\ResponseAbstract
      * @since 1.0.0
      */
     public $response = null;
@@ -90,6 +91,7 @@ class ApplicationAbstract
      */
     public $localization = null;
 
+    // TODO: maybe move to WebApplication since others don't have sessions (maybe create sessions for these as well -> no login required)
     /**
      * Server localization
      *

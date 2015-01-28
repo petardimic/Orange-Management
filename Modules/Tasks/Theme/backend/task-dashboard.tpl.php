@@ -86,7 +86,7 @@
         <?php
         /** @var \Modules\Tasks\TaskList $tasks */
         $data           = $tasks->getList();
-        $url['level']   = array_slice($this->app->request->request, 0, 3);
+        $url['level']   = array_slice($this->app->request->data, 0, 3);
         $url['level'][] = 'single';
         $url['id']      = 'TaskID';
 

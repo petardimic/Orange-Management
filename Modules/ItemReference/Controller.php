@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 break;
         }
     }

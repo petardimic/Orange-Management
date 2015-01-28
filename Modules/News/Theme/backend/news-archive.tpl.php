@@ -30,7 +30,7 @@
         <?php
         /** @var \Modules\News\NewsList $newsList */
         $data           = $newsList->getList();
-        $url['level']   = array_slice($this->app->request->request, 0, 3);
+        $url['level']   = array_slice($this->app->request->data, 0, 3);
         $url['level'][] = 'single';
         $url['id']      = 'NewsID';
 

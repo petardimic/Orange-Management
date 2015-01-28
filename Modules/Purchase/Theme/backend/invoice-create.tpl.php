@@ -215,7 +215,7 @@
                         <?php
                         /** @var \Modules\Sales\ArticleList $articles */ /*
                                 $data = $articles->article_list_get();
-                                $url['level'] = array_slice($this->app->request->request, 0, 4);
+                                $url['level'] = array_slice($this->app->request->data, 0, 4);
                                 $url['level'][] = 'single';
                                 $url['level'][] = 'front';
                                 $url['id'] = 'id';

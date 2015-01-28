@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend();
                 break;
         }
@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'single':
                 /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                 /** @noinspection PhpIncludeInspection */
@@ -86,8 +86,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Profile\Models\ProfileList($this->app->db);
 
-                if(!isset($this->app->request->request['page'])) {
-                    $this->app->request->request['page'] = 1;
+                if(!isset($this->app->request->data['page'])) {
+                    $this->app->request->data['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */

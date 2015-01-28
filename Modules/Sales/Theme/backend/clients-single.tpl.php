@@ -241,7 +241,7 @@
                     <?php
                     /** @var \Modules\Sales\ClientList $clientList */ /*
                         $data = $clientList->getList();
-                        $url['level'] = array_slice($this->app->request->request, 0, 4);
+                        $url['level'] = array_slice($this->app->request->data, 0, 4);
                         $url['level'][] = 'single';
                         $url['level'][] = 'front';
                         $url['id'] = 'SalesClientID';
@@ -316,7 +316,7 @@
                     <?php
                     /** @var \Modules\Sales\ClientList $clientList */ /*
                         $data = $clientList->getList();
-                        $url['level'] = array_slice($this->app->request->request, 0, 4);
+                        $url['level'] = array_slice($this->app->request->data, 0, 4);
                         $url['level'][] = 'single';
                         $url['level'][] = 'front';
                         $url['id'] = 'SalesClientID';

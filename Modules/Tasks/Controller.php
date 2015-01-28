@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend();
                 break;
         }
@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'dashboard':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $tasks = new \Modules\Tasks\Models\TaskList($this->app->db);
@@ -85,7 +85,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'single':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $task = new \Modules\Tasks\Models\Task($this->app->db);
-                $task->init($this->app->request->request['id']);
+                $task->init($this->app->request->data['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/task-single.tpl.php';

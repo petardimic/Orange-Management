@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->show_content_backend();
                 break;
         }
@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function show_content_backend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/dashboard.tpl.php';

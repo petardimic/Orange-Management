@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Response;
+namespace Framework\Message\Response;
 
 /**
  * Response class
@@ -23,10 +23,10 @@ class Http
     /**
      * Header
      *
-     * @var string[]
+     * @var array
      * @since 1.0.0
      */
-    private $header = [];
+    private $header = null;
 
     /**
      * Responses

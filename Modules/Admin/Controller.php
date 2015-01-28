@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function callWeb()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\WebRequestPage::BACKEND:
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend();
                 break;
         }
@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'account':
                 $this->showBackendAccount();
                 break;
@@ -120,7 +120,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             1000000026
         ]);
 
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'general':
                 \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
 
@@ -138,13 +138,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendAccount()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Admin\Models\UserList($this->app->db);
 
-                if(!isset($this->app->request->request['page'])) {
-                    $this->app->request->request['page'] = 1;
+                if(!isset($this->app->request->data['page'])) {
+                    $this->app->request->data['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
@@ -170,7 +170,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendAccountSingle()
     {
-        switch($this->app->request->request['l5']) {
+        switch($this->app->request->data['l5']) {
             case 'front':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
@@ -186,21 +186,21 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendModule()
     {
-        if(empty($this->app->request->request['l4'])) {
-            $this->app->request->request['l5'] = 'front';
+        if(empty($this->app->request->data['l4'])) {
+            $this->app->request->data['l5'] = 'front';
         }
 
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
-                if(!isset($this->app->request->request['page'])) {
-                    $this->app->request->request['page'] = 1;
+                if(!isset($this->app->request->data['page'])) {
+                    $this->app->request->data['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-list.tpl.php';
                 break;
             case 'front':
-                //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->request['id']);
+                //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->data['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
@@ -216,13 +216,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendGroup()
     {
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $groups = new \Modules\Admin\Models\GroupList($this->app->db);
 
-                if(!isset($this->app->request->request['page'])) {
-                    $this->app->request->request['page'] = 1;
+                if(!isset($this->app->request->data['page'])) {
+                    $this->app->request->data['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
@@ -246,16 +246,16 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendGroupSingle()
     {
-        switch($this->app->request->request['l5']) {
+        switch($this->app->request->data['l5']) {
             case 'front':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Admin\Models\UserList($this->app->db);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \Framework\Object\Group\Group((int) $this->app->request->request['id'], $this->app);
+                $group = new \Framework\Object\Group\Group((int) $this->app->request->data['id'], $this->app);
 
-                if(!isset($this->app->request->request['page'])) {
-                    $this->app->request->request['page'] = 1;
+                if(!isset($this->app->request->data['page'])) {
+                    $this->app->request->data['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
@@ -272,7 +272,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showApi()
     {
-        switch($this->app->request->request['l3']) {
+        switch($this->app->request->data['l3']) {
             case 'account':
                 $this->apiAccount();
                 break;
@@ -301,16 +301,16 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function apiAccount()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\RequestType::PUT:
+            case \Framework\Message\Request\RequestType::PUT:
                 $this->apiPutAccount();
                 break;
-            case \Framework\Request\RequestType::DELETE:
+            case \Framework\Message\Request\RequestType::DELETE:
                 $this->apiDeleteAccount();
                 break;
-            case \Framework\Request\RequestType::POST:
+            case \Framework\Message\Request\RequestType::POST:
                 $this->apiPostAccount();
                 break;
-            case \Framework\Request\RequestType::GET:
+            case \Framework\Message\Request\RequestType::GET:
                 $this->apiGetAccount();
                 break;
             default:
@@ -369,16 +369,16 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function apiGroup()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\RequestType::PUT:
+            case \Framework\Message\Request\RequestType::PUT:
                 $this->apiPutGroup();
                 break;
-            case \Framework\Request\RequestType::DELETE:
+            case \Framework\Message\Request\RequestType::DELETE:
                 $this->apiDeleteGroup();
                 break;
-            case \Framework\Request\RequestType::POST:
+            case \Framework\Message\Request\RequestType::POST:
                 $this->apiPostGroup();
                 break;
-            case \Framework\Request\RequestType::GET:
+            case \Framework\Message\Request\RequestType::GET:
                 $this->apiGetGroup();
                 break;
             default:
@@ -438,9 +438,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         $settings = \Framework\Config\Settings::getInstance();
 
-        switch($this->app->request->request['l4']) {
+        switch($this->app->request->data['l4']) {
             case 'core':
-                $settings->setSettings($this->app->request->request['settigns']);
+                $settings->setSettings($this->app->request->data['settigns']);
 
                 $jsonRet = [
                     'type'   => 1,
@@ -468,24 +468,24 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function apiModule()
     {
         switch($this->app->request->getType()) {
-            case \Framework\Request\RequestType::PUT:
-                \Framework\Install\Module::install($this->app->db, $this->app->request->request['id']);
+            case \Framework\Message\Request\RequestType::PUT:
+                \Framework\Install\Module::install($this->app->db, $this->app->request->data['id']);
 
                 $jsonRet = [
                     'type'   => 1,
                     'status' => 1,
-                    'msg'    => str_replace('{$1}', $this->app->request->request['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
+                    'msg'    => str_replace('{$1}', $this->app->request->data['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
                 ];
 
                 echo json_encode($jsonRet);
                 break;
-            case \Framework\Request\RequestType::DELETE:
+            case \Framework\Message\Request\RequestType::DELETE:
                 echo '1';
                 break;
-            case \Framework\Request\RequestType::POST:
+            case \Framework\Message\Request\RequestType::POST:
                 echo '2';
                 break;
-            case \Framework\Request\RequestType::GET:
+            case \Framework\Message\Request\RequestType::GET:
                 break;
             default:
                 echo '3';
