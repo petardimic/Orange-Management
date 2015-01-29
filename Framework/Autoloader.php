@@ -32,8 +32,11 @@ class Autoloader
     public static function default_autoloader($class)
     {
         $class = ltrim($class, '\\');
+        $class = str_replace('_', DIRECTORY_SEPARATOR, $class);
 
-        /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../' . $class . '.php';
+        if(file_exists(__DIR__ . '/../' . $class . '.php')) {
+            /** @noinspection PhpIncludeInspection */
+            include __DIR__ . '/../' . $class . '.php';
+        }
     }
 }
