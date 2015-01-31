@@ -29,12 +29,12 @@ class Install
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct(&$db)
+    public function __construct($dbPool)
     {
         $this->dbPool = $dbPool;
     }
@@ -254,7 +254,7 @@ class Install
     {
         foreach($modules as $module) {
             /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            \Framework\Install\Module::install($this->db, $module);
+            \Framework\Install\Module::install($this->dbPool, $module);
         }
     }
 
@@ -405,7 +405,7 @@ class Install
         $this->dbPool->get('core')->con->commit();
 
         foreach($toDummy as $dummy) {
-            \Framework\Install\DummyFactory::generate($this->db, $dummy);
+            \Framework\Install\DummyFactory::generate($this->dbPool, $dummy);
         }
     }
 }

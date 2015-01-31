@@ -12,14 +12,14 @@
     </h1>
 
     <div class="bc-1">
-        <?php $account = \Framework\Object\User\User::getInstance((int) $this->app->request->data['id'], $this->app); ?>
+        <?php $account = \Framework\Object\User\User::getInstance((int) $this->app->request->getData()['id'], $this->app); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>
                     <label for="i-id"><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
                 <li>
                     <input name="id" class="i-1 t-i" id="i-id" type="text"
-                           value="<?= (int) $this->app->request->data['id']; ?>" disabled>
+                           value="<?= (int) $this->app->request->getData()['id']; ?>" disabled>
                 <li>
                     <label for="i-status"><?= $this->app->user->getL11n()->lang[1]['Status']; ?></label>
                 <li>

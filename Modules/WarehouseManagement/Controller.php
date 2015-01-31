@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function show_content_backend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'article':
                 $this->show_backend_articles();
                 break;
@@ -95,7 +95,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function show_backend_articles()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/article-list.tpl.php';
@@ -111,7 +111,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function show_backend_shipping()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/shipping-list.tpl.php';
@@ -127,7 +127,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function show_backend_arrival()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/arrival-list.tpl.php';

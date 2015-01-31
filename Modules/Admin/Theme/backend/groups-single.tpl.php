@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Modules\Admin\Handler        $this
+ * @var \Modules\Admin\Controller     $this
  * @var \Framework\Object\Group\Group $group
  */
 /** @noinspection PhpUndefinedMethodInspection */
@@ -81,7 +81,7 @@
         <?php
         /** @var \Modules\Admin\UserList $accounts */
         $data           = $accounts->getList();
-        $url['level']   = array_slice($this->app->request->data, 0, 4);
+        $url['level']   = array_slice($this->app->request->getData(), 0, 4);
         $url['level'][] = 'single';
         $url['id']      = 'id';
 

@@ -23,7 +23,7 @@ interface DummyInterface
     /**
      * Generate dummy data
      *
-     * @param \Framework\DataStorage\Database\Database $db     Database instance
+     * @param \Framework\DataStorage\Database\Pool $db     Database instance
      * @param int                                      $amount Amount of dummy data
      *
      * @since  1.0.0

@@ -19,20 +19,20 @@ namespace Framework\DataStorage\Cache;
 class FileCache implements \Framework\DataStorage\Cache\CacheInterface
 {
     /**
+     * Cache path
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    const CACHE_PATH = __DIR__ . '/../../../Cache';
+
+    /**
      * Only cache if data is larger than threshold (0-100)
      *
      * @var int
      * @since 1.0.0
      */
     private $threshold = 50;
-
-    /**
-     * Cache path
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    private static $cachePath = __DIR__ . '/../../../Cache';
 
     /**
      * {@inheritdoc}
@@ -67,7 +67,7 @@ class FileCache implements \Framework\DataStorage\Cache\CacheInterface
      */
     public function flush($type = null)
     {
-        array_map('unlink', glob(self::$cachePath . '/*'));
+        array_map('unlink', glob(self::CACHE_PATH . '/*'));
     }
 
     /**
@@ -83,7 +83,7 @@ class FileCache implements \Framework\DataStorage\Cache\CacheInterface
     public function stats()
     {
         $stats          = [];
-        $stats['count'] = \Framework\System\FileSystem::getFileCount(self::$cachePath);
+        $stats['count'] = \Framework\System\FileSystem::getFileCount(self::CACHE_PATH);
 
         // size, avg. last change compared to now
 

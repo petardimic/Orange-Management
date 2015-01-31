@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'cockpit':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/cockpit.tpl.php';
@@ -111,7 +111,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_risk()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/risk-list.tpl.php';
@@ -128,7 +128,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_risk_single()
     {
-        switch($this->app->request->data['l6']) {
+        switch($this->app->request->getData()['l6']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/risk-single-dashboard.tpl.php';
@@ -138,7 +138,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_cause()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/cause-list.tpl.php';
@@ -148,7 +148,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_solution()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/solution-list.tpl.php';
@@ -158,7 +158,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_unit()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/unit-list.tpl.php';
@@ -168,7 +168,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_category()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/category-list.tpl.php';
@@ -178,7 +178,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_department()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/department-list.tpl.php';
@@ -188,7 +188,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_project()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/project-list.tpl.php';
@@ -198,7 +198,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_process()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/process-list.tpl.php';
@@ -208,7 +208,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_backend_settings()
     {
-        switch($this->app->request->data['l5']) {
+        switch($this->app->request->getData()['l5']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/settings-list.tpl.php';

@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'process':
                 $this->showBackendProcess();
                 break;
@@ -92,7 +92,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendProcess()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
@@ -115,7 +115,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendGuideline()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);

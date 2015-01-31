@@ -107,6 +107,14 @@ abstract class RequestAbstract implements \Framework\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getLanguage()
     {
         return $this->lang;

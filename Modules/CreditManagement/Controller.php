@@ -70,7 +70,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
         }
     }
 }

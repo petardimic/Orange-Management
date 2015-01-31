@@ -1,7 +1,7 @@
 <?php
 namespace OMS\Modules;
 
-require_once __DIR__ . '/../Module.class.php';
+require_once __DIR__ . '/../Module.php';
 require_once __DIR__ . '/../../core/Account.class.php';
 
 /**
@@ -58,7 +58,7 @@ class Markdown extends Module
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db    Database instance
+     * @param \Framework\DataStorage\Database\Pool $db    Database instance
      * @param \Framework\Model\Model                   $model Model instance
      * @param \Framework\Object\User\User              $user  User instance
      * @param \Framework\DataStorage\Cache\Cache       $cache Cache instance
@@ -74,13 +74,13 @@ class Markdown extends Module
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool   Database instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function install(&$db, $info)
+    public static function install($dbPool, $info)
     {
         parent::installProviding($db, __DIR__ . '/nav.install.json', 1000500000);
     }

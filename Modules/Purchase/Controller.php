@@ -76,7 +76,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'supplier':
                 $this->showBackendSupplier();
                 break;
@@ -100,7 +100,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendArticle()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $articleList = new \Modules\Purchase\Models\ArticleList($this->app->dbPool);
@@ -127,7 +127,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendInvoice()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $invoiceList = new \Modules\Purchase\Models\InvoiceList($this->app->dbPool);
@@ -154,7 +154,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendSupplier()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->dbPool);
@@ -181,7 +181,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showBackendAnalysis()
     {
-        switch($this->app->request->data['l4']) {
+        switch($this->app->request->getData()['l4']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';

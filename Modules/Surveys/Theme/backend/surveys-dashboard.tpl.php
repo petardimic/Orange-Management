@@ -1,4 +1,4 @@
-<?php /** @var \Modules\Admin\Admin $this */
+<?php /** @var \Modules\Admin\Controller $this */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000801001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
@@ -28,7 +28,7 @@
         <?php
         /** @var \Modules\Sales\ArticleList $articles */ /*
                 $data = $articles->article_list_get();
-                $url['level'] = array_slice($this->app->request->data, 0, 4);
+                $url['level'] = array_slice($this->app->request->getData(), 0, 4);
                 $url['level'][] = 'single';
                 $url['level'][] = 'front';
                 $url['id'] = 'id';

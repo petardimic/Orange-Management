@@ -74,10 +74,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'single':
                 $media = new \Modules\Media\Models\Media($this->app->dbPool);
-                $media->init($this->app->request->data['id']);
+                $media->init($this->app->request->getData()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
@@ -88,8 +88,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $view->setTemplate('/Modules/Media/Theme/backend/media-list');
                 echo $view->getResponse();*/
 
-                if(!isset($this->app->request->data['page'])) {
-                    $this->app->request->data['page'] = 1;
+                if(!isset($this->app->request->getData()['page'])) {
+                    $this->app->request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
@@ -107,7 +107,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function callPush()
     {
-        switch($this->app->request->data['l2']) {
+        switch($this->app->request->getData()['l2']) {
             case 'admin':
                 break;
             case 'profile':

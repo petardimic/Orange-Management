@@ -23,7 +23,7 @@ class DummyFactory
     /**
      * Generate dummy data
      *
-     * @param \Framework\DataStorage\Database\Database $db     Database instance
+     * @param \Framework\DataStorage\Database\Pool $db     Database instance
      * @param string                                   $module Module name (= directory name)
      * @param int                                      $amount Amount of dummy data
      *

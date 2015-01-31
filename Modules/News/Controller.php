@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'dashboard':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $newsList = new \Modules\News\Models\NewsList($this->app->dbPool);
@@ -84,7 +84,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 break;
             case 'single':
                 $article = new \Modules\News\Models\Article($this->app->dbPool);
-                $article->init($this->app->request->data['id']);
+                $article->init($this->app->request->getData()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/news-single.tpl.php';

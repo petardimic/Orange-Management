@@ -74,7 +74,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showContentBackend()
     {
-        switch($this->app->request->data['l3']) {
+        switch($this->app->request->getData()['l3']) {
             case 'dashboard':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $tasks = new \Modules\Tasks\Models\TaskList($this->app->dbPool);
@@ -85,7 +85,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'single':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $task = new \Modules\Tasks\Models\Task($this->app->dbPool);
-                $task->init($this->app->request->data['id']);
+                $task->init($this->app->request->getData()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/task-single.tpl.php';

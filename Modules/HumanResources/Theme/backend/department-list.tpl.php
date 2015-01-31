@@ -29,7 +29,7 @@
         <?php
         /** @var \Modules\HumanResources\DepartmentList $departments */
         $data           = $departments->getList();
-        $url['level']   = array_slice($this->app->request->data, 0, 3);
+        $url['level']   = array_slice($this->app->request->getData(), 0, 3);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
         $url['id']      = 'HRDepartmentID';

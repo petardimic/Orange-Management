@@ -226,20 +226,20 @@ class Model
     public static function generate_table_pagination_view($count)
     {
         /** @noinspection PhpUndefinedFieldInspection */
-        $pages = self::generate_pagination(self::$app->request->data['page'], $count);
+        $pages = self::generate_pagination(self::$app->request->getData()['page'], $count);
 
         echo '<ul>';
         foreach($pages as $page) {
             if($page > 0) {
                 /** @noinspection PhpUndefinedFieldInspection */
-                $url = \Framework\Uri\UriFactory::build(self::$app->request->data, [['page', $page]]);
+                $url = \Framework\Uri\UriFactory::build(self::$app->request->getData(), [['page', $page]]);
             } else {
                 $url = '';
             }
 
             /** @noinspection PhpUndefinedFieldInspection */
             echo '<li><a href="' . $url
-                 . '"' . ($page == self::$app->request->data['page'] ? ' class="a"' : '') . '>'
+                 . '"' . ($page == self::$app->request->getData()['page'] ? ' class="a"' : '') . '>'
                  . ($page < 0 ? '<i class="fa fa-ellipsis-h"></i>' : $page)
                  . '</a>';
         }

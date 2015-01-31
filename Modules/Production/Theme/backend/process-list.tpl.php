@@ -33,7 +33,7 @@
         <?php
         /** @var \Modules\Production\ProductionList $pList */
         $data           = $pList->getList();
-        $url['level']   = array_slice($this->app->request->data, 0, 4);
+        $url['level']   = array_slice($this->app->request->getData(), 0, 4);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
         $url['id']      = 'ProcessID';

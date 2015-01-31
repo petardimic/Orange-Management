@@ -21,13 +21,13 @@ class Install extends \Framework\Install\Module
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Database $db   Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool   Database instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function install(&$db, $info)
+    public static function install($dbPool, $info)
     {
         switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
@@ -50,6 +50,6 @@ class Install extends \Framework\Install\Module
                 break;
         }
 
-        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

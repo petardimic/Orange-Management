@@ -24,13 +24,13 @@ abstract class Module
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Database $db     Database instance
-     * @param int                                      $module Module ID
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param int                                  $module Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function install(&$db, $module)
+    public static function install($dbPool, $module)
     {
         if(file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
             $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
@@ -63,21 +63,21 @@ abstract class Module
             /**
              * @var \Framework\Install\Module $class
              */
-            $class::install($db, $info);
+            $class::install($dbPool, $info);
         }
     }
 
     /**
      * Install data from providing modules
      *
-     * @param \Framework\DataStorage\Database\Database $db   Database instance
-     * @param array                                    $path Install file path
-     * @param int                                      $id   ID of the receiving module
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param array                                $path   Install file path
+     * @param int                                  $id     ID of the receiving module
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function installProviding(&$db, $path, $id)
+    public static function installProviding($dbPool, $path, $id)
     {
         $install = json_decode(file_get_contents($path), true);
         // TODO: maybe remove? $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
@@ -87,19 +87,19 @@ abstract class Module
         /**
          * @var \Framework\Module\ModuleAbstract $class
          */
-        $class::installExternal($db, $install);
+        $class::installExternal($dbPool, $install);
     }
 
     /**
      * Install data from providing modules
      *
-     * @param \Framework\DataStorage\Database\Database $db   Database instance
-     * @param array                                    $data Module info
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param array                                $data   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function installExternal(&$db, $data)
+    public static function installExternal($dbPool, $data)
     {
     }
 
@@ -116,13 +116,13 @@ abstract class Module
     /**
      * Activate module
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
-     * @param int                                      $id Module ID
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param int                                  $id     Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function activate(&$db, $id)
+    public static function activate($dbPool, $id)
     {
         switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
@@ -136,13 +136,13 @@ abstract class Module
     /**
      * Deactivate module
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
-     * @param int                                      $id Module ID
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param int                                  $id     Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function deactivate(&$db, $id)
+    public static function deactivate($dbPool, $id)
     {
         switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:

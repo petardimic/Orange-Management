@@ -37,7 +37,7 @@
             <?php
             /** @var \Modules\Purchase\ArticleList $articleList */
             $data           = $articleList->getList();
-            $url['level']   = array_slice($this->app->request->data, 0, 4);
+            $url['level']   = array_slice($this->app->request->getData(), 0, 4);
             $url['level'][] = 'single';
             $url['level'][] = 'front';
             $url['id']      = 'PurchaseArticleID';

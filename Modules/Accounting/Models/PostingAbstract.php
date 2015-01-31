@@ -18,6 +18,12 @@ namespace Modules\Accounting\Models;
  */
 abstract class PostingAbstract implements \Modules\Accounting\Models\PostingInterface
 {
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __construct()
     {
     }
