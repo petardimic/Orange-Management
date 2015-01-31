@@ -2,6 +2,7 @@
 
 namespace Framework\Socket\Server;
 
-class ClientManager {
+class ClientManager
+{
 
 }

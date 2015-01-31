@@ -24,8 +24,8 @@ class DummyFactory
      * Generate dummy data
      *
      * @param \Framework\DataStorage\Database\Pool $db     Database instance
-     * @param string                                   $module Module name (= directory name)
-     * @param int                                      $amount Amount of dummy data
+     * @param string                               $module Module name (= directory name)
+     * @param int                                  $amount Amount of dummy data
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -92,7 +92,8 @@ abstract class ModuleAbstract implements \Framework\Module\ModuleInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function installExternal() {
+    public static function installExternal()
+    {
         return false;
     }
 }

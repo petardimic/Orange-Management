@@ -24,7 +24,7 @@ interface DummyInterface
      * Generate dummy data
      *
      * @param \Framework\DataStorage\Database\Pool $db     Database instance
-     * @param int                                      $amount Amount of dummy data
+     * @param int                                  $amount Amount of dummy data
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

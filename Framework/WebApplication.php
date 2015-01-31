@@ -81,7 +81,6 @@ class WebApplication extends \Framework\ApplicationAbstract
             include __DIR__ . '/../Web/Theme/Error/503.php';
         }
     }
-
     /*
      * TODO: handle different pages here! (backend, shop, static etc.)
      * Only load session auth etc. based on the page type.

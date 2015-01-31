@@ -37,6 +37,7 @@ trait ModelValidationTrait
         }
 
         /** @noinspection PhpUndefinedFieldInspection */
+
         return \Framework\Validation\Validator::isValid($var, self::$validation[$name]);
     }
 }
