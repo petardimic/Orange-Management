@@ -27,14 +27,6 @@ class Request extends \Framework\Message\RequestAbstract
     private $info = null;
 
     /**
-     * Request
-     *
-     * @var array
-     * @since 1.0.0
-     */
-    public $data = null;
-
-    /**
      * Request hash
      *
      * @var array

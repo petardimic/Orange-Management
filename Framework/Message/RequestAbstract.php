@@ -31,6 +31,14 @@ abstract class RequestAbstract implements \Framework\Message\RequestInterface
     protected $type = null;
 
     /**
+     * Request data
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    protected $data = null;
+
+    /**
      * Request type
      *
      * @var \Framework\Message\RequestSource
