@@ -1,5 +1,5 @@
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->localization->lang[16]['Clients'] ?></h1>
+    <h1><?= $this->app->user->getL11n()->lang[16]['Clients'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -31,13 +31,13 @@
                                                            'analysis',
                                                            'clients',
                                                            'dashboard']); ?>"
-               class="button"><?= $this->app->user->localization->lang[0]['More'] ?></a>
+               class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->localization->lang[16]['Articles'] ?></h1>
+    <h1><?= $this->app->user->getL11n()->lang[16]['Articles'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -63,13 +63,13 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->localization->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->localization->lang[16]['Sales'] ?></h1>
+    <h1><?= $this->app->user->getL11n()->lang[16]['Sales'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -95,7 +95,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->localization->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>

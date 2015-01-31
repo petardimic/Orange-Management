@@ -6,9 +6,9 @@
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <ul class="l-1">
-                <li><?= $this->app->user->localization->lang[30]['Unit']; ?>
+                <li><?= $this->app->user->getL11n()->lang[30]['Unit']; ?>
                 <li><select>
-                        <option value="0" selected><?= $this->app->user->localization->lang[30]['All']; ?>
+                        <option value="0" selected><?= $this->app->user->getL11n()->lang[30]['All']; ?>
                     </select>
             </ul>
         </div>
@@ -16,7 +16,7 @@
 
     <div class="b b-5 c30-1 c30" id="i30-1-4">
         <h1>
-            <?= $this->app->user->localization->lang[30]['Statistics']; ?>
+            <?= $this->app->user->getL11n()->lang[30]['Statistics']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>
@@ -25,49 +25,49 @@
             <!-- @formatter:off -->
             <table class="tc-1">
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['RiskIndex']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskIndex']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['OverallRisk']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['OverallRisk']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['RiskProtection']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskProtection']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['RemainingRisk']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['RemainingRisk']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['RiskAcceptance']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskAcceptance']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Risks']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Risks']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Causes']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Causes']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Solutions']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Solutions']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Processes']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Processes']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Projects']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Projects']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Outdated']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Outdated']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['Critical']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['Critical']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['MainDepartment']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainDepartment']; ?></label>
                     <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['MainCategory']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainCategory']; ?></label>
                      <td>asldkf
                 <tr>
-                    <th><label><?= $this->app->user->localization->lang[30]['MainCause']; ?></label>
+                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainCause']; ?></label>
                     <td>asldkf
             </table>
             <!-- @formatter:on -->
@@ -82,7 +82,7 @@
                 <th colspan="4" class="lT">
                     <i class="fa fa-filter p f dim"></i>
 
-                    <h1><?= $this->app->user->localization->lang[30]['Watchlist'] ?></h1>
+                    <h1><?= $this->app->user->getL11n()->lang[30]['Watchlist'] ?></h1>
                 <th class="rT">
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
@@ -90,27 +90,27 @@
                         <?php
                         \Framework\Model\Model::generate_table_header_view(
                             [
-                                ['name' => $this->app->user->localization->lang[30]['Severity'], 'sort' => 1],
-                                ['name' => $this->app->user->localization->lang[30]['Name'],
+                                ['name' => $this->app->user->getL11n()->lang[30]['Severity'], 'sort' => 1],
+                                ['name' => $this->app->user->getL11n()->lang[30]['Name'],
                                  'sort' => 0,
                                  'full' => true],
-                                ['name' => $this->app->user->localization->lang[30]['Department'], 'sort' => 0],
-                                ['name' => $this->app->user->localization->lang[30]['Category'], 'sort' => 0],
-                                ['name' => $this->app->user->localization->lang[30]['Responsible'], 'sort' => 0]
+                                ['name' => $this->app->user->getL11n()->lang[30]['Department'], 'sort' => 0],
+                                ['name' => $this->app->user->getL11n()->lang[30]['Category'], 'sort' => 0],
+                                ['name' => $this->app->user->getL11n()->lang[30]['Responsible'], 'sort' => 0]
                             ]
                         );
                         ?>
             <tbody>
         </table>
         <div class="bc-1 rT">
-            <button><?= $this->app->user->localization->lang[0]['Add'] ?></button>
-            <button><?= $this->app->user->localization->lang[0]['Delete'] ?></button>
+            <button><?= $this->app->user->getL11n()->lang[0]['Add'] ?></button>
+            <button><?= $this->app->user->getL11n()->lang[0]['Delete'] ?></button>
         </div>
     </div>
 
     <div class="b b-2 c30-1 c30" id="i30-1-1">
         <h1>
-            <?= $this->app->user->localization->lang[30]['TopRisks']; ?>
+            <?= $this->app->user->getL11n()->lang[30]['TopRisks']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>
@@ -226,7 +226,7 @@
 
     <div class="b b-2 c30-1 c30" id="i30-1-3">
         <h1>
-            <?= $this->app->user->localization->lang[30]['History']; ?>
+            <?= $this->app->user->getL11n()->lang[30]['History']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>
@@ -375,7 +375,7 @@
 
     <div class="b b-2 c30-1 c30" id="i30-1-6">
         <h1>
-            <?= $this->app->user->localization->lang[30]['Departments']; ?>
+            <?= $this->app->user->getL11n()->lang[30]['Departments']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>
@@ -462,7 +462,7 @@
 
     <div class="b b-2 c30-1 c30" id="i30-1-6">
         <h1>
-            <?= $this->app->user->localization->lang[30]['Categories']; ?>
+            <?= $this->app->user->getL11n()->lang[30]['Categories']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>

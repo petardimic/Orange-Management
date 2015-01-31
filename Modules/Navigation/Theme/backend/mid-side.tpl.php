@@ -4,7 +4,7 @@
 /* Looping through all links */
 if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE])) {
     echo '<div class="b b-5 c3-2 c3" id="i3-2-5">'
-         . '<h1>' . $this->app->user->localization->lang[0]['Navigation']
+         . '<h1>' . $this->app->user->getL11n()->lang[0]['Navigation']
          . '<i class="fa fa-minus min"></i><i class="fa fa-plus max vh"></i>'
          . '</h1>'
          . '<div class="bc-1">'
@@ -20,7 +20,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE])) {
                                                                          $link['nav_l2'],
                                                                          $link['nav_l3'],
                                                                          $link['nav_l4']]) . '">'
-                     . $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
+                     . $this->app->user->getL11n()->lang[5][$link['nav_name']] . '</a>';
             }
         }
     }

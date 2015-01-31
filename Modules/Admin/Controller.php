@@ -122,7 +122,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
         switch($this->app->request->data['l4']) {
             case 'general':
-                \Framework\Model\Model::$content['page::title'] = $this->app->user->localization->lang[1]['SettingsGeneral'];
+                \Framework\Model\Model::$content['page::title'] = $this->app->user->getL11n()->lang[1]['SettingsGeneral'];
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/settings-general.tpl.php';
@@ -445,7 +445,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $jsonRet = [
                     'type'   => 1,
                     'status' => 1,
-                    'msg'    => $this->app->user->localization->lang[1]['i:SettingsSet']
+                    'msg'    => $this->app->user->getL11n()->lang[1]['i:SettingsSet']
                 ];
 
                 echo json_encode($jsonRet);
@@ -474,7 +474,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $jsonRet = [
                     'type'   => 1,
                     'status' => 1,
-                    'msg'    => str_replace('{$1}', $this->app->request->data['id'], $this->app->user->localization->lang[1]['i:ModuleInstalled'])
+                    'msg'    => str_replace('{$1}', $this->app->request->data['id'], $this->app->user->getL11n()->lang[1]['i:ModuleInstalled'])
                 ];
 
                 echo json_encode($jsonRet);

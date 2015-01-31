@@ -255,14 +255,14 @@ class Model
     public static function generate_table_filter_view()
     {
         echo '<div class="b pop vh" id="t-f">
-                    <h1>' . self::$app->user->localization->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
+                    <h1>' . self::$app->user->getL11n()->lang[0]['Filter'] . '<span><i class="fa fa-times close"></i></span></h1>
                     <div class="bc-1">
                         <ul class="l-1">
 
                         </ul>
                         <div class="bt cT">
-                            <button class="save">' . self::$app->user->localization->lang[0]['Save'] . '</button>
-                            <button class="close">' . self::$app->user->localization->lang[0]['Close'] . '</button>
+                            <button class="save">' . self::$app->user->getL11n()->lang[0]['Save'] . '</button>
+                            <button class="close">' . self::$app->user->getL11n()->lang[0]['Close'] . '</button>
                         </div>
                     </div>
                 </div>';

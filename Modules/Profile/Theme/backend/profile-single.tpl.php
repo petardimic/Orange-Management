@@ -14,7 +14,7 @@ $account = \Framework\Object\User\User::getInstance((int) $this->app->request->d
     <div class="b-6" id="i3-2-2">
         <div class="b b-2 c3-2 c3" id="i3-2-3">
             <h1>
-                <?= $this->app->user->localization->lang[3]['Profile']; /** @var \Modules\Profile\Controller $this */ ?>
+                <?= $this->app->user->getL11n()->lang[3]['Profile']; /** @var \Modules\Profile\Controller $this */ ?>
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
             </h1>
@@ -23,19 +23,19 @@ $account = \Framework\Object\User\User::getInstance((int) $this->app->request->d
                 <!-- @formatter:off -->
                 <table class="tc-1">
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Name']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Name']; ?>
                         <td><span itemprop="familyName">Duck</span>, <span itemprop="givenName">Donald</span>
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Occupation']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Occupation']; ?>
                         <td itemprop="jobTitle">Sailor
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Birthday']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Birthday']; ?>
                         <td itemprop="birthDate">06.09.1934
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Ranks']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Ranks']; ?>
                         <td itemprop="memberOf">Gosling
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Email']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Email']; ?>
                         <td itemprop="email"><a href="mailto:>donald.duck@email.com<">donald.duck[at]email.com</a>
                     <tr>
                         <th>Address
@@ -47,7 +47,7 @@ $account = \Framework\Object\User\User::getInstance((int) $this->app->request->d
                         <th class="vT">Work
                         <td itemprop="address">SMALLSYS INC<br>795 E DRAGRAM<br>TUCSON AZ 85705<br>USA
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Phone']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Phone']; ?>
                         <td>
                     <tr>
                         <th>Private
@@ -59,13 +59,13 @@ $account = \Framework\Object\User\User::getInstance((int) $this->app->request->d
                         <th>Work
                         <td itemprop="telephone">+01 12345-4567
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Registered']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Registered']; ?>
                         <td>09.06.1934
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['LastLogin']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['LastLogin']; ?>
                         <td>01.04.2015
                     <tr>
-                        <th><?= $this->app->user->localization->lang[3]['Status']; ?>
+                        <th><?= $this->app->user->getL11n()->lang[3]['Status']; ?>
                         <td><span class="green">Active</span>
                 </table>
                 <!-- @formatter:on -->

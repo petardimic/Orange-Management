@@ -46,16 +46,16 @@ foreach($elements as $element) {
     <div class="bc-1">
         <ul class="l-1">
             <li>
-                <lable><?= $this->app->user->localization->lang[11]['Receiver']; ?></lable>
+                <lable><?= $this->app->user->getL11n()->lang[11]['Receiver']; ?></lable>
             <li><input type="text">
             <li>
-                <lable><?= $this->app->user->localization->lang[11]['Due']; ?></lable>
+                <lable><?= $this->app->user->getL11n()->lang[11]['Due']; ?></lable>
             <li><input type="text">
             <li>
-                <lable><?= $this->app->user->localization->lang[11]['Message']; ?></lable>
+                <lable><?= $this->app->user->getL11n()->lang[11]['Message']; ?></lable>
             <li><textarea style="width: 100%"></textarea>
         </ul>
-        <button class="rf"><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
+        <button class="rf"><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
         <div class="clearfix"></div>
     </div>
 </div>

@@ -10,7 +10,7 @@
         <th colspan="3" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[24]['Staff'] ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[24]['Staff'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -18,10 +18,10 @@
         <?php
         \Framework\Model\Model::generate_table_header_view(
             [
-                ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[24]['Name'], 'sort' => 1, 'full' => true],
-                ['name' => $this->app->user->localization->lang[24]['Employees'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[24]['Parent'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                ['name' => $this->app->user->getL11n()->lang[24]['Name'], 'sort' => 1, 'full' => true],
+                ['name' => $this->app->user->getL11n()->lang[24]['Employees'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[24]['Parent'], 'sort' => 0],
             ]
         );
         ?>

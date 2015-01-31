@@ -10,7 +10,7 @@
         <th colspan="7" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[20]['Process'] ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[20]['Process'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -18,14 +18,14 @@
         <?php
         \Framework\Model\Model::generate_table_header_view(
             [
-                ['name' => $this->app->user->localization->lang[20]['Status'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[20]['Product'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[20]['Name'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->localization->lang[20]['Quantity'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[20]['For'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[20]['Orderer'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[20]['Ordered'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[20]['Due'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['Status'], 'sort' => 1],
+                ['name' => $this->app->user->getL11n()->lang[20]['Product'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['Name'], 'sort' => 0, 'full' => true],
+                ['name' => $this->app->user->getL11n()->lang[20]['Quantity'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['For'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['Orderer'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['Ordered'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[20]['Due'], 'sort' => 0],
             ]
         );
         ?>

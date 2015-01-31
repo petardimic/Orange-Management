@@ -7,7 +7,7 @@
         <th colspan="4" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[1]['Modules'] . ' - ' . $this->app->user->localization->lang[1]['Installed']; ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[1]['Modules'] . ' - ' . $this->app->user->getL11n()->lang[1]['Installed']; ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -15,10 +15,10 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                        ['name' => $this->app->user->localization->lang[1]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => $this->app->user->localization->lang[1]['Theme'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[1]['Version'], 'sort' => -1]
+                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Theme'], 'sort' => 0],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Version'], 'sort' => -1]
                     ]
                 );
                 ?>
@@ -46,7 +46,7 @@
         <th colspan="3" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[1]['Modules'] . ' - ' . $this->app->user->localization->lang[1]['All']; ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[1]['Modules'] . ' - ' . $this->app->user->getL11n()->lang[1]['All']; ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -54,10 +54,10 @@
                 <?php
                 \Framework\Model\Model::generate_table_header_view(
                     [
-                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                        ['name' => $this->app->user->localization->lang[1]['Name'], 'sort' => 0, 'full' => true],
-                        ['name' => $this->app->user->localization->lang[1]['Theme'], 'sort' => 0],
-                        ['name' => $this->app->user->localization->lang[1]['Version'], 'sort' => -1]
+                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Name'], 'sort' => 0, 'full' => true],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Theme'], 'sort' => 0],
+                        ['name' => $this->app->user->getL11n()->lang[1]['Version'], 'sort' => -1]
                     ]
                 );
                 ?>

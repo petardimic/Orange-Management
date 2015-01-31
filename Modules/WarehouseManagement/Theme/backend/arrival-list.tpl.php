@@ -10,7 +10,7 @@
             <th colspan="9" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= $this->app->user->localization->lang[27]['Arrivals']; ?></h1>
+                <h1><?= $this->app->user->getL11n()->lang[27]['Arrivals']; ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -18,16 +18,16 @@
                     <?php
                     \Framework\Model\Model::generate_table_header_view(
                         [
-                            ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                            ['name' => $this->app->user->localization->lang[27]['Reference'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Consignor'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Name'], 'sort' => 0, 'full' => true],
-                            ['name' => $this->app->user->localization->lang[27]['Street'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['City'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Zip'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Country'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Order'], 'sort' => 0],
-                            ['name' => $this->app->user->localization->lang[27]['Date'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Reference'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Consignor'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Name'], 'sort' => 0, 'full' => true],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Street'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['City'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Zip'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Country'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Order'], 'sort' => 0],
+                            ['name' => $this->app->user->getL11n()->lang[27]['Date'], 'sort' => 0],
                         ]
                     );
                     ?>

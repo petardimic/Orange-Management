@@ -17,7 +17,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT])) {
                                                                          $link['nav_l2'],
                                                                          $link['nav_l3'],
                                                                          $link['nav_l4']]) . '">'
-                     . $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
+                     . $this->app->user->getL11n()->lang[5][$link['nav_name']] . '</a>';
             }
         }
     }

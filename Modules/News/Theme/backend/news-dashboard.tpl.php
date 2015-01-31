@@ -8,20 +8,20 @@
         <thead>
         <tr>
             <th colspan="3" class="lT">
-                <h1><?= $this->app->user->localization->lang[7]['News'] ?></h1>
+                <h1><?= $this->app->user->getL11n()->lang[7]['News'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view([['name' => $this->app->user->localization->lang[7]['Type'],
+                    \Framework\Model\Model::generate_table_header_view([['name' => $this->app->user->getL11n()->lang[7]['Type'],
                                                                          'sort' => -1],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Title'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Title'],
                                                                          'sort' => -1,
                                                                          'full' => true],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Author'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Author'],
                                                                          'sort' => -1],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Date'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Date'],
                                                                          'sort' => -1],]);
                     ?>
         <tbody>
@@ -42,20 +42,20 @@
         <thead>
         <tr>
             <th colspan="3" class="lT">
-                <h1><?= $this->app->user->localization->lang[7]['Headlines'] ?></h1>
+                <h1><?= $this->app->user->getL11n()->lang[7]['Headlines'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view([['name' => $this->app->user->localization->lang[7]['Type'],
+                    \Framework\Model\Model::generate_table_header_view([['name' => $this->app->user->getL11n()->lang[7]['Type'],
                                                                          'sort' => -1],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Title'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Title'],
                                                                          'sort' => -1,
                                                                          'full' => true],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Author'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Author'],
                                                                          'sort' => -1],
-                                                                        ['name' => $this->app->user->localization->lang[7]['Date'],
+                                                                        ['name' => $this->app->user->getL11n()->lang[7]['Date'],
                                                                          'sort' => -1],]);
                     ?>
         <tbody>

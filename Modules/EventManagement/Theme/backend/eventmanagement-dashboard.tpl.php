@@ -9,7 +9,7 @@
         <th colspan="4" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[42]['EventManagement'] ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[42]['EventManagement'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -17,11 +17,11 @@
         <?php
         \Framework\Model\Model::generate_table_header_view(
             [
-                ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[42]['Title'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->localization->lang[42]['Status'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[42]['Start'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[42]['End'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                ['name' => $this->app->user->getL11n()->lang[42]['Title'], 'sort' => 0, 'full' => true],
+                ['name' => $this->app->user->getL11n()->lang[42]['Status'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[42]['Start'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[42]['End'], 'sort' => 0],
             ]
         );
         ?>

@@ -7,15 +7,15 @@
 <div class="tabview">
     <!-- @formatter:off -->
     <ul class="tab-links">
-        <li class="active"><a href=".tab-1"><?= $this->app->user->localization->lang[16]['CoreData'] ?></a>
-        <li><a href=".tab-2"><?= $this->app->user->localization->lang[16]['Address'] ?></a>
-        <li><a href=".tab-3"><?= $this->app->user->localization->lang[16]['Terms'] ?></a>
-        <li><a href=".tab-4"><?= $this->app->user->localization->lang[16]['Discount'] ?></a>
-        <li><a href=".tab-5"><?= $this->app->user->localization->lang[16]['Invoices'] ?></a>
-        <li><a href=".tab-6"><?= $this->app->user->localization->lang[16]['Articles'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->localization->lang[16]['Analysis'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->localization->lang[16]['Media'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->localization->lang[16]['Documentation'] ?></a>
+        <li class="active"><a href=".tab-1"><?= $this->app->user->getL11n()->lang[16]['CoreData'] ?></a>
+        <li><a href=".tab-2"><?= $this->app->user->getL11n()->lang[16]['Address'] ?></a>
+        <li><a href=".tab-3"><?= $this->app->user->getL11n()->lang[16]['Terms'] ?></a>
+        <li><a href=".tab-4"><?= $this->app->user->getL11n()->lang[16]['Discount'] ?></a>
+        <li><a href=".tab-5"><?= $this->app->user->getL11n()->lang[16]['Invoices'] ?></a>
+        <li><a href=".tab-6"><?= $this->app->user->getL11n()->lang[16]['Articles'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[16]['Analysis'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[16]['Media'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[16]['Documentation'] ?></a>
     </ul>
     <!-- @formatter:on -->
 
@@ -23,7 +23,7 @@
         <div class="tab tab-1 active">
             <div class="b b-2 c1-8 c1" id="i1-8-2">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Account']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Account']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -32,26 +32,26 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Reference']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Reference']; ?></label>
                             <li><input type="text">
-                                <button><?= $this->app->user->localization->lang[0]['Find']; ?></button>
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Status']; ?></label>
+                                <button><?= $this->app->user->getL11n()->lang[0]['Find']; ?></button>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Status']; ?></label>
                             <li>
                                 <select name="status" id="i-status">
                                     <option value="0">
-                                        <?= $this->app->user->localization->lang[16]['Active']; ?>
+                                        <?= $this->app->user->getL11n()->lang[16]['Active']; ?>
                                     <option value="1">
-                                        <?= $this->app->user->localization->lang[16]['Inactive']; ?>
+                                        <?= $this->app->user->getL11n()->lang[16]['Inactive']; ?>
                                 </select>
-                            <li><label for="i-type"><?= $this->app->user->localization->lang[16]['Type']; ?></label>
+                            <li><label for="i-type"><?= $this->app->user->getL11n()->lang[16]['Type']; ?></label>
                             <li>
                                 <select name="type" id="i-type">
                                     <option value="0">
-                                        <?= $this->app->user->localization->lang[16]['Single']; ?>
+                                        <?= $this->app->user->getL11n()->lang[16]['Single']; ?>
                                     <option value="1">
-                                        <?= $this->app->user->localization->lang[16]['Group']; ?>
+                                        <?= $this->app->user->getL11n()->lang[16]['Group']; ?>
                                 </select>
-                            <li><label for="i-active"><?= $this->app->user->localization->lang[16]['Activity']; ?></label>
+                            <li><label for="i-active"><?= $this->app->user->getL11n()->lang[16]['Activity']; ?></label>
                             <li><input name="active" class="i-1 t-i" id="i-active" type="text">
                             <li>
                         </ul>
@@ -62,7 +62,7 @@
 
             <div class="b b-2 c1-8 c1" id="i1-8-3">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Account']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Account']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -71,19 +71,19 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-login"><?= $this->app->user->localization->lang[16]['Loginname']; ?></label>
+                            <li><label for="i-login"><?= $this->app->user->getL11n()->lang[16]['Loginname']; ?></label>
                             <li><input name="login" class="i-1 t-i" id="i-login" type="text">
-                            <li><label for="i-name1"><?= $this->app->user->localization->lang[16]['Name1']; ?></label>
+                            <li><label for="i-name1"><?= $this->app->user->getL11n()->lang[16]['Name1']; ?></label>
                             <li><input name="name1" class="i-1 t-i" id="i-name1" type="text">
-                            <li><label for="i-name2"><?= $this->app->user->localization->lang[16]['Name2']; ?></label>
+                            <li><label for="i-name2"><?= $this->app->user->getL11n()->lang[16]['Name2']; ?></label>
                             <li><input name="name2" class="i-1 t-i" id="i-name2" type="text">
-                            <li><label for="i-name3"><?= $this->app->user->localization->lang[16]['Name3']; ?></label>
+                            <li><label for="i-name3"><?= $this->app->user->getL11n()->lang[16]['Name3']; ?></label>
                             <li><input name="name3" class="i-1 t-i" id="i-name3" type="text">
-                            <li><label for="i-email"><?= $this->app->user->localization->lang[0]['Email']; ?></label>
+                            <li><label for="i-email"><?= $this->app->user->getL11n()->lang[0]['Email']; ?></label>
                             <li><input name="email" class="i-1 t-i" id="i-email" type="text">
-                            <li><label for="i-pass"><?= $this->app->user->localization->lang[0]['Password']; ?></label>
+                            <li><label for="i-pass"><?= $this->app->user->getL11n()->lang[0]['Password']; ?></label>
                             <li><input name="pass" class="i-1 t-i" id="i-pass" type="password">
-                                <input type="button" value="<?= $this->app->user->localization->lang[0]['Create']; ?>">
+                                <input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Create']; ?>">
                             <li>
                         </ul>
                         <!-- @formatter:on -->
@@ -94,7 +94,7 @@
         <div class="tab tab-2">
             <div class="b b-1 c16-1 c16" id="i16-1-1">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Address']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Address']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -103,21 +103,21 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Name']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Name']; ?></label>
                             <li><select></select>
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['IsDefault']; ?></label>
-                            <li><input type="checkbox"><label for="i-status"><?= $this->app->user->localization->lang[16]['IsDefault']; ?></label>
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['FAO']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['IsDefault']; ?></label>
+                            <li><input type="checkbox"><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['IsDefault']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['FAO']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Street']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Street']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['ZipCode']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['ZipCode']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['City']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['City']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Country']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Country']; ?></label>
                             <li><input type="text">
-                            <li><input type="button" value="<?= $this->app->user->localization->lang[0]['Add']; ?>">
+                            <li><input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Add']; ?>">
                         </ul>
                         <!-- @formatter:on -->
                     </form>
@@ -126,7 +126,7 @@
 
             <div class="b b-3 c16-1 c16" id="i16-1-1">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Address']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Address']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -142,7 +142,7 @@
         <div class="tab tab-4">
             <div class="b b-1 c16-1 c16" id="i16-1-1">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Discount']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Discount']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -151,15 +151,15 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Type']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Type']; ?></label>
                             <li><select></select>
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[0]['ID']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['Discount']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['Discount']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->localization->lang[16]['DiscountP']; ?></label>
+                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[16]['DiscountP']; ?></label>
                             <li><input type="text">
-                            <li><input type="button" value="<?= $this->app->user->localization->lang[0]['Add']; ?>">
+                            <li><input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Add']; ?>">
                         </ul>
                         <!-- @formatter:on -->
                     </form>
@@ -168,7 +168,7 @@
 
             <div class="b b-3 c16-1 c16" id="i16-1-1">
                 <h1>
-                    <?= $this->app->user->localization->lang[16]['Discount']; ?>
+                    <?= $this->app->user->getL11n()->lang[16]['Discount']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -182,28 +182,28 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5" id="i3-2-4">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Settings']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Settings']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->localization->lang[16]['From']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->localization->lang[16]['To']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['To']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->localization->lang[16]['Type']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['Type']; ?></label>
                             <li><select>
-                                    <option><?= $this->app->user->localization->lang[16]['All']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Invoice']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Offer']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Confirmation']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['DeliveryNote']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['CreditNote']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['All']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Invoice']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Offer']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Confirmation']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['DeliveryNote']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['CreditNote']; ?>
                                 </select>
                             <li>
-                                <button><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                         <th colspan="7" class="lT">
                             <i class="fa fa-filter p f dim"></i>
 
-                            <h1><?= $this->app->user->localization->lang[16]['Invoices'] ?></h1>
+                            <h1><?= $this->app->user->getL11n()->lang[16]['Invoices'] ?></h1>
                         <th class="rT">
                             <i class="fa fa-minus min"></i>
                             <i class="fa fa-plus max vh"></i>
@@ -224,16 +224,16 @@
                                 <?php
                                 \Framework\Model\Model::generate_table_header_view(
                                     [
-                                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                                        ['name' => $this->app->user->localization->lang[16]['Date'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Type'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Status'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Address'],
+                                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Type'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Status'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Address'],
                                          'sort' => 0,
                                          'full' => true],
-                                        ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Creator'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Created'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Price'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Creator'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Created'], 'sort' => 0],
                                     ]
                                 );
                                 ?>
@@ -259,28 +259,28 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5" id="i3-2-4">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Settings']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Settings']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->localization->lang[16]['From']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->localization->lang[16]['To']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['To']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->localization->lang[16]['Type']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['Type']; ?></label>
                             <li><select>
-                                    <option><?= $this->app->user->localization->lang[16]['All']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Invoice']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Offer']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['Confirmation']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['DeliveryNote']; ?>
-                                    <option><?= $this->app->user->localization->lang[16]['CreditNote']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['All']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Invoice']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Offer']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['Confirmation']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['DeliveryNote']; ?>
+                                    <option><?= $this->app->user->getL11n()->lang[16]['CreditNote']; ?>
                                 </select>
                             <li>
-                                <button><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                         <th colspan="5" class="lT">
                             <i class="fa fa-filter p f dim"></i>
 
-                            <h1><?= $this->app->user->localization->lang[16]['Articles'] ?></h1>
+                            <h1><?= $this->app->user->getL11n()->lang[16]['Articles'] ?></h1>
                         <th class="rT">
                             <i class="fa fa-minus min"></i>
                             <i class="fa fa-plus max vh"></i>
@@ -301,14 +301,14 @@
                                 <?php
                                 \Framework\Model\Model::generate_table_header_view(
                                     [
-                                        ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                                        ['name' => $this->app->user->localization->lang[16]['Date'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Invoice'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Type'], 'sort' => 0],
-                                        ['name' => $this->app->user->localization->lang[16]['Name'],
+                                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Invoice'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Type'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Name'],
                                          'sort' => 0,
                                          'full' => true],
-                                        ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
+                                        ['name' => $this->app->user->getL11n()->lang[16]['Price'], 'sort' => 0],
                                     ]
                                 );
                                 ?>
@@ -334,16 +334,16 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5 c3-2 c3" id="i3-2-5">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Interval']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Interval']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->localization->lang[16]['From']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->localization->lang[16]['To']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[16]['To']; ?></label>
                             <li><input type="text">
                         </ul>
                     </div>
@@ -351,7 +351,7 @@
 
                 <div class="b b-5 c30-1 c30" id="i30-1-4">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Statistics']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Statistics']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -360,25 +360,25 @@
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Turnover']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Turnover']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Trend']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Trend']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Orders']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Orders']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Highest']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Highest']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Articles']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Articles']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Discount']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Discount']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['DSO']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['DSO']; ?></label>
                                 <td>asldkf
                         </table>
                         <!-- @formatter:on -->
@@ -388,7 +388,7 @@
             <div class="b-6">
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['TopArticles']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['TopArticles']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -397,10 +397,10 @@
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <td><strong><?= $this->app->user->localization->lang[16]['Name']; ?></strong>
-                                <td><strong><?= $this->app->user->localization->lang[0]['ID']; ?></strong>
-                                <td><strong><?= $this->app->user->localization->lang[16]['Amount']; ?></strong>
-                                <td><strong><?= $this->app->user->localization->lang[16]['Turnover']; ?></strong>
+                                <td><strong><?= $this->app->user->getL11n()->lang[16]['Name']; ?></strong>
+                                <td><strong><?= $this->app->user->getL11n()->lang[0]['ID']; ?></strong>
+                                <td><strong><?= $this->app->user->getL11n()->lang[16]['Amount']; ?></strong>
+                                <td><strong><?= $this->app->user->getL11n()->lang[16]['Turnover']; ?></strong>
                             <tr>
                                 <td>Alphador
                                 <td>1224658
@@ -433,28 +433,28 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Article']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Article']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->localization->lang[0]['ID']; ?></label>
+                            <li><label><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
                             <li><input type="text">
-                                <button><?= $this->app->user->localization->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
 
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Last']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Last']; ?></label>
                                 <td>1224658
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Turnover']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Turnover']; ?></label>
                                 <td>1224658
                             <tr>
-                                <th><label><?= $this->app->user->localization->lang[16]['Amount']; ?></label>
+                                <th><label><?= $this->app->user->getL11n()->lang[16]['Amount']; ?></label>
                                 <td>1224658
                         </table>
                         <!-- @formatter:on -->
@@ -463,7 +463,7 @@
 
                 <div class="b b-5 c30-1 c30" id="i30-1-3">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Turnover']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Turnover']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -612,7 +612,7 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Groups']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Groups']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -727,7 +727,7 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-6">
                     <h1>
-                        <?= $this->app->user->localization->lang[16]['Groups']; ?>
+                        <?= $this->app->user->getL11n()->lang[16]['Groups']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>

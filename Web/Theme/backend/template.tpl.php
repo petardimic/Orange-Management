@@ -28,7 +28,7 @@
         </span>
         <span class="vC" id="s-bar" role="search">
             <label> <input type="text" autofocus="autofocus"> </label>
-            <input type="submit" value="<?= $this->app->user->localization->lang[0]['Search'] ?>">
+            <input type="submit" value="<?= $this->app->user->getL11n()->lang[0]['Search'] ?>">
         </span>
 
         <div id="u-logo" itemscope itemtype="http://schema.org/Person"></div>

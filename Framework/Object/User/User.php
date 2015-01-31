@@ -24,7 +24,15 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var int
      * @since 1.0.0
      */
-    public $id = 0;
+    private $id = 0;
+
+    /**
+     * User session id
+     *
+     * @var mixed
+     * @since 1.0.0
+     */
+    private $sid = 0;
 
     /**
      * User name
@@ -32,7 +40,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var string[]
      * @since 1.0.0
      */
-    public $name = ['', '', ''];
+    private $name = ['', '', ''];
 
     /**
      * User email
@@ -40,7 +48,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var string
      * @since 1.0.0
      */
-    public $email = null;
+    private $email = null;
 
     /**
      * User status
@@ -48,7 +56,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Framework\Object\User\UserStatus
      * @since 1.0.0
      */
-    public $status = null;
+    private $status = null;
 
     /**
      * User password
@@ -58,7 +66,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var int
      * @since 1.0.0
      */
-    public $password = null;
+    private $password = null;
 
     /**
      * User type
@@ -66,7 +74,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Framework\Object\User\UserType
      * @since 1.0.0
      */
-    public $type = null;
+    private $type = null;
 
     /**
      * User created
@@ -74,7 +82,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Datetime
      * @since 1.0.0
      */
-    public $created = null;
+    private $created = null;
 
     /**
      * Users last activity
@@ -82,7 +90,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Datetime
      * @since 1.0.0
      */
-    public $last_activity = null;
+    private $last_activity = null;
 
     /**
      * User login name
@@ -90,7 +98,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var string
      * @since 1.0.0
      */
-    public $login_name = null;
+    private $login_name = null;
 
     /**
      * Tries
@@ -98,7 +106,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var int
      * @since 1.0.0
      */
-    public $tries = null;
+    private $tries = null;
 
     /**
      * User permissions
@@ -106,7 +114,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var int[]
      * @since 1.0.0
      */
-    public $perm = [];
+    private $perm = [];
 
     /**
      * User groups
@@ -114,7 +122,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Framework\Object\Group\Group[]
      * @since 1.0.0
      */
-    public $groups = [];
+    private $groups = [];
 
     /**
      * Application instance
@@ -130,7 +138,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @var \Framework\Localization\Localization
      * @since 1.0.0
      */
-    public $localization = null;
+    private $localization = null;
 
     /**
      * Instances
@@ -233,6 +241,19 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      */
     public function __clone()
     {
+    }
+
+    /**
+     * Get user localization
+     *
+     * @return \Framework\Localization\Localization
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getL11n()
+    {
+        return $this->localization;
     }
 
     /**

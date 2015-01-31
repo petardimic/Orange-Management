@@ -18,7 +18,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::TOP])) {
                 echo '<i class="' . $link['nav_icon'] . '"></i>';
             }
 
-            echo $this->app->user->localization->lang[5][$link['nav_name']] . '</a>';
+            echo $this->app->user->getL11n()->lang[5][$link['nav_name']] . '</a>';
         }
     }
 

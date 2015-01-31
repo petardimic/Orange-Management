@@ -61,7 +61,7 @@ class WebApplication extends \Framework\ApplicationAbstract
             }
 
             if(isset($toLoad[5])) {
-                $this->user->localization->loadLanguage($this->request->getLanguage(), $toLoad[5]);
+                $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5]);
             }
 
             /* TODO: change */

@@ -10,7 +10,7 @@
         <th colspan="8" class="lT">
             <i class="fa fa-filter p f dim"></i>
 
-            <h1><?= $this->app->user->localization->lang[16]['Invoices'] ?></h1>
+            <h1><?= $this->app->user->getL11n()->lang[16]['Invoices'] ?></h1>
         <th class="rT">
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
@@ -18,15 +18,15 @@
         <?php
         \Framework\Model\Model::generate_table_header_view(
             [
-                ['name' => $this->app->user->localization->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->localization->lang[16]['Date'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Type'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Status'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['ClientID'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['ClientName'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->localization->lang[16]['Price'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Creator'], 'sort' => 0],
-                ['name' => $this->app->user->localization->lang[16]['Created'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
+                ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['Type'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['Status'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['ClientID'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['ClientName'], 'sort' => 0, 'full' => true],
+                ['name' => $this->app->user->getL11n()->lang[16]['Price'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['Creator'], 'sort' => 0],
+                ['name' => $this->app->user->getL11n()->lang[16]['Created'], 'sort' => 0],
             ]
         );
         ?>
