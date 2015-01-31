@@ -18,6 +18,17 @@ namespace Modules\News\Models;
  */
 class Article implements \Framework\Object\MapperInterface
 {
+    private static $validation = [
+        'title' => [
+            'isType' => [['string']],
+            'hasLength' => [1, 100],
+        ],
+        'id' => [
+            'isType' => [['integer']],
+            'hasLimit' => [1, PHP_INT_MAX]
+        ]
+    ];
+
     /**
      * Database instance
      *

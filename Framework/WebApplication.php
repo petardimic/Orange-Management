@@ -46,7 +46,6 @@ class WebApplication extends \Framework\ApplicationAbstract
         if($this->dbPool->get('core')->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
             $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
             $this->settings = new \Framework\Config\Settings($this);
-            // TODO: Re-think if we really have to initialize a session here? only do this if required!!!
             $this->session  = new \Framework\DataStorage\Session\HttpSession(0);
             $this->modules  = new \Framework\Module\ModuleManager($this);
             $this->event    = new \Framework\Event\EventManager();
@@ -82,4 +81,10 @@ class WebApplication extends \Framework\ApplicationAbstract
             include __DIR__ . '/../Web/Theme/Error/503.php';
         }
     }
+
+    /*
+     * TODO: handle different pages here! (backend, shop, static etc.)
+     * Only load session auth etc. based on the page type.
+     * Maybe even create extra objects for that.
+     */
 }

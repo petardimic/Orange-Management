@@ -16,7 +16,7 @@ namespace Framework\Validation;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class ValidatorAbstract implements \Framework\Validation\ValidatorInterface
+abstract class ValidatorAbstract
 {
     /**
      * Error code
