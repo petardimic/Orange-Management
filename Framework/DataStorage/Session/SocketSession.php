@@ -2,7 +2,7 @@
 namespace Framework\DataStorage\Session;
 
 /**
- * Http session class
+ * Socket session class
  *
  * PHP Version 5.4
  *
@@ -16,7 +16,7 @@ namespace Framework\DataStorage\Session;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class HttpSession implements \Framework\DataStorage\Session\SessionInterface
+class SocketSession implements \Framework\DataStorage\Session\SessionInterface
 {
     /**
      * Session ID

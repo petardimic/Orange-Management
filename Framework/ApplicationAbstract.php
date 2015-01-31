@@ -95,7 +95,7 @@ class ApplicationAbstract
     /**
      * Server localization
      *
-     * @var \Framework\DataStorage\Session\Session
+     * @var \Framework\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
     public $session = null;

@@ -46,7 +46,8 @@ class WebApplication extends \Framework\ApplicationAbstract
         if($this->dbPool->get('core')->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
             $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
             $this->settings = new \Framework\Config\Settings($this);
-            $this->session  = new \Framework\DataStorage\Session\Session();
+            // TODO: Re-think if we really have to initialize a session here? only do this if required!!!
+            $this->session  = new \Framework\DataStorage\Session\HttpSession(0);
             $this->modules  = new \Framework\Module\ModuleManager($this);
             $this->event    = new \Framework\Event\EventManager();
             $this->auth     = new \Framework\Auth\Http($this);
