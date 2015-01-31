@@ -37,8 +37,8 @@ class Dummy implements \Framework\Install\DummyInterface
         $invoices = rtrim($invoices, ',');
         $articles = rtrim($articles, ',');
 
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $clients)->execute();
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_invoice` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `client`, `referer`) VALUES ' . $invoices)->execute();
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'sales_articles` (`class`, `group`, `subgroup`, `article`) VALUES ' . $articles)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'sales_client` (`matchcode`, `account`) VALUES ' . $clients)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'sales_invoice` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `client`, `referer`) VALUES ' . $invoices)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'sales_articles` (`class`, `group`, `subgroup`, `article`) VALUES ' . $articles)->execute();
     }
 }

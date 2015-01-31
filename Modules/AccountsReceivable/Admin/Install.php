@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accountsreceivable` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accountsreceivable` (
                             `accountsreceivable_id` int(11) NOT NULL AUTO_INCREMENT,
                             `accountsreceivable_account` int(11) NOT NULL,
                             PRIMARY KEY (`accountsreceivable_id`),
@@ -40,9 +40,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'accountsreceivable`
-                            ADD CONSTRAINT `' . $db->prefix . 'accountsreceivable_ibfk_1` FOREIGN KEY (`accountsreceivable_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accountsreceivable`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accountsreceivable_ibfk_1` FOREIGN KEY (`accountsreceivable_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }

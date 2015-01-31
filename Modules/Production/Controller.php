@@ -95,7 +95,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $pList = new \Modules\Production\Models\ProductionList($this->app->db);
+                $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/process-list.tpl.php';
@@ -118,7 +118,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $pList = new \Modules\Production\Models\ProductionList($this->app->db);
+                $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/guideline-list.tpl.php';

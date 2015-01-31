@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'production_process` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'production_process` (
                             `ProcessID` int(11) NOT NULL AUTO_INCREMENT,
                             `product`  int(11) NOT NULL,
                             `status`  tinyint(2) NOT NULL,
@@ -51,13 +51,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                /*$db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'production_process`
-                        ADD CONSTRAINT `' . $db->prefix . 'production_process_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                /*$dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'production_process`
+                        ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'production_process_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();*/
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'production_guideline` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'production_guideline` (
                             `ProductionGuidelineID` int(11) NOT NULL AUTO_INCREMENT,
                             `product` int(11) NOT NULL,
                             PRIMARY KEY (`ProductionGuidelineID`),
@@ -65,8 +65,8 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'production_guideline_step` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'production_guideline_step` (
                             `ProductionStepID` int(11) NOT NULL AUTO_INCREMENT,
                             `guideline` int(11) NOT NULL,
                             `title` varchar(50) NOT NULL,
@@ -77,9 +77,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'production_guideline_step`
-                            ADD CONSTRAINT `' . $db->prefix . 'production_guideline_step_ibfk_1` FOREIGN KEY (`guideline`) REFERENCES `' . $db->prefix . 'production_guideline` (`ProductionGuidelineID`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'production_guideline_step`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'production_guideline_step_ibfk_1` FOREIGN KEY (`guideline`) REFERENCES `' . $dbPool->get('core')->prefix . 'production_guideline` (`ProductionGuidelineID`);'
                 )->execute();
                 break;
         }

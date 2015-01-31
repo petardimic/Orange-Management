@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_unit` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'business_unit` (
                             `business_unit_id` int(11) NOT NULL AUTO_INCREMENT,
                             `business_unit_status` tinyint(2) DEFAULT NULL,
                             `business_unit_matchcode` varchar(50) DEFAULT NULL,
@@ -41,8 +41,8 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_department` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'business_department` (
                             `business_department_id` int(11) NOT NULL AUTO_INCREMENT,
                             `business_department_name` varchar(30) DEFAULT NULL,
                             `business_department_parent` int(11) DEFAULT NULL,
@@ -53,14 +53,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'business_department`
-                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_1` FOREIGN KEY (`business_department_parent`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'business_department_ibfk_2` FOREIGN KEY (`business_department_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'business_department`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'business_department_ibfk_1` FOREIGN KEY (`business_department_parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_department` (`business_department_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'business_department_ibfk_2` FOREIGN KEY (`business_department_unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'business_address` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'business_address` (
                             `business_address_id` int(11) NOT NULL AUTO_INCREMENT,
                             `business_address_status` tinyint(2) DEFAULT NULL,
                             `business_address_matchcode` varchar(50) DEFAULT NULL,
@@ -77,9 +77,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'business_address`
-                            ADD CONSTRAINT `' . $db->prefix . 'business_address_ibfk_1` FOREIGN KEY (`business_address_unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'business_address`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'business_address_ibfk_1` FOREIGN KEY (`business_address_unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`);'
                 )->execute();
                 break;
         }

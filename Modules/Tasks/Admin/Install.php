@@ -29,12 +29,12 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->beginTransaction();
+                $dbPool->get('core')->con->beginTransaction();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'task` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'task` (
                             `task_id` int(11) NOT NULL AUTO_INCREMENT,
                             `task_title` varchar(30) DEFAULT NULL,
                             `task_desc` text NOT NULL,
@@ -49,13 +49,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'task`
-                            ADD CONSTRAINT `' . $db->prefix . 'task_ibfk_1` FOREIGN KEY (`task_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'task`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_ibfk_1` FOREIGN KEY (`task_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'tasks_element` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'tasks_element` (
                             `tasks_element_id` int(11) NOT NULL AUTO_INCREMENT,
                             `tasks_element_desc` text NOT NULL,
                             `tasks_element_plain` text NOT NULL,
@@ -72,14 +72,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'tasks_element`
-                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_1` FOREIGN KEY (`tasks_element_task`) REFERENCES `' . $db->prefix . 'task` (`task_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_2` FOREIGN KEY (`tasks_element_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'task_element_ibfk_3` FOREIGN KEY (`tasks_element_forwarded`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'tasks_element`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_element_ibfk_1` FOREIGN KEY (`tasks_element_task`) REFERENCES `' . $dbPool->get('core')->prefix . 'task` (`task_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_element_ibfk_2` FOREIGN KEY (`tasks_element_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_element_ibfk_3` FOREIGN KEY (`tasks_element_forwarded`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->commit();
+                $dbPool->get('core')->con->commit();
                 break;
         }
 

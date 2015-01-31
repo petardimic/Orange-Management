@@ -65,21 +65,21 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
         try {
             $result = null;
 
-            switch($this->app->db->getType()) {
+            switch($this->app->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
-                    $sth = $this->app->db->con->prepare(
+                    $sth = $this->app->dbPool->get('core')->con->prepare(
                         'SELECT
-                            `' . $this->app->db->prefix . 'accounts_data`.*,
-                            `' . $this->app->db->prefix . 'accounts`.*
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.*,
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts`.*
                         FROM
-                            `' . $this->app->db->prefix . 'accounts_data`
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`
                         LEFT JOIN
-                            `' . $this->app->db->prefix . 'accounts`
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts`
                         ON
-                            `' . $this->app->db->prefix . 'accounts_data`.`account` = `' . $this->app->db->prefix . 'accounts_`.`id`
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`account` = `' . $this->app->dbPool->get('core')->prefix . 'accounts_`.`id`
                         WHERE
-                            `' . $this->app->db->prefix . 'accounts_data`.`login` = :login'
+                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`login` = :login'
                     );
                     $sth->bindValue(':login', $login, \PDO::PARAM_STR);
                     $sth->execute();

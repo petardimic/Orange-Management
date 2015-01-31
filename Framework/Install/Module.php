@@ -35,25 +35,25 @@ abstract class Module
         if(file_exists(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json')) {
             $info = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $module . '/' . 'info.json'), true);
 
-            switch($db->getType()) {
+            switch($dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $db->con->beginTransaction();
+                    $dbPool->get('core')->con->beginTransaction();
 
-                    $db->con->prepare(
-                        'INSERT INTO `' . $db->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
+                    $dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $dbPool->get('core')->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
                                 (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
                     )->execute();
 
                     foreach($info['load'] as $val) {
                         foreach($val['pid'] as $pid) {
-                            $db->con->prepare(
-                                'INSERT INTO `' . $db->prefix . 'module_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
+                            $dbPool->get('core')->con->prepare(
+                                'INSERT INTO `' . $dbPool->get('core')->prefix . 'module_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
                                         (\'' . $pid . '\', ' . $val['type'] . ', ' . $val['from'] . ', ' . $val['for'] . ', \'' . $val['file'] . '\');'
                             )->execute();
                         }
                     }
 
-                    $db->con->commit();
+                    $dbPool->get('core')->con->commit();
 
                     break;
             }
@@ -124,10 +124,10 @@ abstract class Module
      */
     public static function activate(&$db, $id)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->query(
-                    'UPDATE `' . $db->prefix . 'module` SET `active` = 1 WHERE `id` = ' . $id . ';'
+                $dbPool->get('core')->con->query(
+                    'UPDATE `' . $dbPool->get('core')->prefix . 'module` SET `active` = 1 WHERE `id` = ' . $id . ';'
                 );
                 break;
         }
@@ -144,10 +144,10 @@ abstract class Module
      */
     public static function deactivate(&$db, $id)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->query(
-                    'UPDATE `' . $db->prefix . 'module` SET `active` = 0 WHERE `id` = ' . $id . ';'
+                $dbPool->get('core')->con->query(
+                    'UPDATE `' . $dbPool->get('core')->prefix . 'module` SET `active` = 0 WHERE `id` = ' . $id . ';'
                 );
                 break;
         }

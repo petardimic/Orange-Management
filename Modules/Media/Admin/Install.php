@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media` (
                             `media_id` int(11) NOT NULL AUTO_INCREMENT,
                             `media_name`  varchar(100) NOT NULL,
                             `media_file` varchar(255) NOT NULL,
@@ -45,13 +45,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'media`
-                            ADD CONSTRAINT `' . $db->prefix . 'media_ibfk_1` FOREIGN KEY (`media_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'media`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_ibfk_1` FOREIGN KEY (`media_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'media_permission` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media_permission` (
                             `media_permission_id` int(11) NOT NULL AUTO_INCREMENT,
                             `media_permission_type`  tinyint(1) NOT NULL,
                             `media_permission_reference` int(11) NOT NULL,
@@ -62,9 +62,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'media_permission`
-                            ADD CONSTRAINT `' . $db->prefix . 'media_permission_ibfk_1` FOREIGN KEY (`media_permission_media`) REFERENCES `' . $db->prefix . 'media` (`media_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'media_permission`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_permission_ibfk_1` FOREIGN KEY (`media_permission_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`);'
                 )->execute();
                 break;
         }

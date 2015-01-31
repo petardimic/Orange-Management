@@ -37,8 +37,8 @@ class Dummy implements \Framework\Install\DummyInterface
         $invoices  = rtrim($invoices, ',');
         $articles  = rtrim($articles, ',');
 
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_suppliers` (`matchcode`, `account`) VALUES ' . $suppliers)->execute();
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_invoices` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `supplier`, `referer`) VALUES ' . $invoices)->execute();
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'purchase_articles` (`article`) VALUES ' . $articles)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'purchase_suppliers` (`matchcode`, `account`) VALUES ' . $suppliers)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'purchase_invoices` (`status`, `type`, `created`, `printed`, `price`, `currency`, `creator`, `supplier`, `referer`) VALUES ' . $invoices)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'purchase_articles` (`article`) VALUES ' . $articles)->execute();
     }
 }

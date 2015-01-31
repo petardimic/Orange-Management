@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'news` (
                             `news_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_title` varchar(250) NOT NULL,
                             `news_featured` tinyint(1) DEFAULT NULL,
@@ -51,14 +51,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'news`
-                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_1` FOREIGN KEY (`news_author`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'news_ibfk_2` FOREIGN KEY (`news_last_change`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'news`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'news_ibfk_1` FOREIGN KEY (`news_author`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'news_ibfk_2` FOREIGN KEY (`news_last_change`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_tag` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'news_tag` (
                             `news_tag_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_tag_news` int(11) NOT NULL,
                             `news_tag_tag` varchar(20) NOT NULL,
@@ -67,13 +67,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'news_tag`
-                            ADD CONSTRAINT `' . $db->prefix . 'news_tag_ibfk_1` FOREIGN KEY (`news_tag_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'news_tag`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'news_tag_ibfk_1` FOREIGN KEY (`news_tag_news`) REFERENCES `' . $dbPool->get('core')->prefix . 'news` (`news_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'news_group` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'news_group` (
                             `news_group_id` int(11) NOT NULL AUTO_INCREMENT,
                             `news_group_news` int(11) NOT NULL,
                             `news_group_group` int(11) NOT NULL,
@@ -82,9 +82,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'news_group`
-                            ADD CONSTRAINT `' . $db->prefix . 'news_group_ibfk_1` FOREIGN KEY (`news_group_news`) REFERENCES `' . $db->prefix . 'news` (`news_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'news_group`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'news_group_ibfk_1` FOREIGN KEY (`news_group_news`) REFERENCES `' . $dbPool->get('core')->prefix . 'news` (`news_id`);'
                 )->execute();
                 break;
         }

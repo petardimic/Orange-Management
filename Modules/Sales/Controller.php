@@ -102,7 +102,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $articleList = new \Modules\Sales\Models\ArticleList($this->app->db);
+                $articleList = new \Modules\Sales\Models\ArticleList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/article-list.tpl.php';
@@ -129,7 +129,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $invoiceList = new \Modules\Sales\Models\InvoiceList($this->app->db);
+                $invoiceList = new \Modules\Sales\Models\InvoiceList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/invoice-list.tpl.php';
@@ -156,7 +156,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $clientList = new \Modules\Sales\Models\ClientList($this->app->db);
+                $clientList = new \Modules\Sales\Models\ClientList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/clients-list.tpl.php';

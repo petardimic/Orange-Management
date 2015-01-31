@@ -88,8 +88,8 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
     {
         $this->id = (int) $id;
 
-        $sth = $this->app->db->con->prepare(
-            'SELECT * FROM `' . $this->app->db->prefix . 'groups` WHERE id = :id'
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'SELECT * FROM `' . $this->app->dbPool->get('core')->prefix . 'groups` WHERE id = :id'
         );
 
         $sth->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -160,10 +160,10 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
      */
     public function create()
     {
-        switch($this->app->db->getType()) {
+        switch($this->app->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'groups` (`name`, `desc`) VALUES
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'groups` (`name`, `desc`) VALUES
                             (:name, :desc);'
                 );
 
@@ -171,7 +171,7 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
                 $sth->bindValue(':desc', $this->desc, \PDO::PARAM_STR);
                 $sth->execute();
 
-                $this->id = $this->app->db->con->lastInsertId();
+                $this->id = $this->app->dbPool->get('core')->con->lastInsertId();
 
                 break;
         }
@@ -186,14 +186,14 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
     public function delete()
     {
         /* TODO: delete permissions */
-        $sth = $this->app->db->con->prepare(
-            'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->db->con->prepare(
-            'DELETE `' . $this->app->db->prefix . 'groups` WHERE `id` = ' . $this->id
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'groups` WHERE `id` = ' . $this->id
         );
 
         $sth->execute();
@@ -207,10 +207,10 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
      */
     public function update()
     {
-        switch($this->app->db->getType()) {
+        switch($this->app->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->db->con->prepare(
-                    'UPDATE `' . $this->app->db->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
                 );
 
                 $sth->bindValue(':name', $this->name, \PDO::PARAM_STR);

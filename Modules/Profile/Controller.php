@@ -84,7 +84,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 break;
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $accounts = new \Modules\Profile\Models\ProfileList($this->app->db);
+                $accounts = new \Modules\Profile\Models\ProfileList($this->app->dbPool);
 
                 if(!isset($this->app->request->data['page'])) {
                     $this->app->request->data['page'] = 1;

@@ -24,7 +24,7 @@ class Task implements \Framework\Object\MapperInterface
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * ID
@@ -101,14 +101,14 @@ class Task implements \Framework\Object\MapperInterface
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -125,24 +125,24 @@ class Task implements \Framework\Object\MapperInterface
         $data     = null;
         $elements = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->db->con->prepare('SELECT
-                            `' . $this->db->prefix . 'tasks`.*
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT
+                            `' . $this->dbPool->get('core')->prefix . 'tasks`.*
                         FROM
-                            `' . $this->db->prefix . 'tasks`
-                       WHERE `' . $this->db->prefix . 'tasks`.`TaskID` = :id');
+                            `' . $this->dbPool->get('core')->prefix . 'tasks`
+                       WHERE `' . $this->dbPool->get('core')->prefix . 'tasks`.`TaskID` = :id');
 
                 $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                 $sth->execute();
 
                 $data = $sth->fetchAll()[0];
 
-                $sth = $this->db->con->prepare('SELECT
-                            `' . $this->db->prefix . 'tasks_element`.*
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT
+                            `' . $this->dbPool->get('core')->prefix . 'tasks_element`.*
                         FROM
-                            `' . $this->db->prefix . 'tasks_element`
-                       WHERE `' . $this->db->prefix . 'tasks_element`.`task` = :id');
+                            `' . $this->dbPool->get('core')->prefix . 'tasks_element`
+                       WHERE `' . $this->dbPool->get('core')->prefix . 'tasks_element`.`task` = :id');
 
                 $sth->bindValue(':id', $id, \PDO::PARAM_INT);
                 $sth->execute();
@@ -160,7 +160,7 @@ class Task implements \Framework\Object\MapperInterface
         $this->done        = new \DateTime($data['done']);
 
         foreach($elements as $element) {
-            $elementOBJ = new TaskElement($this->db);
+            $elementOBJ = new TaskElement($this->dbPool);
             $elementOBJ->setID($element['TaskelementID']);
             $elementOBJ->setTask($element['task']);
             $elementOBJ->setStatus($element['status']);

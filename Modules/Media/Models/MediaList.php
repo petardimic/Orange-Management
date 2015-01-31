@@ -29,14 +29,14 @@ class MediaList
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -57,29 +57,29 @@ class MediaList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter, true);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 // SQL_CALC_FOUND_ROWS
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT
-                            `' . $this->db->prefix . 'media`.*,
-                            `' . $this->db->prefix . 'account_data`.`name1`,
-                            `' . $this->db->prefix . 'account_data`.`name2`,
-                            `' . $this->db->prefix . 'account_data`.`name3`
+                            `' . $this->dbPool->get('core')->prefix . 'media`.*,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`name1`,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`name2`,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`name3`
                         FROM
-                            `' . $this->db->prefix . 'media`
-                        LEFT JOIN `' . $this->db->prefix . 'account_data`
-                        ON `' . $this->db->prefix . 'media`.`media_creator` = `' . $this->db->prefix . 'account_data`.`account`
-                        GROUP BY `' . $this->db->prefix . 'media`.`media_id` '
+                            `' . $this->dbPool->get('core')->prefix . 'media`
+                        LEFT JOIN `' . $this->dbPool->get('core')->prefix . 'account_data`
+                        ON `' . $this->dbPool->get('core')->prefix . 'media`.`media_creator` = `' . $this->dbPool->get('core')->prefix . 'account_data`.`account`
+                        GROUP BY `' . $this->dbPool->get('core')->prefix . 'media`.`media_id` '
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT FOUND_ROWS();'
                 );
                 $sth->execute();

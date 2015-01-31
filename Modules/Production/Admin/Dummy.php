@@ -25,7 +25,7 @@ class Dummy implements \Framework\Install\DummyInterface
     {
         for($i = 0; $i < $amount; $i++) {
             $dataString = " (" . rand(1, 200) . ", " . rand(0, 7) . ", " . rand(1, 100000) . ", " . rand(1, 997) . ", " . rand(1, 997) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'production_process` (`product`, `status`, `quantity`, `for`, `orderer`, `ordered`, `due`, `planned`, `done`) VALUES ' . $dataString)->execute();
+            $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'production_process` (`product`, `status`, `quantity`, `for`, `orderer`, `ordered`, `due`, `planned`, `done`) VALUES ' . $dataString)->execute();
         }
     }
 }

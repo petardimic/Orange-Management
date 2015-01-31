@@ -23,7 +23,7 @@ class Dummy implements \Framework\Install\DummyInterface
      */
     public static function generate($db, $amount)
     {
-        $db->con->beginTransaction();
+        $dbPool->get('core')->con->beginTransaction();
 
         $dataString = " ('Human Resource Department', NULL),"
                       . "('Accounting Department', NULL),"
@@ -44,7 +44,7 @@ class Dummy implements \Framework\Install\DummyInterface
                       . "('Management', NULL),"
                       . "('Controlling', 17),"
                       . "('IT Department', NULL)";
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'hr_department` (`name`, `parent`) VALUES ' . $dataString)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'hr_department` (`name`, `parent`) VALUES ' . $dataString)->execute();
 
         $amount = 197;
         $uid    = [];
@@ -57,9 +57,9 @@ class Dummy implements \Framework\Install\DummyInterface
             }
 
             $dataString = " ( " . rand(0, 3) . ", " . $id . ")";
-            $db->con->prepare('INSERT INTO `' . $db->prefix . 'hr_staff` (`status`, `person`) VALUES ' . $dataString)->execute();
+            $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'hr_staff` (`status`, `person`) VALUES ' . $dataString)->execute();
         }
 
-        $db->con->commit();
+        $dbPool->get('core')->con->commit();
     }
 }

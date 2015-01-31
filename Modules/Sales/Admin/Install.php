@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_client` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'sales_client` (
                             `sales_client_id` int(11) NOT NULL AUTO_INCREMENT,
                             `sales_client_matchcode` varchar(50) DEFAULT NULL,
                             `sales_client_account` int(11) NOT NULL,
@@ -41,13 +41,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'sales_client`
-                            ADD CONSTRAINT `' . $db->prefix . 'sales_client_ibfk_1` FOREIGN KEY (`sales_client_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'sales_client`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'sales_client_ibfk_1` FOREIGN KEY (`sales_client_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'sales_article` (
                             `sales_article_id` int(11) NOT NULL AUTO_INCREMENT,
                             `sales_article_class` tinyint(3) DEFAULT NULL,
                             `sales_article_group` tinyint(3) DEFAULT NULL,
@@ -58,13 +58,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'sales_article`
-                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_ibfk_1` FOREIGN KEY (`sales_article_item`) REFERENCES `' . $db->prefix . 'itemreference` (`itemreference_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'sales_article`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'sales_article_ibfk_1` FOREIGN KEY (`sales_article_item`) REFERENCES `' . $dbPool->get('core')->prefix . 'itemreference` (`itemreference_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_class` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'sales_article_class` (
                             `sales_article_class_id` int(11) NOT NULL AUTO_INCREMENT,
                             `sales_article_class_type` tinyint(1) DEFAULT NULL,
                             `sales_article_class_name` varchar(50) DEFAULT NULL,
@@ -74,13 +74,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'sales_article_class`
-                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_class_ibfk_1` FOREIGN KEY (`sales_article_class_parent`) REFERENCES `' . $db->prefix . 'sales_article_class` (`sales_article_class_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'sales_article_class`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'sales_article_class_ibfk_1` FOREIGN KEY (`sales_article_class_parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_article_class` (`sales_article_class_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_desc` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'sales_article_desc` (
                             `sales_article_desc_id` int(11) NOT NULL AUTO_INCREMENT,
                             `sales_article_desc_name1` varchar(50) DEFAULT NULL,
                             `sales_article_desc_name2` varchar(50) DEFAULT NULL,
@@ -92,13 +92,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'sales_article_desc`
-                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_desc_ibfk_1` FOREIGN KEY (`sales_article_desc_article`) REFERENCES `' . $db->prefix . 'sales_article` (`sales_article_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'sales_article_desc`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'sales_article_desc_ibfk_1` FOREIGN KEY (`sales_article_desc_article`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_article` (`sales_article_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'sales_article_price` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'sales_article_price` (
                             `sales_article_price_id` int(11) NOT NULL AUTO_INCREMENT,
                             `sales_article_price_type` tinyint(2) NOT NULL,
                             `sales_article_price_default` tinyint(1) NOT NULL,
@@ -112,9 +112,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'sales_article_price`
-                            ADD CONSTRAINT `' . $db->prefix . 'sales_article_price_ibfk_1` FOREIGN KEY (`sales_article_price_article`) REFERENCES `' . $db->prefix . 'sales_article` (`sales_article_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'sales_article_price`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'sales_article_price_ibfk_1` FOREIGN KEY (`sales_article_price_article`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_article` (`sales_article_id`);'
                 )->execute();
                 break;
         }

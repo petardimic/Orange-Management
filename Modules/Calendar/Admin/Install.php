@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'calendar` (
                             `calendar_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_name` varchar(25) NOT NULL,
                             `calendar_password` varchar(64) NOT NULL,
@@ -44,13 +44,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'calendar`
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_ibfk_1` FOREIGN KEY (`calendar_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'calendar`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_ibfk_1` FOREIGN KEY (`calendar_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_permission` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'calendar_permission` (
                             `calendar_permission_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_permission_account` int(11) NOT NULL,
                             `calendar_permission_calendar` int(11) NOT NULL,
@@ -61,14 +61,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'calendar_permission`
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_1` FOREIGN KEY (`calendar_permission_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_permission_ibfk_2` FOREIGN KEY (`calendar_permission_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'calendar_permission`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_permission_ibfk_1` FOREIGN KEY (`calendar_permission_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_permission_ibfk_2` FOREIGN KEY (`calendar_permission_calendar`) REFERENCES `' . $dbPool->get('core')->prefix . 'calendar` (`calendar_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'calendar_event` (
                             `calendar_event_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_event_name` varchar(25) NOT NULL,
                             `calendar_event_description` varchar(255) NOT NULL,
@@ -93,14 +93,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'calendar_event`
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_1` FOREIGN KEY (`calendar_event_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_ibfk_2` FOREIGN KEY (`calendar_event_calendar`) REFERENCES `' . $db->prefix . 'calendar` (`calendar_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'calendar_event`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_event_ibfk_1` FOREIGN KEY (`calendar_event_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_event_ibfk_2` FOREIGN KEY (`calendar_event_calendar`) REFERENCES `' . $dbPool->get('core')->prefix . 'calendar` (`calendar_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'calendar_event_participant` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'calendar_event_participant` (
                             `calendar_event_participant_id` int(11) NOT NULL AUTO_INCREMENT,
                             `calendar_event_participant_event` int(11) NOT NULL,
                             `calendar_event_participant_person` int(11) NOT NULL,
@@ -111,10 +111,10 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'calendar_event_participant`
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_1` FOREIGN KEY (`calendar_event_participant_event`) REFERENCES `' . $db->prefix . 'calendar_event` (`calendar_event_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'calendar_event_participant_ibfk_2` FOREIGN KEY (`calendar_event_participant_person`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'calendar_event_participant`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_event_participant_ibfk_1` FOREIGN KEY (`calendar_event_participant_event`) REFERENCES `' . $dbPool->get('core')->prefix . 'calendar_event` (`calendar_event_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'calendar_event_participant_ibfk_2` FOREIGN KEY (`calendar_event_participant_person`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }

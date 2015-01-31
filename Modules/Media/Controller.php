@@ -76,7 +76,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($this->app->request->data['l3']) {
             case 'single':
-                $media = new \Modules\Media\Models\Media($this->app->db);
+                $media = new \Modules\Media\Models\Media($this->app->dbPool);
                 $media->init($this->app->request->data['id']);
 
                 /** @noinspection PhpIncludeInspection */
@@ -93,7 +93,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 }
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $mList = new \Modules\Media\Models\MediaList($this->app->db);
+                $mList = new \Modules\Media\Models\MediaList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/media-list.tpl.php';

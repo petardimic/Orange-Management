@@ -95,7 +95,7 @@ class Cache implements \Framework\DataStorage\Cache\CacheInterface, \Framework\C
     {
         if($options === null) {
             /* This is costing me 1ms, maybe init settings first cause i'm making another settings call later on -> same call 2 times */
-            $sth = $this->app->db->con->prepare('SELECT `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` = 1000000015');
+            $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `content` FROM `' . $this->app->dbPool->get('core')->prefix . 'settings` WHERE `id` = 1000000015');
             $sth->execute();
             $cache_data = $sth->fetchAll();
 

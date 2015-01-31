@@ -101,7 +101,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
             $uri_hash = $this->app->request->getHash();
 
-            $sth = $this->app->db->con->prepare('SELECT * FROM `' . $this->app->db->prefix . 'nav` WHERE `nav_pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `nav_order` ASC');
+            $sth = $this->app->dbPool->get('core')->con->prepare('SELECT * FROM `' . $this->app->dbPool->get('core')->prefix . 'nav` WHERE `nav_pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `nav_order` ASC');
             $sth->bindValue(':pidA', $uri_hash[0], \PDO::PARAM_STR);
             $sth->bindValue(':pidB', $uri_hash[1], \PDO::PARAM_STR);
             $sth->bindValue(':pidC', $uri_hash[2], \PDO::PARAM_STR);

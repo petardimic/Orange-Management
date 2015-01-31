@@ -31,10 +31,10 @@ class InstallWarehouse extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'billing_invoice_element_stock` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'billing_invoice_element_stock` (
                             `billing_invoice_element_stock_id` int(11) NOT NULL AUTO_INCREMENT,
                             `billing_invoice_element_stock_invoice` int(11) NOT NULL,
                             `billing_invoice_element_stock_stock` int(11) NOT NULL,
@@ -45,14 +45,14 @@ class InstallWarehouse extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'billing_invoice_element_stock`
-                            ADD CONSTRAINT `' . $db->prefix . 'billing_invoice_element_stock_ibfk_1` FOREIGN KEY (`billing_invoice_element_stock_invoice`) REFERENCES `' . $db->prefix . 'billing_invoice_element` (`billing_invoice_element_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'billing_invoice_element_stock_ibfk_2` FOREIGN KEY (`billing_invoice_element_stock_stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`warehousing_article_stock_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'billing_invoice_element_stock`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_element_stock_ibfk_1` FOREIGN KEY (`billing_invoice_element_stock_invoice`) REFERENCES `' . $dbPool->get('core')->prefix . 'billing_invoice_element` (`billing_invoice_element_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_element_stock_ibfk_2` FOREIGN KEY (`billing_invoice_element_stock_stock`) REFERENCES `' . $dbPool->get('core')->prefix . 'warehousing_article_stock` (`warehousing_article_stock_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'billing_invoice_reserved` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'billing_invoice_reserved` (
                             `billing_invoice_reserved_id` int(11) NOT NULL AUTO_INCREMENT,
                             `billing_invoice_reserved_invoice` int(11) NOT NULL,
                             `billing_invoice_reserved_article` int(11) NOT NULL,
@@ -65,10 +65,10 @@ class InstallWarehouse extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'billing_invoice_reserved`
-                            ADD CONSTRAINT `' . $db->prefix . 'billing_invoice_reserved_ibfk_1` FOREIGN KEY (`billing_invoice_reserved_invoice`) REFERENCES `' . $db->prefix . 'billing_invoice_element` (`billing_invoice_elment_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'billing_invoice_reserved_ibfk_2` FOREIGN KEY (`billing_invoice_reserved_stock`) REFERENCES `' . $db->prefix . 'warehousing_article_stock` (`wareousing_article_stock_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'billing_invoice_reserved`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_reserved_ibfk_1` FOREIGN KEY (`billing_invoice_reserved_invoice`) REFERENCES `' . $dbPool->get('core')->prefix . 'billing_invoice_element` (`billing_invoice_elment_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_reserved_ibfk_2` FOREIGN KEY (`billing_invoice_reserved_stock`) REFERENCES `' . $dbPool->get('core')->prefix . 'warehousing_article_stock` (`wareousing_article_stock_id`);'
                 )->execute();
                 break;
         }

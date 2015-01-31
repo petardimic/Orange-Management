@@ -141,7 +141,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $accounts = new \Modules\Admin\Models\UserList($this->app->db);
+                $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 if(!isset($this->app->request->data['page'])) {
                     $this->app->request->data['page'] = 1;
@@ -219,7 +219,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $groups = new \Modules\Admin\Models\GroupList($this->app->db);
+                $groups = new \Modules\Admin\Models\GroupList($this->app->dbPool);
 
                 if(!isset($this->app->request->data['page'])) {
                     $this->app->request->data['page'] = 1;
@@ -249,7 +249,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l5']) {
             case 'front':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $accounts = new \Modules\Admin\Models\UserList($this->app->db);
+                $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $group = new \Framework\Object\Group\Group((int) $this->app->request->data['id'], $this->app);

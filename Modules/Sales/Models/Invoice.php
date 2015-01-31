@@ -24,7 +24,9 @@ class Invoice implements \Framework\Object\MapperInterface
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
+
+/**
 
     private $id = null;
 
@@ -65,14 +67,14 @@ class Invoice implements \Framework\Object\MapperInterface
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**

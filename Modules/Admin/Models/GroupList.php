@@ -24,19 +24,19 @@ class GroupList
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -57,16 +57,16 @@ class GroupList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter);
 
-                $sth = $this->db->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->db->prefix . 'group` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->dbPool->get('core')->prefix . 'group` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare('SELECT FOUND_ROWS();');
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT FOUND_ROWS();');
                 $sth->execute();
 
                 $result['count'] = $sth->fetchAll()[0][0];

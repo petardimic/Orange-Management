@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_article` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'purchase_article` (
                             `purchase_article_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_article_item` int(11) DEFAULT NULL,
                             PRIMARY KEY (`purchase_article_id`),
@@ -40,13 +40,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'purchase_article`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_article_ibfk_1` FOREIGN KEY (`purchase_article_item`) REFERENCES `' . $db->prefix . 'itemreference` (`itemreference_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'purchase_article`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_article_ibfk_1` FOREIGN KEY (`purchase_article_item`) REFERENCES `' . $dbPool->get('core')->prefix . 'itemreference` (`itemreference_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_supplier` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'purchase_supplier` (
                             `purchase_supplier_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_supplier_account` int(11) NOT NULL,
                             PRIMARY KEY (`purchase_supplier_id`),
@@ -54,15 +54,15 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'purchase_supplier`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_supplier_ibfk_1` FOREIGN KEY (`purchase_supplier_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'purchase_supplier`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_supplier_ibfk_1` FOREIGN KEY (`purchase_supplier_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 // TODO: create reference between WE, RG and Order?????
                 /* These are the invoices that get created by the purchasing department */
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'purchase_invoice` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'purchase_invoice` (
                             `purchase_invoice_id` int(11) NOT NULL AUTO_INCREMENT,
                             `purchase_invoice_status` tinyint(2) DEFAULT NULL,
                             `purchase_invoice_type` tinyint(2) DEFAULT NULL,
@@ -80,11 +80,11 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'purchase_invoice`
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_1` FOREIGN KEY (`purchase_invoice_creator`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $db->prefix . 'purchase_supplier` (`purchase_supplier`),
-                            ADD CONSTRAINT `' . $db->prefix . 'purchase_invoice_ibfk_3` FOREIGN KEY (`purchase_invoice_referer`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'purchase_invoice`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_1` FOREIGN KEY (`purchase_invoice_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $dbPool->get('core')->prefix . 'purchase_supplier` (`purchase_supplier`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_3` FOREIGN KEY (`purchase_invoice_referer`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }

@@ -99,7 +99,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $accountList = new \Modules\Accounting\Models\AccountList($this->app->db);
+                $accountList = new \Modules\Accounting\Models\AccountList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/account-list.tpl.php';
@@ -134,7 +134,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->db);
+                $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/creditor-list.tpl.php';
@@ -161,7 +161,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->db);
+                $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/debitor-list.tpl.php';

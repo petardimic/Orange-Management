@@ -31,6 +31,6 @@ class Dummy implements \Framework\Install\DummyInterface
 
         $dataString = rtrim($dataString, ',');
 
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'media` (`name`, `file`, `type`, `size`, `creator`, `created`) VALUES ' . $dataString)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'media` (`name`, `file`, `type`, `size`, `creator`, `created`) VALUES ' . $dataString)->execute();
     }
 }

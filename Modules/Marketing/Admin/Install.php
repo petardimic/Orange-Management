@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'marketing_promotion` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'marketing_promotion` (
                             `marketing_promotion_id` int(11) NOT NULL AUTO_INCREMENT,
                             `marketing_promotion_name`  varchar(30) NOT NULL,
                             `marketing_promotion_description` text DEFAULT NULL,

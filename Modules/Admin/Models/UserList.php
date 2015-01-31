@@ -24,19 +24,19 @@ class UserList
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -53,10 +53,10 @@ class UserList
     {
         $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
                             (:aname, :pword, :email, \'0000-00-00 00:00:00\', 3, \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                 );
 
@@ -100,28 +100,28 @@ class UserList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter, true);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT SQL_CALC_FOUND_ROWS
-                            `' . $this->db->prefix . 'accounts`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->dbPool->get('core')->prefix . 'accounts`.*,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name1`,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name2`,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->db->prefix . 'accounts`,
-                            `' . $this->db->prefix . 'accounts_data`
+                            `' . $this->dbPool->get('core')->prefix . 'accounts`,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`
                         WHERE
-                            `' . $this->db->prefix . 'accounts`.`id` = `' . $this->db->prefix . 'accounts_data`.`account`'
+                            `' . $this->dbPool->get('core')->prefix . 'accounts`.`id` = `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account`'
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT FOUND_ROWS();'
                 );
                 $sth->execute();

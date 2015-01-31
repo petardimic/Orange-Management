@@ -77,14 +77,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l3']) {
             case 'dashboard':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $tasks = new \Modules\Tasks\Models\TaskList($this->app->db);
+                $tasks = new \Modules\Tasks\Models\TaskList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/task-dashboard.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $task = new \Modules\Tasks\Models\Task($this->app->db);
+                $task = new \Modules\Tasks\Models\Task($this->app->dbPool);
                 $task->init($this->app->request->data['id']);
 
                 /** @noinspection PhpIncludeInspection */

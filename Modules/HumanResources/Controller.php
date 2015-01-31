@@ -113,7 +113,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l5']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $departments = new \Modules\HumanResources\DepartmentList($this->app->db);
+                $departments = new \Modules\HumanResources\DepartmentList($this->app->dbPool);
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/department-list.tpl.php';
                 break;
@@ -131,7 +131,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $staff = new \Modules\HumanResources\Models\StaffList($this->app->db);
+                $staff = new \Modules\HumanResources\Models\StaffList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/staff-list.tpl.php';

@@ -34,7 +34,7 @@ class Dummy implements \Framework\Install\DummyInterface
         $debitors  = rtrim($debitors, ',');
         $creditors = rtrim($creditors, ',');
 
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'accounting_debitor` (`account`) VALUES ' . $debitors)->execute();
-        $db->con->prepare('INSERT INTO `' . $db->prefix . 'accounting_creditor` (`account`) VALUES ' . $creditors)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'accounting_debitor` (`account`) VALUES ' . $debitors)->execute();
+        $dbPool->get('core')->con->prepare('INSERT INTO `' . $dbPool->get('core')->prefix . 'accounting_creditor` (`account`) VALUES ' . $creditors)->execute();
     }
 }

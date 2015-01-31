@@ -168,17 +168,17 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
         $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
 
         if($id !== -1) {
-            $sth = $this->app->db->con->prepare(
+            $sth = $this->app->dbPool->get('core')->con->prepare(
                 'SELECT
-                        `' . $this->app->db->prefix . 'accounts`.*,
-                                `' . $this->app->db->prefix . 'accounts_data`.*,
-                                `' . $this->app->db->prefix . 'accounts`.`id`
+                        `' . $this->app->dbPool->get('core')->prefix . 'accounts`.*,
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.*,
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id`
                             FROM
-                                `' . $this->app->db->prefix . 'accounts`,
-                                `' . $this->app->db->prefix . 'accounts_data`
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`,
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`
                             WHERE
-                                `' . $this->app->db->prefix . 'accounts`.`id` = :id AND
-                                `' . $this->app->db->prefix . 'accounts`.`id` = `' . $this->app->db->prefix . 'accounts_data`.`account`');
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id` = :id AND
+                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id` = `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`account`');
             $sth->bindValue(':id', $this->id, \PDO::PARAM_INT);
             $sth->execute();
             $user = $sth->fetchAll(\PDO::FETCH_UNIQUE);
@@ -246,7 +246,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     public function account_permission_get()
     {
         if(!isset($this->perm)) {
-            switch($this->app->db->getType()) {
+            switch($this->app->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -293,10 +293,10 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      */
     public function account_edit_base($account)
     {
-        switch($this->app->db->getType()) {
+        switch($this->app->dbPool->get('core')->getType()) {
             case 1:
-                $sth = $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
                             (:aname, :pword, :email, 1);'
                 );
 
@@ -322,10 +322,10 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
             $this->groups[$id] = \Framework\Object\Group\Group::getInstance($id);
         }
 
-        switch($this->app->db->getType()) {
+        switch($this->app->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
                 );
 
                 $sth->bindValue(':group', $id, \PDO::PARAM_INT);
@@ -345,10 +345,10 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     {
         $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-        switch($this->app->db->getType()) {
+        switch($this->app->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
                             (:status, :type, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                 );
 
@@ -356,11 +356,11 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
                 $sth->bindValue(':type', $this->type, \PDO::PARAM_INT);
                 $sth->execute();
 
-                $this->id = $this->app->db->con->lastInsertId();
+                $this->id = $this->app->dbPool->get('core')->con->lastInsertId();
 
-                $this->app->db->con->beginTransaction();
-                $sth = $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                $this->app->dbPool->get('core')->con->beginTransaction();
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
                             (:login, :name1, :name2, :name3, :passowrd, :email, 5, :account);'
                 );
 
@@ -378,10 +378,10 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
                 }
                 $group_string = rtrim($group_string, ',');
 
-                $this->app->db->con->prepare(
-                    'INSERT INTO `' . $this->app->db->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
+                $this->app->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
                 );
-                $this->app->db->con->commit();
+                $this->app->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -397,20 +397,20 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
         /* TODO: call all installed modules user_delete function */
         // TODO: remove from cache
 
-        $sth = $this->app->db->con->prepare(
-            'DELETE `' . $this->app->db->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->db->con->prepare(
-            'DELETE `' . $this->app->db->prefix . 'accounts_data` WHERE `account` = ' . $this->id
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` WHERE `account` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->db->con->prepare(
-            'DELETE `' . $this->app->db->prefix . 'accounts` WHERE `id` = ' . $this->id
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts` WHERE `id` = ' . $this->id
         );
 
         $sth->execute();
@@ -424,14 +424,14 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      */
     public function update()
     {
-        $sth = $this->app->db->con->prepare(
-            'UPDATE `' . $this->app->db->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
         );
 
         $sth->execute();
 
-        $sth = $this->app->db->con->prepare(
-            'UPDATE `' . $this->app->db->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
+        $sth = $this->app->dbPool->get('core')->con->prepare(
+            'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
         );
 
         $sth->bindValue(':login', $this->login_name, \PDO::PARAM_STR);

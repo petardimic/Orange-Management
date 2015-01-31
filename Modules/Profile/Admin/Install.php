@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'profile_account` (
                             `profile_account_id` int(11) NOT NULL,
                             `profile_account_begin` datetime NOT NULL,
                             `profile_account_image` varchar(255) NOT NULL,
@@ -43,13 +43,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'profile_account`
-                            ADD CONSTRAINT `' . $db->prefix . 'profile_account_ibfk_1` FOREIGN KEY (`profile_account_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'profile_account`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'profile_account_ibfk_1` FOREIGN KEY (`profile_account_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_phone` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'profile_phone` (
                             `profile_phone_id` int(11) NOT NULL,
                             `profile_phone_type` tinyint(2) NOT NULL,
                             `profile_phone_number` varchar(50) NOT NULL,
@@ -59,13 +59,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'profile_phone`
-                            ADD CONSTRAINT `' . $db->prefix . 'profile_phone_ibfk_1` FOREIGN KEY (`profile_phone_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'profile_phone`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'profile_phone_ibfk_1` FOREIGN KEY (`profile_phone_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_address` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'profile_address` (
                             `profile_address_id` int(11) NOT NULL,
                             `profile_address_type` tinyint(2) NOT NULL,
                             `profile_address_address` varchar(50) NOT NULL,
@@ -79,13 +79,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'profile_address`
-                            ADD CONSTRAINT `' . $db->prefix . 'profile_address_ibfk_1` FOREIGN KEY (`profile_address_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'profile_address`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'profile_address_ibfk_1` FOREIGN KEY (`profile_address_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account_relation` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'profile_account_relation` (
                             `profile_account_relation_id` int(11) NOT NULL,
                             `profile_account_relation_type` tinyint(2) NOT NULL,
                             `profile_account_relation_relation` int(11) DEFAULT NULL,
@@ -95,13 +95,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'profile_account_relation`
-                            ADD CONSTRAINT `' . $db->prefix . 'profile_account_relation_ibfk_1` FOREIGN KEY (`profile_account_relation_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'profile_account_relation`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'profile_account_relation_ibfk_1` FOREIGN KEY (`profile_account_relation_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'profile_account_setting` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'profile_account_setting` (
                             `profile_account_setting_id` int(11) NOT NULL,
                             `profile_account_setting_module` int(11) NOT NULL,
                             `profile_account_setting_type` varchar(20) NOT NULL,
@@ -112,9 +112,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'profile_account_setting`
-                            ADD CONSTRAINT `' . $db->prefix . 'profile_account_setting_ibfk_1` FOREIGN KEY (`profile_account_setting_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'profile_account_setting`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'profile_account_setting_ibfk_1` FOREIGN KEY (`profile_account_setting_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }

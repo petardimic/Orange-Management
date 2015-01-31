@@ -21,10 +21,10 @@ class ApplicationAbstract
     /**
      * Database object
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \Framework\DataStorage\Database\Pool
      * @since 1.0.0
      */
-    public $db = null;
+    public $dbPool = null;
 
     /**
      * Cache instance

@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'accountspayable` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accountspayable` (
                             `accountspayable_id` int(11) NOT NULL AUTO_INCREMENT,
                             `accountspayable_account` int(11) NOT NULL,
                             PRIMARY KEY (`accountspayable_id`),
@@ -40,9 +40,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'accountspayable`
-                            ADD CONSTRAINT `' . $db->prefix . 'accountspayable_ibfk_1` FOREIGN KEY (`accountspayable_account`) REFERENCES `' . $db->prefix . 'sales_client` (`sales_client_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accountspayable`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accountspayable_ibfk_1` FOREIGN KEY (`accountspayable_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_client` (`sales_client_id`);'
                 )->execute();
                 break;
         }

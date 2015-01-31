@@ -70,7 +70,7 @@ class Settings
 
         // TODO: implement cache if cache is initialized
         if(!empty($ids)) {
-            $sth = $this->app->db->con->prepare('SELECT `id`, `content` FROM `' . $this->app->db->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
+            $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `id`, `content` FROM `' . $this->app->dbPool->get('core')->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
             $sth->execute();
             $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
             $this->config += $cfgs;
@@ -91,7 +91,7 @@ class Settings
 
         /* TODO: change this + implement cache */
         foreach($settings as $key => $value) {
-            $sth = $this->app->db->con->prepare('UPDATE `' . $this->app->db->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
+            $sth = $this->app->dbPool->get('core')->con->prepare('UPDATE `' . $this->app->dbPool->get('core')->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
             $sth->execute();
         }
     }

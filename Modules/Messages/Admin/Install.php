@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'message` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'message` (
                             `message_id` int(11) NOT NULL AUTO_INCREMENT,
                             `message_type`  tinyint(11) NOT NULL,
                             `message_account` int(11) DEFAULT NULL,
@@ -48,14 +48,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'message`
-                            ADD CONSTRAINT `' . $db->prefix . 'message_ibfk_1` FOREIGN KEY (`message_account`) REFERENCES `' . $db->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'message_ibfk_2` FOREIGN KEY (`message_reference`) REFERENCES `' . $db->prefix . 'message` (`message_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'message`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'message_ibfk_1` FOREIGN KEY (`message_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'message_ibfk_2` FOREIGN KEY (`message_reference`) REFERENCES `' . $dbPool->get('core')->prefix . 'message` (`message_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'messages_attachment` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'messages_attachment` (
                             `messages_attachment_id` int(11) NOT NULL AUTO_INCREMENT,
                             `messages_attachment_media` int(11) DEFAULT NULL,
                             `messages_attachment_message` int(11) NULL,
@@ -65,10 +65,10 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'messages_attachment`
-                            ADD CONSTRAINT `' . $db->prefix . 'messages_attachment_ibfk_1` FOREIGN KEY (`messages_attachment_media`) REFERENCES `' . $db->prefix . 'media` (`media_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'messages_attachment_ibfk_2` FOREIGN KEY (`messages_attachment_message`) REFERENCES `' . $db->prefix . 'message` (`message_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'messages_attachment`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'messages_attachment_ibfk_1` FOREIGN KEY (`messages_attachment_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'messages_attachment_ibfk_2` FOREIGN KEY (`messages_attachment_message`) REFERENCES `' . $dbPool->get('core')->prefix . 'message` (`message_id`);'
                 )->execute();
                 break;
         }

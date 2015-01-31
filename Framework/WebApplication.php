@@ -37,12 +37,13 @@ class WebApplication extends \Framework\ApplicationAbstract
     public function __construct($config)
     {
         $this->request = new \Framework\Message\Http\Request();
-        $this->db      = new \Framework\DataStorage\Database\Database($config['db']);
+        $this->dbPool  = new \Framework\DataStorage\Database\Pool();
+        $this->dbPool->create('core', $config['db']);
 
         \Framework\Module\ModuleFactory::$app = $this;
         \Framework\Model\Model::$app          = $this;
 
-        if($this->db->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
+        if($this->dbPool->get('core')->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
             $this->cache    = new \Framework\DataStorage\Cache\Cache($this);
             $this->settings = new \Framework\Config\Settings($this);
             $this->session  = new \Framework\DataStorage\Session\Session();

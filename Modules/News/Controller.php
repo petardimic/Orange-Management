@@ -77,13 +77,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         switch($this->app->request->data['l3']) {
             case 'dashboard':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $newsList = new \Modules\News\Models\NewsList($this->app->db);
+                $newsList = new \Modules\News\Models\NewsList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/news-dashboard.tpl.php';
                 break;
             case 'single':
-                $article = new \Modules\News\Models\Article($this->app->db);
+                $article = new \Modules\News\Models\Article($this->app->dbPool);
                 $article->init($this->app->request->data['id']);
 
                 /** @noinspection PhpIncludeInspection */
@@ -91,7 +91,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 break;
             case 'archive':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $newsList = new \Modules\News\Models\NewsList($this->app->db);
+                $newsList = new \Modules\News\Models\NewsList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/news-archive.tpl.php';

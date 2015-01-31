@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'clocking` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'clocking` (
                             `clocking_id` int(11) NOT NULL AUTO_INCREMENT,
                             `clocking_employee` int(11) DEFAULT NULL,
                             `clocking_start` datetime DEFAULT NULL,
@@ -43,9 +43,9 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'clocking`
-                            ADD CONSTRAINT `' . $db->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_employee`) REFERENCES `' . $db->prefix . 'hr_staff` (`hr_staff_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'clocking`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_employee`) REFERENCES `' . $dbPool->get('core')->prefix . 'hr_staff` (`hr_staff_id`);'
                 )->execute();
                 break;
         }

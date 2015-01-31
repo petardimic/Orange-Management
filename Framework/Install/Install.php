@@ -36,7 +36,7 @@ class Install
      */
     public function __construct(&$db)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -47,13 +47,13 @@ class Install
      */
     public function installCore()
     {
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $this->db->con->beginTransaction();
+                $this->dbPool->get('core')->con->beginTransaction();
 
                 /* Create group table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'group` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `name` varchar(50) NOT NULL,
                             `desc` varchar(100) DEFAULT NULL,
@@ -62,8 +62,8 @@ class Install
                 )->execute();
 
                 /* Create group relations table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group_relations` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'group_relations` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `group` int(11) DEFAULT NULL,
                             `parent` int(11) DEFAULT NULL,
@@ -72,14 +72,14 @@ class Install
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'group_relations`
-                            ADD CONSTRAINT `' . $this->db->prefix . '' . $this->db->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'group_relations`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . '' . $this->dbPool->get('core')->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
                 )->execute();
 
                 /* Create group permission table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'group_permission` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'group_permission` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `permission` int(11) NOT NULL,
                             `group` int(11) NOT NULL,
@@ -88,15 +88,15 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'group_permission`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'group_permission_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'group_permission`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_permission_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
                 )->execute();
 
                 /* Create ips table
                    This gets used in order to prevent unauthorized access for user group. */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'ips` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'ips` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `begin` bigint(20) NOT NULL,
                             `end` bigint(20) NOT NULL,
@@ -106,14 +106,14 @@ class Install
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'ips`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'ips_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'ips`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'ips_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
                 )->execute();
 
                 /* Create module table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'module` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'module` (
                             `id` int(11) NOT NULL,
                             `name` varchar(100) NOT NULL,
                             `theme` varchar(100) DEFAULT NULL,
@@ -129,8 +129,8 @@ class Install
                 )->execute();
 
                 /* Create module load table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'module_load` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'module_load` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `pid` varchar(40) NOT NULL,
                             `type` tinyint(1) NOT NULL,
@@ -142,14 +142,14 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'module_load`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'module_load_ibfk_1` FOREIGN KEY (`from`) REFERENCES `' . $this->db->prefix . 'module` (`id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'module_load`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'module_load_ibfk_1` FOREIGN KEY (`from`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`id`);'
                 )->execute();
 
                 /* Create account table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account` (
                             `account_id` int(11) NOT NULL AUTO_INCREMENT,
                             `status` tinyint(2) NOT NULL,
                             `type` tinyint(2) NOT NULL,
@@ -160,8 +160,8 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_data` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account_data` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `login` varchar(30) NOT NULL,
                             `name1` varchar(50) NOT NULL,
@@ -176,14 +176,14 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'account_data`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'account_data_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'account_data`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_data_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 /* Create account group table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_group` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account_group` (
                             `id` bigint(20) NOT NULL AUTO_INCREMENT,
                             `group` int(11) NOT NULL,
                             `account` int(11) NOT NULL,
@@ -193,15 +193,15 @@ class Install
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'account_group`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'account_group_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`),
-                            ADD CONSTRAINT `' . $this->db->prefix . 'account_group_ibfk_2` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'account_group`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`),
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_2` FOREIGN KEY (`account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 /* Create account settings table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'account_settings` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account_settings` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `name` varchar(30) NOT NULL,
                             `content` varchar(250) NOT NULL,
@@ -212,14 +212,14 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'account_settings`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'account_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->db->prefix . 'account` (`account_id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'account_settings`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 /* Create settings table */
-                $this->db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $this->db->prefix . 'settings` (
+                $this->dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'settings` (
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `module` int(11) DEFAULT NULL,
                             `name` varchar(100) NOT NULL,
@@ -231,13 +231,13 @@ class Install
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'ALTER TABLE `' . $this->db->prefix . 'settings`
-                            ADD CONSTRAINT `' . $this->db->prefix . 'settings_ibfk_1` FOREIGN KEY (`module`) REFERENCES `' . $this->db->prefix . 'module` (`id`),
-                            ADD CONSTRAINT `' . $this->db->prefix . 'settings_ibfk_2` FOREIGN KEY (`group`) REFERENCES `' . $this->db->prefix . 'group` (`id`);'
+                $this->dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'settings`
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_1` FOREIGN KEY (`module`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`id`),
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_2` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
                 )->execute();
 
-                $this->db->con->commit();
+                $this->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -266,12 +266,12 @@ class Install
      */
     public function installGroups()
     {
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $this->db->con->beginTransaction();
+                $this->dbPool->get('core')->con->beginTransaction();
 
-                $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'group` (`id`, `name`, `desc`) VALUES
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'group` (`id`, `name`, `desc`) VALUES
                             (1000000000, \'anonymous\', NULL),
                             (1000101000, \'user\', NULL),
                             (1000102000, \'admin\', NULL),
@@ -279,7 +279,7 @@ class Install
                             (1000104000, \'suspended\', NULL);'
                 )->execute();
 
-                $this->db->con->commit();
+                $this->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -294,26 +294,26 @@ class Install
     {
         $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $this->db->con->beginTransaction();
+                $this->dbPool->get('core')->con->beginTransaction();
 
-                $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'account` (`account_id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`, `status`, `type`, `lactive`, `created`, `changed`) VALUES
                             (1, 0, 0, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'account_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account_data` (`id`, `login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
                             (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'yellowOrange\', \'admin@email.com\', 5, 1);'
                 )->execute();
 
-                $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'account_group` (`id`, `group`, `account`) VALUES
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account_group` (`id`, `group`, `account`) VALUES
                             (1, 1000101000, 1)'
                 )->execute();
 
-                $this->db->con->commit();
+                $this->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -326,12 +326,12 @@ class Install
      */
     public function installSettings()
     {
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $this->db->con->beginTransaction();
+                $this->dbPool->get('core')->con->beginTransaction();
 
-                $this->db->con->prepare(
-                    'INSERT INTO `' . $this->db->prefix . 'settings` (`id`, `module`, `name`, `content`, `group`) VALUES
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'settings` (`id`, `module`, `name`, `content`, `group`) VALUES
                             (1000000001, NULL, \'username_length_max\', \'20\', NULL),
                             (1000000002, NULL, \'username_length_min\', \'5\', NULL),
                             (1000000003, NULL, \'password_length_max\', \'50\', NULL),
@@ -360,7 +360,7 @@ class Install
                             (1000000026, NULL, \'login_name\', \'1\', NULL)'
                 )->execute();
 
-                $this->db->con->commit();
+                $this->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -375,11 +375,11 @@ class Install
      */
     public function installDummy($toDummy)
     {
-        $this->db->con->beginTransaction();
+        $this->dbPool->get('core')->con->beginTransaction();
 
-        $a = "INSERT INTO `" . $this->db->prefix . "account` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
-        $b = "INSERT INTO `" . $this->db->prefix . "account_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES";
-        $c = "INSERT INTO `" . $this->db->prefix . "account_group` (`group`, `account`) VALUES";
+        $a = "INSERT INTO `" . $this->dbPool->get('core')->prefix . "account` (`status`, `type`, `lactive`, `created`, `changed`) VALUES";
+        $b = "INSERT INTO `" . $this->dbPool->get('core')->prefix . "account_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES";
+        $c = "INSERT INTO `" . $this->dbPool->get('core')->prefix . "account_group` (`group`, `account`) VALUES";
 
         $valA = '';
         $valB = '';
@@ -398,11 +398,11 @@ class Install
         $valB = rtrim($valB, ',');
         $valC = rtrim($valC, ',');
 
-        $this->db->con->prepare($a . $valA)->execute();
-        $this->db->con->prepare($b . $valB)->execute();
-        $this->db->con->prepare($c . $valC)->execute();
+        $this->dbPool->get('core')->con->prepare($a . $valA)->execute();
+        $this->dbPool->get('core')->con->prepare($b . $valB)->execute();
+        $this->dbPool->get('core')->con->prepare($c . $valC)->execute();
 
-        $this->db->con->commit();
+        $this->dbPool->get('core')->con->commit();
 
         foreach($toDummy as $dummy) {
             \Framework\Install\DummyFactory::generate($this->db, $dummy);

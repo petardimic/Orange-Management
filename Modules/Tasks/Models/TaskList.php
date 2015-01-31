@@ -24,19 +24,19 @@ class TaskList
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -57,23 +57,23 @@ class TaskList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter, true);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
-                $sth = $this->db->con->prepare('SELECT
-                            `' . $this->db->prefix . 'tasks`.*, `' . $this->db->prefix . 'tasks_element`.`forwarded`
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT
+                            `' . $this->dbPool->get('core')->prefix . 'tasks`.*, `' . $this->dbPool->get('core')->prefix . 'tasks_element`.`forwarded`
                         FROM
-                            `' . $this->db->prefix . 'tasks`
-                        LEFT JOIN `' . $this->db->prefix . 'tasks_element`
-                        ON `' . $this->db->prefix . 'tasks`.`TaskID` = `' . $this->db->prefix . 'tasks_element`.`task`
-                        AND `' . $this->db->prefix . 'tasks_element`.`forwarded` = 1
-                        GROUP BY `' . $this->db->prefix . 'tasks`.`TaskID` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
+                            `' . $this->dbPool->get('core')->prefix . 'tasks`
+                        LEFT JOIN `' . $this->dbPool->get('core')->prefix . 'tasks_element`
+                        ON `' . $this->dbPool->get('core')->prefix . 'tasks`.`TaskID` = `' . $this->dbPool->get('core')->prefix . 'tasks_element`.`task`
+                        AND `' . $this->dbPool->get('core')->prefix . 'tasks_element`.`forwarded` = 1
+                        GROUP BY `' . $this->dbPool->get('core')->prefix . 'tasks`.`TaskID` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare('SELECT FOUND_ROWS();');
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT FOUND_ROWS();');
                 $sth->execute();
 
                 $result['count'] = $sth->fetchAll()[0][0];

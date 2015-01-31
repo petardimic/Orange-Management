@@ -29,10 +29,10 @@ class Install extends \Framework\Install\Module
      */
     public static function install(&$db, $info)
     {
-        switch($db->getType()) {
+        switch($dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_unit` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_unit` (
                             `riskmngmt_unit_id` int(11) NOT NULL,
                             `unit` int(11) NOT NULL,
                             `responsible` int(11) NOT NULL,
@@ -42,14 +42,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_unit_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_unit_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_unit_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_unit_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_department` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_department` (
                             `RiskMngmtDepartmentID` int(11) NOT NULL,
                             `department` int(11) NOT NULL,
                             `responsible` int(11) NOT NULL,
@@ -59,14 +59,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_department`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_department_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $db->prefix . 'business_department` (`business_department_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_department_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_department`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_department_ibfk_1` FOREIGN KEY (`department`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_department` (`business_department_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_department_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_category` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_category` (
                             `RiskMngmtCategoryID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `parent` int(11) DEFAULT NULL,
@@ -77,15 +77,15 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_category`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_category_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $db->prefix . 'riskmngmt_category` (`RiskMngmtCategoryID`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_category_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_category`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_category_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_category` (`RiskMngmtCategoryID`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_category_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 // TODO: more (media, start, end etc...)
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_project` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_project` (
                             `RiskMngmtProjectID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `description` text NOT NULL,
@@ -97,15 +97,15 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_project_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_project_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_project_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_project_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 // TODO: more (media, start, end etc...)
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_process` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_process` (
                             `RiskMngmtProcessID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `description` text NOT NULL,
@@ -117,14 +117,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_unit`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_unit`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_process_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_process_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk` (
                             `RiskMngmtRiskID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `description` text NOT NULL,
@@ -141,14 +141,14 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $db->prefix . 'business_unit` (`business_unit_id`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $db->prefix . 'account` (`account_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_ibfk_2` FOREIGN KEY (`responsible`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_object` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_object` (
                             `RiskMngmtRiskObjectID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `risk` int(11) NOT NULL,
@@ -157,13 +157,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_object`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_object_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_object`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_object_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_evaluation` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_evaluation` (
                             `RiskMngmtRiskEvaluationID` int(11) NOT NULL,
                             `val` decimal(11,4) NOT NULL,
                             `object` int(11) NOT NULL,
@@ -172,13 +172,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_evaluation`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_evaluation_ibfk_1` FOREIGN KEY (`object`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_object` (`RiskMngmtRiskObjectID`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_evaluation`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_evaluation_ibfk_1` FOREIGN KEY (`object`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_object` (`RiskMngmtRiskObjectID`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_media` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_media` (
                             `RiskMngmtRiskmedia_id` int(11) NOT NULL,
                             `media` int(11) NOT NULL,
                             PRIMARY KEY (`RiskMngmtRiskmedia_id`),
@@ -186,13 +186,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_media`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_media_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $db->prefix . 'Media` (`media_id`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_media`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_media_ibfk_1` FOREIGN KEY (`media`) REFERENCES `' . $dbPool->get('core')->prefix . 'Media` (`media_id`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_cause` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_cause` (
                             `RiskMngmtRiskCauseID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `description` text NOT NULL,
@@ -207,13 +207,13 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_cause`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_cause_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_cause`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_cause_ibfk_1` FOREIGN KEY (`risk`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                 )->execute();
 
-                $db->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $db->prefix . 'riskmngmt_risk_solution` (
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_solution` (
                             `RiskMngmtRiskCauseID` int(11) NOT NULL,
                             `name` varchar(50) NOT NULL,
                             `description` text NOT NULL,
@@ -227,10 +227,10 @@ class Install extends \Framework\Install\Module
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
-                $db->con->prepare(
-                    'ALTER TABLE `' . $db->prefix . 'riskmngmt_risk_solution`
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`cause`) REFERENCES `' . $db->prefix . 'riskmngmt_risk_cause` (`RiskMngmtRiskCauseID`),
-                            ADD CONSTRAINT `' . $db->prefix . 'riskmngmt_risk_solution_ibfk_2` FOREIGN KEY (`risk`) REFERENCES `' . $db->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_solution`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_solution_ibfk_1` FOREIGN KEY (`cause`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_cause` (`RiskMngmtRiskCauseID`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'riskmngmt_risk_solution_ibfk_2` FOREIGN KEY (`risk`) REFERENCES `' . $dbPool->get('core')->prefix . 'riskmngmt_risk` (`RiskMngmtRiskID`);'
                 )->execute();
                 break;
         }

@@ -24,19 +24,19 @@ class ClientList
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -57,29 +57,29 @@ class ClientList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter, true);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 // SQL_CALC_FOUND_ROWS
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT DISTINCT
-                            `' . $this->db->prefix . 'sales_client`.*,
-                            `' . $this->db->prefix . 'accounts_data`.`name1`,
-                            `' . $this->db->prefix . 'accounts_data`.`name2`,
-                            `' . $this->db->prefix . 'accounts_data`.`name3`
+                            `' . $this->dbPool->get('core')->prefix . 'sales_client`.*,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name1`,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name2`,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name3`
                         FROM
-                            `' . $this->db->prefix . 'sales_client`
-                        LEFT JOIN `' . $this->db->prefix . 'accounts_data`
-                        ON `' . $this->db->prefix . 'sales_client`.`account` = `' . $this->db->prefix . 'accounts_data`.`account`
-                        GROUP BY `' . $this->db->prefix . 'sales_client`.`SalesClientID` '
+                            `' . $this->dbPool->get('core')->prefix . 'sales_client`
+                        LEFT JOIN `' . $this->dbPool->get('core')->prefix . 'accounts_data`
+                        ON `' . $this->dbPool->get('core')->prefix . 'sales_client`.`account` = `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account`
+                        GROUP BY `' . $this->dbPool->get('core')->prefix . 'sales_client`.`SalesClientID` '
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT FOUND_ROWS();'
                 );
                 $sth->execute();

@@ -24,19 +24,19 @@ class InvoiceList
      * @var \Framework\DataStorage\Database\Database
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Database $db Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($db)
+    public function __construct($dbPool)
     {
-        $this->db = $db;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -57,23 +57,23 @@ class InvoiceList
     {
         $result = null;
 
-        switch($this->db->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->db->generate_sql_filter($filter, true);
+                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 // SQL_CALC_FOUND_ROWS
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT
-                            `' . $this->db->prefix . 'sales_invoice`.*
+                            `' . $this->dbPool->get('core')->prefix . 'sales_invoice`.*
                         FROM
-                            `' . $this->db->prefix . 'sales_invoice` '
+                            `' . $this->dbPool->get('core')->prefix . 'sales_invoice` '
                     . $search . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();
 
-                $sth = $this->db->con->prepare(
+                $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT FOUND_ROWS();'
                 );
                 $sth->execute();
