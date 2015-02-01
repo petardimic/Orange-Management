@@ -60,7 +60,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function callWeb()
+    public function call(\Framework\Module\CallType::WEB, )
     {
         switch($this->app->request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:

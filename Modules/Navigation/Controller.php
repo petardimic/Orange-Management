@@ -117,14 +117,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows module content
-     *
-     * @param   array $data Navigation data
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function callWeb($data = null)
+    public function call($type, $data = null)
     {
         switch($data[0]) {
             case \Modules\Navigation\Models\NavigationType::TOP:

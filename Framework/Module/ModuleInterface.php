@@ -45,4 +45,15 @@ interface ModuleInterface
      * @author Dennis Eichhorn
      */
     public function callPull();
+
+    /**
+     * Call all modules from which this module is receiving
+     *
+     * @param \Framework\Module\CallType|int $type Call type
+     * @param mixed                          $data Data to pass (if required)
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function call($type, $data = null);
 }

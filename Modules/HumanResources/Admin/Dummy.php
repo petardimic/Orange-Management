@@ -21,7 +21,7 @@ class Dummy implements \Framework\Install\DummyInterface
     /**
      * {@inheritdoc}
      */
-    public static function generate($db, $amount)
+    public static function generate($dbPool, $amount)
     {
         $dbPool->get('core')->con->beginTransaction();
 

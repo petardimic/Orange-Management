@@ -18,6 +18,7 @@ namespace Framework\Validation;
  */
 trait ModelValidationTrait
 {
+    /** @noinspection PhpUnusedPrivateMethodInspection */
     /**
      * Validate member variable
      *
@@ -37,7 +38,6 @@ trait ModelValidationTrait
         }
 
         /** @noinspection PhpUndefinedFieldInspection */
-
         return \Framework\Validation\Validator::isValid($var, self::$validation[$name]);
     }
 }

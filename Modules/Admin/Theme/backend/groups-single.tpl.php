@@ -4,7 +4,7 @@
  * @var \Framework\Object\Group\Group $group
  */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">

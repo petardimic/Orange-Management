@@ -115,7 +115,6 @@ class Localization
         $this->app             = $app;
         $this->localization_id = $id;
         $this->language        = $this->app->request->getLanguage();
-        $this->datetime        = new \Framework\Localization\DateTime\DateTime();
 
         // TODO: implement!!!
         setlocale(LC_TIME, '');

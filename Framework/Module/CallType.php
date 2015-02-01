@@ -2,12 +2,14 @@
 namespace Framework\Module;
 
 /**
- * Web module interface
+ * Module call type
+ *
+ * This type indeicates what kind of request response is generated
  *
  * PHP Version 5.4
  *
- * @category   Module
- * @package    Framework
+ * @category   Framework
+ * @package    Framework\DataStorage\Database
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -16,6 +18,8 @@ namespace Framework\Module;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface WebInterface
+abstract class CallType extends \Framework\Datatypes\Enum
 {
+    const WEB = 0; /* Web request */
+
 }

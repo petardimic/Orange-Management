@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Purchase\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002104001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 

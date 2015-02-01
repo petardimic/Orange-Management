@@ -11,11 +11,11 @@
 <div class="vh" id="dim"></div>
 <?php /** @noinspection PhpUndefinedMethodInspection */
 // TODO: use content module with paramenter in order to call global content
-//\Framework\Module\ModuleFactory::$loaded['GlobalContent']->callWeb(); ?>
+//\Framework\Module\ModuleFactory::$loaded['GlobalContent']->call(\Framework\Module\CallType::WEB); ?>
 <div id="h">
     <div id="bar-s">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::TOP]); ?>
+        \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::TOP]); ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
@@ -36,10 +36,10 @@
 </div>
 <div id="out">
     <?php /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::SIDE]); ?>
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::SIDE]); ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Content']->callWeb(); ?>
+        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB); ?>
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>

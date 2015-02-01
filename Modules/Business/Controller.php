@@ -52,12 +52,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows module content
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function callWeb()
+    public function call($type, $data = null)
     {
     }
 }

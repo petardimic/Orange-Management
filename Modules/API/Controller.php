@@ -76,14 +76,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows module content
-     *
-     * @param   array $data
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function callWeb($data = null)
+    public function call($type, $data = null)
     {
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {

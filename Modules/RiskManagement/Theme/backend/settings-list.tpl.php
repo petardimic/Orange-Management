@@ -1,5 +1,5 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 

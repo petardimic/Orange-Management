@@ -1,11 +1,11 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
 \Framework\Model\Model::generate_table_filter_view();
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
 ?>
 
 <div class="b-7" id="i3-2-1">
-    <?php \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+    <?php \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                            1003003001]); ?>
 </div>
 <div class="b-6">

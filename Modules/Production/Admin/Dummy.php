@@ -21,7 +21,7 @@ class Dummy implements \Framework\Install\DummyInterface
     /**
      * {@inheritdoc}
      */
-    public static function generate($db, $amount)
+    public static function generate($dbPool, $amount)
     {
         for($i = 0; $i < $amount; $i++) {
             $dataString = " (" . rand(1, 200) . ", " . rand(0, 7) . ", " . rand(1, 100000) . ", " . rand(1, 997) . ", " . rand(1, 997) . ", '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "')";

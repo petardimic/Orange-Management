@@ -1,12 +1,12 @@
 <?php /** @var \Modules\Accounting\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002602001]);
 \Framework\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">
     <?= /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->callWeb([\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                      1003003001]); ?>
 </div>
 <div class="b-6">

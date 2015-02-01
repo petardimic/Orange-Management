@@ -73,6 +73,6 @@ class Install extends \Framework\Install\Module
                 break;
         }
 
-        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

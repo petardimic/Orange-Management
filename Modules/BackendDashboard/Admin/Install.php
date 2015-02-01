@@ -29,6 +29,6 @@ class Install extends \Framework\Install\Module
      */
     public static function install($dbPool, $info)
     {
-        parent::installProviding($db, __DIR__ . '/nav.install.json', 'Navigation');
+        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }
