@@ -1,5 +1,5 @@
-<div class="b b-3 m-<?= $this->getModule(); ?> mp-<?= ($this->getModule() + $this->getPageId()); ?>"
-     id="i-<?= ($this->getModule() + $this->getId()); ?>">
+<div class="b b-3 m-<?= $this->module; ?> mp-<?= ($this->module + $this->id); ?>"
+     id="i-<?= ($this->module + $this->id); ?>">
     <h1>
         <?= $this->title ?>
         <i class="fa fa-minus min"></i>

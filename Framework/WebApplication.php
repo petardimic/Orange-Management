@@ -52,6 +52,8 @@ class WebApplication extends \Framework\ApplicationAbstract
             $this->auth     = new \Framework\Auth\Http($this);
             $this->user     = $this->auth->authenticate();
 
+            // TODO: maybe move this to theme and rename Theme to RequestController
+            // TODO: api requests can contain multiple requests this needs to be taken care of inside the modulemanager
             $toLoad = $this->modules->getUriLoads($this->request);
 
             if(isset($toLoad[4])) {

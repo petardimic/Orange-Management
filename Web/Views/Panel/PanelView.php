@@ -18,4 +18,11 @@ namespace Web\Views\Panel;
  */
 class PanelView extends \Web\Views\WebViewAbstract
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($l11n)
+    {
+        parent::__construct($l11n);
+    }
 }

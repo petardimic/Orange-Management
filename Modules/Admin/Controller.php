@@ -26,7 +26,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -119,10 +118,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
         switch($this->app->request->getData()['l4']) {
             case 'general':
-                \Framework\Model\Model::$content['page::title'] = $this->app->user->getL11n()->lang[1]['SettingsGeneral'];
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/settings-general.tpl.php';
+                $coreSettingsView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
+                echo $coreSettingsView->getResponse();
                 break;
         }
     }

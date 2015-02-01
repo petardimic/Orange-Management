@@ -113,7 +113,7 @@ class Pool
     public function create($key, $config)
     {
         if(isset($this->pool[$key])) {
-            return false;
+            return true;
         }
 
         $this->pool[$key] = new \Framework\DataStorage\Database\Database($config);

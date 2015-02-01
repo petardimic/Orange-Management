@@ -16,7 +16,7 @@ namespace Web\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class WebViewAbstract extends \Framework\Views\ViewAbstract
+class WebViewAbstract extends \Framework\Views\ViewAbstract
 {
     /**
      * Panel id
@@ -43,12 +43,20 @@ abstract class WebViewAbstract extends \Framework\Views\ViewAbstract
     protected $pageId = 0;
 
     /**
-     * List title
+     * View title
      *
      * @var string
      * @since 1.0.0
      */
-    protected $title = null;
+    protected $title = "";
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($l11n)
+    {
+        parent::__construct($l11n);
+    }
 
     /**
      * @return int

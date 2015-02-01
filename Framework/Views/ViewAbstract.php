@@ -32,7 +32,36 @@ class ViewAbstract
      * @var \Framework\Views\ViewAbstract[]
      * @since 1.0.0
      */
-    protected $views = null;
+    protected $views = [];
+
+    /**
+     * View data
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    protected $data = [];
+
+    /**
+     * User localized strings
+     *
+     * @var \Framework\Localization\Localization
+     * @since 1.0.0
+     */
+    protected $l11n = null;
+
+    /**
+     * Constructor
+     *
+     * @param \Framework\Localization\Localization $l11n User localization
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct($l11n)
+    {
+        $this->l11n = $l11n;
+    }
 
     /**
      * Get the template
@@ -99,7 +128,6 @@ class ViewAbstract
 
     /**
      * @param string       $id View ID
-     *
      * @param ViewAbstract $view
      *
      * @since  1.0.0
@@ -125,5 +153,55 @@ class ViewAbstract
         include __DIR__ . '/../..' . $this->template . '.tpl.php';
 
         return ob_get_clean();
+    }
+
+    /**
+     * @param string $id Data Id
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getData($id)
+    {
+        return $this->data[$id];
+    }
+
+    /**
+     * Remove view
+     *
+     * @param string $id Data Id
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function removeData($id)
+    {
+        unset($this->views[$id]);
+    }
+
+    /**
+     * @param string $id   Data ID
+     * @param mixed  $data Data
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function addData($id, $data)
+    {
+        $this->views[$id] = $data;
+    }
+
+    /**
+     * @param string $id   Data ID
+     * @param mixed  $data Data
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setData($id, $data)
+    {
+        $this->views[$id] = $data;
     }
 }

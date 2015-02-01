@@ -59,6 +59,8 @@ class Theme
                 \Framework\Model\Model::$content['core:layout'] = $this->app->request->getType();
                 \Framework\Model\Model::$content['page:title']  = 'Orange Management';
 
+                // TODO: implement view & template here as well
+
                 /** @noinspection PhpIncludeInspection */
                 require __DIR__ . '/backend/template.tpl.php';
                 break;
