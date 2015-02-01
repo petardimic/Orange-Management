@@ -1,5 +1,5 @@
 <?php
-namespace Web\Views\Form;
+namespace Web\Views\Panel;
 
 /**
  * Form view
@@ -16,6 +16,6 @@ namespace Web\Views\Form;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class FormView extends \Web\Views\WebViewAbstract
+class PanelView extends \Web\Views\WebViewAbstract
 {
 }
