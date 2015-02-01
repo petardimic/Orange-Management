@@ -53,14 +53,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows module content
-     *
-     * @para   array $data
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function call(\Framework\Module\CallType::WEB, )
+    public function call($type, $data = null)
     {
         switch($this->app->request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
