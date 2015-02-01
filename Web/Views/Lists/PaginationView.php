@@ -18,5 +18,49 @@ namespace Web\Views\Lists;
  */
 class PaginationView extends \Framework\Views\ViewAbstract
 {
+    /**
+     * Maximum amount of pages
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    private $maxPages = 7;
 
+    /**
+     * Current page id
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    private $page = 0;
+
+    /**
+     * How many pages exists?
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    private $pages = 100;
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getMaxPages()
+    {
+        return $this->maxPages;
+    }
+
+    /**
+     * @param int $maxPages
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setMaxPages($maxPages)
+    {
+        $this->maxPages = $maxPages;
+    }
 }

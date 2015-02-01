@@ -1,7 +1,8 @@
 <?php /** @var \Web\Views\Lists\ListView $this */ ?>
-<table class="t-1 m-<?= $this->getModule(); ?> mp-<?= ($this->getModule() + $this->getPageId()); ?>"
-       id="i-<?= ($this->getModule() + $this->getId()); ?>">
+<table class="t-1 m-<?= $this->module; ?> mp-<?= ($this->module + $this->id); ?>"
+       id="i-<?= ($this->module + $this->id); ?>">
     <?php
+    /** @var \Web\Views\Lists\HeaderView $header */
     $header = $this->getView('header');
     $footer = $this->getView('footer');
     if($header) {
@@ -21,7 +22,7 @@
     <?php if($footer): ?>
         <tfoot>
         <tr>
-            <td colspan="<?= count($header->elements); ?>">
+            <td colspan="<?= count($header->getElements()); ?>">
                 <?= $footer->getResponse(); ?>
             </td>
         </tr>

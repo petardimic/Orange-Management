@@ -1,4 +1,6 @@
-<?php $allowedPages = ($this->maxPages - 3) / 2; ?>
+<?php
+/** @var \Web\Views\Lists\PaginationView $this */
+$allowedPages = ($this->maxPages - 3) / 2; ?>
 <ul>
     <li>1<!-- how many pages are allowed between now and 1 >= how many pages are between now and 1 -->
         <?php if ($allowedPages < $this->page - 2): ?>

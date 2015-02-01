@@ -1,3 +1,4 @@
+<?php /** @var \Web\Views\Lists\HeaderView $this */ ?>
 <thead>
 <tr>
     <th colspan="<?= count($this->elements) - 1; ?>" class="lT">
