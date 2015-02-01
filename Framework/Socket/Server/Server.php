@@ -37,10 +37,10 @@ class Server extends \Framework\Socket\SocketAbstract
     /**
      * Clients
      *
-     * @var array
+     * @var \Framework\Socket\Server\ClientManager
      * @since 1.0.0
      */
-    private $clients = [];
+    private $clientManager = null;
 
     /**
      * Commands
@@ -48,7 +48,7 @@ class Server extends \Framework\Socket\SocketAbstract
      * @var \Framework\Socket\CommandManager
      * @since 1.0.0
      */
-    private $commands = null;
+    private $cmdManager = null;
 
     /**
      * Packet manager
@@ -66,31 +66,31 @@ class Server extends \Framework\Socket\SocketAbstract
      */
     public function __construct()
     {
-        $this->commands      = new \Framework\Socket\CommandManager();
-        $this->packetManager = new \Framework\Socket\Packets\PacketManager($this->commands, $this->clients);
+        $this->cmdManager    = new \Framework\Socket\CommandManager();
+        $this->packetManager = new \Framework\Socket\Packets\PacketManager($this->cmdManager, $this->clientManager);
 
         /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('disconnect', function ($conn, $para) {
+        $this->cmdManager->attach('disconnect', function ($conn, $para) {
             $this->disconnect($conn);
         }, $this);
 
         /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('help', function ($conn, $para) {
-            $this->help($conn);
+        $this->cmdManager->attach('help', function ($conn, $para) {
+            $this->help($conn, $para);
         }, $this);
 
         /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('version', function ($conn, $para) {
+        $this->cmdManager->attach('version', function ($conn, $para) {
             $this->version($conn);
         }, $this);
 
-        $this->commands->attach('help', function ($conn, $para) {
+        $this->cmdManager->attach('help', function ($conn, $para) {
             $this->kick($conn, $para);
         }, $this);
 
         /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('restart', function ($conn, $para) {
-            $this->restart($conn);
+        $this->cmdManager->attach('restart', function ($conn, $para) {
+            $this->restart($conn, $para);
         }, $this);
     }
 
@@ -188,6 +188,57 @@ class Server extends \Framework\Socket\SocketAbstract
         socket_write($this->conn[$key], 'disconnect', strlen('disconnect'));
         unset($this->conn[$key]);
         $this->conn = array_values($this->conn);
+    }
+
+    /**
+     * Help for client
+     *
+     * @param mixed $key  Client key
+     * @param mixed $para Help parameters
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function help($key, $para)
+    {
+    }
+
+    /**
+     * Server version for client
+     *
+     * @param mixed $key Client key
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function version($key)
+    {
+    }
+
+    /**
+     * Kick client by Id
+     *
+     * @param mixed $key  Client key
+     * @param mixed $para Kick parameters
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function kick($key, $para)
+    {
+    }
+
+    /**
+     * Restart server
+     *
+     * @param mixed $key  Client key
+     * @param mixed $para Restart parameters
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function restart($key, $para)
+    {
     }
 
     /**

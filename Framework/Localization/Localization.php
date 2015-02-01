@@ -116,6 +116,11 @@ class Localization
         $this->localization_id = $id;
         $this->language        = $this->app->request->getLanguage();
         $this->datetime        = new \Framework\Localization\DateTime\DateTime();
+
+        // TODO: implement!!!
+        setlocale(LC_TIME, '');
+        setlocale(LC_NUMERIC, '');
+        setlocale(LC_MONETARY, '');
     }
 
     /**

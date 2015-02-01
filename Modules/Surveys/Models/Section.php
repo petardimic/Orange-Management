@@ -116,4 +116,30 @@ class Section implements \Framework\Object\MapperInterface, \Framework\Pattern\M
     public function unserialize($data)
     {
     }
+
+    /**
+     * Init object by ID
+     *
+     * This usually happens from DB or cache
+     *
+     * @param int $id Object ID
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function init($id)
+    {
+        // TODO: Implement init() method.
+    }
+
+    /**
+     * Overwriting clone in order to maintain singleton pattern
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __clone()
+    {
+        // TODO: Implement __clone() method.
+    }
 }
