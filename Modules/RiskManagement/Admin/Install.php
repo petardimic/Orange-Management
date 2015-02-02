@@ -36,7 +36,7 @@ class Install extends \Framework\Install\Module
                             `riskmngmt_unit_id` int(11) NOT NULL,
                             `unit` int(11) NOT NULL,
                             `responsible` int(11) NOT NULL,
-                            PRIMARY KEY (`RiskMngmtUnitID`),
+                            PRIMARY KEY (`riskmngmt_unit_id`),
                             KEY `unit` (`unit`),
                             KEY `responsible` (`responsible`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
