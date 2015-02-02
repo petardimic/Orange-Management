@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../config.php';
 require_once __DIR__ . '/../../Framework/Autoloader.php';
 
 $dbHOBJ = new \Framework\DataStorage\Database\Pool();
-$dbHOBJ->create($CONFIG['db']);
+$dbHOBJ->create('core', $CONFIG['db']);
 $instHOBJ = new \Framework\Install\Install($dbHOBJ);
 
 /**
