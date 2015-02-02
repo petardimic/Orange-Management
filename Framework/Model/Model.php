@@ -76,7 +76,7 @@ class Model
         }
 
         /* Everyone */
-        echo '<link rel="shortcut icon" href="/Content/Startup/favicon.ico">'
+        echo '<link rel="shortcut icon" href="/Web/Theme/Startup/favicon.ico">'
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Theme/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Framework/Libs/fonts/font-awesome/css/font-awesome.min.css">'
              . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
