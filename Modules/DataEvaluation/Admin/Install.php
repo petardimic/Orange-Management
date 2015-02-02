@@ -1,7 +1,7 @@
 <?php
 namespace Modules\DataEvaluation\Admin;
 /**
- * Navigation class
+ * Data evaluation install class
  *
  * PHP Version 5.4
  *
@@ -20,7 +20,7 @@ class Install extends \Framework\Install\Module
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool   Database instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool   Database pool instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
