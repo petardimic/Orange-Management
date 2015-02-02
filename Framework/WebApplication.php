@@ -39,6 +39,8 @@ class WebApplication extends \Framework\ApplicationAbstract
         $this->request = new \Framework\Message\Http\Request();
         $this->dbPool  = new \Framework\DataStorage\Database\Pool();
         $this->dbPool->create('core', $config['db']);
+        
+        // TODO: make user and $lang[0] loadable without db dependency
 
         \Framework\Module\ModuleFactory::$app = $this;
         \Framework\Model\Model::$app          = $this;
