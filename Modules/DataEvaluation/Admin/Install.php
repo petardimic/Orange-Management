@@ -35,8 +35,8 @@ class Install extends \Framework\Install\Module
                             `dataeval_id` int(11) NOT NULL AUTO_INCREMENT,
                             `dataeval_title` varchar(25) NOT NULL,
                             `dataeval_desc` varchar(255) NOT NULL,
-                            `dataeval_creator` tinyint(1) NOT NULL,
-                            `dataeval_created` int(11) NOT NULL,
+                            `dataeval_creator` int(11) NOT NULL,
+                            `dataeval_created` datetime NOT NULL,
                             PRIMARY KEY (`dataeval_id`),
                             KEY `dataeval_creator` (`dataeval_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
