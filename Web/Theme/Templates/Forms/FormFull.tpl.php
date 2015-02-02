@@ -26,7 +26,7 @@
                         <select>
                             <?php foreach($element['options'] as $option): ?>
                                 <option
-                                    value="<?= $option['value']; ?>" <?= ($option['selected'] ? ' selected' : ''); ?>><?= $option['content']; ?></option>
+                                    value="<?= $option['value']; ?>"<?= ($element['selected'] == $option['value'] ? ' selected' : ''); ?>><?= $option['content']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     <?php elseif($element['type'] === \Framework\Html\TagType::LABEL): ?>
