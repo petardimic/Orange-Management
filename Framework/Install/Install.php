@@ -74,7 +74,7 @@ class Install
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'group_relations`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . '' . $this->dbPool->get('core')->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`id`);'
                 )->execute();
 
                 /* Create group permission table */
