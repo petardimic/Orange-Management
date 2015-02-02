@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \Web\Views\Form\FormView $this
+ */
+?>
 <form action="<?= $this->action; ?>" method="<?= $this->method; ?>">
     <ul>
         <?php foreach($this->elements as $row): ?>
@@ -6,9 +11,10 @@
                     <?php if($element['type'] === \Framework\Html\TagType::GENERIC): ?>
                         <?= '<' . $element['tag'] . '>' . $element['content'] . '</' . $element['tag'] . '>'; ?>
                     <?php elseif($element['type'] === \Framework\Html\TagType::INPUT): ?>
-                        <input name="<?= $element['name']; ?>" id="<?= $element['id']; ?>"
-                               type="<?= $element['subtype']; ?>" value="<?= $element['value']; ?>"
-                               placeholder="<?= $element['placeholder']; ?>"<?= (isset($element['regex']) ? ' data-validate="' . $element['regex'] . '"' : ''); ?>>
+                        <input name="<?= $element['name']; ?>" type="<?= $element['subtype']; ?>"
+                               value="<?= (isset($element['value']) ? $element['value'] : ''); ?>"
+                               <?= (isset($element['placeholder']) ? ' placeholder="' . $element['placeholder'] . '"' : ''); ?>
+                               <?= (isset($element['regex']) ? ' data-validate="' . $element['regex'] . '"' : ''); ?>>
                         <?php if(isset($element['info'])): ?>
                             <i class="bt-1 b-3 vh"><?= $element['info']; ?></i>
                         <?php endif; ?>
@@ -29,5 +35,8 @@
                 <?php endforeach; ?>
             </li>
         <?php endforeach; ?>
+        <?php if($this->hasSubmit): ?>
+            <li class="submit"><input type="submit" value="<?= $this->getData('submit'); ?>">
+        <?php endif; ?>
     </ul>
 </form>

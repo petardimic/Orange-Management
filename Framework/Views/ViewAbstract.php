@@ -178,7 +178,7 @@ class ViewAbstract
      */
     public function removeData($id)
     {
-        unset($this->views[$id]);
+        unset($this->data[$id]);
     }
 
     /**
@@ -190,7 +190,7 @@ class ViewAbstract
      */
     public function addData($id, $data)
     {
-        $this->views[$id] = $data;
+        $this->data[$id] = $data;
     }
 
     /**
@@ -202,6 +202,6 @@ class ViewAbstract
      */
     public function setData($id, $data)
     {
-        $this->views[$id] = $data;
+        $this->data[$id] = $data;
     }
 }
