@@ -83,7 +83,7 @@ class Install extends \Framework\Install\Module
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'purchase_invoice`
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_1` FOREIGN KEY (`purchase_invoice_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $dbPool->get('core')->prefix . 'purchase_supplier` (`purchase_supplier`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_2` FOREIGN KEY (`purchase_invoice_supplier`) REFERENCES `' . $dbPool->get('core')->prefix . 'purchase_supplier` (`purchase_supplier_id`),
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'purchase_invoice_ibfk_3` FOREIGN KEY (`purchase_invoice_referer`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
