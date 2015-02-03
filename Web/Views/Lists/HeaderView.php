@@ -24,7 +24,7 @@ class HeaderView extends \Framework\Views\ViewAbstract
      * @var array
      * @since 1.0.0
      */
-    private $elements = [];
+    protected $header = [];
 
     /**
      * Table title
@@ -32,7 +32,7 @@ class HeaderView extends \Framework\Views\ViewAbstract
      * @var string
      * @since 1.0.0
      */
-    private $title = '';
+    protected $title = '';
 
     /**
      * @return string
@@ -62,33 +62,33 @@ class HeaderView extends \Framework\Views\ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getElements()
+    public function getHeaders()
     {
-        return $this->elements;
+        return $this->header;
     }
 
     /**
-     * @param array $elements
+     * @param array $header
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setElements($elements)
+    public function setHeader($header)
     {
-        $this->elements = $elements;
+        $this->header = $header;
     }
 
     /**
      * Add element to header
      *
-     * @param array $element
+     * @param array $header
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addElement($element)
+    public function addHeader($header)
     {
-        $this->elements += $element;
+        $this->header += $header;
     }
 
     /**
@@ -99,10 +99,10 @@ class HeaderView extends \Framework\Views\ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function removeElement($id)
+    public function removeHeader($id)
     {
-        if(isset($this->elements[$id])) {
-            unset($this->elements[$id]);
+        if(isset($this->header[$id])) {
+            unset($this->header[$id]);
         }
     }
 }

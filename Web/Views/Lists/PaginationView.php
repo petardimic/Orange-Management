@@ -24,7 +24,7 @@ class PaginationView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $maxPages = 7;
+    protected $maxPages = 7;
 
     /**
      * Current page id
@@ -32,7 +32,7 @@ class PaginationView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $page = 0;
+    protected $page = 50;
 
     /**
      * How many pages exists?
@@ -40,7 +40,7 @@ class PaginationView extends \Framework\Views\ViewAbstract
      * @var int
      * @since 1.0.0
      */
-    private $pages = 100;
+    protected $pages = 100;
 
     /**
      * @return int

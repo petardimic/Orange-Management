@@ -213,15 +213,19 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($this->app->request->getData()['l4']) {
             case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
+                $groupListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
+                echo $groupListView->getResponse();
+
+                /** @noinspection PhpUnusedLocalVariableInspection *//*
                 $groups = new \Modules\Admin\Models\GroupList($this->app->dbPool);
 
                 if(!isset($this->app->request->getData()['page'])) {
                     $this->app->request->getData()['page'] = 1;
-                }
+                }*/
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/groups-list.tpl.php';
+                //include __DIR__ . '/Theme/backend/groups-list.tpl.php';
                 break;
             case 'single':
                 $this->showBackendGroupSingle();

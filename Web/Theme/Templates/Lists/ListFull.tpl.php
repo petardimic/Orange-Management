@@ -5,7 +5,7 @@
     /** @var \Web\Views\Lists\HeaderView $header */
     $header = $this->getView('header');
     $footer = $this->getView('footer');
-    if($header) {
+    if($header !== false) {
         echo $header->getResponse();
     } ?>
     <?php if(isset($this->elements)): ?>
@@ -22,7 +22,7 @@
     <?php if($footer): ?>
         <tfoot>
         <tr>
-            <td colspan="<?= count($header->getElements()); ?>">
+            <td colspan="<?= count($header->getHeaders()); ?>">
                 <?= $footer->getResponse(); ?>
             </td>
         </tr>

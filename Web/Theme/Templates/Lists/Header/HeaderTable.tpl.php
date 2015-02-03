@@ -1,7 +1,7 @@
 <?php /** @var \Web\Views\Lists\HeaderView $this */ ?>
 <thead>
 <tr>
-    <th colspan="<?= count($this->elements) - 1; ?>" class="lT">
+    <th colspan="<?= count($this->header) - 1; ?>" class="lT">
         <i class="fa fa-filter p f dim"></i>
 
         <h1><?= $this->title; ?></h1>
@@ -12,9 +12,9 @@
     </th>
 </tr>
 <tr>
-    <?php foreach($this->elements as $key => $element): ?>
-        <td<?= ($element['full'] ? ' class="full"' : ''); ?>>
-            <?php if($element['title'] != null): ?>
+    <?php foreach($this->header as $key => $element): ?>
+        <td<?= (isset($element['full']) ? ' class="full"' : ''); ?>>
+            <?php if(isset($element['title'])): ?>
                 <span><?= $element['title']; ?></span>
                 <?php if($element['sortable']): ?>
                     <i class="fa fa-sort vh"></i>
