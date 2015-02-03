@@ -35,24 +35,28 @@ $formPageView->setElement(0, 0, [
    'type' => \Framework\Html\TagType::INPUT,
    'subtype' => 'text',
    'name' => 'oname',
+   'label' => $this->l11n->lang[1]['OName'],
    'placeholder' => 'Orange Management'
 ]);
 
 $formPageView->setElement(1, 0, [
     'type' => \Framework\Html\TagType::INPUT,
     'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['LAddress'],
     'name' => 'laddr',
 ]);
 
 $formPageView->setElement(2, 0, [
     'type' => \Framework\Html\TagType::INPUT,
     'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['RAddress'],
     'name' => 'raddr',
 ]);
 
 $formPageView->setElement(3, 0, [
     'type' => \Framework\Html\TagType::INPUT,
     'subtype' => 'checkbox',
+    'label' => $this->l11n->lang[1]['Cache'],
     'name' => 'cache',
 ]);
 
@@ -68,11 +72,11 @@ $formLocalizationView->setData('submit', $this->l11n->lang[0]['Submit']);
 $formLocalizationView->setAction('http://127.0.0.1');
 $formLocalizationView->setMethod(\Framework\Message\RequestType::POST);
 
-$locals = \Framework\Localization\Localization::getLocals();
 $formLocalizationView->setElement(0, 0, [
     'type' => \Framework\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
+    'label' => $this->l11n->lang[1]['Language'],
     'name' => 'lang'
 ]);
 
@@ -80,12 +84,14 @@ $formLocalizationView->setElement(1, 0, [
     'type' => \Framework\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
+    'label' => $this->l11n->lang[1]['Country'],
     'name' => 'country'
 ]);
 
 $formLocalizationView->setElement(2, 0, [
     'type' => \Framework\Html\TagType::INPUT,
     'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Timezone'],
     'name' => 'timezone',
     'placeholder' => 'Europe/London',
 ]);
@@ -94,6 +100,7 @@ $formLocalizationView->setElement(3, 0, [
     'type' => \Framework\Html\TagType::INPUT,
     'subtype' => 'text',
     'name' => 'datetime',
+    'label' => $this->l11n->lang[1]['Timeformat'],
     'placeholder' => 'YYYY-MM-DD hh:mm:ss',
 ]);
 
@@ -101,6 +108,7 @@ $formLocalizationView->setElement(4, 0, [
     'type' => \Framework\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
+    'label' => $this->l11n->lang[1]['Currency'],
     'name' => 'currency'
 ]);
 
@@ -108,6 +116,7 @@ $formLocalizationView->setElement(5, 0, [
     'type' => \Framework\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
+    'label' => $this->l11n->lang[1]['Numberformat'],
     'name' => 'nformat'
 ]);
 

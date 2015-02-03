@@ -66,7 +66,7 @@ class ModuleManager
      * @var string
      * @since 1.0.0
      */
-    private static $module_path = __DIR__ . '/../../Modules';
+    const MODULE_PATH = __DIR__ . '/../../Modules';
 
     /**
      * Object constructor
@@ -191,12 +191,12 @@ class ModuleManager
     public function getAllModules()
     {
         if($this->all === null) {
-            chdir(self::$module_path);
+            chdir(self::MODULE_PATH);
             $files = glob('*', GLOB_ONLYDIR);
             $c     = count($files);
 
             for($i = 0; $i < $c; $i++) {
-                $path = self::$module_path . '/' . $files[$i] . '/info.json';
+                $path = self::MODULE_PATH . '/' . $files[$i] . '/info.json';
 
                 if(file_exists($path)) {
                     $json                                 = json_decode(file_get_contents($path), true);
