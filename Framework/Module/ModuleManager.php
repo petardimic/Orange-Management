@@ -123,6 +123,18 @@ class ModuleManager
     }
 
     /**
+     * Run all modules based on request
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function run()
+    {
+    }
+
+    /**
      * Get all installed modules
      *
      * @return array
