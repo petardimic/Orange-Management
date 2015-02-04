@@ -17,20 +17,20 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
 /*
  * Header
  */
-$headerView->setTitle($this->l11n[1]['Groups']);
+$headerView->setTitle($this->l11n->lang[1]['Groups']);
 $headerView->addHeader([
-	['title' => $this->l11n[0]['ID'], 'sortable' => true],
-	['title' => $this->l11n[1]['Name'], 'sortable' => true, 'full' => true],
-	['title' => $this->l11n[1]['Parents'], 'sortable' => true]
-	['title' => $this->l11n[1]['Children'], 'sortable' => true]
-	['title' => $this->l11n[1]['Members'], 'sortable' => true]
+	['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+	['title' => $this->l11n->lang[1]['Name'], 'sortable' => true, 'full' => true],
+	['title' => $this->l11n->lang[1]['Parents'], 'sortable' => true],
+	['title' => $this->l11n->lang[1]['Children'], 'sortable' => true],
+	['title' => $this->l11n->lang[1]['Members'], 'sortable' => true]
 ]);
 
 /*
  * Footer
  */
-$footer->setPages(20);
-$footer->setPage(1);
+$footerView->setPages(20);
+$footerView->setPage(1);
 
 $groupListView->addView('header', $headerView);
 $groupListView->addView('footer', $footerView);

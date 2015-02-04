@@ -19,7 +19,7 @@ $right += ($left < $allowedPages ? 1 : 0);
         $i++): ?>
     <li><a href="#"><?= $i; ?></a>
         <?php endfor; ?>
-    <li>NOW
+    <li><a class="active" href="#"><?= $this->page; ?></a>
         <?php for ($c = $this->page + 1;
         $c <= $this->page + $right && $c < $this->pages;
         $c++): ?>
