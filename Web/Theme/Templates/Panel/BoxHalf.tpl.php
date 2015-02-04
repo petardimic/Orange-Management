@@ -1,4 +1,4 @@
-<div class="b b-2 m-<?= $this->module; ?> mp-<?= ($this->module + $this->id); ?>"
+<div class="b b-2 m-<?= $this->module; ?> mp-<?= ($this->module + $this->pageId); ?>"
      id="i-<?= ($this->module + $this->id); ?>">
     <h1>
         <?= $this->title ?>

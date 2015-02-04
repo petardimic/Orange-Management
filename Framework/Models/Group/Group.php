@@ -1,12 +1,12 @@
 <?php
-namespace Framework\Object\Group;
+namespace Framework\Models\Group;
 
 /**
  * Group class
  *
  * PHP Version 5.4
  *
- * @category   Object
+ * @category   Models
  * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,7 +16,7 @@ namespace Framework\Object\Group;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class Group implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Application instance
@@ -45,7 +45,7 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
     /**
      * Instances
      *
-     * @var \Framework\Object\Group\Group[]
+     * @var \Framework\Models\Group\Group[]
      * @since 1.0.0
      */
     protected static $instance = [];
@@ -105,7 +105,7 @@ class Group implements \Framework\Object\MapperInterface, \Framework\Pattern\Mul
      *
      * @param int $id Group ID
      *
-     * @return \Framework\Object\Group\Group
+     * @return \Framework\Modles\Group\Group
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

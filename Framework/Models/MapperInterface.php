@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Object;
+namespace Framework\Models;
 
 /**
  * Object interface
@@ -26,7 +26,7 @@ interface MapperInterface extends \Serializable
      *
      * This usually happens from DB or cache
      *
-     * @param int $id Object ID
+     * @param int $id Model ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

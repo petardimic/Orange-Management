@@ -16,7 +16,7 @@ namespace Modules\Support;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Issue implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class Issue implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Name

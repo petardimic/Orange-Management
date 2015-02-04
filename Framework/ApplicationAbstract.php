@@ -78,7 +78,7 @@ class ApplicationAbstract
     /**
      * User instance
      *
-     * @var \Framework\Object\User\User
+     * @var \Framework\Modles\User\User
      * @since 1.0.0
      */
     public $user = null;

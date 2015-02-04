@@ -1,12 +1,12 @@
 <?php
-namespace Framework\Object\User;
+namespace Framework\Models\User;
 
 /**
  * User class
  *
  * PHP Version 5.4
  *
- * @category   Object
+ * @category   Models
  * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
@@ -16,7 +16,7 @@ namespace Framework\Object\User;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * User ID
@@ -53,7 +53,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     /**
      * User status
      *
-     * @var \Framework\Object\User\UserStatus
+     * @var \Framework\Models\User\UserStatus
      * @since 1.0.0
      */
     private $status = null;
@@ -71,7 +71,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     /**
      * User type
      *
-     * @var \Framework\Object\User\UserType
+     * @var \Framework\Modles\User\UserType
      * @since 1.0.0
      */
     private $type = null;
@@ -119,7 +119,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     /**
      * User groups
      *
-     * @var \Framework\Object\Group\Group[]
+     * @var \Framework\Modles\Group\Group[]
      * @since 1.0.0
      */
     private $groups = [];
@@ -143,7 +143,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     /**
      * Instances
      *
-     * @var \Framework\Object\User\User[]
+     * @var \Framework\Modles\User\User[]
      * @since 1.0.0
      */
     protected static $instances = [];
@@ -213,7 +213,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
      * @param \Framework\ApplicationAbstract $app        Application instance
      * @param bool                           $is_current User ID is current user
      *
-     * @return \Framework\Object\User\User
+     * @return \Framework\Modles\User\User
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -340,7 +340,7 @@ class User implements \Framework\Object\MapperInterface, \Framework\Pattern\Mult
     public function add_group($id)
     {
         if(!array_key_exists($id, $this->groups)) {
-            $this->groups[$id] = \Framework\Object\Group\Group::getInstance($id);
+            $this->groups[$id] = \Framework\Modles\Group\Group::getInstance($id);
         }
 
         switch($this->app->dbPool->get('core')->getType()) {

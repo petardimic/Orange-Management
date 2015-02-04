@@ -1,5 +1,5 @@
 <?php /** @var \Web\Views\Lists\ListView $this */ ?>
-<table class="t-1 m-<?= $this->module; ?> mp-<?= ($this->module + $this->id); ?>"
+<table class="t-1 m-<?= $this->module; ?> mp-<?= ($this->module + $this->pageId); ?>"
        id="i-<?= ($this->module + $this->id); ?>">
     <?php
     /** @var \Web\Views\Lists\HeaderView $header */

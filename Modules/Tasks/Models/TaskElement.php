@@ -16,7 +16,7 @@ namespace Modules\Tasks\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class TaskElement implements \Framework\Object\MapperInterface
+class TaskElement implements \Framework\Modles\MapperInterface
 {
     /**
      * Database instance

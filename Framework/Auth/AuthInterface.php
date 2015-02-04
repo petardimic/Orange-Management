@@ -23,7 +23,7 @@ interface AuthInterface
     /**
      * Authenticates user
      *
-     * @return \Framework\Object\User\User
+     * @return \Framework\Modles\User\User
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

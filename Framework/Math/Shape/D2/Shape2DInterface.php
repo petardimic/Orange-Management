@@ -16,7 +16,7 @@ namespace Framework\Math\Shape\D2;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface Shape2DInterface
+interface Shape2DInterface extends \Framework\Math\Shape\ShapeInterface
 {
     /**
      * Get the polygon perimeter

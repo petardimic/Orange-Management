@@ -1,10 +1,10 @@
 <?php
-/*
- * UI Logic
- */
-
 /**
  * @var \Framework\Views\ViewAbstract $this
+ */
+ 
+/*
+ * UI Logic
  */
 $groupListView = new \Web\Views\Lists\ListView($this->l11n);
 $headerView = new \Web\Views\Lists\HeaderView($this->l11n);
@@ -14,8 +14,23 @@ $groupListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
 $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
 
-$headerView->setTitle('Test');
-$headerView->addHeader([['title' => 'Title 1', 'sortable' => true]]);
+/*
+ * Header
+ */
+$headerView->setTitle($this->l11n[1]['Groups']);
+$headerView->addHeader([
+	['title' => $this->l11n[0]['ID'], 'sortable' => true],
+	['title' => $this->l11n[1]['Name'], 'sortable' => true, 'full' => true],
+	['title' => $this->l11n[1]['Parents'], 'sortable' => true]
+	['title' => $this->l11n[1]['Children'], 'sortable' => true]
+	['title' => $this->l11n[1]['Members'], 'sortable' => true]
+]);
+
+/*
+ * Footer
+ */
+$footer->setPages(20);
+$footer->setPage(1);
 
 $groupListView->addView('header', $headerView);
 $groupListView->addView('footer', $footerView);

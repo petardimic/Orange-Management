@@ -1,12 +1,12 @@
 <?php
-namespace Framework\Object\User;
+namespace Framework\Models\User;
 
 /**
  * User status enum
  *
  * PHP Version 5.4
  *
- * @category   Object
+ * @category   Models
  * @package    Framework
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>

@@ -22,6 +22,6 @@ composer.phar
 Docs/Code/*
 Docs/Dependencies/*
 Docs/Stats/*
-puphpet/files/*
-puphpet/puppet/*
-puphpet/shell/*
+Dev/puphpet/files/*
+Dev/puphpet/puppet/*
+Dev/puphpet/shell/*

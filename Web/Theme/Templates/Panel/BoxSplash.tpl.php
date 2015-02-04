@@ -6,11 +6,7 @@
         <i class="fa fa-plus max vh"></i>
     </h1>
     <div class="bc-1">
-        <?php
-        /** @var  \Framework\Views\ViewAbstract $view */
-        foreach($this->views as $view) {
-            echo $view->getResponse();
-        }
-        ?>
+        <i class="fa fa-<?= $this->getData('icon'); ?>"></i>
+        <?= $this->getView('table')->getResponse(); ?>
     </div>
 </div>

@@ -25,5 +25,4 @@ abstract class TagType extends \Framework\Datatypes\Enum
     const TEXTAREA = 4; /* <textarea>; */
     const SELECT   = 5; /* <select>; */
     const LABEL    = 6; /* <label>; */
-
 }

@@ -48,7 +48,7 @@ class WebViewAbstract extends \Framework\Views\ViewAbstract
      * @var string
      * @since 1.0.0
      */
-    protected $title = "";
+    protected $title = '';
 
     /**
      * {@inheritdoc}

@@ -18,6 +18,12 @@ namespace Framework;
  */
 class SocketApplication extends \Framework\ApplicationAbstract
 {
+    /**
+     * Socket type
+     *
+     * @var \Framework\Socket\SocketType
+     * @since 1.0.0
+     */
     private $type;
 
     /**

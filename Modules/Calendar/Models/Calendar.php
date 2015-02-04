@@ -16,7 +16,7 @@ namespace Modules\Calendar\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Calendar implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class Calendar implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Calendar ID

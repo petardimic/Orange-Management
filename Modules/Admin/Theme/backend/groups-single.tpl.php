@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \Modules\Admin\Controller     $this
- * @var \Framework\Object\Group\Group $group
+ * @var \Framework\Modles\Group\Group $group
  */
 /** @noinspection PhpUndefinedMethodInspection */
 \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,

@@ -6,9 +6,10 @@ $right        = ($this->page < $this->pages - $allowedPages ? $allowedPages : $t
 $left += ($allowedPages - $right > 0 ? $allowedPages - $right + 1 : 0);
 $right += ($left < $allowedPages ? 1 : 0);
 ?>
+<!-- @formatter:off -->
 <ul>
-    <?php if ($this->page !== 1): ?>
-    <li>1<!-- how many pages are allowed between now and 1 >= how many pages are between now and 1 -->
+        <?php if ($this->page !== 1): ?>
+    <li><a href="#">1</a><!-- how many pages are allowed between now and 1 >= how many pages are between now and 1 -->
         <?php endif; ?>
         <?php if ($allowedPages < $this->page - 2): ?>
     <li>...
@@ -16,19 +17,20 @@ $right += ($left < $allowedPages ? 1 : 0);
         <?php for ($i = $this->page - $left;
         $i < $this->page && $i > 1;
         $i++): ?>
-    <li><?= $i; ?>
+    <li><a href="#"><?= $i; ?></a>
         <?php endfor; ?>
     <li>NOW
         <?php for ($c = $this->page + 1;
         $c <= $this->page + $right && $c < $this->pages;
         $c++): ?>
-    <li><?= $c; ?>
+    <li><a href="#"><?= $c; ?></a>
         <?php endfor; ?>
         <!-- (symmetrie => same as top) >= how many pages are between now and last -->
         <?php if ($allowedPages < $this->pages - $this->page - 1): ?>
     <li>...
         <?php endif; ?>
         <?php if ($this->page !== $this->pages): ?>
-    <li><?= $this->pages; ?>
+    <li><a href="#"><?= $this->pages; ?></a>
         <?php endif; ?>
 </ul>
+<!-- @formatter:on -->

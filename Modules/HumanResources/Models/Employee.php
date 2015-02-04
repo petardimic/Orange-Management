@@ -16,7 +16,7 @@ namespace Modules\HumanResources\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Employee implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class Employee implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Employee ID
@@ -29,7 +29,7 @@ class Employee implements \Framework\Object\MapperInterface, \Framework\Pattern\
     /**
      * User
      *
-     * @var \Framework\Object\User\User
+     * @var \Framework\Modles\User\User
      * @since 1.0.0
      */
     private $user = null;
@@ -65,7 +65,7 @@ class Employee implements \Framework\Object\MapperInterface, \Framework\Pattern\
 
     public function setUser($id)
     {
-        $this->user = new \Framework\Object\User\User($id);
+        $this->user = new \Framework\Modles\User\User($id);
     }
 
     /**

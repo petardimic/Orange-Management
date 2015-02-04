@@ -16,7 +16,7 @@ namespace Modules\Surveys;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Answer implements \Framework\Object\MapperInterface, \Framework\Pattern\Multition
+class Answer implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * ID

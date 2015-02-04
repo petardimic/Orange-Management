@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Profile\Controller $this */
-$account = \Framework\Object\User\User::getInstance((int) $this->app->request->getData()['id'], $this->app); ?>
+$account = \Framework\Modles\User\User::getInstance((int) $this->app->request->getData()['id'], $this->app); ?>
 <div itemscope itemtype="http://schema.org/Person">
     <div class="b-7" id="i3-2-1">
         <div class="b-5" id="i3-2-4">

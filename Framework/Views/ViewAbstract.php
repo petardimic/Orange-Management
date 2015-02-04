@@ -127,15 +127,55 @@ class ViewAbstract
     }
 
     /**
-     * @param string       $id View ID
-     * @param ViewAbstract $view
+     * Sort views by order
+     *
+     * @param array $a Array 1
+     * @param array $b Array 2
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addView($id, $view)
+    private static function viewSort($a, $b) {
+        if($a['order'] === $b['order']) {
+            return 0;
+        }
+
+        return ($a['order'] < $b['order']) ? -1 : 1;
+    }
+
+    /**
+     * Add view
+     *
+     * @param string       $id View ID
+     * @param ViewAbstract $view
+     * @param null|int $order Order of view
+     * @param bool $overwrite Overwrite existing view
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function addView($id, $view, $order = null, $overwrite = false)
     {
         $this->views[$id] = $view;
+
+        if($order !== null) {
+            $this->views = uasort($this->views, array('ViewAbstract', 'viewSort'));
+        }
+    }
+
+    /**
+     * Edit view
+     *
+     * @param string       $id View ID
+     * @param ViewAbstract $view
+     * @param null|int $order Order of view
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function editView($id, $view, $order = null)
+    {
+        $this->addView($id, $view, $order, true);
     }
 
     /**
@@ -151,6 +191,25 @@ class ViewAbstract
         ob_start();
         /** @noinspection PhpIncludeInspection */
         include __DIR__ . '/../..' . $this->template . '.tpl.php';
+
+        return ob_get_clean();
+    }
+
+    /**
+     * Get view/template response of all views
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getResponses()
+    {
+        ob_start();
+        
+        foreach ($this->views as $key => $view) {
+            echo $view->getResponse();
+        }
 
         return ob_get_clean();
     }
