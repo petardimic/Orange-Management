@@ -54,7 +54,7 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
             $uid = -1;
         }
 
-        return \Framework\Modles\User\User::getInstance($uid, $this->app, true);
+        return \Framework\Models\User\User::getInstance($uid, $this->app, true);
     }
 
     /**

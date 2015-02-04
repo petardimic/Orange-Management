@@ -16,7 +16,7 @@ namespace Modules\Media\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Media implements \Framework\Modles\MapperInterface
+class Media implements \Framework\Models\MapperInterface
 {
     /**
      * Database instance

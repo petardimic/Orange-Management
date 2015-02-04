@@ -251,7 +251,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \Framework\Modles\Group\Group((int) $this->app->request->getData()['id'], $this->app);
+                $group = new \Framework\Models\Group\Group((int) $this->app->request->getData()['id'], $this->app);
 
                 if(!isset($this->app->request->getData()['page'])) {
                     $this->app->request->getData()['page'] = 1;

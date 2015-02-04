@@ -16,7 +16,7 @@ namespace Modules\News\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Article implements \Framework\Modles\MapperInterface
+class Article implements \Framework\Models\MapperInterface
 {
     use \Framework\Validation\ModelValidationTrait;
 

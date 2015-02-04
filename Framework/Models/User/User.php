@@ -71,7 +71,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     /**
      * User type
      *
-     * @var \Framework\Modles\User\UserType
+     * @var \Framework\Models\User\UserType
      * @since 1.0.0
      */
     private $type = null;
@@ -119,7 +119,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     /**
      * User groups
      *
-     * @var \Framework\Modles\Group\Group[]
+     * @var \Framework\Models\Group\Group[]
      * @since 1.0.0
      */
     private $groups = [];
@@ -143,7 +143,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     /**
      * Instances
      *
-     * @var \Framework\Modles\User\User[]
+     * @var \Framework\Models\User\User[]
      * @since 1.0.0
      */
     protected static $instances = [];
@@ -213,7 +213,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
      * @param \Framework\ApplicationAbstract $app        Application instance
      * @param bool                           $is_current User ID is current user
      *
-     * @return \Framework\Modles\User\User
+     * @return \Framework\Models\User\User
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -340,7 +340,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     public function add_group($id)
     {
         if(!array_key_exists($id, $this->groups)) {
-            $this->groups[$id] = \Framework\Modles\Group\Group::getInstance($id);
+            $this->groups[$id] = \Framework\Models\Group\Group::getInstance($id);
         }
 
         switch($this->app->dbPool->get('core')->getType()) {

@@ -105,7 +105,7 @@ class Group implements \Framework\Models\MapperInterface, \Framework\Pattern\Mul
      *
      * @param int $id Group ID
      *
-     * @return \Framework\Modles\Group\Group
+     * @return \Framework\Models\Group\Group
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

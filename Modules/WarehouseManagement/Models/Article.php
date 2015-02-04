@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Article implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
+class Article implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Article ID
@@ -115,7 +115,7 @@ class Article implements \Framework\Modles\MapperInterface, \Framework\Pattern\M
     /**
      * Creator
      *
-     * @var \Framework\Modles\User
+     * @var \Framework\Models\User
      * @since 1.0.0
      */
     private $creator = null;
@@ -294,7 +294,7 @@ class Article implements \Framework\Modles\MapperInterface, \Framework\Pattern\M
     /**
      * Get creator
      *
-     * @return \Framework\Modles\User
+     * @return \Framework\Models\User
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -307,7 +307,7 @@ class Article implements \Framework\Modles\MapperInterface, \Framework\Pattern\M
     /**
      * Set creator
      *
-     * @param \Framework\Modles\User $creator Creator ID
+     * @param \Framework\Models\User $creator Creator ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

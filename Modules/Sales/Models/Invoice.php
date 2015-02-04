@@ -16,7 +16,7 @@ namespace Modules\Sales\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Invoice implements \Framework\Modles\MapperInterface
+class Invoice implements \Framework\Models\MapperInterface
 {
     /**
      * Database instance

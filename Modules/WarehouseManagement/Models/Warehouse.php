@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Warehouse implements \Framework\Modles\MapperInterface, \Framework\Pattern\Multition
+class Warehouse implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
 {
     /**
      * Name

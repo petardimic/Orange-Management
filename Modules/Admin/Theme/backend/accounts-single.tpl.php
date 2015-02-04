@@ -12,7 +12,7 @@
     </h1>
 
     <div class="bc-1">
-        <?php $account = \Framework\Modles\User\User::getInstance((int) $this->app->request->getData()['id'], $this->app); ?>
+        <?php $account = \Framework\Models\User\User::getInstance((int) $this->app->request->getData()['id'], $this->app); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>
