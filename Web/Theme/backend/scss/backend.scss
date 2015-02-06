@@ -1,4 +1,4 @@
-@import "clean", "mixins", "backend-vars", "default";
+@import "clean", "mixins", "backend_vars", "default";
 
 #dim {
     position: absolute;
@@ -343,4 +343,4 @@ button, input[type=submit], input[type=button], .button {
     }
 }
 
-@import "chart", "backend-media";
+@import "chart", "backend_media", "backend_nav", "backend_box", "backend_table";

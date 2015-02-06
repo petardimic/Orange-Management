@@ -148,6 +148,22 @@ class Response
     }
 
     /**
+     * Generate response
+     *
+     * @param int $id Response ID
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function make($id)
+    {
+        $this->pushHeader();
+        return $this->get($id);
+    }
+
+    /**
      * Remove response by ID
      *
      * @param int $id Response ID

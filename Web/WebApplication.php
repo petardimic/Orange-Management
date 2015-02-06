@@ -125,13 +125,22 @@ class WebApplication extends \Framework\ApplicationAbstract
                 $this->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->addHeader('Status', 'Status: 404 Not Found');
 
+                $pageView = new \Framework\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
         }
 
         $this->response->add('page', $pageView->getResponse(), 0);
-        echo $this->response->get('page');
+        echo $this->response->make('page');
     }
 
+    /**
+     * Generate visual database error
+     *
+     * @param \Framework\Views\ViewAbstract $view View
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     private function dbFailResponse(&$view)
     {
         $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');

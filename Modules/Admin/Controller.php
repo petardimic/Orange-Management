@@ -212,7 +212,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows group content
+     * Shows module content
+     *
+     * @param \Framework\Message\RequestAbstract $request Request
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -246,7 +248,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     }
 
     /**
-     * Shows group single content
+     * Shows module content
+     *
+     * @param \Framework\Message\RequestAbstract $request Request
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
