@@ -78,7 +78,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {

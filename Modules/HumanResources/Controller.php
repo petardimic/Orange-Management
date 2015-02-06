@@ -54,11 +54,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -66,12 +66,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'structure':
                 $this->showContentBackendStrcture();
                 break;
@@ -87,12 +89,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function showContentBackendStrcture()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'department':
                 $this->showContentBackendDepartment();
                 break;
@@ -102,12 +106,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function showContentBackendDepartment()
     {
-        switch($this->app->request->getData()['l5']) {
+        switch($request->getData()['l5']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $departments = new \Modules\HumanResources\DepartmentList($this->app->dbPool);
@@ -120,12 +126,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function showContentBackendStaff()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $staff = new \Modules\HumanResources\Models\StaffList($this->app->dbPool);
@@ -143,12 +151,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function showContentBackendPlanning()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/planning-dashboard.tpl.php';

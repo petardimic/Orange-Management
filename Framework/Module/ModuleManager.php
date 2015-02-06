@@ -21,12 +21,12 @@ namespace Framework\Module;
 class ModuleManager
 {
     /**
-     * Application instance
+     * FileCache instance
      *
-     * @var \Framework\WebApplication
+     * @var \Framework\DataStorage\Database\Pool
      * @since 1.0.0
      */
-    private $app = null;
+    private $dbPool = null;
 
     /**
      * Installed modules
@@ -69,16 +69,16 @@ class ModuleManager
     const MODULE_PATH = __DIR__ . '/../../Modules';
 
     /**
-     * Object constructor
+     * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool
      *
      * @since  1.0.0
-     * @author Dennis Eichhorn
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($app)
+    public function __construct($dbPool)
     {
-        $this->app = $app;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -94,14 +94,14 @@ class ModuleManager
     public function getUriLoads($request)
     {
         if($this->running === null) {
-            switch($this->app->dbPool->get('core')->getType()) {
+            switch($this->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
                     /* TODO: make join in order to see if they are active */
-                    $sth = $this->app->dbPool->get('core')->con->prepare(
+                    $sth = $this->dbPool->get('core')->con->prepare(
                         'SELECT
-                        `' . $this->app->dbPool->get('core')->prefix . 'module_load`.`type`, `' . $this->app->dbPool->get('core')->prefix . 'module_load`.*
+                        `' . $this->dbPool->get('core')->prefix . 'module_load`.`type`, `' . $this->dbPool->get('core')->prefix . 'module_load`.*
                         FROM
-                        `' . $this->app->dbPool->get('core')->prefix . 'module_load`
+                        `' . $this->dbPool->get('core')->prefix . 'module_load`
                         WHERE
                         `pid` IN(:pid1, :pid2, :pid3, :pid4)'
                     );
@@ -145,9 +145,9 @@ class ModuleManager
     public function getInstalledModules()
     {
         if($this->installed === null) {
-            switch($this->app->dbPool->get('core')->getType()) {
+            switch($this->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->dbPool->get('core')->prefix . 'module`');
+                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -168,9 +168,9 @@ class ModuleManager
     public function getActiveModules()
     {
         if($this->active === null) {
-            switch($this->app->dbPool->get('core')->getType()) {
+            switch($this->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->app->dbPool->get('core')->prefix . 'module` WHERE `active` = 1');
+                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module` WHERE `active` = 1');
                     $sth->execute();
                     $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;

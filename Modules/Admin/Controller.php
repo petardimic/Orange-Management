@@ -53,11 +53,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -65,36 +65,38 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'account':
-                $this->showBackendAccount();
+                $this->showBackendAccount($request);
                 break;
             case 'group':
-                $this->showBackendGroup();
+                $this->showBackendGroup($request);
                 break;
             case 'settings':
-                $this->showBackendSettings();
+                $this->showBackendSettings($request);
                 break;
             case 'module':
-                $this->showBackendModule();
+                $this->showBackendModule($request);
                 break;
         }
-
-        return false;
     }
 
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendSettings()
+    public function showBackendSettings($request)
     {
         $this->app->settings->loadSettings([
             1000000006,
@@ -116,7 +118,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             1000000026
         ]);
 
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'general':
                 $coreSettingsView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
@@ -128,25 +130,27 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccount()
+    public function showBackendAccount($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/accounts-list.tpl.php';
                 break;
             case 'single':
-                $this->showBackendAccountSingle();
+                $this->showBackendAccountSingle($request);
                 $this->callPull();
 
                 break;
@@ -160,12 +164,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccountSingle()
+    public function showBackendAccountSingle($request)
     {
-        switch($this->app->request->getData()['l5']) {
+        switch($request->getData()['l5']) {
             case 'front':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
@@ -176,26 +182,28 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendModule()
+    public function showBackendModule($request)
     {
-        if(empty($this->app->request->getData()['l4'])) {
-            $this->app->request->getData()['l5'] = 'front';
+        if(empty($request->getData()['l4'])) {
+            $request->getData()['l5'] = 'front';
         }
 
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-list.tpl.php';
                 break;
             case 'front':
-                //$info = $this->app->modules->moduleInfoGet((int)$this->app->request->getData()['id']);
+                //$info = $this->app->modules->moduleInfoGet((int)$request->getData()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
@@ -209,9 +217,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendGroup()
+    public function showBackendGroup($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 $groupListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
@@ -220,15 +228,15 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpUnusedLocalVariableInspection *//*
                 $groups = new \Modules\Admin\Models\GroupList($this->app->dbPool);
 
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }*/
 
                 /** @noinspection PhpIncludeInspection */
                 //include __DIR__ . '/Theme/backend/groups-list.tpl.php';
                 break;
             case 'single':
-                $this->showBackendGroupSingle();
+                $this->showBackendGroupSingle($request);
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
@@ -243,18 +251,18 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendGroupSingle()
+    public function showBackendGroupSingle($request)
     {
-        switch($this->app->request->getData()['l5']) {
+        switch($request->getData()['l5']) {
             case 'front':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \Framework\Models\Group\Group((int) $this->app->request->getData()['id'], $this->app);
+                $group = new \Framework\Models\Group\Group((int) $request->getData()['id'], $this->app);
 
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */
@@ -271,7 +279,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function showApi()
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'account':
                 $this->apiAccount();
                 break;
@@ -299,7 +307,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function apiAccount()
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\RequestType::PUT:
                 $this->apiPutAccount();
                 break;
@@ -367,7 +375,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function apiGroup()
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\RequestType::PUT:
                 $this->apiPutGroup();
                 break;
@@ -437,9 +445,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         $settings = \Framework\Config\Settings::getInstance();
 
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'core':
-                $settings->setSettings($this->app->request->getData()['settigns']);
+                $settings->setSettings($request->getData()['settigns']);
 
                 $jsonRet = [
                     'type'   => 1,
@@ -466,14 +474,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     public function apiModule()
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\RequestType::PUT:
-                \Framework\Install\Module::install($this->app->db, $this->app->request->getData()['id']);
+                \Framework\Install\Module::install($this->app->db, $request->getData()['id']);
 
                 $jsonRet = [
                     'type'   => 1,
                     'status' => 1,
-                    'msg'    => str_replace('{$1}', $this->app->request->getData()['id'], $this->app->user->getL11n()->lang[1]['i:ModuleInstalled'])
+                    'msg'    => str_replace('{$1}', $request->getData()['id'], $this->app->user->getL11n()->lang[1]['i:ModuleInstalled'])
                 ];
 
                 echo json_encode($jsonRet);

@@ -56,11 +56,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -68,23 +68,25 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'supplier':
-                $this->showBackendSupplier();
+                $this->showBackendSupplier($request);
                 break;
             case 'invoice':
-                $this->showBackendInvoice();
+                $this->showBackendInvoice($request);
                 break;
             case 'article':
-                $this->showBackendArticle();
+                $this->showBackendArticle($request);
                 break;
             case 'analysis':
-                $this->showBackendAnalysis();
+                $this->showBackendAnalysis($request);
                 break;
         }
     }
@@ -92,12 +94,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendArticle()
+    public function showBackendArticle($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $articleList = new \Modules\Purchase\Models\ArticleList($this->app->dbPool);
@@ -119,12 +123,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendInvoice()
+    public function showBackendInvoice($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $invoiceList = new \Modules\Purchase\Models\InvoiceList($this->app->dbPool);
@@ -146,12 +152,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendSupplier()
+    public function showBackendSupplier($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->dbPool);
@@ -173,12 +181,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAnalysis()
+    public function showBackendAnalysis($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';

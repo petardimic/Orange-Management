@@ -30,7 +30,7 @@
         <?php
         /** @var \Modules\Media\MediaList $mList */
         $data           = $mList->getList();
-        $url['level']   = array_slice($this->app->request->getData(), 0, 3);
+        $url['level']   = array_slice($request->getData(), 0, 3);
         $url['level'][] = 'single';
         $url['level'][] = 'front';
         $url['id']      = 'media_id';

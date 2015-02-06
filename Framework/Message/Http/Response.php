@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Message\Response;
+namespace Framework\Message\Http;
 
 /**
  * Response class
@@ -18,7 +18,7 @@ namespace Framework\Message\Response;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Http
+class Response
 {
     /**
      * Header
@@ -117,14 +117,15 @@ class Http
     /**
      * Add response
      *
+     * @param mixed  $key      Response id
      * @param string $response Response to add
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addResponse($response)
+    public function add($key, $response)
     {
-        $this->response[] = $response;
+        $this->response[$key] = $response;
 
         if($this->autoPush) {
             $this->pushResponseId(count($this->response));
@@ -141,7 +142,7 @@ class Http
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getResponse($id)
+    public function get($id)
     {
         return $this->response[$id];
     }
@@ -154,7 +155,7 @@ class Http
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function removeResponse($id)
+    public function remove($id)
     {
         unset($this->response[$id]);
     }
@@ -165,7 +166,7 @@ class Http
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function pushResponse()
+    public function push()
     {
         ob_start();
 

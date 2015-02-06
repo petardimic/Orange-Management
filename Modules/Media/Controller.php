@@ -54,11 +54,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -66,15 +66,17 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'single':
                 $media = new \Modules\Media\Models\Media($this->app->dbPool);
-                $media->init($this->app->request->getData()['id']);
+                $media->init($request->getData()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
@@ -85,8 +87,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $view->setTemplate('/Modules/Media/Theme/backend/media-list');
                 echo $view->getResponse();*/
 
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
@@ -99,62 +101,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/media-create.tpl.php';
                 break;
-        }
-    }
-
-    public function callPush()
-    {
-        switch($this->app->request->getData()['l2']) {
-            case 'admin':
-                break;
-            case 'profile':
-                break;
-        }
-    }
-
-    /**
-     * Handle api call
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function show_api()
-    {
-        switch($this->app->request->getType()) {
-            case \Framework\RequestType::PUT:
-                $this->api_media_put();
-                break;
-            default:
-                return false;
-        }
-
-        return true;
-    }
-
-    private function api_media_put()
-    {
-        $this->upload_file();
-    }
-
-    private function upload_file()
-    {
-        $upload_dir = './tmp/';
-        $file_count = count($_FILES['user_file']['name']);
-
-        for($i = 0; $i < $file_count; $i++) {
-            $upload_file = $upload_dir . basename($_FILES['user_file']['name'][$i]);
-
-            if(!preg_match('/(gif|jpg|jpeg|png)$/', $_FILES['user_file']['name'][$i])) {
-                // not allowed
-            } else {
-                if(is_uploaded_file($_FILES['user_file']['tmp_name'][$i])) {
-                    if(!move_uploaded_file($_FILES['user_file']['tmp_name'][$i], $upload_file)) {
-                        // Failure
-                    }
-                } else {
-                    // ERROR
-                }
-            }
         }
     }
 }

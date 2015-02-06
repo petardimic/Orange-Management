@@ -54,11 +54,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -66,20 +66,22 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'creditor':
-                $this->showBackendCreditor();
+                $this->showBackendCreditor($request);
                 break;
             case 'debitor':
-                $this->showBackendDebitor();
+                $this->showBackendDebitor($request);
                 break;
             case 'account':
-                $this->showBackendAccount();
+                $this->showBackendAccount($request);
                 break;
         }
     }
@@ -87,12 +89,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccount()
+    public function showBackendAccount($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accountList = new \Modules\Accounting\Models\AccountList($this->app->dbPool);
@@ -122,12 +126,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendCreditor()
+    public function showBackendCreditor($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->dbPool);
@@ -149,12 +155,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendDebitor()
+    public function showBackendDebitor($request)
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->dbPool);

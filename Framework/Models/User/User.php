@@ -125,14 +125,6 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     private $groups = [];
 
     /**
-     * Application instance
-     *
-     * @var \Framework\WebApplication
-     * @since 1.0.0
-     */
-    private $app = null;
-
-    /**
      * Localization instance
      *
      * @var \Framework\Localization\Localization
@@ -149,16 +141,24 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     protected static $instances = [];
 
     /**
+     * FileCache instance
+     *
+     * @var \Framework\DataStorage\Database\Pool
+     * @since 1.0.0
+     */
+    private $dbPool = null;
+
+    /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($app)
+    public function __construct($dbPool)
     {
-        $this->app = $app;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -173,20 +173,20 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     {
         $this->id = $id;
 
-        $this->localization = new \Framework\Localization\Localization($this->id, $this->app);
+        $this->localization = new \Framework\Localization\Localization($this->id);
 
         if($id !== -1) {
-            $sth = $this->app->dbPool->get('core')->con->prepare(
+            $sth = $this->dbPool->get('core')->con->prepare(
                 'SELECT
-                        `' . $this->app->dbPool->get('core')->prefix . 'accounts`.*,
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.*,
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id`
+                        `' . $this->dbPool->get('core')->prefix . 'accounts`.*,
+                                `' . $this->dbPool->get('core')->prefix . 'accounts_data`.*,
+                                `' . $this->dbPool->get('core')->prefix . 'accounts`.`id`
                             FROM
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`,
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`
+                                `' . $this->dbPool->get('core')->prefix . 'accounts`,
+                                `' . $this->dbPool->get('core')->prefix . 'accounts_data`
                             WHERE
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id` = :id AND
-                                `' . $this->app->dbPool->get('core')->prefix . 'accounts`.`id` = `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`account`');
+                                `' . $this->dbPool->get('core')->prefix . 'accounts`.`id` = :id AND
+                                `' . $this->dbPool->get('core')->prefix . 'accounts`.`id` = `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account`');
             $sth->bindValue(':id', $this->id, \PDO::PARAM_INT);
             $sth->execute();
             $user = $sth->fetchAll(\PDO::FETCH_UNIQUE);
@@ -209,20 +209,20 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     /**
      * Returns instance
      *
-     * @param int                            $id         User ID
-     * @param \Framework\ApplicationAbstract $app        Application instance
-     * @param bool                           $is_current User ID is current user
+     * @param int                                  $id         User ID
+     * @param \Framework\DataStorage\Database\Pool $dbPool     Database pool
+     * @param bool                                 $is_current User ID is current user
      *
      * @return \Framework\Models\User\User
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function getInstance($id, $app, $is_current = false)
+    public static function getInstance($id, $dbPool, $is_current = false)
     {
         /* TODO: implement the cache loading right here. smart idea! */
         if(!isset(self::$instances[$id])) {
-            self::$instances[$id] = new self($app);
+            self::$instances[$id] = new self($dbPool);
             self::$instances[$id]->init($id);
 
             if($is_current) {
@@ -267,7 +267,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     public function account_permission_get()
     {
         if(!isset($this->perm)) {
-            switch($this->app->dbPool->get('core')->getType()) {
+            switch($this->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
                     break;
@@ -314,10 +314,10 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
      */
     public function account_edit_base($account)
     {
-        switch($this->app->dbPool->get('core')->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case 1:
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts` (`login`, `password`, `email`, `changed`) VALUES
                             (:aname, :pword, :email, 1);'
                 );
 
@@ -343,10 +343,10 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
             $this->groups[$id] = \Framework\Models\Group\Group::getInstance($id);
         }
 
-        switch($this->app->dbPool->get('core')->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES (:group, :account)'
                 );
 
                 $sth->bindValue(':group', $id, \PDO::PARAM_INT);
@@ -366,10 +366,10 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     {
         $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
-        switch($this->app->dbPool->get('core')->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \Framework\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts` (`status`, `type`, `lactive`, `created`, `changed`) VALUES
                             (:status, :type, \'0000-00-00 00:00:00\', \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
                 );
 
@@ -377,11 +377,11 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
                 $sth->bindValue(':type', $this->type, \PDO::PARAM_INT);
                 $sth->execute();
 
-                $this->id = $this->app->dbPool->get('core')->con->lastInsertId();
+                $this->id = $this->dbPool->get('core')->con->lastInsertId();
 
-                $this->app->dbPool->get('core')->con->beginTransaction();
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
+                $this->dbPool->get('core')->con->beginTransaction();
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts_data` (`login`, `name1`, `name2`, `name3`, `password`, `email`, `tries`, `account`) VALUES
                             (:login, :name1, :name2, :name3, :passowrd, :email, 5, :account);'
                 );
 
@@ -399,10 +399,10 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
                 }
                 $group_string = rtrim($group_string, ',');
 
-                $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
+                $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts_groups` (`group`, `account`) VALUES ' . $group_string
                 );
-                $this->app->dbPool->get('core')->con->commit();
+                $this->dbPool->get('core')->con->commit();
                 break;
         }
     }
@@ -418,20 +418,20 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
         /* TODO: call all installed modules user_delete function */
         // TODO: remove from cache
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->dbPool->get('core')->prefix . 'accounts_groups` WHERE `account` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` WHERE `account` = ' . $this->id
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->dbPool->get('core')->prefix . 'accounts_data` WHERE `account` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts` WHERE `id` = ' . $this->id
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->dbPool->get('core')->prefix . 'accounts` WHERE `id` = ' . $this->id
         );
 
         $sth->execute();
@@ -445,14 +445,14 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
      */
     public function update()
     {
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'UPDATE `' . $this->dbPool->get('core')->prefix . 'accounts` SET `status` = :status, `type` = :type, `changed` = 1 WHERE `id` = ' . $this->id . ';'
         );
 
         $sth->execute();
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'UPDATE `' . $this->dbPool->get('core')->prefix . 'accounts_data` SET `login` = :login, `name1` = :name1, `name2` = :name2, `name3` = :name3, `password` = :password, `email` = :email, `tries` = :tries WHERE `id` = ' . $this->id . ';'
         );
 
         $sth->bindValue(':login', $this->login_name, \PDO::PARAM_STR);

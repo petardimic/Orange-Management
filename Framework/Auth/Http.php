@@ -23,24 +23,34 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
     use \Framework\Config\OptionsTrait;
 
     /**
-     * Application instance
+     * Session instance
      *
-     * @var \Framework\WebApplication
+     * @var \Framework\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
-    private $app = null;
+    private $session = null;
+
+    /**
+     * Database pool instance
+     *
+     * @var \Framework\DataStorage\Database\Pool
+     * @since 1.0.0
+     */
+    private $dbPool = null;
 
     /**
      * Constructor
      *
-     * @param \Framework\WebApplication $app Application reference
+     * @param \Framework\DataStorage\Database\Pool            $dbPool  Database pool
+     * @param \Framework\DataStorage\Session\SessionInterface $session Session
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($app)
+    public function __construct($dbPool, $session)
     {
-        $this->app = $app;
+        $this->dbPool = $dbPool;
+        $this->session = $session;
     }
 
     /**
@@ -48,13 +58,13 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
      */
     public function authenticate()
     {
-        $uid = $this->app->session->get('UID');
+        $uid = $this->session->get('UID');
 
         if($uid === null) {
             $uid = -1;
         }
 
-        return \Framework\Models\User\User::getInstance($uid, $this->app, true);
+        return \Framework\Models\User\User::getInstance($uid, $this->dbPool, true);
     }
 
     /**
@@ -65,21 +75,21 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
         try {
             $result = null;
 
-            switch($this->app->dbPool->get('core')->getType()) {
+            switch($this->dbPool->get('core')->getType()) {
                 case \Framework\DataStorage\Database\DatabaseType::MYSQL:
 
-                    $sth = $this->app->dbPool->get('core')->con->prepare(
+                    $sth = $this->dbPool->get('core')->con->prepare(
                         'SELECT
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.*,
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts`.*
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.*,
+                            `' . $this->dbPool->get('core')->prefix . 'accounts`.*
                         FROM
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`
                         LEFT JOIN
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts`
+                            `' . $this->dbPool->get('core')->prefix . 'accounts`
                         ON
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`account` = `' . $this->app->dbPool->get('core')->prefix . 'accounts_`.`id`
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account` = `' . $this->dbPool->get('core')->prefix . 'accounts_`.`id`
                         WHERE
-                            `' . $this->app->dbPool->get('core')->prefix . 'accounts_data`.`login` = :login'
+                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`login` = :login'
                     );
                     $sth->bindValue(':login', $login, \PDO::PARAM_STR);
                     $sth->execute();
@@ -100,7 +110,7 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
 
             if(password_verify($password, $result['password'])) {
                 if($result['status'] === \Framework\Auth\LoginReturnType::OK) {
-                    $this->app->session->set('UID', $result['account']);
+                    $this->session->set('UID', $result['account']);
                 }
 
                 return $result['status'];
@@ -118,6 +128,6 @@ class Http implements \Framework\Auth\AuthInterface, \Framework\Config\OptionsIn
     public function logout($uid)
     {
         // TODO: logout other users? If admin wants to kick a user for updates etc.
-        $this->app->session->remove('UID');
+        $this->session->remove('UID');
     }
 }

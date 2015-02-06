@@ -1,0 +1,156 @@
+<?php
+namespace Web;
+
+/**
+ * Controller class
+ *
+ * PHP Version 5.4
+ *
+ * @category   Framework
+ * @package    Framework
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
+class WebApplication
+{
+    /**
+     * Main request
+     *
+     * @var \Framework\Message\Http\Request
+     * @since 1.0.0
+     */
+    public $request = null;
+
+    /**
+     * Main request
+     *
+     * @var \Framework\Message\Http\Response
+     * @since 1.0.0
+     */
+    public $response = null;
+
+    /**
+     * Database pool instance
+     *
+     * @var \Framework\DataStorage\Database\Pool
+     * @since 1.0.0
+     */
+    public $dbPool = null;
+
+    public $moduleManager = null;
+    public $eventManager  = null;
+    public $settings      = null;
+    public $cache         = null;
+
+    /**
+     * Constructor
+     *
+     * @param array $config Core config
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct($config)
+    {
+        $this->request  = new \Framework\Message\Http\Request();
+        $this->response = new \Framework\Message\Http\Response();
+
+        $this->dbPool = new \Framework\DataStorage\Database\Pool();
+        $this->dbPool->create('core', $config['db']);
+
+        $this->cache    = new \Framework\DataStorage\Cache\Cache($this->dbPool);
+        $this->settings = new \Framework\Config\Settings($this->dbPool);
+
+        $pageView = null;
+
+        switch($this->request->getType()) {
+            case \Framework\Message\Http\WebRequestPage::WEBSITE:
+
+                break;
+            case \Framework\Message\Http\WebRequestPage::BACKEND:
+                $pageView = new \Web\Views\Page\BackendView();
+
+                if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
+                    $this->dbFailResponse($pageView);
+                    break;
+                }
+
+                \Framework\Module\ModuleFactory::$app = $this;
+                \Framework\Model\Model::$app          = $this;
+
+                $this->eventManager   = new \Framework\Event\EventManager();
+                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession(0);
+                $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
+                $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->user           = $this->auth->authenticate();
+
+                $pageView->setLocalization($this->user->getL11n());
+                $pageView->setRequest($this->request);
+
+                $toLoad = $this->moduleManager->getUriLoads($this->request);
+
+                if(isset($toLoad[4])) {
+                    foreach($toLoad[4] as $module) {
+                        \Framework\Module\ModuleFactory::getInstance($module['file']);
+                    }
+                }
+
+                if(isset($toLoad[5])) {
+                    $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
+                }
+
+                $this->settings->loadSettings([1000000011, 1000000009]);
+                \Framework\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
+                \Framework\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
+                \Framework\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+                \Framework\Model\Model::$content['core:oname']       = $this->settings->config[1000000009];
+                \Framework\Model\Model::$content['theme:path']       = $this->settings->config[1000000011];
+                \Framework\Model\Model::$content['core:layout']      = $this->request->getType();
+                \Framework\Model\Model::$content['page:title']       = 'Orange Management';
+
+                $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+                $pageView->setTemplate('/Web/Theme/backend/index');
+                break;
+            case \Framework\Message\Http\WebRequestPage::API:
+                if($this->dbPool->get('core')->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
+                    $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
+                    $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
+                    $this->response->addHeader('Retry-After', 'Retry-After: 300');
+                    break;
+                }
+
+                $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
+
+                $requests = [];
+
+                foreach($requests as $key => $request) {
+                    $request = new \Framework\Message\Http\Request();
+                    $this->modules->running[1004400000]->call($request);
+                }
+                break;
+
+            default:
+                $this->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->response->addHeader('Status', 'Status: 404 Not Found');
+
+                $pageView->setTemplate('/Web/Theme/Error/404');
+        }
+
+        $this->response->add('page', $pageView->getResponse(), 0);
+        echo $this->response->get('page');
+    }
+
+    private function dbFailResponse(&$view)
+    {
+        $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
+        $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
+        $this->response->addHeader('Retry-After', 'Retry-After: 300');
+
+        $view->setTemplate('/Web/Theme/Error/503');
+    }
+}

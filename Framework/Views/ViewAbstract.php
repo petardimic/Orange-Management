@@ -58,7 +58,20 @@ class ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($l11n)
+    public function __construct($l11n = null)
+    {
+        $this->l11n = $l11n;
+    }
+
+    /**
+     * Set localization
+     *
+     * @param \Framework\Localization\Localization $l11n User localization
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLocalization($l11n = null)
     {
         $this->l11n = $l11n;
     }
@@ -132,6 +145,8 @@ class ViewAbstract
      * @param array $a Array 1
      * @param array $b Array 2
      *
+     * @return int
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
@@ -159,7 +174,7 @@ class ViewAbstract
         $this->views[$id] = $view;
 
         if($order !== null) {
-            $this->views = uasort($this->views, array('ViewAbstract', 'viewSort'));
+            $this->views = uasort($this->views, ['\Framework\Views\ViewAbstract', 'viewSort']);
         }
     }
 

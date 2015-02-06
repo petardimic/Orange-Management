@@ -40,12 +40,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */
-                \Framework\Module\ModuleFactory::$loaded[$mid]->call(\Framework\Module\CallType::WEB);
+                \Framework\Module\ModuleFactory::$loaded[$mid]->call(\Framework\Module\CallType::WEB, $request);
             }
         }
     }

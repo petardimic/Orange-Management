@@ -54,11 +54,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend();
+                $this->showContentBackend($request);
                 break;
         }
     }
@@ -66,12 +66,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend()
+    public function showContentBackend($request)
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'single':
                 /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
                 /** @noinspection PhpIncludeInspection */
@@ -83,8 +85,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Profile\Models\ProfileList($this->app->dbPool);
 
-                if(!isset($this->app->request->getData()['page'])) {
-                    $this->app->request->getData()['page'] = 1;
+                if(!isset($request->getData()['page'])) {
+                    $request->getData()['page'] = 1;
                 }
 
                 /** @noinspection PhpIncludeInspection */

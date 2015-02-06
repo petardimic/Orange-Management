@@ -28,7 +28,7 @@
         <?php
         /** @var \Modules\News\NewsList $newsList */
         $data           = $newsList->getList(null, 0, 10);
-        $url['level']   = array_slice($this->app->request->getData(), 0, 3);
+        $url['level']   = array_slice($request->getData(), 0, 3);
         $url['level'][] = 'single';
         $url['id']      = 'NewsID';
 
@@ -62,7 +62,7 @@
         <?php
         /** @var \Modules\News\NewsList $newsList */
         $data           = $newsList->getList(null, 0, 10);
-        $url['level']   = array_slice($this->app->request->getData(), 0, 3);
+        $url['level']   = array_slice($request->getData(), 0, 3);
         $url['level'][] = 'single';
         $url['id']      = 'NewsID';
 

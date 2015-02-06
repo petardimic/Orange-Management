@@ -54,9 +54,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->show_content_backend();
                 break;
@@ -66,12 +66,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function show_content_backend()
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
             case 'article':
                 $this->show_backend_articles();
                 break;
@@ -87,12 +89,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function show_backend_articles()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/article-list.tpl.php';
@@ -103,12 +107,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function show_backend_shipping()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/shipping-list.tpl.php';
@@ -119,12 +125,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
+     * @param \Framework\Message\RequestAbstract $request Request
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function show_backend_arrival()
     {
-        switch($this->app->request->getData()['l4']) {
+        switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/arrival-list.tpl.php';

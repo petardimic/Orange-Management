@@ -41,7 +41,7 @@
             <?php
             /** @var \Modules\Accounting\CreditorList $creditorList */
             $data           = $creditorList->getList();
-            $url['level']   = array_slice($this->app->request->getData(), 0, 4);
+            $url['level']   = array_slice($request->getData(), 0, 4);
             $url['level'][] = 'single';
             $url['level'][] = 'front';
             $url['id']      = 'AccountingCreditorID';

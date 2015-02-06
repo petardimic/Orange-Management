@@ -119,7 +119,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
         switch($data[0]) {
             case \Modules\Navigation\Models\NavigationType::TOP:

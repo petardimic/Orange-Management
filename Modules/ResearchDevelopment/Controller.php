@@ -54,9 +54,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $data = null)
+    public function call($type, $request, $data = null)
     {
-        switch($this->app->request->getType()) {
+        switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->show_content_backend();
                 break;
@@ -65,7 +65,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
     public function show_content_backend()
     {
-        switch($this->app->request->getData()['l3']) {
+        switch($request->getData()['l3']) {
         }
     }
 }

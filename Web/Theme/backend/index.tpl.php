@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <?php /** @var \Web\Theme\Theme $this */
+    <?php /** @var \Web\Views\Page\BackendView $this */
     \Framework\Model\Model::load_header(); ?>
     <style>
         <?php \Framework\Model\Model::load_style_small(); ?>
@@ -15,7 +15,7 @@
 <div id="h">
     <div id="bar-s">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::TOP]); ?>
+        \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, $this->request, [\Modules\Navigation\Models\NavigationType::TOP]); ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
@@ -23,12 +23,12 @@
                data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(), 'backend']); ?>"
+                href="<?= \Framework\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
                 itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">
             <label> <input type="text" autofocus="autofocus"> </label>
-            <input type="submit" value="<?= $this->app->user->getL11n()->lang[0]['Search'] ?>">
+            <input type="submit" value="<?= $this->l11n->lang[0]['Search'] ?>">
         </span>
 
         <div id="u-logo" itemscope itemtype="http://schema.org/Person"></div>
@@ -36,10 +36,10 @@
 </div>
 <div id="out">
     <?php /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::SIDE]); ?>
+    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, $this->request, [\Modules\Navigation\Models\NavigationType::SIDE]); ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB); ?>
+        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request); ?>
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>

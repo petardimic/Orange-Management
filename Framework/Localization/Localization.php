@@ -19,22 +19,6 @@ namespace Framework\Localization;
 class Localization
 {
     /**
-     * Application instance
-     *
-     * @var \Framework\WebApplication
-     * @since 1.0.0
-     */
-    private $app = null;
-
-    /**
-     * Language ID
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    public $language = null;
-
-    /**
      * Country ID
      *
      * @var string
@@ -104,17 +88,14 @@ class Localization
     /**
      * Constructor
      *
-     * @param string                         $id  Localization ID
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param string $id   Localization ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($id, $app)
+    public function __construct($id)
     {
-        $this->app             = $app;
         $this->localization_id = $id;
-        $this->language        = $this->app->request->getLanguage();
 
         // TODO: implement!!!
         setlocale(LC_TIME, '');
@@ -149,7 +130,7 @@ class Localization
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function loadLanguage($language, $files)
+    public function loadLanguage($language, $files, $modules)
     {
         if(!$this->lang && !empty($files)) {
             $this->lang = [];
@@ -159,13 +140,12 @@ class Localization
             require __DIR__ . '/lang/' . $language . '.lang.php';
             /** @noinspection PhpUndefinedVariableInspection */
             $this->lang += $CORELANG;
-            $active_modules = $this->app->modules->getActiveModules();
 
             foreach($files as $file) {
                 /** @noinspection PhpIncludeInspection */
                 /** @var string[] $MODLANG */
                 /* TODO: change, store name inside instead of id */
-                require __DIR__ . '/../../Modules/' . $active_modules[$file['from']][0]['class'] . '/Theme/lang/' . $file['file'] . '.' . $language . '.lang.php';
+                require __DIR__ . '/../../Modules/' . $modules[$file['from']][0]['class'] . '/Theme/lang/' . $file['file'] . '.' . $language . '.lang.php';
                 /** @noinspection PhpUndefinedVariableInspection */
                 $key = (int) ($file['for'] / 100000 - 10000);
                 if(!isset($this->lang[$key])) {

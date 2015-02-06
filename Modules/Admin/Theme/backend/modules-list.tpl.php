@@ -26,7 +26,7 @@
     <?php
     /** @var \Framework\Module\Modules $modules */
     $modules_installed = $this->app->modules->getInstalledModules();
-    $url['level']      = array_slice($this->app->request->getData(), 0, 4);
+    $url['level']      = array_slice($request->getData(), 0, 4);
     $url['level'][]    = 'front';
     $url['id']         = 'class';
 
@@ -64,7 +64,7 @@
     <tbody>
     <?php
     $modules_all    = $this->app->modules->getAllModules();
-    $url['level']   = array_slice($this->app->request->getData(), 0, 4);
+    $url['level']   = array_slice($request->getData(), 0, 4);
     $url['level'][] = 'front';
 
     foreach($modules_all as $ele) {

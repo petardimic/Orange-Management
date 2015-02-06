@@ -24,14 +24,6 @@ namespace Framework\Config;
 class Settings
 {
     /**
-     * Application instance
-     *
-     * @var \Framework\WebApplication
-     * @since 1.0.0
-     */
-    private $app = null;
-
-    /**
      * Config
      *
      * @var array
@@ -40,16 +32,24 @@ class Settings
     public $config = [];
 
     /**
+     * FileCache instance
+     *
+     * @var \Framework\DataStorage\Database\Pool
+     * @since 1.0.0
+     */
+    private $dbPool = null;
+
+    /**
      * Constructor
      *
-     * @var \Framework\ApplicationAbstract $app Application instance
+     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($app)
+    public function __construct($dbPool)
     {
-        $this->app = $app;
+        $this->dbPool = $dbPool;
     }
 
     /**
@@ -70,7 +70,7 @@ class Settings
 
         // TODO: implement cache if cache is initialized
         if(!empty($ids)) {
-            $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `id`, `content` FROM `' . $this->app->dbPool->get('core')->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
+            $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`, `content` FROM `' . $this->dbPool->get('core')->prefix . 'settings` WHERE `id` IN (' . implode(',', $ids) . ')');
             $sth->execute();
             $cfgs = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
             $this->config += $cfgs;
@@ -91,7 +91,7 @@ class Settings
 
         /* TODO: change this + implement cache */
         foreach($settings as $key => $value) {
-            $sth = $this->app->dbPool->get('core')->con->prepare('UPDATE `' . $this->app->dbPool->get('core')->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
+            $sth = $this->dbPool->get('core')->con->prepare('UPDATE `' . $this->dbPool->get('core')->prefix . 'settings` SET `content` = \'' . $value . '\' WHERE `id` = ' . $key);
             $sth->execute();
         }
     }
