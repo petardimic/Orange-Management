@@ -88,7 +88,7 @@ class Localization
     /**
      * Constructor
      *
-     * @param string $id   Localization ID
+     * @param string $id Localization ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -126,6 +126,7 @@ class Localization
      *
      * @param string $language Language ID
      * @param array  $files    Language array
+     * @param array  $modules  Available modules
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -134,6 +135,10 @@ class Localization
     {
         if(!$this->lang && !empty($files)) {
             $this->lang = [];
+
+            if(!file_exists(__DIR__ . '/lang/' . $language . '.lang.php')) {
+                $language = 'en'; // TODO: maybe load server default
+            }
 
             /** @noinspection PhpIncludeInspection */
             /** @var string[] $CORELANG */

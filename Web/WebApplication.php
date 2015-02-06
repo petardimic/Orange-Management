@@ -102,12 +102,14 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
                 $pageView->setTemplate('/Web/Theme/backend/index');
+                $this->response->add('ALL', $pageView->getResponse());
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
-                if($this->dbPool->get('core')->status === \Framework\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Retry-After', 'Retry-After: 300');
+                    $this->response->add('ALL', '');
                     break;
                 }
 
@@ -119,6 +121,8 @@ class WebApplication extends \Framework\ApplicationAbstract
                     $request = new \Framework\Message\Http\Request();
                     $this->modules->running[1004400000]->call($request);
                 }
+
+                $this->response->add('ALL', '');
                 break;
 
             default:
@@ -127,10 +131,10 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $pageView = new \Framework\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
+                $this->response->add('ALL', $pageView->getResponse());
         }
 
-        $this->response->add('page', $pageView->getResponse(), 0);
-        echo $this->response->make('page');
+        echo $this->response->make('ALL');
     }
 
     /**
@@ -146,6 +150,7 @@ class WebApplication extends \Framework\ApplicationAbstract
         $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
         $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
         $this->response->addHeader('Retry-After', 'Retry-After: 300');
+        $this->response->add('ALL', '');
 
         $view->setTemplate('/Web/Theme/Error/503');
     }
