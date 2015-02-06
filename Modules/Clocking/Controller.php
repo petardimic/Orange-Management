@@ -41,7 +41,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\WebApplication $app Application instance
+     * @param \Framework\ApplicationAbstract $app Application instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -16,7 +16,7 @@ namespace Web;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class WebApplication
+class WebApplication extends \Framework\ApplicationAbstract
 {
     /**
      * Main request
@@ -33,19 +33,6 @@ class WebApplication
      * @since 1.0.0
      */
     public $response = null;
-
-    /**
-     * Database pool instance
-     *
-     * @var \Framework\DataStorage\Database\Pool
-     * @since 1.0.0
-     */
-    public $dbPool = null;
-
-    public $moduleManager = null;
-    public $eventManager  = null;
-    public $settings      = null;
-    public $cache         = null;
 
     /**
      * Constructor
