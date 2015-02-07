@@ -45,6 +45,7 @@ class WebApplication extends \Framework\ApplicationAbstract
     public function __construct($config)
     {
         $this->request  = new \Framework\Message\Http\Request();
+        $this->request->init();
         $this->response = new \Framework\Message\Http\Response();
 
         $this->dbPool = new \Framework\DataStorage\Database\Pool();
@@ -60,6 +61,13 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 break;
             case \Framework\Message\Http\WebRequestPage::BACKEND:
+                if($this->request->getRequestType() !== \Framework\Message\RequestType::GET) {
+                    $this->response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                    $this->response->addHeader('Status', 'Status:406 Not acceptable');
+                    $this->response->add('GLOBAL', '');
+                    break;
+                }
+
                 $pageView = new \Web\Views\Page\BackendView();
 
                 if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
@@ -102,39 +110,46 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
                 $pageView->setTemplate('/Web/Theme/backend/index');
-                $this->response->add('ALL', $pageView->getResponse());
+                $this->response->add('GLOBAL', $pageView->getResponse());
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
                 if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Retry-After', 'Retry-After: 300');
-                    $this->response->add('ALL', '');
+                    $this->response->add('GLOBAL', '');
                     break;
                 }
 
                 $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
+                $this->response->add('GLOBAL', new \Framework\Utils\JsonBuilder());
 
-                $requests = [];
+                $this->response->get('GLOBAL')->add([$this->request->__toString() => '']);
 
-                foreach($requests as $key => $request) {
-                    $request = new \Framework\Message\Http\Request();
-                    $this->modules->running[1004400000]->call($request);
+                $request = new \Framework\Message\Http\Request();
+
+                if(($uris = $this->request->getData('r')) !== false) {
+                    $uris = json_decode($uris, true);
+
+                    foreach($uris as $key => $uri) {
+                        $request->init($uri);
+
+                        $this->modules->running[1004400000]->call($request);
+                    }
                 }
 
-                $this->response->add('ALL', '');
+                $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                 break;
-
             default:
                 $this->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->addHeader('Status', 'Status: 404 Not Found');
 
                 $pageView = new \Framework\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
-                $this->response->add('ALL', $pageView->getResponse());
+                $this->response->add('GLOBAL', $pageView->getResponse());
         }
 
-        echo $this->response->make('ALL');
+        echo $this->response->make('GLOBAL');
     }
 
     /**
@@ -150,7 +165,7 @@ class WebApplication extends \Framework\ApplicationAbstract
         $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
         $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
         $this->response->addHeader('Retry-After', 'Retry-After: 300');
-        $this->response->add('ALL', '');
+        $this->response->add('GLOBAL', '');
 
         $view->setTemplate('/Web/Theme/Error/503');
     }

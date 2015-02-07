@@ -107,9 +107,11 @@ abstract class RequestAbstract implements \Framework\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getData()
+    public function getData($key = null)
     {
-        return $this->data;
+        if($key === null) return $this->data;
+
+        return (isset($this->data[$key]) ? $this->data[$key] : false);
     }
 
     /**

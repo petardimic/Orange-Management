@@ -50,6 +50,8 @@ class Request extends \Framework\Message\RequestAbstract
      */
     public $os = null;
 
+    private $requestType = null;
+
     /**
      * Constructor
      *
@@ -60,7 +62,47 @@ class Request extends \Framework\Message\RequestAbstract
     {
         parent::__construct();
         $this->uri = new \Framework\Uri\Http();
-        $this->getRequest();
+    }
+
+    public function init($uri = null)
+    {
+        $this->data = [
+            'l0' => '',
+            'l1' => '',
+            'l2' => '',
+            'l3' => '',
+            'l4' => '',
+            'l5' => '',
+            'l6' => '',
+            'l7' => '',
+        ];
+
+        if($uri === null) {
+            /** @noinspection PhpWrongStringConcatenationInspection */
+            $this->data = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->data;
+        } else {
+            $this->setRequestType($uri['type']);
+            $this->data = $this->uri->routify($uri['request']) + $this->data;
+        }
+
+        $this->type = $this->data['l1'];
+        $this->lang = $this->data['l0'];
+
+        $this->hash = null;
+        $this->hash = [
+            $this->hashRequest([$this->data['l1']]),
+            $this->hashRequest([$this->data['l1'], $this->data['l2']]),
+            $this->hashRequest([$this->data['l1'], $this->data['l2'], $this->data['l3']]),
+            $this->hashRequest([$this->data['l1'],
+                                $this->data['l2'],
+                                $this->data['l3'],
+                                $this->data['l4']]),
+            $this->hashRequest([$this->data['l1'],
+                                $this->data['l2'],
+                                $this->data['l3'],
+                                $this->data['l4'],
+                                $this->data['l5']]),
+        ];
     }
 
     /**
@@ -68,39 +110,6 @@ class Request extends \Framework\Message\RequestAbstract
      */
     public function getRequest()
     {
-        if($this->data === null) {
-            $this->data = [
-                'l0' => '',
-                'l1' => '',
-                'l2' => '',
-                'l3' => '',
-                'l4' => '',
-                'l5' => '',
-                'l6' => '',
-                'l7' => '',
-            ];
-
-            /** @noinspection PhpWrongStringConcatenationInspection */
-            $this->data = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->data;
-            $this->type = $this->data['l1'];
-            $this->lang = $this->data['l0'];
-
-            $this->hash = [
-                $this->hashRequest([$this->data['l1']]),
-                $this->hashRequest([$this->data['l1'], $this->data['l2']]),
-                $this->hashRequest([$this->data['l1'], $this->data['l2'], $this->data['l3']]),
-                $this->hashRequest([$this->data['l1'],
-                                    $this->data['l2'],
-                                    $this->data['l3'],
-                                    $this->data['l4']]),
-                $this->hashRequest([$this->data['l1'],
-                                    $this->data['l2'],
-                                    $this->data['l3'],
-                                    $this->data['l4'],
-                                    $this->data['l5']]),
-            ];
-        }
-
         return $this->data;
     }
 
@@ -222,5 +231,51 @@ class Request extends \Framework\Message\RequestAbstract
             || (empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
             || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')
             || $_SERVER['SERVER_PORT'] == $port;
+    }
+
+    /**
+     * Stringify request
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __toString()
+    {
+        $lastElement = end($this->hash);;
+        reset($this->hash);
+
+        return $lastElement;
+    }
+
+    /**
+     * Get request type
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getRequestType()
+    {
+        if(!isset($this->requestType)) {
+            $this->requestType =  $_SERVER['REQUEST_METHOD'];
+        }
+
+        return $this->requestType;
+    }
+
+    /**
+     * Set request type
+     *
+     * @param \Framework\Message\RequestType $type Request type
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setRequestType($type)
+    {
+        $this->requestType = $type;
     }
 }

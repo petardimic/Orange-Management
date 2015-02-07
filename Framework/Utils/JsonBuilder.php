@@ -24,7 +24,7 @@ class JsonBuilder
      * @var array
      * @since 1.0.0
      */
-    private $json = null;
+    private $json = [];
 
     /**
      * Constructor
@@ -74,7 +74,7 @@ class JsonBuilder
      */
     public function remove($path, $delim)
     {
-        $this->json = \Framework\Utils\ArrayUtils::unset_array($path, $this->json, $delim);
+        $this->json = \Framework\Utils\ArrayUtils::unsetArray($path, $this->json, $delim);
     }
 
     /**

@@ -137,12 +137,12 @@ class Response
      *
      * @param int $id Response ID
      *
-     * @return string
+     * @return mixed
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function get($id)
+    public function &get($id)
     {
         return $this->response[$id];
     }

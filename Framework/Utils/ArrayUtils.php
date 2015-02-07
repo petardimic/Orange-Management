@@ -30,7 +30,7 @@ class ArrayUtils
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function unset_array($path, $data, $delim)
+    public static function unsetArray($path, $data, $delim)
     {
         $nodes  = explode($delim, $path);
         $prevEl = null;
@@ -62,7 +62,7 @@ class ArrayUtils
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function in_array_r($needle, $haystack, $id = null)
+    public static function inArrayRecursive($needle, $haystack, $id = null)
     {
         $found = false;
 
@@ -74,7 +74,7 @@ class ArrayUtils
             if($item === $needle) {
                 return true;
             } elseif(is_array($item)) {
-                $found = self::in_array_r($needle, $item, $id);
+                $found = self::inArrayRecursive($needle, $item, $id);
 
                 if($found) {
                     break;

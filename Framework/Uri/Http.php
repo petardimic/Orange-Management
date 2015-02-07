@@ -67,6 +67,25 @@ class Http implements \Framework\Uri\UriInterface
         return $uri;
     }
 
+    public static function routify($uri) {
+        $route = parse_url($uri);
+        $path = explode('/', ltrim(rtrim($route['path'], '.php'), '/'));
+
+        $count = count($path);
+
+        for($i = 0; $i < $count; $i++) {
+            $path['l'.$i] = $path[$i];
+            unset($path[$i]);
+        }
+
+        $query = [];
+        if(isset($route['query'])) {
+            parse_str($route['query'], $query);
+        }
+
+        return $path + $query;
+    }
+
     /**
      * {@inheritdoc}
      */
