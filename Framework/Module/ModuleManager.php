@@ -55,7 +55,7 @@ class ModuleManager
     /**
      * All modules that are running on this uri
      *
-     * @var array
+     * @var \Framework\Module\ModuleAbstract
      * @since 1.0.0
      */
     public $running = null;

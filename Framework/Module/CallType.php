@@ -21,5 +21,4 @@ namespace Framework\Module;
 abstract class CallType extends \Framework\Datatypes\Enum
 {
     const WEB = 0; /* Web request */
-
 }

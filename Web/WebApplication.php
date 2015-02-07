@@ -121,10 +121,19 @@ class WebApplication extends \Framework\ApplicationAbstract
                     break;
                 }
 
+                \Framework\Module\ModuleFactory::$app = $this;
+                \Framework\Model\Model::$app          = $this;
+
+                $this->eventManager   = new \Framework\Event\EventManager();
+                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession(0);
+                $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
+                $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->user           = $this->auth->authenticate();
+
                 $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \Framework\Utils\JsonBuilder());
 
-                $this->response->get('GLOBAL')->add([$this->request->__toString() => '']);
+                $this->response->get('GLOBAL')->add([$this->request->__toString() => null]);
 
                 $request = new \Framework\Message\Http\Request();
 
@@ -133,8 +142,37 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                     foreach($uris as $key => $uri) {
                         $request->init($uri);
+                        $toLoad = $this->moduleManager->getUriLoads($request);
 
-                        $this->modules->running[1004400000]->call($request);
+                        if(isset($toLoad[4])) {
+                            foreach($toLoad[4] as $module) {
+                                \Framework\Module\ModuleFactory::getInstance($module['file']);
+                            }
+                        }
+
+                        if(isset($toLoad[5])) {
+                            $this->user->getL11n()->loadLanguage($request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
+                        }
+
+                        /** @noinspection PhpUndefinedMethodInspection */
+                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $request);
+                    }
+                } else {
+                    $toLoad = $this->moduleManager->getUriLoads($this->request);
+
+                    if(isset($toLoad[4])) {
+                        foreach($toLoad[4] as $module) {
+                            \Framework\Module\ModuleFactory::getInstance($module['file']);
+                        }
+                    }
+
+                    if(isset($toLoad[5])) {
+                        $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
+                    }
+
+                    if(isset($this->moduleManager->running['Content'])) {
+                        /** @noinspection PhpUndefinedMethodInspection */
+                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $this->request);
                     }
                 }
 
