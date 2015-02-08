@@ -25,5 +25,5 @@ abstract class DatabaseStatus extends \Framework\Datatypes\Enum
     const MISSING_TABLE    = 2; /* One of the core tables couldn't be found */
     const FAILURE          = 3; /* Unknown failure */
     const READONLY         = 4; /* Database connection is in readonly (but ok) */
-
+    const CLOSED           = 5; /* Database connection closed */
 }

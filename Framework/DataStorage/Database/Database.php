@@ -63,7 +63,7 @@ class Database
      * @var \Framework\DataStorage\Database\DatabaseStatus
      * @since 1.0.0
      */
-    public $status = 0;
+    public $status = \Framework\DataStorage\Database\DatabaseStatus::CLOSED;
 
     /**
      * Object constructor
@@ -77,6 +77,12 @@ class Database
      */
     public function __construct($dbdata)
     {
+        $this->connect($dbdata);
+    }
+
+    public function connect($dbdata) {
+        $this->close();
+
         $this->dbdata = $dbdata;
         $this->prefix = $dbdata['prefix'];
 
@@ -112,6 +118,18 @@ class Database
     }
 
     /**
+     * Close database connection
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function close()
+    {
+        $this->con = null;
+        $this->status = \Framework\DataStorage\Database\DatabaseStatus::CLOSED;
+    }
+
+    /**
      * Object destructor
      *
      * Sets the database connection to null
@@ -121,7 +139,7 @@ class Database
      */
     public function __destruct()
     {
-        $this->con = null;
+        $this->close();
     }
 
     /**
