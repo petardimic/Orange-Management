@@ -20,5 +20,4 @@ abstract class SocketType extends \Framework\Datatypes\Enum
 {
     const SERVER = 'server'; /* Server socket */
     const CLIENT = 'client'; /* Client socket */
-
 }

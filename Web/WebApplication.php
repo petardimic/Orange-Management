@@ -170,9 +170,9 @@ class WebApplication extends \Framework\ApplicationAbstract
                         $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
                     }
 
-                    if(isset($this->moduleManager->running['Content'])) {
+                    if(isset(\Framework\Module\ModuleFactory::$loaded['Content'])) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $this->request);
+                        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request);
                     }
                 }
 

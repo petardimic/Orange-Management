@@ -32,24 +32,10 @@
             "from": 1000100000
         },
         {
-            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
-            "type": 4,
-            "for": 1004400000,
-            "file": "Admin",
-            "from": 1000100000
-        },
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "pid": ["1854402adfd24425fd13776a2d3787151609b360"],
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1000100000
-        },
-        {
-            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
-            "type": 5,
-            "for": 1004400000,
-            "file": "api",
             "from": 1000100000
         },
         {
@@ -58,6 +44,20 @@
             "from": 1000100000,
             "for": 1000500000,
             "file": "nav.backend"
+        },
+        {
+            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
+            "type": 4,
+            "for": 1004100000,
+            "file": "Admin",
+            "from": 1000100000
+        },
+        {
+            "pid": ["20ba30c34571913a02e5eaf83836eb65b53b1c35"],
+            "type": 5,
+            "for": 1004100000,
+            "file": "backend",
+            "from": 1000100000
         }
     ],
     "lang": true,

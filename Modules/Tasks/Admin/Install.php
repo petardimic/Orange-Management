@@ -90,10 +90,10 @@ class Install extends \Framework\Install\Module
                             `task_sub_done` datetime NOT NULL,
                             `task_sub_creator` int(11) NOT NULL,
                             `task_sub_created` datetime NOT NULL,
-                            `task_sub_element` datetime NOT NULL,
+                            `task_sub_element` int(11) NOT NULL,
                             PRIMARY KEY (`task_sub_id`),
                             KEY `task_sub_creator` (`task_sub_creator`),
-                            KEY `task_sub_element` (`task_sub_element`),
+                            KEY `task_sub_element` (`task_sub_element`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
