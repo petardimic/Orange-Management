@@ -1,5 +1,5 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, null, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
 ?>
 

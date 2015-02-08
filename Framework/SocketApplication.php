@@ -40,13 +40,13 @@ class SocketApplication extends \Framework\ApplicationAbstract
         $this->type = $type;
         $socket     = null;
 
-        if($type == \Framework\Socket\SocketType::SERVER) {
+        if($type === \Framework\Socket\SocketType::SERVER) {
             // TODO: load all modules + other stuff
 
             $socket = new \Framework\Socket\Server\Server();
             $socket->create('127.0.0.1', $config['socket']['port']);
             $socket->setLimit($config['socket']['limit']);
-        } elseif($type == \Framework\Socket\SocketType::CLIENT) {
+        } elseif($type === \Framework\Socket\SocketType::CLIENT) {
             $socket = new \Framework\Socket\Client\Client();
             $socket->create('127.0.0.1', $config['socket']['port']);
         } else {
