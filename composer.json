@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "php": ">=5.5.0",
+        "halleck45/phpmetrics": "*",
         "squizlabs/php_codesniffer": "1.*",
         "phpmd/phpmd" : "@stable",
         "sebastian/phpdcd": "*",

@@ -156,7 +156,8 @@ module.exports = function (grunt) {
                 command: [
                     'mkdir Docs/Stats',
                     'phploc Framework/ > Docs/Stats/FrameworkStats.stats',
-                    'phploc Modules/ > Docs/Stats/ModulesStats.stats'
+                    'phploc Modules/ > Docs/Stats/ModulesStats.stats',
+                    'phpmetrics --report-html=Docs/Stats/Report.html Framework/'
                 ].join('&&')
             }
         },

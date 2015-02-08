@@ -10,12 +10,13 @@
 *.xml
 *.iml
 *.lock
+*.phar
 tools/.metadata/*
 cache/*
 .sass-cache/*
 .idea/*
 vendor/*
-content/themes/oms-slim/backend/css/*
+content/themes/backend/css/*
 node_modules/*
 .vagrant/*
 composer.phar
