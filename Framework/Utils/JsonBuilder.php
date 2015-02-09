@@ -52,15 +52,16 @@ class JsonBuilder
     /**
      * Add data
      *
-     * @param array $data      Data to add
-     * @param bool  $overwrite Should overwrite existing data
+     * @param string $path      Path used for storage
+     * @param array  $value     Data to add
+     * @param bool   $overwrite Should overwrite existing data
      *
      * @since  1.0.0
      * @author Dennis Eichhorn
      */
-    public function add($data, $overwrite = true)
+    public function add($path, $value, $overwrite = true)
     {
-        $this->json = ($overwrite ? $data + $this->json : $this->json + $data);
+        $this->json = \Framework\Utils\ArrayUtils::setArray($path, $this->json, $value, '/');
     }
 
     /**

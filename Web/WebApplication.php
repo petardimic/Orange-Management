@@ -133,7 +133,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                 $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \Framework\Utils\JsonBuilder());
 
-                $this->response->get('GLOBAL')->add([$this->request->__toString() => null]);
+                $this->response->get('GLOBAL')->add($this->request->__toString(), null);
 
                 $request = new \Framework\Message\Http\Request();
 

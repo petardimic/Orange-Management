@@ -53,6 +53,41 @@ class ArrayUtils
     /**
      * Check if needle exists in multidimensional array
      *
+     * @param string $path  Path to element
+     * @param array  $data  Array
+     * @param mixed  $value Value to add
+     * @param string $delim Delimeter for path
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function setArray($path, $data, $value, $delim)
+    {
+        $pathParts = explode($delim, $path);
+        $current   = &$data;
+
+        foreach($pathParts as $key) {
+            $current = &$current[$key];
+        }
+
+        if(is_array($current) && !is_array($value)) {
+            $current[] = $value;
+        } elseif(is_array($current) && is_array($value)) {
+            $current += $value;
+        } elseif(is_scalar($current) && $current !== null) {
+            $current = [$current, $value];
+        } else {
+            $current = $value;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Check if needle exists in multidimensional array
+     *
      * @param mixed $needle   Needle for search
      * @param array $haystack Haystack for search
      * @param mixed $id       ID for search

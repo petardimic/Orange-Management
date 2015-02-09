@@ -59,6 +59,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request);
                 break;
+            case \Framework\Message\Http\WebRequestPage::API:
+                $this->showAPI($request);
+                break;
         }
     }
 
@@ -273,5 +276,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
                 break;
         }
+    }
+
+    public function showAPI($request)
+    {
     }
 }
