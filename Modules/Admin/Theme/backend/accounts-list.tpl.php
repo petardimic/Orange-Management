@@ -36,6 +36,16 @@ $accountListView->addView('header', $headerView);
 $accountListView->addView('footer', $footerView);
 
 /*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1000104001);
+
+/*
  * Template
  */
+echo $nav->getResponse();
 echo $accountListView->getResponse();

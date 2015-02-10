@@ -144,6 +144,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'list':
                 $accountListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $accountListView->addData('nav', $navigation->nav);
                 echo $accountListView->getResponse();
                 break;
             case 'single':
@@ -219,6 +222,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'list':
                 $groupListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $groupListView->addData('nav', $navigation->nav);
                 echo $groupListView->getResponse();
                 break;
             case 'single':
