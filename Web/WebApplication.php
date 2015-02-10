@@ -110,6 +110,10 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
                 $pageView->setTemplate('/Web/Theme/backend/index');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
+                $pageView->addData('nav', $navigation->nav);
+
                 $this->response->add('GLOBAL', $pageView->getResponse());
                 break;
             case \Framework\Message\Http\WebRequestPage::API:

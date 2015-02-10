@@ -58,12 +58,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->show_content_backend();
+                $this->showBackendContent($request);
                 break;
         }
     }
 
-    public function show_content_backend()
+    public function showBackendContent($request)
     {
         switch($request->getData()['l3']) {
             case 'dashboard':

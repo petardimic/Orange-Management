@@ -35,6 +35,14 @@ class Localization
     public $timezone = null;
 
     /**
+     * Language ISO code
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    public $language = 'en';
+
+    /**
      * Currency
      *
      * @var string

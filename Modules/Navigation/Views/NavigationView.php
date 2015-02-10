@@ -28,7 +28,29 @@ class NavigationView extends \Framework\Views\ViewAbstract {
      */
 	protected $navId = null;
 
-	protected $nav = null;
+	/**
+	 * Navigation
+	 *
+	 * @var mixed[]
+	 * @since 1.0.0
+	 */
+	protected $nav = [];
+
+	/**
+	 * Language used for the navigation
+	 *
+	 * @var string
+	 * @since 1.0.0
+	 */
+	protected $language = 'en';
+
+	/**
+	 * Parent element used for navigation
+	 *
+	 * @var int
+	 * @since 1.0.0
+	 */
+	protected $parent = 0;
 
 	/**
      * {@inheritdoc}
@@ -59,5 +81,71 @@ class NavigationView extends \Framework\Views\ViewAbstract {
      */
 	public function getNavId() {
 		return $this->navId;
+	}
+
+	/**
+	 * @return mixed
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function getNav()
+	{
+		return $this->nav;
+	}
+
+	/**
+	 * @param mixed $nav
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function setNav($nav)
+	{
+		$this->nav = $nav;
+	}
+
+	/**
+	 * @return string
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function getLanguage()
+	{
+		return $this->language;
+	}
+
+	/**
+	 * @param string $language
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function setLanguage($language)
+	{
+		$this->language = $language;
+	}
+
+	/**
+	 * @return int
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function getParent()
+	{
+		return $this->parent;
+	}
+
+	/**
+	 * @param int $parent
+	 *
+	 * @since  1.0.0
+	 * @author Dennis Eichhorn <d.eichhorn@oms.com>
+	 */
+	public function setParent($parent)
+	{
+		$this->parent = $parent;
 	}
 }

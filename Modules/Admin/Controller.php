@@ -142,15 +142,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getData()['l4']) {
             case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
-
-                if(!isset($request->getData()['page'])) {
-                    $request->getData()['page'] = 1;
-                }
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/accounts-list.tpl.php';
+                $accountListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
+                echo $accountListView->getResponse();
                 break;
             case 'single':
                 $this->showBackendAccountSingle($request);
@@ -198,12 +192,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
         switch($request->getData()['l4']) {
             case 'list':
-                if(!isset($request->getData()['page'])) {
-                    $request->getData()['page'] = 1;
-                }
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/modules-list.tpl.php';
+                $moduleListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
+                echo $moduleListView->getResponse();
                 break;
             case 'front':
                 //$info = $this->app->modules->moduleInfoGet((int)$request->getData()['id']);
@@ -229,16 +220,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $groupListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
                 echo $groupListView->getResponse();
-
-                /** @noinspection PhpUnusedLocalVariableInspection *//*
-                $groups = new \Modules\Admin\Models\GroupList($this->app->dbPool);
-
-                if(!isset($request->getData()['page'])) {
-                    $request->getData()['page'] = 1;
-                }*/
-
-                /** @noinspection PhpIncludeInspection */
-                //include __DIR__ . '/Theme/backend/groups-list.tpl.php';
                 break;
             case 'single':
                 $this->showBackendGroupSingle($request);

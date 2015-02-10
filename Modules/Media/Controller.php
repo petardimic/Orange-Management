@@ -26,7 +26,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -82,20 +81,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
                 break;
             case 'list':
-                /*
-                $view = new \Framework\Views\ViewAbstract();
-                $view->setTemplate('/Modules/Media/Theme/backend/media-list');
-                echo $view->getResponse();*/
+                $mediaList = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $mediaList->setTemplate('/Modules/Media/Theme/backend/media-list');
 
-                if(!isset($request->getData()['page'])) {
-                    $request->getData()['page'] = 1;
-                }
-
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $mList = new \Modules\Media\Models\MediaList($this->app->dbPool);
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/media-list.tpl.php';
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $mediaList->addData('nav', $navigation->nav);
+                echo $mediaList->getResponse();
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */

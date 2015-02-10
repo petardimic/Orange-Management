@@ -1,21 +1,30 @@
-<!DOCTYPE HTML>
+<?php
+/**
+ * @var \Web\Views\Page\BackendView $this
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/top');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$top = $nav->getResponse();
+
+$nav->setTemplate('/Modules/Navigation/Theme/backend/side');
+$side = $nav->getResponse();
+?>
+    <!DOCTYPE HTML>
 <html>
-<head>
-    <?php /** @var \Web\Views\Page\BackendView $this */
-    \Framework\Model\Model::load_header(); ?>
-    <style>
-        <?php \Framework\Model\Model::load_style_small(); ?>
-    </style>
-</head>
+    <head>
+        <?php
+        \Framework\Model\Model::load_header(); ?>
+        <style>
+            <?php \Framework\Model\Model::load_style_small(); ?>
+        </style>
+    </head>
 <body>
 <div class="vh" id="dim"></div>
-<?php /** @noinspection PhpUndefinedMethodInspection */
-// TODO: use content module with paramenter in order to call global content
-//\Framework\Module\ModuleFactory::$loaded['GlobalContent']->call(\Framework\Module\CallType::WEB); ?>
 <div id="h">
     <div id="bar-s">
-        <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, $this->request, [\Modules\Navigation\Models\NavigationType::TOP]); ?>
+        <?= $top; ?>
     </div>
     <div id="bar-b">
         <span class="vC" id="nav-toggle">
@@ -35,8 +44,7 @@
     </div>
 </div>
 <div id="out">
-    <?php /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, $this->request, [\Modules\Navigation\Models\NavigationType::SIDE]); ?>
+    <?= $side; ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
         \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request); ?>
