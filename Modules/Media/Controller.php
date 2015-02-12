@@ -59,6 +59,9 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case \Framework\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request);
                 break;
+            case \Framework\Message\Http\WebRequestPage::API:
+                $this->showAPI($request);
+                break;
         }
     }
 
@@ -95,10 +98,28 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         }
     }
 
+    private function showAPI($request)
+    {
+        switch($request->getRequestType()) {
+            case \Framework\Message\RequestType::POST:
+                $this->apiUpload($request);
+                break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $this->app->response->addHeader('Status', 'Status:406 Not acceptable');
+                return;
+        }
+    }
+
     private function apiUpload($request)
     {
-
-
+        $upload = new \Modules\Media\Models\Upload();
+        $rndPath = str_pad(dechex(rand(0, 65535)), 4, '0', STR_PAD_LEFT);
+        $upload->setOutputDir('/Modules/Media/Files/'.$rndPath[0].$rndPath[1].'/'.$rndPath[2].$rndPath[3]);
+        $upload->setFileName(false);
+        $ret = $upload->upload($_FILES);
         // success!!!!!!!!!!!!!!!
+
+        var_dump($ret);
     }
 }

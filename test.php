@@ -1,2 +1,2 @@
 <?php
-var_dump(parse_url('/en/api.php?test=a&ja=b'));
+var_dump(str_pad(dechex(65535), 4, '0', STR_PAD_LEFT));

@@ -24,7 +24,7 @@ class Upload
      * @var int
      * @since 1.0.0
      */
-    private $maxSize = 0;
+    private $maxSize = 100000;
 
     /**
      * Allowed mime types
@@ -32,7 +32,7 @@ class Upload
      * @var array
      * @since 1.0.0
      */
-    private $allowedTypes = [];
+    private $allowedTypes = ['text/plain', 'text/csv'];
 
     /**
      * Output directory
@@ -40,7 +40,7 @@ class Upload
      * @var string
      * @since 1.0.0
      */
-    private $outputDir = '';
+    private $outputDir = '/Modules/Media/Files';
 
     /**
      * Output file name
@@ -62,7 +62,7 @@ class Upload
     {
         if(!isset($FILE['upfile']['error']) || is_array($FILE['upfile']['error'])) {
             // TODO: handle wrong parameters
-            return;
+            return -1;
         }
 
         switch($FILE['upfile']['error']) {
@@ -70,32 +70,42 @@ class Upload
                 break;
             case UPLOAD_ERR_NO_FILE:
                 // TODO: no file sent
-                return;
+                return -2;
             case UPLOAD_ERR_INI_SIZE:
             case UPLOAD_ERR_FORM_SIZE:
                 // too large
-                return;
+                return -3;
             default:
-                return;
+                return -4;
         }
 
         if($FILE['upfile']['size'] > $this->maxSize) {
             // too large2
-            return;
+            return -5;
         }
 
         // TODO: do I need pecl fileinfo?
-        $finfo = new \finfo(FILEINFO_MIME_TYPE);
-
-        if(false === $ext = array_search($finfo->file($FILE['upfile']['tmp_name']), $this->allowedTypes, true)) {
+        if(false === $ext = array_search($FILE['upfile']['type'], $this->allowedTypes, true)) {
             // wrong file format
-            return;
+            return -6;
         }
 
-        if(!move_uploaded_file($FILE['upfile']['tmp_name'], $this->outputDir . '/' . $this->fileName)) {
-            // couldn't move
-            return;
+        if(!$this->fileName) {
+            $this->fileName = sha1_file($FILE['upfile']['tmp_name']) . '.' . explode('.', $FILE['upfile']['name'])[1];
         }
+
+        $path =  __DIR__ . '/../../..' . $this->outputDir;
+
+        if(!is_dir($path)) {
+            \mkdir($path, '0655', true);
+        }
+
+        if(!move_uploaded_file($FILE['upfile']['tmp_name'], $path . '/' . $this->fileName)) {
+            // couldn't move
+            return -6;
+        }
+
+        return 0;
     }
 
     /**
@@ -176,7 +186,7 @@ class Upload
     }
 
     /**
-     * @param string $fileName
+     * @param string|false $fileName
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

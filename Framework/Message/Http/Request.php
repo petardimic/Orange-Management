@@ -79,7 +79,7 @@ class Request extends \Framework\Message\RequestAbstract
 
         if($uri === null) {
             /** @noinspection PhpWrongStringConcatenationInspection */
-            $this->data = (isset($_GET) ? $_GET : file_get_contents("php://input")) + $this->data;
+            $this->data = (isset($_GET) ? $_GET : file_get_contents('php://input')) + $this->data;
         } else {
             $this->setRequestType($uri['type']);
             $this->data = $this->uri->routify($uri['request']) + $this->data;
