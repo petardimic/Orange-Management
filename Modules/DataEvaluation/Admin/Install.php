@@ -35,16 +35,19 @@ class Install extends \Framework\Install\Module
                             `dataeval_id` int(11) NOT NULL AUTO_INCREMENT,
                             `dataeval_title` varchar(25) NOT NULL,
                             `dataeval_desc` varchar(255) NOT NULL,
+                            `dataeval_media` int(11) NOT NULL,
                             `dataeval_creator` int(11) NOT NULL,
                             `dataeval_created` datetime NOT NULL,
                             PRIMARY KEY (`dataeval_id`),
+                            KEY `dataeval_media` (`dataeval_media`),
                             KEY `dataeval_creator` (`dataeval_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
                 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'dataeval_evaluation`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'dataeval_evaluation_ibfk_1` FOREIGN KEY (`dataeval_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'dataeval_evaluation_ibfk_1` FOREIGN KEY (`dataeval_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`media_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'dataeval_evaluation_ibfk_2` FOREIGN KEY (`dataeval_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }
