@@ -51,6 +51,23 @@ class Install extends \Framework\Install\Module
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media_relation` (
+                            `media_relation_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `media_relation_src`  varchar(100) NOT NULL,
+                            `media_relation_dst` varchar(255) NOT NULL,
+                            PRIMARY KEY (`media_relation_id`),
+                            KEY `media_relation_src` (`media_relation_src`),
+                            KEY `media_relation_dst` (`media_relation_dst`),
+                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                )->execute();
+
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'media_relation`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_relation_ibfk_1` FOREIGN KEY (`media_relation_src`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_relation_ibfk_2` FOREIGN KEY (`media_relation_dst`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`);'
+                )->execute();
+
+                $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media_permission` (
                             `media_permission_id` int(11) NOT NULL AUTO_INCREMENT,
                             `media_permission_type`  tinyint(1) NOT NULL,

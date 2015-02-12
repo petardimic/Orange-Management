@@ -70,7 +70,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    private function showContentBackend($request)
     {
         switch($request->getData()['l3']) {
             case 'single':
@@ -93,5 +93,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/media-create.tpl.php';
                 break;
         }
+    }
+
+    private function apiUpload($request)
+    {
+
+
+        // success!!!!!!!!!!!!!!!
     }
 }
