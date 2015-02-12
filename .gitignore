@@ -16,6 +16,8 @@ cache/*
 .sass-cache/*
 .idea/*
 vendor/*
+External/*
+bower_components/*
 content/themes/backend/css/*
 node_modules/*
 .vagrant/*

@@ -117,9 +117,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         $rndPath = str_pad(dechex(rand(0, 65535)), 4, '0', STR_PAD_LEFT);
         $upload->setOutputDir('/Modules/Media/Files/'.$rndPath[0].$rndPath[1].'/'.$rndPath[2].$rndPath[3]);
         $upload->setFileName(false);
-        $ret = $upload->upload($_FILES);
-        // success!!!!!!!!!!!!!!!
-
-        var_dump($ret);
+        $status = $upload->upload($_FILES);
     }
 }

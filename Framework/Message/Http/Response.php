@@ -47,19 +47,28 @@ class Response
     /**
      * Add header by ID
      *
-     * @param mixed  $key    Header ID
-     * @param string $header Header string
+     * @param mixed  $key       Header ID
+     * @param string $header    Header string
+     * @param bool   $overwrite Overwrite existing headers
+     *
+     * @return bool
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addHeader($key, $header)
+    public function addHeader($key, $header, $overwrite = true)
     {
+        if(!$overwrite && isset($this->header[$key])) {
+            return false;
+        }
+
         $this->header[$key] = $header;
 
         if($this->autoPush) {
             $this->pushHeaderId($key);
         }
+
+        return true;
     }
 
     /**
@@ -160,6 +169,7 @@ class Response
     public function make($id)
     {
         $this->pushHeader();
+
         return $this->get($id);
     }
 
