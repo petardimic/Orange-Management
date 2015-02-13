@@ -116,13 +116,17 @@ class ViewAbstract
     /**
      * @param string $id View ID
      *
-     * @return ViewAbstract
+     * @return false|ViewAbstract
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getView($id)
     {
+        if(!isset($this->views[$id])) {
+            return false;
+        }
+
         return $this->views[$id];
     }
 
@@ -136,6 +140,10 @@ class ViewAbstract
      */
     public function removeView($id)
     {
+        if(!isset($this->views[$id])) {
+            return;
+        }
+
         unset($this->views[$id]);
     }
 
@@ -150,7 +158,8 @@ class ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private static function viewSort($a, $b) {
+    private static function viewSort($a, $b)
+    {
         if($a['order'] === $b['order']) {
             return 0;
         }
@@ -161,10 +170,10 @@ class ViewAbstract
     /**
      * Add view
      *
-     * @param string       $id View ID
+     * @param string       $id        View ID
      * @param ViewAbstract $view
-     * @param null|int $order Order of view
-     * @param bool $overwrite Overwrite existing view
+     * @param null|int     $order     Order of view
+     * @param bool         $overwrite Overwrite existing view
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -181,9 +190,9 @@ class ViewAbstract
     /**
      * Edit view
      *
-     * @param string       $id View ID
+     * @param string       $id    View ID
      * @param ViewAbstract $view
-     * @param null|int $order Order of view
+     * @param null|int     $order Order of view
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -221,8 +230,8 @@ class ViewAbstract
     public function getResponses()
     {
         ob_start();
-        
-        foreach ($this->views as $key => $view) {
+
+        foreach($this->views as $key => $view) {
             echo $view->getResponse();
         }
 

@@ -18,7 +18,8 @@ $toInstall = [
     'Admin',
     'BackendDashboard',
     'Business',
-    'Media',/*
+    'Media',
+    'Reporter',/*
     'ItemReference',
     'Sales',
     'Billing',

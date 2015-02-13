@@ -1,5 +1,6 @@
 <?php
 $MODLANG[5] = [
-    'List'  => 'List',
-    'Media' => 'Media',
+    'Create' => 'Create',
+    'List'   => 'List',
+    'Media'  => 'Media',
 ];
