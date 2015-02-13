@@ -34,9 +34,5 @@
         "phpunit/phpunit": "4.3.*",
         "pdepend/pdepend" : "dev-master",
         "phploc/phploc": "*"
-    },
-    "suggest": {
-        "ext-zip": "",
-        "ext-openssl": ""
     }
 }

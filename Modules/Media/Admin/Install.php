@@ -53,11 +53,11 @@ class Install extends \Framework\Install\Module
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media_relation` (
                             `media_relation_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `media_relation_src`  varchar(100) NOT NULL,
-                            `media_relation_dst` varchar(255) NOT NULL,
+                            `media_relation_src`  int(11) NULL,
+                            `media_relation_dst` int(11) NULL,
                             PRIMARY KEY (`media_relation_id`),
                             KEY `media_relation_src` (`media_relation_src`),
-                            KEY `media_relation_dst` (`media_relation_dst`),
+                            KEY `media_relation_dst` (`media_relation_dst`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 

@@ -16,8 +16,9 @@ $toInstall = [
     'Content',
     'Navigation',
     'Admin',
+    'BackendDashboard',
     'Business',
-    'Media',
+    'Media',/*
     'ItemReference',
     'Sales',
     'Billing',
@@ -38,8 +39,7 @@ $toInstall = [
     'ProjectManagement',
     'EventManagement',
     'Chat',
-    'News',
-    'BackendDashboard',
+    'News',*/
 ];
 
 $instHOBJ->installCore();
