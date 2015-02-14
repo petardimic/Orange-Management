@@ -26,7 +26,6 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**

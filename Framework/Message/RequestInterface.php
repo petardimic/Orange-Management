@@ -97,4 +97,14 @@ interface RequestInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getOrigin();
+
+    /**
+     * Get hash
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getHash();
 }

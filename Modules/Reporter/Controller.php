@@ -57,10 +57,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
-                $this->showAPI($request);
+                $this->showAPI($request, $response);
                 break;
         }
     }
@@ -68,13 +68,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
      * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'single':
@@ -104,7 +104,16 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         }
     }
 
-    public function showAPI($request)
+    /**
+     * Shows api content
+     *
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showAPI($request, $response)
     {
     }
 }

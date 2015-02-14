@@ -117,6 +117,15 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         }
     }
 
+    /**
+     * Shows api content
+     *
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     private function showAPI($request, $response)
     {
         switch($request->getRequestType()) {
@@ -131,6 +140,15 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         }
     }
 
+    /**
+     * Shows api content
+     *
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     private function apiUpload($request, $response)
     {
         $upload  = new \Modules\Media\Models\Upload();

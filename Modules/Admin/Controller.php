@@ -329,6 +329,15 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         }
     }
 
+    /**
+     * Shows api content
+     *
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function showAPI($request, $response)
     {
     }
