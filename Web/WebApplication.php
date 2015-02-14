@@ -178,7 +178,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                             $this->sessionManager->set('UID', 1);
                             $this->sessionManager->save();
 
-                            $this->response->get('GLOBAL')->add($this->request->__toString(), 0);
+                            $this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
                             $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                             break;
                         }
