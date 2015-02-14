@@ -1,12 +1,12 @@
 <?php /** @var \Modules\Purchase\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002105001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-2">
     <?= /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                      1002105101]); ?>
 </div>
 <div class="b-6" id="i3-2-1">
@@ -22,7 +22,7 @@
                 <i class="fa fa-plus max vh"></i>
         <tr>
             <?php
-            \Framework\Model\Model::generate_table_header_view(
+            \phpOMS\Model\Model::generate_table_header_view(
                 [
                     ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                     ['name' => $this->app->user->getL11n()->lang[21]['Matchcode'], 'sort' => 0],
@@ -42,7 +42,7 @@
             $url['level'][] = 'front';
             $url['id']      = 'PurchaseArticleID';
 
-            \Framework\Model\Model::generate_table_content_view(
+            \phpOMS\Model\Model::generate_table_content_view(
                 $data['list'],
                 ['PurchaseArticleID',
                  'PurchaseArticleID',
@@ -55,6 +55,6 @@
             <tfoot>
         <tr>
             <td colspan="6" class="cT">
-                <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']); */ ?>
+                <?php /*\phpOMS\Model\Model::generate_table_pagination_view($data['count']); */ ?>
     </table>
 </div>

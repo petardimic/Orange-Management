@@ -16,7 +16,7 @@ namespace Modules\Calendar\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class AvailableStatus extends \Framework\Datatypes\Enum
+abstract class AvailableStatus extends \phpOMS\Datatypes\Enum
 {
     const AVAILABLE = 0;
     const BUSY      = 1;

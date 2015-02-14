@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Framework\Views\ViewAbstract $this
+ * @var \phpOMS\Views\ViewAbstract $this
  */
 /*
  * Navigation

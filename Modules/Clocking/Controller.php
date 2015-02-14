@@ -16,7 +16,7 @@ namespace Modules\Clocking;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -41,7 +41,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param \phpOMS\ApplicationAbstract $app Application instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class AccountType extends \Framework\Datatypes\Enum
+abstract class AccountType extends \phpOMS\Datatypes\Enum
 {
     const IMPERSONAL = 0;
     const PERSONAL   = 1;

@@ -16,12 +16,12 @@ namespace Modules\Tasks\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class TaskElement implements \Framework\Models\MapperInterface
+class TaskElement implements \phpOMS\Models\MapperInterface
 {
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -93,7 +93,7 @@ class TaskElement implements \Framework\Models\MapperInterface
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

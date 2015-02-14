@@ -1,7 +1,7 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b b-2 c30-1 c30 lf" id="i30-1-1">
     <table class="t-1 c1-2 c1 full" id="i1-2-1">
@@ -16,7 +16,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -27,14 +27,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
@@ -61,7 +61,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -72,14 +72,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
@@ -105,7 +105,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -116,14 +116,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
@@ -149,7 +149,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -160,14 +160,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url
@@ -193,7 +193,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => '', 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -204,14 +204,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url

@@ -4,7 +4,7 @@
  */
 
 /**
- * @var \Framework\Views\ViewAbstract $this
+ * @var \phpOMS\Views\ViewAbstract $this
  */
 $panelPageView = new \Web\Views\Panel\PanelView($this->l11n);
 $panelLocalizationView = clone $panelPageView;
@@ -29,10 +29,10 @@ $formPageView = new \Web\Views\Form\FormView($this->l11n);
 $formPageView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formPageView->setData('submit', $this->l11n->lang[0]['Submit']);
 $formPageView->setAction('http://127.0.0.1');
-$formPageView->setMethod(\Framework\Message\RequestType::POST);
+$formPageView->setMethod(\phpOMS\Message\RequestType::POST);
 
 $formPageView->setElement(0, 0, [
-   'type' => \Framework\Html\TagType::INPUT,
+   'type' => \phpOMS\Html\TagType::INPUT,
    'subtype' => 'text',
    'name' => 'oname',
    'label' => $this->l11n->lang[1]['OName'],
@@ -40,21 +40,21 @@ $formPageView->setElement(0, 0, [
 ]);
 
 $formPageView->setElement(1, 0, [
-    'type' => \Framework\Html\TagType::INPUT,
+    'type' => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'label' => $this->l11n->lang[1]['LAddress'],
     'name' => 'laddr',
 ]);
 
 $formPageView->setElement(2, 0, [
-    'type' => \Framework\Html\TagType::INPUT,
+    'type' => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'label' => $this->l11n->lang[1]['RAddress'],
     'name' => 'raddr',
 ]);
 
 $formPageView->setElement(3, 0, [
-    'type' => \Framework\Html\TagType::INPUT,
+    'type' => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'checkbox',
     'label' => $this->l11n->lang[1]['Cache'],
     'name' => 'cache',
@@ -70,10 +70,10 @@ $formLocalizationView = new \Web\Views\Form\FormView($this->l11n);
 $formLocalizationView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formLocalizationView->setData('submit', $this->l11n->lang[0]['Submit']);
 $formLocalizationView->setAction('http://127.0.0.1');
-$formLocalizationView->setMethod(\Framework\Message\RequestType::POST);
+$formLocalizationView->setMethod(\phpOMS\Message\RequestType::POST);
 
 $formLocalizationView->setElement(0, 0, [
-    'type' => \Framework\Html\TagType::SELECT,
+    'type' => \phpOMS\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
     'label' => $this->l11n->lang[1]['Language'],
@@ -81,7 +81,7 @@ $formLocalizationView->setElement(0, 0, [
 ]);
 
 $formLocalizationView->setElement(1, 0, [
-    'type' => \Framework\Html\TagType::SELECT,
+    'type' => \phpOMS\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
     'label' => $this->l11n->lang[1]['Country'],
@@ -89,7 +89,7 @@ $formLocalizationView->setElement(1, 0, [
 ]);
 
 $formLocalizationView->setElement(2, 0, [
-    'type' => \Framework\Html\TagType::INPUT,
+    'type' => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'label' => $this->l11n->lang[1]['Timezone'],
     'name' => 'timezone',
@@ -97,7 +97,7 @@ $formLocalizationView->setElement(2, 0, [
 ]);
 
 $formLocalizationView->setElement(3, 0, [
-    'type' => \Framework\Html\TagType::INPUT,
+    'type' => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'name' => 'datetime',
     'label' => $this->l11n->lang[1]['Timeformat'],
@@ -105,7 +105,7 @@ $formLocalizationView->setElement(3, 0, [
 ]);
 
 $formLocalizationView->setElement(4, 0, [
-    'type' => \Framework\Html\TagType::SELECT,
+    'type' => \phpOMS\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
     'label' => $this->l11n->lang[1]['Currency'],
@@ -113,7 +113,7 @@ $formLocalizationView->setElement(4, 0, [
 ]);
 
 $formLocalizationView->setElement(5, 0, [
-    'type' => \Framework\Html\TagType::SELECT,
+    'type' => \phpOMS\Html\TagType::SELECT,
     'options' => [],
     'selected' => '',
     'label' => $this->l11n->lang[1]['Numberformat'],

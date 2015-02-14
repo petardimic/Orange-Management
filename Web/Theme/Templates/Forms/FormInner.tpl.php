@@ -6,9 +6,9 @@
 <ul>
     <?php foreach($this->elements as $row): ?>
         <?php foreach($row as $element): ?>
-            <?php if($element['type'] === \Framework\Html\TagType::GENERIC): ?>
+            <?php if($element['type'] === \phpOMS\Html\TagType::GENERIC): ?>
                 <?= '<' . $element['tag'] . '>' . $element['content'] . '</' . $element['tag'] . '>'; ?>
-            <?php elseif($element['type'] === \Framework\Html\TagType::INPUT): ?>
+            <?php elseif($element['type'] === \phpOMS\Html\TagType::INPUT): ?>
                 <?php if(isset($element['label']) && $element['subtype'] !== 'checkbox'): ?>
                     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label><li>
                 <?php endif; ?>
@@ -23,15 +23,15 @@
                 <?php if(isset($element['info'])): ?>
                     <i class="bt-1 b-3 vh"><?= $element['info']; ?></i>
                 <?php endif; ?>
-            <?php elseif($element['type'] === \Framework\Html\TagType::BUTTON): ?>
+            <?php elseif($element['type'] === \phpOMS\Html\TagType::BUTTON): ?>
                 <button><?= $element['content']; ?></button>
-            <?php elseif($element['type'] === \Framework\Html\TagType::TEXTAREA): ?>
+            <?php elseif($element['type'] === \phpOMS\Html\TagType::TEXTAREA): ?>
                 <?php if(isset($element['label'])): ?>
                     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label><li>
                 <?php endif; ?>
                 <textarea name="<?= $element['name']; ?>"
                           id="n-<?= $element['name']; ?>"><?= (isset($element['content']) ? $element['content'] : ''); ?></textarea>
-            <?php elseif($element['type'] === \Framework\Html\TagType::SELECT): ?>
+            <?php elseif($element['type'] === \phpOMS\Html\TagType::SELECT): ?>
                 <?php if(isset($element['label'])): ?>
                     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label><li>
                 <?php endif; ?>
@@ -41,7 +41,7 @@
                             value="<?= $option['value']; ?>"<?= ($element['selected'] == $option['value'] ? ' selected' : ''); ?>><?= $option['content']; ?></option>
                     <?php endforeach; ?>
                 </select>
-            <?php elseif($element['type'] === \Framework\Html\TagType::LABEL): ?>
+            <?php elseif($element['type'] === \phpOMS\Html\TagType::LABEL): ?>
                 <label for="<?= $element['for']; ?>"><?= $element['content']; ?></label>
             <?php endif; ?>
         <?php endforeach; ?>

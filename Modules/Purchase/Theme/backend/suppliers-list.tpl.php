@@ -1,8 +1,8 @@
 <?php /** @var \Modules\Purchase\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002102001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
@@ -16,7 +16,7 @@
             <i class="fa fa-plus max vh"></i>
             <tr>
                 <?php
-                \Framework\Model\Model::generate_table_header_view(
+                \phpOMS\Model\Model::generate_table_header_view(
                     [
                         ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                         ['name' => $this->app->user->getL11n()->lang[21]['Matchcode'], 'sort' => 0],
@@ -39,7 +39,7 @@
     $url['level'][] = 'front';
     $url['id']      = 'PurchaseSupplierID';
 
-    \Framework\Model\Model::generate_table_content_view(
+    \phpOMS\Model\Model::generate_table_content_view(
         $data['list'],
         ['PurchaseSupplierID',
          'matchcode',

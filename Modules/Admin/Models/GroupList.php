@@ -21,7 +21,7 @@ class GroupList
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -29,7 +29,7 @@ class GroupList
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -58,7 +58,7 @@ class GroupList
         $result = null;
 
         switch($this->dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $search = $this->dbPool->get('core')->generate_sql_filter($filter);
 
                 $sth = $this->dbPool->get('core')->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->dbPool->get('core')->prefix . 'group` ' . $search . 'LIMIT ' . $offset . ',' . $limit);

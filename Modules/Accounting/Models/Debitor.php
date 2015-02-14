@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class Debitor implements \Framework\Utils\IO\ExchangeInterface
+abstract class Debitor implements \phpOMS\Utils\IO\ExchangeInterface
 {
     /**
      * Constructor

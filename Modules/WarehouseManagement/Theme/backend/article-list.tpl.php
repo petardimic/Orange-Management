@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Warehousing\Controller $this */
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">
 </div>
@@ -16,7 +16,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                             ['name' => $this->app->user->getL11n()->lang[27]['Matchcode'], 'sort' => 0],
@@ -32,13 +32,13 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Module\Modules $modules */ /*
+        /** @var \phpOMS\Module\Modules $modules */ /*
         $modules_installed = $this->app->modules->module_list_installed_get();
         $url['level'] = array_slice($request->getData(), 0, 4);
         $url['level'][] = 'front';
         $url['id'] = 'class';
 
-        \Framework\Model\Model::generate_table_content_view(
+        \phpOMS\Model\Model::generate_table_content_view(
             $modules_installed['list'],
             ['id', 'name', 'theme', 'version'],
             $url

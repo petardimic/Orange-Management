@@ -16,7 +16,7 @@ namespace Modules\Purchase;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -43,7 +43,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application reference
+     * @param \phpOMS\ApplicationAbstract $app Application reference
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -59,7 +59,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
-            case \Framework\Message\Http\WebRequestPage::BACKEND:
+            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request);
                 break;
         }
@@ -68,8 +68,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -95,8 +95,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -125,8 +125,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -155,8 +155,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -185,8 +185,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

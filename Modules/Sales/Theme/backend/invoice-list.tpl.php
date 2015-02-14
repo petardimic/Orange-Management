@@ -1,8 +1,8 @@
 <?php /** @var \Modules\Sales\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1001604001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">
     <thead>
@@ -16,7 +16,7 @@
             <i class="fa fa-plus max vh"></i>
     <tr>
         <?php
-        \Framework\Model\Model::generate_table_header_view(
+        \phpOMS\Model\Model::generate_table_header_view(
             [
                 ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                 ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
@@ -39,7 +39,7 @@
         $url['level'][] = 'front';
         $url['id']      = 'SalesInvoiceID';
 
-        \Framework\Model\Model::generate_table_content_view(
+        \phpOMS\Model\Model::generate_table_content_view(
             $data['list'],
             ['SalesInvoiceID', 'printed', 'type', 'status', 'client', 'client', 'price', 'creator', 'created'],
             $url
@@ -48,5 +48,5 @@
         <tfoot>
     <tr>
         <td colspan="9" class="cT">
-            <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']);*/ ?>
+            <?php /*\phpOMS\Model\Model::generate_table_pagination_view($data['count']);*/ ?>
 </table>

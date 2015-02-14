@@ -18,12 +18,12 @@ namespace Modules\Billing\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class InstallWarehouse extends \Framework\Install\Module
+class InstallWarehouse extends \phpOMS\Install\Module
 {
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool   Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
@@ -32,7 +32,7 @@ class InstallWarehouse extends \Framework\Install\Module
     public static function install($dbPool, $info)
     {
         switch($dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'billing_invoice_element_stock` (
                             `billing_invoice_element_stock_id` int(11) NOT NULL AUTO_INCREMENT,

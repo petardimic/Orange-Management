@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class PackagingStatus extends \Framework\Datatypes\Enum
+abstract class PackagingStatus extends \phpOMS\Datatypes\Enum
 {
     const PENDING   = 0;
     const PACKING   = 1;

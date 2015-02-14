@@ -16,12 +16,12 @@ namespace Web\Views\Page;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class BackendView extends \Framework\Views\ViewAbstract
+class BackendView extends \phpOMS\Views\ViewAbstract
 {
     /**
      * Request
      *
-     * @var \Framework\Message\Http\Request
+     * @var \phpOMS\Message\Http\Request
      * @since 1.0.0
      */
     protected $request = null;
@@ -29,13 +29,13 @@ class BackendView extends \Framework\Views\ViewAbstract
     /**
      * Request
      *
-     * @var \Framework\Message\Http\Response
+     * @var \phpOMS\Message\Http\Response
      * @since 1.0.0
      */
     protected $response = null;
 
     /**
-     * @return \Framework\Message\Http\Request
+     * @return \phpOMS\Message\Http\Request
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -46,7 +46,7 @@ class BackendView extends \Framework\Views\ViewAbstract
     }
 
     /**
-     * @param \Framework\Message\Http\Request $request
+     * @param \phpOMS\Message\Http\Request $request
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -57,7 +57,7 @@ class BackendView extends \Framework\Views\ViewAbstract
     }
 
     /**
-     * @return \Framework\Message\Http\Response
+     * @return \phpOMS\Message\Http\Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -68,7 +68,7 @@ class BackendView extends \Framework\Views\ViewAbstract
     }
 
     /**
-     * @param \Framework\Message\Http\Response $response
+     * @param \phpOMS\Message\Http\Response $response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -16,7 +16,7 @@ namespace Modules\Navigation\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class LinkType extends \Framework\Datatypes\Enum
+abstract class LinkType extends \phpOMS\Datatypes\Enum
 {
     const CATEGORY = 0;
     const LINK     = 1;

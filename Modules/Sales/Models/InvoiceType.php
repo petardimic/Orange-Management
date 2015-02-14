@@ -16,7 +16,7 @@ namespace Modules\Sales\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class InvoiceType extends \Framework\Datatypes\Enum
+abstract class InvoiceType extends \phpOMS\Datatypes\Enum
 {
     const OFFER         = 0;
     const CONTRACT_NOTE = 1;

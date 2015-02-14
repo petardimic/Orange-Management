@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/Framework/Datatypes/Enum.php';
-include __DIR__ . '/Framework/System/MimeType.php';
+include __DIR__ . '/phpOMS/Datatypes/Enum.php';
+include __DIR__ . '/phpOMS/System/MimeType.php';
 
-var_dump(\Framework\System\MimeType::getConstants());
+var_dump(\phpOMS\System\MimeType::getConstants());

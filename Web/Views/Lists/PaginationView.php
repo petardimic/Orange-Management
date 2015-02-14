@@ -16,7 +16,7 @@ namespace Web\Views\Lists;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class PaginationView extends \Framework\Views\ViewAbstract
+class PaginationView extends \phpOMS\Views\ViewAbstract
 {
     /**
      * Maximum amount of pages

@@ -16,7 +16,7 @@ namespace Modules\Chat;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Room implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Room implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * Room ID

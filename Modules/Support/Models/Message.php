@@ -16,7 +16,7 @@ namespace Modules\Support;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Message implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Message implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * Name

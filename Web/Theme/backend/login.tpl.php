@@ -3,17 +3,17 @@ $loginForm = new \Web\Views\Form\FormView($this->l11n);
 $loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $loginForm->setData('submit', $this->l11n->lang[0]['Submit']);
 $loginForm->setAction('http://127.0.0.1/' . $this->l11n->getLanguage() . '/api/login.php');
-$loginForm->setMethod(\Framework\Message\RequestType::POST);
+$loginForm->setMethod(\phpOMS\Message\RequestType::POST);
 
 $loginForm->setElement(0, 0, [
-    'type'    => \Framework\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'name'    => 'user',
     'label'   => $this->l11n->lang[0]['Username'],
 ]);
 
 $loginForm->setElement(1, 0, [
-    'type'    => \Framework\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'password',
     'name'    => 'pass',
     'label'   => $this->l11n->lang[0]['Password'],

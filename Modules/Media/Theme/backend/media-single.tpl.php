@@ -1,6 +1,6 @@
 <?php
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000401001]);
 ?>
 
@@ -33,7 +33,7 @@
                 <td><?= $media->getExtension(); ?>
             <tr>
                 <th><label><?= $this->app->user->getL11n()->lang[4]['Size']; ?></label>
-                <td><?= \Framework\Utils\Converter\File::byteSizeToString($media->getSize()); ?>
+                <td><?= \phpOMS\Utils\Converter\File::byteSizeToString($media->getSize()); ?>
             <tr>
                 <th><label><?= $this->app->user->getL11n()->lang[4]['Author']; ?></label>
                 <td><?= $media->getAuthor(); ?>

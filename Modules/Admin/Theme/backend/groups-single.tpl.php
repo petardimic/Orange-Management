@@ -1,10 +1,10 @@
 <?php
 /**
  * @var \Modules\Admin\Controller     $this
- * @var \Framework\Models\Group\Group $group
+ * @var \phpOMS\Models\Group\Group $group
  */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000103201]); ?>
 
 <div class="b b-2 c1-5 c1" id="i1-5-1">
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<?php \Framework\Model\Model::generate_table_filter_view(); ?>
+<?php \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-5 c1" id="i1-5-3">
     <thead>
@@ -67,7 +67,7 @@
             <i class="fa fa-plus max vh"></i>
     <tr>
         <?php
-        \Framework\Model\Model::generate_table_header_view(
+        \phpOMS\Model\Model::generate_table_header_view(
             [
                 ['name' => $this->app->user->getL11n()->lang[1]['Status'], 'sort' => 0],
                 ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -85,7 +85,7 @@
         $url['level'][] = 'single';
         $url['id']      = 'id';
 
-        \Framework\Model\Model::generate_table_content_view(
+        \phpOMS\Model\Model::generate_table_content_view(
             $data['list'],
             ['status', 'id', 'name1', 'lactive', 'created'],
             $url
@@ -94,6 +94,6 @@
         <tfoot>
     <tr>
         <td colspan="5" class="cT">
-            <?php \Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+            <?php \phpOMS\Model\Model::generate_table_pagination_view($data['count']); ?>
         </td>
 </table>

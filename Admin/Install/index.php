@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/../../config.php';
-require_once __DIR__ . '/../../Framework/Autoloader.php';
+require_once __DIR__ . '/../../phpOMS/Autoloader.php';
 
-$dbHOBJ = new \Framework\DataStorage\Database\Pool();
+$dbHOBJ = new \phpOMS\DataStorage\Database\Pool();
 $dbHOBJ->create('core', $CONFIG['db']);
-$instHOBJ = new \Framework\Install\Install($dbHOBJ);
+$instHOBJ = new \phpOMS\Install\Install($dbHOBJ);
 
 /**
  * Array with all modules to install

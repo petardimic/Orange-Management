@@ -3,7 +3,7 @@
  * Global config file
  *
  * @category   Framework
- * @package    Framework\Config
+ * @package    phpOMS\Config
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

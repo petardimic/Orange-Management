@@ -16,7 +16,7 @@ namespace Modules\Tasks;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -40,7 +40,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application reference
+     * @param \phpOMS\ApplicationAbstract $app Application reference
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -56,7 +56,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
-            case \Framework\Message\Http\WebRequestPage::BACKEND:
+            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
         }
@@ -65,8 +65,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -75,11 +75,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getData()['l3']) {
             case 'dashboard':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $tasks = new \Modules\Tasks\Models\TaskList($this->app->dbPool);
+                $taskDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskDashboardView->setTemplate('/Modules/Tasks/Theme/backend/task-dashboard');
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/task-dashboard.tpl.php';
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $taskDashboardView->addData('nav', $navigation->nav);
+                echo $taskDashboardView->getOutput();
                 break;
             case 'single':
                 /** @noinspection PhpUnusedLocalVariableInspection */

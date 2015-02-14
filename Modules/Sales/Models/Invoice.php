@@ -16,12 +16,12 @@ namespace Modules\Sales\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Invoice implements \Framework\Models\MapperInterface
+class Invoice implements \phpOMS\Models\MapperInterface
 {
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -67,7 +67,7 @@ class Invoice implements \Framework\Models\MapperInterface
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

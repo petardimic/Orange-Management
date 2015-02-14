@@ -16,12 +16,12 @@ namespace Web;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class WebApplication extends \Framework\ApplicationAbstract
+class WebApplication extends \phpOMS\ApplicationAbstract
 {
     /**
      * Main request
      *
-     * @var \Framework\Message\Http\Request
+     * @var \phpOMS\Message\Http\Request
      * @since 1.0.0
      */
     public $request = null;
@@ -29,7 +29,7 @@ class WebApplication extends \Framework\ApplicationAbstract
     /**
      * Main request
      *
-     * @var \Framework\Message\Http\Response
+     * @var \phpOMS\Message\Http\Response
      * @since 1.0.0
      */
     public $response = null;
@@ -44,24 +44,24 @@ class WebApplication extends \Framework\ApplicationAbstract
      */
     public function __construct($config)
     {
-        $this->request  = new \Framework\Message\Http\Request();
+        $this->request  = new \phpOMS\Message\Http\Request();
         $this->request->init();
-        $this->response = new \Framework\Message\Http\Response();
+        $this->response = new \phpOMS\Message\Http\Response();
 
-        $this->dbPool = new \Framework\DataStorage\Database\Pool();
+        $this->dbPool = new \phpOMS\DataStorage\Database\Pool();
         $this->dbPool->create('core', $config['db']);
 
-        $this->cache    = new \Framework\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \Framework\Config\Settings($this->dbPool);
+        $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
+        $this->settings = new \phpOMS\Config\Settings($this->dbPool);
 
         $pageView = null;
 
         switch($this->request->getType()) {
-            case \Framework\Message\Http\WebRequestPage::WEBSITE:
+            case \phpOMS\Message\Http\WebRequestPage::WEBSITE:
 
                 break;
-            case \Framework\Message\Http\WebRequestPage::BACKEND:
-                if($this->request->getRequestType() !== \Framework\Message\RequestType::GET) {
+            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
+                if($this->request->getRequestType() !== \phpOMS\Message\RequestType::GET) {
                     $this->response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->addHeader('Status', 'Status:406 Not acceptable');
                     $this->response->add('GLOBAL', '');
@@ -72,18 +72,18 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $pageView = new \Web\Views\Page\BackendView();
 
-                if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->dbFailResponse($pageView);
                     break;
                 }
 
-                \Framework\Module\ModuleFactory::$app = $this;
-                \Framework\Model\Model::$app          = $this;
+                \phpOMS\Module\ModuleFactory::$app = $this;
+                \phpOMS\Model\Model::$app          = $this;
 
-                $this->eventManager   = new \Framework\Event\EventManager();
-                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession();
-                $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->eventManager   = new \phpOMS\Event\EventManager();
+                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession();
+                $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
+                $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
@@ -103,7 +103,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \Framework\Module\ModuleFactory::getInstance($module['file']);
+                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
                     }
                 }
 
@@ -112,21 +112,21 @@ class WebApplication extends \Framework\ApplicationAbstract
                 }
 
                 $this->settings->loadSettings([1000000011, 1000000009]);
-                \Framework\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
-                \Framework\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
-                \Framework\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
-                \Framework\Model\Model::$content['core:oname']       = $this->settings->config[1000000009];
-                \Framework\Model\Model::$content['theme:path']       = $this->settings->config[1000000011];
-                \Framework\Model\Model::$content['core:layout']      = $this->request->getType();
-                \Framework\Model\Model::$content['page:title']       = 'Orange Management';
+                \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['core:oname']       = $this->settings->config[1000000009];
+                \phpOMS\Model\Model::$content['theme:path']       = $this->settings->config[1000000011];
+                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getType();
+                \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 
                 $pageView->setTemplate('/Web/Theme/backend/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
                 $this->response->add('GLOBAL', $pageView->getOutput());
                 break;
-            case \Framework\Message\Http\WebRequestPage::API:
-                if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
+            case \phpOMS\Message\Http\WebRequestPage::API:
+                if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->addHeader('Retry-After', 'Retry-After: 300');
@@ -134,21 +134,21 @@ class WebApplication extends \Framework\ApplicationAbstract
                     break;
                 }
 
-                \Framework\Module\ModuleFactory::$app = $this;
-                \Framework\Model\Model::$app          = $this;
+                \phpOMS\Module\ModuleFactory::$app = $this;
+                \phpOMS\Model\Model::$app          = $this;
 
-                $this->eventManager   = new \Framework\Event\EventManager();
-                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession();
-                $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->eventManager   = new \phpOMS\Event\EventManager();
+                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession();
+                $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
+                $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
                 $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
-                $this->response->add('GLOBAL', new \Framework\Utils\JsonBuilder());
+                $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
 
                 $this->response->get('GLOBAL')->add($this->request->__toString(), null);
 
-                $request = new \Framework\Message\Http\Request();
+                $request = new \phpOMS\Message\Http\Request();
 
                 if(($uris = $this->request->getData('r')) !== false) {
                     $uris = json_decode($uris, true);
@@ -159,7 +159,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                         if(isset($toLoad[4])) {
                             foreach($toLoad[4] as $module) {
-                                \Framework\Module\ModuleFactory::getInstance($module['file']);
+                                \phpOMS\Module\ModuleFactory::getInstance($module['file']);
                             }
                         }
 
@@ -168,7 +168,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                         }
 
                         /** @noinspection PhpUndefinedMethodInspection */
-                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $request, $this->response);
+                        $this->moduleManager->running['Content']->call(\phpOMS\Module\CallType::WEB, $request, $this->response);
                     }
                 } else {
                     $request = $this->request;
@@ -196,7 +196,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                     if(isset($toLoad[4])) {
                         foreach($toLoad[4] as $module) {
-                            \Framework\Module\ModuleFactory::getInstance($module['file']);
+                            \phpOMS\Module\ModuleFactory::getInstance($module['file']);
                         }
                     }
 
@@ -204,9 +204,9 @@ class WebApplication extends \Framework\ApplicationAbstract
                         $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
                     }
 
-                    if(isset(\Framework\Module\ModuleFactory::$loaded['Content'])) {
+                    if(isset(\phpOMS\Module\ModuleFactory::$loaded['Content'])) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request, $this->response);
+                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Module\CallType::WEB, $this->request, $this->response);
                     }
                 }
 
@@ -216,7 +216,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                 $this->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->addHeader('Status', 'Status: 404 Not Found');
 
-                $pageView = new \Framework\Views\ViewAbstract();
+                $pageView = new \phpOMS\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
                 $this->response->add('GLOBAL', $pageView->getOutput());
         }
@@ -227,7 +227,7 @@ class WebApplication extends \Framework\ApplicationAbstract
     /**
      * Generate visual database error
      *
-     * @param \Framework\Views\ViewAbstract $view View
+     * @param \phpOMS\Views\ViewAbstract $view View
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

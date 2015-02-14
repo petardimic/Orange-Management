@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class BatchPosting implements \Framework\Utils\IO\ExchangeInterface, \Countable
+class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
 {
     /**
      * ID

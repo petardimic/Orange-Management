@@ -15,9 +15,9 @@ $side = $nav->getOutput();
 <html>
     <head>
         <?php
-        \Framework\Model\Model::load_header(); ?>
+        \phpOMS\Model\Model::load_header(); ?>
         <style>
-            <?php \Framework\Model\Model::load_style_small(); ?>
+            <?php \phpOMS\Model\Model::load_style_small(); ?>
         </style>
     </head>
 <body>
@@ -32,8 +32,8 @@ $side = $nav->getOutput();
                data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \Framework\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
-                itemprop="legalName"><?= \Framework\Model\Model::$content['core:oname']; ?></a>
+                href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
+                itemprop="legalName"><?= \phpOMS\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">
             <label> <input type="text" autofocus="autofocus"> </label>
@@ -47,7 +47,7 @@ $side = $nav->getOutput();
     <?= $side; ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request, $this->response); ?>
+        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Module\CallType::WEB, $this->request, $this->response); ?>
     </div>
 </div>
-<?php \Framework\Model\Model::load_footer(); ?>
+<?php \phpOMS\Model\Model::load_footer(); ?>

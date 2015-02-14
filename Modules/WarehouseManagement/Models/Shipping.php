@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Shipping implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Shipping implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * ID
@@ -37,7 +37,7 @@ class Shipping implements \Framework\Models\MapperInterface, \Framework\Pattern\
     /**
      * From
      *
-     * @var \Framework\Datatypes\Address
+     * @var \phpOMS\Datatypes\Address
      * @since 1.0.0
      */
     private $to = null;
@@ -196,7 +196,7 @@ class Shipping implements \Framework\Models\MapperInterface, \Framework\Pattern\
     /**
      * Get To
      *
-     * @return \Framework\Datatypes\Address
+     * @return \phpOMS\Datatypes\Address
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -209,7 +209,7 @@ class Shipping implements \Framework\Models\MapperInterface, \Framework\Pattern\
     /**
      * Set To
      *
-     * @param \Framework\Datatypes\Address $to Receiver
+     * @param \phpOMS\Datatypes\Address $to Receiver
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

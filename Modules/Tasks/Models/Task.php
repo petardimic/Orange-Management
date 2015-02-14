@@ -16,12 +16,12 @@ namespace Modules\Tasks\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Task implements \Framework\Models\MapperInterface
+class Task implements \phpOMS\Models\MapperInterface
 {
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -101,7 +101,7 @@ class Task implements \Framework\Models\MapperInterface
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -126,7 +126,7 @@ class Task implements \Framework\Models\MapperInterface
         $elements = null;
 
         switch($this->dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $sth = $this->dbPool->get('core')->con->prepare('SELECT
                             `' . $this->dbPool->get('core')->prefix . 'tasks`.*
                         FROM

@@ -57,7 +57,7 @@ class Navigation
     /**
      * Database pool
      *
-     * @var \Framework\DataStorage\Database\Pool
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -66,7 +66,7 @@ class Navigation
      * Constructor
      *
      * @param string[]                             $request Request hashes
-     * @param \Framework\DataStorage\Database\Pool $dbPool  Database pool
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool  Database pool
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -112,7 +112,7 @@ class Navigation
      * Get instance
      *
      * @param string[]                             $request Request hashes
-     * @param \Framework\DataStorage\Database\Pool $dbPool  Database pool
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool  Database pool
      *
      * @return \Modules\Navigation\Models\Navigation
      *

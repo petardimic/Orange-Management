@@ -1,8 +1,8 @@
 <?php /** @var \Modules\Sales\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1001604001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="tabview">
     <ul class="tab-links">
@@ -182,7 +182,7 @@
                         <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                             ['name' => $this->app->user->getL11n()->lang[16]['Name'], 'sort' => 0],
@@ -220,7 +220,7 @@
                                 $url['level'][] = 'front';
                                 $url['id'] = 'id';
 
-                                \Framework\Model\Model::generate_table_content_view(
+                                \phpOMS\Model\Model::generate_table_content_view(
                                     $data['list'],
                                     ['status', 'id', 'name1', 'lactive', 'created'],
                                     $url
@@ -229,7 +229,7 @@
                         <tfoot>
                 <tr>
                     <td colspan="10" class="cT">
-                        <?php /*\Framework\Model\Model::generate_table_pagination_view($data['count']);*/ ?>
+                        <?php /*\phpOMS\Model\Model::generate_table_pagination_view($data['count']);*/ ?>
             </table>
         </div>
     </div>

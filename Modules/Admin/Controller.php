@@ -16,7 +16,7 @@ namespace Modules\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -40,7 +40,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param \phpOMS\ApplicationAbstract $app Application instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -56,10 +56,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
-            case \Framework\Message\Http\WebRequestPage::BACKEND:
+            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
-            case \Framework\Message\Http\WebRequestPage::API:
+            case \phpOMS\Message\Http\WebRequestPage::API:
                 $this->showAPI($request, $response);
                 break;
         }
@@ -68,8 +68,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -102,8 +102,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -132,7 +132,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
         switch($request->getData()['l4']) {
             case 'general':
-                $coreSettingsView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $coreSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
                 echo $coreSettingsView->getOutput();
                 break;
@@ -149,8 +149,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -159,7 +159,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $accountListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $accountListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -172,7 +172,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 break;
             case 'create':
-                $accountCreateView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $accountCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $accountCreateView->setTemplate('/Modules/Admin/Theme/backend/accounts-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -192,8 +192,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -218,8 +218,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -232,7 +232,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
         switch($request->getData()['l4']) {
             case 'list':
-                $moduleListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $moduleListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
                 echo $moduleListView->getOutput();
                 break;
@@ -255,8 +255,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -265,7 +265,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $groupListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $groupListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -276,7 +276,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $this->showBackendGroupSingle($request, $response);
                 break;
             case 'create':
-                $groupCreateView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $groupCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $groupCreateView->setTemplate('/Modules/Admin/Theme/backend/groups-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -296,8 +296,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -310,7 +310,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \Framework\Models\Group\Group((int) $request->getData()['id'], $this->app);
+                $group = new \phpOMS\Models\Group\Group((int) $request->getData()['id'], $this->app);
 
                 if(!isset($request->getData()['page'])) {
                     $request->getData()['page'] = 1;
@@ -332,8 +332,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows api content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -16,7 +16,7 @@ namespace Modules\Content;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -44,7 +44,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     {
         foreach($this->receiving as $mid) {
             /** @noinspection PhpUndefinedMethodInspection */
-            \Framework\Module\ModuleFactory::$loaded[$mid]->call(\Framework\Module\CallType::WEB, $request, $response);
+            \phpOMS\Module\ModuleFactory::$loaded[$mid]->call(\phpOMS\Module\CallType::WEB, $request, $response);
         }
     }
 }

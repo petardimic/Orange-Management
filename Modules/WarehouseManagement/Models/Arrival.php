@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Arrival implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Arrival implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * ID
@@ -37,7 +37,7 @@ class Arrival implements \Framework\Models\MapperInterface, \Framework\Pattern\M
     /**
      * From
      *
-     * @var \Framework\Datatypes\Address
+     * @var \phpOMS\Datatypes\Address
      * @since 1.0.0
      */
     private $from = null;
@@ -198,7 +198,7 @@ class Arrival implements \Framework\Models\MapperInterface, \Framework\Pattern\M
     /**
      * Get From
      *
-     * @return \Framework\Datatypes\Address
+     * @return \phpOMS\Datatypes\Address
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -211,7 +211,7 @@ class Arrival implements \Framework\Models\MapperInterface, \Framework\Pattern\M
     /**
      * Set From
      *
-     * @param \Framework\Datatypes\Address $from Consignor
+     * @param \phpOMS\Datatypes\Address $from Consignor
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

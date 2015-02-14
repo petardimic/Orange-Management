@@ -16,7 +16,7 @@ namespace Modules\Calendar\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class AcceptStatus extends \Framework\Datatypes\Enum
+abstract class AcceptStatus extends \phpOMS\Datatypes\Enum
 {
     const ACCEPTED = 0;
     const DENIED   = 1;

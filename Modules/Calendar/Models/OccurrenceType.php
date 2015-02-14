@@ -16,7 +16,7 @@ namespace Modules\Calendar\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class OccurrenceType extends \Framework\Datatypes\Enum
+abstract class OccurrenceType extends \phpOMS\Datatypes\Enum
 {
     const SINGLE    = 0;
     const DAILY     = 1;

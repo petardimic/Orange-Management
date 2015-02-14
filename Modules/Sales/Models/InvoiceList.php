@@ -21,7 +21,7 @@ class InvoiceList
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -29,7 +29,7 @@ class InvoiceList
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -58,7 +58,7 @@ class InvoiceList
         $result = null;
 
         switch($this->dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 // SQL_CALC_FOUND_ROWS

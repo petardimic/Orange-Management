@@ -16,7 +16,7 @@ namespace Modules\Media;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -40,7 +40,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application instance
+     * @param \phpOMS\ApplicationAbstract $app Application instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -56,10 +56,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
-            case \Framework\Message\Http\WebRequestPage::BACKEND:
+            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
-            case \Framework\Message\Http\WebRequestPage::API:
+            case \phpOMS\Message\Http\WebRequestPage::API:
                 $this->showAPI($request, $response);
                 break;
             default:
@@ -75,8 +75,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -92,7 +92,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
                 break;
             case 'list':
-                $mediaList = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $mediaList = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $mediaList->setTemplate('/Modules/Media/Theme/backend/media-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -100,7 +100,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 echo $mediaList->getOutput();
                 break;
             case 'create':
-                $mediaCreate = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $mediaCreate = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
                 $mediaCreate->setTemplate('/Modules/Media/Theme/backend/media-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -120,8 +120,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows api content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -129,7 +129,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     private function showAPI($request, $response)
     {
         switch($request->getRequestType()) {
-            case \Framework\Message\RequestType::POST:
+            case \phpOMS\Message\RequestType::POST:
                 $this->apiUpload($request, $response);
                 break;
             default:
@@ -143,8 +143,8 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows api content
      *
-     * @param \Framework\Message\RequestAbstract  $request  Request
-     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

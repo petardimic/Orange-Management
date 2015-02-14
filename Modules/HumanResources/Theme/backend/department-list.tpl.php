@@ -1,8 +1,8 @@
 <?php /** @var \Modules\HumanResources\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002404001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">
     <thead>
@@ -16,7 +16,7 @@
             <i class="fa fa-plus max vh"></i>
     <tr>
         <?php
-        \Framework\Model\Model::generate_table_header_view(
+        \phpOMS\Model\Model::generate_table_header_view(
             [
                 ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                 ['name' => $this->app->user->getL11n()->lang[24]['Name'], 'sort' => 1, 'full' => true],
@@ -34,7 +34,7 @@
         $url['level'][] = 'front';
         $url['id']      = 'HRDepartmentID';
 
-        \Framework\Model\Model::generate_table_content_view(
+        \phpOMS\Model\Model::generate_table_content_view(
             $data['list'],
             ['HRDepartmentID', 'name', 'parent', 'parent'],
             $url
@@ -43,5 +43,5 @@
         <tfoot>
     <tr>
         <td colspan="4" class="cT">
-            <?php //\Framework\Model\Model::generate_table_pagination_view($data['count']); ?>
+            <?php //\phpOMS\Model\Model::generate_table_pagination_view($data['count']); ?>
 </table>

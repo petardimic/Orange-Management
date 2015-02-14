@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class ImpersonalAccount implements \Framework\Utils\IO\ExchangeInterface
+abstract class ImpersonalAccount implements \phpOMS\Utils\IO\ExchangeInterface
 {
     /**
      * Constructor

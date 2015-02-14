@@ -16,7 +16,7 @@ namespace Modules\Surveys;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Question implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Question implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * ID

@@ -16,7 +16,7 @@ namespace Modules\HumanResources\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class PositionType extends \Framework\Datatypes\Enum
+abstract class PositionType extends \phpOMS\Datatypes\Enum
 {
     const INTERN     = 0;
     const APPRENTICE = 1;

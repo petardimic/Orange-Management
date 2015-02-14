@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface PostingInterface extends \Framework\Utils\IO\ExchangeInterface
+interface PostingInterface extends \phpOMS\Utils\IO\ExchangeInterface
 {
 
 }

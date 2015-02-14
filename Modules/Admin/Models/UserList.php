@@ -21,7 +21,7 @@ class UserList
     /**
      * Database instance
      *
-     * @var \Framework\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Database
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -29,7 +29,7 @@ class UserList
     /**
      * Constructor
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -54,7 +54,7 @@ class UserList
         $date = new \DateTime("NOW", new \DateTimeZone('UTC'));
 
         switch($this->dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $sth = $this->dbPool->get('core')->con->prepare(
                     'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'accounts` (`login`, `password`, `email`, `llogin`, `tries`, `created`, `changed`) VALUES
                             (:aname, :pword, :email, \'0000-00-00 00:00:00\', 3, \'' . $date->format('Y-m-d H:i:s') . '\', 1);'
@@ -101,7 +101,7 @@ class UserList
         $result = null;
 
         switch($this->dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 $sth = $this->dbPool->get('core')->con->prepare(

@@ -16,7 +16,7 @@ namespace Modules\Accounting\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Dummy implements \Framework\Install\DummyInterface
+class Dummy implements \phpOMS\Install\DummyInterface
 {
     /**
      * {@inheritdoc}

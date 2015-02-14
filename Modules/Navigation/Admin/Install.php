@@ -16,12 +16,12 @@ namespace Modules\Navigation\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \Framework\Install\Module
+class Install extends \phpOMS\Install\Module
 {
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
      * @param array                                $info   Module info
      *
      * @since  1.0.0
@@ -32,7 +32,7 @@ class Install extends \Framework\Install\Module
         /** TODO: create additional column where you can specify the url parameters that should be used in the link*/
 
         switch($dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'nav` (
                             `nav_id` int(11) NOT NULL,
@@ -61,7 +61,7 @@ class Install extends \Framework\Install\Module
     /**
      * Install data from providing modules
      *
-     * @param \Framework\DataStorage\Database\Pool $db   Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $db   Database instance
      * @param array                                $data Module info
      *
      * @since  1.0.0
@@ -77,7 +77,7 @@ class Install extends \Framework\Install\Module
     /**
      * Install navigation element
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
      * @param array                                $data   Link info
      * @param int                                  $parent Parent element (default is 0 for none)
      *

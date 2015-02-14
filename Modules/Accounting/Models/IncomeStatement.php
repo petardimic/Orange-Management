@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class IncomeStatement implements \Framework\Utils\IO\ExchangeInterface
+abstract class IncomeStatement implements \phpOMS\Utils\IO\ExchangeInterface
 {
     private $id = 0;
 

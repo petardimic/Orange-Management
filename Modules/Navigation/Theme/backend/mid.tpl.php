@@ -8,7 +8,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT])) {
     foreach($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT] as $key => $parent) {
         foreach($parent as $link) {
             if($link['nav_parent'] == $this->parent) {
-                echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->language,
+                echo '<li><a href="' . \phpOMS\Uri\UriFactory::build([$this->language,
                                                                          $link['nav_l0'],
                                                                          $link['nav_l1'],
                                                                          $link['nav_l2'],

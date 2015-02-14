@@ -25,7 +25,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="<?= \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
+            <a href="<?= \phpOMS\Uri\UriFactory::build([$this->app->request->getLanguage(),
                                                            'backend',
                                                            'sales',
                                                            'analysis',

@@ -7,7 +7,7 @@
     </h1>
     <div class="bc-1">
         <?php
-        /** @var  \Framework\Views\ViewAbstract $view */
+        /** @var  \phpOMS\Views\ViewAbstract $view */
         foreach($this->views as $view) {
             echo $view->getOutput();
         }

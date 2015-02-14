@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class PersonalAccount extends AccountAbstract implements \Framework\Utils\IO\ExchangeInterface
+abstract class PersonalAccount extends AccountAbstract implements \phpOMS\Utils\IO\ExchangeInterface
 {
     protected $id = 0;
 

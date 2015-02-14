@@ -16,12 +16,12 @@ namespace Modules\ResearchDevelopment\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \Framework\Install\Module
+class Install extends \phpOMS\Install\Module
 {
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool   Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
@@ -30,7 +30,7 @@ class Install extends \Framework\Install\Module
     public static function install($dbPool, $info)
     {
         switch($dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
 
                 break;
         }

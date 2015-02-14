@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Admin\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1000104300]);
 ?>
 
@@ -12,7 +12,7 @@
     </h1>
 
     <div class="bc-1">
-        <?php $account = \Framework\Models\User\User::getInstance((int) $request->getData()['id'], $this->app); ?>
+        <?php $account = \phpOMS\Models\User\User::getInstance((int) $request->getData()['id'], $this->app); ?>
         <form class="f-1">
             <ul class="l-1">
                 <li>

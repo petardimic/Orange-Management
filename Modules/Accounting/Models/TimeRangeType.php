@@ -16,7 +16,7 @@ namespace Modules\Accounting\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class TimeRangeType extends \Framework\Datatypes\Enum
+abstract class TimeRangeType extends \phpOMS\Datatypes\Enum
 {
     const ENTRY_DATE      = 0; /* Date of when the entry happened */
     const DUE_DATE        = 1; /* Date of when the entry is due (only for invoices) */

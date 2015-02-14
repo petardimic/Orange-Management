@@ -15,12 +15,12 @@ namespace Modules\Reporter\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \Framework\Install\Module
+class Install extends \phpOMS\Install\Module
 {
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool   Database pool instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database pool instance
      * @param array                                    $info Module info
      *
      * @since  1.0.0
@@ -29,7 +29,7 @@ class Install extends \Framework\Install\Module
     public static function install($dbPool, $info)
     {
         switch($dbPool->get('core')->getType()) {
-            case \Framework\DataStorage\Database\DatabaseType::MYSQL:
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'reporter` (
                             `reporter_id` int(11) NOT NULL AUTO_INCREMENT,

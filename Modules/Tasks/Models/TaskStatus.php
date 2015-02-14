@@ -16,7 +16,7 @@ namespace Modules\Tasks\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class TaskStatus extends \Framework\Datatypes\Enum
+abstract class TaskStatus extends \phpOMS\Datatypes\Enum
 {
     const UNSEEN    = 0;
     const SEEN      = 1;

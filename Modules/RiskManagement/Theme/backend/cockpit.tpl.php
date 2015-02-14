@@ -1,7 +1,7 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
-\Framework\Model\Model::generate_table_filter_view(); ?>
+\phpOMS\Model\Model::generate_table_filter_view(); ?>
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
@@ -88,7 +88,7 @@
                     <i class="fa fa-plus max vh"></i>
                     <tr>
                         <?php
-                        \Framework\Model\Model::generate_table_header_view(
+                        \phpOMS\Model\Model::generate_table_header_view(
                             [
                                 ['name' => $this->app->user->getL11n()->lang[30]['Severity'], 'sort' => 1],
                                 ['name' => $this->app->user->getL11n()->lang[30]['Name'],

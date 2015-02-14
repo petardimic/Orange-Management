@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Sales\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1001602001]);
 ?>
 
@@ -222,7 +222,7 @@
                             <i class="fa fa-plus max vh"></i>
                             <tr>
                                 <?php
-                                \Framework\Model\Model::generate_table_header_view(
+                                \phpOMS\Model\Model::generate_table_header_view(
                                     [
                                         ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                                         ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
@@ -246,7 +246,7 @@
                         $url['level'][] = 'front';
                         $url['id'] = 'SalesClientID';
 
-                        \Framework\Model\Model::generate_table_content_view(
+                        \phpOMS\Model\Model::generate_table_content_view(
                             $data['list'],
                             ['SalesClientID', 'matchcode', 'name1', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID'],
                             $url
@@ -299,7 +299,7 @@
                             <i class="fa fa-plus max vh"></i>
                             <tr>
                                 <?php
-                                \Framework\Model\Model::generate_table_header_view(
+                                \phpOMS\Model\Model::generate_table_header_view(
                                     [
                                         ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
                                         ['name' => $this->app->user->getL11n()->lang[16]['Date'], 'sort' => 0],
@@ -321,7 +321,7 @@
                         $url['level'][] = 'front';
                         $url['id'] = 'SalesClientID';
 
-                        \Framework\Model\Model::generate_table_content_view(
+                        \phpOMS\Model\Model::generate_table_content_view(
                             $data['list'],
                             ['SalesClientID', 'matchcode', 'name1', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID', 'SalesClientID'],
                             $url

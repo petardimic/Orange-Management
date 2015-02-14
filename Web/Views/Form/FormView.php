@@ -45,10 +45,10 @@ class FormView extends \Web\Views\WebViewAbstract
     /**
      * Request method
      *
-     * @var \Framework\Message\RequestType
+     * @var \phpOMS\Message\RequestType
      * @since 1.0.0
      */
-    protected $method = \Framework\Message\RequestType::POST;
+    protected $method = \phpOMS\Message\RequestType::POST;
 
     /**
      * {@inheritdoc}
@@ -152,7 +152,7 @@ class FormView extends \Web\Views\WebViewAbstract
     }
 
     /**
-     * @return \Framework\Message\RequestType
+     * @return \phpOMS\Message\RequestType
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -163,7 +163,7 @@ class FormView extends \Web\Views\WebViewAbstract
     }
 
     /**
-     * @param \Framework\Message\RequestType|string $method
+     * @param \phpOMS\Message\RequestType|string $method
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

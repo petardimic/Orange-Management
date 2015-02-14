@@ -16,7 +16,7 @@ namespace Modules\Warehousing\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Warehouse implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Warehouse implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * Name
@@ -37,7 +37,7 @@ class Warehouse implements \Framework\Models\MapperInterface, \Framework\Pattern
     /**
      * Location of the warehouse
      *
-     * @var \Framework\Datatypes\Location
+     * @var \phpOMS\Datatypes\Location
      * @since 1.0.0
      */
     private $location = null;
@@ -164,7 +164,7 @@ class Warehouse implements \Framework\Models\MapperInterface, \Framework\Pattern
     /**
      * Get location
      *
-     * @return \Framework\Datatypes\Location
+     * @return \phpOMS\Datatypes\Location
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -177,7 +177,7 @@ class Warehouse implements \Framework\Models\MapperInterface, \Framework\Pattern
     /**
      * Set location
      *
-     * @param \Framework\Datatypes\Location $location Location of the warehouse
+     * @param \phpOMS\Datatypes\Location $location Location of the warehouse
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

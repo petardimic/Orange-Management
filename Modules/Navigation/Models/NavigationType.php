@@ -16,7 +16,7 @@ namespace Modules\Navigation\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class NavigationType extends \Framework\Datatypes\Enum
+abstract class NavigationType extends \phpOMS\Datatypes\Enum
 {
     const TOP          = 1;
     const SIDE         = 2;

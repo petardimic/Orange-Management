@@ -14,7 +14,7 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::CONTENT_SIDE])) {
         foreach($parent as $link) {
             /** @var array $data */
             if($link['nav_parent'] == $data[1]) {
-                echo '<li><a href="' . \Framework\Uri\UriFactory::build([$this->app->request->getLanguage(),
+                echo '<li><a href="' . \phpOMS\Uri\UriFactory::build([$this->app->request->getLanguage(),
                                                                          $link['nav_l0'],
                                                                          $link['nav_l1'],
                                                                          $link['nav_l2'],

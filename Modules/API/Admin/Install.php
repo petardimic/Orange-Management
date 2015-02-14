@@ -16,12 +16,12 @@ namespace Modules\API\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \Framework\Install\Module
+class Install extends \phpOMS\Install\Module
 {
     /**
      * Install module
      *
-     * @param \Framework\DataStorage\Database\Pool $dbPool Database instance
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
      * @param array                                $info   Module info
      *
      * @since  1.0.0

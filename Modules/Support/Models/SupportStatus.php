@@ -16,7 +16,7 @@ namespace Modules\Support;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class SupportStatus extends \Framework\Datatypes\Enum
+abstract class SupportStatus extends \phpOMS\Datatypes\Enum
 {
     const OPEN       = 0;
     const REVIEW     = 1;

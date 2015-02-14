@@ -16,7 +16,7 @@ namespace Modules\BackendDashboard;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Controller extends \Framework\Module\ModuleAbstract implements \Framework\Module\WebInterface
+class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
      * Providing
@@ -41,7 +41,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Constructor
      *
-     * @param \Framework\ApplicationAbstract $app Application reference
+     * @param \phpOMS\ApplicationAbstract $app Application reference
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -59,7 +59,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {
                 /** @noinspection PhpUndefinedMethodInspection */
-                \Framework\Module\ModuleFactory::$initialized[$mid]->show_dashboard();
+                \phpOMS\Module\ModuleFactory::$initialized[$mid]->show_dashboard();
             }
         } else {
             /** @noinspection PhpIncludeInspection */

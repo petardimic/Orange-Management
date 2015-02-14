@@ -16,7 +16,7 @@ namespace Modules\EventManagement;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Event implements \Framework\Models\MapperInterface, \Framework\Pattern\Multition
+class Event implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
     /**
      * ID

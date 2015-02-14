@@ -16,7 +16,7 @@ namespace Modules\Navigation\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class NavigationView extends \Framework\Views\ViewAbstract {
+class NavigationView extends \phpOMS\Views\ViewAbstract {
 	/**
      * Navigation Id
      * 

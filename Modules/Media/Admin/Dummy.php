@@ -16,7 +16,7 @@ namespace Modules\Media\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Dummy implements \Framework\Install\DummyInterface
+class Dummy implements \phpOMS\Install\DummyInterface
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class Dummy implements \Framework\Install\DummyInterface
         $dataString = '';
 
         for($i = 0; $i < $amount; $i++) {
-            $dataString .= " ( '" . \Framework\Utils\RnG\String::generateString(5, 15) . "', '', '" . \Framework\Utils\RnG\File::generateExtension() . "', " . rand(13, 1000000) . ", 1, '" . \Framework\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "' ),";
+            $dataString .= " ( '" . \phpOMS\Utils\RnG\String::generateString(5, 15) . "', '', '" . \phpOMS\Utils\RnG\File::generateExtension() . "', " . rand(13, 1000000) . ", 1, '" . \phpOMS\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "' ),";
         }
 
         $dataString = rtrim($dataString, ',');

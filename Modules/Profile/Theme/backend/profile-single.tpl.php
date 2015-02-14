@@ -1,5 +1,5 @@
 <?php /** @var \Modules\Profile\Controller $this */
-$account = \Framework\Models\User\User::getInstance((int) $request->getData()['id'], $this->app); ?>
+$account = \phpOMS\Models\User\User::getInstance((int) $request->getData()['id'], $this->app); ?>
 <div itemscope itemtype="http://schema.org/Person">
     <div class="b-7" id="i3-2-1">
         <div class="b-5" id="i3-2-4">
@@ -8,7 +8,7 @@ $account = \Framework\Models\User\User::getInstance((int) $request->getData()['i
             </div>
         </div>
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+        \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                          1000301001]); ?>
     </div>
     <div class="b-6" id="i3-2-2">

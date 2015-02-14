@@ -1,5 +1,5 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
 ?>
 
@@ -16,7 +16,7 @@
                 <i class="fa fa-plus max vh"></i>
                 <tr>
                     <?php
-                    \Framework\Model\Model::generate_table_header_view(
+                    \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => $this->app->user->getL11n()->lang[1]['Status'], 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
@@ -28,14 +28,14 @@
                     ?>
         <tbody>
         <?php
-        /** @var \Framework\Models\User\Users $accounts */ /*
+        /** @var \phpOMS\Models\User\Users $accounts */ /*
                     $data = $accounts->account_list_get();
                     $url['level'] = array_slice($request->getData(), 0, 4);
                     $url['level'][] = 'single';
                     $url['level'][] = 'front';
                     $url['id'] = 'id';
 
-                    \Framework\Model\Model::generate_table_content_view(
+                    \phpOMS\Model\Model::generate_table_content_view(
                         $data['list'],
                         ['status', 'id', 'name1', 'lactive', 'created'],
                         $url

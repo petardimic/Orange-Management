@@ -5,7 +5,7 @@ $modules_all = $this->app->modules->getAllModules();
 
 if(array_key_exists($request->getData()['id'], $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
-    \Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                      1000105001]);
 }
 ?>
@@ -30,13 +30,13 @@ if(array_key_exists($request->getData()['id'], $modules_all)) {
         <div class="clearfix rT">
             <ul>
                 <?php
-                /** @var \Framework\Module\Modules $modules */
+                /** @var \phpOMS\Module\Modules $modules */
                 if (!array_key_exists($request->getData()['id'], $this->app->modules->getInstalledModules())) {
                 ?>
                 <li>
                     <button data-http="PUT" data-request="DYN"
                             data-json='{"id":"<?= $request->getData()['id']; ?>"}' data-uri="<?=
-                    \Framework\Uri\UriFactory::build([
+                    \phpOMS\Uri\UriFactory::build([
                             $request->getData()['l0'],
                             'api',
                             'admin',
@@ -45,7 +45,7 @@ if(array_key_exists($request->getData()['id'], $modules_all)) {
                     ); ?>"><?= $this->app->user->getL11n()->lang[1]['Install']; ?></button>
                     <?php } else { ?>
                 <li><a href="<?=
-                    \Framework\Uri\UriFactory::build([
+                    \phpOMS\Uri\UriFactory::build([
                         $request->getData()['l0'],
                         $request->getData()['l1'],
                         $request->getData()['l2'],
