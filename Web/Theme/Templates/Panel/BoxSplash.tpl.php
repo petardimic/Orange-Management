@@ -7,6 +7,6 @@
     </h1>
     <div class="bc-1">
         <i class="fa fa-<?= $this->getData('icon'); ?>"></i>
-        <?= $this->getView('table')->getResponse(); ?>
+        <?= $this->getView('table')->getOutput(); ?>
     </div>
 </div>

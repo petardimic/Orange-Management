@@ -56,9 +56,9 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000103001);
 ?>
-<?= $nav->getResponse(); ?>
+<?= $nav->getOutput(); ?>
 
-<?= $this->getView('group:create')->getResponse(); ?>
+<?= $this->getView('group:create')->getOutput(); ?>
 
 <div class="b b-3 c1-9 c1" id="i1-9-2">
     <h1>

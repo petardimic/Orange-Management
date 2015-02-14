@@ -6,7 +6,7 @@
     $header = $this->getView('header');
     $footer = $this->getView('footer');
     if($header !== false) {
-        echo $header->getResponse();
+        echo $header->getOutput();
     } ?>
     <?php if(isset($this->elements)): ?>
         <tbody>
@@ -23,7 +23,7 @@
         <tfoot>
         <tr>
             <td colspan="<?= count($header->getHeaders()); ?>" class="cT">
-                <?= $footer->getResponse(); ?>
+                <?= $footer->getOutput(); ?>
             </td>
         </tr>
         </tfoot>

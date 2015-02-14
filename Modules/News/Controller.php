@@ -54,32 +54,41 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $data = null)
+    public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'dashboard':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $newsList = new \Modules\News\Models\NewsList($this->app->dbPool);
+                $newsDashboard = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $newsDashboard->setTemplate('/Modules/News/Theme/backend/news-dashboard');
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/news-dashboard.tpl.php';
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $newsDashboard->addData('nav', $navigation->nav);
+                echo $newsDashboard->getOutput();
                 break;
             case 'single':
                 $article = new \Modules\News\Models\Article($this->app->dbPool);
@@ -89,16 +98,28 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/news-single.tpl.php';
                 break;
             case 'archive':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $newsList = new \Modules\News\Models\NewsList($this->app->dbPool);
+                $newArchive = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $newArchive->setTemplate('/Modules/News/Theme/backend/news-archive');
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/news-archive.tpl.php';
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $newArchive->addData('nav', $navigation->nav);
+                echo $newArchive->getOutput();
                 break;
             case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/news-create.tpl.php';
+                $newsCreate = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $newsCreate->setTemplate('/Modules/News/Theme/backend/news-create');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $newsCreate->addData('nav', $navigation->nav);
+                echo $newsCreate->getOutput();
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 }

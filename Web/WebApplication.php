@@ -86,6 +86,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $pageView->setLocalization($this->user->getL11n());
                 $pageView->setRequest($this->request);
+                $pageView->setResponse($this->response);
 
                 $toLoad = $this->moduleManager->getUriLoads($this->request);
 
@@ -110,11 +111,9 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
                 $pageView->setTemplate('/Web/Theme/backend/index');
-
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
-
-                $this->response->add('GLOBAL', $pageView->getResponse());
+                $this->response->add('GLOBAL', $pageView->getOutput());
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
                 if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
@@ -159,7 +158,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                         }
 
                         /** @noinspection PhpUndefinedMethodInspection */
-                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $request);
+                        $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $request, $this->response);
                     }
                 } else {
                     $toLoad = $this->moduleManager->getUriLoads($this->request);
@@ -176,7 +175,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                     if(isset(\Framework\Module\ModuleFactory::$loaded['Content'])) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request);
+                        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request, $this->response);
                     }
                 }
 
@@ -188,7 +187,7 @@ class WebApplication extends \Framework\ApplicationAbstract
 
                 $pageView = new \Framework\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
-                $this->response->add('GLOBAL', $pageView->getResponse());
+                $this->response->add('GLOBAL', $pageView->getOutput());
         }
 
         echo $this->response->make('GLOBAL');

@@ -47,5 +47,5 @@ $nav->setParent(1000104001);
 /*
  * Template
  */
-echo $nav->getResponse();
-echo $accountListView->getResponse();
+echo $nav->getOutput();
+echo $accountListView->getOutput();

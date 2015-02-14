@@ -46,5 +46,5 @@ $nav->setParent(1002701001);
 /*
  * Template
  */
-echo $nav->getResponse();
-echo $reporterListView->getResponse();
+echo $nav->getOutput();
+echo $reporterListView->getOutput();

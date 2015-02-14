@@ -6,10 +6,10 @@ $nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
-$top = $nav->getResponse();
+$top = $nav->getOutput();
 
 $nav->setTemplate('/Modules/Navigation/Theme/backend/side');
-$side = $nav->getResponse();
+$side = $nav->getOutput();
 ?>
     <!DOCTYPE HTML>
 <html>
@@ -47,7 +47,7 @@ $side = $nav->getResponse();
     <?= $side; ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request); ?>
+        \Framework\Module\ModuleFactory::$loaded['Content']->call(\Framework\Module\CallType::WEB, $this->request, $this->response); ?>
     </div>
 </div>
 <?php \Framework\Model\Model::load_footer(); ?>

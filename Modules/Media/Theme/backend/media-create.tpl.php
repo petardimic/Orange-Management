@@ -12,7 +12,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000401001);
 ?>
-<?= $nav->getResponse();?>
+<?= $nav->getOutput();?>
 <div class="b b-3 c4-2 c4" id="i4-2-1">
     <h1>
         <?= $this->l11n->lang[4]['Preview']; ?>

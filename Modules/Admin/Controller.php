@@ -53,14 +53,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $data = null)
+    public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
-                $this->showAPI($request);
+                $this->showAPI($request, $response);
                 break;
         }
     }
@@ -68,31 +68,33 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'account':
-                $this->showBackendAccount($request);
+                $this->showBackendAccount($request, $response);
                 break;
             case 'group':
-                $this->showBackendGroup($request);
+                $this->showBackendGroup($request, $response);
                 break;
             case 'settings':
-                $this->showBackendSettings($request);
+                $this->showBackendSettings($request, $response);
                 break;
             case 'module':
-                $this->showBackendModule($request);
+                $this->showBackendModule($request, $response);
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -100,12 +102,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendSettings($request)
+    public function showBackendSettings($request, $response)
     {
         $this->app->settings->loadSettings([
             1000000006,
@@ -131,13 +134,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'general':
                 $coreSettingsView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
-                echo $coreSettingsView->getResponse();
+                echo $coreSettingsView->getOutput();
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -145,12 +149,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccount($request)
+    public function showBackendAccount($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':
@@ -159,10 +164,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountListView->addData('nav', $navigation->nav);
-                echo $accountListView->getResponse();
+                echo $accountListView->getOutput();
                 break;
             case 'single':
-                $this->showBackendAccountSingle($request);
+                $this->showBackendAccountSingle($request, $response);
                 $this->callPull();
 
                 break;
@@ -172,13 +177,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountCreateView->addData('nav', $navigation->nav);
-                echo $accountCreateView->getResponse();
+                echo $accountCreateView->getOutput();
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -186,12 +192,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccountSingle($request)
+    public function showBackendAccountSingle($request, $response)
     {
         switch($request->getData()['l5']) {
             case 'front':
@@ -199,10 +206,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -210,12 +218,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendModule($request)
+    public function showBackendModule($request, $response)
     {
         if(empty($request->getData()['l4'])) {
             $request->getData()['l5'] = 'front';
@@ -225,7 +234,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'list':
                 $moduleListView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
-                echo $moduleListView->getResponse();
+                echo $moduleListView->getOutput();
                 break;
             case 'front':
                 //$info = $this->app->modules->moduleInfoGet((int)$request->getData()['id']);
@@ -234,10 +243,11 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -245,12 +255,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendGroup($request)
+    public function showBackendGroup($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':
@@ -259,10 +270,10 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupListView->addData('nav', $navigation->nav);
-                echo $groupListView->getResponse();
+                echo $groupListView->getOutput();
                 break;
             case 'single':
-                $this->showBackendGroupSingle($request);
+                $this->showBackendGroupSingle($request, $response);
                 break;
             case 'create':
                 $groupCreateView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
@@ -270,13 +281,14 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupCreateView->addData('nav', $navigation->nav);
-                echo $groupCreateView->getResponse();
+                echo $groupCreateView->getOutput();
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
@@ -284,12 +296,13 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendGroupSingle($request)
+    public function showBackendGroupSingle($request, $response)
     {
         switch($request->getData()['l5']) {
             case 'front':
@@ -307,15 +320,16 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
 
-    public function showAPI($request)
+    public function showAPI($request, $response)
     {
     }
 }

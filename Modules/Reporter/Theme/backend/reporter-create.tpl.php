@@ -14,4 +14,4 @@ $nav->setParent(1002701001);
 /*
  * Template
  */
-echo $nav->getResponse();
+echo $nav->getOutput();

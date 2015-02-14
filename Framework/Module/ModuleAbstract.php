@@ -61,7 +61,7 @@ abstract class ModuleAbstract implements \Framework\Module\ModuleInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function call($tpye, $request, $data = null);
+    abstract public function call($tpye, $request, $response, $data = null);
 
     /**
      * Get modules this module is providing for

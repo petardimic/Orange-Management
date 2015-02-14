@@ -46,5 +46,5 @@ $nav->setParent(1002701001);
 /*
  * Template
  */
-echo $nav->getResponse();
-echo $carsList->getResponse();
+echo $nav->getOutput();
+echo $carsList->getOutput();

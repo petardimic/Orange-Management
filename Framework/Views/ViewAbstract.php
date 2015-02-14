@@ -210,7 +210,7 @@ class ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getResponse()
+    public function getOutput()
     {
         ob_start();
         /** @noinspection PhpIncludeInspection */
@@ -227,12 +227,12 @@ class ViewAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getResponses()
+    public function getOutputs()
     {
         ob_start();
 
         foreach($this->views as $key => $view) {
-            echo $view->getResponse();
+            echo $view->getOutput();
         }
 
         return ob_get_clean();

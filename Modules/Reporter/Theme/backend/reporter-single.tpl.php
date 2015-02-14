@@ -11,7 +11,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
 ?>
-<?= $nav->getResponse(); ?>
+<?= $nav->getOutput(); ?>
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
@@ -61,5 +61,5 @@ $nav->setParent(1002701001);
     </div>
 </div>
 <div class="b-6">
-    <?= $this->getView('DataView')->getResponse(); ?>
+    <?= $this->getView('DataView')->getOutput(); ?>
 </div>

@@ -47,5 +47,5 @@ $nav->setParent(1000103001);
 /*
  * Template
  */
-echo $nav->getResponse();
-echo $groupListView->getResponse();
+echo $nav->getOutput();
+echo $groupListView->getOutput();

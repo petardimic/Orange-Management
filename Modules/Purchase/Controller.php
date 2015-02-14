@@ -56,7 +56,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $data = null)
+    public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
@@ -69,6 +69,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -95,6 +96,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -124,6 +126,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -153,6 +156,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -182,6 +186,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -53,27 +53,35 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $data = null)
+    public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
             case \Framework\Message\Http\WebRequestPage::API:
-                $this->showAPI($request);
+                $this->showAPI($request, $response);
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 
     /**
      * Shows module content
      *
-     * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private function showContentBackend($request)
+    private function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'single':
@@ -89,7 +97,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaList->addData('nav', $navigation->nav);
-                echo $mediaList->getResponse();
+                echo $mediaList->getOutput();
                 break;
             case 'create':
                 $mediaCreate = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
@@ -97,29 +105,37 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaCreate->addData('nav', $navigation->nav);
-                echo $mediaCreate->getResponse();
-                break;
-        }
-    }
-
-    private function showAPI($request)
-    {
-        switch($request->getRequestType()) {
-            case \Framework\Message\RequestType::POST:
-                $this->apiUpload($request);
+                echo $mediaCreate->getOutput();
                 break;
             default:
-                $this->app->response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
-                $this->app->response->addHeader('Status', 'Status:406 Not acceptable');
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
                 return;
         }
     }
 
-    private function apiUpload($request)
+    private function showAPI($request, $response)
     {
-        $upload = new \Modules\Media\Models\Upload();
+        switch($request->getRequestType()) {
+            case \Framework\Message\RequestType::POST:
+                $this->apiUpload($request, $response);
+                break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $response->addHeader('Status', 'Status:406 Not acceptable');
+
+                return;
+        }
+    }
+
+    private function apiUpload($request, $response)
+    {
+        $upload  = new \Modules\Media\Models\Upload();
         $rndPath = str_pad(dechex(rand(0, 65535)), 4, '0', STR_PAD_LEFT);
-        $upload->setOutputDir('/Modules/Media/Files/'.$rndPath[0].$rndPath[1].'/'.$rndPath[2].$rndPath[3]);
+        $upload->setOutputDir('/Modules/Media/Files/' . $rndPath[0] . $rndPath[1] . '/' . $rndPath[2] . $rndPath[3]);
         $upload->setFileName(false);
         $status = $upload->upload($_FILES);
     }

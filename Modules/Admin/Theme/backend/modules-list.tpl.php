@@ -37,4 +37,4 @@ $moduleListView->addView('footer', $footerView);
 /*
  * Template
  */
-echo $moduleListView->getResponse();
+echo $moduleListView->getOutput();

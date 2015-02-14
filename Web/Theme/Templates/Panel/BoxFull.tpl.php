@@ -9,7 +9,7 @@
         <?php
         /** @var  \Framework\Views\ViewAbstract $view */
         foreach($this->views as $view) {
-            echo $view->getResponse();
+            echo $view->getOutput();
         }
         ?>
     </div>

@@ -45,16 +45,7 @@ class Response
     private $autoPush = false;
 
     /**
-     * Add header by ID
-     *
-     * @param mixed  $key       Header ID
-     * @param string $header    Header string
-     * @param bool   $overwrite Overwrite existing headers
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function addHeader($key, $header, $overwrite = true)
     {

@@ -15,7 +15,7 @@ $nav->setParent(1000104001);
 /*
  * Template
  */
-echo $nav->getResponse();
+echo $nav->getOutput();
 ?>
 
 <div class="b b-2 c1-8 c1" id="i1-8-2">

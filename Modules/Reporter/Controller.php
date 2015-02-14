@@ -53,7 +53,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $data = null)
+    public function call($type, $request, $response, $data = null)
     {
         switch($request->getType()) {
             case \Framework\Message\Http\WebRequestPage::BACKEND:
@@ -69,6 +69,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
      * Shows module content
      *
      * @param \Framework\Message\RequestAbstract $request Request
+     * @param \Framework\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -82,7 +83,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportSingle->addData('nav', $navigation->nav);
-                echo $reportSingle->getResponse();
+                echo $reportSingle->getOutput();
                 break;
             case 'list':
                 $reportList = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
@@ -90,7 +91,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportList->addData('nav', $navigation->nav);
-                echo $reportList->getResponse();
+                echo $reportList->getOutput();
                 break;
             case 'create':
                 $reportCreate = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
@@ -98,7 +99,7 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportCreate->addData('nav', $navigation->nav);
-                echo $reportCreate->getResponse();
+                echo $reportCreate->getOutput();
                 break;
         }
     }

@@ -27,6 +27,14 @@ class BackendView extends \Framework\Views\ViewAbstract
     protected $request = null;
 
     /**
+     * Request
+     *
+     * @var \Framework\Message\Http\Response
+     * @since 1.0.0
+     */
+    protected $response = null;
+
+    /**
      * @return \Framework\Message\Http\Request
      *
      * @since  1.0.0
@@ -46,5 +54,27 @@ class BackendView extends \Framework\Views\ViewAbstract
     public function setRequest($request)
     {
         $this->request = $request;
+    }
+
+    /**
+     * @return \Framework\Message\Http\Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param \Framework\Message\Http\Response $response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
     }
 }

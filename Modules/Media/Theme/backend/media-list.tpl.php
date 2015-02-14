@@ -47,5 +47,5 @@ $nav->setParent(1000401001);
 /*
  * Template
  */
-echo $nav->getResponse();
-echo $mediaListView->getResponse();
+echo $nav->getOutput();
+echo $mediaListView->getOutput();

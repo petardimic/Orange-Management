@@ -11,7 +11,7 @@
         <!-- @formatter:off -->
         <?php $i = 0; foreach($this->getViews() as $tab): $i++; ?>
             <div class="tab tab-<?= $this->id; ?>-<?= $i; ?><?= ($tab->getData('active') === true ? ' a' : ''); ?>">
-                <?= $tab->getResponse(); ?>
+                <?= $tab->getOutput(); ?>
             </div>
         <?php endforeach; ?>
         <!-- @formatter:on -->

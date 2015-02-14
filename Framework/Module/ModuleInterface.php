@@ -49,12 +49,13 @@ interface ModuleInterface
     /**
      * Call all modules from which this module is receiving
      *
-     * @param \Framework\Module\CallType|int     $type    Call type
-     * @param \Framework\Message\RequestAbstract $request Request
-     * @param mixed                              $data    Data to pass (if required)
+     * @param \Framework\Module\CallType|int      $type     Call type
+     * @param \Framework\Message\RequestAbstract  $request  Request
+     * @param \Framework\Message\ResponseAbstract $response Response
+     * @param mixed                               $data     Data to pass (if required)
      *
      * @since  1.0.0
      * @author Dennis Eichhorn
      */
-    public function call($type, $request, $data = null);
+    public function call($type, $request, $response, $data = null);
 }
