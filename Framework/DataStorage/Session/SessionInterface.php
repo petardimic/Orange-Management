@@ -33,13 +33,14 @@ interface SessionInterface
     /**
      * Store session value by key
      *
-     * @param string|int $key   Value key
-     * @param mixed      $value Value to store
+     * @param string|int $key       Value key
+     * @param mixed      $value     Value to store
+     * @param bool       $overwrite Overwrite existing values
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function set($key, $value);
+    public function set($key, $value, $overwrite = true);
 
     /**
      * Remove value from session by key

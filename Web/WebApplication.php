@@ -68,6 +68,8 @@ class WebApplication extends \Framework\ApplicationAbstract
                     break;
                 }
 
+                $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+
                 $pageView = new \Web\Views\Page\BackendView();
 
                 if($this->dbPool->get('core')->status !== \Framework\DataStorage\Database\DatabaseStatus::OK) {
@@ -79,14 +81,23 @@ class WebApplication extends \Framework\ApplicationAbstract
                 \Framework\Model\Model::$app          = $this;
 
                 $this->eventManager   = new \Framework\Event\EventManager();
-                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession(0);
+                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession();
                 $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
                 $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
+                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
+                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
+
                 $pageView->setLocalization($this->user->getL11n());
                 $pageView->setRequest($this->request);
                 $pageView->setResponse($this->response);
+
+                if($this->user->getId() < 1) {
+                    $pageView->setTemplate('/Web/Theme/backend/login');
+                    $this->response->add('GLOBAL', $pageView->getOutput());
+                    break;
+                }
 
                 $toLoad = $this->moduleManager->getUriLoads($this->request);
 
@@ -109,7 +120,6 @@ class WebApplication extends \Framework\ApplicationAbstract
                 \Framework\Model\Model::$content['core:layout']      = $this->request->getType();
                 \Framework\Model\Model::$content['page:title']       = 'Orange Management';
 
-                $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
                 $pageView->setTemplate('/Web/Theme/backend/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
@@ -128,7 +138,7 @@ class WebApplication extends \Framework\ApplicationAbstract
                 \Framework\Model\Model::$app          = $this;
 
                 $this->eventManager   = new \Framework\Event\EventManager();
-                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession(0);
+                $this->sessionManager = new \Framework\DataStorage\Session\HttpSession();
                 $this->moduleManager  = new \Framework\Module\ModuleManager($this->dbPool);
                 $this->auth           = new \Framework\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
@@ -161,6 +171,27 @@ class WebApplication extends \Framework\ApplicationAbstract
                         $this->moduleManager->running['Content']->call(\Framework\Module\CallType::WEB, $request, $this->response);
                     }
                 } else {
+                    $request = $this->request;
+
+                    if($this->user->getId() < 1) {
+                        if($request->getData()['l2'] === 'login') {
+                            $this->sessionManager->set('UID', 1);
+                            $this->sessionManager->save();
+
+                            $this->response->get('GLOBAL')->add($this->request->__toString(), 0);
+                            $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                            break;
+                        }
+                    } else {
+                        if($request->getData()['l2'] === 'logout') {
+                            $this->sessionManager->remove('UID');
+                            $this->sessionManager->save();
+                            $this->response->get('GLOBAL')->add($this->request->__toString(), 1);
+                            $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                            break;
+                        }
+                    }
+
                     $toLoad = $this->moduleManager->getUriLoads($this->request);
 
                     if(isset($toLoad[4])) {

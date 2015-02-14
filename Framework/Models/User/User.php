@@ -175,7 +175,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
 
         $this->localization = new \Framework\Localization\Localization($this->id);
 
-        if($id !== -1) {
+        /*if($id !== -1) {
             $sth = $this->dbPool->get('core')->con->prepare(
                 'SELECT
                         `' . $this->dbPool->get('core')->prefix . 'accounts`.*,
@@ -193,7 +193,7 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
 
             if(!empty($user)) {
             }
-        }
+        }*/
 
         if(!empty($user)) {
             $this->status        = (int) $user[$id]['status'];
@@ -254,6 +254,204 @@ class User implements \Framework\Models\MapperInterface, \Framework\Pattern\Mult
     public function getL11n()
     {
         return $this->localization;
+    }
+
+    /**
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getSid()
+    {
+        return $this->sid;
+    }
+
+    /**
+     * @param mixed $sid
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setSid($sid)
+    {
+        $this->sid = $sid;
+    }
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param \string[] $name
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return UserStatus
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param UserStatus $status
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param int $password
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return UserType
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param UserType $type
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return \Datetime
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \Datetime $created
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getTries()
+    {
+        return $this->tries;
+    }
+
+    /**
+     * @param int $tries
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setTries($tries)
+    {
+        $this->tries = $tries;
     }
 
     /**

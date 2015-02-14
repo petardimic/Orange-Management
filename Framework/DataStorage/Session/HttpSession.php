@@ -18,6 +18,8 @@ namespace Framework\DataStorage\Session;
  */
 class HttpSession implements \Framework\DataStorage\Session\SessionInterface
 {
+    private $sessionData = [];
+
     /**
      * Session ID
      *
@@ -29,14 +31,22 @@ class HttpSession implements \Framework\DataStorage\Session\SessionInterface
     /**
      * Constructor
      *
-     * @param string|int $sid Session id
+     * @param string|int|bool $sid Session id
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($sid)
+    public function __construct($sid = false)
     {
-        $this->sid = $sid;
+        if($sid !== false) {
+            session_id($sid);
+        }
+
+        session_start();
+        $this->sessionData = $_SESSION;
+
+        $this->sid = session_id();
+        session_write_close();
     }
 
     /**
@@ -44,13 +54,26 @@ class HttpSession implements \Framework\DataStorage\Session\SessionInterface
      */
     public function get($key)
     {
+        if(isset($this->sessionData[$key])) {
+            return $this->sessionData[$key];
+        } else {
+            return null;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set($key, $value)
+    public function set($key, $value, $overwrite = true)
     {
+        $this->sessionData[$key] = $value;
+    }
+
+    public function save() {
+        session_id($this->sid);
+        session_start();
+        $_SESSION = $this->sessionData;
+        session_write_close();
     }
 
     /**
@@ -58,5 +81,8 @@ class HttpSession implements \Framework\DataStorage\Session\SessionInterface
      */
     public function remove($key)
     {
+        if(isset($this->sessionData[$key])) {
+            unset($this->sessionData[$key]);
+        }
     }
 }

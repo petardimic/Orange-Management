@@ -5,7 +5,6 @@
 ?>
 <ul>
     <?php foreach($this->elements as $row): ?>
-        <li>
         <?php foreach($row as $element): ?>
             <?php if($element['type'] === \Framework\Html\TagType::GENERIC): ?>
                 <?= '<' . $element['tag'] . '>' . $element['content'] . '</' . $element['tag'] . '>'; ?>
@@ -46,7 +45,6 @@
                 <label for="<?= $element['for']; ?>"><?= $element['content']; ?></label>
             <?php endif; ?>
         <?php endforeach; ?>
-        </li>
     <?php endforeach; ?>
     <?php if ($this->hasSubmit): ?>
     <li class="submit"><input type="submit" value="<?= $this->getData('submit'); ?>">
