@@ -19,6 +19,10 @@ $toInstall = [
     'BackendDashboard',
     'Business',
     'Media',
+    'Tasks',
+    'News',
+    'Calendar',
+    'Messages',
     'Reporter',/*
     'ItemReference',
     'Sales',
@@ -29,18 +33,13 @@ $toInstall = [
     'AccountsPayable',
     'Controlling',
     'RiskManagement',
-    'Calendar',
     'Marketing',
     'HumanResources',
     'ResearchDevelopment',
     'Production',
     'Surveys',
-    'Tasks',
-    'Messages',
     'ProjectManagement',
-    'EventManagement',
-    'Chat',
-    'News',*/
+    'EventManagement'*/
 ];
 
 $instHOBJ->installCore();

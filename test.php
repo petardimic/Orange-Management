@@ -1,2 +1,5 @@
 <?php
-var_dump(str_pad(dechex(65535), 4, '0', STR_PAD_LEFT));
+include __DIR__ . '/Framework/Datatypes/Enum.php';
+include __DIR__ . '/Framework/System/MimeType.php';
+
+var_dump(\Framework\System\MimeType::getConstants());

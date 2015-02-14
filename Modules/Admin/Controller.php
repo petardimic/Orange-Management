@@ -88,6 +88,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
             case 'module':
                 $this->showBackendModule($request);
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -127,6 +133,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
                 echo $coreSettingsView->getResponse();
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -155,9 +167,19 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
 
                 break;
             case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/accounts-create.tpl.php';
+                $accountCreateView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $accountCreateView->setTemplate('/Modules/Admin/Theme/backend/accounts-create');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $accountCreateView->addData('nav', $navigation->nav);
+                echo $accountCreateView->getResponse();
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -176,6 +198,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -205,6 +233,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -231,9 +265,19 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 $this->showBackendGroupSingle($request);
                 break;
             case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/groups-create.tpl.php';
+                $groupCreateView = new \Framework\Views\ViewAbstract($this->app->user->getL11n());
+                $groupCreateView->setTemplate('/Modules/Admin/Theme/backend/groups-create');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $groupCreateView->addData('nav', $navigation->nav);
+                echo $groupCreateView->getResponse();
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 
@@ -262,6 +306,12 @@ class Controller extends \Framework\Module\ModuleAbstract implements \Framework\
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
                 break;
+            default:
+                $this->app->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->app->response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                return;
         }
     }
 

@@ -1,44 +1,68 @@
-<?php /** @var \Modules\Admin\Controller $this */
-/** @noinspection PhpUndefinedMethodInspection */
-\Framework\Module\ModuleFactory::$loaded['Navigation']->call(\Framework\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1000103001]);
+<?php
+/*
+ * UI Logic
+ */
+
+/**
+ * @var \Framework\Views\ViewAbstract $this
+ */
+$panelCreate = new \Web\Views\Panel\PanelView($this->l11n);
+$panelCreate->setTitle($this->l11n->lang[1]['Group']);
+
+$this->addView('group:create', $panelCreate);
+$this->getView('group:create')->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
+
+/*
+ * General
+ */
+
+$formGroupCreate = new \Web\Views\Form\FormView($this->l11n);
+$formGroupCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formGroupCreate->setData('submit', $this->l11n->lang[0]['Submit']);
+$formGroupCreate->setAction('http://127.0.0.1');
+$formGroupCreate->setMethod(\Framework\Message\RequestType::POST);
+
+$formGroupCreate->setElement(0, 0, [
+    'type' => \Framework\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'name' => 'gid',
+    'label' => $this->l11n->lang[0]['ID'],
+    'placeholder' => 'unique_group_id',
+    'regex' => '[a-zA-Z0-9_\-+/]*'
+]);
+
+$formGroupCreate->setElement(1, 0, [
+    'type' => \Framework\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Name'],
+    'name' => 'gname',
+    'placeholder' => $this->l11n->lang[1]['Group']
+]);
+
+$formGroupCreate->setElement(2, 0, [
+    'type' => \Framework\Html\TagType::TEXTAREA,
+    'label' => $this->l11n->lang[1]['Description'],
+    'name' => 'gdesc',
+]);
+
+$this->getView('group:create')->addView('form', $formGroupCreate);
+
+/*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1000103001);
 ?>
+<?= $nav->getResponse(); ?>
 
-<div class="b b-2 c1-9 c1" id="i1-9-1">
+<?= $this->getView('group:create')->getResponse(); ?>
+
+<div class="b b-3 c1-9 c1" id="i1-9-2">
     <h1>
-        <?= $this->app->user->getL11n()->lang[1]['Group']; ?>
-        <i class="fa fa-minus min"></i>
-        <i class="fa fa-plus max vh"></i>
-    </h1>
-
-    <div class="bc-1">
-        <div class="bc-1">
-            <form class="f-1">
-                <ul class="l-1">
-                    <li>
-                        <label for="i-id"><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
-                    <li>
-                        <input name="id" class="i-1 t-i" id="i-id" type="text">
-                    <li>
-                        <label for="i-name"><?= $this->app->user->getL11n()->lang[1]['Name']; ?></label>
-                    <li>
-                        <input name="name" class="i-1 t-i" id="i-name" type="text">
-                    <li>
-                        <label
-                            for="i-desc"><?= $this->app->user->getL11n()->lang[1]['Description']; ?></label>
-                    <li>
-                        <textarea name="desc" id="i-desc"></textarea>
-                    <li>
-                        <input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Create']; ?>">
-                </ul>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="b b-2 c1-9 c1" id="i1-9-2">
-    <h1>
-        <?= $this->app->user->getL11n()->lang[1]['Parents']; ?>
+        <?= $this->l11n->lang[1]['Parents']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -49,5 +73,5 @@
 </div>
 
 <div class="c-bar rT">
-    <button><?= $this->app->user->getL11n()->lang[0]['Create']; ?></button>
-    <button><?= $this->app->user->getL11n()->lang[0]['Cancel']; ?></div>
+    <button><?= $this->l11n->lang[0]['Create']; ?></button>
+    <button><?= $this->l11n->lang[0]['Cancel']; ?></div>

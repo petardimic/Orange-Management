@@ -248,7 +248,7 @@ class ViewAbstract
      */
     public function getData($id)
     {
-        return $this->data[$id];
+        return (!isset($this->data[$id]) ? null : $this->data[$id]);
     }
 
     /**
