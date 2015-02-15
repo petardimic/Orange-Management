@@ -82,7 +82,7 @@ class ApplicationAbstract
     public $session = null;
 
     /**
-     * Eventmanager
+     * Event manager
      *
      * @var \phpOMS\Event\EventManager
      * @since 1.0.0

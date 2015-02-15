@@ -31,17 +31,19 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     /**
      * Constructor
      *
-     * @param string|int|bool $sid Session id
+     * @param int             $liftetime Session life time
+     * @param string|int|bool $sid       Session id
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($sid = false)
+    public function __construct($liftetime = 3600, $sid = false)
     {
         if($sid !== false) {
             session_id($sid);
         }
 
+        session_set_cookie_params($liftetime);
         session_start();
         $this->sessionData = $_SESSION;
 
@@ -69,7 +71,8 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
         $this->sessionData[$key] = $value;
     }
 
-    public function save() {
+    public function save()
+    {
         session_id($this->sid);
         session_start();
         $_SESSION = $this->sessionData;
@@ -107,6 +110,4 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     {
         $this->sid = $sid;
     }
-
-
 }

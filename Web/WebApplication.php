@@ -81,7 +81,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 \phpOMS\Model\Model::$app          = $this;
 
                 $this->eventManager   = new \phpOMS\Event\EventManager();
-                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession();
+                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
                 $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
                 $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
@@ -138,7 +138,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 \phpOMS\Model\Model::$app          = $this;
 
                 $this->eventManager   = new \phpOMS\Event\EventManager();
-                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession();
+                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
                 $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
                 $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
