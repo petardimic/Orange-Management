@@ -13,7 +13,7 @@
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-var oLib = {
+var _ = {
     /**
      * Loaded CSS or JS files
      *
@@ -118,7 +118,7 @@ var oLib = {
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     addClass: function (ele, cls) {
-        if (!oLib.hasClass(ele, cls)) ele.className += " " + cls;
+        if (!_.hasClass(ele, cls)) ele.className += " " + cls;
     },
 
     /**
@@ -133,7 +133,7 @@ var oLib = {
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     removeClass: function (ele, cls) {
-        if (oLib.hasClass(ele, cls)) {
+        if (_.hasClass(ele, cls)) {
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
             ele.className = ele.className.replace(reg, '');
         }
@@ -252,7 +252,7 @@ var oLib = {
         var length = ele.childNodes.length;
 
         for (var i = 0; i < length; i++) {
-            if (oLib.hasClass(ele.childNodes[i], cls)) {
+            if (_.hasClass(ele.childNodes[i], cls)) {
                 return ele.childNodes[i];
             }
         }
@@ -319,7 +319,7 @@ var oLib = {
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     loadCSSJS: function (path, filename, filetype, func) {
-        if (oLib.LoadedCSSJS.indexOf("[" + filename + "]") === -1) {
+        if (_.LoadedCSSJS.indexOf("[" + filename + "]") === -1) {
             var fileref = null;
 
             if (filetype === "js") {
@@ -337,7 +337,7 @@ var oLib = {
                 document.getElementsByTagName("head")[0].appendChild(fileref);
         }
 
-        oLib.LoadedCSSJS += "[" + filename + "]";
+        _.LoadedCSSJS += "[" + filename + "]";
 
         if (func !== undefined) {
             fileref.onreadystatechange = function () {
