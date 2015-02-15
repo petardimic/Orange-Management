@@ -80,7 +80,7 @@ class Model
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Theme/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/External/fontawesome/css/font-awesome.min.css">'
              . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
-             . '<script src="' . self::$content['page:addr:url'] . '/External/Libs/d3/d3.min.js"></script>'
+             . '<script src="' . self::$content['page:addr:url'] . '/External/d3/d3.min.js"></script>'
              . '<script src="' . self::$content['page:addr:url'] . '/jsOMS/Utils/oLib.js"></script>';
 
         ob_flush();
