@@ -1,3 +1,4 @@
+#!/bin/sh
 sudo apt-get update
 
 sudo apt-get install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
@@ -53,3 +54,9 @@ sudo apt-get install phploc
 sudo gem install sass
 
 sudo a2enmod headers # required for original path ?
+
+sudo apt-get install php5-xsl
+
+wget https://github.com/Halleck45/PhpMetrics/raw/master/build/phpmetrics.phar
+chmod +x phpmetrics.phar
+sudo mv phpmetrics.phar /usr/local/bin/phpmetrics

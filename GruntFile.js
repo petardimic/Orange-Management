@@ -120,7 +120,7 @@ module.exports = function (grunt) {
         phpdocumentor: {
             dev: {
                 options: {
-                    directory : 'phpOMS,Modules',
+                    directory : 'phpOMS,Modules,Web,Console,Socket,Admin',
                     target : 'Docs/Code'
                 }
             }
@@ -151,13 +151,15 @@ module.exports = function (grunt) {
                     'mkdir Docs/Stats',
                     'phploc phpOMS/ > Docs/Stats/phpOMS.stats',
                     'phploc Modules/ > Docs/Stats/ModulesStats.stats',
-                    'phpmetrics --report-html=Docs/Stats/Report.html phpOMS/',
-                    'rm -r -f Externals/',
-                    'mkdir Externals',
-                    'cp bower_components/d3/d3.min.js Externals/',
-                    'mkdir Externals/fontawesome',
-                    'cp bower_components/fontawesome/css Externals/fontawesome',
-                    'cp bower_components/fontawesome/fonts Externals/fontawesome'
+                    'phpmetrics --report-html=Docs/Stats/ReportFramework.html phpOMS/',
+                    'phpmetrics --report-html=Docs/Stats/ReportModules.html Modules/',
+                    'rm -r -f External/',
+                    'mkdir External',
+                    'mkdir External/d3',
+                    'cp bower_components/d3/d3.min.js External/d3',
+                    'mkdir External/fontawesome',
+                    'cp -r bower_components/fontawesome/css External/fontawesome',
+                    'cp -r bower_components/fontawesome/fonts External/fontawesome'
                 ].join('&&')
             }
         },
@@ -183,6 +185,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev', 'shell:dev']);
+    grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev', 'pdepend:dev', 'shell:dev']);
     grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev', 'shell:dev']);
 };
