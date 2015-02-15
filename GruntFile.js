@@ -30,9 +30,9 @@ module.exports = function (grunt) {
             },
             dev: {
                 src: [
-                    'Framework/JavaScript/Framework/UI/*.js'
+                    'jsOMS/UI/*.js'
                 ],
-                dest: 'Framework/JavaScript/oms.min.js'
+                dest: 'jsOMS/oms.min.js'
             }
         },
         uglify: {
@@ -41,12 +41,12 @@ module.exports = function (grunt) {
             },
             dev: {
                 files: {
-                    'Framework/JavaScript/oms.min.js': [
-                        'Framework/JavaScript/oms.min.js'
+                    'jsOMS/oms.min.js': [
+                        'jsOMS/oms.min.js'
                     ],
-                    'Framework/JavaScript/backend.min.js': [],
-                    'Framework/JavaScript/website.min.js': [],
-                    'Framework/JavaScript/shop.min.js': []
+                    'jsOMS/backend.min.js': [],
+                    'jsOMS/website.min.js': [],
+                    'jsOMS/shop.min.js': []
                 }
             }
         },
@@ -58,9 +58,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'Web/themes/oms-slim/backend/scss',
+                        cwd: 'Web/Theme/backend/scss',
                         src: ['*.scss'],
-                        dest: 'Web/themes/oms-slim/backend/css',
+                        dest: 'Web/Theme/backend/css',
                         ext: '.css'
                     }
                 ]
@@ -74,34 +74,28 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['Framework/JavaScript/*.js'],
+                        src: ['jsOMS/*.js'],
                         dest: '',
                         ext: '.min.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['Web/themes/oms-slim/backend/js/*.js'],
+                        src: ['Web/Theme/backend/js/*.js'],
                         dest: '',
                         ext: '.js.gz'
                     },
                     {
                         expand: true,
-                        src: ['Web/themes/oms-slim/backend/css/*.css'],
+                        src: ['Web/Theme/backend/css/*.css'],
                         dest: '',
                         ext: '.css.gz'
-                    },
-                    {
-                        expand: true,
-                        src: ['Framework/Libs/fonts/fonts-awesome/css/*.css'],
-                        dest: '',
-                        ext: '.min.css.gz'
                     }
                 ]
             }
         },
         phpcs: {
             dev: {
-                dir: ['Framework/**/*.php', 'Modules/**/*.php']
+                dir: ['phpOMS/**/*.php', 'Modules/**/*.php']
             },
             options: {
                 bin: 'vendor/bin/phpcs',
@@ -118,7 +112,7 @@ module.exports = function (grunt) {
         },
         phpdcd: {
             dev: {
-                dir: ['Framework', 'Modules']
+                dir: ['phpOMS', 'Modules']
             },
             options: {
             }
@@ -126,7 +120,7 @@ module.exports = function (grunt) {
         phpdocumentor: {
             dev: {
                 options: {
-                    directory : 'Framework,Modules',
+                    directory : 'phpOMS,Modules',
                     target : 'Docs/Code'
                 }
             }
@@ -139,7 +133,8 @@ module.exports = function (grunt) {
                 summaryXml: 'Docs/Dependencies/summaryXml.xml',
                 ignoreDirectories: [
                     'vendor',
-                    'node_modules'
+                    'node_modules',
+                    'bower_components'
                 ]
             },
             dev: {
@@ -152,10 +147,17 @@ module.exports = function (grunt) {
             },
             dev: {
                 command: [
+                    'rm -r -f Docs/Stats',
                     'mkdir Docs/Stats',
-                    'phploc Framework/ > Docs/Stats/FrameworkStats.stats',
+                    'phploc phpOMS/ > Docs/Stats/phpOMS.stats',
                     'phploc Modules/ > Docs/Stats/ModulesStats.stats',
-                    'phpmetrics --report-html=Docs/Stats/Report.html Framework/'
+                    'phpmetrics --report-html=Docs/Stats/Report.html phpOMS/',
+                    'rm -r -f Externals/',
+                    'mkdir Externals',
+                    'cp bower_components/d3/d3.min.js Externals/',
+                    'mkdir Externals/fontawesome',
+                    'cp bower_components/fontawesome/css Externals/fontawesome',
+                    'cp bower_components/fontawesome/fonts Externals/fontawesome'
                 ].join('&&')
             }
         },
@@ -171,11 +173,11 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['Framework/JavaScript/Framework/UI/*.js', 'Framework/JavaScript/Framework/Utils/*.js'],
+                files: ['jsOMS/UI/*.js', 'jsOMS/Utils/*.js'],
                 tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {
-                files: ['Content/themes/oms-slim/backend/scss/*.scss'],
+                files: ['Content/Theme/backend/scss/*.scss'],
                 tasks: ['sass:dev', 'compress:dev']
             }
         }

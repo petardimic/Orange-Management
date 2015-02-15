@@ -78,10 +78,10 @@ class Model
         /* Everyone */
         echo '<link rel="shortcut icon" href="/Web/Theme/Startup/favicon.ico">'
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/Web/Theme/' . self::$content['core:layout'] . '/css/' . self::$content['core:layout'] . '.css">'
-             . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/phpOMS/Libs/fonts/font-awesome/css/font-awesome.min.css">'
+             . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/External/fontawesome/css/font-awesome.min.css">'
              . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
-             . '<script src="' . self::$content['page:addr:url'] . '/phpOMS/Libs/d3/d3.min.js"></script>'
-             . '<script src="' . self::$content['page:addr:url'] . '/phpOMS/Javascript/phpOMS/Utils/oLib.js"></script>';
+             . '<script src="' . self::$content['page:addr:url'] . '/External/Libs/d3/d3.min.js"></script>'
+             . '<script src="' . self::$content['page:addr:url'] . '/jsOMS/Utils/oLib.js"></script>';
 
         ob_flush();
     }
@@ -111,7 +111,7 @@ class Model
      */
     public static function load_footer()
     {
-        echo '<script src="' . self::$content['page:addr:url'] . '/phpOMS/JavaScript/oms.min.js"></script>';
+        echo '<script src="' . self::$content['page:addr:url'] . '/jsOMS/oms.min.js"></script>';
 
         //var_dump(self::$app->modules->running);
 
