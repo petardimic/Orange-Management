@@ -51,3 +51,5 @@ sudo apt-get install pdepend
 sudo apt-get install phploc
 
 sudo gem install sass
+
+sudo a2enmod headers # required for original path ?

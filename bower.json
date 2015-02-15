@@ -1,13 +1,11 @@
 {
-  "name": "htdocs",
-  "version": "0.0.0",
+  "name": "OMS",
+  "version": "1.0.0",
   "homepage": "https://github.com/spl1nes/Orange-Management",
   "authors": [
     "Dennis Eichhorn <spl1nes.com@googlemail.com>"
   ],
   "license": "OMS 1.0",
-  "private": true,
-  "dependencies": {},
   "devDependencies": {
     "d3": "~3.5.5",
     "threejs": "*",

@@ -14,6 +14,7 @@ AddType font/otf .otf
 AddType application/font-woff .woff
 AddType application/vnd.ms-fontobject .eot
 
+# probably can be removed and is causing problems without installing header
 <FilesMatch "\.(ttf|svg|ttc|otf|eot|woff|css)$">
     Header set Access-Control-Allow-Origin "*"
 </FilesMatch>
