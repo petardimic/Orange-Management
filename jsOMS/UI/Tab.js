@@ -1,3 +1,4 @@
+/* TODO: css only?! http://codepen.io/wallaceerick/pen/ojtal http://codepen.io/Bucur/pen/ElzqB*/
 /* Handle tab clicks */
 var nodes = document.querySelectorAll('.tabview .tab-links a');
 oLib.each(nodes, function (ele) {

@@ -10,6 +10,13 @@ MathEvaluator.prototype.detach = function () {
 
 };
 
-MathEvaluator.prototype.trigger = function () {
-    // eval("");
+MathEvaluator.prototype.trigger = function (node) {
+    var value = node.value;
+
+    if(!value.slice(0, 1) == '=') {
+        return;
+    }
+
+    var processor = new MathProcessor();
+    return processor.parse(value);
 };

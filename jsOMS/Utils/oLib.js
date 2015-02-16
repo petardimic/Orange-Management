@@ -25,7 +25,7 @@ var oLib = {
     /**
      * AJAX
      *
-     * @param Object obj AJAX variables
+     * @param obj AJAX variables
      *
      * The following obj variables are expected:
      * responseType - Type of the response
