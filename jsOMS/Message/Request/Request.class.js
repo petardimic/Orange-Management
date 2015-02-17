@@ -45,3 +45,7 @@ Request.prototype.isAjax = function () {
 Request.prototype.serializeData = function () {
 
 };
+
+Request.prototype.send = function () {
+
+};

@@ -1,4 +1,4 @@
-var LinkRequestData = Object.freeze({
+var EnumLinkRequestData = Object.freeze({
     NORMAL: 'normal',
     OBJECT: 'object'
 });
