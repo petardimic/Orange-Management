@@ -25,3 +25,11 @@ Auth.prototype.refresh = function () {
 Auth.prototype.handshake = function () {
 
 };
+
+Auth.prototype.setAuthKey = function () {
+
+};
+
+Auth.prototype.getAuthKey = function () {
+
+};
