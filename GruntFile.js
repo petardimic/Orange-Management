@@ -187,4 +187,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build-dev', ['concat:dev', 'uglify:dev', 'compress:dev', 'sass:dev', 'compress:dev', 'phpdocumentor:dev', 'pdepend:dev', 'shell:dev']);
     grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev', 'shell:dev']);
+
+    grunt.registerTask('build-release', []);
 };
