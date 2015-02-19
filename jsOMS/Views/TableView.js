@@ -1,37 +1,36 @@
-var TableView = function () {
-    ViewAbstract.call(this);
-};
+(function (jsOMS, undefined) {
+    jsOMS.TableView = function() {
 
-TableView.prototype = new ViewAbstract();
-TableView.prototype.constructor = TableView;
+    };
 
-/**
- * None, Pagination, Infinite
- */
-TableView.prototype.setExtensible = function() {
+    /**
+     * None, Pagination, Infinite
+     */
+    jsOMS.TableView.prototype.setExtensible = function() {
 
-};
+    };
 
-TableView.prototype.add = function (element) {
+    jsOMS.TableView.prototype.add = function (element) {
 
-};
+    };
 
-TableView.prototype.addCollection = function (collection) {
+    jsOMS.TableView.prototype.addCollection = function (collection) {
 
-};
+    };
 
-TableView.prototype.remove = function (id) {
+    jsOMS.TableView.prototype.remove = function (id) {
 
-};
+    };
 
-TableView.prototype.get = function (id) {
+    jsOMS.TableView.prototype.get = function (id) {
 
-};
+    };
 
-TableView.prototype.filter = function (id) {
+    jsOMS.TableView.prototype.filter = function (id) {
 
-};
+    };
 
-TableView.prototype.request = function (filter) {
+    jsOMS.TableView.prototype.request = function (filter) {
 
-};
+    };
+}(window.jsOMS = window.jsOMS || {}));

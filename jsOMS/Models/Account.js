@@ -1,6 +1,8 @@
-var Account = function() {
-    this.id = '';
-    this.login = '';
-    this.password = '';
-    this.name = {};
-};
+(function (jsOMS, undefined) {
+    jsOMS.Account = function() {
+        this.login = '';
+        this.password = '';
+        this.id = 0;
+        this.auth = null;
+    };
+}(window.jsOMS = window.jsOMS || {}));
