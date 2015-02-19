@@ -1,14 +1,11 @@
-(function (jsOMS, undefined) {
-    jsOMS.FormView = function (node) {
-        if (node) {
-            this.setNode(node);
-        }
-    };
+var FormView = function(node) {
 
-    jsOMS.FormView.prototype.setNode = function () {
-    };
+};
 
-    jsOMS.FormView.prototype.submit = function () {
+FormView.prototype.setNode = function() {
 
-    };
-}(window.jsOMS = window.jsOMS || {}));
+};
+
+FormView.prototype.submit = function() {
+
+};

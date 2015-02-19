@@ -1,21 +1,19 @@
-(function (jsOMS, undefined) {
-    jsOMS.Options = function() {
-        this.options = {};
-    };
+var Options = function () {
+    this.options = {};
+};
 
-    jsOMS.Options.prototype.set = function (key, value, overwrite) {
-        overwrite = typeof overwrite === bool ? overwrite : true;
+Options.prototype.set = function (key, value, overwrite) {
+    overwrite = typeof overwrite === bool ? overwrite : true;
 
-        if (overwrite || options[key] === undefined) {
-            options[key] = value;
-        }
-    };
+    if (overwrite || this.options[key] === undefined) {
+        this.options[key] = value;
+    }
+};
 
-    jsOMS.Options.prototype.get = function (key) {
-        return options[key];
-    };
+Options.prototype.get = function (key) {
+    return this.options[key];
+};
 
-    jsOMS.Options.prototype.remove = function (key) {
-        delete options[key];
-    };
-}(window.jsOMS = window.jsOMS || {}));
+Options.prototype.remove = function (key) {
+    delete this.options[key];
+};
