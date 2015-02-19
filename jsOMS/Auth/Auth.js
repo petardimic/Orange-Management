@@ -1,35 +1,37 @@
-var Auth = function () {
-    this.account = null;
-};
+(function (jsOMS, undefined) {
+    jsOMS.Auth = function() {
+        this.account = null;
+    };
 
-Auth.prototype.setAccount = function (account) {
-    this.account = account;
-};
+    jsOMS.Auth.prototype.setAccount = function (account) {
+        this.account = account;
+    };
 
-Auth.prototype.getAccount = function () {
-    return this.account;
-};
+    jsOMS.Auth.prototype.getAccount = function () {
+        return this.account;
+    };
 
-Auth.prototype.login = function () {
+    jsOMS.Auth.prototype.login = function () {
 
-};
+    };
 
-Auth.prototype.logout = function () {
+    jsOMS.Auth.prototype.logout = function () {
 
-};
+    };
 
-Auth.prototype.refresh = function () {
+    jsOMS.Auth.prototype.refresh = function () {
 
-};
+    };
 
-Auth.prototype.handshake = function () {
+    jsOMS.Auth.prototype.handshake = function () {
 
-};
+    };
 
-Auth.prototype.setAuthKey = function () {
+    jsOMS.Auth.prototype.setAuthKey = function () {
 
-};
+    };
 
-Auth.prototype.getAuthKey = function () {
+    jsOMS.Auth.prototype.getAuthKey = function () {
 
-};
+    };
+}(window.jsOMS = window.jsOMS || {}));

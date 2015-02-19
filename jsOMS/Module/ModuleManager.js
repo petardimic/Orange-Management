@@ -1,11 +1,11 @@
-var ModuleManager = function() {
-    this.modules = {};
-};
+(function (jsOMS, undefined) {
+    jsOMS.ModuleManager = function() {
+        this.modules = {};
+    };
 
-ModuleManager.prototype.register = function(module) {
-    if(!isLoaded()){
-        // load module
-    }
-
-
-};
+    jsOMS.ModuleManager.prototype.register = function(module) {
+        if(!isLoaded()){
+            // load module
+        }
+    };
+}(window.jsOMS = window.jsOMS || {}));

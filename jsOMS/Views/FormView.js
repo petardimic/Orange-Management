@@ -1,11 +1,13 @@
-var FormView = function(node) {
+(function (jsOMS, undefined) {
+    jsOMS.FormView = function() {
 
-};
+    };
 
-FormView.prototype.setNode = function() {
+    jsOMS.FormView.prototype.setNode = function() {
 
-};
+    };
 
-FormView.prototype.submit = function() {
+    jsOMS.FormView.prototype.submit = function() {
 
-};
+    };
+}(window.jsOMS = window.jsOMS || {}));

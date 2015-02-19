@@ -1,7 +1,9 @@
-var Validation = function() {
+(function (jsOMS, undefined) {
+    jsOMS.Validation = function() {
 
-};
+    };
 
-Validation.prototype.addInput = function() {
+    jsOMS.Validation.prototype.addInput = function() {
 
-};
+    };
+}(window.jsOMS = window.jsOMS || {}));

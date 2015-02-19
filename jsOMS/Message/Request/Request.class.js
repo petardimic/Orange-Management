@@ -1,51 +1,53 @@
-var Request = function () {
+(function (jsOMS, undefined) {
+    jsOMS.Request = function() {
 
-};
+    };
 
-Request.prototype.setType = function () {
+    jsOMS.Request.prototype.setType = function () {
 
-};
+    };
 
-Request.prototype.getType = function () {
+    jsOMS.Request.prototype.getType = function () {
 
-};
+    };
 
-Request.prototype.setHttpType = function () {
+    jsOMS.Request.prototype.setHttpType = function () {
 
-};
+    };
 
-Request.prototype.getHttpType = function () {
+    jsOMS.Request.prototype.getHttpType = function () {
 
-};
+    };
 
-Request.prototype.setUri = function () {
+    jsOMS.Request.prototype.setUri = function () {
 
-};
+    };
 
-Request.prototype.getUri = function () {
+    jsOMS.Request.prototype.getUri = function () {
 
-};
+    };
 
-Request.prototype.setData = function () {
+    jsOMS.Request.prototype.setData = function () {
 
-};
+    };
 
-Request.prototype.getData = function () {
+    jsOMS.Request.prototype.getData = function () {
 
-};
+    };
 
-Request.prototype.setAjax = function () {
+    jsOMS.Request.prototype.setAjax = function () {
 
-};
+    };
 
-Request.prototype.isAjax = function () {
+    jsOMS.Request.prototype.isAjax = function () {
 
-};
+    };
 
-Request.prototype.serializeData = function () {
+    jsOMS.Request.prototype.serializeData = function () {
 
-};
+    };
 
-Request.prototype.send = function () {
+    jsOMS.Request.prototype.send = function () {
 
-};
+    };
+}(window.jsOMS = window.jsOMS || {}));

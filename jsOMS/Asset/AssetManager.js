@@ -1,16 +1,17 @@
-var AssetManager = function() {
-    this.assets = {};
-};
+(function (jsOMS, undefined) {
+    jsOMS.AssetManager = function() {
+        this.assets = {};
+    };
 
-AssetManager.prototype.load = function(key, uri, type) {
-    if(this.assets[key] !== undefined) {
-        return;
-    }
+    jsOMS.AssetManager.prototype.load = function(key, uri, type) {
+        if(this.assets[key] !== undefined) {
+            return;
+        }
 
-    this.assets[key] = 0;
-};
+        this.assets[key] = 0;
+    };
 
-AssetManager.prototype.unload = function(key) {
-    delete this.assets[key];
-};
-
+    jsOMS.AssetManager.prototype.unload = function(key) {
+        delete this.assets[key];
+    };
+}(window.jsOMS = window.jsOMS || {}));
