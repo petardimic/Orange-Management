@@ -194,6 +194,15 @@
 
     };
 
+    jsOMS.hash = function(str) {
+        var res = 0,
+            len = str.length;
+        for (var i = 0; i < len; i++) {
+            res = res * 31 + str.charCodeAt(i);
+        }
+        return res;
+    };
+
     /**
      * Check node
      *

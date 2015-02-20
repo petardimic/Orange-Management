@@ -13,6 +13,7 @@
 *.lock
 *.phar
 *.css
+built.js
 tools/.metadata/*
 cache/*
 .sass-cache/*

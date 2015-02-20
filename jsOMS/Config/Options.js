@@ -6,7 +6,7 @@
     jsOMS.Options.prototype.set = function (key, value, overwrite) {
         overwrite = typeof overwrite === bool ? overwrite : true;
 
-        if (overwrite || options[key] === undefined) {
+        if (overwrite || !options[key]) {
             options[key] = value;
         }
     };

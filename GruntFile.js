@@ -141,6 +141,15 @@ module.exports = function (grunt) {
                 dir: ['./']
             }
         },
+        browserify: {
+            dev: {
+                files: {
+                    'jsOMS/built.js': ['jsOMS/source.js']
+                },
+                options: {
+                }
+            }
+        },
         shell: {
             options: {
                 stderr: false
