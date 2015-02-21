@@ -15,13 +15,13 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/* <%= pkg.name %>\n' +
-            'Version: <%= pkg.version %>\n */',
+        'Version: <%= pkg.version %>\n */',
         includeSource: {
             options: {
-              // Task-specific options go here.
+                // Task-specific options go here.
             },
             your_target: {
-              // Target-specific file lists and/or options go here.
+                // Target-specific file lists and/or options go here.
             }
         },
         concat: {
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 src: [
-                    'jsOMS/UI/*.js'
+                    'jsOMS/**/*.js'
                 ],
                 dest: 'jsOMS/oms.min.js'
             }
@@ -114,14 +114,13 @@ module.exports = function (grunt) {
             dev: {
                 dir: ['phpOMS', 'Modules']
             },
-            options: {
-            }
+            options: {}
         },
         phpdocumentor: {
             dev: {
                 options: {
-                    directory : 'phpOMS,Modules,Web,Console,Socket,Admin',
-                    target : 'Docs/Code'
+                    directory: 'phpOMS,Modules,Web,Console,Socket,Admin',
+                    target: 'Docs/Code'
                 }
             }
         },
@@ -146,8 +145,7 @@ module.exports = function (grunt) {
                 files: {
                     'jsOMS/built.js': ['jsOMS/source.js']
                 },
-                options: {
-                }
+                options: {}
             }
         },
         shell: {
@@ -184,7 +182,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['jsOMS/UI/*.js', 'jsOMS/Utils/*.js'],
+                files: ['jsOMS/**/*.js'],
                 tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {

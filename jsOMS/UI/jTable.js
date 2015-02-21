@@ -1,70 +1,70 @@
 /* Handling minimizing */
 var nodes = document.querySelectorAll('thead .min');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        var body = oLib.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
-        oLib.addClass(body[0], 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        var body = jsOMS.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
+        jsOMS.addClass(body[0], 'vh');
     });
 });
 
 /* Handling maximizing */
 nodes = document.querySelectorAll('thead .max');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        var body = oLib.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
-        oLib.removeClass(body[0], 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        var body = jsOMS.getByTag(e.parentNode.parentNode.parentNode.parentNode, 'tbody');
+        jsOMS.removeClass(body[0], 'vh');
     });
 });
 
 /* Handling header element click */
 nodes = document.querySelectorAll('thead span');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
         var filter = e.parentNode.childNodes[4];
 
-        if (oLib.hasClass(filter, 'vh')) {
-            oLib.removeClass(filter, 'vh');
-            oLib.removeClass(e.parentNode.childNodes[1], 'vh');
+        if (jsOMS.hasClass(filter, 'vh')) {
+            jsOMS.removeClass(filter, 'vh');
+            jsOMS.removeClass(e.parentNode.childNodes[1], 'vh');
         }
     });
 });
 
 /* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(2)');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e, 'vh');
-        oLib.removeClass(e.parentNode.childNodes[2], 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e, 'vh');
+        jsOMS.removeClass(e.parentNode.childNodes[2], 'vh');
     });
 });
 
 /* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(3)');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e, 'vh');
-        oLib.removeClass(e.parentNode.childNodes[3], 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e, 'vh');
+        jsOMS.removeClass(e.parentNode.childNodes[3], 'vh');
     });
 });
 
 /* Handling sort click */
 nodes = document.querySelectorAll('thead td :nth-child(4)');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e, 'vh');
-        oLib.removeClass(e.parentNode.childNodes[1], 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e, 'vh');
+        jsOMS.removeClass(e.parentNode.childNodes[1], 'vh');
     });
 });
 
 /* Handling sort close click */
 nodes = document.querySelectorAll('thead td :nth-child(5)');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
         var iParent = e.parentNode;
-        oLib.addClass(iParent.childNodes[1], 'vh');
-        oLib.addClass(iParent.childNodes[2], 'vh');
-        oLib.addClass(iParent.childNodes[3], 'vh');
-        oLib.addClass(iParent.childNodes[4], 'vh');
+        jsOMS.addClass(iParent.childNodes[1], 'vh');
+        jsOMS.addClass(iParent.childNodes[2], 'vh');
+        jsOMS.addClass(iParent.childNodes[3], 'vh');
+        jsOMS.addClass(iParent.childNodes[4], 'vh');
     });
 });
 
@@ -74,19 +74,19 @@ var list_filter_arr = [
 ];
 
 nodes = document.querySelectorAll('thead .f');
-oLib.each(nodes, function (ele) {
+jsOMS.each(nodes, function (ele) {
     var c = 0;
 
-    oLib.listenEvent(ele, 'click', function (evt, e) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
         var table = e.parentNode.parentNode.parentNode.childNodes[2],
             filter = document.getElementById('t-f'),
             flist = document.querySelectorAll('#tf ul');
 
-        oLib.empty(flist);
+        jsOMS.empty(flist);
 
-        var titles = oLib.getByTag(table, 'td');
+        var titles = jsOMS.getByTag(table, 'td');
 
-        oLib.each(titles, function (t) {
+        jsOMS.each(titles, function (t) {
             c++;
 
             var val = '',
@@ -100,6 +100,6 @@ oLib.each(nodes, function (ele) {
             flist.innerHTML += '<li><label for="i-' + c + '">' + '</label>' + '<li><input name="i-' + c + '" id="i-' + c + '" type="text" value="' + val + '"><select><option>=<option>!=<option>><option><<option><></select>';
         });
 
-        oLib.removeClass(filter, 'vh');
+        jsOMS.removeClass(filter, 'vh');
     });
 });

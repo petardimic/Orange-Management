@@ -117,7 +117,7 @@
                                 d3.select('#' + chart + " svg").remove();
 
                                 var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                                    width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width')) - margin.left - margin.right,
+                                    width = parseFloat(jsOMS.getPropertyValue(document.getElementById(chart), 'width')) - margin.left - margin.right,
                                     height = 300 - margin.top - margin.bottom;
 
                                 var x = d3.time.scale()
@@ -221,7 +221,7 @@
                                     .text("Price ($)");
                             }
 
-                            oLib.ready(function () {
+                            jsOMS.ready(function () {
                                 var parseDate = d3.time.format("%d-%b-%y").parse;
 
                                 d3.csv(URL + "/Modules/RiskManagement/data/cockpit/history.csv", function (error, data) {

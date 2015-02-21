@@ -15,42 +15,6 @@
  */
 (function (jsOMS, undefined) {
     /**
-     * AJAX
-     *
-     * @param obj AJAX variables
-     *
-     * The following obj variables are expected:
-     * responseType - Type of the response
-     * requestHeader - Header description for the request
-     * success - Success callback function
-     * error - Error callback function
-     * type - GET, PUT, DELETE, POST type
-     * url - Request url
-     * data - Data to send
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    jsOMS.ajax = function (obj) {
-        var xhr = new XMLHttpRequest();
-        xhr.open(obj.type, obj.url);
-        xhr.responseType = obj.responseType;
-        xhr.setRequestHeader("Content-Type", obj.requestHeader);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                obj.success(xhr.responseText);
-            }
-        };
-
-        if (obj.type === 'GET') {
-            xhr.send();
-        } else {
-            xhr.send(obj.data);
-        }
-    };
-
-    /**
      * Event listener
      *
      * @param ele DOM Element

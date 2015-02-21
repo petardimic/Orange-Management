@@ -3,8 +3,8 @@
  * This is usefull in order to support ajax calls and dynamic page changes without reloads
  */
 var nodes = document.querySelectorAll('a, button, input[type=submit]');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
         if (!e.hasAttribute('data-request') || !e.hasAttribute('data-http')) {
             return true;
         }
@@ -22,7 +22,7 @@ oLib.each(nodes, function (ele) {
             request_uri = e.getAttribute('data-uri');
         }
 
-        oLib.ajax({
+        jsOMS.ajax({
             type: http_type,
             url: URL + request_uri,
             data: request_data,

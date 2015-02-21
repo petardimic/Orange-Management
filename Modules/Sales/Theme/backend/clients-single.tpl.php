@@ -486,7 +486,7 @@
                                     d3.select('#' + chart + " svg").remove();
 
                                     var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
+                                        width = parseFloat(jsOMS.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                                         height = 300 - margin.top - margin.bottom;
 
                                     var x = d3.time.scale()
@@ -590,7 +590,7 @@
                                         .text("Price ($)");
                                 }
 
-                                oLib.ready(function () {
+                                jsOMS.ready(function () {
                                     var parseDate = d3.time.format("%d-%b-%y").parse;
 
                                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/history.csv", function (error, data) {
@@ -599,7 +599,7 @@
                                             d.close = +d.close;
                                         });
 
-                                        oLib.listenEvent(window, 'resize', function () {
+                                        jsOMS.listenEvent(window, 'resize', function () {
                                             resize_chart2(data, "chart-2");
                                         });
                                         resize_chart2(data, "chart-2");
@@ -649,7 +649,7 @@
                                     d3.select('#' + chart + " svg").remove();
 
                                     var margin = {top: 10, right: 10, bottom: 20, left: 20},
-                                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
+                                        width = parseFloat(jsOMS.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                                         height = 300 - margin.top - margin.bottom,
                                         percent = d3.format('%');
 
@@ -712,9 +712,9 @@
                                         });
                                 }
 
-                                oLib.ready(function () {
+                                jsOMS.ready(function () {
                                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/top.csv", type, function (error, data) {
-                                        oLib.listenEvent(window, 'resize', function () {
+                                        jsOMS.listenEvent(window, 'resize', function () {
                                             resize_chart1(data, "chart-1");
                                         });
                                         resize_chart1(data, "chart-1");
@@ -750,7 +750,7 @@
                                     d3.select('#' + chart + " svg").remove();
 
                                     var margin = {top: 10, right: 10, bottom: 20, left: 30},
-                                        width = parseFloat(oLib.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
+                                        width = parseFloat(jsOMS.getPropertyValue(document.getElementById(chart), 'width'), 10) - margin.left - margin.right,
                                         height = 300 - margin.top - margin.bottom,
                                         radius = Math.min(width, height) / 2;
 
@@ -795,13 +795,13 @@
                                         });
                                 }
 
-                                oLib.ready(function () {
+                                jsOMS.ready(function () {
                                     d3.csv(URL + "/Modules/RiskManagement/data/cockpit/departments.csv", function (error, data) {
                                         data.forEach(function (d) {
                                             d.population = +d.population;
                                         });
 
-                                        oLib.listenEvent(window, 'resize', function () {
+                                        jsOMS.listenEvent(window, 'resize', function () {
                                             resize_chart3(data, "chart-3");
                                         });
                                         resize_chart3(data, "chart-3");

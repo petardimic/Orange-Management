@@ -14,6 +14,7 @@
 *.phar
 *.css
 built.js
+oms.min.js
 tools/.metadata/*
 cache/*
 .sass-cache/*

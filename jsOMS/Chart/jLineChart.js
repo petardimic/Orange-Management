@@ -234,10 +234,10 @@ function OLineChart(dataset, chart, text, legend, axis) {
         }
     };
 
-    this.chart = oLib.merge(this.chart, chart);
-    this.text = oLib.merge(this.text, text);
-    this.legend = oLib.merge(this.legend, legend);
-    this.axis = oLib.merge(this.axis, axis);
+    this.chart = jsOMS.merge(this.chart, chart);
+    this.text = jsOMS.merge(this.text, text);
+    this.legend = jsOMS.merge(this.legend, legend);
+    this.axis = jsOMS.merge(this.axis, axis);
 
     OChart.call(this, dataset, this.chart, this.text, this.legend, this.axis);
 }

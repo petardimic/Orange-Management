@@ -3,18 +3,18 @@
  * This switches min/max visibility on click.
  */
 var nodes = document.getElementsByClassName('min');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e, 'vh');
-        oLib.removeClass(oLib.getByClass(e.parentNode, 'max'), 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e, 'vh');
+        jsOMS.removeClass(jsOMS.getByClass(e.parentNode, 'max'), 'vh');
     });
 });
 
 nodes = document.getElementsByClassName('max');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e, 'vh');
-        oLib.removeClass(oLib.getByClass(e.parentNode, 'min'), 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e, 'vh');
+        jsOMS.removeClass(jsOMS.getByClass(e.parentNode, 'min'), 'vh');
     });
 });
 
@@ -25,18 +25,18 @@ oLib.each(nodes, function (ele) {
 /* Deactivate dim if click on class .close or .save */
 var dim = document.getElementById('dim');
 nodes = document.querySelectorAll('.close, .save');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.addClass(e.parentNode.parentNode.parentNode, 'vh');
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.addClass(e.parentNode.parentNode.parentNode, 'vh');
 
-        oLib.addClass(dim, 'vh')
+        jsOMS.addClass(dim, 'vh')
     });
 });
 
 /* Activate dim if click on element with class dim */
 nodes = document.getElementsByClassName('dim');
-oLib.each(nodes, function (ele) {
-    oLib.listenEvent(ele, 'click', function (evt, e) {
-        oLib.removeClass(dim, 'vh')
+jsOMS.each(nodes, function (ele) {
+    jsOMS.listenEvent(ele, 'click', function (evt, e) {
+        jsOMS.removeClass(dim, 'vh')
     });
 });
