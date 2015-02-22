@@ -1,8 +1,17 @@
-<?php /** @var \Modules\Tasks\Controller $this */
-/** @noinspection PhpUndefinedMethodInspection */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1001101001]);
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
+/*
+* Navigation
+*/
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1001101001);
 ?>
+<?= $nav->getOutput(); ?>
 <div class="b b-3 c7-1 c7" id="i7-1-1">
     <div class="bc-1">
         <select>

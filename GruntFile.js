@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         },
         concat: {
             options: {
-                separator: ';'
+                separator: ''
             },
             dev: {
                 src: [
@@ -168,6 +168,11 @@ module.exports = function (grunt) {
                     'cp -r bower_components/fontawesome/css External/fontawesome',
                     'cp -r bower_components/fontawesome/fonts External/fontawesome'
                 ].join('&&')
+            },
+            devclean: {
+                command: [
+                    'rm -r -f jsOMS/oms.min.js'
+                ].join('&&')
             }
         },
         phpunit: {
@@ -196,4 +201,5 @@ module.exports = function (grunt) {
     grunt.registerTask('quality-code', ['phpcs:dev', 'phpmd:dev', 'phpdcd:dev', 'pdepend:dev', 'phpunit:dev', 'shell:dev']);
 
     grunt.registerTask('build-release', []);
+    grunt.registerTask('build-js', ['shell:devclean', 'concat:dev']);
 };

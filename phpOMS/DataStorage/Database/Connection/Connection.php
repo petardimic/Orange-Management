@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS\DataStorage\Database;
+namespace phpOMS\DataStorage\Database\Connection;
 
 /**
  * Database handler
@@ -19,7 +19,7 @@ namespace phpOMS\DataStorage\Database;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Database
+class Connection
 {
     /**
      * Connection object
@@ -140,70 +140,5 @@ class Database
     public function __destruct()
     {
         $this->close();
-    }
-
-    /**
-     * Generates a filter for query
-     *
-     * @param array $filter Filter for the SQL query
-     * @param bool  $pre    WHERE clause required?
-     *
-     * @return string Filter query
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function generate_sql_filter($filter, $pre = false)
-    {
-        if(!isset($filter)) {
-            return '';
-        }
-
-        return '';
-    }
-
-    public function create_table()
-    {
-        switch($this->type) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-
-                break;
-        }
-    }
-
-    public function insert()
-    {
-        switch($this->type) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-
-                break;
-        }
-    }
-
-    public function select()
-    {
-        switch($this->type) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-
-                break;
-        }
-    }
-
-    public function update()
-    {
-        switch($this->type) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-
-                break;
-        }
-    }
-
-    public function delete()
-    {
-        switch($this->type) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-
-                break;
-        }
     }
 }

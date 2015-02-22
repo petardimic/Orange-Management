@@ -73,6 +73,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
+        // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getData()['l3']) {
             case 'dashboard':
                 $taskDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
@@ -91,12 +92,29 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/task-single.tpl.php';
                 break;
             case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/task-create.tpl.php';
+                $taskCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskCreateView->setTemplate('/Modules/Tasks/Theme/backend/task-create');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $taskCreateView->addData('nav', $navigation->nav);
+                echo $taskCreateView->getOutput();
                 break;
             case 'analysis':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/task-analysis.tpl.php';
+                $taskAnalysisView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskAnalysisView->setTemplate('/Modules/Tasks/Theme/backend/task-analysis');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $taskAnalysisView->addData('nav', $navigation->nav);
+                echo $taskAnalysisView->getOutput();
+                break;
+            case 'settings':
+                $taskSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskSettingsView->setTemplate('/Modules/Tasks/Theme/backend/task-settings');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $taskSettingsView->addData('nav', $navigation->nav);
+                echo $taskSettingsView->getOutput();
+                break;
                 break;
         }
     }

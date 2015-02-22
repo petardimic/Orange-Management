@@ -62,6 +62,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\Http\WebRequestPage::API:
                 $this->showAPI($request, $response);
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 
@@ -338,7 +345,26 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showAPI($request, $response)
+    private function showAPI($request, $response)
     {
+        switch($request->getData()['l3']) {
+            case 'module':
+                $this->apiModule($request, $response);
+                break;
+        }
+    }
+
+    private function apiModule($request, $response)
+    {
+        switch($request->getRequestType()) {
+            case \phpOMS\Message\RequestType::POST:
+                $this->app->modules->install();
+                break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $response->addHeader('Status', 'Status:406 Not acceptable');
+
+                return;
+        }
     }
 }

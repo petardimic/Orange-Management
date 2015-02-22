@@ -22,7 +22,7 @@ class Install extends \phpOMS\Install\Module
      * Install module
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param array                                $info   Module info
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -61,16 +61,22 @@ class Install extends \phpOMS\Install\Module
     /**
      * Install data from providing modules
      *
-     * @param \phpOMS\DataStorage\Database\Pool $db   Database instance
-     * @param array                                $data Module info
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool
+     * @param array                             $data   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function installExternal(&$db, $data)
+    public static function installExternal($dbPool, $data)
     {
+        try {
+            $dbPool->get('core')->con->query('select 1 from `' . $dbPool->get('core')->prefix . 'nav`');
+        } catch(\Exception $e) {
+            return;
+        }
+
         foreach($data as $link) {
-            self::installExternal_link($db, $link, $link['parent']);
+            self::installExternal_link($dbPool, $link, $link['parent']);
         }
     }
 
@@ -78,8 +84,8 @@ class Install extends \phpOMS\Install\Module
      * Install navigation element
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param array                                $data   Link info
-     * @param int                                  $parent Parent element (default is 0 for none)
+     * @param array                             $data   Link info
+     * @param int                               $parent Parent element (default is 0 for none)
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

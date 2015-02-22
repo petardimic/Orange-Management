@@ -21,8 +21,8 @@ class Install extends \phpOMS\Install\Module
     /**
      * Install module
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database instance
-     * @param array                                    $info Module info
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -32,17 +32,34 @@ class Install extends \phpOMS\Install\Module
         switch($dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accountspayable` (
-                            `accountspayable_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `accountspayable_account` int(11) NOT NULL,
-                            PRIMARY KEY (`accountspayable_id`),
-                            KEY `account` (`accountspayable_account`)
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounts_payable` (
+                            `accounts_payable_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounts_payable_account` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`accounts_payable_id`),
+                            KEY `accounts_payable_account` (`accounts_payable_account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
-                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accountspayable`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accountspayable_ibfk_1` FOREIGN KEY (`accountspayable_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_client` (`sales_client_id`);'
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounts_payable`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounts_payable_ibfk_1` FOREIGN KEY (`accounts_payable_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
+                )->execute();
+
+                $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounts_payable_payment` (
+                            `accounts_payable_payment_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounts_payable_payment_account` int(11) DEFAULT NULL,
+                            `accounts_payable_payment_info` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`accounts_payable_payment_id`),
+                            KEY `accounts_payable_payment_account` (`accounts_payable_payment_account`),
+                            KEY `accounts_payable_payment_info` (`accounts_payable_payment_info`),
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                )->execute();
+
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounts_payable_payment`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounts_payable_payment_ibfk_1` FOREIGN KEY (`accounts_payable_payment_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounts_payable` (`accounts_payable_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounts_payable_payment_ibfk_2` FOREIGN KEY (`accounts_payable_payment_info`) REFERENCES `' . $dbPool->get('core')->prefix . 'payment_info` (`payment_info_id`);'
                 )->execute();
                 break;
         }

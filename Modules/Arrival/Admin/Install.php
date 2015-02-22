@@ -1,13 +1,13 @@
 <?php
-namespace Modules\API\Admin;
+namespace Modules\Arrival\Admin;
 
 /**
- * Navigation class
+ * Accounts payable install class
  *
  * PHP Version 5.4
  *
  * @category   Modules
- * @package    Framework
+ * @package    Modules\AccountsPayable
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -22,12 +22,18 @@ class Install extends \phpOMS\Install\Module
      * Install module
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param array                                $info   Module info
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public static function install($dbPool, $info)
     {
+        switch($dbPool->get('core')->getType()) {
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                break;
+        }
+
+        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

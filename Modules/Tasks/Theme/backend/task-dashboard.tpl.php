@@ -35,7 +35,17 @@ $footerView->setPage(1);
 
 $tasksList->addView('header', $headerView);
 $tasksList->addView('footer', $footerView);
+
+/*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1001101001);
 ?>
+<?= $nav->getOutput(); ?>
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">

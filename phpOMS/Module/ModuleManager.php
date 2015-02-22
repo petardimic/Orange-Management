@@ -219,4 +219,14 @@ class ModuleManager
     public function getAvailableModules()
     {
     }
+
+    public function install($module) {
+        $installed = $this->getInstalledModules();
+
+        if(!file_exists(__DIR__ . '/../../Modules/'.$module.'/Admin/Install.php')) {
+            // todo download;
+        }
+
+
+    }
 }

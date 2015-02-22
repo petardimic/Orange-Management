@@ -33,109 +33,71 @@ class Install extends \phpOMS\Install\Module
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_account` (
-                            `AccountingAccountID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `type` tinyint(1) NOT NULL,
-                            `parent` int(11) NOT NULL,
-                            PRIMARY KEY (`AccountingAccountID`),
-                            KEY `parent` (`parent`)
+                            `accounting_account_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounting_account_name` varchar(25) NOT NULL,
+                            `accounting_account_description` varchar(255) NOT NULL,
+                            `accounting_account_type` tinyint(1) NOT NULL,
+                            `accounting_account_parent` int(11) NOT NULL,
+                            PRIMARY KEY (`accounting_account_id`),
+                            KEY `accounting_account_parent` (`accounting_account_parent`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_account`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_account_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_account` (`AccountingAccountID`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_account_ibfk_1` FOREIGN KEY (`accounting_account_parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_account` (`accounting_account_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_batch` (
-                            `AccountingBatchID` int(11) NOT NULL AUTO_INCREMENT,
-                            `title` varchar(30) NOT NULL,
-                            `creator` int(11) NOT NULL,
-                            `created`datetime NOT NULL,
-                            `type` tinyint(1) NOT NULL,
-                            PRIMARY KEY (`AccountingBatchID`),
-                            KEY `creator` (`creator`)
+                            `accounting_batch_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounting_batch_title` varchar(30) NOT NULL,
+                            `accounting_batch_creator` int(11) NOT NULL,
+                            `accounting_batch_created`datetime NOT NULL,
+                            `accounting_batch_type` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`accounting_batch_id`),
+                            KEY `accounting_batch_creator` (`accounting_batch_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_batch`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_batch_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_batch_ibfk_1` FOREIGN KEY (`accounting_batch_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_posting` (
-                            `AccountingPostingID` int(11) NOT NULL AUTO_INCREMENT,
-                            `batch` int(11) NOT NULL,
-                            `receipt` int(11) DEFAULT NULL,
-                            `receipt_ext` int(11) DEFAULT NULL,
-                            `price` decimal(11,3) NOT NULL,
-                            `affiliation` datetime NOT NULL,
-                            PRIMARY KEY (`AccountingPostingID`),
-                            KEY `batch` (`batch`)
+                            `accounting_posting_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounting_posting_batch` int(11) NOT NULL,
+                            `accounting_posting_receipt` int(11) DEFAULT NULL,
+                            `accounting_posting_receipt_ext` int(11) DEFAULT NULL,
+                            `accounting_posting_price` decimal(11,3) NOT NULL,
+                            `accounting_posting_affiliation` datetime NOT NULL,
+                            PRIMARY KEY (`accounting_posting_id`),
+                            KEY `accounting_posting_batch` (`accounting_posting_batch`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_posting`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ibfk_1` FOREIGN KEY (`batch`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_batch` (`AccountingBatchID`);'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_cost_center` (
-                            `AccountingCostCenterID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `parent` int(11) NOT NULL,
-                            PRIMARY KEY (`AccountingCostCenterID`),
-                            KEY `parent` (`parent`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_cost_center`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_cost_center_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_cost_center` (`AccountingCostCenterID`);'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_cost_object` (
-                            `AccountingCostObjectID` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(25) NOT NULL,
-                            `description` varchar(255) NOT NULL,
-                            `parent` int(11) NOT NULL,
-                            PRIMARY KEY (`AccountingCostObjectID`),
-                            KEY `parent` (`parent`)
-                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_cost_object`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_cost_object_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_cost_object` (`AccountingCostObjectID`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ibfk_1` FOREIGN KEY (`accounting_posting_batch`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_batch` (`accounting_batch_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'accounting_posting_ele` (
-                            `AccountingPostingEleID` int(11) NOT NULL AUTO_INCREMENT,
-                            `type` tinyint(1) NOT NULL,
-                            `account` int(11) NOT NULL,
-                            `value` decimal(11,3) NOT NULL,
-                            `tax` tinyint(1) NOT NULL,
-                            `costcenter` int(11) NOT NULL,
-                            `costobject` int(11) NOT NULL,
-                            PRIMARY KEY (`AccountingPostingEleID`),
-                            KEY `account` (`account`),
-                            KEY `costcenter` (`costcenter`),
-                            KEY `costobject` (`costobject`)
+                            `accounting_posting_ele_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `accounting_posting_ele_type` tinyint(1) NOT NULL,
+                            `accounting_posting_ele_account` int(11) NOT NULL,
+                            `accounting_posting_ele_value` decimal(11,3) NOT NULL,
+                            `accounting_posting_ele_tax` tinyint(1) NOT NULL,
+                            PRIMARY KEY (`accounting_posting_ele_id`),
+                            KEY `accounting_posting_ele_account` (`accounting_posting_ele_account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_posting_ele`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_account` (`AccountingAccountID`),
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_2` FOREIGN KEY (`costcenter`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_cost_center` (`AccountingCostCenterID`),
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_3` FOREIGN KEY (`costobject`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_cost_object` (`AccountingCostObjectID`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_1` FOREIGN KEY (`accounting_posting_ele_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'accounting_account` (`accounting_account_id`);'
                 )->execute();
 
                 /*

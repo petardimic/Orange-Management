@@ -25,7 +25,7 @@ abstract class Module
      * Install module
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param int                                  $module Module ID
+     * @param int                               $module Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -71,30 +71,32 @@ abstract class Module
      * Install data from providing modules
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param array                                $path   Install file path
-     * @param int                                  $id     ID of the receiving module
+     * @param array                             $path   Install file path
+     * @param int                               $id     ID of the receiving module
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public static function installProviding($dbPool, $path, $id)
     {
-        $install = json_decode(file_get_contents($path), true);
-        // TODO: maybe remove? $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
+        if(file_exists(__DIR__ . '/../../Modules/' . $id . '/Admin/Install.php')) {
+            $install = json_decode(file_get_contents($path), true);
+            // TODO: maybe remove? $json    = json_decode(file_get_contents(__DIR__ . '/../../Modules/' . $id . '/info.json'), true);
 
-        $class = '\\Modules\\' . $id . '\\Admin\\Install';
+            $class = '\\Modules\\' . $id . '\\Admin\\Install';
 
-        /**
-         * @var \phpOMS\Module\ModuleAbstract $class
-         */
-        $class::installExternal($dbPool, $install);
+            /**
+             * @var \phpOMS\Module\ModuleAbstract $class
+             */
+            $class::installExternal($dbPool, $install);
+        }
     }
 
     /**
      * Install data from providing modules
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param array                                $data   Module info
+     * @param array                             $data   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -117,7 +119,7 @@ abstract class Module
      * Activate module
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param int                                  $id     Module ID
+     * @param int                               $id     Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -137,7 +139,7 @@ abstract class Module
      * Deactivate module
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
-     * @param int                                  $id     Module ID
+     * @param int                               $id     Module ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

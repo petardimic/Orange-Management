@@ -1,12 +1,13 @@
 <?php
-/** @var \Web\Views\Lists\PaginationView $this */
-$allowedPages = ($this->maxPages - 3) / 2;
-$left         = ($this->page > $allowedPages ? $allowedPages : $this->page - 1);
-$right        = ($this->page < $this->pages - $allowedPages ? $allowedPages : $this->pages - $this->page) + $allowedPages - $left;
-$left += ($allowedPages - $right > 0 ? $allowedPages - $right + 1 : 0);
-$right += ($left < $allowedPages ? 1 : 0);
-?>
-<!-- @formatter:off -->
+if($this->pages > 1):
+    /** @var \Web\Views\Lists\PaginationView $this */
+    $allowedPages = ($this->maxPages - 3) / 2;
+    $left         = ($this->page > $allowedPages ? $allowedPages : $this->page - 1);
+    $right        = ($this->page < $this->pages - $allowedPages ? $allowedPages : $this->pages - $this->page) + $allowedPages - $left;
+    $left += ($allowedPages - $right > 0 ? $allowedPages - $right + 1 : 0);
+    $right += ($left < $allowedPages ? 1 : 0);
+    ?>
+    <!-- @formatter:off -->
 <ul>
         <?php if ($this->page !== 1): ?>
     <li><a href="#">1</a><!-- how many pages are allowed between now and 1 >= how many pages are between now and 1 -->
@@ -34,3 +35,4 @@ $right += ($left < $allowedPages ? 1 : 0);
         <?php endif; ?>
 </ul>
 <!-- @formatter:on -->
+<?php endif; ?>
