@@ -5,24 +5,17 @@
     },
     "version": "1.0.0",
     "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
     },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
+    "creator": {
+        "name": "Orange Management",
+        "website": "www.spl1nes.com"
     },
     "description": "Accounting module.",
-    "class": "Accounting",
-    "dependencies": [],
-    "providing": [],
+    "directory": "Accounting",
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["47e9d72449035cd040e0f93693fd0a925bf6e340"],
@@ -45,8 +38,5 @@
             "file": "backend",
             "from": 1002600000
         }
-    ],
-    "lang": true,
-    "js": false,
-    "css": true
+    ]
 }

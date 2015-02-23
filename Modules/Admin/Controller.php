@@ -354,11 +354,20 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         }
     }
 
+    /**
+     * Shows api content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     private function apiModule($request, $response)
     {
         switch($request->getRequestType()) {
             case \phpOMS\Message\RequestType::POST:
-                $this->app->modules->install();
+                $this->app->modules->install($request->getData('module'));
                 break;
             default:
                 $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');

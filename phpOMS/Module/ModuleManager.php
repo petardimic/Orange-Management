@@ -220,13 +220,70 @@ class ModuleManager
     {
     }
 
-    public function install($module) {
+    public function install($module)
+    {
         $installed = $this->getInstalledModules();
 
-        if(!file_exists(__DIR__ . '/../../Modules/'.$module.'/Admin/Install.php')) {
+        if(isset($installed[$module])) {
+            return;
+        }
+
+        if(!file_exists(self::MODULE_PATH . '/' . $module . '/Admin/Install.php')) {
             // todo download;
         }
 
+        if(file_exists(self::MODULE_PATH . '/' . $module . '/' . 'info.json')) {
+            $info = json_decode(file_get_contents(self::MODULE_PATH . '/' . $module . '/' . 'info.json'), true);
 
+            switch($this->dbPool->get('core')->getType()) {
+                case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                    $this->dbPool->get('core')->con->beginTransaction();
+
+                    $this->dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
+                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
+                    )->execute();
+
+                    foreach($info['load'] as $val) {
+                        foreach($val['pid'] as $pid) {
+                            $this->dbPool->get('core')->con->prepare(
+                                'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
+                                        (\'' . $pid . '\', ' . $val['type'] . ', ' . $val['from'] . ', ' . $val['for'] . ', \'' . $val['file'] . '\');'
+                            )->execute();
+                        }
+                    }
+
+                    $this->dbPool->get('core')->con->commit();
+
+                    break;
+            }
+
+            foreach($info['dependencies'] as $key => $version) {
+                $this->install($key);
+            }
+
+            $class = '\\Modules\\' . $module . '\\Admin\\Install';
+            $class::install($this->dbPool, $info);
+
+            // TODO: change this
+            $this->installed[$module] = true;
+
+            foreach($info['providing'] as $key => $version) {
+                $this->installProviding($module, $key);
+            }
+
+            /* Install receiving */
+            foreach($installed as $key => $value) {
+                $this->installProviding($key, $module);
+            }
+        }
+    }
+
+    public function installProviding($from, $for)
+    {
+        if(file_exists(self::MODULE_PATH . '/' . $from . '/Admin/Install/' . $for . '.php')) {
+            $class = '\\Modules\\' . $from . '\\Admin\\Install\\' . $for;
+            $class::install($this->dbPool);
+        }
     }
 }

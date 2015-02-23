@@ -5,22 +5,15 @@
     },
     "version": "1.0.0",
     "requirements": {
-        "framework": "1.0.0",
-        "db": "1.0.0",
-        "db_mysql": "5.0.27",
-        "db_sqlite": "3.0.0",
-        "php": "5.4.0",
-        "fontawesome": "4.1.0",
-        "dthree": "3.4.11",
-        "jquery": "2.1.1"
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
     },
-    "creator": "Orange Management",
-    "theme": {
-        "name": "oms-slim",
-        "path": "/oms-slim"
+    "creator": {
+        "name": "Orange Management",
+        "website": "www.spl1nes.com"
     },
     "description": "The navigation module.",
-    "class": "Navigation",
+    "directory": "Navigation",
     "dependencies": [],
     "providing": [],
     "load": [

@@ -16,7 +16,7 @@ namespace Modules\Navigation\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -76,7 +76,7 @@ class Install extends \phpOMS\Install\Module
         }
 
         foreach($data as $link) {
-            self::installExternal_link($dbPool, $link, $link['parent']);
+            self::installLink($dbPool, $link, $link['parent']);
         }
     }
 
@@ -90,7 +90,7 @@ class Install extends \phpOMS\Install\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private static function installExternal_link($dbPool, $data, $parent = 0)
+    private static function installLink($dbPool, $data, $parent = 0)
     {
         $sth = $dbPool->get('core')->con->prepare(
             'INSERT INTO `' . $dbPool->get('core')->prefix . 'nav` (`nav_id`, `nav_pid`, `nav_name`, `nav_type`, `nav_subtype`, `nav_icon`, `nav_l0`, `nav_l1`, `nav_l2`, `nav_l3`, `nav_l4`, `nav_l5`, `nav_from`, `nav_order`, `nav_parent`, `nav_permission`) VALUES
@@ -120,7 +120,7 @@ class Install extends \phpOMS\Install\Module
 
         foreach($data['children'] as $link) {
             $parent = ($link['parent'] == null ? $lastInsertID : $link['parent']);
-            self::installExternal_link($dbPool, $link, $parent);
+            self::installLink($dbPool, $link, $parent);
         }
     }
 }

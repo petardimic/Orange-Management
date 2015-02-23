@@ -16,7 +16,7 @@ namespace Modules\Billing\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -103,7 +103,5 @@ class Install extends \phpOMS\Install\Module
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

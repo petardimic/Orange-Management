@@ -2,12 +2,12 @@
 namespace Modules\Clocking\Admin;
 
 /**
- * Human resources employee clocking install class
+ * Clocking install class
  *
  * PHP Version 5.4
  *
  * @category   Modules
- * @package    Modules\Clocking
+ * @package    Modules\Admin
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -16,7 +16,7 @@ namespace Modules\Clocking\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -34,22 +34,19 @@ class Install extends \phpOMS\Install\Module
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'clocking` (
                             `clocking_id` int(11) NOT NULL AUTO_INCREMENT,
-                            `clocking_employee` int(11) DEFAULT NULL,
-                            `clocking_start` datetime DEFAULT NULL,
-                            `clocking_end` datetime DEFAULT NULL,
                             `clocking_type` tinyint(1) NOT NULL,
+                            `clocking_time` datetime NOT NULL,
+                            `clocking_account` datetime NOT NULL,
                             PRIMARY KEY (`clocking_id`),
-                            KEY `clocking_employee` (`clocking_employee`)
-                        )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
+                            KEY `clocking_account` (`clocking_account`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'clocking`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_employee`) REFERENCES `' . $dbPool->get('core')->prefix . 'hr_staff` (`hr_staff_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'acount` (`account_id`);'
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

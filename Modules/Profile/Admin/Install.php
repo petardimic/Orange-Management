@@ -16,7 +16,7 @@ namespace Modules\Profile\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module

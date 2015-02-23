@@ -252,9 +252,10 @@ class Install
      */
     public function installModules($modules)
     {
+        $moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
+
         foreach($modules as $module) {
-            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-            \phpOMS\Install\Module::install($this->dbPool, $module);
+            $moduleManager->install($module);
         }
     }
 

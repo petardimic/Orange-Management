@@ -16,7 +16,7 @@ namespace Modules\AccountsReceivable\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -52,7 +52,7 @@ class Install extends \phpOMS\Install\Module
                             `accounts_receivable_payment_info` int(11) DEFAULT NULL,
                             PRIMARY KEY (`accounts_receivable_payment_id`),
                             KEY `accounts_receivable_payment_account` (`accounts_receivable_payment_account`),
-                            KEY `accounts_receivable_payment_info` (`accounts_receivable_payment_info`),
+                            KEY `accounts_receivable_payment_info` (`accounts_receivable_payment_info`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
@@ -63,7 +63,5 @@ class Install extends \phpOMS\Install\Module
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

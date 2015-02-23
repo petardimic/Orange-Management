@@ -16,7 +16,7 @@ namespace Modules\AreaManager\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -44,9 +44,9 @@ class Install extends \phpOMS\Install\Module
                             `area_manager_account_id` int(11) NOT NULL AUTO_INCREMENT,
                             `area_manager_account_start` datetime NOT NULL,
                             `area_manager_account_end` datetime NOT NULL,
-                            `area_manager_account_account int(11) NOT NULL,
-                            `area_manager_account_area int(11) NOT NULL,
-                            PRIMARY KEY (`accounts_receivable_id`),
+                            `area_manager_account_account` int(11) NOT NULL,
+                            `area_manager_account_area` int(11) NOT NULL,
+                            PRIMARY KEY (`area_manager_account_id`),
                             KEY `area_manager_account_account` (`area_manager_account_account`),
                             KEY `area_manager_account_area` (`area_manager_account_area`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
@@ -59,7 +59,5 @@ class Install extends \phpOMS\Install\Module
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

@@ -11,13 +11,13 @@
 * 1001100000 - OMS Tasks
 * 1001200000 - OMS Messages
 * 1001300000 - 
-* 1001400000 - 
-* 1001500000 - 
+* 1001400000 - OMS Payment Information
+* 1001500000 - OMS Arrival
 * 1001600000 - OMS Sales
 * 1001700000 - OMS Project Management
 * 1001800000 - OMS Chat
 * 1001900000 - OMS Marketing
-* 1002000000 - 
+* 1002000000 - OMS AreaManager
 * 1002100000 - OMS Purchase
 * 1002200000 - OMS Research & Development
 * 1002300000 - OMS Credit Management

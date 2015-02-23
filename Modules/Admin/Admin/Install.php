@@ -16,7 +16,7 @@ namespace Modules\Admin\Admin;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Install extends \phpOMS\Install\Module
+class Install
 {
     /**
      * Install module
@@ -33,7 +33,5 @@ class Install extends \phpOMS\Install\Module
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }
