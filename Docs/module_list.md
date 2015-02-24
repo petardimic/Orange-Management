@@ -10,7 +10,7 @@
 * 1001000000 - 
 * 1001100000 - OMS Tasks
 * 1001200000 - OMS Messages
-* 1001300000 - 
+* 1001300000 - OMS Warehouse Management
 * 1001400000 - OMS Payment Information
 * 1001500000 - OMS Arrival
 * 1001600000 - OMS Sales
@@ -40,10 +40,10 @@
 * 1004000000 - 
 * 1004100000 - OMS Content
 * 1004200000 - OMS Event Management
-* 1004300000 - 
-* 1004400000 - 
-* 1004500000 - 
-* 1004600000 - 
+* 1004300000 - OMS Production
+* 1004400000 - OMS Cost Unit Accounting
+* 1004500000 - OMS Cost Center Accounting
+* 1004600000 - OMS Budget Management
 * 1004700000 - OMS Business
 * 1004800000 - OMS Item Reference
 * 1004900000 - OMS Accounts Receivable

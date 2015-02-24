@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing\Admin;
+namespace Modules\WarehouseManagement\Admin;
 
 /**
  * Navigation class
@@ -217,13 +217,11 @@ class Install
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'warehousing_shipping`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_address` (`BusinessAddressID`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'warehousing_shipping_ibfk_1` FOREIGN KEY (`shipFrom`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_address` (`business_address_id`),
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'warehousing_shipping_ibfk_2` FOREIGN KEY (`shipped`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

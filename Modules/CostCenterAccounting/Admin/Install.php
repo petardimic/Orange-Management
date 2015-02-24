@@ -50,16 +50,10 @@ class Install
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_posting_ele`
                         ADD `accounting_posting_ele_costcenter` int(11) NOT NULL,
-                        KEY `accounting_posting_ele_costcenter` (`accounting_posting_ele_costcenter`);'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'accounting_posting_ele`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_2` FOREIGN KEY (`accounting_posting_ele_costcenter`) REFERENCES `' . $dbPool->get('core')->prefix . 'cost_center_accounting` (`cost_center_accounting_id`);'
+                        ADD KEY `accounting_posting_ele_costcenter` (`accounting_posting_ele_costcenter`),
+                        ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'accounting_posting_ele_ibfk_2` FOREIGN KEY (`accounting_posting_ele_costcenter`) REFERENCES `' . $dbPool->get('core')->prefix . 'cost_center_accounting` (`cost_center_accounting_id`);'
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

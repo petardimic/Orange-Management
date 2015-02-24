@@ -1,6 +1,6 @@
 {
     "name": {
-        "internal": 1002700000,
+        "internal": 1001300000,
         "external": "OMS Warehousing"
     },
     "version": "1.0.0",
@@ -13,21 +13,21 @@
         "website": "www.spl1nes.com"
     },
     "description": "Warehousing module.",
-    "directory": "Warehousing",
-    "dependencies": [],
-    "providing": [],
+    "directory": "WarehouseManagement",
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["a5dd2992c4ffd521e23894599418f28a07e0ff1a"],
             "type": 4,
             "for": 0,
-            "from": 1002700000,
+            "from": 1001300000,
             "file": "Warehousing"
         },
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,
-            "from": 1002700000,
+            "from": 1001300000,
             "for": 1000500000,
             "file": "nav.backend"
         },
@@ -36,7 +36,7 @@
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1002700000
+            "from": 1001300000
         }
     ]
 }

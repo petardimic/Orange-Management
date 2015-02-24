@@ -37,6 +37,7 @@ class Install
                             `arrival_date` datetime NOT NULL,
                             `arrival_carrier` int(11) NOT NULL,
                             `arrival_responsible` int(11) NOT NULL,
+                            `arrival_media` int(11) NOT NULL,
                             PRIMARY KEY (`arrival_id`),
                             KEY `arrival_carrier` (`arrival_carrier`),
                             KEY `arrival_responsible` (`arrival_responsible`)

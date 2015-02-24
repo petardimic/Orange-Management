@@ -106,7 +106,5 @@ class Install
                 $dbPool->get('core')->con->commit();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

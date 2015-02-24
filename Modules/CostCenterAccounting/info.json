@@ -1,0 +1,30 @@
+{
+    "name": {
+        "internal": 1004500000,
+        "external": "OMS Cost Center Accounting"
+    },
+    "version": "1.0.0",
+    "requirements": {
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
+    },
+    "creator": {
+        "name": "Orange Management",
+        "website": "www.spl1nes.com"
+    },
+    "description": "The buisness module.",
+    "directory": "CostCenterAccounting",
+    "dependencies": {
+        "Accounting": "*"
+    },
+    "providing": {},
+    "load": [
+        {
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 5,
+            "from": 1004500000,
+            "for": 1000500000,
+            "file": "nav.backend"
+        }
+    ]
+}

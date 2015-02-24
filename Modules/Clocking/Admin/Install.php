@@ -36,7 +36,7 @@ class Install
                             `clocking_id` int(11) NOT NULL AUTO_INCREMENT,
                             `clocking_type` tinyint(1) NOT NULL,
                             `clocking_time` datetime NOT NULL,
-                            `clocking_account` datetime NOT NULL,
+                            `clocking_account` int(11) NOT NULL,
                             PRIMARY KEY (`clocking_id`),
                             KEY `clocking_account` (`clocking_account`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
@@ -44,7 +44,7 @@ class Install
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'clocking`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'acount` (`account_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'clocking_ibfk_1` FOREIGN KEY (`clocking_account`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
                 break;
         }

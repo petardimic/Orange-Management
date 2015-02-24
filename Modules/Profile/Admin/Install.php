@@ -54,7 +54,7 @@ class Install
                             `profile_phone_type` tinyint(2) NOT NULL,
                             `profile_phone_number` varchar(50) NOT NULL,
                             `profile_phone_account` int(11) NOT NULL,
-                            PRIMARY KEY (`ProfilePhoneID`),
+                            PRIMARY KEY (`profile_phone_id`),
                             KEY `profile_phone_account` (`profile_phone_account`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
@@ -118,7 +118,5 @@ class Install
                 )->execute();
                 break;
         }
-
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

@@ -19,7 +19,7 @@ namespace Modules\Admin\Admin\Install;
 class Navigation
 {
     public static function install($dbPool) {
-        $navData = json_decode(file_get_contents('nav.install.json'), true);
+        $navData = json_decode(file_get_contents(__DIR__ . '/nav.install.json'), true);
 
         $class = '\\Modules\\Navigation\\Admin\\Install';
         $class::installExternal($dbPool, $navData);

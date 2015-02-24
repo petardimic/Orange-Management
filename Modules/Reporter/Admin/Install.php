@@ -68,6 +68,5 @@ class Install
                 )->execute();
                 break;
         }
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

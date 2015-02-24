@@ -14,8 +14,8 @@
     },
     "description": "The profile module.",
     "directory": "Profile",
-    "dependencies": [],
-    "providing": [],
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["88a70f9456abff33fda791878b9c0bcbe2cb5bc4"],

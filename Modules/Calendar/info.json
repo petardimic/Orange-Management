@@ -14,8 +14,8 @@
     },
     "description": "Calendar module.",
     "directory": "Calendar",
-    "dependencies": [],
-    "providing": [],
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["fb78d7e421e4178d31a384fb394dcf2369fff309"],

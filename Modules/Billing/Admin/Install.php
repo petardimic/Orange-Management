@@ -72,7 +72,7 @@ class Install
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'billing_invoice`
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_ibfk_1` FOREIGN KEY (`billing_invoice_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_ibfk_2` FOREIGN KEY (`billing_invoice_client`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_client` (`sales_client_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_ibfk_2` FOREIGN KEY (`billing_invoice_client`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_ibfk_3` FOREIGN KEY (`billing_invoice_referer`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_ibfk_4` FOREIGN KEY (`billing_invoice_reference`) REFERENCES `' . $dbPool->get('core')->prefix . 'billing_invoice` (`billing_invoice_id`);'
                 )->execute();
@@ -91,15 +91,13 @@ class Install
                             `billing_invoice_element_discount` decimal(11,2) NOT NULL,
                             `billing_invoice_element_invoice` int(11) NOT NULL,
                             PRIMARY KEY (`billing_invoice_element_id`),
-                            KEY `billing_invoice_element_article` (`billing_invoice_element_article`),
                             KEY `billing_invoice_element_invoice` (`billing_invoice_element_invoice`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'billing_invoice_element`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_element_ibfk_1` FOREIGN KEY (`billing_invoice_element_article`) REFERENCES `' . $dbPool->get('core')->prefix . 'sales_article` (`sales_article_id`),
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_element_ibfk_2` FOREIGN KEY (`billing_invoice_element_invoice`) REFERENCES `' . $dbPool->get('core')->prefix . 'billing_invoice` (`billing_invoice_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'billing_invoice_element_ibfk_1` FOREIGN KEY (`billing_invoice_element_invoice`) REFERENCES `' . $dbPool->get('core')->prefix . 'billing_invoice` (`billing_invoice_id`);'
                 )->execute();
                 break;
         }

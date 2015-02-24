@@ -14,8 +14,8 @@
     },
     "description": "The content module.",
     "directory": "Content",
-    "dependencies": [],
-    "providing": [],
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],

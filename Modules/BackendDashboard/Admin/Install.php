@@ -29,6 +29,5 @@ class Install
      */
     public static function install($dbPool, $info)
     {
-        parent::installProviding($dbPool, __DIR__ . '/nav.install.json', 'Navigation');
     }
 }

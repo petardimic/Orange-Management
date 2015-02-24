@@ -14,8 +14,8 @@
     },
     "description": "News module.",
     "directory": "News",
-    "dependencies": [],
-    "providing": [],
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["d7470914e19522acc310a55e5cb13a6f0f7ca000"],

@@ -33,13 +33,8 @@ class Media
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'arrival`
-                        ADD `arrival_media` int(11) NOT NULL,
-                        KEY `arrival_media` (`arrival_media`);'
-                )->execute();
-
-                $dbPool->get('core')->con->prepare(
-                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'arrival`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'arrival_ibfk_3` FOREIGN KEY (`arrival_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`);'
+                        ADD KEY `arrival_media` (`arrival_media`),
+                        ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'arrival_ibfk_3` FOREIGN KEY (`arrival_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`);'
                 )->execute();
                 break;
         }

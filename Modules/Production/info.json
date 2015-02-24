@@ -1,6 +1,6 @@
 {
     "name": {
-        "internal": 1002000000,
+        "internal": 1004300000,
         "external": "OMS Production"
     },
     "version": "1.0.0",
@@ -14,20 +14,20 @@
     },
     "description": "Production module.",
     "directory": "Production",
-    "dependencies": [],
-    "providing": [],
+    "dependencies": {},
+    "providing": {},
     "load": [
         {
             "pid": ["8bcf3571d1d43ecefeeb78a999f83418ccfd4f71"],
             "type": 4,
             "for": 0,
-            "from": 1002000000,
+            "from": 1004300000,
             "file": "Production"
         },
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,
-            "from": 1002000000,
+            "from": 1004300000,
             "for": 1000500000,
             "file": "nav.backend"
         },
@@ -36,7 +36,7 @@
             "type": 5,
             "for": 1004100000,
             "file": "backend",
-            "from": 1002000000
+            "from": 1004300000
         }
     ]
 }

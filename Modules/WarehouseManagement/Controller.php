@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Warehousing;
+namespace Modules\WarehouseManagement;
 
 /**
  * Sales class

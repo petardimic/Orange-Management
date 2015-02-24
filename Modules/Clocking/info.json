@@ -13,17 +13,10 @@
         "website": "www.spl1nes.com"
     },
     "description": "The buisness module.",
-    "directory": "Business",
-    "dependencies": [],
-    "providing": [],
+    "directory": "Clocking",
+    "dependencies": {},
+    "providing": {},
     "load": [
-        {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
-            "type": 5,
-            "for": 1004100000,
-            "file": "backend",
-            "from": 1002500000
-        },
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
             "type": 5,

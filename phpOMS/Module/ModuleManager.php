@@ -239,9 +239,10 @@ class ModuleManager
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                     $this->dbPool->get('core')->con->beginTransaction();
 
+                    // TODO: fix this!!! EASY!
                     $this->dbPool->get('core')->con->prepare(
                         'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
-                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['class'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
+                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['directory'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
                     )->execute();
 
                     foreach($info['load'] as $val) {
@@ -283,7 +284,7 @@ class ModuleManager
     {
         if(file_exists(self::MODULE_PATH . '/' . $from . '/Admin/Install/' . $for . '.php')) {
             $class = '\\Modules\\' . $from . '\\Admin\\Install\\' . $for;
-            $class::install($this->dbPool);
+            $class::install($this->dbPool, null);
         }
     }
 }
