@@ -15,7 +15,9 @@
     "description": "The administration module.",
     "directory": "Reporter",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["b1efeebbb9c88f70cf07184250a0c22f68c27a11"],

@@ -58,7 +58,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -72,17 +72,17 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'creditor':
-                $this->showBackendCreditor($request);
+                $this->showBackendCreditor($request, $response);
                 break;
             case 'debitor':
-                $this->showBackendDebitor($request);
+                $this->showBackendDebitor($request, $response);
                 break;
             case 'account':
-                $this->showBackendAccount($request);
+                $this->showBackendAccount($request, $response);
                 break;
         }
     }
@@ -96,7 +96,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendAccount($request)
+    public function showBackendAccount($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':
@@ -134,7 +134,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendCreditor($request)
+    public function showBackendCreditor($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':
@@ -164,7 +164,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendDebitor($request)
+    public function showBackendDebitor($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':

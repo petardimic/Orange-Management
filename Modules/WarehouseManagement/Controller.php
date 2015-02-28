@@ -58,7 +58,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->show_content_backend();
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -72,75 +72,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function show_content_backend()
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
-            case 'article':
-                $this->show_backend_articles();
-                break;
-            case 'shipping':
-                $this->show_backend_shipping();
-                break;
-            case 'arrival':
-                $this->show_backend_arrival();
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function show_backend_articles()
-    {
-        switch($request->getData()['l4']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-list.tpl.php';
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function show_backend_shipping()
-    {
-        switch($request->getData()['l4']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/shipping-list.tpl.php';
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function show_backend_arrival()
-    {
-        switch($request->getData()['l4']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/arrival-list.tpl.php';
-                break;
         }
     }
 }

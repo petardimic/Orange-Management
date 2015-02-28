@@ -15,7 +15,9 @@
     "description": "The administration module.",
     "directory": "Admin",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["1854402adfd24425fd13776a2d3787151609b360"],

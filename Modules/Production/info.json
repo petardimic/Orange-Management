@@ -15,7 +15,9 @@
     "description": "Production module.",
     "directory": "Production",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["8bcf3571d1d43ecefeeb78a999f83418ccfd4f71"],

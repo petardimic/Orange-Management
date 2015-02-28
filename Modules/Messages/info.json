@@ -15,7 +15,9 @@
     "description": "Messages module.",
     "directory": "Messages",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["ea312354fa4b4029c8a121b7da7992983d3132a9"],

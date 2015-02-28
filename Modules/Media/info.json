@@ -15,7 +15,9 @@
     "description": "The profile module.",
     "directory": "Media",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["1ba288c868cacf14e56f8205efef31d697301d02"],

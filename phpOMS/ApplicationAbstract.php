@@ -72,15 +72,6 @@ class ApplicationAbstract
      */
     public $localization = null;
 
-    // TODO: maybe move to WebApplication since others don't have sessions (maybe create sessions for these as well -> no login required)
-    /**
-     * Server localization
-     *
-     * @var \phpOMS\DataStorage\Session\SessionInterface
-     * @since 1.0.0
-     */
-    public $session = null;
-
     /**
      * Event manager
      *

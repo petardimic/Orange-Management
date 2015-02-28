@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1001001001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 1,
+        "name": "BusinessExpenses",
+        "l0": null,
+        "l1": null,
+        "l2": null,
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "icon": null,
+        "order": 40,
+        "from": 1001000000,
+        "permission": null,
+        "parent": 1002401001,
+        "children": [
+            {
+                "id": 1001002001,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "List",
+                "l0": null,
+                "l1": null,
+                "l2": null,
+                "l3": null,
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 40,
+                "from": 1001000000,
+                "permission": null,
+                "parent": 1001001001,
+                "children": [
+                    
+                ]
+            }
+        ]
+    }
+]

@@ -17,7 +17,9 @@
     "dependencies": {
         "PaymentInformation": "*"
     },
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
@@ -31,6 +33,13 @@
             "type": 4,
             "for": 1004100000,
             "file": "backend",
+            "from": 1005000000
+        },
+        {
+            "pid": ["2b2b1ba818089aa7176d744c993f95e30ef8f511"],
+            "type": 4,
+            "for": 0,
+            "file": "AccountsPayable",
             "from": 1005000000
         }
     ]

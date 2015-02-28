@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1004805001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 1,
+        "name": "Articles",
+        "l0": "backend",
+        "l1": "sales",
+        "l2": "article",
+        "l3": "list",
+        "l4": null,
+        "l5": null,
+        "icon": null,
+        "order": 10,
+        "from": 1004800000,
+        "permission": null,
+        "parent": 1001601001,
+        "children": [
+            {
+                "id": 1004805101,
+                "pid": "357d4cb2edda54febaf2c3f765e84dd31bf6c4fd",
+                "type": 3,
+                "subtype": 1,
+                "name": "Articles",
+                "l0": "backend",
+                "l1": "sales",
+                "l2": "article",
+                "l3": "list",
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 1,
+                "from": 1004800000,
+                "permission": null,
+                "parent": 1004805001,
+                "children": [
+                    {
+                        "id": 1004805301,
+                        "pid": "4a41925386568368ad4dd823b3945199e8e2628e",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Article",
+                        "l0": "backend",
+                        "l1": "sales",
+                        "l2": "article",
+                        "l3": "single",
+                        "l4": "front",
+                        "l5": null,
+                        "icon": null,
+                        "order": 1,
+                        "from": 1004800000,
+                        "permission": null,
+                        "parent": 1004805101,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 1004805201,
+                "pid": "357d4cb2edda54febaf2c3f765e84dd31bf6c4fd",
+                "type": 3,
+                "subtype": 1,
+                "name": "Create",
+                "l0": "backend",
+                "l1": "sales",
+                "l2": "article",
+                "l3": "create",
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 5,
+                "from": 1004800000,
+                "permission": null,
+                "parent": 1004805001,
+                "children": []
+            }
+        ]
+    }
+]

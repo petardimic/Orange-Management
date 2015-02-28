@@ -35,6 +35,14 @@ class WebApplication extends \phpOMS\ApplicationAbstract
     public $response = null;
 
     /**
+     * User session
+     *
+     * @var \phpOMS\DataStorage\Session\SessionInterface
+     * @since 1.0.0
+     */
+    public $session = null;
+
+    /**
      * Constructor
      *
      * @param array $config Core config

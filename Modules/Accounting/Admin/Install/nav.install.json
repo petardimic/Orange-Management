@@ -17,6 +17,44 @@
         "permission": null,
         "parent": 0,
         "children": [
+            {
+                "id": 1002602001,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "Accounts",
+                "l0": "backend",
+                "l1": "accounting",
+                "l2": "account",
+                "l3": "impersonal",
+                "l4": "list",
+                "l5": null,
+                "icon": null,
+                "order": 5,
+                "from": 1002600000,
+                "permission": null,
+                "parent": 1002601001,
+                "children": []
+            },
+            {
+                "id": 1002603001,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "BatchPostings",
+                "l0": "backend",
+                "l1": "accounting",
+                "l2": "posting",
+                "l3": "batch",
+                "l4": "list",
+                "l5": null,
+                "icon": null,
+                "order": 20,
+                "from": 1002600000,
+                "permission": null,
+                "parent": 1002601001,
+                "children": []
+            }
         ]
     }
 ]

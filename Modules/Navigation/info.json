@@ -15,7 +15,9 @@
     "description": "The navigation module.",
     "directory": "Navigation",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
     ],
     "lang": false,

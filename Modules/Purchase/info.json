@@ -15,7 +15,9 @@
     "description": "Purchase module.",
     "directory": "Purchase",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["6e21607dfaf20d18e793417dd8e874941f0cc740"],

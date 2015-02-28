@@ -15,7 +15,9 @@
     "description": "Accounting module.",
     "directory": "Accounting",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["47e9d72449035cd040e0f93693fd0a925bf6e340"],

@@ -15,7 +15,9 @@
     "description": "The backend dashboard module.",
     "directory": "BackendDashboard",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["3788e96aebafcdf3acc1a87861d559695e9a531f"],

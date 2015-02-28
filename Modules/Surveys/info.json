@@ -15,7 +15,9 @@
     "description": "Surveys module.",
     "directory": "Surveys",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["6c941ab5b60c49df3c7d50b935fd213c060a6664"],

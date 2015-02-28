@@ -15,7 +15,9 @@
     "description": "Event Management module.",
     "directory": "EventManagement",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["9a017c0aa5117ed6dd28736a6d6338e7c499e64f"],

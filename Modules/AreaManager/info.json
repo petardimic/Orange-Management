@@ -13,9 +13,13 @@
         "website": "www.spl1nes.com"
     },
     "description": "Accounting module.",
-    "directory": "AccountsReceivable",
-    "dependencies": {},
-    "providing": {},
+    "directory": "AreaManager",
+    "dependencies": {
+        "Sales": "*"
+    },
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],

@@ -7,7 +7,7 @@
 * 1000700000 - 
 * 1000800000 - OMS Surveys
 * 1000900000 - OMS Calendar
-* 1001000000 - 
+* 1001000000 - OMS Business Expenses
 * 1001100000 - OMS Tasks
 * 1001200000 - OMS Messages
 * 1001300000 - OMS Warehouse Management
@@ -21,15 +21,15 @@
 * 1002100000 - OMS Purchase
 * 1002200000 - OMS Research & Development
 * 1002300000 - OMS Credit Management
-* 1002400000 - OMS Human Resources
+* 1002400000 - OMS Human Resource Management
 * 1002500000 - OMS Clocking
 * 1002600000 - OMS Accounting
 * 1002700000 - OMS Reporter
 * 1002800000 - OMS Controlling
 * 1002900000 - OMS Support
 * 1003000000 - OMS Risk Management
-* 1003100000 - 
-* 1003200000 - 
+* 1003100000 - OMS Client Management
+* 1003200000 - OMS Supplier Management
 * 1003300000 - 
 * 1003400000 - 
 * 1003500000 - 
@@ -45,7 +45,7 @@
 * 1004500000 - OMS Cost Center Accounting
 * 1004600000 - OMS Budget Management
 * 1004700000 - OMS Business
-* 1004800000 - OMS Item Reference
+* 1004800000 - OMS Item Management
 * 1004900000 - OMS Accounts Receivable
 * 1005000000 - OMS Accounts Receivable
 * 1005100000 - OMS Billing

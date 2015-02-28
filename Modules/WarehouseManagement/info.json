@@ -15,7 +15,9 @@
     "description": "Warehousing module.",
     "directory": "WarehouseManagement",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["a5dd2992c4ffd521e23894599418f28a07e0ff1a"],

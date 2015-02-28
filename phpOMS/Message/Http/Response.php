@@ -6,8 +6,6 @@ namespace phpOMS\Message\Http;
  *
  * PHP Version 5.4
  *
- * @todo       : maybe add header true/false member variable for overwrite if exists
- *
  * @category   Framework
  * @package    phpOMS\Response
  * @author     OMS Development Team <dev@oms.com>

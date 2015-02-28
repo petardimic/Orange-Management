@@ -1,0 +1,30 @@
+{
+    "name": {
+        "internal": 1003100000,
+        "external": "OMS Client Management"
+    },
+    "version": "1.0.0",
+    "requirements": {
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
+    },
+    "creator": {
+        "name": "Orange Management",
+        "website": "www.spl1nes.com"
+    },
+    "description": "The buisness module.",
+    "directory": "ClientManagement",
+    "dependencies": {},
+    "providing": {
+        "Navigation": "*"
+    },
+    "load": [
+        {
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 5,
+            "from": 1003100000,
+            "for": 1000500000,
+            "file": "nav.backend"
+        }
+    ]
+}

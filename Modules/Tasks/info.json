@@ -15,7 +15,9 @@
     "description": "Tasks module.",
     "directory": "Tasks",
     "dependencies": {},
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["43ec7cda8be033d7b20996708a2fca644e5dde86"],

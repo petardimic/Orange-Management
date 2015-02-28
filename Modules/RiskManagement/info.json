@@ -17,7 +17,9 @@
     "dependencies": [
         "RiskManagement"
     ],
-    "providing": {},
+    "providing": {
+        "Navigation": "*"
+    },
     "load": [
         {
             "pid": ["3dea5d6b54ce4157dd6f73b4ea9cfb5091bad255"],
