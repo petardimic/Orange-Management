@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1003301001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 0,
+        "name": "Tools",
+        "l0": null,
+        "l1": null,
+        "l2": null,
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "icon": "fa fa-wrench",
+        "order": 15,
+        "from": 1003300000,
+        "permission": null,
+        "parent": 0,
+        "children": [
+        ]
+    }
+]

@@ -1,2 +1,0 @@
-<?php
-namespace phpOMS\Model;

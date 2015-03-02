@@ -17,6 +17,26 @@
         "permission": null,
         "parent": 0,
         "children": [
+            {
+                "id": 1002402001,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "Employees",
+                "l0": null,
+                "l1": null,
+                "l2": null,
+                "l3": null,
+                "l4": null,
+                "l5": null,
+                "icon": null,
+                "order": 1,
+                "from": 1002400000,
+                "permission": null,
+                "parent": 1002401001,
+                "children": [
+                ]
+            }
         ]
     }
 ]

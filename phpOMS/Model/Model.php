@@ -1,6 +1,6 @@
 <?php
 namespace phpOMS\Model;
-
+// TODO: THIS IS COMPLETELY OUTDATED change it to current structure
 /**
  * Model class
  *

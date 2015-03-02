@@ -51,6 +51,7 @@ $toInstall = [
     'Media',
     'Messages',
     'Monitoring',
+    'MyPrivate',
     'Navigation',
     'News',
     'PaymentInformation',
@@ -84,6 +85,7 @@ $toInstall = [
     'Support',
     'Surveys',
     'Tasks',
+    'Tools',
     'TravelExpenses',
     'WarehouseManagement',
 ];

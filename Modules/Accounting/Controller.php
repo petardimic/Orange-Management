@@ -60,13 +60,20 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
@@ -75,22 +82,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
-            case 'creditor':
-                $this->showBackendCreditor($request, $response);
-                break;
-            case 'debitor':
-                $this->showBackendDebitor($request, $response);
-                break;
             case 'account':
                 $this->showBackendAccount($request, $response);
                 break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
         }
     }
 
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
@@ -122,66 +130,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/account-create.tpl.php';
                 break;
-        }
-    }
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->addHeader('Status', 'Status: 404 Not Found');
 
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showBackendCreditor($request, $response)
-    {
-        switch($request->getData()['l4']) {
-            case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $creditorList = new \Modules\Accounting\Models\CreditorList($this->app->dbPool);
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/creditor-list.tpl.php';
-                break;
-            case 'single':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/creditor-single.tpl.php';
-                break;
-            case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/creditor-create.tpl.php';
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showBackendDebitor($request, $response)
-    {
-        switch($request->getData()['l4']) {
-            case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $debitorList = new \Modules\Accounting\Models\DebitorList($this->app->dbPool);
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/debitor-list.tpl.php';
-                break;
-            case 'single':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/debitor-single.tpl.php';
-                break;
-            case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/debitor-create.tpl.php';
-                break;
+                return;
         }
     }
 }

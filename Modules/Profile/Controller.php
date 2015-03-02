@@ -58,7 +58,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -66,13 +66,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
             case 'single':

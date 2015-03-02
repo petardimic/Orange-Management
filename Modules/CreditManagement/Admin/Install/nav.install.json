@@ -3,7 +3,7 @@
         "id": 1002301001,
         "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
         "type": 2,
-        "subtype": 0,
+        "subtype": 1,
         "name": "CreditManagement",
         "l0": "backend",
         "l1": "cmanagement",
@@ -11,11 +11,11 @@
         "l3": null,
         "l4": null,
         "l5": null,
-        "icon": "fa fa-flask",
+        "icon": null,
         "order": 110,
         "from": 1002300000,
         "permission": null,
-        "parent": 1000201001,
+        "parent": 1002601001,
         "children": []
     }
 ]

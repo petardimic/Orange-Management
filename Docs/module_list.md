@@ -30,9 +30,9 @@
 * 1003000000 - OMS Risk Management
 * 1003100000 - OMS Client Management
 * 1003200000 - OMS Supplier Management
-* 1003300000 - 
-* 1003400000 - 
-* 1003500000 - 
+* 1003300000 - OMS Tools
+* 1003400000 - OMS MyPrivate
+* 1003500000 - OMS PersonnelTimeManagement
 * 1003600000 - 
 * 1003700000 - 
 * 1003800000 - 
