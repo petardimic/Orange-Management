@@ -35,6 +35,14 @@ class FormView extends \Web\Views\WebViewAbstract
     protected $hasSubmit = true;
 
     /**
+     * Has own submit button
+     *
+     * @var bool
+     * @since 1.0.0
+     */
+    protected $onChange = false;
+
+    /**
      * Url for request
      *
      * @var string
@@ -171,5 +179,27 @@ class FormView extends \Web\Views\WebViewAbstract
     public function setMethod($method)
     {
         $this->method = $method;
+    }
+
+    /**
+     * @return boolean
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function isOnChange()
+    {
+        return $this->onChange;
+    }
+
+    /**
+     * @param boolean $onChange
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setOnChange($onChange)
+    {
+        $this->onChange = $onChange;
     }
 }

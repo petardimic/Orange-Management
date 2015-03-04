@@ -4,7 +4,7 @@
     <?php foreach($this->elements as $rKey => $row): ?>
         <tr>
             <th>
-                <lable><?= $row[0]; ?></lable>
+                <label><?= $row[0]; ?></label>
             </th>
             <?php for($i = 1; $i < count($row); $i++): ?>
                 <td><?= $row[$i]; ?></td>

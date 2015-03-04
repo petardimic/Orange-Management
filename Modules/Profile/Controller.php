@@ -83,15 +83,10 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->callPull();
                 break;
             case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $accounts = new \Modules\Profile\Models\ProfileList($this->app->dbPool);
+                $profileView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $profileView->setTemplate('/Modules/Profile/Theme/backend/profile-list');
 
-                if(!isset($request->getData()['page'])) {
-                    $request->getData()['page'] = 1;
-                }
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/profile-list.tpl.php';
+                echo $profileView->getOutput();
                 break;
         }
     }

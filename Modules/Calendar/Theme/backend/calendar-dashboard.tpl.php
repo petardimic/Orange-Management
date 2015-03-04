@@ -1,4 +1,42 @@
-<?php /** @var \Modules\Profile\Controller $this */
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
+
+/*
+ * General
+ */
+
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$settingsFormView->setHasSubmit(false);
+$settingsFormView->setOnChange(true);
+$settingsFormView->setAction('http://127.0.0.1');
+$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+
+$settingsFormView->setElement(0, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 1, 'content' => $this->l11n->lang[9]['Day'],],
+        ['value' => 2, 'content' => $this->l11n->lang[9]['Week'],],
+        ['value' => 3, 'content' => $this->l11n->lang[9]['Month'],],
+        ['value' => 4, 'content' => $this->l11n->lang[9]['Year'],],
+    ],
+    'selected' => 3,
+    'label'    => $this->l11n->lang[9]['Interval'],
+    'name'     => 'interval'
+]);
+
+$settingsFormView->setElement(1, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 1, 'content' => $this->l11n->lang[9]['Blocks'],],
+        ['value' => 2, 'content' => $this->l11n->lang[9]['List'],],
+    ],
+    'selected' => 1,
+    'label'    => $this->l11n->lang[9]['Layout'],
+    'name'     => 'layout'
+]);
 ?>
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c30-1 c30" id="i30-1-4">
@@ -8,21 +46,13 @@
     </div>
     <div class="b b-5 c30-1 c30" id="i30-1-4">
         <h1>
-            <?= $this->app->user->getL11n()->lang[9]['Settings']; ?>
+            <?= $this->l11n->lang[9]['Settings']; ?>
             <i class="fa fa-minus min"></i>
             <i class="fa fa-plus max vh"></i>
         </h1>
 
         <div class="bc-1">
-            <ul class="l-1">
-                <li><?= $this->app->user->getL11n()->lang[9]['Interval']; ?>
-                <li><select>
-                        <option value="1"><?= $this->app->user->getL11n()->lang[9]['Day']; ?>
-                        <option value="2"><?= $this->app->user->getL11n()->lang[9]['Week']; ?>
-                        <option value="3" selected><?= $this->app->user->getL11n()->lang[9]['Month']; ?>
-                        <option value="4"><?= $this->app->user->getL11n()->lang[9]['Year']; ?>
-                    </select>
-            </ul>
+            <?= $settingsFormView->getOutput(); ?>
         </div>
     </div>
 </div>

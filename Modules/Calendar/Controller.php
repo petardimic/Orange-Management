@@ -67,8 +67,10 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l3']) {
             case 'dashboard':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/calendar-dashboard.tpl.php';
+                $calendarView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $calendarView->setTemplate('/Modules/Calendar/Theme/backend/calendar-dashboard');
+
+                echo $calendarView->getOutput();
                 break;
         }
     }

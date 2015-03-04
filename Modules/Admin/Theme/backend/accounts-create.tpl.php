@@ -3,6 +3,106 @@
  * @var \phpOMS\Views\ViewAbstract $this
  */
 
+$panelCoreSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelCoreSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$panelCoreSettingsView->setTitle($this->l11n->lang[1]['Account']);
+$this->addView('settings::core', $panelCoreSettingsView);
+
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$settingsFormView->setData('submit', $this->l11n->lang[0]['Submit']);
+$settingsFormView->setAction('http://127.0.0.1');
+$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+
+$settingsFormView->setElement(0, 0, [
+    'type' => \phpOMS\Html\TagType::SELECT,
+    'options' => [
+        ['value' => 0, 'content' => $this->l11n->lang[1]['Active']],
+        ['value' => 1, 'content' => $this->l11n->lang[1]['Inactive']],
+    ],
+    'selected' => 1,
+    'label' => $this->l11n->lang[1]['Status'],
+    'name' => 'status'
+]);
+
+$settingsFormView->setElement(1, 0, [
+    'type' => \phpOMS\Html\TagType::SELECT,
+    'options' => [
+        ['value' => 0, 'content' => $this->l11n->lang[1]['Single']],
+        ['value' => 1, 'content' => $this->l11n->lang[1]['Group']],
+    ],
+    'selected' => 1,
+    'label' => $this->l11n->lang[1]['Status'],
+    'name' => 'status'
+]);
+
+$this->getView('settings::core')->addView('form', $settingsFormView);
+
+/*
+ * Account name
+ */
+
+$panelNameSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelNameSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$panelNameSettingsView->setTitle($this->l11n->lang[1]['Account']);
+$this->addView('settings::name', $panelNameSettingsView);
+
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$settingsFormView->setData('submit', $this->l11n->lang[0]['Submit']);
+$settingsFormView->setAction('http://127.0.0.1');
+$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+
+$settingsFormView->setElement(0, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Loginname'],
+    'name' => 'loginname',
+]);
+
+$settingsFormView->setElement(1, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Name1'],
+    'name' => 'name1',
+]);
+
+$settingsFormView->setElement(2, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Name2'],
+    'name' => 'name2',
+]);
+
+$settingsFormView->setElement(3, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Name3'],
+    'name' => 'name3',
+]);
+
+$settingsFormView->setElement(4, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Email'],
+    'name' => 'email',
+]);
+
+$settingsFormView->setElement(5, 0, [
+    'type' => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'text',
+    'label' => $this->l11n->lang[1]['Password'],
+    'name' => 'Password',
+]);
+
+$settingsFormView->setElement(5, 1, [
+    'type' => \phpOMS\Html\TagType::BUTTON,
+    'content' => $this->l11n->lang[0]['Create'],
+]);
+
+$this->getView('settings::name')->addView('form', $settingsFormView);
+
+
 /*
  * Navigation
  */
@@ -11,95 +111,12 @@ $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000104001);
-
-/*
- * Template
- */
-echo $nav->getOutput();
 ?>
+<?= $nav->getOutput(); ?>
 
-<div class="b b-2 c1-8 c1" id="i1-8-2">
-    <h1>
-        <?= $this->l11n->lang[1]['Account']; ?>
-        <i class="fa fa-minus min"></i>
-        <i class="fa fa-plus max vh"></i>
-    </h1>
+<?= $this->getView('settings::core')->getOutput(); ?>
 
-    <div class="bc-1">
-        <form class="f-1">
-            <ul class="l-1">
-                <li>
-                    <label for="i-status"><?= $this->l11n->lang[1]['Status']; ?></label>
-                <li>
-                    <select name="status" id="i-status">
-                        <option value="0">
-                            <?= $this->l11n->lang[1]['Active']; ?>
-                        <option value="1">
-                            <?= $this->l11n->lang[1]['Inactive']; ?>
-                    </select>
-                <li>
-                    <label for="i-type"><?= $this->l11n->lang[1]['Type']; ?></label>
-                <li>
-                    <select name="type" id="i-type">
-                        <option value="0">
-                            <?= $this->l11n->lang[1]['Single']; ?>
-                        <option value="1">
-                            <?= $this->l11n->lang[1]['Group']; ?>
-                    </select>
-                <li>
-                    <label for="i-active"><?= $this->l11n->lang[1]['Activity']; ?></label>
-                <li>
-                    <input name="active" class="i-1 t-i" id="i-active" type="text">
-                <li>
-                    <label for="i-created"><?= $this->l11n->lang[1]['Created']; ?></label>
-                <li>
-                    <input name="created" class="i-1 t-i" id="i-created" type="text">
-                <li>
-            </ul>
-        </form>
-    </div>
-</div>
-
-<div class="b b-2 c1-8 c1" id="i1-8-3">
-    <h1>
-        <?= $this->l11n->lang[1]['Account']; ?>
-        <i class="fa fa-minus min"></i>
-        <i class="fa fa-plus max vh"></i>
-    </h1>
-
-    <div class="bc-1">
-        <form class="f-1">
-            <ul class="l-1">
-                <li>
-                    <label for="i-login"><?= $this->l11n->lang[1]['Loginname']; ?></label>
-                <li>
-                    <input name="login" class="i-1 t-i" id="i-login" type="text">
-                <li>
-                    <label for="i-name1"><?= $this->l11n->lang[1]['Name1']; ?></label>
-                <li>
-                    <input name="name1" class="i-1 t-i" id="i-name1" type="text">
-                <li>
-                    <label for="i-name2"><?= $this->l11n->lang[1]['Name2']; ?></label>
-                <li>
-                    <input name="name2" class="i-1 t-i" id="i-name2" type="text">
-                <li>
-                    <label for="i-name3"><?= $this->l11n->lang[1]['Name3']; ?></label>
-                <li>
-                    <input name="name3" class="i-1 t-i" id="i-name3" type="text">
-                <li>
-                    <label for="i-email"><?= $this->l11n->lang[0]['Email']; ?></label>
-                <li>
-                    <input name="email" class="i-1 t-i" id="i-email" type="text">
-                <li>
-                    <label for="i-pass"><?= $this->l11n->lang[0]['Password']; ?></label>
-                <li>
-                    <input name="pass" class="i-1 t-i" id="i-pass" type="password"> <input type="button"
-                                                                                           value="<?= $this->l11n->lang[0]['Create']; ?>">
-                <li>
-            </ul>
-        </form>
-    </div>
-</div>
+<?= $this->getView('settings::name')->getOutput(); ?>
 
 <div class="c-bar rT">
     <button><?= $this->l11n->lang[0]['Create']; ?></button>

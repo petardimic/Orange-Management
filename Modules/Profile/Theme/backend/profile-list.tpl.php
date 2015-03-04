@@ -1,49 +1,39 @@
-<?php /** @var \Modules\Profile\Controller $this */
-\phpOMS\Model\Model::generate_table_filter_view(); ?>
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
 
-<table class="t t-1 c1-2 c1" id="i1-2-1">
-    <thead>
-    <tr>
-        <th colspan="4" class="lT">
-            <i class="fa fa-filter p f dim"></i>
+/*
+* UI Logic
+*/
+$profileList = new \Web\Views\Lists\ListView($this->l11n);
+$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
 
-            <h1><?= $this->app->user->getL11n()->lang[1]['Accounts'] ?></h1>
-        <th class="rT">
-            <i class="fa fa-minus min"></i>
-            <i class="fa fa-plus max vh"></i>
-    <tr>
-        <?php
-        \phpOMS\Model\Model::generate_table_header_view(
-            [
-                ['name' => $this->app->user->getL11n()->lang[1]['Status'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->getL11n()->lang[1]['Name'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->getL11n()->lang[1]['Activity'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[1]['Created'], 'sort' => 0]
-            ]
-        );
-        ?>
-        <tbody>
-        <?php
-        /** @var \Modules\Profile\ProfileList $accounts */
-        $data           = $accounts->getList();
-        $url['level']   = array_slice($request->getData(), 0, 3);
-        $url['level'][] = 'single';
-        $url['level'][] = 'front';
-        $url['id']      = 'id';
+$profileList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
 
-        \phpOMS\Model\Model::generate_table_content_view(
-            $data['list'],
-            ['status', 'id', 'name1', 'lactive', 'created'],
-            $url,
-            ['status' => [
-                0 => '<span class="green">' . $this->app->user->getL11n()->lang[3]['OFF'] . '</span>',
-                1 => '<span class="green">' . $this->app->user->getL11n()->lang[3]['ON'] . '</span>',
-            ]]
-        );
-        ?>
-        <tfoot>
-    <tr>
-        <td colspan="5" class="cT">
-            <?php \phpOMS\Model\Model::generate_table_pagination_view($data['count']); ?>
-</table>
+/*
+ * Header
+ */
+$headerView->setTitle($this->l11n->lang[3]['Profiles']);
+$headerView->addHeader([
+    ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+    ['title' => $this->l11n->lang[1]['Activity'], 'sortable' => true],
+    ['title' => $this->l11n->lang[1]['Name'], 'sortable' => true, 'full' => true],
+]);
+
+/*
+ * Footer
+ */
+$footerView->setPages(20);
+$footerView->setPage(1);
+
+$profileList->addView('header', $headerView);
+$profileList->addView('footer', $footerView);
+
+/*
+ * Template
+ */
+echo $profileList->getOutput();
