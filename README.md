@@ -1,3 +1,5 @@
+# General
+
 The Orange Management software is a modular web application for small to mid sized companies, educational facilities and health care institutions. The Orange Management software modules can be split into the following different categories:
 
 * General
