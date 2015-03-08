@@ -76,7 +76,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getData()['l3']) {
             case 'dashboard':
-                $taskDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $taskDashboardView->setTemplate('/Modules/Tasks/Theme/backend/task-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -92,7 +92,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/task-single.tpl.php';
                 break;
             case 'create':
-                $taskCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $taskCreateView->setTemplate('/Modules/Tasks/Theme/backend/task-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -100,7 +100,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskCreateView->getOutput();
                 break;
             case 'analysis':
-                $taskAnalysisView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskAnalysisView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $taskAnalysisView->setTemplate('/Modules/Tasks/Theme/backend/task-analysis');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -108,7 +108,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskAnalysisView->getOutput();
                 break;
             case 'settings':
-                $taskSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $taskSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $taskSettingsView->setTemplate('/Modules/Tasks/Theme/backend/task-settings');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

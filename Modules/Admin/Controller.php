@@ -139,7 +139,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         switch($request->getData()['l4']) {
             case 'general':
-                $coreSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $coreSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
                 echo $coreSettingsView->getOutput();
                 break;
@@ -166,20 +166,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $accountListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $accountListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountListView->addData('nav', $navigation->nav);
+
+                $accountList = new \Modules\Admin\Models\UserList($this->app->dbPool);
+                $accountListView->setData('list:elements', $accountList->getList()['list']);
+                $accountListView->setData('list:count', $accountList->getList()['count']);
+
                 echo $accountListView->getOutput();
                 break;
             case 'single':
                 $this->showBackendAccountSingle($request, $response);
-                $this->callPull();
-
                 break;
             case 'create':
-                $accountCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $accountCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $accountCreateView->setTemplate('/Modules/Admin/Theme/backend/accounts-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -209,8 +212,16 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l5']) {
             case 'front':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/accounts-single.tpl.php';
+                $accountView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $accountView->setTemplate('/Modules/Admin/Theme/backend/accounts-single');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $accountView->addData('nav', $navigation->nav);
+
+                $account = \phpOMS\Models\User\User::getInstance((int) $request->getData()['id'], $this->app->dbPool);
+                $accountView->addData('account', $account);
+
+                echo $accountView->getOutput();
                 break;
             default:
                 $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -239,7 +250,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         switch($request->getData()['l4']) {
             case 'list':
-                $moduleListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $moduleListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
                 echo $moduleListView->getOutput();
                 break;
@@ -272,18 +283,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $groupListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $groupListView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupListView->addData('nav', $navigation->nav);
+
+                $groupList = new \Modules\Admin\Models\GroupList($this->app->dbPool);
+                $groupListView->setData('list:elements', $groupList->getList()['list']);
+                $groupListView->setData('list:count', $groupList->getList()['count']);
+
                 echo $groupListView->getOutput();
                 break;
             case 'single':
                 $this->showBackendGroupSingle($request, $response);
                 break;
             case 'create':
-                $groupCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $groupCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $groupCreateView->setTemplate('/Modules/Admin/Theme/backend/groups-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

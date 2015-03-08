@@ -18,7 +18,7 @@ $this->getView('group:create')->setTemplate('/Web/Theme/Templates/Panel/BoxThird
 
 $formGroupCreate = new \Web\Views\Form\FormView($this->l11n);
 $formGroupCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$formGroupCreate->setData('submit', $this->l11n->lang[0]['Submit']);
+$formGroupCreate->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formGroupCreate->setAction('http://127.0.0.1');
 $formGroupCreate->setMethod(\phpOMS\Message\RequestType::POST);
 

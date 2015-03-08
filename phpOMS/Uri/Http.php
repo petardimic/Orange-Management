@@ -53,14 +53,14 @@ class Http implements \phpOMS\Uri\UriInterface
 
         if(isset($query)) {
             $i = 0;
-            foreach($query as $para) {
+            foreach($query as $key => $para) {
                 if($i == 0) {
-                    $uri .= '?' . $para[0] . '=' . $para[1];
+                    $uri .= '?' . $key . '=' . $para;
                     $i++;
                     continue;
                 }
 
-                $uri .= '&' . $para[0] . '=' . $para[1];
+                $uri .= '&' . $key . '=' . $para;
             }
         }
 
@@ -83,7 +83,7 @@ class Http implements \phpOMS\Uri\UriInterface
             parse_str($route['query'], $query);
         }
 
-        return $path + $query;
+        return ['route' => $path, 'query' => $query];
     }
 
     /**

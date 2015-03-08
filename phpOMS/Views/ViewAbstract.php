@@ -51,16 +51,26 @@ class ViewAbstract
     protected $l11n = null;
 
     /**
+     * Application
+     *
+     * @var \phpOMS\ApplicationAbstract
+     * @since 1.0.0
+     */
+    protected $app = null;
+
+    /**
      * Constructor
      *
      * @param \phpOMS\Localization\Localization $l11n User localization
+     * @param \phpOMS\ApplicationAbstract       $app  Application
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($l11n = null)
+    public function __construct($l11n = null, $app = null)
     {
         $this->l11n = $l11n;
+        $this->app  = $app;
     }
 
     /**

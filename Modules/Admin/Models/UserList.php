@@ -21,7 +21,7 @@ class UserList
     /**
      * Database instance
      *
-     * @var \phpOMS\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -102,20 +102,19 @@ class UserList
 
         switch($this->dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->dbPool->get('core')->generate_sql_filter($filter, true);
 
                 $sth = $this->dbPool->get('core')->con->prepare(
                     'SELECT SQL_CALC_FOUND_ROWS
-                            `' . $this->dbPool->get('core')->prefix . 'accounts`.*,
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name1`,
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name2`,
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`name3`
+                            `' . $this->dbPool->get('core')->prefix . 'account`.*,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`account_data_name1`,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`account_data_name2`,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`.`account_data_name3`
                         FROM
-                            `' . $this->dbPool->get('core')->prefix . 'accounts`,
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`
+                            `' . $this->dbPool->get('core')->prefix . 'account`,
+                            `' . $this->dbPool->get('core')->prefix . 'account_data`
                         WHERE
-                            `' . $this->dbPool->get('core')->prefix . 'accounts`.`id` = `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account`'
-                    . $search . 'LIMIT ' . $offset . ',' . $limit
+                            `' . $this->dbPool->get('core')->prefix . 'account`.`account_id` = `' . $this->dbPool->get('core')->prefix . 'account_data`.`account_data_account`'
+                    . 'LIMIT ' . $offset . ',' . $limit
                 );
                 $sth->execute();
 

@@ -13,7 +13,7 @@ $this->addView('select::person', $panelSelectView);
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$settingsFormView->setData('submit', $this->l11n->lang[0]['Submit']);
+$settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $settingsFormView->setAction('http://127.0.0.1');
 $settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
 

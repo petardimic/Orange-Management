@@ -10,7 +10,7 @@
         "l2": "budgeting",
         "l3": "dashboard",
         "l4": null,
-        "l5": null,
+        "l5": null, "query": null,
         "icon": null,
         "order": 1,
         "from": 1004600000,

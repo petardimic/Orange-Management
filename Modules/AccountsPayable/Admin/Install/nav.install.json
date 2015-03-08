@@ -10,7 +10,7 @@
         "l2": "account",
         "l3": "payable",
         "l4": "list",
-        "l5": null,
+        "l5": null, "query": null,
         "icon": null,
         "order": 10,
         "from": 1005000000,

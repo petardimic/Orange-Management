@@ -47,4 +47,15 @@ class ListView extends \Web\Views\WebViewAbstract
     {
         $this->elements = $elements;
     }
+
+    /**
+     * @param array $elements
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function addElements($elements)
+    {
+        $this->elements[] = $elements;
+    }
 }

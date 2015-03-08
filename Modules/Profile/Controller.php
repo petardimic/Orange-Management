@@ -83,7 +83,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->callPull();
                 break;
             case 'list':
-                $profileView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n());
+                $profileView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
                 $profileView->setTemplate('/Modules/Profile/Theme/backend/profile-list');
 
                 echo $profileView->getOutput();

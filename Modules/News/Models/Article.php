@@ -23,7 +23,7 @@ class Article implements \phpOMS\Models\MapperInterface
     /**
      * Database instance
      *
-     * @var \phpOMS\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
     private $dbPool = null;

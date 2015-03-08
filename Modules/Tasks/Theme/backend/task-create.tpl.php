@@ -20,7 +20,7 @@ $this->getView('mediaPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
 $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$formCreateForm->setData('submit', $this->l11n->lang[0]['Create']);
+$formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
 $formCreateForm->setAction('http://127.0.0.1');
 $formCreateForm->setMethod(\phpOMS\Message\RequestType::POST);
 
@@ -32,7 +32,7 @@ $formCreateForm->setElement(0, 0, [
             'content' => $this->l11n->lang[11]['Group']
         ],
         [
-            'value'    => 0,
+            'value'    => 1,
             'content'  => $this->l11n->lang[11]['Account'],
             'selected' => true
         ],
@@ -69,7 +69,7 @@ $this->getView('createFormPanel')->addView('form', $formCreateForm);
 
 $mediaForm = new \Web\Views\Form\FormView($this->l11n);
 $mediaForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$mediaForm->setData('submit', $this->l11n->lang[0]['Add']);
+$mediaForm->setSubmit('submit1', $this->l11n->lang[0]['Add']);
 $mediaForm->setAction('http://127.0.0.1');
 $mediaForm->setMethod(\phpOMS\Message\RequestType::POST);
 

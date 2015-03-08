@@ -4,6 +4,64 @@
  */
 
 /*
+ * Settings
+ */
+$createPanel = new \Web\Views\Panel\PanelView($this->l11n);
+$createPanel->setTitle($this->l11n->lang[7]['Settings']);
+$this->addView('settingsPanel', $createPanel);
+$this->getView('settingsPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+
+$formSettingsView = new \Web\Views\Form\FormView($this->l11n);
+$formSettingsView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formSettingsView->setSubmit('submit1', $this->l11n->lang[0]['Save']);
+$formSettingsView->setSubmit('delete', $this->l11n->lang[0]['Delete']);
+$formSettingsView->setAction('http://127.0.0.1');
+$formSettingsView->setMethod(\phpOMS\Message\RequestType::POST);
+
+$formSettingsView->setElement(0, 0, [
+    'type'    => \phpOMS\Html\TagType::SELECT,
+    'options' => [
+        [
+            'value'   => 0,
+            'content' => $this->l11n->lang[7]['News']
+        ],
+        [
+            'value'    => 1,
+            'content'  => $this->l11n->lang[7]['Headline'],
+            'selected' => true
+        ]
+    ],
+    'name'    => 'type',
+    'label'   => $this->l11n->lang[7]['Type']
+]);
+
+$formSettingsView->setElement(1, 0, [
+    'type'    => \phpOMS\Html\TagType::SELECT,
+    'options' => [
+        [
+            'value'   => 0,
+            'content' => $this->l11n->lang[7]['Draft']
+        ],
+        [
+            'value'    => 1,
+            'content'  => $this->l11n->lang[7]['Visible'],
+            'selected' => true
+        ]
+    ],
+    'name'    => 'status',
+    'label'   => $this->l11n->lang[7]['Status']
+]);
+
+$formSettingsView->setElement(2, 0, [
+    'type'    => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'datetime-local',
+    'name'    => 'publish',
+    'label'   => $this->l11n->lang[7]['Publish']
+]);
+
+$this->getView('settingsPanel')->addView('form', $formSettingsView);
+
+/*
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
@@ -15,34 +73,7 @@ $nav->setParent(1000701001);
 <?= $nav->getOutput(); ?>
 
 <div class="b-7" id="i3-2-1">
-    <div class="b b-5 c30-1 c30" id="i30-1-4">
-        <h1>
-            <?= $this->l11n->lang[7]['Settings']; ?>
-            <i class="fa fa-minus min"></i>
-            <i class="fa fa-plus max vh"></i>
-        </h1>
-
-        <div class="bc-1">
-            <ul class="l-1">
-                <li><strong><?= $this->l11n->lang[7]['Type']; ?></strong>
-                <li><select>
-                        <option><?= $this->l11n->lang[7]['News']; ?>
-                        <option><?= $this->l11n->lang[7]['Headline']; ?>
-                    </select>
-                <li><strong><?= $this->l11n->lang[7]['Status']; ?></strong>
-                <li><select>
-                        <option><?= $this->l11n->lang[7]['Draft']; ?>
-                        <option><?= $this->l11n->lang[7]['Visible']; ?>
-                    </select>
-                <li><strong><?= $this->l11n->lang[7]['Publish']; ?></strong>
-                <li><input type="datetime-local"
-                           value="<?= (new \DateTime('NOW'))->format(''); ?>">
-            </ul>
-            <br>
-            <button><?= $this->l11n->lang[0]['Save']; ?></button>
-            <button><?= $this->l11n->lang[0]['Delete']; ?></button>
-        </div>
-    </div>
+    <?= $this->getView('settingsPanel')->getOutput(); ?>
 
     <div class="b b-5 c30-1 c30" id="i30-1-4">
         <h1>

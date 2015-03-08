@@ -1,3 +1,13 @@
+<select class="rf onChange" data-request="groups-list-length" data-bind='{"::limit": 25}' data-requesttype="GET" data-src="<?php
+$url = \phpOMS\Uri\Http::routify(\phpOMS\Uri\Http::getCurrent());
+echo \phpOMS\Uri\UriFactory::build($url['route'], ['limit' => '::limit']+$url['query']); ?>">
+    <option value="10">10
+    <option value="25" selected>25
+    <option value="50">50
+    <option value="100">100
+    <option value="250">250
+    <option value="500">500
+</select>
 <?php
 if($this->pages > 1):
     /** @var \Web\Views\Lists\PaginationView $this */

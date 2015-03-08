@@ -21,7 +21,7 @@ class GroupList
     /**
      * Database instance
      *
-     * @var \phpOMS\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
     private $dbPool = null;
@@ -59,9 +59,7 @@ class GroupList
 
         switch($this->dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $search = $this->dbPool->get('core')->generate_sql_filter($filter);
-
-                $sth = $this->dbPool->get('core')->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->dbPool->get('core')->prefix . 'group` ' . $search . 'LIMIT ' . $offset . ',' . $limit);
+                $sth = $this->dbPool->get('core')->con->prepare('SELECT SQL_CALC_FOUND_ROWS * FROM `' . $this->dbPool->get('core')->prefix . 'group` LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();

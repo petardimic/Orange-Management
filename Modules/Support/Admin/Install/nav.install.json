@@ -10,7 +10,7 @@
         "l2": "dashboard",
         "l3": null,
         "l4": null,
-        "l5": null,
+        "l5": null, "query": null,
         "icon": "fa fa-question-circle",
         "order": 80,
         "from": 1002900000,

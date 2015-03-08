@@ -20,7 +20,7 @@ $this->getView('permissionFormPanel')->setTemplate('/Web/Theme/Templates/Panel/B
 
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
 $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$formCreateForm->setData('submit', $this->l11n->lang[0]['Create']);
+$formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
 $formCreateForm->setAction('http://127.0.0.1');
 $formCreateForm->setMethod(\phpOMS\Message\RequestType::POST);
 
@@ -63,7 +63,7 @@ $this->getView('createFormPanel')->addView('form', $formCreateForm);
 
 $formPermissionAdd = new \Web\Views\Form\FormView($this->l11n);
 $formPermissionAdd->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$formPermissionAdd->setData('submit', $this->l11n->lang[0]['Add']);
+$formPermissionAdd->setSubmit('submit1', $this->l11n->lang[0]['Add']);
 $formPermissionAdd->setAction('http://127.0.0.1');
 $formPermissionAdd->setMethod(\phpOMS\Message\RequestType::POST);
 

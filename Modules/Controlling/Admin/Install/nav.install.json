@@ -10,7 +10,7 @@
         "l2": "dashboard",
         "l3": null,
         "l4": null,
-        "l5": null,
+        "l5": null, "query": null,
         "icon": "fa fa-exclamation-triangle",
         "order": 100,
         "from": 1002800000,

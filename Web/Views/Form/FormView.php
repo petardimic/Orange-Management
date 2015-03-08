@@ -51,6 +51,14 @@ class FormView extends \Web\Views\WebViewAbstract
     protected $action = '';
 
     /**
+     * Submit buttons
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    protected $submit = [];
+
+    /**
      * Request method
      *
      * @var \phpOMS\Message\RequestType
@@ -201,5 +209,17 @@ class FormView extends \Web\Views\WebViewAbstract
     public function setOnChange($onChange)
     {
         $this->onChange = $onChange;
+    }
+
+    /**
+     * @param string $name
+     * @param string $content
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setSubmit($name, $content)
+    {
+        $this->submit[$name] = $content;
     }
 }

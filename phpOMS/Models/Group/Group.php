@@ -21,10 +21,10 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
     /**
      * Application instance
      *
-     * @var \phpOMS\WebApplication
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
-    private $app = null;
+    private $dbPool = null;
 
     /**
      * Group ID
@@ -88,8 +88,8 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
     {
         $this->id = (int) $id;
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'SELECT * FROM `' . $this->app->dbPool->get('core')->prefix . 'groups` WHERE id = :id'
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'SELECT * FROM `' . $this->dbPool->get('core')->prefix . 'groups` WHERE id = :id'
         );
 
         $sth->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -160,10 +160,10 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
      */
     public function create()
     {
-        switch($this->app->dbPool->get('core')->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'groups` (`name`, `desc`) VALUES
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'groups` (`name`, `desc`) VALUES
                             (:name, :desc);'
                 );
 
@@ -171,7 +171,7 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
                 $sth->bindValue(':desc', $this->desc, \PDO::PARAM_STR);
                 $sth->execute();
 
-                $this->id = $this->app->dbPool->get('core')->con->lastInsertId();
+                $this->id = $this->dbPool->get('core')->con->lastInsertId();
 
                 break;
         }
@@ -186,14 +186,14 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
     public function delete()
     {
         /* TODO: delete permissions */
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->dbPool->get('core')->prefix . 'accounts_groups` WHERE `group` = ' . $this->id
         );
 
         $sth->execute();
 
-        $sth = $this->app->dbPool->get('core')->con->prepare(
-            'DELETE `' . $this->app->dbPool->get('core')->prefix . 'groups` WHERE `id` = ' . $this->id
+        $sth = $this->dbPool->get('core')->con->prepare(
+            'DELETE `' . $this->dbPool->get('core')->prefix . 'groups` WHERE `id` = ' . $this->id
         );
 
         $sth->execute();
@@ -207,10 +207,10 @@ class Group implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
      */
     public function update()
     {
-        switch($this->app->dbPool->get('core')->getType()) {
+        switch($this->dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->app->dbPool->get('core')->con->prepare(
-                    'UPDATE `' . $this->app->dbPool->get('core')->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
+                $sth = $this->dbPool->get('core')->con->prepare(
+                    'UPDATE `' . $this->dbPool->get('core')->prefix . 'groups` SET `name` = :name, `desc` = :desc WHERE `id` = ' . $this->id . ';'
                 );
 
                 $sth->bindValue(':name', $this->name, \PDO::PARAM_STR);

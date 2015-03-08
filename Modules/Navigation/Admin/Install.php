@@ -47,6 +47,7 @@ class Install
                             `nav_l3` varchar(30) DEFAULT NULL,
                             `nav_l4` varchar(30) DEFAULT NULL,
                             `nav_l5` varchar(30) DEFAULT NULL,
+                            `nav_query` varchar(100) DEFAULT NULL,
                             `nav_from` int(11) DEFAULT NULL,
                             `nav_order` tinyint(3) DEFAULT NULL,
                             `nav_parent` int(11) DEFAULT NULL,
@@ -94,7 +95,7 @@ class Install
     {
         $sth = $dbPool->get('core')->con->prepare(
             'INSERT INTO `' . $dbPool->get('core')->prefix . 'nav` (`nav_id`, `nav_pid`, `nav_name`, `nav_type`, `nav_subtype`, `nav_icon`, `nav_l0`, `nav_l1`, `nav_l2`, `nav_l3`, `nav_l4`, `nav_l5`, `nav_from`, `nav_order`, `nav_parent`, `nav_permission`) VALUES
-                        (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :from, :order, :parent, :perm);'
+                        (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :query, :from, :order, :parent, :perm);'
         );
 
         $sth->bindValue(':id', $data['id'], \PDO::PARAM_INT);
@@ -109,6 +110,7 @@ class Install
         $sth->bindValue(':l3', $data['l3'], \PDO::PARAM_STR);
         $sth->bindValue(':l4', $data['l4'], \PDO::PARAM_STR);
         $sth->bindValue(':l5', $data['l5'], \PDO::PARAM_STR);
+        $sth->bindValue(':query', $data['query'], \PDO::PARAM_STR);
         $sth->bindValue(':from', $data['from'], \PDO::PARAM_INT);
         $sth->bindValue(':order', $data['order'], \PDO::PARAM_INT);
         $sth->bindValue(':parent', $parent, \PDO::PARAM_INT);

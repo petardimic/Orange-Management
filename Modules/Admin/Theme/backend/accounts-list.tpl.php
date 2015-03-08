@@ -26,10 +26,22 @@ $headerView->addHeader([
     ['title' => $this->l11n->lang[1]['Created'], 'sortable' => true]
 ]);
 
+foreach($this->getData('list:elements') as $key => $value) {
+    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'admin', 'account', 'single', 'front'], ['id' => $value['account_id']]);
+
+    $accountListView->addElements([
+        '<a href="' . $url . '">' . $value['account_status'] . '</a>',
+        '<a href="' . $url . '">' . $value['account_id'] . '</a>',
+        '<a href="' . $url . '">' . $value['account_data_name1'] . '</a>',
+        '<a href="' . $url . '">' . $value['account_lactive'] . '</a>',
+        '<a href="' . $url . '">' . $value['account_created'] . '</a>',
+    ]);
+}
+
 /*
  * Footer
  */
-$footerView->setPages(20);
+$footerView->setPages($this->getData('list:count')/25);
 $footerView->setPage(1);
 
 $accountListView->addView('header', $headerView);

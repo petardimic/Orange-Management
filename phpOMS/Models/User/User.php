@@ -290,6 +290,39 @@ class User implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
     }
 
     /**
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getLoginName()
+    {
+        return $this->login_name;
+    }
+
+    /**
+     * @return string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getLastActivity()
+    {
+        return $this->last_activity;
+    }
+
+    /**
      * @param int $id
      *
      * @since  1.0.0
@@ -298,17 +331,6 @@ class User implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return \string[]
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
