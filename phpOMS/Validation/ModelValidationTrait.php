@@ -38,6 +38,45 @@ trait ModelValidationTrait
         }
 
         /** @noinspection PhpUndefinedFieldInspection */
+
         return \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]);
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    /**
+     * Set validated member variable
+     *
+     * @param mixed  $var  Variable to validate
+     * @param string $name Name of the variable
+     *
+     * @return bool
+     *
+     * @throws
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function setValidation($var, $name)
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        if(!isset(self::${$name . '_validate'}) || \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]) === true) {
+            $this->{$name} = $var;
+        } else {
+            throw new \Exception('Invalid data for variable ' . $name);
+        }
+    }
+
+    /**
+     * Set variable without validating it
+     *
+     * @param mixed  $var  Variable to set
+     * @param string $name Name of the variable
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setForce($var, $name)
+    {
+        $this->{$name} = $var;
     }
 }

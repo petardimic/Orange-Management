@@ -16,7 +16,7 @@ namespace Modules\News\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Article implements \phpOMS\Models\MapperInterface
+class NewsArticle implements \phpOMS\Models\MapperInterface
 {
     use \phpOMS\Validation\ModelValidationTrait;
 
@@ -35,9 +35,12 @@ class Article implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $id = 0;
-    private static $id_validate = [
-        'isType' => [['integer']],
-        'hasLimit' => [1, PHP_INT_MAX]
+
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $id_validate = [
+        'isType'   => ['integer'],
+        'hasLimit' => [0, PHP_INT_MAX]
     ];
 
     /**
@@ -47,6 +50,12 @@ class Article implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $title = '';
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $title_validate = [
+        'isType'   => ['string'],
+        'hasLength' => [1, 100]
+    ];
 
     /**
      * Content
@@ -55,6 +64,11 @@ class Article implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $content = '';
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $content_validate = [
+        'isType'   => ['string']
+    ];
 
     /**
      * Plain
@@ -63,6 +77,11 @@ class Article implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $plain = '';
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $plain_validate = [
+        'isType'   => ['string']
+    ];
 
     /**
      * News type
@@ -230,6 +249,96 @@ class Article implements \phpOMS\Models\MapperInterface
     public function getPublish()
     {
         return $this->publish;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setTitle($title)
+    {
+        $this->setValidation($title, 'title');
+    }
+
+    /**
+     * @param string $content
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setContent($content)
+    {
+        $this->setValidation($content, 'content');
+    }
+
+    /**
+     * @param string $plain
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setPlain($plain)
+    {
+        $this->setValidation($plain, 'plain');
+    }
+
+    /**
+     * @param int $type
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setType($type)
+    {
+        $this->setValidation($type, 'type');
+    }
+
+    /**
+     * @param string $lang
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+    }
+
+    /**
+     * @param \DateTime $publish
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setPublish($publish)
+    {
+        $this->publish = $publish;
+    }
+
+    /**
+     * @param \DateTime $created
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @param int $author
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
     }
 
     /**

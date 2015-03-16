@@ -54,7 +54,7 @@
         <?php if (count($this->submit) > 0): ?>
     <li class="submit">
         <?php foreach($this->submit as $key => $submit) : ?>
-            <input type="submit" name="<?= $key; ?>" value="<?= $submit; ?>">
+            <input class="<?php if(isset($submit[1]['float']) && $submit[1]['float'] === 1) { echo ' rf';} elseif(isset($submit[1]['float']) && $submit[1]['float'] === -1) { echo 'lf';} ?>" type="submit" name="<?= $key; ?>" value="<?= $submit[0]; ?>"<?= (isset($submit[1]['visible']) && !$submit[1]['visible'] ? ' disabled' : '') ?>>
         <?php endforeach; ?>
         <?php endif; ?>
 </ul>

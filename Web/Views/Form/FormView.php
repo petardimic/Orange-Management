@@ -214,12 +214,13 @@ class FormView extends \Web\Views\WebViewAbstract
     /**
      * @param string $name
      * @param string $content
+     * @param array $options
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setSubmit($name, $content)
+    public function setSubmit($name, $content, $options = null)
     {
-        $this->submit[$name] = $content;
+        $this->submit[$name] = [$content, $options];
     }
 }

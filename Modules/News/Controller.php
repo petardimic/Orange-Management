@@ -59,6 +59,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
+            case \phpOMS\Message\Http\WebRequestPage::API:
+                $this->showAPI($request, $response);
+                break;
             default:
                 $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->addHeader('Status', 'Status: 404 Not Found');
@@ -117,6 +120,36 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->addHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showAPI($request, $response) {
+        switch($request->getRequestType()) {
+            case \phpOMS\Message\RequestType::POST:
+                $newsOBJ = new \Modules\News\Models\NewsArticle($this->app->dbPool);
+                $newsOBJ->setAuthor($request->getData()['author']);
+                $newsOBJ->setCreated(new \DateTime('now'));
+                $newsOBJ->setPublish(new \DateTime($request->getData()['publish']));
+                $newsOBJ->setTitle($request->getData()['title']);
+                $newsOBJ->setContent($request->getData()['content']);
+                $newsOBJ->setLang($request->getData()['language']);
+                $newsOBJ->setType($request->getData()['type']);
+                $newsOBJ->create();
+                break;
+            default:
+                $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $response->addHeader('Status', 'Status:406 Not acceptable');
 
                 return;
         }
