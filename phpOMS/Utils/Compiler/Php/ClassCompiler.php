@@ -23,7 +23,6 @@ class ClassCompiler
 	private $class = null;
     private $extends = null;
 	private $implements = [];
-    private $const = [];
     private $member = [];
 
     public function __construct($path) {
@@ -72,7 +71,7 @@ class ClassCompiler
 
     public function setMember($name, $default = null, $isString = false, $type = 'private', $static = false, $overwrite = true) {
         if($overwrite || !isset($this->member[$name])) {
-            $this->member[$name] = ['default' => $default, 'isString' => $isString, 'type' = $type, 'static' => $static];
+            $this->member[$name] = ['default' => $default, 'isString' => $isString, 'type' => $type, 'static' => $static];
         }
     }
 
@@ -84,11 +83,7 @@ class ClassCompiler
         unset($this->member[$name]);
     }
 
-    abstract public function load($path = null);
-
-    abstract public function save($path = null);
-
-    public function print() {
+    public function __toString() {
         $member = '';
         foreach($this->member as $name => $value) {
             $member .= '    ' . ($value['static'] ? 'static ' : '') 
@@ -113,7 +108,7 @@ class ClassCompiler
                         $member .= '"' . $value['default'] . '"';
                         break;
                     case 'object':
-                        $member. = get_class($value['default']) . '()';
+                        $member .= get_class($value['default']) . '()';
                         // TODO: implement object with parameters -> Reflection
                         break;
                     case 'boolean':
@@ -133,7 +128,7 @@ class ClassCompiler
 
         return '<?php' . PHP_EOL
             . (isset($this->namespace) ? 'namespace ' . $this->namespace . ';' . PHP_EOL : '')
-            . 'abstract class' . $this->class . (isset($this->extends ? ' extends ' . $this->extends : '')) . (isset($this->implements ? ' implements ' . implode(',', $this->implements) : '')) . ' {' . PHP_EOL
+            . 'abstract class' . $this->class . (isset($this->extends) ? ' extends ' . $this->extends : '') . (isset($this->implements) ? ' implements ' . implode(',', $this->implements) : '') . ' {' . PHP_EOL
             . $member
             . '}';
     }
