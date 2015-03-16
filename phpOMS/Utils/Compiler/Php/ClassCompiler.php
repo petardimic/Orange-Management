@@ -16,7 +16,7 @@ namespace phpOMS\Utils\Compiler\Php;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ClassCompilerAbstract
+class ClassCompiler
 {
 	private $path = null;
 	private $namespace = null;
