@@ -119,4 +119,39 @@ class ArrayUtils
 
         return $found;
     }
+
+    public static function stringify($array) {
+        $str = '[';
+
+        foreach($array as $key => $value) {
+            switch(gettype($value)) {
+                case 'array':
+                    $str .= $key . ' => ' . self::stringify($value) . PHP_EOL;
+                    break;
+                case 'integer':
+                case 'double':
+                case 'float':
+                    $str .= $key . ' => ' . $value . PHP_EOL;
+                    break;
+                case 'string':
+                    $str .= $key . ' => "' . $value . '"' . PHP_EOL;
+                    break;
+                case 'object':
+                    $str .= $key . ' => ' . get_class($value['default']) . '()';
+                    // TODO: implement object with parameters -> Reflection
+                    break;
+                case 'boolean':
+                    $str .= $key . ' => ' . ($value['default'] ? 'true' : 'false');
+                    break;
+                case 'NULL':
+                    $str .= $key . ' => null';
+                    break;
+                default:
+                    throw new \Exception('Unknown default type');
+
+            }
+        }
+
+        return $str . ']';
+    }
 }
