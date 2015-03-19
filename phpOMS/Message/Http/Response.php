@@ -45,7 +45,7 @@ class Response
     /**
      * {@inheritdoc}
      */
-    public function addHeader($key, $header, $overwrite = true)
+    public function setHeader($key, $header, $overwrite = true)
     {
         if(!$overwrite && isset($this->header[$key])) {
             return false;

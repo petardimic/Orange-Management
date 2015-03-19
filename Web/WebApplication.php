@@ -70,13 +70,13 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 break;
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 if($this->request->getRequestType() !== \phpOMS\Message\RequestType::GET) {
-                    $this->response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
-                    $this->response->addHeader('Status', 'Status:406 Not acceptable');
+                    $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                    $this->response->setHeader('Status', 'Status:406 Not acceptable');
                     $this->response->add('GLOBAL', '');
                     break;
                 }
 
-                $this->response->addHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+                $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
 
                 $pageView = new \Web\Views\Page\BackendView();
 
@@ -135,9 +135,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 break;
             case \phpOMS\Message\Http\WebRequestPage::API:
                 if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
-                    $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
-                    $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
-                    $this->response->addHeader('Retry-After', 'Retry-After: 300');
+                    $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
+                    $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
+                    $this->response->setHeader('Retry-After', 'Retry-After: 300');
                     $this->response->add('GLOBAL', '');
                     break;
                 }
@@ -151,7 +151,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
-                $this->response->addHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
+                $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
 
                 $this->response->get('GLOBAL')->add($this->request->__toString(), null);
@@ -221,8 +221,8 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                 break;
             default:
-                $this->response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $this->response->addHeader('Status', 'Status: 404 Not Found');
+                $this->response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $this->response->setHeader('Status', 'Status: 404 Not Found');
 
                 $pageView = new \phpOMS\Views\ViewAbstract();
                 $pageView->setTemplate('/Web/Theme/Error/404');
@@ -242,9 +242,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      */
     private function dbFailResponse(&$view)
     {
-        $this->response->addHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
-        $this->response->addHeader('Status', 'Status: 503 Service Temporarily Unavailable');
-        $this->response->addHeader('Retry-After', 'Retry-After: 300');
+        $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
+        $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
+        $this->response->setHeader('Retry-After', 'Retry-After: 300');
         $this->response->add('GLOBAL', '');
 
         $view->setTemplate('/Web/Theme/Error/503');

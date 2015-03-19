@@ -16,6 +16,90 @@
         "from": 1002900000,
         "permission": null,
         "parent": 1000201001,
-        "children": []
+        "children": [
+            {
+                "id": 1002901101,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "Ticket",
+                "l0": "backend",
+                "l1": "support",
+                "l2": "ticket",
+                "l3": "list",
+                "l4": null,
+                "l5": null, "query": null,
+                "icon": null,
+                "order": 80,
+                "from": 1002900000,
+                "permission": null,
+                "parent": 1002901001,
+                "children": [
+
+                ]
+            },
+            {
+                "id": 1002901201,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "Settings",
+                "l0": "backend",
+                "l1": "support",
+                "l2": "settings",
+                "l3": "dashboard",
+                "l4": null,
+                "l5": null, "query": null,
+                "icon": null,
+                "order": 80,
+                "from": 1002900000,
+                "permission": null,
+                "parent": 1002901001,
+                "children": [
+
+                ]
+            },
+            {
+                "id": 1002901301,
+                "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "type": 2,
+                "subtype": 1,
+                "name": "Analysis",
+                "l0": "backend",
+                "l1": "support",
+                "l2": "analysis",
+                "l3": "dashboard",
+                "l4": null,
+                "l5": null, "query": null,
+                "icon": null,
+                "order": 80,
+                "from": 1002900000,
+                "permission": null,
+                "parent": 1002901001,
+                "children": [
+
+                ]
+            }
+        ]
+    },
+    {
+        "id": 1002902001,
+        "pid": "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+        "type": 2,
+        "subtype": 1,
+        "name": "Support",
+        "l0": "backend",
+        "l1": "private",
+        "l2": "support",
+        "l3": "dashboard",
+        "l4": null,
+        "l5": null, "query": null,
+        "icon": null,
+        "order": 5,
+        "from": 1002900000,
+        "permission": null,
+        "parent": 1003401001,
+        "children": [
+        ]
     }
 ]

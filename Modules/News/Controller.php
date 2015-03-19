@@ -145,7 +145,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $newsOBJ->setContent($request->getData()['content']);
                 $newsOBJ->setLang($request->getData()['language']);
                 $newsOBJ->setType($request->getData()['type']);
-                $newsOBJ->create();
+                $created = $newsOBJ->create();
+
+                $response->get('GLOBAL')->add($request->__toString(), $created);
                 break;
             default:
                 $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');

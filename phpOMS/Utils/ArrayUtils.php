@@ -120,10 +120,15 @@ class ArrayUtils
         return $found;
     }
 
-    public static function stringify($array) {
+    public static function stringify($array)
+    {
         $str = '[';
 
         foreach($array as $key => $value) {
+            if(is_string($key)) {
+                $key = '"' . $key . '"';
+            }
+
             switch(gettype($value)) {
                 case 'array':
                     $str .= $key . ' => ' . self::stringify($value) . PHP_EOL;
@@ -148,7 +153,6 @@ class ArrayUtils
                     break;
                 default:
                     throw new \Exception('Unknown default type');
-
             }
         }
 

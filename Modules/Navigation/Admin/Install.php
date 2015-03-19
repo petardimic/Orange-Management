@@ -94,7 +94,7 @@ class Install
     private static function installLink($dbPool, $data, $parent = 0)
     {
         $sth = $dbPool->get('core')->con->prepare(
-            'INSERT INTO `' . $dbPool->get('core')->prefix . 'nav` (`nav_id`, `nav_pid`, `nav_name`, `nav_type`, `nav_subtype`, `nav_icon`, `nav_l0`, `nav_l1`, `nav_l2`, `nav_l3`, `nav_l4`, `nav_l5`, `nav_from`, `nav_order`, `nav_parent`, `nav_permission`) VALUES
+            'INSERT INTO `' . $dbPool->get('core')->prefix . 'nav` (`nav_id`, `nav_pid`, `nav_name`, `nav_type`, `nav_subtype`, `nav_icon`, `nav_l0`, `nav_l1`, `nav_l2`, `nav_l3`, `nav_l4`, `nav_l5`, `nav_query`, `nav_from`, `nav_order`, `nav_parent`, `nav_permission`) VALUES
                         (:id, :pid, :name, :type, :subtype, :icon, :l0, :l1, :l2, :l3, :l4, :l5, :query, :from, :order, :parent, :perm);'
         );
 
