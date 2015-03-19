@@ -58,7 +58,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -72,17 +72,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l3']) {
-            case 'structure':
-                $this->showContentBackendStrcture();
-                break;
             case 'staff':
-                $this->showContentBackendStaff();
-                break;
-            case 'planning':
-                $this->showContentBackendPlanning();
+                $this->showContentBackendStaff($request, $response);
                 break;
         }
     }
@@ -96,77 +90,14 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackendStrcture()
-    {
-        switch($request->getData()['l4']) {
-            case 'department':
-                $this->showContentBackendDepartment();
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendDepartment()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $departments = new \Modules\HumanResourceManagement\DepartmentList($this->app->dbPool);
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/department-list.tpl.php';
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendStaff()
+    public function showContentBackendStaff($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'list':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $staff = new \Modules\HumanResourceManagement\Models\StaffList($this->app->dbPool);
+                $staffView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/staff-list');
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/staff-list.tpl.php';
-                break;
-            case 'single':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/staff-single.tpl.php';
-                break;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract $request Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendPlanning()
-    {
-        switch($request->getData()['l4']) {
-            case 'dashboard':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/planning-dashboard.tpl.php';
+                echo $staffView->getOutput();
                 break;
         }
     }

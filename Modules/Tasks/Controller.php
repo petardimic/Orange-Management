@@ -115,7 +115,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $taskSettingsView->addData('nav', $navigation->nav);
                 echo $taskSettingsView->getOutput();
                 break;
-                break;
         }
     }
 }

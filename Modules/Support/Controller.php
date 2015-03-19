@@ -26,7 +26,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -58,14 +57,64 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->show_content_backend();
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
 
-    public function show_content_backend()
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackend($request, $response)
     {
+        // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getData()['l3']) {
+            case 'list':
+                $supportDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $supportDashboardView->setTemplate('/Modules/Support/Theme/backend/support-dashboard');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $supportDashboardView->addData('nav', $navigation->nav);
+                echo $supportDashboardView->getOutput();
+                break;
+            case 'single':
+                /** @noinspection PhpUnusedLocalVariableInspection */
+                $support = new \Modules\Tasks\Models\Task($this->app->dbPool);
+                $support->init($request->getData()['id']);
+
+                /** @noinspection PhpIncludeInspection */
+                include __DIR__ . '/Theme/backend/support-single.tpl.php';
+                break;
+            case 'create':
+                $supportCreateView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $supportCreateView->setTemplate('/Modules/Support/Theme/backend/support-create');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $supportCreateView->addData('nav', $navigation->nav);
+                echo $supportCreateView->getOutput();
+                break;
+            case 'analysis':
+                $supportAnalysisView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $supportAnalysisView->setTemplate('/Modules/Support/Theme/backend/support-analysis');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $supportAnalysisView->addData('nav', $navigation->nav);
+                echo $supportAnalysisView->getOutput();
+                break;
+            case 'settings':
+                $supportSettingsView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $supportSettingsView->setTemplate('/Modules/Support/Theme/backend/support-settings');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $supportSettingsView->addData('nav', $navigation->nav);
+                echo $supportSettingsView->getOutput();
+                break;
         }
     }
 }

@@ -26,7 +26,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**

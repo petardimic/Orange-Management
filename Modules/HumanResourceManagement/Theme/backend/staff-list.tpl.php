@@ -1,47 +1,39 @@
-<?php /** @var \Modules\HumanResources\Controller $this */
-/** @noinspection PhpUndefinedMethodInspection */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1000401001]);
-\phpOMS\Model\Model::generate_table_filter_view(); ?>
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
 
-<table class="t t-1 c4-1 c4" id="i4-1-1">
-    <thead>
-    <tr>
-        <th colspan="3" class="lT">
-            <i class="fa fa-filter p f dim"></i>
+/*
+* UI Logic
+*/
+$profileList = new \Web\Views\Lists\ListView($this->l11n);
+$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
 
-            <h1><?= $this->app->user->getL11n()->lang[24]['Staff'] ?></h1>
-        <th class="rT">
-            <i class="fa fa-minus min"></i>
-            <i class="fa fa-plus max vh"></i>
-    <tr>
-        <?php
-        \phpOMS\Model\Model::generate_table_header_view(
-            [
-                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->getL11n()->lang[24]['Name'], 'sort' => 1, 'full' => true],
-                ['name' => $this->app->user->getL11n()->lang[24]['Employees'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[24]['Parent'], 'sort' => 0],
-            ]
-        );
-        ?>
-        <tbody>
-        <?php
-        /** @var \Modules\HumanResources\StaffList $staff */
-        $data           = $staff->getList();
-        $url['level']   = array_slice($request->getData(), 0, 4);
-        $url['level'][] = 'single';
-        $url['level'][] = 'front';
-        $url['id']      = 'HRStaffID';
+$profileList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
 
-        \phpOMS\Model\Model::generate_table_content_view(
-            $data['list'],
-            ['HRStaffID', 'HRStaffID', 'HRStaffID', 'HRStaffID'],
-            $url
-        );
-        ?>
-        <tfoot>
-    <tr>
-        <td colspan="4" class="cT">
-            <?php //\phpOMS\Model\Model::generate_table_pagination_view($data['count']); ?>
-</table>
+/*
+ * Header
+ */
+$headerView->setTitle($this->l11n->lang[24]['Employees']);
+$headerView->addHeader([
+    ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+    ['title' => $this->l11n->lang[1]['Activity'], 'sortable' => true],
+    ['title' => $this->l11n->lang[1]['Name'], 'sortable' => true, 'full' => true],
+]);
+
+/*
+ * Footer
+ */
+$footerView->setPages(20);
+$footerView->setPage(1);
+
+$profileList->addView('header', $headerView);
+$profileList->addView('footer', $footerView);
+
+/*
+ * Template
+ */
+echo $profileList->getOutput();
