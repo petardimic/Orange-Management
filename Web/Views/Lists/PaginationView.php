@@ -43,6 +43,14 @@ class PaginationView extends \phpOMS\Views\ViewAbstract
     protected $pages = 100;
 
     /**
+     * How many results exists?
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected $results = 0;
+
+    /**
      * @return int
      *
      * @since  1.0.0
@@ -106,5 +114,27 @@ class PaginationView extends \phpOMS\Views\ViewAbstract
     public function setPage($page)
     {
         $this->page = $page;
+    }
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * @param int $results
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setResults($results)
+    {
+        $this->results = $results;
     }
 }

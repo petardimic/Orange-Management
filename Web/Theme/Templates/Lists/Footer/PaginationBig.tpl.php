@@ -8,6 +8,7 @@ echo \phpOMS\Uri\UriFactory::build($url['route'], ['limit' => '::limit']+$url['q
     <option value="250">250
     <option value="500">500
 </select>
+<label class="lf"><?= $this->l11n->lang[0]['Results']; ?>: <?= $this->results; ?></label>
 <?php
 if($this->pages > 1):
     /** @var \Web\Views\Lists\PaginationView $this */

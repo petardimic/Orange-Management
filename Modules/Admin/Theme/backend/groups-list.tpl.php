@@ -42,6 +42,7 @@ foreach($this->getData('list:elements') as $key => $value) {
  */
 $footerView->setPages($this->getData('list:count') / 25);
 $footerView->setPage(1);
+$footerView->setResults($this->getData('list:count'));
 
 $groupListView->addView('header', $headerView);
 $groupListView->addView('footer', $footerView);

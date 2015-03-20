@@ -115,6 +115,31 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $supportSettingsView->addData('nav', $navigation->nav);
                 echo $supportSettingsView->getOutput();
                 break;
+            case 'support':
+                $this->showContentBackendPrivate($request, $response);
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendPrivate($request, $response) {
+        switch($request->getData()['l4']) {
+            case 'dashboard':
+                $supportDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $supportDashboardView->setTemplate('/Modules/Support/Theme/backend/user-support-dashboard');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $supportDashboardView->addData('nav', $navigation->nav);
+                echo $supportDashboardView->getOutput();
+                break;
         }
     }
 }
