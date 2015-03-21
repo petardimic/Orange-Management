@@ -22,7 +22,7 @@ $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
 $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
 $formCreateForm->setAction('http://127.0.0.1');
-$formCreateForm->setMethod(\phpOMS\Message\RequestType::POST);
+$formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formCreateForm->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::SELECT,
@@ -71,7 +71,7 @@ $mediaForm = new \Web\Views\Form\FormView($this->l11n);
 $mediaForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $mediaForm->setSubmit('submit1', $this->l11n->lang[0]['Add']);
 $mediaForm->setAction('http://127.0.0.1');
-$mediaForm->setMethod(\phpOMS\Message\RequestType::POST);
+$mediaForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $mediaForm->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
@@ -100,7 +100,7 @@ $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[11]['Media']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[11]['Type'], 'sortable' => true],
     ['title' => $this->l11n->lang[11]['Name'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[11]['Size'], 'sortable' => true]

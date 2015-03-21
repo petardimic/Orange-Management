@@ -16,7 +16,7 @@ $accountFormView = new \Web\Views\Form\FormView($this->l11n);
 $accountFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $accountFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $accountFormView->setAction('http://127.0.0.1');
-$accountFormView->setMethod(\phpOMS\Message\RequestType::POST);
+$accountFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $accountFormView->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
@@ -79,7 +79,7 @@ $profileFormView = new \Web\Views\Form\FormView($this->l11n);
 $profileFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $profileFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $profileFormView->setAction('http://127.0.0.1');
-$profileFormView->setMethod(\phpOMS\Message\RequestType::POST);
+$profileFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $profileFormView->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,

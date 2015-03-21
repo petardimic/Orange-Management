@@ -20,7 +20,7 @@ namespace phpOMS\Message\Http;
  */
 class Header implements \phpOMS\Message\HeaderInterface
 {
-    public function addHeader($header)
+    public function setHeader($header)
     {
     }
 }

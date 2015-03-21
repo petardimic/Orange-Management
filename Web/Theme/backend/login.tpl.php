@@ -3,7 +3,7 @@ $loginForm = new \Web\Views\Form\FormView($this->l11n);
 $loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $loginForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $loginForm->setAction('http://127.0.0.1/' . $this->l11n->getLanguage() . '/api/login.php');
-$loginForm->setMethod(\phpOMS\Message\RequestType::POST);
+$loginForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $loginForm->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,

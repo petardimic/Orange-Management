@@ -30,5 +30,5 @@ interface ResponseInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addHeader($key, $header, $overwrite = true);
+    public function setHeader($key, $header, $overwrite = true);
 }

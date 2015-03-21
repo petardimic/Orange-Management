@@ -1,7 +1,45 @@
-<?php /** @var \Modules\RiskManagement\Controller $this */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1003001001]);
-\phpOMS\Model\Model::generate_table_filter_view(); ?>
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
+
+/*
+* UI Logic
+*/
+$watchList = new \Web\Views\Lists\ListView($this->l11n);
+$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+
+$watchList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+
+/*
+ * Header
+ */
+$headerView->setTitle($this->l11n->lang[3]['Profiles']);
+$headerView->setHeader([
+    ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Name'], 'sortable' => true, 'full' => true],
+    ['title' => $this->l11n->lang[30]['Parent'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Severity'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Probability'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Department'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Category'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Due'], 'sortable' => true],
+]);
+
+$watchList->addView('header', $headerView);
+
+/*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1003001001);
+?>
+<?= $nav->getOutput(); ?>
+
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
@@ -75,38 +113,7 @@
     </div>
 </div>
 <div class="b-6">
-    <div class="b b-5 c30-1 c30" id="i30-1-2">
-        <table class="t-1 c1-2 c1 full" id="i1-2-1">
-            <thead>
-            <tr>
-                <th colspan="4" class="lT">
-                    <i class="fa fa-filter p f dim"></i>
-
-                    <h1><?= $this->app->user->getL11n()->lang[30]['Watchlist'] ?></h1>
-                <th class="rT">
-                    <i class="fa fa-minus min"></i>
-                    <i class="fa fa-plus max vh"></i>
-                    <tr>
-                        <?php
-                        \phpOMS\Model\Model::generate_table_header_view(
-                            [
-                                ['name' => $this->app->user->getL11n()->lang[30]['Severity'], 'sort' => 1],
-                                ['name' => $this->app->user->getL11n()->lang[30]['Name'],
-                                 'sort' => 0,
-                                 'full' => true],
-                                ['name' => $this->app->user->getL11n()->lang[30]['Department'], 'sort' => 0],
-                                ['name' => $this->app->user->getL11n()->lang[30]['Category'], 'sort' => 0],
-                                ['name' => $this->app->user->getL11n()->lang[30]['Responsible'], 'sort' => 0]
-                            ]
-                        );
-                        ?>
-            <tbody>
-        </table>
-        <div class="bc-1 rT">
-            <button><?= $this->app->user->getL11n()->lang[0]['Add'] ?></button>
-            <button><?= $this->app->user->getL11n()->lang[0]['Delete'] ?></button>
-        </div>
-    </div>
+    <?= $watchList->getOutput(); ?>
 
     <div class="b b-2 c30-1 c30" id="i30-1-1">
         <h1>

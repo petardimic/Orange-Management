@@ -29,7 +29,7 @@ $formPageView = new \Web\Views\Form\FormView($this->l11n);
 $formPageView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formPageView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formPageView->setAction('http://127.0.0.1');
-$formPageView->setMethod(\phpOMS\Message\RequestType::POST);
+$formPageView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formPageView->setElement(0, 0, [
    'type' => \phpOMS\Html\TagType::INPUT,
@@ -70,7 +70,7 @@ $formLocalizationView = new \Web\Views\Form\FormView($this->l11n);
 $formLocalizationView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formLocalizationView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formLocalizationView->setAction('http://127.0.0.1');
-$formLocalizationView->setMethod(\phpOMS\Message\RequestType::POST);
+$formLocalizationView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formLocalizationView->setElement(0, 0, [
     'type' => \phpOMS\Html\TagType::SELECT,

@@ -2,9 +2,7 @@
 namespace phpOMS\Message;
 
 /**
- * Request type enum
- *
- * Request types that are supported by this application. Especially useful for restful requests and the API.
+ * Request method enum
  *
  * PHP Version 5.4
  *
@@ -18,7 +16,7 @@ namespace phpOMS\Message;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class RequestType extends \phpOMS\Datatypes\Enum
+abstract class RequestMethod extends \phpOMS\Datatypes\Enum
 {
     const GET    = 'GET';    /* GET */
     const POST   = 'POST';   /* POST */
@@ -26,5 +24,4 @@ abstract class RequestType extends \phpOMS\Datatypes\Enum
     const DELETE = 'DELETE'; /* DELETE */
     const HEAD   = 'HEAD';   /* HEAD */
     const TRACE  = 'TRACE';  /* TRACE */
-
 }

@@ -16,7 +16,7 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Response
+class Response extends \phpOMS\Message\ResponseAbstract
 {
     /**
      * Header

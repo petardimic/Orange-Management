@@ -11,7 +11,7 @@ $this->addView('settings::core', $panelCoreSettingsView);
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
 $settingsFormView->setAction('http://127.0.0.1');
-$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+$settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
     'type'     => \phpOMS\Html\TagType::SELECT,
@@ -50,7 +50,7 @@ $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
 $settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $settingsFormView->setAction('http://127.0.0.1');
-$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+$settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,

@@ -55,7 +55,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getType()) {
+        switch($request->getWebRequestType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
@@ -63,8 +63,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showAPI($request, $response);
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -108,8 +108,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $mediaCreate->getOutput();
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -128,13 +128,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function showAPI($request, $response)
     {
-        switch($request->getRequestType()) {
-            case \phpOMS\Message\RequestType::POST:
+        switch($request->getWebRequestType()) {
+            case \phpOMS\Message\RequestMethod::POST:
                 $this->apiUpload($request, $response);
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
-                $response->addHeader('Status', 'Status:406 Not acceptable');
+                $response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $response->setHeader('Status', 'Status:406 Not acceptable');
 
                 return;
         }

@@ -37,8 +37,15 @@ class Install
                             `business_unit_status` tinyint(2) DEFAULT NULL,
                             `business_unit_matchcode` varchar(50) DEFAULT NULL,
                             `business_unit_name` varchar(50) DEFAULT NULL,
-                            PRIMARY KEY (`business_unit_id`)
+                            `business_unit_parent` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`business_unit_id`),
+                            KEY `business_unit_parent` (`business_unit_parent`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                )->execute();
+
+                $dbPool->get('core')->con->prepare(
+                    'ALTER TABLE `' . $dbPool->get('core')->prefix . 'business_unit`
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'business_unit_ibfk_1` FOREIGN KEY (`business_unit_parent`) REFERENCES `' . $dbPool->get('core')->prefix . 'business_unit` (`business_unit_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(

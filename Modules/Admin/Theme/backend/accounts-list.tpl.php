@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[1]['Accounts']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[1]['Status'], 'sortable' => true],
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[1]['Name'], 'sortable' => true, 'full' => true],

@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[35]['TimeManagement']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => '', 'sortable' => false],
     ['title' => $this->l11n->lang[35]['Date'], 'sortable' => true],
     ['title' => $this->l11n->lang[35]['Type'], 'sortable' => true, 'full' => true],

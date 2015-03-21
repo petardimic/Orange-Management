@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[29]['Support']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Status'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Priority'], 'sortable' => true],
@@ -54,7 +54,7 @@ $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
 $settingsFormView->setAction('http://127.0.0.1');
-$settingsFormView->setMethod(\phpOMS\Message\RequestType::POST);
+$settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
     'type' => \phpOMS\Html\TagType::SELECT,

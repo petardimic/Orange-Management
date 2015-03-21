@@ -1,3 +1,4 @@
+<?php if($this->results > 0): ?>
 <select class="rf onChange" data-request="groups-list-length" data-bind='{"::limit": 25}' data-requesttype="GET" data-src="<?php
 $url = \phpOMS\Uri\Http::routify(\phpOMS\Uri\Http::getCurrent());
 echo \phpOMS\Uri\UriFactory::build($url['route'], ['limit' => '::limit']+$url['query']); ?>">
@@ -9,6 +10,7 @@ echo \phpOMS\Uri\UriFactory::build($url['route'], ['limit' => '::limit']+$url['q
     <option value="500">500
 </select>
 <label class="lf"><?= $this->l11n->lang[0]['Results']; ?>: <?= $this->results; ?></label>
+<?php endif; ?>
 <?php
 if($this->pages > 1):
     /** @var \Web\Views\Lists\PaginationView $this */

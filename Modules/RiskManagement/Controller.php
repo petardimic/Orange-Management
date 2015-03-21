@@ -26,7 +26,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -56,9 +55,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getType()) {
+        switch($request->getWebRequestType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                $this->showContentBackend($request);
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -72,12 +71,16 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackend($request)
+    public function showContentBackend($request, $response)
     {
         switch($request->getData()['l4']) {
             case 'cockpit':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/cockpit.tpl.php';
+                $riskMgmtDashboard = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $riskMgmtDashboard->setTemplate('/Modules/RiskManagement/Theme/backend/cockpit');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $riskMgmtDashboard->addData('nav', $navigation->nav);
+                echo $riskMgmtDashboard->getOutput();
                 break;
             case 'risk':
                 $this->show_backend_risk();
@@ -92,7 +95,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->show_backend_settings();
                 break;
             case 'unit':
-                $this->show_backend_unit();
+                $this->showContentBackendUnit($request, $response);
                 break;
             case 'department':
                 $this->show_backend_department();
@@ -109,110 +112,22 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         }
     }
 
-    public function show_backend_risk()
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendUnit($request, $response)
     {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/risk-list.tpl.php';
-                break;
-            case 'create':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/risk-create.tpl.php';
-                break;
-            case 'single':
-                $this->show_backend_risk_single();
-                break;
-        }
-    }
+        $unitView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $unitView->setTemplate('/Modules/RiskManagement/Theme/backend/unit-list');
 
-    public function show_backend_risk_single()
-    {
-        switch($request->getData()['l6']) {
-            case 'dashboard':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/risk-single-dashboard.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_cause()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/cause-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_solution()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/solution-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_unit()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/unit-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_category()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/category-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_department()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/department-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_project()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/project-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_process()
-    {
-        switch($request->getData()['l5']) {
-            case 'list':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/process-list.tpl.php';
-                break;
-        }
-    }
-
-    public function show_backend_settings()
-    {
-        switch($request->getData()['l5']) {
-            case 'dashboard':
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/settings-list.tpl.php';
-                break;
-        }
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $unitView->addData('nav', $navigation->nav);
+        echo $unitView->getOutput();
     }
 }

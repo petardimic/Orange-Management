@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[27]['Reporter']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[27]['Name'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[27]['Creator'], 'sortable' => true],

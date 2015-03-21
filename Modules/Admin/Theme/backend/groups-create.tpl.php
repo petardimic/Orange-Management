@@ -20,7 +20,7 @@ $formGroupCreate = new \Web\Views\Form\FormView($this->l11n);
 $formGroupCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formGroupCreate->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formGroupCreate->setAction('http://127.0.0.1');
-$formGroupCreate->setMethod(\phpOMS\Message\RequestType::POST);
+$formGroupCreate->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formGroupCreate->setElement(0, 0, [
     'type' => \phpOMS\Html\TagType::INPUT,

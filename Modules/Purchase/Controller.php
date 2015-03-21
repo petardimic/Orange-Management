@@ -58,7 +58,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getType()) {
+        switch($request->getWebRequestType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request);
                 break;

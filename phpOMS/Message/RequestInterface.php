@@ -51,12 +51,12 @@ interface RequestInterface
     /**
      * Get request type
      *
-     * @return \phpOMS\Message\RequestType
+     * @return \phpOMS\Message\RequestMethod
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getType();
+    public function getMethod();
 
     /**
      * Get request info

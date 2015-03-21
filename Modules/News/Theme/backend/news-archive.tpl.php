@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[7]['Archive']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[7]['Type'], 'sortable' => true],
     ['title' => $this->l11n->lang[7]['Title'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[7]['Author'], 'sortable' => true],

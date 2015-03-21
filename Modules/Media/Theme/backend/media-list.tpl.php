@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[4]['Media']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[4]['Name'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[4]['Type'], 'sortable' => true],
     ['title' => $this->l11n->lang[4]['Size'], 'sortable' => true],

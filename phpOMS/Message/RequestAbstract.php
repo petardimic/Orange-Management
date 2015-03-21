@@ -25,7 +25,7 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     /**
      * Request type
      *
-     * @var \phpOMS\Message\RequestType
+     * @var \phpOMS\Message\RequestMethod
      * @since 1.0.0
      */
     protected $type = null;
@@ -99,10 +99,7 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
-    {
-        return $this->type;
-    }
+    abstract public function getMethod();
 
     /**
      * {@inheritdoc}

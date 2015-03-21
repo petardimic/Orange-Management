@@ -55,7 +55,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getType()) {
+        switch($request->getWebRequestType()) {
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
@@ -63,8 +63,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showAPI($request, $response);
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -97,8 +97,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showBackendModule($request, $response);
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -144,8 +144,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $coreSettingsView->getOutput();
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -190,8 +190,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $accountCreateView->getOutput();
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -224,8 +224,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $accountView->getOutput();
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -261,8 +261,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -307,8 +307,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $groupCreateView->getOutput();
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -343,8 +343,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->addHeader('Status', 'Status: 404 Not Found');
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
 
                 include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
 
@@ -381,13 +381,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function apiModule($request, $response)
     {
-        switch($request->getRequestType()) {
-            case \phpOMS\Message\RequestType::POST:
+        switch($request->getWebRequestType()) {
+            case \phpOMS\Message\RequestMethod::POST:
                 $this->app->modules->install($request->getData('module'));
                 break;
             default:
-                $response->addHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
-                $response->addHeader('Status', 'Status:406 Not acceptable');
+                $response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                $response->setHeader('Status', 'Status:406 Not acceptable');
 
                 return;
         }

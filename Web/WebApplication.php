@@ -64,12 +64,12 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
         $pageView = null;
 
-        switch($this->request->getType()) {
+        switch($this->request->getWebRequestType()) {
             case \phpOMS\Message\Http\WebRequestPage::WEBSITE:
 
                 break;
             case \phpOMS\Message\Http\WebRequestPage::BACKEND:
-                if($this->request->getRequestType() !== \phpOMS\Message\RequestType::GET) {
+                if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->setHeader('Status', 'Status:406 Not acceptable');
                     $this->response->add('GLOBAL', '');
@@ -125,7 +125,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['core:oname']       = $this->settings->config[1000000009];
                 \phpOMS\Model\Model::$content['theme:path']       = $this->settings->config[1000000011];
-                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getType();
+                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getWebRequestType();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 
                 $pageView->setTemplate('/Web/Theme/backend/index');

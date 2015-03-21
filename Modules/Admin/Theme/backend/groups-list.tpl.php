@@ -18,7 +18,7 @@ $footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
  * Header
  */
 $headerView->setTitle($this->l11n->lang[1]['Groups']);
-$headerView->addHeader([
+$headerView->setHeader([
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[1]['Name'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[1]['Parents'], 'sortable' => true],
@@ -27,7 +27,7 @@ $headerView->addHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'admin', 'group', 'single'], ['id' => $value['group_id']]);
+    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'admin', 'group', 'single', 'front'], ['id' => $value['group_id']]);
     $groupListView->addElements([
         '<a href="' . $url . '">' . $value['group_id'] . '</a>',
         '<a href="' . $url . '">' . $value['group_name'] . '</a>',

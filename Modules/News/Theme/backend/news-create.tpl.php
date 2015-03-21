@@ -17,7 +17,7 @@ $formSettingsView->setSubmit('submit1', $this->l11n->lang[0]['Save']);
 $formSettingsView->setSubmit('delete', $this->l11n->lang[0]['Delete']);
 $formSettingsView->setSubmit('publish', $this->l11n->lang[7]['Publish'], ['visible' => true, 'float' => 1]);
 $formSettingsView->setAction('http://127.0.0.1');
-$formSettingsView->setMethod(\phpOMS\Message\RequestType::POST);
+$formSettingsView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formSettingsView->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::SELECT,

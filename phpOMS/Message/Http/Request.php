@@ -50,7 +50,13 @@ class Request extends \phpOMS\Message\RequestAbstract
      */
     public $os = null;
 
-    private $requestType = null;
+    /**
+     * Web request type
+     *
+     * @var \phpOMS\Message\Http\WebRequestPage
+     * @since 1.0.0
+     */
+    private $webRequestType = null;
 
     /**
      * Constructor
@@ -81,11 +87,11 @@ class Request extends \phpOMS\Message\RequestAbstract
             /** @noinspection PhpWrongStringConcatenationInspection */
             $this->data = (isset($_GET) ? $_GET : file_get_contents('php://input')) + $this->data;
         } else {
-            $this->setRequestType($uri['type']);
+            $this->setMethod($uri['type']); // TODO: is this correct?
             $this->data = $this->uri->routify($uri['request']) + $this->data;
         }
 
-        $this->type = $this->data['l1'];
+        $this->webRequestType = $this->data['l1'];
         $this->lang = $this->data['l0'];
 
         $this->hash = null;
@@ -257,25 +263,47 @@ class Request extends \phpOMS\Message\RequestAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getRequestType()
+    public function getMethod()
     {
-        if(!isset($this->requestType)) {
-            $this->requestType =  $_SERVER['REQUEST_METHOD'];
+        if(!isset($this->type)) {
+            $this->type =  $_SERVER['REQUEST_METHOD'];
         }
 
-        return $this->requestType;
+        return $this->type;
     }
 
     /**
      * Set request type
      *
-     * @param \phpOMS\Message\RequestType $type Request type
+     * @param \phpOMS\Message\RequestMethod $type Request type
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setRequestType($type)
+    public function setMethod($type)
     {
-        $this->requestType = $type;
+        $this->type = $type;
+    }
+
+    /**
+     * @return WebRequestPage
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getWebRequestType()
+    {
+        return $this->webRequestType;
+    }
+
+    /**
+     * @param WebRequestPage $webRequestType
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setWebRequestType($webRequestType)
+    {
+        $this->webRequestType = $webRequestType;
     }
 }

@@ -191,7 +191,7 @@ module.exports = function (grunt) {
                 tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {
-                files: ['Content/Theme/backend/scss/*.scss'],
+                files: ['Web/Theme/backend/scss/*.scss'],
                 tasks: ['sass:dev', 'compress:dev']
             }
         }
