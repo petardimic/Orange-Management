@@ -45,3 +45,4 @@ Are you interested in joining us? Feel free to contact us at spl1nes.com@gmail.c
 * Languages: PHP, JS, Java, HTML, CSS
 * Dependencies: d3.js, THREE.js, tcpdf
 * [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/spl1nes/Orange-Management?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
+* [![Stories in Ready](https://badge.waffle.io/spl1nes/orange-management.svg?label=ready&title=issues%20pending)](http://waffle.io/spl1nes/orange-management)
