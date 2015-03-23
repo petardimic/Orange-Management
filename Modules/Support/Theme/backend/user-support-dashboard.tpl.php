@@ -83,12 +83,9 @@ $this->addView('stats', $panelStatView);
 $statTableView = new \Web\Views\Lists\ListView($this->l11n);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
-    [$this->l11n->lang[29]['Received'], 0],
     [$this->l11n->lang[29]['Created'], 0],
-    [$this->l11n->lang[29]['Forwarded'], 0],
     [$this->l11n->lang[29]['AverageAmount'], 0],
     [$this->l11n->lang[29]['AverageProcessTime'], 0],
-    [$this->l11n->lang[29]['InTime'], 0],
 ]);
 
 $this->getView('stats')->addView('stat::table', $statTableView);

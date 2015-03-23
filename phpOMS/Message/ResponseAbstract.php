@@ -18,5 +18,8 @@ namespace phpOMS\Message;
  */
 abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    abstract public function setHeader($key, $header, $overwrite = true);
 }

@@ -30,6 +30,36 @@ $headerView->setHeader([
 $watchList->addView('header', $headerView);
 
 /*
+ * Statistics
+ */
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelStatView->setTitle($this->l11n->lang[30]['Statistics']);
+$this->addView('stats', $panelStatView);
+
+$statTableView = new \Web\Views\Lists\ListView($this->l11n);
+$statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
+$statTableView->setElements([
+    [$this->l11n->lang[30]['RiskIndex'], 0],
+    [$this->l11n->lang[30]['OverallRisk'], 0],
+    [$this->l11n->lang[30]['RiskProtection'], 0],
+    [$this->l11n->lang[30]['RemainingRisk'], 0],
+    [$this->l11n->lang[30]['RiskAcceptance'], 0],
+    [$this->l11n->lang[30]['Risks'], 0],
+    [$this->l11n->lang[30]['Causes'], 0],
+    [$this->l11n->lang[30]['Solutions'], 0],
+    [$this->l11n->lang[30]['Processes'], 0],
+    [$this->l11n->lang[30]['Projects'], 0],
+    [$this->l11n->lang[30]['Outdated'], 0],
+    [$this->l11n->lang[30]['Critical'], 0],
+    [$this->l11n->lang[30]['MainDepartment'], 0],
+    [$this->l11n->lang[30]['MainCategory'], 0],
+    [$this->l11n->lang[30]['MainCause'], 0],
+]);
+
+$this->getView('stats')->addView('stat::table', $statTableView);
+
+/*
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
@@ -52,65 +82,7 @@ $nav->setParent(1003001001);
         </div>
     </div>
 
-    <div class="b b-5 c30-1 c30" id="i30-1-4">
-        <h1>
-            <?= $this->app->user->getL11n()->lang[30]['Statistics']; ?>
-            <i class="fa fa-minus min"></i>
-            <i class="fa fa-plus max vh"></i>
-        </h1>
-
-        <div class="bc-1">
-            <!-- @formatter:off -->
-            <table class="tc-1">
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskIndex']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['OverallRisk']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskProtection']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['RemainingRisk']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['RiskAcceptance']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Risks']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Causes']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Solutions']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Processes']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Projects']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Outdated']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['Critical']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainDepartment']; ?></label>
-                    <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainCategory']; ?></label>
-                     <td>asldkf
-                <tr>
-                    <th><label><?= $this->app->user->getL11n()->lang[30]['MainCause']; ?></label>
-                    <td>asldkf
-            </table>
-            <!-- @formatter:on -->
-        </div>
-    </div>
+    <?= $panelStatView->getOutput(); ?>
 </div>
 <div class="b-6">
     <?= $watchList->getOutput(); ?>

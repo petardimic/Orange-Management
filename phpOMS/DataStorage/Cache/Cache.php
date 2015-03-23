@@ -32,6 +32,22 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
     private $memc = null;
 
     /**
+     * RedisCache instance
+     *
+     * @var \phpOMS\DataStorage\Cache\RedisCache
+     * @since 1.0.0
+     */
+    private $redisc = null;
+
+    /**
+     * RedisCache instance
+     *
+     * @var \phpOMS\DataStorage\Cache\WinCache
+     * @since 1.0.0
+     */
+    private $winc = null;
+
+    /**
      * FileCache instance
      *
      * @var \phpOMS\DataStorage\Cache\FileCache
@@ -70,14 +86,22 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function get_instance($type = null)
+    public function getInstance($type = null)
     {
         if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::MEMCACHE) && $this->memc !== null) {
             return $this->memc;
         }
 
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::REDISCACHE) && $this->redisc !== null) {
+            return $this->redisc;
+        }
+
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::WINCACHE) && $this->winc !== null) {
+            return $this->winc;
+        }
+
         if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::FILECACHE) && $this->filec !== null) {
-            return $this->memc;
+            return $this->filec;
         }
 
         return null;
@@ -117,7 +141,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      */
     public function set($key, $value, $type = null, $expire = 2592000)
     {
-        $this->get_instance($type)->set($key, $value, $type = null, $expire);
+        $this->getInstance($type)->set($key, $value, $type = null, $expire);
     }
 
     /**
@@ -125,7 +149,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      */
     public function add($key, $value, $type = null, $expire = 2592000)
     {
-        $this->get_instance($type)->add($key, $value, $type = null, $expire);
+        $this->getInstance($type)->add($key, $value, $type = null, $expire);
     }
 
     /**
@@ -133,7 +157,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      */
     public function get($key, $type = null)
     {
-        return $this->get_instance($type)->get($key);
+        return $this->getInstance($type)->get($key);
     }
 
     /**
@@ -141,7 +165,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      */
     public function delete($key, $type = null)
     {
-        $this->get_instance($type)->delete($key);
+        $this->getInstance($type)->delete($key);
     }
 
     /**
@@ -164,7 +188,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      */
     public function replace($key, $value, $type = null)
     {
-        $this->get_instance($type)->replace($key, $value);
+        $this->getInstance($type)->replace($key, $value);
     }
 
     /**

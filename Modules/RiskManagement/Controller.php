@@ -55,8 +55,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getWebRequestType()) {
-            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
+        switch($request->getRequestDestination()) {
+            case \phpOMS\Message\RequestDestination::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
         }
@@ -83,13 +83,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $riskMgmtDashboard->getOutput();
                 break;
             case 'risk':
-                $this->show_backend_risk();
+                $this->showContentBackendRisk($request, $response);
                 break;
             case 'cause':
-                $this->show_backend_cause();
+                $this->showContentBackendCause($request, $response);
                 break;
             case 'solution':
-                $this->show_backend_solution();
+                $this->showContentBackendSolution($request, $response);
                 break;
             case 'settings':
                 $this->show_backend_settings();
@@ -98,16 +98,16 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showContentBackendUnit($request, $response);
                 break;
             case 'department':
-                $this->show_backend_department();
+                $this->showContentBackendDepartment($request, $response);
                 break;
             case 'category':
-                $this->show_backend_category();
+                $this->showContentBackendCategory($request, $response);
                 break;
             case 'project':
-                $this->show_backend_project();
+                $this->showContentBackendProject($request, $response);
                 break;
             case 'process':
-                $this->show_backend_process();
+                $this->showContentBackendProcess($request, $response);
                 break;
         }
     }
@@ -129,5 +129,138 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $unitView->addData('nav', $navigation->nav);
         echo $unitView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendDepartment($request, $response)
+    {
+        $departmentView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $departmentView->setTemplate('/Modules/RiskManagement/Theme/backend/department-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $departmentView->addData('nav', $navigation->nav);
+        echo $departmentView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendCategory($request, $response)
+    {
+        $categoryView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $categoryView->setTemplate('/Modules/RiskManagement/Theme/backend/category-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $categoryView->addData('nav', $navigation->nav);
+        echo $categoryView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendProject($request, $response)
+    {
+        $projectView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $projectView->setTemplate('/Modules/RiskManagement/Theme/backend/project-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $projectView->addData('nav', $navigation->nav);
+        echo $projectView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendProcess($request, $response)
+    {
+        $processView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $processView->setTemplate('/Modules/RiskManagement/Theme/backend/process-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $processView->addData('nav', $navigation->nav);
+        echo $processView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendRisk($request, $response)
+    {
+        $riskView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $riskView->setTemplate('/Modules/RiskManagement/Theme/backend/risk-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $riskView->addData('nav', $navigation->nav);
+        echo $riskView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendCause($request, $response)
+    {
+        $causeView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $causeView->setTemplate('/Modules/RiskManagement/Theme/backend/cause-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $causeView->addData('nav', $navigation->nav);
+        echo $causeView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendSolution($request, $response)
+    {
+        $solutionView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $solutionView->setTemplate('/Modules/RiskManagement/Theme/backend/solution-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $solutionView->addData('nav', $navigation->nav);
+        echo $solutionView->getOutput();
     }
 }

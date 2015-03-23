@@ -48,7 +48,7 @@ class Pool
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function add($key, $db)
+    public function add($key = 'core', $db)
     {
         if(isset($this->pool[$key])) {
             return false;
@@ -69,7 +69,7 @@ class Pool
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function get($key)
+    public function get($key = 'core')
     {
         if(!isset($this->pool[$key])) {
             return false;

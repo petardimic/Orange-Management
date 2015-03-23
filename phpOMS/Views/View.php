@@ -16,7 +16,7 @@ namespace phpOMS\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ViewAbstract
+class View implements \phpOMS\Support\RenderableInterface
 {
     /**
      * Template
@@ -29,7 +29,7 @@ class ViewAbstract
     /**
      * Views
      *
-     * @var \phpOMS\Views\ViewAbstract[]
+     * @var \phpOMS\Views\View[]
      * @since 1.0.0
      */
     protected $views = [];
@@ -113,7 +113,7 @@ class ViewAbstract
     }
 
     /**
-     * @return ViewAbstract[]
+     * @return View[]
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -126,7 +126,7 @@ class ViewAbstract
     /**
      * @param string $id View ID
      *
-     * @return false|ViewAbstract
+     * @return false|View
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -181,7 +181,7 @@ class ViewAbstract
      * Add view
      *
      * @param string       $id        View ID
-     * @param ViewAbstract $view
+     * @param View $view
      * @param null|int     $order     Order of view
      * @param bool         $overwrite Overwrite existing view
      *
@@ -193,7 +193,7 @@ class ViewAbstract
         $this->views[$id] = $view;
 
         if($order !== null) {
-            $this->views = uasort($this->views, ['\phpOMS\Views\ViewAbstract', 'viewSort']);
+            $this->views = uasort($this->views, ['\phpOMS\Views\View', 'viewSort']);
         }
     }
 
@@ -201,7 +201,7 @@ class ViewAbstract
      * Edit view
      *
      * @param string       $id    View ID
-     * @param ViewAbstract $view
+     * @param View $view
      * @param null|int     $order Order of view
      *
      * @since  1.0.0
@@ -297,4 +297,9 @@ class ViewAbstract
     {
         $this->data[$id] = $data;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function render() {}
 }

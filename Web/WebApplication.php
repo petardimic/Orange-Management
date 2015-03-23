@@ -64,11 +64,11 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
         $pageView = null;
 
-        switch($this->request->getWebRequestType()) {
-            case \phpOMS\Message\Http\WebRequestPage::WEBSITE:
+        switch($this->request->getRequestDestination()) {
+            case \phpOMS\Message\RequestDestination::WEBSITE:
 
                 break;
-            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
+            case \phpOMS\Message\RequestDestination::BACKEND:
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->setHeader('Status', 'Status:406 Not acceptable');
@@ -125,7 +125,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['core:oname']       = $this->settings->config[1000000009];
                 \phpOMS\Model\Model::$content['theme:path']       = $this->settings->config[1000000011];
-                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getWebRequestType();
+                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 
                 $pageView->setTemplate('/Web/Theme/backend/index');
@@ -133,7 +133,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $pageView->addData('nav', $navigation->nav);
                 $this->response->add('GLOBAL', $pageView->getOutput());
                 break;
-            case \phpOMS\Message\Http\WebRequestPage::API:
+            case \phpOMS\Message\RequestDestination::API:
                 if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');

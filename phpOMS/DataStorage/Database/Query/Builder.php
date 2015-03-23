@@ -3,6 +3,8 @@
 namespace phpOMS\DataStorage\Database\Query;
 
 class Builder {
+
+
     public function where() {
 
     }

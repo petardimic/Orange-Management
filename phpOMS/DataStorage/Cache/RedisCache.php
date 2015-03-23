@@ -2,7 +2,7 @@
 namespace phpOMS\DataStorage\Cache;
 
 /**
- * MemCache class
+ * RedisCache class
  *
  * PHP Version 5.6
  *
@@ -16,29 +16,14 @@ namespace phpOMS\DataStorage\Cache;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
+class RedisCache implements \phpOMS\DataStorage\Cache\CacheInterface
 {
-    /**
-     * Cache path
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    const CACHE_PATH = __DIR__ . '/../../../Cache';
-
-    /**
-     * Only cache if data is larger than threshold (0-100)
-     *
-     * @var int
-     * @since 1.0.0
-     */
-    private $threshold = 50;
-
     /**
      * {@inheritdoc}
      */
     public function set($key, $value, $type = null, $expire = 2592000)
     {
+        // TODO: Implement set() method.
     }
 
     /**
@@ -46,6 +31,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function add($key, $value, $type = null, $expire = 2592000)
     {
+        // TODO: Implement add() method.
     }
 
     /**
@@ -53,6 +39,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function get($key, $type = null)
     {
+        // TODO: Implement get() method.
     }
 
     /**
@@ -60,6 +47,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function delete($key, $type = null)
     {
+        // TODO: Implement delete() method.
     }
 
     /**
@@ -67,7 +55,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function flush($type = null)
     {
-        array_map('unlink', glob(self::CACHE_PATH . '/*'));
+        // TODO: Implement flush() method.
     }
 
     /**
@@ -75,6 +63,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function replace($key, $value, $type = null)
     {
+        // TODO: Implement replace() method.
     }
 
     /**
@@ -82,12 +71,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function stats()
     {
-        $stats          = [];
-        $stats['count'] = \phpOMS\System\FileSystem::getFileCount(self::CACHE_PATH);
-
-        // size, avg. last change compared to now
-
-        return $stats;
+        // TODO: Implement stats() method.
     }
 
     /**
@@ -95,6 +79,6 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     public function getThreshold()
     {
-        return $this->threshold;
+        // TODO: Implement getThreshold() method.
     }
 }

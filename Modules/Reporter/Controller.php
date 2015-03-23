@@ -55,11 +55,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($type, $request, $response, $data = null)
     {
-        switch($request->getWebRequestType()) {
-            case \phpOMS\Message\Http\WebRequestPage::BACKEND:
+        switch($request->getRequestDestination()) {
+            case \phpOMS\Message\RequestDestination::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
-            case \phpOMS\Message\Http\WebRequestPage::API:
+            case \phpOMS\Message\RequestDestination::API:
                 $this->showAPI($request, $response);
                 break;
         }

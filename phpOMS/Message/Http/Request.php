@@ -53,10 +53,10 @@ class Request extends \phpOMS\Message\RequestAbstract
     /**
      * Web request type
      *
-     * @var \phpOMS\Message\Http\WebRequestPage
+     * @var \phpOMS\Message\RequestDestination
      * @since 1.0.0
      */
-    private $webRequestType = null;
+    private $requestDestination = null;
 
     /**
      * Constructor
@@ -91,7 +91,7 @@ class Request extends \phpOMS\Message\RequestAbstract
             $this->data = $this->uri->routify($uri['request']) + $this->data;
         }
 
-        $this->webRequestType = $this->data['l1'];
+        $this->requestDestination = $this->data['l1'];
         $this->lang = $this->data['l0'];
 
         $this->hash = null;
@@ -286,24 +286,24 @@ class Request extends \phpOMS\Message\RequestAbstract
     }
 
     /**
-     * @return WebRequestPage
+     * @return \phpOMS\Message\RequestDestination
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getWebRequestType()
+    public function getRequestDestination()
     {
-        return $this->webRequestType;
+        return $this->requestDestination;
     }
 
     /**
-     * @param WebRequestPage $webRequestType
+     * @param \phpOMS\Message\RequestDestination $requestDestination
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setWebRequestType($webRequestType)
+    public function setRequestDestination($requestDestination)
     {
-        $this->webRequestType = $webRequestType;
+        $this->requestDestination = $requestDestination;
     }
 }

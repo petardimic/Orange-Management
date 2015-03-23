@@ -1,53 +1,80 @@
-<?php /** @var \Modules\RiskManagement\Controller $this */
-\phpOMS\Model\Model::generate_table_filter_view();
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1003001001]);
+<?php
+/**
+ * @var \phpOMS\Views\ViewAbstract $this
+ */
+
+/*
+* UI Logic
+*/
+$mainTableView = new \Web\Views\Lists\ListView($this->l11n);
+$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
+
+$mainTableView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
+
+/*
+ * Header
+ */
+$headerView->setTitle($this->l11n->lang[30]['Causes']);
+$headerView->setHeader([
+    ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Name'], 'sortable' => true, 'full' => true],
+    ['title' => $this->l11n->lang[30]['Parent'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Severity'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Risk'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Probability'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Department'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Category'], 'sortable' => true],
+    ['title' => $this->l11n->lang[30]['Active'], 'sortable' => true],
+]);
+
+/*
+ * Footer
+ */
+$footerView->setPages(20);
+$footerView->setPage(1);
+
+$mainTableView->addView('header', $headerView);
+$mainTableView->addView('footer', $footerView);
+
+/*
+ * Statistics
+ */
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelStatView->setTitle($this->l11n->lang[30]['Statistics']);
+$this->addView('stats', $panelStatView);
+
+$statTableView = new \Web\Views\Lists\ListView($this->l11n);
+$statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
+$statTableView->setElements([
+    [$this->l11n->lang[30]['AvgRiskAmount'], 0],
+]);
+
+$this->getView('stats')->addView('stat::table', $statTableView);
+
+/*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1003001001);
 ?>
+<?= $nav->getOutput(); ?>
 
-<table class="t t-1 c1-2 c1" id="i1-2-1">
-    <thead>
-    <tr>
-        <th colspan="9" class="lT">
-            <i class="fa fa-filter p f dim"></i>
+<div class="b-7" id="i3-2-1">
+    <div class="b b-5 c3-2 c3" id="i3-2-5">
+        <div class="bc-1">
+            <button><?= $this->l11n->lang[30]['New']; ?></button>
+        </div>
+    </div>
 
-            <h1><?= $this->app->user->getL11n()->lang[30]['Causes'] ?></h1>
-        <th class="rT">
-            <i class="fa fa-minus min"></i>
-            <i class="fa fa-plus max vh"></i>
-    <tr>
-        <?php
-        \phpOMS\Model\Model::generate_table_header_view(
-            [
-                ['name' => '', 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                ['name' => $this->app->user->getL11n()->lang[30]['Name'], 'sort' => 0, 'full' => true],
-                ['name' => $this->app->user->getL11n()->lang[30]['Parent'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Risk'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Probability'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Ratio'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Department'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Category'], 'sort' => 0],
-                ['name' => $this->app->user->getL11n()->lang[30]['Active'], 'sort' => 0]
-            ]
-        );
-        ?>
-        <tbody>
-        <?php
-        /** @var \phpOMS\Models\User\Users $accounts */ /*
-                $data = $accounts->account_list_get();
-                $url['level'] = array_slice($request->getData(), 0, 4);
-                $url['level'][] = 'single';
-                $url['level'][] = 'front';
-                $url['id'] = 'id';
-
-                \phpOMS\Model\Model::generate_table_content_view(
-                    $data['list'],
-                    ['status', 'id', 'name1', 'lactive', 'created'],
-                    $url
-                );*/
-        ?>
-        <tfoot>
-    <tr>
-        <td colspan="10" class="cT">
-            <?php /* \phpOMS\Model\Model::generate_table_pagination_view($data['count']); */ ?>
-</table>
+    <?= $panelStatView->getOutput(); ?>
+</div>
+<div class="b-6">
+    <?= $mainTableView->getOutput(); ?>
+</div>

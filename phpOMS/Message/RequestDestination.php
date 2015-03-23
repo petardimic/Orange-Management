@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS\Message\Http;
+namespace phpOMS\Message;
 
 /**
  * Request page enum
@@ -18,7 +18,7 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class WebRequestPage extends \phpOMS\Datatypes\Enum
+abstract class RequestDestination extends \phpOMS\Datatypes\Enum
 {
     const WEBSITE  = 'website';     /* Website */
     const API      = 'api';         /* API */
@@ -35,5 +35,4 @@ abstract class WebRequestPage extends \phpOMS\Datatypes\Enum
     const PROFILE  = 'profile';     /* User profile page */
     const CHAT     = 'chat';        /* Chat page */
     const GALLERY  = 'gallery';     /* Chat page */
-
 }
