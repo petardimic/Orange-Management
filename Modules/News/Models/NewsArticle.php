@@ -53,7 +53,7 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $title_validate = [
-        'isType'   => ['string'],
+        'isType'    => ['string'],
         'hasLength' => [1, 100]
     ];
 
@@ -67,7 +67,7 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $content_validate = [
-        'isType'   => ['string']
+        'isType' => ['string']
     ];
 
     /**
@@ -80,7 +80,7 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $plain_validate = [
-        'isType'   => ['string']
+        'isType' => ['string']
     ];
 
     /**
@@ -140,11 +140,12 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
      * Init article
      *
      * @param int $id Article ID
+     * @param int $level
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function init($id)
+    public function init($id, $level = 1)
     {
         $this->id = $id;
         $data     = null;

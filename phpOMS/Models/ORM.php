@@ -14,7 +14,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      *
      * @var string
      */
-    protected $table;
+    protected static $table;
 
     /**
      * The primary key for the model.
@@ -49,28 +49,30 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      *
      * @var array
      */
-    protected $dates = array();
+    protected $dates = [];
 
     /**
      * The relationships that should be touched on save.
      *
      * @var array
      */
-    protected $touches = array();
+    protected $touches = [];
 
     /**
      * User exposed observable events
      *
      * @var array
      */
-    protected $observables = array();
+    protected $observables = [];
 
     /**
      * The relations to eager load on every query.
      *
      * @var array
      */
-    protected $with = array();
+    protected $with = [];
+
+    protected $queryBuilder = null;
 
     /**
      * The name of the "created at" column.
@@ -100,13 +102,22 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      */
     const UPDATED_BY = 'updated_by';
 
-    public static function find() {}
+    public function query() {
+        return new \phpOMS\DataStorage\Database\Query\Builder($this->connection);
+    }
+
     public function create() {}
     public function updateOrCreate() {}
-    public static function query() {}
+    public function update() {}
+
+    public static function find() {
+        (new static)->query();
+    }
+
+    abstract public static function init();
+
     public static function on() {}
     public static function all() {}
-    public static function with() {}
+    public static function with() {} // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
     public static function delete() {}
-    public function update() {}
 }
