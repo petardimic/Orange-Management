@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 
 /*

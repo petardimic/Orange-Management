@@ -78,7 +78,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l3']) {
             case 'single':
-                $reportSingle = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -86,7 +86,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportSingle->getOutput();
                 break;
             case 'list':
-                $reportList = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $reportList->setTemplate('/Modules/Reporter/Theme/backend/reporter-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportList->getOutput();
                 break;
             case 'create':
-                $reportCreate = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $reportCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $reportCreate->setTemplate('/Modules/Reporter/Theme/backend/reporter-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

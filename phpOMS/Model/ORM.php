@@ -1,27 +1,30 @@
 <?php
-namespace phpOMS\Models;
+namespace phpOMS\Model;
 
-abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterface {
+abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterface
+{
+    use \phpOMS\Validation\ModelValidationTrait;
+
     /**
      * The connection name for the model.
      *
      * @var string
      */
-    protected $connection;
+    protected $connection = null;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected static $table;
+    protected $table = null;
 
     /**
      * The primary key for the model.
      *
-     * @var string
+     * @var mixed
      */
-    protected $primaryKey = null;
+    protected $id = null;
 
     /**
      * The number of models to return for pagination.
@@ -35,14 +38,14 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      *
      * @var bool
      */
-    public $incrementing = true;
+    protected $incrementing = true;
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    public $timestamps = true;
+    protected $timestamps = true;
 
     /**
      * The attributes that should be mutated to dates.
@@ -72,6 +75,11 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      */
     protected $with = [];
 
+    /**
+     * The query builder
+     *
+     * @var \phpOMS\DataStorage\Database\Query\Builder
+     */
     protected $queryBuilder = null;
 
     /**
@@ -79,45 +87,108 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterfa
      *
      * @var string
      */
-    const CREATED_AT = 'created_at';
+    protected $created_at = 'created_at';
+    protected static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $created_at_validate = [
+        'isType' => ['datetime']
+    ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    const CREATED_BY = 'created_by';
+    protected $created_by = 'created_by';
+    protected static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $created_by_validate = [
+        'isType' => ['integer'],
+        'hasLimit' => [1, PHP_INT_MAX]
+    ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    const UPDATED_AT = 'updated_at';
+    protected $updated_at = 'updated_at';
+    protected static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $updated_at_validate = [
+        'isType' => ['datetime']
+    ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    const UPDATED_BY = 'updated_by';
+    protected $updated_by = 'updated_by';
+    protected static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $updated_by_validate = [
+        'isType' => ['integer'],
+        'hasLimit' => [1, PHP_INT_MAX]
+    ];
 
-    public function query() {
+    protected function query()
+    {
         return new \phpOMS\DataStorage\Database\Query\Builder($this->connection);
     }
 
-    public function create() {}
-    public function updateOrCreate() {}
-    public function update() {}
-
-    public static function find() {
-        (new static)->query();
+    protected function create()
+    {
     }
 
-    abstract public static function init();
+    protected function updateOrCreate()
+    {
+    }
 
-    public static function on() {}
-    public static function all() {}
-    public static function with() {} // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
-    public static function delete() {}
+    protected function update()
+    {
+    }
+
+    protected static function find()
+    {
+        $resultSet = (new static)->query();
+
+        $list = null;
+
+        foreach($resultSet as $key => $result) {
+            $list[$key] = new static();
+            $list[$key]->init($result);
+        }
+
+        return $list;
+    }
+
+    abstract protected function init($level = 1);
+
+    protected static function on()
+    {
+    }
+
+    protected static function all()
+    {
+    }
+
+    protected static function with()
+    {
+    } // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
+
+    protected static function delete()
+    {
+    }
+
+    protected function fill($attributes)
+    {
+        foreach($attributes as $name => $attribute) {
+            if(!property_exists(new static, $attribute)) {
+                throw new \Exception('Unknown property ' . $attribute);
+            }
+
+            $this->{'set' . ucfirst($name)} = $attribute;
+        }
+    }
 }

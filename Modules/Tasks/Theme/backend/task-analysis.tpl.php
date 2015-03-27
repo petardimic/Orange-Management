@@ -1,10 +1,10 @@
 <?php
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 $panelSelectView = new \Web\Views\Panel\PanelView($this->l11n);
 $panelSelectView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');

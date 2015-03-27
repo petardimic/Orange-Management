@@ -16,7 +16,7 @@ namespace Web\Views\Lists;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class HeaderView extends \phpOMS\Views\ViewAbstract
+class HeaderView extends \phpOMS\Views\View
 {
     /**
      * Header elements

@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $staffView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $staffView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/staff-list');
 
                 echo $staffView->getOutput();

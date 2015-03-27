@@ -16,7 +16,7 @@ namespace Web\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class WebViewAbstract extends \phpOMS\Views\ViewAbstract
+class WebViewAbstract extends \phpOMS\Views\View
 {
     /**
      * Panel id

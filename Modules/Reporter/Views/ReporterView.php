@@ -16,7 +16,7 @@ namespace Modules\Reporter\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ReporterView extends \phpOMS\Views\ViewAbstract
+class ReporterView extends \phpOMS\Views\View
 {
     protected $dataSets = [];
 

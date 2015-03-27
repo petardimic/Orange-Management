@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 $createPanel     = new \Web\Views\Panel\PanelView($this->l11n);
 $permissionPanel = clone $createPanel;

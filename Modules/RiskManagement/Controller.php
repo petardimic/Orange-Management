@@ -75,7 +75,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l4']) {
             case 'cockpit':
-                $riskMgmtDashboard = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $riskMgmtDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $riskMgmtDashboard->setTemplate('/Modules/RiskManagement/Theme/backend/cockpit');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -123,7 +123,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendUnit($request, $response)
     {
-        $unitView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $unitView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $unitView->setTemplate('/Modules/RiskManagement/Theme/backend/unit-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -142,7 +142,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendDepartment($request, $response)
     {
-        $departmentView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $departmentView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $departmentView->setTemplate('/Modules/RiskManagement/Theme/backend/department-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -161,7 +161,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendCategory($request, $response)
     {
-        $categoryView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $categoryView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $categoryView->setTemplate('/Modules/RiskManagement/Theme/backend/category-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -180,7 +180,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendProject($request, $response)
     {
-        $projectView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $projectView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $projectView->setTemplate('/Modules/RiskManagement/Theme/backend/project-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -199,7 +199,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendProcess($request, $response)
     {
-        $processView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $processView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $processView->setTemplate('/Modules/RiskManagement/Theme/backend/process-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -218,7 +218,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendRisk($request, $response)
     {
-        $riskView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $riskView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $riskView->setTemplate('/Modules/RiskManagement/Theme/backend/risk-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -237,7 +237,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendCause($request, $response)
     {
-        $causeView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $causeView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $causeView->setTemplate('/Modules/RiskManagement/Theme/backend/cause-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -256,7 +256,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendSolution($request, $response)
     {
-        $solutionView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+        $solutionView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $solutionView->setTemplate('/Modules/RiskManagement/Theme/backend/solution-list');
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

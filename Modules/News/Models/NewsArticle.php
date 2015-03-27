@@ -16,17 +16,15 @@ namespace Modules\News\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class NewsArticle implements \phpOMS\Models\MapperInterface
+class NewsArticle extends \phpOMS\Model\ORM
 {
-    use \phpOMS\Validation\ModelValidationTrait;
-
     /**
      * Database instance
      *
-     * @var \phpOMS\DataStorage\Database\Pool
+     * @var \phpOMS\DataStorage\Database\Connection\Connection
      * @since 1.0.0
      */
-    private $dbPool = null;
+    private $connection = null;
 
     /**
      * Article ID
@@ -34,14 +32,21 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
      * @var int
      * @since 1.0.0
      */
-    private $id = 0;
-
+    private $id = null;
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $id_validate = [
         'isType'   => ['integer'],
         'hasLimit' => [0, PHP_INT_MAX]
     ];
+
+    /**
+     * Primary table
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected $table = 'news';
 
     /**
      * Title
@@ -89,7 +94,12 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
      * @var int
      * @since 1.0.0
      */
-    private $type = null;
+    private $type = \Modules\News\Models\NewsType::ARTICLE;
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $type_validate = [
+        'isType' => ['\Modules\News\Models\NewsType']
+    ];
 
     /**
      * Language
@@ -97,82 +107,58 @@ class NewsArticle implements \phpOMS\Models\MapperInterface
      * @var string
      * @since 1.0.0
      */
-    private $lang = 'en';
-
-    /**
-     * Published
-     *
-     * @var \DateTime
-     * @since 1.0.0
-     */
-    private $publish = null;
-
-    /**
-     * Created
-     *
-     * @var \DateTime
-     * @since 1.0.0
-     */
-    private $created = null;
-
-    /**
-     * Author
-     *
-     * @var int
-     * @since 1.0.0
-     */
-    private $author = 0;
+    private $lang = \phpOMS\Localization\ISO639::EN;
+    private static
+        /** @noinspection PhpUnusedPrivateFieldInspection */
+        $lang_validate = [
+        'isType' => ['\phpOMS\Localization\ISO639']
+    ];
 
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Connection\Connection $connection Database connection
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($dbPool)
+    public function __construct($connection)
     {
-        $this->dbPool = $dbPool;
+        $this->connection = $connection;
     }
 
     /**
      * Init article
      *
-     * @param int $id Article ID
-     * @param int $level
-     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function init($id, $level = 1)
+    public function init($level = \phpOMS\Model\InitializationLevel::MINIMUM)
     {
-        $this->id = $id;
-        $data     = null;
+        $query = $this->query();
 
-        switch($this->dbPool->get('core')->getType()) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $sth = $this->dbPool->get('core')->con->prepare('SELECT
-                            `' . $this->dbPool->get('core')->prefix . 'news`.*
-                        FROM
-                            `' . $this->dbPool->get('core')->prefix . 'news`
-                       WHERE `' . $this->dbPool->get('core')->prefix . 'news`.`NewsID` = :id');
-
-                $sth->bindValue(':id', $id, \PDO::PARAM_INT);
-                $sth->execute();
-
-                $data = $sth->fetchAll()[0];
+        switch($level) {
+            case \phpOMS\Model\InitializationLevel::MAXIMUM:
+                $query->table($this->table)
+                    ->select(['plain']);
+            case \phpOMS\Model\InitializationLevel::MEDIUM:
+                $query->table($this->table)
+                    ->select(['content']);
+            case \phpOMS\Model\InitializationLevel::MINIMUM:
+                $query->table($this->table)
+                    ->select(['title', 'author', 'published_at', 'created_by'])
+                    ->select(['name1', 'name2', 'name3'], 'account')
+                    ->join([$this->table, 'account', 'author', '=', 'id'])
+                    ->where('id', '=', $this->id);
                 break;
         }
 
-        $this->title   = $data['title'];
-        $this->author  = $data['author'];
-        $this->content = $data['content'];
-        $this->plain   = $data['plain'];
-        $this->type    = $data['type'];
-        $this->lang    = $data['lang'];
-        $this->publish = new \DateTime($data['publish']);
-        $this->created = new \DateTime($data['created']);
+        $resultSet = $this->dbPool->get('core')->execute($query->__toString());
+
+        $this->fill($resultSet[$this->table]);
+
+        $this->author = new Account();
+        $this->author->fill($resultSet['account']);
     }
 
     /**

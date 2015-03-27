@@ -18,6 +18,8 @@ class Builder {
 
     }
 
+    public function select($columns, $table = null, $alias = null) {}
+
     public function from() {}
 
     public function where($column, $operator = null, $value = null, $boolean = 'and') {
@@ -25,7 +27,7 @@ class Builder {
         // TODO: handle $value is nested where
         // TODO: handle $value is null -> operator NULL
         if(isset($operator) && !in_array($operator, $this->operators)) {
-            throw new \Exception();
+            throw new \Exception('Unknown operator.');
         }
 
         if(is_array($column)) {
@@ -117,7 +119,7 @@ class Builder {
         return $this;
     }
 
-    public function join() {
+    public function join($table1, $table2, $column1, $opperator, $column2) {
         return $this;
     }
 

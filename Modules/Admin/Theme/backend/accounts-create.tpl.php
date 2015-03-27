@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 
 $panelCoreSettingsView = new \Web\Views\Panel\PanelView($this->l11n);

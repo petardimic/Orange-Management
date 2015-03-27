@@ -76,7 +76,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getData()['l3']) {
             case 'list':
-                $timemgmtDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $timemgmtDashboardView->setTemplate('/Modules/Support/Theme/backend/support-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -101,7 +101,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function showContentBackendPrivate($request, $response) {
         switch($request->getData()['l4']) {
             case 'dashboard':
-                $timemgmtDashboardView = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/user-timemanagement-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

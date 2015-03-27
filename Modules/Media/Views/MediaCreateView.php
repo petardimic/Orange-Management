@@ -16,6 +16,6 @@ namespace Modules\Media\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class MediaCreateView extends \phpOMS\Views\ViewAbstract
+class MediaCreateView extends \phpOMS\Views\View
 {
 }

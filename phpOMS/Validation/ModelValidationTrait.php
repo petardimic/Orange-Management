@@ -30,7 +30,7 @@ trait ModelValidationTrait
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private function isValid($var, $name)
+    protected function isValid($var, $name)
     {
         /** @noinspection PhpUndefinedFieldInspection */
         if(!isset(self::${$name . '_validate'})) {
@@ -38,7 +38,6 @@ trait ModelValidationTrait
         }
 
         /** @noinspection PhpUndefinedFieldInspection */
-
         return \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]);
     }
 
@@ -56,7 +55,7 @@ trait ModelValidationTrait
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private function setValidation($var, $name)
+    protected function setValidation($var, $name)
     {
         /** @noinspection PhpUndefinedFieldInspection */
         if(!isset(self::${$name . '_validate'}) || \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]) === true) {
@@ -77,6 +76,10 @@ trait ModelValidationTrait
      */
     public function setForce($var, $name)
     {
+        if(!property_exists($this, $var)) {
+            throw new \Exception('Unknown property.');
+        }
+
         $this->{$name} = $var;
     }
 }

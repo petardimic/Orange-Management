@@ -4,7 +4,7 @@
  */
 
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 $panelPageView = new \Web\Views\Panel\PanelView($this->l11n);
 $panelLocalizationView = clone $panelPageView;

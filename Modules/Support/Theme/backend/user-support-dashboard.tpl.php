@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 
 /*
@@ -42,7 +42,7 @@ $supportList->addView('footer', $footerView);
  * Settings
  */
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 $panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
 $panelSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');

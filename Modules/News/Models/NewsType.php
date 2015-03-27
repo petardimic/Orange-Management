@@ -18,7 +18,7 @@ namespace Modules\News\Models;
  */
 abstract class NewsType extends \phpOMS\Datatypes\Enum
 {
-    const NEWS     = 0;
+    const ARTICLE  = 0;
     const LINK     = 1;
     const HEADLINE = 2;
 

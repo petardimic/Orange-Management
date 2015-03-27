@@ -92,7 +92,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
                 break;
             case 'list':
-                $mediaList = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $mediaList = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $mediaList->setTemplate('/Modules/Media/Theme/backend/media-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -100,7 +100,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $mediaList->getOutput();
                 break;
             case 'create':
-                $mediaCreate = new \phpOMS\Views\ViewAbstract($this->app->user->getL11n(), $this->app);
+                $mediaCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $mediaCreate->setTemplate('/Modules/Media/Theme/backend/media-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

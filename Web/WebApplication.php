@@ -224,7 +224,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->setHeader('Status', 'Status: 404 Not Found');
 
-                $pageView = new \phpOMS\Views\ViewAbstract();
+                $pageView = new \phpOMS\Views\View();
                 $pageView->setTemplate('/Web/Theme/Error/404');
                 $this->response->add('GLOBAL', $pageView->getOutput());
         }
@@ -235,7 +235,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
     /**
      * Generate visual database error
      *
-     * @param \phpOMS\Views\ViewAbstract $view View
+     * @param \phpOMS\Views\View $view View
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

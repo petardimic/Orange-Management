@@ -38,7 +38,7 @@ abstract class Enum
      */
     public static function getConstants()
     {
-        if(self::$constCache === null) {
+        if(!isset(self::$constCache)) {
             $reflect          = new \ReflectionClass(get_called_class());
             self::$constCache = $reflect->getConstants();
         }

@@ -4,7 +4,7 @@
  */
 
 /**
- * @var \phpOMS\Views\ViewAbstract $this
+ * @var \phpOMS\Views\View $this
  */
 $panelCreate = new \Web\Views\Panel\PanelView($this->l11n);
 $panelCreate->setTitle($this->l11n->lang[1]['Group']);
