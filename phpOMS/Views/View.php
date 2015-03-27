@@ -16,7 +16,7 @@ namespace phpOMS\Views;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class View implements \phpOMS\Support\RenderableInterface
+class View implements \phpOMS\Contract\RenderableInterface
 {
     /**
      * Template

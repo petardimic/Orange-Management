@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS\Support;
+namespace phpOMS\Contract;
 
 interface ArrayableInterface {
     /**

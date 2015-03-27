@@ -1,7 +1,7 @@
 <?php
 namespace phpOMS\Model;
 
-abstract class ORM implements \JsonSerializable, \phpOMS\Support\JsonableInterface
+abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterface
 {
     use \phpOMS\Validation\ModelValidationTrait;
 

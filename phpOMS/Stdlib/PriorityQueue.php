@@ -15,6 +15,9 @@ namespace phpOMS\Stdlib;
  * @version    1.0.0
  * @link       http://orange-management.com
  * @since      1.0.0
+ *
+ * @todo: implement JsonableInterface
+ *
  */
 class PriorityQueue implements \Countable, \Serializable
 {
