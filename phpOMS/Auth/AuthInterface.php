@@ -23,7 +23,7 @@ interface AuthInterface
     /**
      * Authenticates user
      *
-     * @return \phpOMS\Models\User\User
+     * @return boolean
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

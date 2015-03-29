@@ -59,9 +59,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->dbPool = new \phpOMS\DataStorage\Database\Pool();
         $this->dbPool->create('core', $config['db']);
 
-        $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \Model\CoreSettings($this->dbPool->get('core'));
-
         $pageView = null;
 
         switch($this->request->getRequestDestination()) {
@@ -85,14 +82,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     break;
                 }
 
-                \phpOMS\Module\ModuleFactory::$app = $this;
-                \phpOMS\Model\Model::$app          = $this;
-
-                $this->eventManager   = new \phpOMS\Event\EventManager();
-                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
-                $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \phpOMS\Auth\Http($this->dbPool->get('core'), $this->sessionManager);
-                $this->user           = $this->auth->authenticate();
+                $this->setupBasic();
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
                 $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
@@ -142,14 +132,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     break;
                 }
 
-                \phpOMS\Module\ModuleFactory::$app = $this;
-                \phpOMS\Model\Model::$app          = $this;
-
-                $this->eventManager   = new \phpOMS\Event\EventManager();
-                $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
-                $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \phpOMS\Auth\Http($this->dbPool->get('core'), $this->sessionManager);
-                $this->user           = $this->auth->authenticate();
+                $this->setupBasic();
 
                 $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
@@ -248,5 +231,25 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->response->add('GLOBAL', '');
 
         $view->setTemplate('/Web/Theme/Error/503');
+    }
+
+    /**
+     * Setup basic instances
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function setupBasic() {
+        $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
+        $this->settings = new \Model\CoreSettings($this->dbPool->get('core'));
+
+        \phpOMS\Module\ModuleFactory::$app = $this;
+        \phpOMS\Model\Model::$app          = $this;
+
+        $this->eventManager   = new \phpOMS\Event\EventManager();
+        $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
+        $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
+        $this->user           = new \Model\Account($this->dbPool->get('core'), $this->sessionManager, $this->cache);
+        $this->user->authenticate();
     }
 }

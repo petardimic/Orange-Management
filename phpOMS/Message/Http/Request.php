@@ -58,6 +58,16 @@ class Request extends \phpOMS\Message\RequestAbstract
      */
     private $requestDestination = null;
 
+    /** @todo: implement!!! */
+    private $scheme = null;
+    private $host = 80;
+    private $port = 80;
+    private $user = 80;
+    private $password = 80;
+    private $path = null;
+    private $query = null;
+    private $fragment = null;
+
     /**
      * Constructor
      *
