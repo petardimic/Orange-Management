@@ -29,6 +29,13 @@ trait OptionsTrait
     /**
      * {@inheritdoc}
      */
+    public function isSet($key) {
+        return array_key_exists($key, $this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getOption($key)
     {
         return (isset($this->options[$key]) ? $this->options[$key] : null);
@@ -37,19 +44,10 @@ trait OptionsTrait
     /**
      * {@inheritdoc}
      */
-    public function setOption($key, $value, $storable = false, $save = false)
+    public function setOption($key, $value, $overwrite = true)
     {
-        $this->options[$key] = [$value, $storable];
-
-        if($save) {
-            // TODO: save to db and or caching
+        if($overwrite || !array_key_exists($key, $this->options)) {
+            $this->options[$key] = [$value, $storable];
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function update()
-    {
     }
 }

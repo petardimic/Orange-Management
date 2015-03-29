@@ -6,8 +6,8 @@ namespace phpOMS\Localization;
  *
  * PHP Version 5.4
  *
- * @category   Localization
- * @package    Framework
+ * @category   Framework
+ * @package    phpOMS\Localization
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013

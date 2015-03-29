@@ -51,4 +51,20 @@ interface SessionInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function remove($key);
+
+    /**
+     * @return int|string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getSID();
+
+    /**
+     * @param int|string $sid
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setSID($sid);
 }

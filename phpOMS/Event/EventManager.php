@@ -15,11 +15,11 @@ namespace phpOMS\Event;
  * @version    1.0.0
  * @link       http://orange-management.com
  * @since      1.0.0
+ *
+ * @todo: make cachable + database storable -> can reload user defined listeners (persistent events)
  */
-class EventManager implements \Countable
+class EventManager implements \phpOMS\Pattern\Mediator
 {
-    // TODO: implement persistent events (store in cache and/or db)
-
     /**
      * Events
      *
@@ -39,18 +39,7 @@ class EventManager implements \Countable
     }
 
     /**
-     * Attach a listener
-     *
-     * Listeners will get called if a certain event gets triggered
-     *
-     * @param string   $event    Event ID
-     * @param callback $callback Function to call if the event gets triggered
-     * @param string   $listener What class is attaching this listener
-     *
-     * @return int UID for the listener
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function attach($event, $callback, $listener)
     {
@@ -60,16 +49,7 @@ class EventManager implements \Countable
     }
 
     /**
-     * Trigger event
-     *
-     * An object fires an event
-     *
-     * @param string   $event    Event ID
-     * @param callback $callback Callback function of the event. This will get triggered after firering all listener callbacks.
-     * @param string   $source   What class is invoking this event
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function trigger($event, $callback = null, $source = null)
     {
@@ -94,7 +74,7 @@ class EventManager implements \Countable
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function trigger_until($event, $callback = null, $source = null)
+    public function triggerUntil($event, $callback = null, $source = null)
     {
         $run = true;
 
@@ -110,16 +90,11 @@ class EventManager implements \Countable
     }
 
     /**
-     * Removing a listener
-     *
-     * @param int $id ID of the listener
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function detach($id)
+    public function detach($event)
     {
-        $this->events = \phpOMS\Utils\ArrayUtils::unset_array($id, $this->events, '/');
+        $this->events = \phpOMS\Utils\ArrayUtils::unset_array($event, $this->events, '/');
     }
 
     /**

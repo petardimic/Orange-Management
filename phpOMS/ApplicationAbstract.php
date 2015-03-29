@@ -35,7 +35,7 @@ class ApplicationAbstract
     /**
      * Settings instance
      *
-     * @var \phpOMS\Config\Settings
+     * @var \phpOMS\Config\CoreSettings
      * @since 1.0.0
      */
     public $settings = null;

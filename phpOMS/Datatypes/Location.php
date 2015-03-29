@@ -16,7 +16,7 @@ namespace phpOMS\Datatypes;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Location
+class Location \phpOMS\Contract\JsonableInterface
 {
     /**
      * Zip or postal
@@ -206,5 +206,19 @@ class Location
     public function setGeo($geo)
     {
         $this->geo = $geo;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray() {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toJson() {
+
     }
 }

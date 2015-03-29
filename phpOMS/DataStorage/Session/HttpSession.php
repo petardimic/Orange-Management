@@ -7,7 +7,7 @@ namespace phpOMS\DataStorage\Session;
  * PHP Version 5.4
  *
  * @category   Framework
- * @package    phpOMS\DataStorage\Cache
+ * @package    phpOMS\DataStorage\Session
  * @author     OMS Development Team <dev@oms.com>
  * @author     Dennis Eichhorn <d.eichhorn@oms.com>
  * @copyright  2013
@@ -71,6 +71,14 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
         $this->sessionData[$key] = $value;
     }
 
+    /**
+     * Save session
+     *
+     * @todo: implement save type (session, cache, database)
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function save()
     {
         session_id($this->sid);
@@ -90,10 +98,7 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     }
 
     /**
-     * @return int|string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function getSID()
     {
@@ -101,10 +106,7 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     }
 
     /**
-     * @param int|string $sid
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function setSID($sid)
     {

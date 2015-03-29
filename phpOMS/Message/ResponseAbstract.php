@@ -19,7 +19,31 @@ namespace phpOMS\Message;
 abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
 {
     /**
+     * Language
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected $lang = null;
+
+    /**
      * {@inheritdoc}
      */
     abstract public function setHeader($key, $header, $overwrite = true);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLanguage()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLanguage($language)
+    {
+        return $this->lang = $language;
+    }
 }

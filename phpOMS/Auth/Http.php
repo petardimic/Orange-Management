@@ -31,25 +31,25 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
     private $session = null;
 
     /**
-     * Database pool instance
+     * Database connection instance
      *
-     * @var \phpOMS\DataStorage\Database\Pool
+     * @var \phpOMS\DataStorage\Database\Connection\Connection
      * @since 1.0.0
      */
-    private $dbPool = null;
+    private $connection = null;
 
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Pool            $dbPool  Database pool
+     * @param \phpOMS\DataStorage\Database\Connection\Connection            $connection  Database connection
      * @param \phpOMS\DataStorage\Session\SessionInterface $session Session
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($dbPool, $session)
+    public function __construct($connection, $session)
     {
-        $this->dbPool = $dbPool;
+        $this->connection = $connection;
         $this->session = $session;
     }
 
@@ -64,7 +64,7 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
             $uid = -1;
         }
 
-        return \phpOMS\Models\User\User::getInstance($uid, $this->dbPool, true);
+        return \phpOMS\Models\User\User::getInstance($uid, $this->connection, true);
     }
 
     /**
@@ -75,21 +75,21 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
         try {
             $result = null;
 
-            switch($this->dbPool->get('core')->getType()) {
+            switch($this->connection->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
 
-                    $sth = $this->dbPool->get('core')->con->prepare(
+                    $sth = $this->connection->con->prepare(
                         'SELECT
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.*,
-                            `' . $this->dbPool->get('core')->prefix . 'accounts`.*
+                            `' . $this->connection->prefix . 'accounts_data`.*,
+                            `' . $this->connection->prefix . 'accounts`.*
                         FROM
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`
+                            `' . $this->connection->prefix . 'accounts_data`
                         LEFT JOIN
-                            `' . $this->dbPool->get('core')->prefix . 'accounts`
+                            `' . $this->connection->prefix . 'accounts`
                         ON
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`account` = `' . $this->dbPool->get('core')->prefix . 'accounts_`.`id`
+                            `' . $this->connection->prefix . 'accounts_data`.`account` = `' . $this->connection->prefix . 'accounts_`.`id`
                         WHERE
-                            `' . $this->dbPool->get('core')->prefix . 'accounts_data`.`login` = :login'
+                            `' . $this->connection->prefix . 'accounts_data`.`login` = :login'
                     );
                     $sth->bindValue(':login', $login, \PDO::PARAM_STR);
                     $sth->execute();

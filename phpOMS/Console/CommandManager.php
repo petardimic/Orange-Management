@@ -2,7 +2,7 @@
 namespace phpOMS\Console;
 
 /**
- * Commands class
+ * Command manager class
  *
  * PHP Version 5.4
  *
@@ -16,7 +16,7 @@ namespace phpOMS\Console;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Commands implements \Countable
+class CommandManager implements \Countable
 {
     /**
      * Commands

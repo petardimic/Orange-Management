@@ -117,7 +117,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendSettings($request, $response)
     {
-        $this->app->settings->loadSettings([
+        $this->app->settings->get([
             1000000006,
             1000000007,
             1000000008,

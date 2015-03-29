@@ -19,17 +19,26 @@ namespace phpOMS\Config;
 interface OptionsInterface
 {
     /**
-     * Updating or adding settings
+     * Is this key set
      *
-     * @param mixed $key      Unique option key
-     * @param mixed $value    Option value
-     * @param bool  $storable Is this option storable inside DB or cache
-     * @param bool  $save     Should this update the database/cache
+     * @param mixed $key Key to check for existence
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setOption($key, $value, $storable = false, $save = false);
+    public function isSet($key);
+
+    /**
+     * Updating or adding settings
+     *
+     * @param mixed $key      Unique option key
+     * @param mixed $value    Option value
+     * @param bool  $overwrite Overwrite existing value
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setOption($key, $value, $overwrite = true);
 
     /**
      * Get option by key
@@ -42,12 +51,4 @@ interface OptionsInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getOption($key);
-
-    /**
-     * Update options (push them into DB and Cache)
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function update();
 }

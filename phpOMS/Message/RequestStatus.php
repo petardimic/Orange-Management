@@ -18,7 +18,9 @@ namespace phpOMS\Message;
  */
 abstract class RequestStatus extends \phpOMS\Datatypes\Enum
 {
-    const OK      = 0; /* Request is OK */
-    const FAILURE = 1; /* Request failed (unknown reason) */
+    const OK               = 0; /* Response is OK */
+    const FAILURE          = 1; /* Response failed (unknown reason) */
+    const WRONG_PERMISSION = 2; /* Permission lacking */
+    const WRONG_REQUEST    = 3; /* No response for this request */
 
 }

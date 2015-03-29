@@ -16,7 +16,7 @@ namespace phpOMS\Datatypes;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Address
+class Address implements \phpOMS\Contract\JsonableInterface
 {
     /**
      * Name of the receiver
@@ -133,5 +133,19 @@ class Address
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray() {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toJson() {
+
     }
 }

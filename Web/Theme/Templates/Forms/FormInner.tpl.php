@@ -6,7 +6,7 @@
 <ul>
     <?php foreach ($this->elements as $row): ?>
     <?php foreach ($row as $element): ?>
-    <?php if ($element['type'] === \phpOMS\Html\TagType::GENERIC): ?>
+    <?php if ($element['type'] === \phpOMS\Html\TagType::SYMMETRIC): ?>
         <?= '<' . $element['tag'] . '>' . $element['content'] . '</' . $element['tag'] . '>'; ?>
     <?php elseif ($element['type'] === \phpOMS\Html\TagType::INPUT): ?>
     <?php if (isset($element['label']) && $element['subtype'] !== 'checkbox'): ?>

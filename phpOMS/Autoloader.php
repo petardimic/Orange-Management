@@ -36,7 +36,6 @@ class Autoloader
 
         if(file_exists(__DIR__ . '/../' . $class . '.php')) {
             /** @noinspection PhpIncludeInspection */
-
             include __DIR__ . '/../' . $class . '.php';
         }
     }

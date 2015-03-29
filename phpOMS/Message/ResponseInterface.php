@@ -31,4 +31,26 @@ interface ResponseInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function setHeader($key, $header, $overwrite = true);
+
+    /**
+     * Get language
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getLanguage();
+
+    /**
+     * Set language
+     *
+     * @param strin $language Language
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLanguage($language);
 }

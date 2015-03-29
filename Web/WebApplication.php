@@ -60,7 +60,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->dbPool->create('core', $config['db']);
 
         $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \phpOMS\Config\Settings($this->dbPool);
+        $this->settings = new \phpOMS\Config\CoreSettings($this->dbPool->get('core'));
 
         $pageView = null;
 
@@ -91,7 +91,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->eventManager   = new \phpOMS\Event\EventManager();
                 $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
                 $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->auth           = new \phpOMS\Auth\Http($this->dbPool->get('core'), $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
@@ -119,7 +119,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
                 }
 
-                $this->settings->loadSettings([1000000011, 1000000009]);
+                $this->settings->get([1000000011, 1000000009]);
                 \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
@@ -148,7 +148,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->eventManager   = new \phpOMS\Event\EventManager();
                 $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
                 $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-                $this->auth           = new \phpOMS\Auth\Http($this->dbPool, $this->sessionManager);
+                $this->auth           = new \phpOMS\Auth\Http($this->dbPool->get('core'), $this->sessionManager);
                 $this->user           = $this->auth->authenticate();
 
                 $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
