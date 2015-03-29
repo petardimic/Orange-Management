@@ -29,7 +29,7 @@ trait OptionsTrait
     /**
      * {@inheritdoc}
      */
-    public function isSet($key) {
+    public function exists($key) {
         return array_key_exists($key, $this->options);
     }
 

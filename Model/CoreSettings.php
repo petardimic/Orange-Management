@@ -1,5 +1,5 @@
 <?php
-namespace OMS/Model;
+namespace Model;
 
 /**
  * Core settings class
@@ -28,7 +28,7 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
      * @var string
      * @since 1.0.0
      */
-    private $table = 'settings';
+    protected $table = 'settings';
 
     /**
      * Columns
@@ -39,14 +39,6 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
     protected $columns = [
         'id'
     ];
-
-    /**
-     * Database connection instance
-     *
-     * @var \phpOMS\DataStorage\Database\Connection\Connection
-     * @since 1.0.0
-     */
-    private $connection = null;
 
     /**
      * Constructor

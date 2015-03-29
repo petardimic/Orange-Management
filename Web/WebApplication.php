@@ -60,7 +60,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->dbPool->create('core', $config['db']);
 
         $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \phpOMS\Config\CoreSettings($this->dbPool->get('core'));
+        $this->settings = new \Model\CoreSettings($this->dbPool->get('core'));
 
         $pageView = null;
 
