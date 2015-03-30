@@ -53,17 +53,27 @@ class ExactFloat {
             // todo: keep 0.5 in mind maybe decimals0--?!?!?! most likely not
             if((int)$split_a[0] > (int)$split_b[0]) {
                 if($val_a < $val_b) {
-                    // todo do 10 length thingy :)
+                    $temp_sum = 10 * strlen((string)$temp_sum) - $temp_sum;
                 }
             } else {
                 if($val_a > $val_b) {
-
+                    $temp_sum = 10 * strlen((string)$temp_sum) - $temp_sum;
                 }
             }
 
             $decimals[1] = (int)ltrim((string)$temp_sum, '-');
         } elseif($sign_a === '-' && $sign_b === '+') {
+            if((int)$split_a[0] < (int)$split_b[0]) {
+                if($val_a > $val_b) {
+                    $temp_sum = 10 * strlen((string)$temp_sum) - $temp_sum;
+                }
+            } else {
+                if($val_a < $val_b) {
+                    $temp_sum = 10 * strlen((string)$temp_sum) - $temp_sum;
+                }
+            }
 
+            $decimals[1] = (int)ltrim((string)$temp_sum, '-');
         } elseif($sign_a === '-' && $sign_b === '-') {
             if(strlen((string)$temp_sum) > $len_max + 1) {
                 $decimals[0]--;
@@ -75,9 +85,16 @@ class ExactFloat {
             }
         }
 
+        /* Too short */
         $str_sum = str_pad((string)$decimals[1], $length, '0');
 
-        // todo: handle too long str_sum
+        /* Too long */
+        /* TODO: handle rounding, carefull with e.g. 1.99995 -> 2.00 */
+        if($sign_sum === '-') {
+            $str_sum = substr($str_sum, 0, $length+1);
+        } else {
+            $str_sum = substr($str_sum, 0, $length);
+        }
 
         return $sign_sum . $decimals[0] . ($length > 0 ? '.' . $str_sum : '');
     }
