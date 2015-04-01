@@ -11,7 +11,7 @@ $top = $nav->getOutput();
 $nav->setTemplate('/Modules/Navigation/Theme/backend/side');
 $side = $nav->getOutput();
 ?>
-    <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <?php
