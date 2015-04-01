@@ -21,6 +21,14 @@ namespace phpOMS\Uri;
 class UriFactory
 {
     /**
+     * Dynamic query elements
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    private static $query = [];
+
+    /**
      * Constructor
      *
      * @since  1.0.0
@@ -28,6 +36,14 @@ class UriFactory
      */
     private function __construct()
     {
+    }
+
+    public static function setQuery($key, $value, $overwrite = true) {
+
+    }
+
+    public static function getQuery($key) {
+
     }
 
     /**
@@ -44,6 +60,13 @@ class UriFactory
      */
     public static function build($data, $query = null, $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
+        /* Overwriting dynamic link elements if they are defined */
+        foreach($query as $key => $value) {
+            if(array_key_exists($value, self:$query)) {
+                $query[$key] = self::$query[$value];
+            }
+        }
+
         switch($scheme) {
             case \phpOMS\Uri\UriScheme::HTTP:
                 return \phpOMS\Uri\Http::create($data, $query);
@@ -73,9 +96,9 @@ class UriFactory
                 return \phpOMS\Uri\Market::create($data, $query);
             case \phpOMS\Uri\UriScheme::ITMS:
                 return \phpOMS\Uri\Itms::create($data, $query);
+            default:
+                throw new \Exception('Unknown uri scheme');
         }
-
-        return null;
     }
 
     /**
