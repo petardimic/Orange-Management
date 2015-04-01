@@ -5,7 +5,7 @@ $modules_all = $this->app->modules->getAllModules();
 
 if(array_key_exists($request->getData()['id'], $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
-    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                      1000105001]);
 }
 ?>

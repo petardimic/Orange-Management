@@ -18,7 +18,7 @@ namespace phpOMS\Auth;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterface
+class Auth implements \phpOMS\Config\OptionsInterface
 {
     use \phpOMS\Config\OptionsTrait;
 
@@ -54,7 +54,12 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
     }
 
     /**
-     * {@inheritdoc}
+     * Authenticates user
+     *
+     * @return boolean
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function authenticate()
     {
@@ -64,11 +69,19 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
             $uid = -1;
         }
 
-        return \phpOMS\Models\User\User::getInstance($uid, $this->connection, true);
+        return $uid;
     }
 
     /**
-     * {@inheritdoc}
+     * Login user
+     *
+     * @param string $login    Username
+     * @param string $password Password
+     *
+     * @return int Login code
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function login($login, $password)
     {
@@ -123,7 +136,12 @@ class Http implements \phpOMS\Auth\AuthInterface, \phpOMS\Config\OptionsInterfac
     }
 
     /**
-     * {@inheritdoc}
+     * Logout the given user
+     *
+     * @param int $uid User ID
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function logout($uid)
     {

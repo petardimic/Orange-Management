@@ -159,7 +159,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                         }
 
                         /** @noinspection PhpUndefinedMethodInspection */
-                        $this->moduleManager->running['Content']->call(\phpOMS\Module\CallType::WEB, $request, $this->response);
+                        $this->moduleManager->running['Content']->call(\phpOMS\Message\RequestSource::WEB, $request, $this->response);
                     }
                 } else {
                     $request = $this->request;
@@ -197,7 +197,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                     if(isset(\phpOMS\Module\ModuleFactory::$loaded['Content'])) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Module\CallType::WEB, $this->request, $this->response);
+                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Message\RequestSource::WEB, $this->request, $this->response);
                     }
                 }
 

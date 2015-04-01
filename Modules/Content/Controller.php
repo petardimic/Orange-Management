@@ -44,7 +44,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         foreach($this->receiving as $mid) {
             /** @noinspection PhpUndefinedMethodInspection */
-            \phpOMS\Module\ModuleFactory::$loaded[$mid]->call(\phpOMS\Module\CallType::WEB, $request, $response);
+            \phpOMS\Module\ModuleFactory::$loaded[$mid]->call(\phpOMS\Message\RequestSource::WEB, $request, $response);
         }
     }
 }

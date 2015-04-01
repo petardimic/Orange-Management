@@ -1,12 +1,12 @@
 <?php /** @var \Modules\Purchase\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1002105001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-2">
     <?= /** @noinspection PhpUndefinedMethodInspection */
-    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+    \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                      1002105101]); ?>
 </div>
 <div class="b-6" id="i3-2-1">

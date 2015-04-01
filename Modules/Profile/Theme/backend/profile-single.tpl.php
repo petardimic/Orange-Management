@@ -8,7 +8,7 @@ $account = \phpOMS\Models\User\User::getInstance((int) $request->getData()['id']
             </div>
         </div>
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Module\CallType::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
+        \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
                                                                          1000301001]); ?>
     </div>
     <div class="b-6" id="i3-2-2">

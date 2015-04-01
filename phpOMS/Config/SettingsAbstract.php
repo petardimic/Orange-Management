@@ -73,10 +73,10 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function get($columns) {
+    public function get($columns) {
         $key = md5(json_encode($columns));
 
-        if(!$this->isSet($key)) {
+        if(!$this->exists($key)) {
 
         }
 
@@ -94,7 +94,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function set($columns, $value, $overwrite = true, $cachable = true, $store = false) {
+    public function set($columns, $value, $overwrite = true, $cachable = true, $store = false) {
         $key = md5(json_encode($columns));
 
     }

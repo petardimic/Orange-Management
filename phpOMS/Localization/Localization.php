@@ -75,17 +75,6 @@ class Localization
     private static $locals = null;
 
     /**
-     * Localization ID
-     *
-     * > 0 = User
-     * -1 = Server
-     *
-     * @var int
-     * @since 1.0.0
-     */
-    public $localization_id = -1;
-
-    /**
      * Localized strings
      *
      * @var string[]
@@ -101,10 +90,8 @@ class Localization
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($id)
+    public function __construct()
     {
-        $this->localization_id = $id;
-
         // TODO: implement!!!
         setlocale(LC_TIME, '');
         setlocale(LC_NUMERIC, '');

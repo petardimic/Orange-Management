@@ -49,7 +49,7 @@ interface ModuleInterface
     /**
      * Call all modules from which this module is receiving
      *
-     * @param \phpOMS\Module\CallType|int      $type     Call type
+     * @param \phpOMS\Message\RequestSource|int      $type     Call type
      * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      * @param mixed                               $data     Data to pass (if required)
