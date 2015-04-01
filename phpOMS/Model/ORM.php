@@ -87,7 +87,8 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      *
      * @var string
      */
-    protected $created_at = 'created_at';
+    protected $created_at_column = 'created_at';
+    protected $created_at = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $created_at_validate = [
@@ -99,7 +100,8 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      *
      * @var string
      */
-    protected $created_by = 'created_by';
+    protected $created_by_column = 'created_by';
+    protected $created_by = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $created_by_validate = [
@@ -112,7 +114,8 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      *
      * @var string
      */
-    protected $updated_at = 'updated_at';
+    protected $updated_at_column = 'updated_at';
+    protected $updated_at = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $updated_at_validate = [
@@ -124,7 +127,8 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      *
      * @var string
      */
-    protected $updated_by = 'updated_by';
+    protected $updated_by_column = 'updated_by';
+    protected $updated_by = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $updated_by_validate = [
