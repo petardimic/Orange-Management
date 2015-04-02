@@ -19,7 +19,7 @@ namespace phpOMS\DataStorage\Database\Connection;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class MysqlConnection
+class MysqlConnection implements \phpOMS\DataStorage\Database\Connection\ConnectionInterface
 {
     /**
      * Connection object
@@ -82,14 +82,7 @@ class MysqlConnection
     }
 
     /**
-     * Connect to database
-     *
-     * Overwrites current connection if existing
-     *
-     * @param string[] $dbdata the basic database information for establishing a connection
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function connect($dbdata) {
         $this->close();
@@ -110,12 +103,7 @@ class MysqlConnection
     }
 
     /**
-     * Get the database type
-     *
-     * @return \phpOMS\DataStorage\Database\DatabaseType
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function getType()
     {
@@ -123,10 +111,7 @@ class MysqlConnection
     }
 
     /**
-     * Close database connection
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function close()
     {
