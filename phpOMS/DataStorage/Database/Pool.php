@@ -116,7 +116,7 @@ class Pool
             return true;
         }
 
-        $this->pool[$key] = new \phpOMS\DataStorage\Database\Connection\Connection($config);
+        $this->pool[$key] = \phpOMS\DataStorage\Database\Connection\ConnectionFactory::create($config);
 
         return true;
     }
