@@ -3,6 +3,38 @@
 namespace phpOMS\DataStorage\Database\Query;
 
 class Builder {
+    protected $connection = null;
+
+    protected $grammar = null;
+
+    protected $columns = [];
+
+    protected $distinct = false;
+
+    protected $from = [];
+
+    protected $joind = [];
+
+    protected $wheres = [];
+
+    protected $groups = [];
+
+    protected $orders = [];
+
+    protected $limit = null;
+
+    protected $offset = null;
+
+    protected $unions = [];
+
+    protected $unionLimit = null;
+
+    protected $unionOffset = null;
+
+    protected $unionOrders = [];
+
+    protected $lock = false;
+
     protected $operators = array(
         '=', '<', '>', '<=', '>=', '<>', '!=',
         'like', 'like binary', 'not like', 'between', 'ilike',
@@ -12,15 +44,46 @@ class Builder {
         'not similar to',
     );
 
-    protected $wheres = [];
+    public function __construct($connection, $grammar)
+    {
+        $this->connection = $connection;
+        $this->grammar = $grammar;
+    }
 
-    public function __construct($connection) {
+    public function select($columns = ['*'], $table = null, $alias = null)
+    {
+        /* TODO: maybe handle alias seperatly as paramater as indicated here */
+        $this->columns = $columns;
+
+        if(isset($table)) {
+            $this->table = $table;
+        }
+
+        return $this;
+    }
+
+    public function selectRaw() {
 
     }
 
-    public function select($columns, $table = null, $alias = null) {}
+    public function selectSub() {
 
-    public function from() {}
+    }
+
+    public function addSelect($columns = ['*'], $table = null, $alias = null) {
+        $this->colums = array_merge($this->colums, $column);
+        $this->table = array_merge($this->table, $table);
+    }
+
+    public function distinct() {
+        $this->distinct = true;
+        return $this;
+    }
+
+    public function from($table) {
+        $this->from = $table;
+        return $this;
+    }
 
     public function where($column, $operator = null, $value = null, $boolean = 'and') {
         // TODO: handle $column is nested where
