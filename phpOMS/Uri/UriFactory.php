@@ -38,12 +38,38 @@ class UriFactory
     {
     }
 
+    /**
+     * Set global query replacements
+     *
+     * @param string $key Replacemet key
+     * @param string $value Replacement value
+     * @param boolean $overwrite Overwrite if already exists
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public static function setQuery($key, $value, $overwrite = true) {
-
+        if($overwrite || !isset(self::$query[$key])) {
+            self::$query[$key] = $value;
+        }
     }
 
+    /**
+     * Set global query replacements
+     *
+     * @param string $key Replacemet key
+     *
+     * @return false|string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public static function getQuery($key) {
+        if(isset(self::$query[$key])){
+            return self::$query[$key];
+        }
 
+        return false;
     }
 
     /**
@@ -58,11 +84,12 @@ class UriFactory
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function build($data, $query = null, $scheme = \phpOMS\Uri\UriScheme::HTTP)
+    public static function build($data, $query = [], $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
         /* Overwriting dynamic link elements if they are defined */
+        // TODO: maybe set $query = null for performance as default value and make isset check here
         foreach($query as $key => $value) {
-            if(array_key_exists($value, self:$query)) {
+            if(array_key_exists($value, self::$query)) {
                 $query[$key] = self::$query[$value];
             }
         }
