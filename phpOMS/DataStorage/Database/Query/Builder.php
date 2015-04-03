@@ -7,33 +7,35 @@ class Builder {
 
     protected $grammar = null;
 
-    protected $columns = [];
+    //<editor-fold desc="Compile components for grammar compiler">
+    public $columns = [];
 
-    protected $distinct = false;
+    public $distinct = false;
 
-    protected $from = [];
+    public $from = [];
 
-    protected $joind = [];
+    public $joind = [];
 
-    protected $wheres = [];
+    public $wheres = [];
 
-    protected $groups = [];
+    public $groups = [];
 
-    protected $orders = [];
+    public $orders = [];
 
-    protected $limit = null;
+    public $limit = null;
 
-    protected $offset = null;
+    public $offset = null;
 
-    protected $unions = [];
+    public $unions = [];
+
+    public $lock = false;
+    //</editor-fold>
 
     protected $unionLimit = null;
 
     protected $unionOffset = null;
 
     protected $unionOrders = [];
-
-    protected $lock = false;
 
     protected $operators = array(
         '=', '<', '>', '<=', '>=', '<>', '!=',
@@ -43,6 +45,8 @@ class Builder {
         '~', '~*', '!~', '!~*', 'similar to',
         'not similar to',
     );
+
+    protected $queryType = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
 
     public function __construct($connection, $grammar)
     {
@@ -207,5 +211,9 @@ class Builder {
 
     public function commit() {
         return $this;
+    }
+
+    public function toSql() {
+        return $this->grammar->compileQuery();
     }
 }
