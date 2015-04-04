@@ -67,14 +67,6 @@ class Localization
     public $datetime = null;
 
     /**
-     * Locals
-     *
-     * @var array[]
-     * @since 1.0.0
-     */
-    private static $locals = null;
-
-    /**
      * Localized strings
      *
      * @var string[]
@@ -85,8 +77,6 @@ class Localization
     /**
      * Constructor
      *
-     * @param string $id Localization ID
-     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
@@ -96,24 +86,6 @@ class Localization
         setlocale(LC_TIME, '');
         setlocale(LC_NUMERIC, '');
         setlocale(LC_MONETARY, '');
-    }
-
-    /**
-     * Load local arrays
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function getLocals()
-    {
-        if(!isset(self::$locals)) {
-            include_once __DIR__ . '/Localization.array.php';
-
-            /** @var array[] $LOCALS */
-            self::$locals = $LOCALS;
-        }
-
-        return self::$locals;
     }
 
     /**
@@ -247,8 +219,6 @@ class Localization
     {
         $this->numberformat = $numberformat;
     }
-
-
 
     public function loadCoreLanguage($language = 'en')
     {

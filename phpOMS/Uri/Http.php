@@ -69,14 +69,15 @@ class Http implements \phpOMS\Uri\UriInterface
         return $uri;
     }
 
-    public static function routify($uri) {
+    public static function routify($uri)
+    {
         $route = parse_url($uri);
-        $path = explode('/', ltrim(rtrim($route['path'], '.php'), '/'));
+        $path  = explode('/', ltrim(rtrim($route['path'], '.php'), '/'));
 
         $count = count($path);
 
         for($i = 0; $i < $count; $i++) {
-            $path['l'.$i] = $path[$i];
+            $path['l' . $i] = $path[$i];
             unset($path[$i]);
         }
 

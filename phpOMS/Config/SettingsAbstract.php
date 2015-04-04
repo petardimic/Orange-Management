@@ -18,7 +18,8 @@ namespace phpOMS\Config;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
+abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
+{
     use \phpOMS\Config\OptionsTrait;
 
     /**
@@ -27,15 +28,15 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
      * @var \phpOMS\DataStorage\Cache\Cache
      * @since 1.0.0
      */
-    private $cache = null;
+    protected $cache = null;
 
     /**
      * Database connection instance
      *
-     * @var \phpOMS\DataStorage\Database\Connection\Connection
+     * @var \phpOMS\DataStorage\Database\Connection\ConnectionAbstract
      * @since 1.0.0
      */
-    private $connection = null;
+    protected $connection = null;
 
     /**
      * Settings table
@@ -73,11 +74,11 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function get($columns) {
+    public function get($columns)
+    {
         $key = md5(json_encode($columns));
 
         if(!$this->exists($key)) {
-
         }
 
         return $this->getOption($key);
@@ -87,15 +88,18 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface {
      * Get option by key
      *
      * @param string[] $columns Column values for filtering
-     * @param string[] $value Value to insert
+     * @param string[] $value   Value to insert
+     * @param boolean $overwrite Overwrite existing settings
+     * @param boolean $cachable Cache this setting
+     * @param boolean $store Save this Setting immediately to database
      *
      * @return mixed Option value
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function set($columns, $value, $overwrite = true, $cachable = true, $store = false) {
+    public function set($columns, $value, $overwrite = true, $cachable = true, $store = false)
+    {
         $key = md5(json_encode($columns));
-
     }
 }

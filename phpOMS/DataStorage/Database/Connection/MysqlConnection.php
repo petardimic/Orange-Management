@@ -19,52 +19,8 @@ namespace phpOMS\DataStorage\Database\Connection;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class MysqlConnection implements \phpOMS\DataStorage\Database\Connection\ConnectionInterface
+class MysqlConnection extends \phpOMS\DataStorage\Database\Connection\ConnectionAbstract
 {
-    /**
-     * Connection object
-     *
-     * This can be used externally to define queries and execute them.
-     *
-     * @var \PDO
-     * @since 1.0.0
-     */
-    public $con = null;
-
-    /**
-     * Database data
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    public $dbdata = null;
-
-    /**
-     * Database prefix
-     *
-     * The database prefix name for unique table names
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    public $prefix = '';
-
-    /**
-     * Database type
-     *
-     * @var \phpOMS\DataStorage\Database\DatabaseType
-     * @since 1.0.0
-     */
-    private $type = null;
-
-    /**
-     * Database status
-     *
-     * @var \phpOMS\DataStorage\Database\DatabaseStatus
-     * @since 1.0.0
-     */
-    public $status = \phpOMS\DataStorage\Database\DatabaseStatus::CLOSED;
-
     /**
      * Object constructor
      *
@@ -84,7 +40,8 @@ class MysqlConnection implements \phpOMS\DataStorage\Database\Connection\Connect
     /**
      * {@inheritdoc}
      */
-    public function connect($dbdata) {
+    public function connect($dbdata)
+    {
         $this->close();
 
         $this->dbdata = $dbdata;
@@ -100,35 +57,5 @@ class MysqlConnection implements \phpOMS\DataStorage\Database\Connection\Connect
             $this->status = \phpOMS\DataStorage\Database\DatabaseStatus::MISSING_DATABASE;
             $this->con    = null;
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-        $this->con = null;
-        $this->status = \phpOMS\DataStorage\Database\DatabaseStatus::CLOSED;
-    }
-
-    /**
-     * Object destructor
-     *
-     * Sets the database connection to null
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function __destruct()
-    {
-        $this->close();
     }
 }

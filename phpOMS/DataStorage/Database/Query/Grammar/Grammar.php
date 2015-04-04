@@ -2,32 +2,34 @@
 
 namespace phpOMS\DataStorage\Database\Query\Grammar;
 
-class Grammar extends \phpOMS\DataStorage\Database\Grammar {
+class Grammar extends \phpOMS\DataStorage\Database\Grammar
+{
     protected $selectComponents = [
-		'aggregate',
-		'columns',
-		'from',
-		'joins',
-		'wheres',
-		'groups',
-		'havings',
-		'orders',
-		'limit',
-		'offset',
-		'unions',
-		'lock',
-	];
+        'aggregate',
+        'columns',
+        'from',
+        'joins',
+        'wheres',
+        'groups',
+        'havings',
+        'orders',
+        'limit',
+        'offset',
+        'unions',
+        'lock',
+    ];
 
-    public function compileQuery() {
-        
+    public function compileQuery()
+    {
     }
 
-    public function compileSelect($query) {
+    public function compileSelect($query)
+    {
         return trim(
             implode(' ',
                 array_filter(
                     $this->compileComponents($query),
-                    function($value) {
+                    function ($value) {
                         return (string) $value !== '';
                     }
                 )
@@ -35,7 +37,8 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar {
         );
     }
 
-    protected function compileComponents($query) {
+    protected function compileComponents($query)
+    {
         $sql = [];
 
         /* Loop all possible query components and if they exist compile them. */
@@ -48,11 +51,13 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar {
         return $sql;
     }
 
-    protected function compileColumns($query, $columns) {
+    protected function compileColumns($query, $columns)
+    {
         return ($query->distinct ? 'SELECT DISTINCT ' : 'SELECT ') . $this->columnize($columns);
     }
 
-    protected function compileFrom($query, $table) {
+    protected function compileFrom($query, $table)
+    {
         return 'FROM ' . implode(', ', $table);
     }
 
@@ -73,29 +78,30 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar {
         }
     }*/
 
-    protected function compileWheres($query, $wheres) {
+    protected function compileWheres($query, $wheres)
+    {
         $sql = [];
 
         foreach($query->wheres as $where) {
-            $sql[] = $where['boolean'] . ' ' . $this->{'where'.$where['type']}($query, $where);
+            $sql[] = $where['boolean'] . ' ' . $this->{'where' . $where['type']}($query, $where);
         }
 
         if(isset($sql[0])) {
-            return 'WHERE ' .implode(' ', $sql);
+            return 'WHERE ' . implode(' ', $sql);
         }
 
         return '';
     }
 
-    protected function compileLimit($query, $limit) {
-
+    protected function compileLimit($query, $limit)
+    {
     }
 
-    protected function compileOffset($query, $offset)  {
-
+    protected function compileOffset($query, $offset)
+    {
     }
 
-    public function compileInsert() {
-
+    public function compileInsert()
+    {
     }
 }

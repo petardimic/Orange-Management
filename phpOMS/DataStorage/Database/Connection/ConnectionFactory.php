@@ -24,19 +24,26 @@ class ConnectionFactory
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
-     * Connect to database
+     * Create database connection
      *
      * Overwrites current connection if existing
      *
      * @param string[] $dbdata the basic database information for establishing a connection
      *
+     * @return \phpOMS\DataStorage\Database\Connection\ConnectionInterface
+     *
+     * @throws \Exception
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function create($dbdata) {
+    public static function create($dbdata)
+    {
         switch($dbdata['db']) {
             case 'mysql':
                 return new \phpOMS\DataStorage\Database\Connection\MysqlConnection($dbdata);

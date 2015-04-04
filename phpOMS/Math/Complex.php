@@ -1,43 +1,44 @@
 <?php
 namespace phpOMS\Math;
 
-class Complex {
+class Complex
+{
     private $real = null;
     private $im = null;
 
-    public function setReal() {
-
+    public function setReal()
+    {
     }
 
-    public function getReal() {
-
+    public function getReal()
+    {
     }
 
-    public function setImaginary() {
-
+    public function setImaginary()
+    {
     }
 
-    public function getImaginary() {
-
+    public function getImaginary()
+    {
     }
 
-    public function pow() {
-
+    public function pow()
+    {
     }
 
-    public function add() {
-
+    public function add()
+    {
     }
 
-    public function sub() {
-
+    public function sub()
+    {
     }
 
-    public function mult() {
-
+    public function mult()
+    {
     }
 
-    public function div() {
-
+    public function div()
+    {
     }
 }

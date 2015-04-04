@@ -38,6 +38,7 @@ trait ModelValidationTrait
         }
 
         /** @noinspection PhpUndefinedFieldInspection */
+
         return \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]);
     }
 
@@ -70,6 +71,8 @@ trait ModelValidationTrait
      *
      * @param mixed  $var  Variable to set
      * @param string $name Name of the variable
+     *
+     * @throws \Exception
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

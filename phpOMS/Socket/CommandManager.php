@@ -16,7 +16,7 @@ namespace phpOMS\Socket;
  * @link       http://orange-management.com
  * @since      1.0.0
  *
- * @todo: Hey, this loooks like a copy of an event manager!
+ * @todo       : Hey, this loooks like a copy of an event manager!
  */
 class CommandManager implements \Countable
 {

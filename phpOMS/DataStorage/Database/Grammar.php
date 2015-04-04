@@ -2,18 +2,22 @@
 
 namespace phpOMS\DataStorage\Database;
 
-abstract class Grammar {
+abstract class Grammar
+{
     protected $tablePrefix = '';
 
-    public function getDateFormat() {
+    public function getDateFormat()
+    {
         return 'Y-m-d H:i:s';
     }
 
-    public function getTablePrefix() {
-        return $this->prefix;
+    public function getTablePrefix()
+    {
+        return $this->tablePrefix;
     }
 
-    public function setTablePrefix($prefix) {
-        $this->prefix = $prefix;
+    public function setTablePrefix($prefix)
+    {
+        $this->tablePrefix = $prefix;
     }
 }

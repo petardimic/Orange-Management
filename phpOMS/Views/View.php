@@ -180,10 +180,10 @@ class View implements \phpOMS\Contract\RenderableInterface
     /**
      * Add view
      *
-     * @param string       $id        View ID
-     * @param View $view
-     * @param null|int     $order     Order of view
-     * @param bool         $overwrite Overwrite existing view
+     * @param string   $id        View ID
+     * @param View     $view
+     * @param null|int $order     Order of view
+     * @param bool     $overwrite Overwrite existing view
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -200,9 +200,9 @@ class View implements \phpOMS\Contract\RenderableInterface
     /**
      * Edit view
      *
-     * @param string       $id    View ID
-     * @param View $view
-     * @param null|int     $order Order of view
+     * @param string   $id    View ID
+     * @param View     $view
+     * @param null|int $order Order of view
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -301,5 +301,7 @@ class View implements \phpOMS\Contract\RenderableInterface
     /**
      * {@inheritdoc}
      */
-    public function render() {}
+    public function render()
+    {
+    }
 }

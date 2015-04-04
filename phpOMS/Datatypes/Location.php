@@ -16,7 +16,7 @@ namespace phpOMS\Datatypes;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Location \phpOMS\Contract\JsonableInterface
+class Location implements \phpOMS\Contract\JsonableInterface
 {
     /**
      * Zip or postal
@@ -211,14 +211,14 @@ class Location \phpOMS\Contract\JsonableInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray() {
-
+    public function toArray()
+    {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toJson() {
-
+    public function toJson($option = 0)
+    {
     }
 }

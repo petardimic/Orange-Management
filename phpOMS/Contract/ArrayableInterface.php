@@ -18,7 +18,8 @@ namespace phpOMS\Contract;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface ArrayableInterface {
+interface ArrayableInterface
+{
     /**
      * Get the instance as an array.
      *

@@ -31,8 +31,8 @@ interface OptionsInterface
     /**
      * Updating or adding settings
      *
-     * @param mixed $key      Unique option key
-     * @param mixed $value    Option value
+     * @param mixed $key       Unique option key
+     * @param mixed $value     Option value
      * @param bool  $overwrite Overwrite existing value
      *
      * @since  1.0.0

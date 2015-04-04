@@ -138,14 +138,14 @@ class Address implements \phpOMS\Contract\JsonableInterface
     /**
      * {@inheritdoc}
      */
-    public function toArray() {
-
+    public function toArray()
+    {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toJson() {
-
+    public function toJson($option = 0)
+    {
     }
 }

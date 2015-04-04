@@ -2,7 +2,8 @@
 
 namespace phpOMS\DataStorage\Database\Query;
 
-class Builder {
+class Builder
+{
     protected $connection = null;
 
     protected $grammar = null;
@@ -38,11 +39,31 @@ class Builder {
     protected $unionOrders = [];
 
     protected $operators = array(
-        '=', '<', '>', '<=', '>=', '<>', '!=',
-        'like', 'like binary', 'not like', 'between', 'ilike',
-        '&', '|', '^', '<<', '>>',
-        'rlike', 'regexp', 'not regexp',
-        '~', '~*', '!~', '!~*', 'similar to',
+        '=',
+        '<',
+        '>',
+        '<=',
+        '>=',
+        '<>',
+        '!=',
+        'like',
+        'like binary',
+        'not like',
+        'between',
+        'ilike',
+        '&',
+        '|',
+        '^',
+        '<<',
+        '>>',
+        'rlike',
+        'regexp',
+        'not regexp',
+        '~',
+        '~*',
+        '!~',
+        '!~*',
+        'similar to',
         'not similar to',
     );
 
@@ -51,7 +72,7 @@ class Builder {
     public function __construct($connection, $grammar)
     {
         $this->connection = $connection;
-        $this->grammar = $grammar;
+        $this->grammar    = $grammar;
     }
 
     public function select($columns = ['*'], $table = null, $alias = null)
@@ -66,30 +87,36 @@ class Builder {
         return $this;
     }
 
-    public function selectRaw() {
-
+    public function selectRaw()
+    {
     }
 
-    public function selectSub() {
-
+    public function selectSub()
+    {
     }
 
-    public function addSelect($columns = ['*'], $table = null, $alias = null) {
+    public function addSelect($columns = ['*'], $table = null, $alias = null)
+    {
         $this->colums = array_merge($this->colums, $column);
-        $this->table = array_merge($this->table, $table);
+        $this->table  = array_merge($this->table, $table);
     }
 
-    public function distinct() {
+    public function distinct()
+    {
         $this->distinct = true;
+
         return $this;
     }
 
-    public function from($table) {
+    public function from($table)
+    {
         $this->from = $table;
+
         return $this;
     }
 
-    public function where($column, $operator = null, $value = null, $boolean = 'and') {
+    public function where($column, $operator = null, $value = null, $boolean = 'and')
+    {
         // TODO: handle $column is nested where
         // TODO: handle $value is nested where
         // TODO: handle $value is null -> operator NULL
@@ -98,7 +125,6 @@ class Builder {
         }
 
         if(is_array($column)) {
-
         }
 
         $this->wheres[] = ['column' => $column, 'operator' => $operator, 'value' => $operator, 'boolean' => $boolean];
@@ -106,114 +132,234 @@ class Builder {
         return $this;
     }
 
-    public function orWhere($column, $operator = null, $value = null, $boolean = 'and') {
+    public function orWhere($column, $operator = null, $value = null, $boolean = 'and')
+    {
         return $this->where($column, $operator, $value, 'or');
     }
 
-    public function whereBetween() {}
-    public function orWhereBetween() {}
-    public function whereNotBetween() {}
-    public function orWhereNotBetween() {}
-    public function whereSub() {}
-    public function whereIn() {}
-    public function orWhereIn() {}
-    public function whereNotIn() {}
-    public function orWhereNotIn() {}
-    public function whereInSub() {}
-    public function whereNull() {}
-    public function orWhereNull() {}
-    public function whereDateTime() {}
-    public function whereDate() {}
-    public function whereYear() {}
-    public function whereMonth() {}
-    public function whereDay() {}
+    public function whereBetween()
+    {
+    }
 
-    public function groupBy() {}
-    public function newest() {}
-    public function oldest() {}
+    public function orWhereBetween()
+    {
+    }
 
-    public function offset() {}
-    public function limit() {}
+    public function whereNotBetween()
+    {
+    }
 
-    public function union() {}
+    public function orWhereNotBetween()
+    {
+    }
 
-    public function lock() {}
-    public function lockUpdate() {}
+    public function whereSub()
+    {
+    }
 
-    public function __toString() {
+    public function whereIn()
+    {
+    }
+
+    public function orWhereIn()
+    {
+    }
+
+    public function whereNotIn()
+    {
+    }
+
+    public function orWhereNotIn()
+    {
+    }
+
+    public function whereInSub()
+    {
+    }
+
+    public function whereNull()
+    {
+    }
+
+    public function orWhereNull()
+    {
+    }
+
+    public function whereDateTime()
+    {
+    }
+
+    public function whereDate()
+    {
+    }
+
+    public function whereYear()
+    {
+    }
+
+    public function whereMonth()
+    {
+    }
+
+    public function whereDay()
+    {
+    }
+
+    public function groupBy()
+    {
+    }
+
+    public function newest()
+    {
+    }
+
+    public function oldest()
+    {
+    }
+
+    public function offset()
+    {
+    }
+
+    public function limit()
+    {
+    }
+
+    public function union()
+    {
+    }
+
+    public function lock()
+    {
+    }
+
+    public function lockUpdate()
+    {
+    }
+
+    public function __toString()
+    {
         return '';
     }
 
-    public function find() {}
+    public function find()
+    {
+    }
 
-    public function count() {}
-    public function exists() {}
+    public function count()
+    {
+    }
 
-    public function min() {}
-    public function max() {}
-    public function sum() {}
-    public function avg() {}
+    public function exists()
+    {
+    }
 
+    public function min()
+    {
+    }
 
-    public function get() {
+    public function max()
+    {
+    }
+
+    public function sum()
+    {
+    }
+
+    public function avg()
+    {
+    }
+
+    public function get()
+    {
         return $this;
     }
 
-    public function insert() {
+    public function insert()
+    {
         return $this;
     }
 
-    public function update() {
+    public function update()
+    {
         return $this;
     }
 
-    public function increment() {}
-    public function decrement() {}
+    public function increment()
+    {
+    }
 
-    public function delete() {
+    public function decrement()
+    {
+    }
+
+    public function delete()
+    {
         return $this;
     }
 
-    public function create() {
+    public function create()
+    {
         return $this;
     }
 
-    public function drop() {
+    public function drop()
+    {
         return $this;
     }
 
-    public function raw() {
+    public function raw()
+    {
         return $this;
     }
 
-    public function join($table1, $table2, $column1, $opperator, $column2) {
+    public function join($table1, $table2, $column1, $opperator, $column2)
+    {
         return $this;
     }
 
-    public function joinWhere() {}
+    public function joinWhere()
+    {
+    }
 
-    public function leftJoin() {}
-    public function leftJoinWhere() {}
-    public function rightJoin() {}
-    public function rightJoinWhere() {}
+    public function leftJoin()
+    {
+    }
 
-    public function orderBy() {
+    public function leftJoinWhere()
+    {
+    }
+
+    public function rightJoin()
+    {
+    }
+
+    public function rightJoinWhere()
+    {
+    }
+
+    public function orderBy()
+    {
         return $this;
     }
 
-    public function rollback() {
+    public function rollback()
+    {
         return $this;
     }
 
-    public function startTransaction() {
+    public function startTransaction()
+    {
         return $this;
     }
 
-    public function commit() {
+    public function commit()
+    {
         return $this;
     }
 
-    public function toSql() {
+    public function toSql()
+    {
         return $this->grammar->compileQuery();
     }
 }

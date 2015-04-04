@@ -2,7 +2,7 @@
 namespace phpOMS\Localization;
 
 /**
- * uage codes ISO list
+ * Country codes ISO list
  *
  * PHP Version 5.4
  *
@@ -16,8 +16,9 @@ namespace phpOMS\Localization;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray {
-    protected static $constatns => [
+abstract class ISO3166EnumArray extends \phpOMS\Datatypes\EnumArray
+{
+    protected static $constatns = [
         'af' => 'Afghanistan',
         'ax' => 'Aland Islands',
         'al' => 'Albania',

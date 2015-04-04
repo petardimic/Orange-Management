@@ -77,7 +77,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $pageView = new \Web\Views\Page\BackendView();
 
-                if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get('core')->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->dbFailResponse($pageView);
                     break;
                 }
@@ -124,7 +124,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', $pageView->getOutput());
                 break;
             case \phpOMS\Message\RequestDestination::API:
-                if($this->dbPool->get('core')->status !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get('core')->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Retry-After', 'Retry-After: 300');

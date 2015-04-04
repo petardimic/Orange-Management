@@ -41,8 +41,8 @@ class Auth implements \phpOMS\Config\OptionsInterface
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Connection\Connection            $connection  Database connection
-     * @param \phpOMS\DataStorage\Session\SessionInterface $session Session
+     * @param \phpOMS\DataStorage\Database\Connection\Connection $connection Database connection
+     * @param \phpOMS\DataStorage\Session\SessionInterface       $session    Session
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -50,7 +50,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
     public function __construct($connection, $session)
     {
         $this->connection = $connection;
-        $this->session = $session;
+        $this->session    = $session;
     }
 
     /**

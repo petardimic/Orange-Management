@@ -1,60 +1,61 @@
 <?php
 namespace \phpOMS\Utils\PDF;
 
-class PDF extends \vendor\tcpdf\TCPDF implements \phpOMS\Contract\RenderableInterface {
+class PDF extends \vendor\tcpdf\TCPDF implements \phpOMS\Contract\RenderableInterface
+{
     private $pageNumberStart = 0;
     private $pageNumberPages = [];
     private $pageNumberStyle = null;
 
-    public function __construct() {
-
+    public function __construct()
+    {
     }
 
-    public function setCreator() {
-
+    public function setCreator()
+    {
     }
 
-    public function setAuthor() {
-
+    public function setAuthor()
+    {
     }
 
-    public function setOrientation() {
-
+    public function setOrientation()
+    {
     }
 
-    public function setPageFormat() {
-
+    public function setPageFormat()
+    {
     }
 
-    public function setEncoding() {
-
+    public function setEncoding()
+    {
     }
 
-    public function setMargin() {
-
+    public function setMargin()
+    {
     }
 
-    public function setHeaderMargin() {
-
+    public function setHeaderMargin()
+    {
     }
 
-    public function setFooterMargin() {
-
+    public function setFooterMargin()
+    {
     }
 
-    public function setFont() {
-
+    public function setFont()
+    {
     }
 
-    public function Header() {
-
+    public function Header()
+    {
     }
 
-    public function Footer() {
-
+    public function Footer()
+    {
     }
 
-    public function render() {
-
+    public function render()
+    {
     }
 }

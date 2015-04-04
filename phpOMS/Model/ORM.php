@@ -8,7 +8,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     /**
      * The connection name for the model.
      *
-     * @var string
+     * @var \phpOMS\DataStorage\Database\Connection\ConnectionInterface
      */
     protected $connection = null;
 
@@ -105,7 +105,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $created_by_validate = [
-        'isType' => ['integer'],
+        'isType'   => ['integer'],
         'hasLimit' => [1, PHP_INT_MAX]
     ];
 
@@ -132,13 +132,13 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $updated_by_validate = [
-        'isType' => ['integer'],
+        'isType'   => ['integer'],
         'hasLimit' => [1, PHP_INT_MAX]
     ];
 
     protected function query()
     {
-        return new \phpOMS\DataStorage\Database\Query\Builder($this->connection);
+        return new \phpOMS\DataStorage\Database\Query\Builder($this->connection, $this->connection->getGrammar());
     }
 
     protected function create()

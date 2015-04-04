@@ -22,7 +22,7 @@ class Pool
     /**
      * Databases
      *
-     * @var \phpOMS\DataStorage\Database\Connection\Connection[]
+     * @var \phpOMS\DataStorage\Database\Connection\ConnectionAbstract[]
      * @since 1.0.0
      */
     private $pool = [];
@@ -40,8 +40,8 @@ class Pool
     /**
      * Add database
      *
-     * @param mixed                                    $key Database key
-     * @param \phpOMS\DataStorage\Database\Connection\Connection $db  Database
+     * @param mixed                                                      $key Database key
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $db  Database
      *
      * @return bool
      *
@@ -64,7 +64,7 @@ class Pool
      *
      * @param mixed $key Database key
      *
-     * @return \phpOMS\DataStorage\Database\Connection\Connection
+     * @return \phpOMS\DataStorage\Database\Connection\ConnectionAbstract
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

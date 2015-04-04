@@ -83,7 +83,8 @@ abstract class EnumArray
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function get($key) {
+    public static function get($key)
+    {
         $constants = self::getConstants()[$key];
 
         if(!isset($constants[$key])) {

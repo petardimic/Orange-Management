@@ -45,7 +45,7 @@ class Account {
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Connection\Connection $connection Database connection
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database connection
      * @param \phpOMS\DataStorage\Session\SessionInterface $sessionManager Session manager
      * @param \phpOMS\DataStorage\Cache\Cache $cacheManager Cache manager
      *

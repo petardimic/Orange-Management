@@ -49,7 +49,7 @@ class ConsoleSession implements \phpOMS\DataStorage\Session\SessionInterface
     /**
      * {@inheritdoc}
      */
-    public function set($key, $value)
+    public function set($key, $value, $overwrite = true)
     {
     }
 
@@ -58,5 +58,21 @@ class ConsoleSession implements \phpOMS\DataStorage\Session\SessionInterface
      */
     public function remove($key)
     {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSID()
+    {
+        return $this->sid;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSID($sid)
+    {
+        $this->sid = $sid;
     }
 }

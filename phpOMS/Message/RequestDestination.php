@@ -20,19 +20,19 @@ namespace phpOMS\Message;
  */
 abstract class RequestDestination extends \phpOMS\Datatypes\Enum
 {
-    const WEBSITE  = 'website';     /* Website */
-    const API      = 'api';         /* API */
-    const SHOP     = 'shop';        /* Shop */
-    const BACKEND  = 'backend';     /* Backend */
-    const STATICP  = 'static';      /* Static content */
-    const FORUM    = 'forum';       /* Forum */
-    const TICKET   = 'ticket';      /* ???? */
-    const SUPPORT  = 'support';     /* Support center */
-    const SURVEY   = 'survey';      /* Survey page */
-    const BLOG     = 'blog';        /* Blog */
-    const CHART    = 'chart';       /* Chart view */
+    const WEBSITE = 'website';     /* Website */
+    const API = 'api';         /* API */
+    const SHOP = 'shop';        /* Shop */
+    const BACKEND = 'backend';     /* Backend */
+    const STATICP = 'static';      /* Static content */
+    const FORUM = 'forum';       /* Forum */
+    const TICKET = 'ticket';      /* ???? */
+    const SUPPORT = 'support';     /* Support center */
+    const SURVEY = 'survey';      /* Survey page */
+    const BLOG = 'blog';        /* Blog */
+    const CHART = 'chart';       /* Chart view */
     const CALENDAR = 'calendar';    /* Calendar */
-    const PROFILE  = 'profile';     /* User profile page */
-    const CHAT     = 'chat';        /* Chat page */
-    const GALLERY  = 'gallery';     /* Chat page */
+    const PROFILE = 'profile';     /* User profile page */
+    const CHAT = 'chat';        /* Chat page */
+    const GALLERY = 'gallery';     /* Chat page */
 }

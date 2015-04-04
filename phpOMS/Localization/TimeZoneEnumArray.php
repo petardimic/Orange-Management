@@ -2,7 +2,7 @@
 namespace phpOMS\Localization;
 
 /**
- * uage codes ISO list
+ * PHP Time zones
  *
  * PHP Version 5.4
  *
@@ -16,8 +16,9 @@ namespace phpOMS\Localization;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray {
-    protected static $constatns => [
+class TimeZoneEnumArray extends \phpOMS\Datatypes\EnumArray
+{
+    protected static $constatns = [
         0   => 'Africa/Abidjan',
         1   => 'Africa/Accra',
         2   => 'Africa/Addis_Ababa',

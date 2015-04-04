@@ -106,7 +106,9 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
      */
     public function getData($key = null)
     {
-        if($key === null) return $this->data;
+        if($key === null) {
+            return $this->data;
+        }
 
         return (isset($this->data[$key]) ? $this->data[$key] : false);
     }

@@ -41,14 +41,15 @@ class UriFactory
     /**
      * Set global query replacements
      *
-     * @param string $key Replacemet key
-     * @param string $value Replacement value
+     * @param string  $key       Replacement key
+     * @param string  $value     Replacement value
      * @param boolean $overwrite Overwrite if already exists
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function setQuery($key, $value, $overwrite = true) {
+    public static function setQuery($key, $value, $overwrite = true)
+    {
         if($overwrite || !isset(self::$query[$key])) {
             self::$query[$key] = $value;
         }
@@ -57,15 +58,16 @@ class UriFactory
     /**
      * Set global query replacements
      *
-     * @param string $key Replacemet key
+     * @param string $key Replacement key
      *
      * @return false|string
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function getQuery($key) {
-        if(isset(self::$query[$key])){
+    public static function getQuery($key)
+    {
+        if(isset(self::$query[$key])) {
             return self::$query[$key];
         }
 
@@ -80,6 +82,8 @@ class UriFactory
      * @param UriScheme|int $scheme Scheme type
      *
      * @return null|string
+     *
+     * @throws \Exception
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

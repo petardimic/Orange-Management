@@ -41,10 +41,30 @@ interface ConnectionInterface
     public function getType();
 
     /**
+     * Get the database status
+     *
+     * @return \phpOMS\DataStorage\Database\DatabaseStatus
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getStatus();
+
+    /**
      * Close database connection
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function close();
+
+    /**
+     * Return grammar for this connection
+     *
+     * @return \phpOMS\DataStorage\Database\Query\Grammar\Grammar
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getGrammar();
 }

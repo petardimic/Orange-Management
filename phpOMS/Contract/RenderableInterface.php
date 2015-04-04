@@ -19,7 +19,8 @@ namespace phpOMS\Contract;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface RenderableInterface {
+interface RenderableInterface
+{
     /**
      * Get the evaluated contents of the object.
      *

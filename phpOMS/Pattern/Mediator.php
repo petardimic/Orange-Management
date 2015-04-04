@@ -24,7 +24,7 @@ interface Mediator extends \Countable
      * Listeners will get called if a certain event gets triggered
      *
      * @param string   $event    Event ID
-     * @param callback $callback Function to call if the event gets triggered
+     * @param Callable $callback Function to call if the event gets triggered
      * @param string   $listener What class is attaching this listener
      *
      * @return int UID for the listener
@@ -50,7 +50,7 @@ interface Mediator extends \Countable
      * An object fires an event
      *
      * @param string   $event    Event ID
-     * @param callback $callback Callback function of the event. This will get triggered after firering all listener callbacks.
+     * @param Callable $callback Callback function of the event. This will get triggered after firering all listener callbacks.
      * @param string   $source   What class is invoking this event
      *
      * @since  1.0.0

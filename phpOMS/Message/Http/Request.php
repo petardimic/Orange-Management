@@ -102,7 +102,7 @@ class Request extends \phpOMS\Message\RequestAbstract
         }
 
         $this->requestDestination = $this->data['l1'];
-        $this->lang = $this->data['l0'];
+        $this->lang               = $this->data['l0'];
 
         $this->hash = null;
         $this->hash = [
@@ -276,7 +276,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     public function getMethod()
     {
         if(!isset($this->type)) {
-            $this->type =  $_SERVER['REQUEST_METHOD'];
+            $this->type = $_SERVER['REQUEST_METHOD'];
         }
 
         return $this->type;

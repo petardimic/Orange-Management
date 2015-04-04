@@ -72,14 +72,9 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     }
 
     /**
-     * Save session
-     *
-     * @todo: implement save type (session, cache, database)
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
-    public function save()
+    public function save($key)
     {
         session_id($this->sid);
         session_start();

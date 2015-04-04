@@ -18,11 +18,12 @@ namespace phpOMS\Contract;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface JsonableInterface extends \phpOMS\Contract\ArrayableInterface {
+interface JsonableInterface extends \phpOMS\Contract\ArrayableInterface
+{
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int  $options
+     * @param  int $options
      *
      * @return string
      *

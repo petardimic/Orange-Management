@@ -21,10 +21,10 @@ interface CacheInterface
     /**
      * Updating or adding cache data
      *
-     * @param mixed                                    $key    Unique cache key
-     * @param mixed                                    $value  Cache value
+     * @param mixed                                 $key    Unique cache key
+     * @param mixed                                 $value  Cache value
      * @param \phpOMS\DataStorage\Cache\CacheStatus $type   Cache type
-     * @param int                                      $expire Valid duration (in s)
+     * @param int                                   $expire Valid duration (in s)
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -36,7 +36,7 @@ interface CacheInterface
      *
      * @param mixed                                    $key    Unique cache key
      * @param mixed                                    $value  Cache value
-     * @param \phpOMS\DataStorage\Cache\CacheStatus $type   Cache type
+     * @param \phpOMS\DataStorage\Cache\CacheStatus    $type   Cache type
      * @param int                                      $expire Valid duration (in s)
      *
      * @param                                          bool
@@ -49,7 +49,7 @@ interface CacheInterface
     /**
      * Get cache by key
      *
-     * @param mixed                                    $key  Unique cache key
+     * @param mixed                                 $key  Unique cache key
      * @param \phpOMS\DataStorage\Cache\CacheStatus $type Cache status/type
      *
      * @return mixed Cache value
@@ -62,7 +62,7 @@ interface CacheInterface
     /**
      * Remove value by key
      *
-     * @param mixed                                    $key  Unique cache key
+     * @param mixed                                 $key  Unique cache key
      * @param \phpOMS\DataStorage\Cache\CacheStatus $type Cache status/type
      *
      * @since  1.0.0
@@ -83,8 +83,8 @@ interface CacheInterface
     /**
      * Updating existing value/key
      *
-     * @param mixed                                  $key   Unique cache key
-     * @param mixed                                  $value Cache value
+     * @param mixed                               $key   Unique cache key
+     * @param mixed                               $value Cache value
      * @param \phpOMS\DataStorage\Cache\CacheType $type  Cache type
      *
      * @since  1.0.0

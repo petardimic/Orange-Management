@@ -252,7 +252,7 @@ class Install
      */
     public function installModules($modules)
     {
-        $moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
+        $moduleManager = new \phpOMS\Module\ModuleManager($this->dbPool);
 
         foreach($modules as $module) {
             $moduleManager->install($module);
@@ -389,9 +389,9 @@ class Install
         for($i = 2; $i < 9998; $i++) {
             $valA .= " (" . rand(0, 1) . ", " . rand(0, 3) . ", '0000-00-00 00:00:00', '" . \phpOMS\Utils\RnG\DateTime::generateDateTime('2005-12-10', '2014-12-31')->format('Y-m-d H:i:s') . "', " . rand(0, 1) . "),";
             $valB .= " ('" . strtolower(\phpOMS\Utils\RnG\Name::generateName(['male',
-                                                                                 'female'])) . "', '" . \phpOMS\Utils\RnG\Name::generateName(['male',
-                                                                                                                                                 'female']) . "', '" . \phpOMS\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \phpOMS\Utils\RnG\Name::generateName(['male',
-                                                                                                                                                                                                                                                                                                                    'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
+                                                                              'female'])) . "', '" . \phpOMS\Utils\RnG\Name::generateName(['male',
+                                                                                                                                           'female']) . "', '" . \phpOMS\Utils\RnG\Name::generateName(['family']) . "', 'Orange Management', 'yellowOrange', '" . \phpOMS\Utils\RnG\Name::generateName(['male',
+                                                                                                                                                                                                                                                                                                        'female']) . "@email.com', " . rand(0, 5) . ", " . $i . "),";
             $valC .= " (1000101000, 1),";
         }
 

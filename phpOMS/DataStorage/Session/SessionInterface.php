@@ -53,6 +53,18 @@ interface SessionInterface
     public function remove($key);
 
     /**
+     * Save session
+     *
+     * @param string $key Save session
+     *
+     * @todo   : implement save type (session, cache, database)
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function save($key);
+
+    /**
      * @return int|string
      *
      * @since  1.0.0

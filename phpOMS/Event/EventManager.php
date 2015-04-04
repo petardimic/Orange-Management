@@ -16,7 +16,7 @@ namespace phpOMS\Event;
  * @link       http://orange-management.com
  * @since      1.0.0
  *
- * @todo: make cachable + database storable -> can reload user defined listeners (persistent events)
+ * @todo       : make cachable + database storable -> can reload user defined listeners (persistent events)
  */
 class EventManager implements \phpOMS\Pattern\Mediator
 {
@@ -57,7 +57,8 @@ class EventManager implements \phpOMS\Pattern\Mediator
             $event($source);
         }
 
-        if($callback !== null) {
+        if(isset($callback)) {
+            /** @var $callback Callable */
             $callback();
         }
     }

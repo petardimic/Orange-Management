@@ -20,8 +20,8 @@ namespace phpOMS\DataStorage\Database\Query;
  */
 abstract class QueryType extends \phpOMS\Datatypes\Enum
 {
-    const SELECT  = 0;
-    const INSERT  = 1;
-    const UPDATE  = 2;
-    const DELETE  = 3;
+    const SELECT = 0;
+    const INSERT = 1;
+    const UPDATE = 2;
+    const DELETE = 3;
 }

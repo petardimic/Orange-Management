@@ -16,8 +16,9 @@ namespace phpOMS\Localization;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class ISO639Enum extends \phpOMS\Datatypes\EnumArray {
-    protected static $constatns  => [
+abstract class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray
+{
+    protected static $constatns  = [
         'aa' => 'Afar',
         'ab' => 'Abkhaz',
         'ae' => 'Avestan',

@@ -35,7 +35,7 @@ class ApplicationAbstract
     /**
      * Settings instance
      *
-     * @var \phpOMS\Config\CoreSettings
+     * @var \Model\CoreSettings
      * @since 1.0.0
      */
     public $settings = null;
@@ -46,20 +46,20 @@ class ApplicationAbstract
      * @var \phpOMS\Module\ModuleManager
      * @since 1.0.0
      */
-    public $modules = null;
+    public $moduleManager = null;
 
     /**
-     * Auth instance
+     * Session instance
      *
-     * @var \phpOMS\Auth\AuthInterface
+     * @var \phpOMS\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
-    public $auth = null;
+    public $sessionManager = null;
 
     /**
      * User instance
      *
-     * @var \phpOMS\Models\User\User
+     * @var \Model\Account
      * @since 1.0.0
      */
     public $user = null;
@@ -78,5 +78,5 @@ class ApplicationAbstract
      * @var \phpOMS\Event\EventManager
      * @since 1.0.0
      */
-    public $event = null;
+    public $eventManager = null;
 }
