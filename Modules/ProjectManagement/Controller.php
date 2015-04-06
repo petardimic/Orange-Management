@@ -19,6 +19,24 @@ namespace Modules\ProjectManagement;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'ProjectManagement';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+        \phpOMS\Message\RequestDestination::BACKEND => 'backend',
+    ];
+
+    /**
      * Providing
      *
      * @var string

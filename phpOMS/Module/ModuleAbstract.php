@@ -19,6 +19,23 @@ namespace phpOMS\Module;
 abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = null;
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+    ];
+
+    /**
      * Application instance
      *
      * @var \phpOMS\ApplicationAbstract

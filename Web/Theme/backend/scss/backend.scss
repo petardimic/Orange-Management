@@ -23,8 +23,17 @@ button, input[type=submit], input[type=button], .button {
     border-width: 0;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &:focus {
         background: $d-button-color-hover;
+    }
+
+    &:disabled {
+        background: #eaeaea;
+        color: #bfbfbf;
+        cursor: not-allowed;
+
+        &:hover, &:focus {
+        }
     }
 }
 
@@ -38,6 +47,18 @@ button, input[type=submit], input[type=button], .button {
     }
 }
 
+#u-box {
+    width: 43px;
+
+    img {
+        padding: 3px;
+        width: 35px;
+        height: 35px;
+        border: 1px solid $d-border-cont;
+        cursor: pointer;
+    }
+}
+
 #nav-toggle {
     font-size: 1.7em;
     width: 1%;
@@ -45,7 +66,7 @@ button, input[type=submit], input[type=button], .button {
     i {
         padding: 3px 7px 3px 7px;
 
-        &:hover {
+        &:hover, &:focus {
             cursor: pointer;
             background: $d-button-color-hover;
         }
@@ -330,7 +351,7 @@ button, input[type=submit], input[type=button], .button {
             background: $d-box-color;
             padding: 5px 10px 5px 10px;
 
-            &:hover {
+            &:hover, &:focus {
                 color: $d-nav-color;
                 background: $d-base-color-o;
             }

@@ -39,6 +39,9 @@ $side = $nav->getOutput();
             <label> <input type="text" autofocus="autofocus"> </label>
             <input type="submit" value="<?= $this->l11n->lang[0]['Search'] ?>">
         </span>
+        <span class="vC" id="u-box">
+            <img class="rf" src="<?= '/Web/Theme/backend/img/default-user.jpg'; ?>">
+        </span>
 
         <div id="u-logo" itemscope itemtype="http://schema.org/Person"></div>
     </div>

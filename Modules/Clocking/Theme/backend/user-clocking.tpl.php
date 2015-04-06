@@ -3,6 +3,6 @@
 
     <div class="bc-1">
         <button><?= $this->l11n->lang[25]['Start']; ?></button>
-        <button disabled><?= $this->l11n->lang[25]['End']; ?></button>
+        <button class="rf" disabled><?= $this->l11n->lang[25]['End']; ?></button>
     </div>
 </div>
