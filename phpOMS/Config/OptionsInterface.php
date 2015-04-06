@@ -41,6 +41,17 @@ interface OptionsInterface
     public function setOption($key, $value, $overwrite = true);
 
     /**
+     * Updating or adding settings
+     *
+     * @param array $pair      Key value pair
+     * @param bool  $overwrite Overwrite existing value
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setOptions($pair, $overwrite = true);
+
+    /**
      * Get option by key
      *
      * @param mixed $key Unique option key

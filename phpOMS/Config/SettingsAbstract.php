@@ -44,7 +44,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
      * @var string
      * @since 1.0.0
      */
-    protected $table = null;
+    static protected $table = null;
 
     /**
      * Columns to identify the value
@@ -52,7 +52,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
      * @var string[]
      * @since 1.0.0
      */
-    protected $columns = [
+    static protected $columns = [
         'id'
     ];
 
@@ -76,22 +76,33 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
      */
     public function get($columns)
     {
-        $key = md5(json_encode($columns));
+        //$key = md5(json_encode($columns));
 
-        if(!$this->exists($key)) {
+        switch($this->connection->getType()) {
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                $sth = $this->connection->con->prepare(
+                    'SELECT `' . static::$columns[0] . '`, `content` FROM `' . $this->connection->prefix . static::$table . '` WHERE '
+                    . '`' . $this->connection->prefix . static::$table . '`.`' . static::$columns[0] . '` IN ('
+                    . implode(',', $columns) . ')'
+                );
+                $sth->execute();
+
+                $options = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
+                $this->setOptions($options);
+                break;
         }
 
-        return $this->getOption($key);
+        return $options;
     }
 
     /**
      * Get option by key
      *
-     * @param string[] $columns Column values for filtering
-     * @param string[] $value   Value to insert
-     * @param boolean $overwrite Overwrite existing settings
-     * @param boolean $cachable Cache this setting
-     * @param boolean $store Save this Setting immediately to database
+     * @param string[] $columns   Column values for filtering
+     * @param string[] $value     Value to insert
+     * @param boolean  $overwrite Overwrite existing settings
+     * @param boolean  $cachable  Cache this setting
+     * @param boolean  $store     Save this Setting immediately to database
      *
      * @return mixed Option value
      *

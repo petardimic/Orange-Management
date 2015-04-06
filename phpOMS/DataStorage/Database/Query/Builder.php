@@ -8,6 +8,8 @@ class Builder
 
     protected $grammar = null;
 
+    protected $type = null;
+
     //<editor-fold desc="Compile components for grammar compiler">
     public $columns = [];
 
@@ -15,7 +17,7 @@ class Builder
 
     public $from = [];
 
-    public $joind = [];
+    public $joins = [];
 
     public $wheres = [];
 
@@ -38,7 +40,7 @@ class Builder
 
     protected $unionOrders = [];
 
-    protected $operators = array(
+    protected $operators = [
         '=',
         '<',
         '>',
@@ -65,7 +67,7 @@ class Builder
         '!~*',
         'similar to',
         'not similar to',
-    );
+    ];
 
     protected $queryType = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
 
@@ -77,6 +79,8 @@ class Builder
 
     public function select($columns = ['*'], $table = null, $alias = null)
     {
+        $this->type = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
+
         /* TODO: maybe handle alias seperatly as paramater as indicated here */
         $this->columns = $columns;
 
@@ -97,7 +101,7 @@ class Builder
 
     public function addSelect($columns = ['*'], $table = null, $alias = null)
     {
-        $this->colums = array_merge($this->colums, $column);
+        $this->columns = array_merge($this->columns, $columns);
         $this->table  = array_merge($this->table, $table);
     }
 
@@ -277,11 +281,15 @@ class Builder
 
     public function insert()
     {
+        $this->type = \phpOMS\DataStorage\Database\Query\QueryType::INSERT;
+
         return $this;
     }
 
     public function update()
     {
+        $this->type = \phpOMS\DataStorage\Database\Query\QueryType::UPDATE;
+
         return $this;
     }
 
@@ -295,6 +303,8 @@ class Builder
 
     public function delete()
     {
+        $this->type = \phpOMS\DataStorage\Database\Query\QueryType::DELETE;
+
         return $this;
     }
 
@@ -361,5 +371,9 @@ class Builder
     public function toSql()
     {
         return $this->grammar->compileQuery();
+    }
+
+    public function getType() {
+        return $this->type;
     }
 }

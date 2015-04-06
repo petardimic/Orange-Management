@@ -30,7 +30,7 @@ class AccountSettings extends \phpOMS\Config\SettingsAbstract
      * @var string
      * @since 1.0.0
      */
-    private $table = 'account_settings';
+    protected $table = 'account_settings';
 
     /**
      * Columns

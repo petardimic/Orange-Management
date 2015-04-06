@@ -19,8 +19,20 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
         'lock',
     ];
 
-    public function compileQuery()
+    public function compileQuery($query)
     {
+        switch($query->getType()) {
+            case \phpOMS\DataStorage\Database\Query\QueryType::SELECT:
+                break;
+            case \phpOMS\DataStorage\Database\Query\QueryType::INSERT:
+                break;
+            case \phpOMS\DataStorage\Database\Query\QueryType::UPDATE:
+                break;
+            case \phpOMS\DataStorage\Database\Query\QueryType::DELETE:
+                break;
+            default:
+                throw new \Exception('Unknown query type.');
+        }
     }
 
     public function compileSelect($query)

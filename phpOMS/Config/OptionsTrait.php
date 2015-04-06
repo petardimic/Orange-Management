@@ -48,7 +48,17 @@ trait OptionsTrait
     public function setOption($key, $value, $overwrite = true)
     {
         if($overwrite || !array_key_exists($key, $this->options)) {
-            $this->options[$key] = [$value, $storable];
+            $this->options[$key] = [$value, $overwrite];
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions($pair, $overwrite = true)
+    {
+        if($overwrite) {
+            $this->options += $pair;
         }
     }
 }

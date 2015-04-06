@@ -51,7 +51,7 @@ class Http implements \phpOMS\Uri\UriInterface
     {
         $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
 
-        if(isset($query)) { /*
+        if(isset($query[0])) { /*
             $i = 0;
             foreach($query as $key => $para) {
                 if($i == 0) {

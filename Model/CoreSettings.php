@@ -28,7 +28,7 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
      * @var string
      * @since 1.0.0
      */
-    protected $table = 'settings';
+    static protected $table = 'settings';
 
     /**
      * Columns
@@ -36,7 +36,7 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
      * @var string[]
      * @since 1.0.0
      */
-    protected $columns = [
+    static protected $columns = [
         'id'
     ];
 

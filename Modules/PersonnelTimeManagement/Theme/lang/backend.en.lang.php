@@ -11,6 +11,7 @@ $MODLANG[35] = [
     "hours"          => "hours",
     "Month"          => "Month",
     "New"            => "New",
+    "Planning"       => "Planning",
     "Settings"       => "Settings",
     "Sick"           => "Sick",
     "Start"          => "Start",
