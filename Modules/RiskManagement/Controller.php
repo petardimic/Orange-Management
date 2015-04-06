@@ -19,6 +19,24 @@ namespace Modules\RiskManagement;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'RiskManagement';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+        \phpOMS\Message\RequestDestination::BACKEND => 'backend',
+    ];
+
+    /**
      * Providing
      *
      * @var string
@@ -53,7 +71,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestDestination::BACKEND:

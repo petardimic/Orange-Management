@@ -19,6 +19,23 @@ namespace Modules\Navigation;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'Navigation';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+    ];
+
+    /**
      * Providing
      *
      * @var string[]
@@ -86,7 +103,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * Constructor
      *
-     * @param \phpOMS\ApplicationAbstract $app Application
+     * @param \Web\WebApplication $app Application
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -94,6 +111,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function __construct($app)
     {
         parent::__construct($app);
+
+        $modules = $this->app->moduleManager->getActiveModules();
+        $language = $this->app->user->getL11n()->getLanguage();
+
+        foreach($modules as $id => $module) {
+            $this->app->user->getL11n()->loadLanguage($language, 'nav.backend', $module[0]['class']);
+        }
 
         if(!$this->nav) {
             $temp_nav  = null;
@@ -119,7 +143,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
         switch($data[0]) {
             case \Modules\Navigation\Models\NavigationType::TOP:

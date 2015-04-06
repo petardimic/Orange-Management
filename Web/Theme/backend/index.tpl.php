@@ -47,7 +47,7 @@ $side = $nav->getOutput();
     <?= $side; ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Message\RequestSource::WEB, $this->request, $this->response); ?>
+        \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response); ?>
     </div>
 </div>
 <?php \phpOMS\Model\Model::load_footer(); ?>

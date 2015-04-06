@@ -7,7 +7,7 @@
  * UI Logic
  */
 $timeMgmtView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+$headerView   = new \Web\Views\Lists\HeaderView($this->l11n);
 
 $timeMgmtView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -45,8 +45,8 @@ $settingsFormView->setAction('http://127.0.0.1');
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
         ['value' => 0, 'content' => $this->l11n->lang[35]['All']],
         ['value' => 1, 'content' => $this->l11n->lang[35]['Day']],
         ['value' => 2, 'content' => $this->l11n->lang[35]['Week']],
@@ -54,8 +54,8 @@ $settingsFormView->setElement(0, 0, [
         ['value' => 4, 'content' => $this->l11n->lang[35]['Year']],
     ],
     'selected' => 3,
-    'label' => $this->l11n->lang[35]['Interval'],
-    'name' => 'interval'
+    'label'    => $this->l11n->lang[35]['Interval'],
+    'name'     => 'interval'
 ]);
 
 $this->getView('settings')->addView('form', $settingsFormView);
@@ -80,6 +80,9 @@ $this->getView('stats')->addView('stat::table', $statTableView);
 ?>
 
 <div class="b-7" id="i3-2-1">
+    <?php if(($clocking = \phpOMS\Module\ModuleFactory::getInstance('Clocking')) !== null) {
+        $clocking->getBackendUserClocking();
+    } ?>
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <button><?= $this->l11n->lang[35]['New']; ?></button>

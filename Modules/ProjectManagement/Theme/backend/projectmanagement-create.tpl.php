@@ -1,5 +1,5 @@
 <?php /** @var \Modules\ProjectManagement\Controller $this */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1001701001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 

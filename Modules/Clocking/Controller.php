@@ -19,6 +19,24 @@ namespace Modules\Clocking;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'Clocking';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+        \phpOMS\Message\RequestDestination::BACKEND => 'backend',
+    ];
+
+    /**
      * Providing
      *
      * @var string
@@ -26,7 +44,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -54,7 +71,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
+    }
+
+    public function getBackendUserClocking() {
+        $clockingTimeMgmtView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+        $clockingTimeMgmtView->setTemplate('/Modules/Clocking/Theme/backend/user-clocking');
+        echo $clockingTimeMgmtView->getOutput();
     }
 }

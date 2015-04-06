@@ -107,7 +107,7 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var string
      * @since 1.0.0
      */
-    private $lang = \phpOMS\Localization\ISO639::EN;
+    private $lang = \phpOMS\Localization\ISO639Enum::EN;
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
         $lang_validate = [

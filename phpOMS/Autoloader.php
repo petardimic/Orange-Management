@@ -22,6 +22,27 @@ spl_autoload_register('\phpOMS\Autoloader::default_autoloader');
 class Autoloader
 {
     /**
+     * Check if class exists
+     *
+     * @param string $class Class path
+     *
+     * @return false|string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function exists($class) {
+        $class = ltrim($class, '\\');
+        $class = str_replace(['_', '\\'], DIRECTORY_SEPARATOR, $class);
+
+        if(file_exists(__DIR__ . '/../' . $class . '.php')) {
+            return $class;
+        }
+
+        return false;
+    }
+
+    /**
      * Loading classes by namespace + class name
      *
      * @param string $class Class path
@@ -31,10 +52,7 @@ class Autoloader
      */
     public static function default_autoloader($class)
     {
-        $class = ltrim($class, '\\');
-        $class = str_replace(['_', '\\'], DIRECTORY_SEPARATOR, $class);
-
-        if(file_exists(__DIR__ . '/../' . $class . '.php')) {
+        if(($class = self::exists($class)) !== false) {
             /** @noinspection PhpIncludeInspection */
             include __DIR__ . '/../' . $class . '.php';
         }

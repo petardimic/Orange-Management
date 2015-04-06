@@ -1,5 +1,6 @@
 <?php
 $MODLANG[3] = [
+    "Activity"           => "Activity",
     "Birthday"           => "Birthday",
     "ContactInformation" => "Contact Information",
     "Community"          => "Community",

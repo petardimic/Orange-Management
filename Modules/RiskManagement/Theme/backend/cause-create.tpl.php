@@ -1,5 +1,5 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
-\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call(\phpOMS\Message\RequestSource::WEB, [\Modules\Navigation\Models\NavigationType::CONTENT,
+\phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                  1003001001]);
 ?>
 

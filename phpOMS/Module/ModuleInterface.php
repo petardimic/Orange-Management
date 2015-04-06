@@ -49,7 +49,6 @@ interface ModuleInterface
     /**
      * Call all modules from which this module is receiving
      *
-     * @param \phpOMS\Message\RequestSource|int $type     Call type
      * @param \phpOMS\Message\RequestAbstract   $request  Request
      * @param \phpOMS\Message\ResponseAbstract  $response Response
      * @param mixed                             $data     Data to pass (if required)
@@ -57,5 +56,5 @@ interface ModuleInterface
      * @since  1.0.0
      * @author Dennis Eichhorn
      */
-    public function call($type, $request, $response, $data = null);
+    public function call($request, $response, $data = null);
 }

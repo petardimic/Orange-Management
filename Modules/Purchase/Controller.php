@@ -26,7 +26,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -56,7 +55,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestDestination::BACKEND:

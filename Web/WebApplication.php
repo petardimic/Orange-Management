@@ -105,10 +105,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                if(isset($toLoad[5])) {
-                    $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
-                }
-
                 $this->settings->get([1000000011, 1000000009]);
                 \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
@@ -136,7 +132,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
-
                 $this->response->get('GLOBAL')->add($this->request->__toString(), null);
 
                 $request = new \phpOMS\Message\Http\Request();
@@ -154,12 +149,8 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             }
                         }
 
-                        if(isset($toLoad[5])) {
-                            $this->user->getL11n()->loadLanguage($request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
-                        }
-
                         /** @noinspection PhpUndefinedMethodInspection */
-                        $this->moduleManager->running['Content']->call(\phpOMS\Message\RequestSource::WEB, $request, $this->response);
+                        $this->moduleManager->running['Content']->call($request, $this->response);
                     }
                 } else {
                     $request = $this->request;
@@ -191,13 +182,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                         }
                     }
 
-                    if(isset($toLoad[5])) {
-                        $this->user->getL11n()->loadLanguage($this->request->getLanguage(), $toLoad[5], $this->moduleManager->getActiveModules());
-                    }
-
                     if(isset(\phpOMS\Module\ModuleFactory::$loaded['Content'])) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call(\phpOMS\Message\RequestSource::WEB, $this->request, $this->response);
+                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response);
                     }
                 }
 

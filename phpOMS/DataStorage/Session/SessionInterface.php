@@ -55,14 +55,12 @@ interface SessionInterface
     /**
      * Save session
      *
-     * @param string $key Save session
-     *
      * @todo   : implement save type (session, cache, database)
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function save($key);
+    public function save();
 
     /**
      * @return int|string

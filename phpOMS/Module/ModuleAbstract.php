@@ -45,6 +45,24 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     public function __construct($app)
     {
         $this->app = $app;
+        $this->loadLanguage($this->app->user->getL11n()->getLanguage(), \phpOMS\Message\RequestDestination::BACKEND);
+    }
+
+    /**
+     * Load module language
+     *
+     * @param string $language ISO language code
+     * @param string $destination Destination language file to load
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function loadLanguage($language, $destination) {
+        /** @noinspection PhpUndefinedFieldInspection */
+        if(isset(static::$localization[\phpOMS\Message\RequestDestination::BACKEND])) {
+            /** @noinspection PhpUndefinedFieldInspection */
+            $this->app->user->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
+        }
     }
 
     /**
@@ -61,7 +79,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function call($tpye, $request, $response, $data = null);
+    abstract public function call($request, $response, $data = null);
 
     /**
      * Get modules this module is providing for

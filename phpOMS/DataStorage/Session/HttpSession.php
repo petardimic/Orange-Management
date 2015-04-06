@@ -74,7 +74,7 @@ class HttpSession implements \phpOMS\DataStorage\Session\SessionInterface
     /**
      * {@inheritdoc}
      */
-    public function save($key)
+    public function save()
     {
         session_id($this->sid);
         session_start();

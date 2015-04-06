@@ -250,26 +250,27 @@ class Localization
      * Returns instance
      *
      * @param string $language Language ID
-     * @param array  $files    Language array
-     * @param array  $modules  Available modules
+     * @param string  $file    Language array
+     * @param string  $module  Available modules
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function loadLanguage($language = 'en', $files = [], $modules = [])
+    public function loadLanguage($language = 'en', $file, $module)
     {
-        foreach($files as $file) {
             /** @noinspection PhpIncludeInspection */
-            /** @var string[] $MODLANG */
             /* TODO: change, store name inside instead of id */
-            require __DIR__ . '/../../Modules/' . $modules[$file['from']][0]['class'] . '/Theme/lang/' . $file['file'] . '.' . $language . '.lang.php';
-            /** @noinspection PhpUndefinedVariableInspection */
-            $key = (int) ($file['for'] / 100000 - 10000);
-            if(!isset($this->lang[$key])) {
+        if(file_exists(($path = __DIR__ . '/../../Modules/' . $module . '/Theme/lang/' . $file . '.' . $language . '.lang.php'))) {
+            /** @noinspection PhpIncludeInspection */
+            require $path;
+            /** @var string[] $MODLANG */
+            $key = array_keys($MODLANG);
+
+            if(!isset($this->lang[$key[0]])) {
                 $this->lang += $MODLANG;
             } else {
                 /** @noinspection PhpWrongStringConcatenationInspection */
-                $this->lang[$key] += $MODLANG[$key];
+                $this->lang[$key[0]] += $MODLANG[$key[0]];
             }
         }
     }

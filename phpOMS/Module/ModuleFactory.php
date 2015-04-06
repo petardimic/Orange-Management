@@ -33,7 +33,7 @@ class ModuleFactory
     /**
      * Application instance
      *
-     * @var \phpOMS\WebApplication
+     * @var \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
     public static $app = null;
@@ -53,6 +53,10 @@ class ModuleFactory
     {
         if(!isset(self::$loaded[$module])) {
             $class = '\\Modules\\' . $module . '\\Controller';
+
+            if(\phpOMS\Autoloader::exists($class) === false) {
+                return null;
+            }
 
             /**
              * @var \phpOMS\Module\ModuleAbstract $obj

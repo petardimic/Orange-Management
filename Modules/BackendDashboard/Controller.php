@@ -19,6 +19,23 @@ namespace Modules\BackendDashboard;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'BackendDashboard';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+    ];
+
+    /**
      * Providing
      *
      * @var string
@@ -26,7 +43,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $providing = [
         'Content',
-        1004400000
     ];
 
     /**
@@ -54,7 +70,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
         if(isset($this->receiving)) {
             foreach($this->receiving as $mid) {

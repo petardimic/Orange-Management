@@ -19,6 +19,23 @@ namespace Modules\Content;
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
     /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'Content';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+    ];
+
+    /**
      * Providing
      *
      * @var string
@@ -40,11 +57,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * {@inheritdoc}
      */
-    public function call($type, $request, $response, $data = null)
+    public function call($request, $response, $data = null)
     {
         foreach($this->receiving as $mid) {
             /** @noinspection PhpUndefinedMethodInspection */
-            \phpOMS\Module\ModuleFactory::$loaded[$mid]->call(\phpOMS\Message\RequestSource::WEB, $request, $response);
+            \phpOMS\Module\ModuleFactory::$loaded[$mid]->call($request, $response);
         }
     }
 }

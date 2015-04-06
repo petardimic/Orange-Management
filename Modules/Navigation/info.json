@@ -19,6 +19,13 @@
         "Navigation": "*"
     },
     "load": [
+        {
+            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "type": 4,
+            "for": 1004100000,
+            "file": "Navigation",
+            "from": 1000100000
+        }
     ],
     "lang": false,
     "js": true,
