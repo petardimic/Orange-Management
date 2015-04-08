@@ -38,12 +38,12 @@
         <?php elseif ($element['type'] === \phpOMS\Html\TagType::SELECT): ?>
         <?php if (isset($element['label'])): ?>
     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label>
-    <li>
         <?php endif; ?>
+    <li>
         <select id="n-<?= $element['name']; ?>">
             <?php foreach($element['options'] as $option): ?>
                 <option
-                    value="<?= $option['value']; ?>"<?= ($element['selected'] == $option['value'] ? ' selected' : ''); ?>><?= $option['content']; ?></option>
+                    value="<?= $option['value']; ?>"<?= (isset($option['selected']) && $option['selected'] ? ' selected' : ''); ?>><?= $option['content']; ?></option>
             <?php endforeach; ?>
         </select>
         <?php elseif($element['type'] === \phpOMS\Html\TagType::LABEL): ?>

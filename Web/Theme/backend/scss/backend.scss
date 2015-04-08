@@ -48,12 +48,12 @@ button, input[type=submit], input[type=button], .button {
 }
 
 #u-box {
-    width: 43px;
+    width: 48px;
 
     img {
         padding: 3px;
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
         border: 1px solid $d-border-cont;
         cursor: pointer;
     }
@@ -78,14 +78,21 @@ button, input[type=submit], input[type=button], .button {
     background: #fff;
     margin: 5px 5px 0 5px;
     font-size: 0.85em;
-    padding: 5px 0 5px 0;
 
     a {
-        padding: 0 5px 0 5px;
+        padding: 5px 5px 5px 5px;
+        background: #fff;
+
+        &:hover, &:focus, .active {
+            background: $d-nav-bg-color;
+            color: #fff;
+        }
     }
 
     li {
-        display: inline;
+        display: inline-block;
+        clear: both;
+        padding: 5px 0 5px 0;
     }
 }
 
@@ -106,7 +113,7 @@ button, input[type=submit], input[type=button], .button {
 
     > h1, th > h1, > h2 {
         color: $d-box-text-contrast-color;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: bold;
         background: $d-base-color;
         padding: 3px 5px 3px 5px;

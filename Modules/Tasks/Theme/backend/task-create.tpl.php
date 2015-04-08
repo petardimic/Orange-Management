@@ -29,6 +29,19 @@ $formCreateForm->setElement(0, 0, [
     'options' => [
         [
             'value'   => 0,
+            'content' => $this->l11n->lang[11]['Default'],
+            'selected' => true
+        ] // this can be used for pre designed tasks (receiver + different templates)
+    ],
+    'name'    => 'template',
+    'label'   => $this->l11n->lang[11]['Template']
+]);
+
+$formCreateForm->setElement(1, 0, [
+    'type'    => \phpOMS\Html\TagType::SELECT,
+    'options' => [
+        [
+            'value'   => 0,
             'content' => $this->l11n->lang[11]['Group']
         ],
         [
@@ -41,21 +54,21 @@ $formCreateForm->setElement(0, 0, [
     'label'   => $this->l11n->lang[11]['Type']
 ]);
 
-$formCreateForm->setElement(1, 0, [
+$formCreateForm->setElement(2, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'name'    => 'receiver',
     'label'   => $this->l11n->lang[11]['Receiver']
 ]);
 
-$formCreateForm->setElement(2, 0, [
+$formCreateForm->setElement(3, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'datetime-local',
     'name'    => 'due',
     'label'   => $this->l11n->lang[11]['Due']
 ]);
 
-$formCreateForm->setElement(3, 0, [
+$formCreateForm->setElement(4, 0, [
     'type'  => \phpOMS\Html\TagType::TEXTAREA,
     'name'  => 'msg',
     'label' => $this->l11n->lang[11]['Message']
