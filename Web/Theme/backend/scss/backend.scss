@@ -285,6 +285,8 @@ button, input[type=submit], input[type=button], .button {
 }
 
 .t-1 {
+    overflow: auto;
+
     thead th, thead td, tbody td {
         padding: 4px;
         white-space: nowrap;

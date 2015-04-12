@@ -35,19 +35,21 @@ $formCreateForm->setElement(1, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'name'    => 'mdirectory',
-    'label'   => $this->l11n->lang[27]['MediaDirectory']
+    'label'   => $this->l11n->lang[27]['MediaDirectory'],
+    'active' => false
 ]);
 
 $formCreateForm->setElement(1, 1, [
     'type'    => \phpOMS\Html\TagType::BUTTON,
-    'content' => $this->l11n->lang[27]['Select']
+    'content' => $this->l11n->lang[27]['Select'],
 ]);
 
 $formCreateForm->setElement(2, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
     'name'    => 'template',
-    'label'   => $this->l11n->lang[27]['Template']
+    'label'   => $this->l11n->lang[27]['Template'],
+    'active' => false
 ]);
 
 $formCreateForm->setElement(2, 1, [

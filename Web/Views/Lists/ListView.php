@@ -27,6 +27,22 @@ class ListView extends \Web\Views\WebViewAbstract
     protected $elements = null;
 
     /**
+     * Row freeze
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected $hFreeze = 0;
+
+    /**
+     * Columng freeze
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected $vFreeze = 0;
+
+    /**
      * @return array
      *
      * @since  1.0.0
@@ -57,5 +73,19 @@ class ListView extends \Web\Views\WebViewAbstract
     public function addElements($elements)
     {
         $this->elements[] = $elements;
+    }
+
+    /**
+     * Set freezes
+     *
+     * @param int $horizontal Row to freeze
+     * @param int $vertical Column to freeze
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setFreeze($horizontal = 0, $vertical = 0) {
+        $this->hFreeze = $horizontal;
+        $this->vFreeze = $vertical;
     }
 }
