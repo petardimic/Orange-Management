@@ -4,9 +4,10 @@
     };
 
     jsOMS.AssetManager.prototype.load = function (path, filename, filetype, callback) {
-        if (!this.assets[filename]) {
-            var fileref = null,
-                hash = jsOMS.hash(path + '/' + filename);
+        var hash;
+
+        if (!this.assets[(hash = jsOMS.hash(path + '/' + filename))]) {
+            var fileref = null;
 
             if (filetype === 'js') {
                 fileref = document.createElement('script');
@@ -48,6 +49,14 @@
         }
 
         return false;
+    };
+
+    jsOMS.AssetManager.prototype.get = function(id) {
+        if(this.assets[id]) {
+            return this.assets[id];
+        }
+
+        return undefined;
     };
 
     jsOMS.AssetManager.prototype.unload = function (key) {

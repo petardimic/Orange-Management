@@ -1,30 +1,55 @@
 (function (jsOMS, undefined) {
     jsOMS.Request = function () {
-
+        this.uri = null;
+        this.type = null;
+        this.method = null;
+        this.responseType = null;
+        this.requestHeader = null;
+        this.success = null;
     };
 
-    jsOMS.Request.prototype.setType = function () {
-
+    jsOMS.Request.prototype.setType = function (type) {
+        this.type = type;
     };
 
     jsOMS.Request.prototype.getType = function () {
-
+        return this.type;
     };
 
-    jsOMS.Request.prototype.setHttpType = function () {
-
+    jsOMS.Request.prototype.setMethod = function (method) {
+        this.method = method;
     };
 
-    jsOMS.Request.prototype.getHttpType = function () {
-
+    jsOMS.Request.prototype.getMethod = function () {
+        return this.method;
     };
 
-    jsOMS.Request.prototype.setUri = function () {
+    jsOMS.Request.prototype.setResponseType = function (type) {
+        this.responseType = type;
+    };
 
+    jsOMS.Request.prototype.getResponseType = function () {
+        return this.responseType;
+    };
+
+    jsOMS.Request.prototype.setRequestHeader = function (header) {
+        this.requestHeader = header;
+    };
+
+    jsOMS.Request.prototype.getRequestHeader = function () {
+        return this.requestHeader;
+    };
+
+    jsOMS.Request.prototype.setUri = function (uri) {
+        this.uri = uri;
     };
 
     jsOMS.Request.prototype.getUri = function () {
+        return this.uri;
+    };
 
+    jsOMS.Request.prototype.setSuccess = function (callback) {
+        this.success = callback;
     };
 
     jsOMS.Request.prototype.setData = function () {
@@ -49,13 +74,13 @@
 
     jsOMS.Request.prototype.send = function () {
         var xhr = new XMLHttpRequest();
-        xhr.open(this.type, this.url);
+        xhr.open(this.method, this.url);
         xhr.responseType = this.responseType;
         xhr.setRequestHeader("Content-Type", this.requestHeader);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                this.success(xhr.responseText);
+                this.success(xhr);
             }
         };
 
