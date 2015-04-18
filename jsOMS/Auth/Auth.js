@@ -15,13 +15,11 @@
     jsOMS.Auth.prototype.login = function () {
         var authRequest = new jsOMS.Request();
         authRequest.setUri(this.uri);
-        authRequest.setType();
-        authRequest.setMethod();
-        authRequest.setResponseType();
-        authRequest.setRequestHeader();
-        authRequest.setAjax();
+        authRequest.setMethod(jsOMS.EnumRequestMethod.POST);
+        authRequest.setResponseType(jsOMS.EnumRequestType.JSON);
+        authRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         authRequest.setSuccess(function(xhr) {
-
+            this.loginResult(xhr);
         });
 
         authRequest.send();
@@ -31,7 +29,7 @@
         this.refresh();
     };
 
-    jsOMS.Auth.prototype.refresh = function () {
+    jsOMS.Auth.prototype.loginResult = function(xhr) {
         location.reload();
     };
 

@@ -1,19 +1,12 @@
 (function (jsOMS, undefined) {
     jsOMS.Request = function () {
         this.uri = null;
-        this.type = null;
         this.method = null;
-        this.responseType = null;
         this.requestHeader = null;
         this.success = null;
-    };
+        this.isAjax = true;
 
-    jsOMS.Request.prototype.setType = function (type) {
-        this.type = type;
-    };
-
-    jsOMS.Request.prototype.getType = function () {
-        return this.type;
+        this.xhr = new XMLHttpRequest();
     };
 
     jsOMS.Request.prototype.setMethod = function (method) {
@@ -25,15 +18,15 @@
     };
 
     jsOMS.Request.prototype.setResponseType = function (type) {
-        this.responseType = type;
+        this.xhr.responseType = this.responseType;
     };
 
     jsOMS.Request.prototype.getResponseType = function () {
         return this.responseType;
     };
 
-    jsOMS.Request.prototype.setRequestHeader = function (header) {
-        this.requestHeader = header;
+    jsOMS.Request.prototype.setRequestHeader = function (type, header) {
+        this.xhr.setRequestHeader(type, header);
     };
 
     jsOMS.Request.prototype.getRequestHeader = function () {
@@ -60,8 +53,8 @@
 
     };
 
-    jsOMS.Request.prototype.setAjax = function () {
-
+    jsOMS.Request.prototype.setAjax = function (isAjax) {
+        this.isAjax = isAjax;
     };
 
     jsOMS.Request.prototype.isAjax = function () {
@@ -73,21 +66,18 @@
     };
 
     jsOMS.Request.prototype.send = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open(this.method, this.url);
-        xhr.responseType = this.responseType;
-        xhr.setRequestHeader("Content-Type", this.requestHeader);
+        this.xhr.open(this.method, this.url);
 
-        xhr.onreadystatechange = function () {
+        this.xhr.onreadystatechange = function (xhr) {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 this.success(xhr);
             }
         };
 
         if (this.type === jsOMS.EnumRequestType.GET) {
-            xhr.send();
+            this.xhr.send();
         } else {
-            xhr.send(this.data);
+            this.xhr.send(this.data);
         }
     };
 

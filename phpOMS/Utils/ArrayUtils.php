@@ -53,17 +53,18 @@ class ArrayUtils
     /**
      * Check if needle exists in multidimensional array
      *
-     * @param string $path  Path to element
-     * @param array  $data  Array
-     * @param mixed  $value Value to add
-     * @param string $delim Delimeter for path
+     * @param string $path      Path to element
+     * @param array  $data      Array
+     * @param mixed  $value     Value to add
+     * @param string $delim     Delimeter for path
+     * @param bool   $overwrite Overwrite if existing
      *
      * @return array
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function setArray($path, $data, $value, $delim)
+    public static function setArray($path, $data, $value, $delim, $overwrite = false)
     {
         $pathParts = explode($delim, $path);
         $current   = &$data;
@@ -72,14 +73,18 @@ class ArrayUtils
             $current = &$current[$key];
         }
 
-        if(is_array($current) && !is_array($value)) {
-            $current[] = $value;
-        } elseif(is_array($current) && is_array($value)) {
-            $current += $value;
-        } elseif(is_scalar($current) && $current !== null) {
-            $current = [$current, $value];
-        } else {
+        if($overwrite) {
             $current = $value;
+        } else {
+            if(is_array($current) && !is_array($value)) {
+                $current[] = $value;
+            } elseif(is_array($current) && is_array($value)) {
+                $current += $value;
+            } elseif(is_scalar($current) && $current !== null) {
+                $current = [$current, $value];
+            } else {
+                $current = $value;
+            }
         }
 
         return $data;

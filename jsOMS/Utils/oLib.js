@@ -47,6 +47,9 @@
         return window.getComputedStyle(ele, null).getPropertyValue(value);
     };
 
+    jsOMS.addArray = function (path, data, value, delim) {
+    };
+
     /**
      * Class finder
      *
@@ -158,7 +161,7 @@
 
     };
 
-    jsOMS.hash = function(str) {
+    jsOMS.hash = function (str) {
         var res = 0,
             len = str.length;
         for (var i = 0; i < len; i++) {

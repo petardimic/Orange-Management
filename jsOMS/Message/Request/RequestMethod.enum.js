@@ -1,5 +1,5 @@
 (function (jsOMS, undefined) {
-    jsOMS.EnumRequestType = Object.freeze({
+    jsOMS.EnumRequestMethod = Object.freeze({
         POST: 'POST',
         GET: 'GET',
         PUT: 'PUT',
