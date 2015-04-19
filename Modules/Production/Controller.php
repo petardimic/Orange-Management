@@ -18,6 +18,8 @@ namespace Modules\Production;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Providing
      *
@@ -36,6 +38,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+// endregion
 
     /**
      * Constructor

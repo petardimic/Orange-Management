@@ -20,6 +20,7 @@ namespace phpOMS\DataStorage\Database;
  */
 abstract class DatabaseStatus extends \phpOMS\Datatypes\Enum
 {
+
     const OK               = 0; /* Database connection successful */
     const MISSING_DATABASE = 1; /* Couldn't find database */
     const MISSING_TABLE    = 2; /* One of the core tables couldn't be found */

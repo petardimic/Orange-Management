@@ -20,7 +20,11 @@ namespace phpOMS\DataStorage\Database\Schema;
  */
 abstract class QueryType extends \phpOMS\Datatypes\Enum
 {
+
     const CREATE = 0;
+
     const DROP   = 1;
+
     const ALTER  = 2;
+
 }

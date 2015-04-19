@@ -20,6 +20,7 @@ namespace phpOMS\DataStorage\Cache;
  */
 abstract class CacheType extends \phpOMS\Datatypes\Enum
 {
+
     const _NUMERIC = 0; /* Data is numeric */
     const _STRING  = 1; /* Data is string */
     const _ARRAY   = 2; /* Data is array */

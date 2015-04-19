@@ -19,6 +19,8 @@ namespace phpOMS\DataStorage\Database;
  */
 class Pool
 {
+
+// region Class Fields
     /**
      * Databases
      *
@@ -26,6 +28,7 @@ class Pool
      * @since 1.0.0
      */
     private $pool = [];
+// endregion
 
     /**
      * Constructor

@@ -18,6 +18,8 @@ namespace phpOMS\Utils;
  */
 class JsonBuilder
 {
+
+// region Class Fields
     /**
      * Json data
      *
@@ -25,6 +27,7 @@ class JsonBuilder
      * @since 1.0.0
      */
     private $json = [];
+// endregion
 
     /**
      * Constructor

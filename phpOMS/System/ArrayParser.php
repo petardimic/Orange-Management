@@ -20,6 +20,8 @@ namespace phpOMS\System;
  */
 class ArrayParser
 {
+
+// region Class Fields
     /**
      * File path
      *
@@ -35,6 +37,7 @@ class ArrayParser
      * @since 1.0.0
      */
     public $array = null;
+// endregion
 
     /**
      * Constructor

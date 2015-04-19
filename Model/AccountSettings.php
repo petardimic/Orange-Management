@@ -20,10 +20,11 @@ namespace phpOMS\Config;
  * @link       http://orange-management.com
  * @since      1.0.0
  *
- * @todo: maybe move this to account model
+ * @todo       : maybe move this to account model
  */
 class AccountSettings extends \phpOMS\Config\SettingsAbstract
 {
+// region Class Fields
     /**
      * Settings table
      *
@@ -42,6 +43,8 @@ class AccountSettings extends \phpOMS\Config\SettingsAbstract
         'account',
         'origin'
     ];
+
+// endregion
 
     /**
      * Constructor

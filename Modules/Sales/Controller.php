@@ -18,6 +18,8 @@ namespace Modules\Sales;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Providing
      *
@@ -37,6 +39,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     protected static $dependencies = [
         'Warehousing'
     ];
+// endregion
 
     /**
      * Constructor
@@ -99,23 +102,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendArticle($request)
+    public function showBackendClient($request)
     {
         switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $articleList = new \Modules\Sales\Models\ArticleList($this->app->dbPool);
+                $clientList = new \Modules\Sales\Models\ClientList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-list.tpl.php';
+                include __DIR__ . '/Theme/backend/clients-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-single.tpl.php';
+                include __DIR__ . '/Theme/backend/clients-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-create.tpl.php';
+                include __DIR__ . '/Theme/backend/clients-create.tpl.php';
                 break;
         }
     }
@@ -159,23 +162,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendClient($request)
+    public function showBackendArticle($request)
     {
         switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $clientList = new \Modules\Sales\Models\ClientList($this->app->dbPool);
+                $articleList = new \Modules\Sales\Models\ArticleList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-list.tpl.php';
+                include __DIR__ . '/Theme/backend/article-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-single.tpl.php';
+                include __DIR__ . '/Theme/backend/article-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-create.tpl.php';
+                include __DIR__ . '/Theme/backend/article-create.tpl.php';
                 break;
         }
     }

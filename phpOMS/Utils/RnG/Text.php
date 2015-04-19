@@ -18,6 +18,8 @@ namespace phpOMS\Utils\RnG;
  */
 class Text
 {
+
+// region Class Fields
     /**
      * Vocabulary
      *
@@ -226,6 +228,7 @@ class Text
      * @since 1.0.0
      */
     private $sentences = 0;
+// endregion
 
     /**
      * Set if the text should have formatting

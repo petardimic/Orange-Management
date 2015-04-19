@@ -18,11 +18,14 @@ namespace Modules\Accounting\Models;
  */
 abstract class IncomeStatement implements \phpOMS\Utils\IO\ExchangeInterface
 {
-    private $id = 0;
 
-    private $date = null;
+// region Class Fields
+    private $id              = 0;
+
+    private $date            = null;
 
     private $incomeStatement = [];
+// endregion
 
     public function __construct()
     {

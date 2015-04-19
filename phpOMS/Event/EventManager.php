@@ -20,6 +20,8 @@ namespace phpOMS\Event;
  */
 class EventManager implements \phpOMS\Pattern\Mediator
 {
+
+// region Class Fields
     /**
      * Events
      *
@@ -27,6 +29,7 @@ class EventManager implements \phpOMS\Pattern\Mediator
      * @since 1.0.0
      */
     private $events = [];
+// endregion
 
     /**
      * Constructor

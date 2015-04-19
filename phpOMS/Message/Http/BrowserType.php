@@ -20,6 +20,7 @@ namespace phpOMS\Message\Http;
  */
 abstract class BrowserType extends \phpOMS\Datatypes\Enum
 {
+
     const IE        = 'msie'; /* Internet Explorer */
     const FIREFOX   = 'firefox'; /* Firefox */
     const SAFARI    = 'safari'; /* Safari */

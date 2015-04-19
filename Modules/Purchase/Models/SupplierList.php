@@ -18,6 +18,8 @@ namespace Modules\Purchase\Models;
  */
 class SupplierList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class SupplierList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

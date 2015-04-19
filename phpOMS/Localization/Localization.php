@@ -18,6 +18,8 @@ namespace phpOMS\Localization;
  */
 class Localization
 {
+
+// region Class Fields
     /**
      * Country ID
      *
@@ -73,6 +75,7 @@ class Localization
      * @since 1.0.0
      */
     public $lang = [];
+// endregion
 
     /**
      * Constructor

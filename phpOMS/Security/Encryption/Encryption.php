@@ -18,6 +18,8 @@ namespace phpOMS\Security\Encryption;
  */
 class Encryption
 {
+
+// region Class Fields
     /**
      * Encryption key
      *
@@ -49,6 +51,7 @@ class Encryption
      * @since 1.0.0
      */
     private $mode = MCRYPT_MODE_CBC;
+// endregion
 
     /**
      * Constructor
@@ -66,19 +69,6 @@ class Encryption
     }
 
     /**
-     * Set encryption key
-     *
-     * @param string $key Encryption key
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setKey($key)
-    {
-        $this->key = (string) $key;
-    }
-
-    /**
      * Get encryption key
      *
      * @return string
@@ -92,14 +82,14 @@ class Encryption
     }
 
     /**
-     * Set encryption cipher
+     * Set encryption key
      *
      * @param string $key Encryption key
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setCipher($key)
+    public function setKey($key)
     {
         $this->key = (string) $key;
     }
@@ -115,6 +105,19 @@ class Encryption
     public function getCipher()
     {
         return $this->key;
+    }
+
+    /**
+     * Set encryption cipher
+     *
+     * @param string $key Encryption key
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setCipher($key)
+    {
+        $this->key = (string) $key;
     }
 
     /**
@@ -186,6 +189,93 @@ class Encryption
         $mac   = $this->hash($value, $iv = base64_encode($iv));
 
         return base64_encode(json_encode(compact('iv', 'value', 'mac')));
+    }
+
+    /**
+     * Get input vector size
+     *
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function getIvSize()
+    {
+        return mcrypt_get_iv_size($this->cipher, $this->mode);
+    }
+
+    /**
+     * Get random data source
+     *
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function getRandomizer()
+    {
+        if(defined('MCRYPT_DEV_URANDOM')) {
+            return MCRYPT_DEV_URANDOM;
+        }
+
+        if(defined('MCRYPT_DEV_RANDOM')) {
+            return MCRYPT_DEV_RANDOM;
+        }
+
+        mt_srand();
+
+        return MCRYPT_RAND;
+    }
+
+    /**
+     * Mcrypt padding
+     *
+     * @param string $value Value to encrypt
+     * @param string $iv    Input vector
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function padAndMcrypt($value, $iv)
+    {
+        $value = $this->addPadding(serialize($value));
+
+        return mcrypt_encrypt($this->cipher, $this->key, $value, $this->mode, $iv);
+    }
+
+    /**
+     * Add padding
+     *
+     * @param string $value Value to encrypt
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function addPadding($value)
+    {
+        $pad = $this->block - (strlen($value) % $this->block);
+
+        return $value . str_repeat(chr($pad), $pad);
+    }
+
+    /**
+     * Create hash of value
+     *
+     * @param string $value Value to encrypt
+     * @param string $iv    Input vector
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function hash($value, $iv)
+    {
+        return hash_hmac('sha256', $iv . $value, $this->key);
     }
 
     /**
@@ -265,93 +355,6 @@ class Encryption
         /** @noinspection PhpUndefinedFunctionInspection */
 
         return hash_equals(hash_hmac('sha256', $payload['mac'], $bytes, true), $calcMac);
-    }
-
-    /**
-     * Create hash of value
-     *
-     * @param string $value Value to encrypt
-     * @param string $iv    Input vector
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function hash($value, $iv)
-    {
-        return hash_hmac('sha256', $iv . $value, $this->key);
-    }
-
-    /**
-     * Get input vector size
-     *
-     * @return int
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function getIvSize()
-    {
-        return mcrypt_get_iv_size($this->cipher, $this->mode);
-    }
-
-    /**
-     * Get random data source
-     *
-     * @return int
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function getRandomizer()
-    {
-        if(defined('MCRYPT_DEV_URANDOM')) {
-            return MCRYPT_DEV_URANDOM;
-        }
-
-        if(defined('MCRYPT_DEV_RANDOM')) {
-            return MCRYPT_DEV_RANDOM;
-        }
-
-        mt_srand();
-
-        return MCRYPT_RAND;
-    }
-
-    /**
-     * Mcrypt padding
-     *
-     * @param string $value Value to encrypt
-     * @param string $iv    Input vector
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function padAndMcrypt($value, $iv)
-    {
-        $value = $this->addPadding(serialize($value));
-
-        return mcrypt_encrypt($this->cipher, $this->key, $value, $this->mode, $iv);
-    }
-
-    /**
-     * Add padding
-     *
-     * @param string $value Value to encrypt
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function addPadding($value)
-    {
-        $pad = $this->block - (strlen($value) % $this->block);
-
-        return $value . str_repeat(chr($pad), $pad);
     }
 
     /**

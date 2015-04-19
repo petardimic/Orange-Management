@@ -18,6 +18,8 @@ namespace phpOMS\Utils\RnG;
  */
 class File
 {
+
+// region Class Fields
     /**
      * Extensions
      *
@@ -89,6 +91,7 @@ class File
                                   ['deb', null],
                                   ['py', null],
                                   ['pl', null]];
+// endregion
 
     /**
      * Get a random file extension

@@ -18,6 +18,7 @@ namespace phpOMS\Message;
  */
 abstract class RequestMethod extends \phpOMS\Datatypes\Enum
 {
+
     const GET    = 'GET';    /* GET */
     const POST   = 'POST';   /* POST */
     const PUT    = 'PUT';    /* PUT */

@@ -20,6 +20,8 @@ namespace phpOMS\Socket;
  */
 class CommandManager implements \Countable
 {
+
+// region Class Fields
     /**
      * Commands
      *
@@ -35,6 +37,7 @@ class CommandManager implements \Countable
      * @since 1.0.0
      */
     private $count = 0;
+// endregion
 
     /**
      * Constructor

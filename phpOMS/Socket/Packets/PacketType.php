@@ -18,6 +18,7 @@ namespace phpOMS\Socket\Packets;
  */
 abstract class PacketType extends \phpOMS\Datatypes\Enum
 {
+
     const CONNECT    = 0; /* Client connection (server/sender) */
     const DISCONNECT = 1; /* Client disconnection (server/sender) */
     const KICK       = 2; /* Kick (server/client/sender) */

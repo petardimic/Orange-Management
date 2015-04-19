@@ -20,6 +20,8 @@ namespace phpOMS\Socket\Packets;
  */
 class PacketManager
 {
+
+// region Class Fields
     /**
      * Command Manager
      *
@@ -35,6 +37,7 @@ class PacketManager
      * @since 1.0.0
      */
     private $clientManager = null;
+// endregion
 
     /**
      * Constructor

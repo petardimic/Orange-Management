@@ -18,6 +18,8 @@ namespace Modules\Warehousing\Models;
  */
 class Warehouse implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Name
      *
@@ -49,6 +51,7 @@ class Warehouse implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multi
      * @since 1.0.0
      */
     private static $instances = [];
+// endregion
 
     /**
      * Constructor
@@ -61,20 +64,6 @@ class Warehouse implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multi
     public function __construct($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function init($id)
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __clone()
-    {
     }
 
     /**
@@ -94,6 +83,20 @@ class Warehouse implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multi
         }
 
         return self::$instances[$id];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function init($id)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __clone()
+    {
     }
 
     /**

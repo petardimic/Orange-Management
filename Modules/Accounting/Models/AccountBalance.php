@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 abstract class AccountBalance
 {
+
+// region Class Fields
     /**
      * Time range start
      *
@@ -57,6 +59,7 @@ abstract class AccountBalance
      * @since 1.0.0
      */
     private $balance = null;
+// endregion
 
     /**
      * Constructor

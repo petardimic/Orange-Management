@@ -18,6 +18,8 @@ namespace Modules\Warehousing\Models;
  */
 class Shipping implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -81,6 +83,7 @@ class Shipping implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multit
      * @since 1.0.0
      */
     private static $instances = [];
+// endregion
 
     /**
      * Constructor
@@ -93,20 +96,6 @@ class Shipping implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multit
     public function __construct($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function init($id)
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __clone()
-    {
     }
 
     /**
@@ -126,6 +115,20 @@ class Shipping implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multit
         }
 
         return self::$instances[$id];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function init($id)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __clone()
+    {
     }
 
     /**

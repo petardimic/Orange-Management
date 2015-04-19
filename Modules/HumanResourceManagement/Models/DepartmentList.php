@@ -18,6 +18,8 @@ namespace Modules\HumanResources\Models;
  */
 class DepartmentList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class DepartmentList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

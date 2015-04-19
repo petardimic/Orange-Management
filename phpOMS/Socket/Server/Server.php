@@ -18,6 +18,8 @@ namespace phpOMS\Socket\Server;
  */
 class Server extends \phpOMS\Socket\SocketAbstract
 {
+
+// region Class Fields
     /**
      * Socket connection limit
      *
@@ -57,6 +59,7 @@ class Server extends \phpOMS\Socket\SocketAbstract
      * @since 1.0.0
      */
     private $packetManager = null;
+// endregion
 
     /**
      * Constructor
@@ -92,87 +95,6 @@ class Server extends \phpOMS\Socket\SocketAbstract
         $this->cmdManager->attach('restart', function ($conn, $para) {
             $this->restart($conn, $para);
         }, $this);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function create($ip, $port)
-    {
-        parent::create($ip, $port);
-        socket_bind($this->sock, $this->ip, $this->port);
-    }
-
-    /**
-     * Set connection limit
-     *
-     * @param int $limit Connection limit
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setLimit($limit)
-    {
-        $this->limit = $limit;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function run()
-    {
-        socket_listen($this->sock);
-        socket_set_nonblock($this->sock);
-        $this->conn[] = $this->sock;
-
-        while($this->run) {
-            $read = $this->conn;
-
-            if(socket_select($read, $write = null, $except = null, 0) < 1) {
-                // error
-                // socket_last_error();
-                // socket_strerror(socket_last_error());
-                // socket_clear_error();
-            }
-
-            if(in_array($this->sock, $read)) {
-                $this->conn[] = $newc = socket_accept($this->sock);
-
-                $welcome = "Welcome to the server.\n";
-                socket_write($newc, $welcome, strlen($welcome));
-                socket_getpeername($newc, $ip);
-
-                unset($read[0]);
-            }
-
-            foreach($read as $key => $client) {
-                $data = socket_read($client, 1024);
-
-                if($this->clientReadError($key)) {
-                    continue;
-                }
-
-                $this->packetManager->handle(trim($data), $key);
-            }
-        }
-
-        $this->close();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-        parent::close();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
     }
 
     /**
@@ -242,6 +164,71 @@ class Server extends \phpOMS\Socket\SocketAbstract
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function create($ip, $port)
+    {
+        parent::create($ip, $port);
+        socket_bind($this->sock, $this->ip, $this->port);
+    }
+
+    /**
+     * Set connection limit
+     *
+     * @param int $limit Connection limit
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function run()
+    {
+        socket_listen($this->sock);
+        socket_set_nonblock($this->sock);
+        $this->conn[] = $this->sock;
+
+        while($this->run) {
+            $read = $this->conn;
+
+            if(socket_select($read, $write = null, $except = null, 0) < 1) {
+                // error
+                // socket_last_error();
+                // socket_strerror(socket_last_error());
+                // socket_clear_error();
+            }
+
+            if(in_array($this->sock, $read)) {
+                $this->conn[] = $newc = socket_accept($this->sock);
+
+                $welcome = "Welcome to the server.\n";
+                socket_write($newc, $welcome, strlen($welcome));
+                socket_getpeername($newc, $ip);
+
+                unset($read[0]);
+            }
+
+            foreach($read as $key => $client) {
+                $data = socket_read($client, 1024);
+
+                if($this->clientReadError($key)) {
+                    continue;
+                }
+
+                $this->packetManager->handle(trim($data), $key);
+            }
+        }
+
+        $this->close();
+    }
+
+    /**
      * Handle client read error
      *
      * @param mixed $key Client key
@@ -262,5 +249,21 @@ class Server extends \phpOMS\Socket\SocketAbstract
         }
 
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function close()
+    {
+        parent::close();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __destruct()
+    {
+        parent::__destruct();
     }
 }

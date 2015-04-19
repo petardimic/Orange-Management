@@ -18,6 +18,8 @@ namespace phpOMS\Datatypes;
  */
 class Location implements \phpOMS\Contract\JsonableInterface
 {
+
+// region Class Fields
     /**
      * Zip or postal
      *
@@ -65,6 +67,7 @@ class Location implements \phpOMS\Contract\JsonableInterface
      * @since 1.0.0
      */
     private $geo = null;
+// endregion
 
     /**
      * Constructor

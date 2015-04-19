@@ -18,6 +18,8 @@ namespace Modules\Calendar\Models;
  */
 class Calendar implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Calendar ID
      *
@@ -64,9 +66,10 @@ class Calendar implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multit
      * @var \Modules\Calendar\Models\Event[]
      * @since 1.0.0
      */
-    private $events = [];
+    private        $events    = [];
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {

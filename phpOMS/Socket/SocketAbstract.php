@@ -18,6 +18,8 @@ namespace phpOMS\Socket;
  */
 abstract class SocketAbstract implements \phpOMS\Socket\SocketInterface
 {
+
+// region Class Fields
     /**
      * Socket ip
      *
@@ -49,6 +51,7 @@ abstract class SocketAbstract implements \phpOMS\Socket\SocketInterface
      * @since 1.0.0
      */
     protected $sock = null;
+// endregion
 
     /**
      * {@inheritdoc}
@@ -62,17 +65,6 @@ abstract class SocketAbstract implements \phpOMS\Socket\SocketInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-        if($this->sock !== null) {
-            socket_close($this->sock);
-            $this->sock = null;
-        }
-    }
-
-    /**
      * Destructor
      *
      * @since  1.0.0
@@ -81,5 +73,16 @@ abstract class SocketAbstract implements \phpOMS\Socket\SocketInterface
     public function __destruct()
     {
         $this->close();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function close()
+    {
+        if($this->sock !== null) {
+            socket_close($this->sock);
+            $this->sock = null;
+        }
     }
 }

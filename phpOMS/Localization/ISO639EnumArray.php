@@ -18,6 +18,8 @@ namespace phpOMS\Localization;
  */
 abstract class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray
 {
+
+// region Class Fields
     protected static $constatns = [
         'aa' => 'Afar',
         'ab' => 'Abkhaz',
@@ -204,4 +206,6 @@ abstract class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray
         'zh' => 'Chinese',
         'zu' => 'Zulu',
     ];
+// endregion
+
 }

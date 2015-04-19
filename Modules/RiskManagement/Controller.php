@@ -18,6 +18,8 @@ namespace Modules\RiskManagement;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Module name
      *
@@ -54,6 +56,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+// endregion
 
     /**
      * Constructor
@@ -128,6 +131,63 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showContentBackendProcess($request, $response);
                 break;
         }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendRisk($request, $response)
+    {
+        $riskView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+        $riskView->setTemplate('/Modules/RiskManagement/Theme/backend/risk-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $riskView->addData('nav', $navigation->nav);
+        echo $riskView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendCause($request, $response)
+    {
+        $causeView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+        $causeView->setTemplate('/Modules/RiskManagement/Theme/backend/cause-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $causeView->addData('nav', $navigation->nav);
+        echo $causeView->getOutput();
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendSolution($request, $response)
+    {
+        $solutionView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+        $solutionView->setTemplate('/Modules/RiskManagement/Theme/backend/solution-list');
+
+        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+        $solutionView->addData('nav', $navigation->nav);
+        echo $solutionView->getOutput();
     }
 
     /**
@@ -223,62 +283,5 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $processView->addData('nav', $navigation->nav);
         echo $processView->getOutput();
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendRisk($request, $response)
-    {
-        $riskView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-        $riskView->setTemplate('/Modules/RiskManagement/Theme/backend/risk-list');
-
-        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-        $riskView->addData('nav', $navigation->nav);
-        echo $riskView->getOutput();
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendCause($request, $response)
-    {
-        $causeView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-        $causeView->setTemplate('/Modules/RiskManagement/Theme/backend/cause-list');
-
-        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-        $causeView->addData('nav', $navigation->nav);
-        echo $causeView->getOutput();
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showContentBackendSolution($request, $response)
-    {
-        $solutionView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-        $solutionView->setTemplate('/Modules/RiskManagement/Theme/backend/solution-list');
-
-        $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-        $solutionView->addData('nav', $navigation->nav);
-        echo $solutionView->getOutput();
     }
 }

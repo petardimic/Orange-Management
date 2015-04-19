@@ -20,9 +20,11 @@ namespace phpOMS\Socket\Packets;
  */
 class Header implements \Serializable
 {
+
+// region Class Fields
     private $sendFrom = null;
 
-    private $sendTo = null;
+    private $sendTo   = null;
 
     /**
      * Packet size
@@ -47,6 +49,7 @@ class Header implements \Serializable
      * @since 1.0.0
      */
     private $subtype = 0;
+// endregion
 
     public function getSendFrom()
     {
@@ -135,19 +138,6 @@ class Header implements \Serializable
     }
 
     /**
-     * Jsonfy object
-     *
-     * @return string Json serialization
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function __toString()
-    {
-        return '';
-    }
-
-    /**
      * Serializing header
      *
      * @return string Json serialization
@@ -158,6 +148,19 @@ class Header implements \Serializable
     public function serialize()
     {
         return $this->__toString();
+    }
+
+    /**
+     * Jsonfy object
+     *
+     * @return string Json serialization
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __toString()
+    {
+        return '';
     }
 
     /**

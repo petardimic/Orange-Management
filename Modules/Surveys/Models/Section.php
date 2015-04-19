@@ -18,6 +18,8 @@ namespace Modules\Surveys;
  */
 class Section implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -40,9 +42,10 @@ class Section implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multiti
      * @var string
      * @since 1.0.0
      */
-    private $description = '';
+    private        $description = '';
 
-    private static $instances = [];
+    private static $instances   = [];
+// endregion
 
     public function __construct($id)
     {

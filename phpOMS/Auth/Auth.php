@@ -22,6 +22,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
 {
     use \phpOMS\Config\OptionsTrait;
 
+// region Class Fields
     /**
      * Session instance
      *
@@ -37,6 +38,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
      * @since 1.0.0
      */
     private $connection = null;
+// endregion
 
     /**
      * Constructor

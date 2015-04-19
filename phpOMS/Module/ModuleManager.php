@@ -20,6 +20,24 @@ namespace phpOMS\Module;
  */
 class ModuleManager
 {
+
+    /**
+     * Module path
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    const MODULE_PATH = __DIR__ . '/../../Modules';
+
+// region Class Fields
+    /**
+     * All modules that are running on this uri
+     *
+     * @var \phpOMS\Module\ModuleAbstract
+     * @since 1.0.0
+     */
+    public $running = null;
+
     /**
      * FileCache instance
      *
@@ -51,22 +69,7 @@ class ModuleManager
      * @since 1.0.0
      */
     private $all = null;
-
-    /**
-     * All modules that are running on this uri
-     *
-     * @var \phpOMS\Module\ModuleAbstract
-     * @since 1.0.0
-     */
-    public $running = null;
-
-    /**
-     * Module path
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    const MODULE_PATH = __DIR__ . '/../../Modules';
+// endregion
 
     /**
      * Constructor
@@ -132,29 +135,6 @@ class ModuleManager
      */
     public function run()
     {
-    }
-
-    /**
-     * Get all installed modules
-     *
-     * @return array
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function getInstalledModules()
-    {
-        if($this->installed === null) {
-            switch($this->dbPool->get('core')->getType()) {
-                case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
-                    $sth->execute();
-                    $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
-                    break;
-            }
-        }
-
-        return $this->installed;
     }
 
     /**
@@ -278,6 +258,29 @@ class ModuleManager
                 $this->installProviding($key, $module);
             }
         }
+    }
+
+    /**
+     * Get all installed modules
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function getInstalledModules()
+    {
+        if($this->installed === null) {
+            switch($this->dbPool->get('core')->getType()) {
+                case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
+                    $sth->execute();
+                    $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
+                    break;
+            }
+        }
+
+        return $this->installed;
     }
 
     public function installProviding($from, $for)

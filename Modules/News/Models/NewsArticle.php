@@ -18,6 +18,16 @@ namespace Modules\News\Models;
  */
 class NewsArticle extends \phpOMS\Model\ORM
 {
+
+// region Class Fields
+    /**
+     * Primary table
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected $table = 'news';
+
     /**
      * Database instance
      *
@@ -33,6 +43,7 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @since 1.0.0
      */
     private $id          = null;
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $id_validate = [
@@ -41,20 +52,13 @@ class NewsArticle extends \phpOMS\Model\ORM
             ];
 
     /**
-     * Primary table
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    protected $table = 'news';
-
-    /**
      * Title
      *
      * @var string
      * @since 1.0.0
      */
     private $title          = '';
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $title_validate = [
@@ -69,6 +73,7 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @since 1.0.0
      */
     private $content          = '';
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $content_validate = [
@@ -82,6 +87,7 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @since 1.0.0
      */
     private $plain          = '';
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $plain_validate = [
@@ -95,6 +101,7 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @since 1.0.0
      */
     private $type          = \Modules\News\Models\NewsType::ARTICLE;
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $type_validate = [
@@ -108,11 +115,13 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @since 1.0.0
      */
     private $lang          = \phpOMS\Localization\ISO639Enum::EN;
+
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
             $lang_validate = [
                 'isType' => ['\phpOMS\Localization\ISO639']
             ];
+// endregion
 
     /**
      * Constructor
@@ -184,6 +193,17 @@ class NewsArticle extends \phpOMS\Model\ORM
     }
 
     /**
+     * @param string $content
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setContent($content)
+    {
+        $this->setValidation($content, 'content');
+    }
+
+    /**
      * @return null
      *
      * @since  1.0.0
@@ -228,41 +248,6 @@ class NewsArticle extends \phpOMS\Model\ORM
     }
 
     /**
-     * @return null
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getPublish()
-    {
-        return $this->publish;
-    }
-
-    /**
-     * @param string $title
-     *
-     * @return mixed
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setTitle($title)
-    {
-        $this->setValidation($title, 'title');
-    }
-
-    /**
-     * @param string $content
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setContent($content)
-    {
-        $this->setValidation($content, 'content');
-    }
-
-    /**
      * @param string $plain
      *
      * @since  1.0.0
@@ -274,14 +259,14 @@ class NewsArticle extends \phpOMS\Model\ORM
     }
 
     /**
-     * @param int $type
+     * @return null
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setType($type)
+    public function getPublish()
     {
-        $this->setValidation($type, 'type');
+        return $this->publish;
     }
 
     /**
@@ -340,6 +325,19 @@ class NewsArticle extends \phpOMS\Model\ORM
     }
 
     /**
+     * @param string $title
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setTitle($title)
+    {
+        $this->setValidation($title, 'title');
+    }
+
+    /**
      * @return null
      *
      * @since  1.0.0
@@ -348,6 +346,17 @@ class NewsArticle extends \phpOMS\Model\ORM
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param int $type
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setType($type)
+    {
+        $this->setValidation($type, 'type');
     }
 
     /**

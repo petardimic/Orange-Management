@@ -18,6 +18,8 @@ namespace phpOMS;
  */
 class SocketApplication extends \phpOMS\ApplicationAbstract
 {
+
+// region Class Fields
     /**
      * Socket type
      *
@@ -25,6 +27,7 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
     private $type;
+// endregion
 
     /**
      * Constructor

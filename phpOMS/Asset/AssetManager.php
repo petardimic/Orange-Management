@@ -20,6 +20,8 @@ namespace phpOMS\Asset;
  */
 class AssetManager
 {
+
+// region Class Fields
     /**
      * Assets
      *
@@ -27,6 +29,7 @@ class AssetManager
      * @since 1.0.0
      */
     private $assets = [];
+// endregion
 
     /**
      * Constructor

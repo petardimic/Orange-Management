@@ -18,6 +18,8 @@ namespace Modules\EventManagement;
  */
 class Event implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -72,9 +74,10 @@ class Event implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
      * @var array
      * @since 1.0.0
      */
-    private $people = [];
+    private        $people    = [];
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {

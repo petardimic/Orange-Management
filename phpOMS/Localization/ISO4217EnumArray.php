@@ -18,6 +18,8 @@ namespace phpOMS\Localization;
  */
 abstract class ISO4217EnumArray extends \phpOMS\Datatypes\EnumArray
 {
+
+// region Class Fields
     protected static $constatns = [
         "ALL" => ["Albania, Leke", "4c, 65, 6b"],
         "AFN" => ["Afghanistan, Afghanis", "60b"],
@@ -134,4 +136,6 @@ abstract class ISO4217EnumArray extends \phpOMS\Datatypes\EnumArray
         "YER" => ["Yemen, Rials", "fdfc"],
         "ZWD" => ["Zimbabwe, Zimbabwe Dollars", "5a, 24"]
     ];
+// endregion
+
 }

@@ -19,6 +19,8 @@ namespace phpOMS\Log;
  */
 class Logging implements \phpOMS\Pattern\Singleton
 {
+
+// region Class Fields
     /**
      * Timing array
      *
@@ -31,6 +33,14 @@ class Logging implements \phpOMS\Pattern\Singleton
     public $timings = [];
 
     /**
+     * Instance
+     *
+     * @var \phpOMS\DataStorage\Cache\Cache
+     * @since 1.0.0
+     */
+    protected static $instance = null;
+
+    /**
      * The file pointer for the logging
      *
      * Potential values are null or a valid file pointer
@@ -39,14 +49,7 @@ class Logging implements \phpOMS\Pattern\Singleton
      * @since 1.0.0
      */
     private $fp = null;
-
-    /**
-     * Instance
-     *
-     * @var \phpOMS\DataStorage\Cache\Cache
-     * @since 1.0.0
-     */
-    protected static $instance = null;
+// endregion
 
     /**
      * Object constructor
@@ -61,19 +64,6 @@ class Logging implements \phpOMS\Pattern\Singleton
     public function __construct($path)
     {
         $this->fp = fopen($path . '/' . date("Y-m-d") . '.log', 'a');
-    }
-
-    /**
-     * Object destructor
-     *
-     * Closes the logging file
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function __destruct()
-    {
-        fclose($this->fp);
     }
 
     /**
@@ -93,6 +83,19 @@ class Logging implements \phpOMS\Pattern\Singleton
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Object destructor
+     *
+     * Closes the logging file
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function __destruct()
+    {
+        fclose($this->fp);
     }
 
     /**
@@ -169,6 +172,19 @@ class Logging implements \phpOMS\Pattern\Singleton
     }
 
     /**
+     * Sorts timings descending
+     *
+     * @param array [float] &$timings the timing array to sort
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function timingSort(&$timings)
+    {
+        uasort($timings, [$this, 'orderSort']);
+    }
+
+    /**
      * Sorts all timings descending
      *
      * @param array $a
@@ -186,18 +202,5 @@ class Logging implements \phpOMS\Pattern\Singleton
         }
 
         return ($a['time'] > $b['time']) ? -1 : 1;
-    }
-
-    /**
-     * Sorts timings descending
-     *
-     * @param array [float] &$timings the timing array to sort
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function timingSort(&$timings)
-    {
-        uasort($timings, [$this, 'orderSort']);
     }
 }

@@ -18,6 +18,8 @@ namespace Modules\Media\Models;
  */
 class MediaList
 {
+
+// region Class Fields
     /**
      * Database
      *
@@ -25,6 +27,7 @@ class MediaList
      * @since 1.0.0
      */
     private $db = null;
+// endregion
 
     /**
      * Constructor

@@ -18,6 +18,8 @@ namespace Modules\Support;
  */
 class Issue implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Name
      *
@@ -48,9 +50,10 @@ class Issue implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
      * @var int
      * @since 1.0.0
      */
-    private $creator = null;
+    private        $creator   = null;
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {

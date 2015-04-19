@@ -18,6 +18,8 @@ namespace Modules\Purchase;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Providing
      *
@@ -38,6 +40,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         'Media',
         'Warehousing'
     ];
+// endregion
 
     /**
      * Constructor
@@ -100,23 +103,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendArticle($request)
+    public function showBackendSupplier($request)
     {
         switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $articleList = new \Modules\Purchase\Models\ArticleList($this->app->dbPool);
+                $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-list.tpl.php';
+                include __DIR__ . '/Theme/backend/suppliers-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-single.tpl.php';
+                include __DIR__ . '/Theme/backend/suppliers-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-create.tpl.php';
+                include __DIR__ . '/Theme/backend/suppliers-create.tpl.php';
                 break;
         }
     }
@@ -160,23 +163,23 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendSupplier($request)
+    public function showBackendArticle($request)
     {
         switch($request->getData()['l4']) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->dbPool);
+                $articleList = new \Modules\Purchase\Models\ArticleList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/suppliers-list.tpl.php';
+                include __DIR__ . '/Theme/backend/article-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/suppliers-single.tpl.php';
+                include __DIR__ . '/Theme/backend/article-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/suppliers-create.tpl.php';
+                include __DIR__ . '/Theme/backend/article-create.tpl.php';
                 break;
         }
     }

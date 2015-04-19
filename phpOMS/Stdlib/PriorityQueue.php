@@ -21,6 +21,8 @@ namespace phpOMS\Stdlib;
  */
 class PriorityQueue implements \Countable, \Serializable
 {
+
+// region Class Fields
     /**
      * Queue elements
      *
@@ -36,6 +38,7 @@ class PriorityQueue implements \Countable, \Serializable
      * @since 1.0.0
      */
     private $queue = [];
+// endregion
 
     /**
      * Constructor

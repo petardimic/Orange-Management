@@ -18,6 +18,8 @@ namespace phpOMS\Math\Shape\D2;
  */
 class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
 {
+
+// region Class Fields
     /**
      * Coordinates
      *
@@ -91,6 +93,7 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
      * @since 1.0.0
      */
     private $innerEdgeAngular = null;
+// endregion
 
     /**
      * Constructor
@@ -185,6 +188,16 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
     /**
      * {@inheritdoc}
      */
+    public function setSurface($surface)
+    {
+        $this->reset();
+
+        $this->surface = $surface;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getSurfaceFormula()
     {
         return "";
@@ -208,14 +221,6 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
     /**
      * {@inheritdoc}
      */
-    public function getPerimeterFormula()
-    {
-        return "";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setPerimeter($perimeter)
     {
         $this->reset();
@@ -226,11 +231,24 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
     /**
      * {@inheritdoc}
      */
-    public function setSurface($surface)
+    public function reset()
     {
-        $this->reset();
+        $this->coord            = null;
+        $this->barycenter       = null;
+        $this->perimeter        = null;
+        $this->surface          = null;
+        $this->interiorAngleSum = null;
+        $this->edgeLength       = null;
+        $this->innerLength      = null;
+        $this->innerEdgeAngular = null;
+    }
 
-        $this->surface = $surface;
+    /**
+     * {@inheritdoc}
+     */
+    public function getPerimeterFormula()
+    {
+        return "";
     }
 
     /**
@@ -250,20 +268,5 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
         }
 
         return $this->barycenter;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function reset()
-    {
-        $this->coord            = null;
-        $this->barycenter       = null;
-        $this->perimeter        = null;
-        $this->surface          = null;
-        $this->interiorAngleSum = null;
-        $this->edgeLength       = null;
-        $this->innerLength      = null;
-        $this->innerEdgeAngular = null;
     }
 }

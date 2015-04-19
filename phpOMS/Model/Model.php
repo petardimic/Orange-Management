@@ -1,5 +1,6 @@
 <?php
 namespace phpOMS\Model;
+
 // TODO: THIS IS COMPLETELY OUTDATED change it to current structure
 /**
  * Model class
@@ -20,6 +21,8 @@ namespace phpOMS\Model;
  */
 class Model
 {
+
+// region Class Fields
     /**
      * Application instance
      *
@@ -35,6 +38,7 @@ class Model
      * @since 1.0.0
      */
     public static $content = [];
+// endregion
 
     /**
      * Loading html header

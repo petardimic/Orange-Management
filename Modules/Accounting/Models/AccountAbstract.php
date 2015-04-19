@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 abstract class AccountAbstract implements \Modules\Accounting\Models\AccountInterface
 {
+
+// region Class Fields
     /**
      * Account ID
      *
@@ -41,6 +43,7 @@ abstract class AccountAbstract implements \Modules\Accounting\Models\AccountInte
      * @since 1.0.0
      */
     protected $entryList = 0;
+// endregion
 
     /**
      * Constructor

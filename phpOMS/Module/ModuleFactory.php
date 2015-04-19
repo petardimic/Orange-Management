@@ -20,6 +20,8 @@ namespace phpOMS\Module;
  */
 class ModuleFactory
 {
+
+// region Class Fields
     /**
      * Module instances
      *
@@ -37,6 +39,7 @@ class ModuleFactory
      * @since 1.0.0
      */
     public static $app = null;
+// endregion
 
     /**
      * Gets and initializes modules

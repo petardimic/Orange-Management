@@ -18,6 +18,8 @@ namespace Modules\Tasks\Models;
  */
 class TaskElement implements \phpOMS\Models\MapperInterface
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -89,6 +91,7 @@ class TaskElement implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $forwarded = 0;
+// endregion
 
     /**
      * Constructor

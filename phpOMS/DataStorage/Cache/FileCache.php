@@ -18,6 +18,7 @@ namespace phpOMS\DataStorage\Cache;
  */
 class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
 {
+
     /**
      * Cache path
      *
@@ -26,6 +27,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      */
     const CACHE_PATH = __DIR__ . '/../../../Cache';
 
+// region Class Fields
     /**
      * Only cache if data is larger than threshold (0-100)
      *
@@ -33,6 +35,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      * @since 1.0.0
      */
     private $threshold = 50;
+// endregion
 
     /**
      * {@inheritdoc}

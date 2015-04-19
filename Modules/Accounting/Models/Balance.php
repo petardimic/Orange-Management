@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 abstract class Balance implements \phpOMS\Utils\IO\ExchangeInterface
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -25,28 +27,6 @@ abstract class Balance implements \phpOMS\Utils\IO\ExchangeInterface
      * @since 1.0.0
      */
     private $id = 0;
-
-    /**
-     * @return int
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * Date of the balance
@@ -72,6 +52,7 @@ abstract class Balance implements \phpOMS\Utils\IO\ExchangeInterface
             'debt'   => []
         ]
     ];
+// endregion
 
     /**
      * Constructor
@@ -81,6 +62,28 @@ abstract class Balance implements \phpOMS\Utils\IO\ExchangeInterface
      */
     public function __construct()
     {
+    }
+
+    /**
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

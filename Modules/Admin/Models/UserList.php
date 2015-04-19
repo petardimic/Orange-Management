@@ -18,6 +18,8 @@ namespace Modules\Admin\Models;
  */
 class UserList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class UserList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

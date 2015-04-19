@@ -18,6 +18,16 @@ namespace phpOMS\Module;
  */
 abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
 {
+
+// region Class Fields
+    /**
+     * Receiving modules from?
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    public $receiving = [];
+
     /**
      * Module name
      *
@@ -42,14 +52,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
      * @since 1.0.0
      */
     protected $app = null;
-
-    /**
-     * Receiving modules from?
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    public $receiving = [];
+// endregion
 
     /**
      * Constructor
@@ -81,6 +84,17 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
             /** @noinspection PhpUndefinedFieldInspection */
             $this->app->user->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
         }
+    }
+
+    /**
+     * Install external
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function installExternal()
+    {
+        return false;
     }
 
     /**
@@ -125,16 +139,5 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     {
         /** @noinspection PhpUndefinedFieldInspection */
         return static::$dependencies;
-    }
-
-    /**
-     * Install external
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function installExternal()
-    {
-        return false;
     }
 }

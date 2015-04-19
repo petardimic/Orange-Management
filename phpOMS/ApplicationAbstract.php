@@ -1,5 +1,6 @@
 <?php
 namespace phpOMS;
+
 /**
  * Controller class
  *
@@ -17,6 +18,8 @@ namespace phpOMS;
  */
 class ApplicationAbstract
 {
+
+// region Class Fields
     /**
      * Database object
      *
@@ -24,6 +27,7 @@ class ApplicationAbstract
      * @since 1.0.0
      */
     public $dbPool = null;
+
     /**
      * Cache instance
      *
@@ -79,4 +83,6 @@ class ApplicationAbstract
      * @since 1.0.0
      */
     public $eventManager = null;
+// endregion
+
 }

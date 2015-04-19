@@ -18,10 +18,11 @@ namespace Model;
  * @link       http://orange-management.com
  * @since      1.0.0
  *
- * @todo: maybe move this \Web
+ * @todo       : maybe move this \Web
  */
 class CoreSettings extends \phpOMS\Config\SettingsAbstract
 {
+// region Class Fields
     /**
      * Settings table
      *
@@ -39,6 +40,8 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
     static protected $columns = [
         'id'
     ];
+
+// endregion
 
     /**
      * Constructor

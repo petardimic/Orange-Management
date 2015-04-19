@@ -18,11 +18,17 @@ namespace Modules\Tasks\Models;
  */
 abstract class TaskStatus extends \phpOMS\Datatypes\Enum
 {
+
     const UNSEEN    = 0;
+
     const SEEN      = 1;
+
     const WORKING   = 2;
+
     const SUSPENDED = 3;
+
     const CANCELED  = 4;
+
     const DONE      = 5;
 
 }

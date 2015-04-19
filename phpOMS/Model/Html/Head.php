@@ -18,8 +18,15 @@ namespace phpOMS\Model\Html;
  */
 class Head
 {
+
+// region Class Fields
     private $language = '';
+
     private $title    = '';
+
     private $assets   = null;
+
     private $meta     = null;
+// endregion
+
 }

@@ -18,19 +18,22 @@ namespace phpOMS\Utils\Compiler\Php;
  */
 class ClassCompiler
 {
+
+// region Class Fields
     private $path       = null;
+
     private $namespace  = null;
+
     private $class      = null;
+
     private $extends    = null;
+
     private $implements = [];
+
     private $member     = [];
+// endregion
 
     public function __construct($path)
-    {
-        $this->path = (string) $path;
-    }
-
-    public function setPath($path)
     {
         $this->path = (string) $path;
     }
@@ -38,6 +41,11 @@ class ClassCompiler
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function setPath($path)
+    {
+        $this->path = (string) $path;
     }
 
     public function setNamesapce($namespace)
@@ -50,24 +58,24 @@ class ClassCompiler
         return $this->namespace;
     }
 
-    public function setClass($class)
-    {
-        $this->class = $class;
-    }
-
     public function getClass()
     {
         return $this->class;
     }
 
-    public function setExtends($extends)
+    public function setClass($class)
     {
-        $this->extends = $extends;
+        $this->class = $class;
     }
 
     public function getExtends()
     {
         return $this->extends;
+    }
+
+    public function setExtends($extends)
+    {
+        $this->extends = $extends;
     }
 
     public function addImplements($implements)
@@ -80,6 +88,11 @@ class ClassCompiler
         return $this->implements;
     }
 
+    public function getMember($name)
+    {
+        return $this->member[$name];
+    }
+
     public function setMember($name, $default = null, $isString = false, $type = 'private', $static = false, $overwrite = true)
     {
         if($overwrite || !isset($this->member[$name])) {
@@ -88,11 +101,6 @@ class ClassCompiler
                                     'type'     => $type,
                                     'static'   => $static];
         }
-    }
-
-    public function getMember($name)
-    {
-        return $this->member[$name];
     }
 
     public function removeMember($name)

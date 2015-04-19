@@ -18,6 +18,8 @@ namespace Modules\Sales\Models;
  */
 class Invoice implements \phpOMS\Models\MapperInterface
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class Invoice implements \phpOMS\Models\MapperInterface
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      *

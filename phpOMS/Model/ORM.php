@@ -5,6 +5,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
 {
     use \phpOMS\Validation\ModelValidationTrait;
 
+// region Class Fields
     /**
      * The connection name for the model.
      *
@@ -88,7 +89,9 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      * @var string
      */
     protected $created_at_column   = 'created_at';
+
     protected $created_at          = null;
+
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
               $created_at_validate = [
@@ -101,7 +104,9 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      * @var string
      */
     protected $created_by_column   = 'created_by';
+
     protected $created_by          = null;
+
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
               $created_by_validate = [
@@ -115,7 +120,9 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      * @var string
      */
     protected $updated_at_column   = 'updated_at';
+
     protected $updated_at          = null;
+
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
               $updated_at_validate = [
@@ -128,30 +135,16 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      * @var string
      */
     protected $updated_by_column   = 'updated_by';
+
     protected $updated_by          = null;
+
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
               $updated_by_validate = [
                   'isType'   => ['integer'],
                   'hasLimit' => [1, PHP_INT_MAX]
               ];
-
-    protected function query()
-    {
-        return new \phpOMS\DataStorage\Database\Query\Builder($this->connection, $this->connection->getGrammar());
-    }
-
-    protected function create()
-    {
-    }
-
-    protected function updateOrCreate()
-    {
-    }
-
-    protected function update()
-    {
-    }
+// endregion
 
     protected static function find()
     {
@@ -167,7 +160,10 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
         return $list;
     }
 
-    abstract protected function init($level = 1);
+    protected function query()
+    {
+        return new \phpOMS\DataStorage\Database\Query\Builder($this->connection, $this->connection->getGrammar());
+    }
 
     protected static function on()
     {
@@ -177,13 +173,27 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     {
     }
 
-    protected static function with()
+protected static function with()
     {
-    } // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
+    }
 
     protected static function delete()
     {
     }
+
+    protected function create()
+    {
+    }
+
+    protected function updateOrCreate()
+    {
+    }
+
+        protected function update()
+    {
+    } // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
+
+    abstract protected function init($level = 1);
 
     protected function fill($attributes)
     {

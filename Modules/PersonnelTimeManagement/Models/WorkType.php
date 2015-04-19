@@ -18,11 +18,19 @@ namespace Modules\PersonnelTimeManagement\Models;
  */
 abstract class WorkType extends \phpOMS\Datatypes\Enum
 {
+
     const OFF      = 0;
+
     const WORKING  = 1;
+
     const LATE     = 2;
+
     const SICK     = 3;
+
     const VACATION = 4;
+
     const REMOTE   = 5;
+
     const TRAVEL   = 6;
+
 }

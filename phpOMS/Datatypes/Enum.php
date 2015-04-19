@@ -20,6 +20,8 @@ namespace phpOMS\Datatypes;
  */
 abstract class Enum
 {
+
+// region Class Fields
     /**
      * Caching constant values
      *
@@ -27,24 +29,7 @@ abstract class Enum
      * @since 1.0.0
      */
     private static $constCache = null;
-
-    /**
-     * Getting all constants of this enum
-     *
-     * @return array
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function getConstants()
-    {
-        if(!isset(self::$constCache)) {
-            $reflect          = new \ReflectionClass(get_called_class());
-            self::$constCache = $reflect->getConstants();
-        }
-
-        return self::$constCache;
-    }
+// endregion
 
     /**
      * Checking enum name
@@ -63,6 +48,24 @@ abstract class Enum
         $constants = self::getConstants();
 
         return array_key_exists($name, $constants);
+    }
+
+    /**
+     * Getting all constants of this enum
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function getConstants()
+    {
+        if(!isset(self::$constCache)) {
+            $reflect          = new \ReflectionClass(get_called_class());
+            self::$constCache = $reflect->getConstants();
+        }
+
+        return self::$constCache;
     }
 
     /**

@@ -18,10 +18,15 @@ namespace Modules\Tasks\Models;
  */
 abstract class TaskPriority extends \phpOMS\Datatypes\Enum
 {
+
     const VLOW   = 1;
+
     const LOW    = 2;
+
     const MEDIUM = 3;
+
     const HIGH   = 4;
+
     const VHIGH  = 5;
 
 }

@@ -18,7 +18,10 @@ namespace Modules\Messages;
  */
 class IMAP implements \Modules\Messages\Email
 {
+
+// region Class Fields
     private $con = null;
+// endregion
 
     public function __construct()
     {

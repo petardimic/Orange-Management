@@ -18,6 +18,8 @@ namespace phpOMS\DataStorage\Cache;
  */
 class MemCache implements \phpOMS\DataStorage\Cache\CacheInterface
 {
+
+// region Class Fields
     /**
      * Memcache instance
      *
@@ -33,6 +35,7 @@ class MemCache implements \phpOMS\DataStorage\Cache\CacheInterface
      * @since 1.0.0
      */
     private $threshold = 10;
+// endregion
 
     /**
      * Constructor
@@ -123,6 +126,17 @@ class MemCache implements \phpOMS\DataStorage\Cache\CacheInterface
     }
 
     /**
+     * Destructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __destruct()
+    {
+        $this->close();
+    }
+
+    /**
      * Closing cache
      *
      * @since  1.0.0
@@ -134,16 +148,5 @@ class MemCache implements \phpOMS\DataStorage\Cache\CacheInterface
             $this->memc->close();
             $this->memc = null;
         }
-    }
-
-    /**
-     * Destructor
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function __destruct()
-    {
-        $this->close();
     }
 }

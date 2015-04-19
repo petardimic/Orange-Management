@@ -18,6 +18,8 @@ namespace Modules\Admin\Models;
  */
 class GroupList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class GroupList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

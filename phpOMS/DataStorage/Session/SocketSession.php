@@ -18,6 +18,8 @@ namespace phpOMS\DataStorage\Session;
  */
 class SocketSession implements \phpOMS\DataStorage\Session\SessionInterface
 {
+
+// region Class Fields
     /**
      * Session ID
      *
@@ -25,6 +27,7 @@ class SocketSession implements \phpOMS\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
     private $sid = null;
+// endregion
 
     /**
      * Constructor

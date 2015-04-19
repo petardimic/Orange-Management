@@ -18,5 +18,7 @@ namespace Modules\Tasks\Models;
  */
 abstract class TaskType extends \phpOMS\Datatypes\Enum
 {
+
     const TASK = 0;
+
 }

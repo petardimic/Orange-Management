@@ -18,6 +18,8 @@ namespace phpOMS\Config;
  */
 trait OptionsTrait
 {
+
+// region Class Fields
     /**
      * Options
      *
@@ -25,6 +27,7 @@ trait OptionsTrait
      * @since 1.0.0
      */
     private $options = [];
+// endregion
 
     /**
      * {@inheritdoc}

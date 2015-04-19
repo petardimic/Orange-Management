@@ -18,8 +18,11 @@ namespace Modules\Calendar\Models;
  */
 abstract class AvailableStatus extends \phpOMS\Datatypes\Enum
 {
+
     const AVAILABLE = 0;
+
     const BUSY      = 1;
+
     const AWAY      = 2;
 
 }

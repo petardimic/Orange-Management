@@ -20,7 +20,11 @@ namespace phpOMS\Model;
  */
 abstract class InitializationLevel extends \phpOMS\Datatypes\Enum
 {
+
     const MINIMUM = 0;
+
     const MEDIUM  = 1;
+
     const MAXIMUM = 2;
+
 }

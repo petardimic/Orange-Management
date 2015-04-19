@@ -18,6 +18,8 @@ namespace Modules\Chat;
  */
 class Room implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Room ID
      *
@@ -72,9 +74,10 @@ class Room implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
      * @var string
      * @since 1.0.0
      */
-    private $password = null;
+    private        $password  = null;
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {

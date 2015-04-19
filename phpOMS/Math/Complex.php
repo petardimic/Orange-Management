@@ -3,14 +3,18 @@ namespace phpOMS\Math;
 
 class Complex
 {
-    private $real = null;
-    private $im   = null;
 
-    public function setReal()
+// region Class Fields
+    private $real = null;
+
+    private $im   = null;
+// endregion
+
+    public function getReal()
     {
     }
 
-    public function getReal()
+    public function setReal()
     {
     }
 

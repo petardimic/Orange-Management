@@ -20,6 +20,7 @@ namespace phpOMS\DataStorage\Cache;
  */
 abstract class CacheStatus extends \phpOMS\Datatypes\Enum
 {
+
     const INACTIVE   = 0; /* Caching is disabled */
     const ERROR      = 1; /* Caching failed */
     const MEMCACHE   = 2; /* Caching OK */

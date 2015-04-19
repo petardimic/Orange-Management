@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -57,6 +59,7 @@ class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
      * @since 1.0.0
      */
     private $postings = [];
+// endregion
 
     /**
      * Constructor
@@ -95,18 +98,6 @@ class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
     }
 
     /**
-     * Set description
-     *
-     * @param string $desc Description
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setDescription($desc)
-    {
-    }
-
-    /**
      * Get description
      *
      * @return string
@@ -120,16 +111,15 @@ class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
     }
 
     /**
-     * Set creator
+     * Set description
      *
-     * @param \Datetime $created Created
+     * @param string $desc Description
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setCreated($created)
+    public function setDescription($desc)
     {
-        $this->created = $created;
     }
 
     /**
@@ -143,6 +133,19 @@ class BatchPosting implements \phpOMS\Utils\IO\ExchangeInterface, \Countable
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \Datetime $created Created
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
     }
 
     /**

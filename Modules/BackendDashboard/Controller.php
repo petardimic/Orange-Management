@@ -18,6 +18,8 @@ namespace Modules\BackendDashboard;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Module name
      *
@@ -53,6 +55,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+// endregion
 
     /**
      * Constructor

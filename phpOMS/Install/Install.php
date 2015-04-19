@@ -18,6 +18,8 @@ namespace phpOMS\Install;
  */
 class Install
 {
+
+// region Class Fields
     /**
      * Database object
      *
@@ -25,6 +27,7 @@ class Install
      * @since 1.0.0
      */
     private $db = null;
+// endregion
 
     /**
      * Constructor

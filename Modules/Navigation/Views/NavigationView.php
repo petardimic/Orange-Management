@@ -18,6 +18,8 @@ namespace Modules\Navigation\Views;
  */
 class NavigationView extends \phpOMS\Views\View
 {
+
+// region Class Fields
     /**
      * Navigation Id
      *
@@ -52,6 +54,7 @@ class NavigationView extends \phpOMS\Views\View
      * @since 1.0.0
      */
     protected $parent = 0;
+// endregion
 
     /**
      * {@inheritdoc}
@@ -59,19 +62,6 @@ class NavigationView extends \phpOMS\Views\View
     public function __construct($l11n)
     {
         parent::__construct($l11n);
-    }
-
-    /**
-     * Set navigation Id
-     *
-     * @param int $navId Navigation id used for display
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setNavId($navId)
-    {
-        $this->navId = $navId;
     }
 
     /**
@@ -85,6 +75,19 @@ class NavigationView extends \phpOMS\Views\View
     public function getNavId()
     {
         return $this->navId;
+    }
+
+    /**
+     * Set navigation Id
+     *
+     * @param int $navId Navigation id used for display
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setNavId($navId)
+    {
+        $this->navId = $navId;
     }
 
     /**

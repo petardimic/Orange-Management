@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 class DebitorList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class DebitorList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

@@ -18,7 +18,11 @@ namespace Modules\Reporter\Views;
  */
 class ReporterView extends \phpOMS\Views\View
 {
+
+// region Class Fields
     protected $dataSets = [];
 
-    protected $dataSet = null;
+    protected $dataSet  = null;
+// endregion
+
 }

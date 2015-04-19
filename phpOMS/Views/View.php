@@ -18,6 +18,8 @@ namespace phpOMS\Views;
  */
 class View implements \phpOMS\Contract\RenderableInterface
 {
+
+// region Class Fields
     /**
      * Template
      *
@@ -57,6 +59,7 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @since 1.0.0
      */
     protected $app = null;
+// endregion
 
     /**
      * Constructor
@@ -71,6 +74,26 @@ class View implements \phpOMS\Contract\RenderableInterface
     {
         $this->l11n = $l11n;
         $this->app  = $app;
+    }
+
+    /**
+     * Sort views by order
+     *
+     * @param array $a Array 1
+     * @param array $b Array 2
+     *
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private static function viewSort($a, $b)
+    {
+        if($a['order'] === $b['order']) {
+            return 0;
+        }
+
+        return ($a['order'] < $b['order']) ? -1 : 1;
     }
 
     /**
@@ -158,23 +181,18 @@ class View implements \phpOMS\Contract\RenderableInterface
     }
 
     /**
-     * Sort views by order
+     * Edit view
      *
-     * @param array $a Array 1
-     * @param array $b Array 2
-     *
-     * @return int
+     * @param string   $id    View ID
+     * @param View     $view
+     * @param null|int $order Order of view
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private static function viewSort($a, $b)
+    public function editView($id, $view, $order = null)
     {
-        if($a['order'] === $b['order']) {
-            return 0;
-        }
-
-        return ($a['order'] < $b['order']) ? -1 : 1;
+        $this->addView($id, $view, $order, true);
     }
 
     /**
@@ -198,18 +216,22 @@ class View implements \phpOMS\Contract\RenderableInterface
     }
 
     /**
-     * Edit view
+     * Get view/template response of all views
      *
-     * @param string   $id    View ID
-     * @param View     $view
-     * @param null|int $order Order of view
+     * @return string
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function editView($id, $view, $order = null)
+    public function getOutputs()
     {
-        $this->addView($id, $view, $order, true);
+        ob_start();
+
+        foreach($this->views as $key => $view) {
+            echo $view->getOutput();
+        }
+
+        return ob_get_clean();
     }
 
     /**
@@ -230,25 +252,6 @@ class View implements \phpOMS\Contract\RenderableInterface
     }
 
     /**
-     * Get view/template response of all views
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getOutputs()
-    {
-        ob_start();
-
-        foreach($this->views as $key => $view) {
-            echo $view->getOutput();
-        }
-
-        return ob_get_clean();
-    }
-
-    /**
      * @param string $id Data Id
      *
      * @return mixed
@@ -259,6 +262,18 @@ class View implements \phpOMS\Contract\RenderableInterface
     public function getData($id)
     {
         return (!isset($this->data[$id]) ? null : $this->data[$id]);
+    }
+
+    /**
+     * @param string $id   Data ID
+     * @param mixed  $data Data
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setData($id, $data)
+    {
+        $this->data[$id] = $data;
     }
 
     /**
@@ -282,18 +297,6 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function addData($id, $data)
-    {
-        $this->data[$id] = $data;
-    }
-
-    /**
-     * @param string $id   Data ID
-     * @param mixed  $data Data
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setData($id, $data)
     {
         $this->data[$id] = $data;
     }

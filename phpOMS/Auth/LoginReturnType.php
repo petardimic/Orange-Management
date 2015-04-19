@@ -20,6 +20,7 @@ namespace phpOMS\Auth;
  */
 abstract class LoginReturnType extends \phpOMS\Datatypes\Enum
 {
+
     const OK                   = 0; /* Everything is ok and the user got authed */
     const FAILURE              = 1; /* Authentication resulted in a unexpected failure */
     const WRONG_PASSWORD       = 2; /* Authentication with wrong password */

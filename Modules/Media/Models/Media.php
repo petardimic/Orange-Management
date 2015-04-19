@@ -18,6 +18,8 @@ namespace Modules\Media\Models;
  */
 class Media implements \phpOMS\Models\MapperInterface
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -84,6 +86,7 @@ class Media implements \phpOMS\Models\MapperInterface
                                            'users'  => []],
                             'editable' => ['groups' => [],
                                            'users'  => []]];
+// endregion
 
     /**
      * Constructor

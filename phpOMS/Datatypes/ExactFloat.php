@@ -3,7 +3,10 @@ namespace phpOMS\Datatypes\ExactFloat;
 
 class ExactFloat
 {
+
+// region Class Fields
     private static $length = 0;
+// endregion
 
     public static function setLength($length)
     {

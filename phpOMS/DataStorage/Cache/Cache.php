@@ -23,6 +23,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
 {
     use \phpOMS\Config\OptionsTrait;
 
+// region Class Fields
     /**
      * MemCache instance
      *
@@ -62,6 +63,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor
@@ -74,37 +76,6 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
     public function __construct($dbPool)
     {
         $this->dbPool = $dbPool;
-    }
-
-    /**
-     * Requesting caching instance
-     *
-     * @param \phpOMS\DataStorage\Cache\CacheStatus $type Cache to request
-     *
-     * @return \phpOMS\DataStorage\Cache\MemCache|\phpOMS\DataStorage\Cache\FileCache|null
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getInstance($type = null)
-    {
-        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::MEMCACHE) && $this->memc !== null) {
-            return $this->memc;
-        }
-
-        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::REDISCACHE) && $this->redisc !== null) {
-            return $this->redisc;
-        }
-
-        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::WINCACHE) && $this->winc !== null) {
-            return $this->winc;
-        }
-
-        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::FILECACHE) && $this->filec !== null) {
-            return $this->filec;
-        }
-
-        return null;
     }
 
     /**
@@ -142,6 +113,37 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
     public function set($key, $value, $type = null, $expire = 2592000)
     {
         $this->getInstance($type)->set($key, $value, $type = null, $expire);
+    }
+
+    /**
+     * Requesting caching instance
+     *
+     * @param \phpOMS\DataStorage\Cache\CacheStatus $type Cache to request
+     *
+     * @return \phpOMS\DataStorage\Cache\MemCache|\phpOMS\DataStorage\Cache\FileCache|null
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getInstance($type = null)
+    {
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::MEMCACHE) && $this->memc !== null) {
+            return $this->memc;
+        }
+
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::REDISCACHE) && $this->redisc !== null) {
+            return $this->redisc;
+        }
+
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::WINCACHE) && $this->winc !== null) {
+            return $this->winc;
+        }
+
+        if(($type === null || $type === \phpOMS\DataStorage\Cache\CacheStatus::FILECACHE) && $this->filec !== null) {
+            return $this->filec;
+        }
+
+        return null;
     }
 
     /**

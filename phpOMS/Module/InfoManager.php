@@ -20,6 +20,8 @@ namespace phpOMS\Module;
  */
 class InfoManager
 {
+
+// region Class Fields
     /**
      * File pointer
      *
@@ -35,6 +37,7 @@ class InfoManager
      * @since 1.0.0
      */
     private static $module_path = __DIR__ . '/../../Modules/';
+// endregion
 
     /**
      * Object constructor

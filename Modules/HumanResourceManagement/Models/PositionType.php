@@ -18,13 +18,21 @@ namespace Modules\HumanResources\Models;
  */
 abstract class PositionType extends \phpOMS\Datatypes\Enum
 {
+
     const INTERN     = 0;
+
     const APPRENTICE = 1;
+
     const JUNIOR     = 2;
+
     const REGULAR    = 3;
+
     const SENIOR     = 4;
+
     const ASSISTANT  = 5;
+
     const TEAMLEADER = 6;
+
     const HEAD       = 7;
 
 }

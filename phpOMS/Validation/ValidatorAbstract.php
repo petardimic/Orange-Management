@@ -18,6 +18,8 @@ namespace phpOMS\Validation;
  */
 abstract class ValidatorAbstract
 {
+
+// region Class Fields
     /**
      * Error code
      *
@@ -33,6 +35,7 @@ abstract class ValidatorAbstract
      * @since 1.0.0
      */
     protected static $msg = '';
+// endregion
 
     /**
      * {@inheritdoc}

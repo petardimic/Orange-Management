@@ -18,22 +18,8 @@ namespace phpOMS\Message\Http;
  */
 class Request extends \phpOMS\Message\RequestAbstract
 {
-    /**
-     * Request information
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    private $info = null;
 
-    /**
-     * Request hash
-     *
-     * @var array
-     * @since 1.0.0
-     */
-    private $hash = null;
-
+// region Class Fields
     /**
      * Browser type
      *
@@ -51,6 +37,22 @@ class Request extends \phpOMS\Message\RequestAbstract
     public $os = null;
 
     /**
+     * Request information
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    private $info = null;
+
+    /**
+     * Request hash
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    private $hash = null;
+
+    /**
      * Web request type
      *
      * @var \phpOMS\Message\RequestDestination
@@ -60,13 +62,21 @@ class Request extends \phpOMS\Message\RequestAbstract
 
     /** @todo: implement!!! */
     private $scheme   = null;
+
     private $host     = 80;
+
     private $port     = 80;
+
     private $user     = 80;
+
     private $password = 80;
+
     private $path     = null;
+
     private $query    = null;
+
     private $fragment = null;
+// endregion
 
     /**
      * Constructor
@@ -122,11 +132,16 @@ class Request extends \phpOMS\Message\RequestAbstract
     }
 
     /**
-     * {@inheritdoc}
+     * Set request type
+     *
+     * @param \phpOMS\Message\RequestMethod $type Request type
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getRequest()
+    public function setMethod($type)
     {
-        return $this->data;
+        $this->type = $type;
     }
 
     /**
@@ -142,6 +157,27 @@ class Request extends \phpOMS\Message\RequestAbstract
     private function hashRequest($request)
     {
         return sha1(implode('', $request));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequest()
+    {
+        return $this->data;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequestInfo()
+    {
+        if($this->info === null) {
+            $this->info['browser'] = $this->getBrowser();
+            $this->info['os']      = $this->getOS();
+        }
+
+        return $this->info;
     }
 
     /**
@@ -194,19 +230,6 @@ class Request extends \phpOMS\Message\RequestAbstract
         }
 
         return $this->os;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRequestInfo()
-    {
-        if($this->info === null) {
-            $this->info['browser'] = $this->getBrowser();
-            $this->info['os']      = $this->getOS();
-        }
-
-        return $this->info;
     }
 
     /**
@@ -280,19 +303,6 @@ class Request extends \phpOMS\Message\RequestAbstract
         }
 
         return $this->type;
-    }
-
-    /**
-     * Set request type
-     *
-     * @param \phpOMS\Message\RequestMethod $type Request type
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setMethod($type)
-    {
-        $this->type = $type;
     }
 
     /**

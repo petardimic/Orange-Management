@@ -18,6 +18,7 @@ namespace phpOMS\Socket;
  */
 abstract class SocketType extends \phpOMS\Datatypes\Enum
 {
+
     const SERVER = 'server'; /* Server socket */
     const CLIENT = 'client'; /* Client socket */
 }

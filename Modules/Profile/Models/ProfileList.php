@@ -18,6 +18,8 @@ namespace Modules\Profile\Models;
  */
 class ProfileList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class ProfileList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

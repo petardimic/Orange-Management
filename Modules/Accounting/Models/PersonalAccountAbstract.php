@@ -18,7 +18,10 @@ namespace Modules\Accounting\Models;
  */
 abstract class PersonalAccount extends AccountAbstract implements \phpOMS\Utils\IO\ExchangeInterface
 {
+
+// region Class Fields
     protected $id = 0;
+// endregion
 
     public function __construct()
     {

@@ -18,6 +18,8 @@ namespace Modules\News\Models;
  */
 class NewsList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class NewsList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

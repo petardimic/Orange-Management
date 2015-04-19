@@ -3,9 +3,14 @@ namespace \phpOMS\Utils\PDF;
 
 class PDF extends \vendor\tcpdf\TCPDF implements \phpOMS\Contract\RenderableInterface
 {
+
+// region Class Fields
     private $pageNumberStart = 0;
+
     private $pageNumberPages = [];
+
     private $pageNumberStyle = null;
+// endregion
 
     public function __construct()
     {

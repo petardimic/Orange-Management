@@ -18,6 +18,8 @@ namespace Modules\Surveys;
  */
 class Answer implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -40,9 +42,10 @@ class Answer implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multitio
      * @var string
      * @since 1.0.0
      */
-    private $description = '';
+    private        $description = '';
 
-    private static $instances = [];
+    private static $instances   = [];
+// endregion
 
     public function __construct($id)
     {

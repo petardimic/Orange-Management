@@ -54,6 +54,17 @@ class Client extends \phpOMS\Socket\SocketAbstract
     }
 
     /**
+     * Disconnect from server
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function disconnect()
+    {
+        $this->run = false;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function create($ip, $port)
@@ -117,16 +128,5 @@ class Client extends \phpOMS\Socket\SocketAbstract
     public function __destruct()
     {
         parent::__destruct();
-    }
-
-    /**
-     * Disconnect from server
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function disconnect()
-    {
-        $this->run = false;
     }
 }

@@ -18,6 +18,8 @@ namespace Modules\Tasks\Models;
  */
 class TaskList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class TaskList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

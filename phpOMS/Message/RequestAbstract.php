@@ -22,6 +22,16 @@ namespace phpOMS\Message;
  */
 abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
 {
+
+// region Class Fields
+    /**
+     * Uri
+     *
+     * @var \phpOMS\Uri\UriInterface
+     * @since 1.0.0
+     */
+    public $uri = null;
+
     /**
      * Request type
      *
@@ -39,28 +49,21 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     protected $data = null;
 
     /**
-     * Request type
-     *
-     * @var \phpOMS\Message\RequestSource
-     * @since 1.0.0
-     */
-    private static $source = null;
-
-    /**
-     * Uri
-     *
-     * @var \phpOMS\Uri\UriInterface
-     * @since 1.0.0
-     */
-    public $uri = null;
-
-    /**
      * Language
      *
      * @var string
      * @since 1.0.0
      */
     protected $lang = null;
+
+    /**
+     * Request type
+     *
+     * @var \phpOMS\Message\RequestSource
+     * @since 1.0.0
+     */
+    private static $source = null;
+// endregion
 
     /**
      * Constructor

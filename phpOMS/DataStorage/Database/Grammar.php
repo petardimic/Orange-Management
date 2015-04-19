@@ -4,7 +4,10 @@ namespace phpOMS\DataStorage\Database;
 
 abstract class Grammar
 {
+
+// region Class Fields
     protected $tablePrefix = '';
+// endregion
 
     public function getDateFormat()
     {

@@ -18,24 +18,18 @@ namespace phpOMS\Model\Html;
  */
 class Meta
 {
+
+// region Class Fields
     private $keywords    = [];
+
     private $author      = null;
+
     private $charset     = null;
+
     private $description = null;
+// endregion
 
     public function addKeyword($keyword)
-    {
-    }
-
-    public function setAuthor($author)
-    {
-    }
-
-    public function setCharset($charset)
-    {
-    }
-
-    public function setDescription($description)
     {
     }
 
@@ -55,11 +49,23 @@ class Meta
     {
     }
 
+    public function setAuthor($author)
+    {
+    }
+
     public function getCharset()
     {
     }
 
+    public function setCharset($charset)
+    {
+    }
+
     public function getDescription()
+    {
+    }
+
+    public function setDescription($description)
     {
     }
 

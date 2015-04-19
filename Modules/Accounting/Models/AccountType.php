@@ -18,9 +18,13 @@ namespace Modules\Accounting\Models;
  */
 abstract class AccountType extends \phpOMS\Datatypes\Enum
 {
+
     const IMPERSONAL = 0;
+
     const PERSONAL   = 1;
+
     const CREDITOR   = 2;
+
     const DEBITOR    = 3;
 
 }

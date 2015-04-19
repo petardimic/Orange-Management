@@ -18,7 +18,9 @@ namespace Modules\Navigation\Models;
  */
 abstract class LinkType extends \phpOMS\Datatypes\Enum
 {
+
     const CATEGORY = 0;
+
     const LINK     = 1;
 
 }

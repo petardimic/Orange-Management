@@ -22,6 +22,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
 {
     use \phpOMS\Config\OptionsTrait;
 
+// region Class Fields
     /**
      * Cache manager (pool)
      *
@@ -63,6 +64,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
      * @since 1.0.0
      */
     protected $valueField = 'option';
+// endregion
 
     /**
      * Get option by key

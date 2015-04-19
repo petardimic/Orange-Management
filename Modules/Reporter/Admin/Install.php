@@ -1,5 +1,6 @@
 <?php
 namespace Modules\Reporter\Admin;
+
 /**
  * Data evaluation install class
  *

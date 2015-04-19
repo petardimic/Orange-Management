@@ -44,6 +44,22 @@ final class Validator extends ValidatorAbstract
     }
 
     /**
+     * String ends with ?
+     *
+     * @param string $haystack String to search in
+     * @param string $needle   String to search for
+     *
+     * @return bool
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function endsWith($haystack, $needle)
+    {
+        return $needle === "" || strpos($haystack, $needle, strlen($haystack) - strlen($needle)) !== false;
+    }
+
+    /**
      * Validate variable by type
      *
      * @param mixed    $var        Variable to validate
@@ -155,21 +171,5 @@ final class Validator extends ValidatorAbstract
     public static function startsWith($haystack, $needle)
     {
         return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
-    }
-
-    /**
-     * String ends with ?
-     *
-     * @param string $haystack String to search in
-     * @param string $needle   String to search for
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function endsWith($haystack, $needle)
-    {
-        return $needle === "" || strpos($haystack, $needle, strlen($haystack) - strlen($needle)) !== false;
     }
 }

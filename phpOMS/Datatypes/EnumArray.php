@@ -21,19 +21,6 @@ namespace phpOMS\Datatypes;
 abstract class EnumArray
 {
     /**
-     * Getting all constants of this enum
-     *
-     * @return array
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function getConstants()
-    {
-        return (new static)->$constants;
-    }
-
-    /**
      * Checking enum name
      *
      * Checking if a certain const name exists (case sensitive)
@@ -50,6 +37,19 @@ abstract class EnumArray
         $constants = self::getConstants();
 
         return array_key_exists($name, $constants);
+    }
+
+    /**
+     * Getting all constants of this enum
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function getConstants()
+    {
+        return (new static)->$constants;
     }
 
     /**

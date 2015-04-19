@@ -18,6 +18,8 @@ namespace phpOMS\Utils\RnG;
  */
 class Name
 {
+
+// region Class Fields
     private static $names = [
         'western' => [
             'female' => [
@@ -4424,6 +4426,7 @@ class Name
             ]
         ]
     ];
+// endregion
 
     /**
      * Get a random string

@@ -18,6 +18,8 @@ namespace Modules\Media\Models;
  */
 class Upload
 {
+
+// region Class Fields
     /**
      * Upload max size
      *
@@ -49,6 +51,7 @@ class Upload
      * @since 1.0.0
      */
     private $fileName = '';
+// endregion
 
     /**
      * Upload file to server

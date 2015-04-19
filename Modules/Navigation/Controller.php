@@ -18,41 +18,8 @@ namespace Modules\Navigation;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
-    /**
-     * Module name
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    protected static $module = 'Navigation';
 
-    /**
-     * Localization files
-     *
-     * @var string
-     * @since 1.0.0
-     */
-    protected static $localization = [
-    ];
-
-    /**
-     * Providing
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    protected static $providing = [
-    ];
-
-    /**
-     * Dependencies
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    protected static $dependencies = [
-    ];
-
+// region Class Fields
     /**
      * JavaScript files
      *
@@ -99,6 +66,42 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since 1.0.0
      */
     public $nav_parents = null;
+
+    /**
+     * Module name
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $module = 'Navigation';
+
+    /**
+     * Localization files
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static $localization = [
+    ];
+
+    /**
+     * Providing
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    protected static $providing = [
+    ];
+
+    /**
+     * Dependencies
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    protected static $dependencies = [
+    ];
+// endregion
 
     /**
      * Constructor

@@ -18,9 +18,13 @@ namespace Modules\Sales\Models;
  */
 abstract class InvoiceType extends \phpOMS\Datatypes\Enum
 {
+
     const OFFER         = 0;
+
     const CONTRACT_NOTE = 1;
+
     const DELIVERY_NOTE = 2;
+
     const BILL          = 3;
 
 }

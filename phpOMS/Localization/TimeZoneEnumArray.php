@@ -18,6 +18,8 @@ namespace phpOMS\Localization;
  */
 class TimeZoneEnumArray extends \phpOMS\Datatypes\EnumArray
 {
+
+// region Class Fields
     protected static $constatns = [
         0   => 'Africa/Abidjan',
         1   => 'Africa/Accra',
@@ -436,4 +438,6 @@ class TimeZoneEnumArray extends \phpOMS\Datatypes\EnumArray
         414 => 'Pacific/Wallis',
         415 => 'UTC',
     ];
+// endregion
+
 }

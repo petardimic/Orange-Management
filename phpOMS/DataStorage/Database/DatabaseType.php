@@ -20,6 +20,7 @@ namespace phpOMS\DataStorage\Database;
  */
 abstract class DatabaseType extends \phpOMS\Datatypes\Enum
 {
+
     const MYSQL  = 0; /* MySQL */
     const SQLITE = 1; /* SQLITE */
     const PGSQL  = 2; /* PostgreSQL */

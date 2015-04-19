@@ -18,6 +18,8 @@ namespace Modules\Admin;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Module name
      *
@@ -54,6 +56,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+// endregion
 
     /**
      * Constructor
@@ -113,53 +116,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'module':
                 $this->showBackendModule($request, $response);
-                break;
-            default:
-                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->setHeader('Status', 'Status: 404 Not Found');
-
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
-
-                return;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showBackendSettings($request, $response)
-    {
-        $this->app->settings->get([
-            1000000006,
-            1000000007,
-            1000000008,
-            1000000012,
-            1000000013,
-            1000000014,
-            1000000016,
-            1000000017,
-            1000000018,
-            1000000019,
-            1000000020,
-            1000000021,
-            1000000022,
-            1000000023,
-            1000000024,
-            1000000025,
-            1000000026
-        ]);
-
-        switch($request->getData()['l4']) {
-            case 'general':
-                $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
-                echo $coreSettingsView->getOutput();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -260,43 +216,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showBackendModule($request, $response)
-    {
-        if(empty($request->getData()['l4'])) {
-            $request->getData()['l5'] = 'front';
-        }
-
-        switch($request->getData()['l4']) {
-            case 'list':
-                $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
-                echo $moduleListView->getOutput();
-                break;
-            case 'front':
-                //$info = $this->app->modules->moduleInfoGet((int)$request->getData()['id']);
-
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/modules-single.tpl.php';
-                break;
-            default:
-                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
-                $response->setHeader('Status', 'Status: 404 Not Found');
-
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
-
-                return;
-        }
-    }
-
-    /**
-     * Shows module content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
     public function showBackendGroup($request, $response)
     {
         switch($request->getData()['l4']) {
@@ -359,6 +278,90 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
+                break;
+            default:
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showBackendSettings($request, $response)
+    {
+        $this->app->settings->get([
+            1000000006,
+            1000000007,
+            1000000008,
+            1000000012,
+            1000000013,
+            1000000014,
+            1000000016,
+            1000000017,
+            1000000018,
+            1000000019,
+            1000000020,
+            1000000021,
+            1000000022,
+            1000000023,
+            1000000024,
+            1000000025,
+            1000000026
+        ]);
+
+        switch($request->getData()['l4']) {
+            case 'general':
+                $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
+                echo $coreSettingsView->getOutput();
+                break;
+            default:
+                $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
+                $response->setHeader('Status', 'Status: 404 Not Found');
+
+                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+
+                return;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showBackendModule($request, $response)
+    {
+        if(empty($request->getData()['l4'])) {
+            $request->getData()['l5'] = 'front';
+        }
+
+        switch($request->getData()['l4']) {
+            case 'list':
+                $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
+                echo $moduleListView->getOutput();
+                break;
+            case 'front':
+                //$info = $this->app->modules->moduleInfoGet((int)$request->getData()['id']);
+
+                /** @noinspection PhpIncludeInspection */
+                include __DIR__ . '/Theme/backend/modules-single.tpl.php';
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');

@@ -18,11 +18,17 @@ namespace Modules\Calendar\Models;
  */
 abstract class OccurrenceType extends \phpOMS\Datatypes\Enum
 {
+
     const SINGLE    = 0;
+
     const DAILY     = 1;
+
     const WEEKLY    = 2;
+
     const MONTHLY   = 3;
+
     const QUARTERLY = 4;
+
     const YEARLY    = 5;
 
 }

@@ -18,6 +18,8 @@ namespace Modules\Production\Models;
  */
 class ProductionList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class ProductionList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

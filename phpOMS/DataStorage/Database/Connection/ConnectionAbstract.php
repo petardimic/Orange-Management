@@ -21,6 +21,8 @@ namespace phpOMS\DataStorage\Database\Connection;
  */
 abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connection\ConnectionInterface
 {
+
+// region Class Fields
     /**
      * Connection object
      *
@@ -32,14 +34,6 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
     public $con = null;
 
     /**
-     * Database data
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    protected $dbdata = null;
-
-    /**
      * Database prefix
      *
      * The database prefix name for unique table names
@@ -48,6 +42,14 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
      * @since 1.0.0
      */
     public $prefix = '';
+
+    /**
+     * Database data
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    protected $dbdata = null;
 
     /**
      * Database type
@@ -72,6 +74,7 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
      * @since 1.0.0
      */
     private $grammar = null;
+// endregion
 
     /**
      * {@inheritdoc}
@@ -102,15 +105,6 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-        $this->con    = null;
-        $this->status = \phpOMS\DataStorage\Database\DatabaseStatus::CLOSED;
-    }
-
-    /**
      * Object destructor
      *
      * Sets the database connection to null
@@ -121,5 +115,14 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
     public function __destruct()
     {
         $this->close();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function close()
+    {
+        $this->con    = null;
+        $this->status = \phpOMS\DataStorage\Database\DatabaseStatus::CLOSED;
     }
 }

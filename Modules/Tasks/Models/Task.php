@@ -18,14 +18,8 @@ namespace Modules\Tasks\Models;
  */
 class Task
 {
-    /**
-     * Database instance
-     *
-     * @var \phpOMS\DataStorage\Database\Database
-     * @since 1.0.0
-     */
-    private $dbPool = null;
 
+// region Class Fields
     /**
      * ID
      *
@@ -91,12 +85,21 @@ class Task
     public $done = null;
 
     /**
+     * Database instance
+     *
+     * @var \phpOMS\DataStorage\Database\Database
+     * @since 1.0.0
+     */
+    private $dbPool = null;
+
+    /**
      * Task elements
      *
      * @var \Modules\Tasks\Models\TaskElement[]
      * @since 1.0.0
      */
     private $task_elements = [];
+// endregion
 
     /**
      * Constructor
@@ -187,6 +190,21 @@ class Task
     }
 
     /**
+     * Adding new task element
+     *
+     * @param \Modules\Tasks\Models\TaskElement $element Task element
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function addElement($element)
+    {
+        if(!array_key_exists($element->getId(), $this->task_elements)) {
+            $this->task_elements[$element->getId()] = $element;
+        }
+    }
+
+    /**
      * @return \DateTime
      *
      * @since  1.0.0
@@ -272,21 +290,6 @@ class Task
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Adding new task element
-     *
-     * @param \Modules\Tasks\Models\TaskElement $element Task element
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function addElement($element)
-    {
-        if(!array_key_exists($element->getId(), $this->task_elements)) {
-            $this->task_elements[$element->getId()] = $element;
-        }
     }
 
     /**

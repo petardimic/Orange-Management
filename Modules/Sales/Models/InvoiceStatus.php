@@ -18,6 +18,7 @@ namespace Modules\Sales\Models;
  */
 abstract class InvoiceStatus extends \phpOMS\Datatypes\Enum
 {
+
     const BLOCKED        = 0; /* Invoice needs approval */
     const DRAFT          = 1; /* Invoice is still in draft */
     const READY          = 2; /* Invoice is ready for accounting transfer */

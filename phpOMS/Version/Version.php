@@ -31,21 +31,6 @@ class Version
     }
 
     /**
-     * Loading version file
-     *
-     * @param string $path Path to version file
-     *
-     * @return string[]
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function getVersion($path)
-    {
-        return json_decode(file_get_contents($path), true);
-    }
-
-    /**
      * Save version file
      *
      * @param string $type    Lib or tool name
@@ -60,6 +45,21 @@ class Version
         $versions        = self::getVersion($path);
         $versions[$type] = $version;
         file_put_contents($path, json_encode($versions));
+    }
+
+    /**
+     * Loading version file
+     *
+     * @param string $path Path to version file
+     *
+     * @return string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function getVersion($path)
+    {
+        return json_decode(file_get_contents($path), true);
     }
 
     /**

@@ -20,6 +20,8 @@ namespace phpOMS\Uri;
  */
 class UriFactory
 {
+
+// region Class Fields
     /**
      * Dynamic query elements
      *
@@ -27,6 +29,7 @@ class UriFactory
      * @since 1.0.0
      */
     private static $query = [];
+// endregion
 
     /**
      * Constructor
@@ -36,23 +39,6 @@ class UriFactory
      */
     private function __construct()
     {
-    }
-
-    /**
-     * Set global query replacements
-     *
-     * @param string  $key       Replacement key
-     * @param string  $value     Replacement value
-     * @param boolean $overwrite Overwrite if already exists
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function setQuery($key, $value, $overwrite = true)
-    {
-        if($overwrite || !isset(self::$query[$key])) {
-            self::$query[$key] = $value;
-        }
     }
 
     /**
@@ -72,6 +58,23 @@ class UriFactory
         }
 
         return false;
+    }
+
+    /**
+     * Set global query replacements
+     *
+     * @param string  $key       Replacement key
+     * @param string  $value     Replacement value
+     * @param boolean $overwrite Overwrite if already exists
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function setQuery($key, $value, $overwrite = true)
+    {
+        if($overwrite || !isset(self::$query[$key])) {
+            self::$query[$key] = $value;
+        }
     }
 
     /**

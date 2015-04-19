@@ -18,6 +18,8 @@ namespace Modules\HumanResources\Models;
  */
 class Employee implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Employee ID
      *
@@ -32,9 +34,10 @@ class Employee implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multit
      * @var \phpOMS\Models\User\User
      * @since 1.0.0
      */
-    private $user = null;
+    private        $user      = null;
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {

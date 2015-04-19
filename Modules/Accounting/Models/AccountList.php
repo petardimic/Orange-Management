@@ -18,6 +18,8 @@ namespace Modules\Accounting\Models;
  */
 class AccountList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class AccountList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

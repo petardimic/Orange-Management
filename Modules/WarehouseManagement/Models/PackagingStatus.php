@@ -18,10 +18,15 @@ namespace Modules\Warehousing\Models;
  */
 abstract class PackagingStatus extends \phpOMS\Datatypes\Enum
 {
+
     const PENDING   = 0;
+
     const PACKING   = 1;
+
     const PACKED    = 2;
+
     const SUSPENDED = 3;
+
     const CANCELED  = 4;
 
 }

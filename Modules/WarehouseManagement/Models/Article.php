@@ -18,6 +18,8 @@ namespace Modules\Warehousing\Models;
  */
 class Article implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Article ID
      *
@@ -127,6 +129,7 @@ class Article implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multiti
      * @since 1.0.0
      */
     private static $instances = [];
+// endregion
 
     /**
      * Constructor

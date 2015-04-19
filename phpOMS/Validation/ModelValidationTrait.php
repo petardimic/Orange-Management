@@ -20,6 +20,28 @@ trait ModelValidationTrait
 {
     /** @noinspection PhpUnusedPrivateMethodInspection */
     /**
+     * Set variable without validating it
+     *
+     * @param mixed  $var  Variable to set
+     * @param string $name Name of the variable
+     *
+     * @throws \Exception
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setForce($var, $name)
+    {
+        if(!property_exists($this, $var)) {
+            throw new \Exception('Unknown property.');
+        }
+
+        $this->{$name} = $var;
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+
+    /**
      * Validate member variable
      *
      * @param mixed  $var  Variable to validate
@@ -42,7 +64,6 @@ trait ModelValidationTrait
         return \phpOMS\Validation\Validator::isValid($var, self::$validation[$name]);
     }
 
-    /** @noinspection PhpUnusedPrivateMethodInspection */
     /**
      * Set validated member variable
      *
@@ -64,25 +85,5 @@ trait ModelValidationTrait
         } else {
             throw new \Exception('Invalid data for variable ' . $name);
         }
-    }
-
-    /**
-     * Set variable without validating it
-     *
-     * @param mixed  $var  Variable to set
-     * @param string $name Name of the variable
-     *
-     * @throws \Exception
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setForce($var, $name)
-    {
-        if(!property_exists($this, $var)) {
-            throw new \Exception('Unknown property.');
-        }
-
-        $this->{$name} = $var;
     }
 }

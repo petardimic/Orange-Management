@@ -18,10 +18,15 @@ namespace Modules\Warehousing\Models;
  */
 abstract class ArrivalStatus extends \phpOMS\Datatypes\Enum
 {
+
     const NONE     = 0;
+
     const PENDING  = 1;
+
     const CHECKING = 2;
+
     const SORTING  = 3;
+
     const FINISHED = 4;
 
 }

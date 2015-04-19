@@ -4,6 +4,8 @@ namespace phpOMS\DataStorage\Database\Query\Grammar;
 
 class Grammar extends \phpOMS\DataStorage\Database\Grammar
 {
+
+// region Class Fields
     protected $selectComponents = [
         'aggregate',
         'columns',
@@ -18,6 +20,7 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
         'unions',
         'lock',
     ];
+// endregion
 
     public function compileQuery($query)
     {
@@ -63,14 +66,13 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
         return $sql;
     }
 
+    public function compileInsert()
+    {
+    }
+
     protected function compileColumns($query, $columns)
     {
         return ($query->distinct ? 'SELECT DISTINCT ' : 'SELECT ') . $this->columnize($columns);
-    }
-
-    protected function compileFrom($query, $table)
-    {
-        return 'FROM ' . implode(', ', $table);
     }
 
     /* compileFrom with sub functionality
@@ -89,6 +91,11 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
             return 'FROM ' . $table;
         }
     }*/
+
+    protected function compileFrom($query, $table)
+    {
+        return 'FROM ' . implode(', ', $table);
+    }
 
     protected function compileWheres($query, $wheres)
     {
@@ -110,10 +117,6 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
     }
 
     protected function compileOffset($query, $offset)
-    {
-    }
-
-    public function compileInsert()
     {
     }
 }

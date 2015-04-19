@@ -20,6 +20,8 @@ namespace phpOMS\Socket\Packets;
  */
 abstract class PacketAbstract implements \Serializable
 {
+
+// region Class Fields
     /**
      * Packet header
      *
@@ -27,6 +29,7 @@ abstract class PacketAbstract implements \Serializable
      * @since 1.0.0
      */
     private $header = null;
+// endregion
 
     /**
      * Stringify packet

@@ -18,6 +18,8 @@ namespace phpOMS\Datatypes;
  */
 class Address implements \phpOMS\Contract\JsonableInterface
 {
+
+// region Class Fields
     /**
      * Name of the receiver
      *
@@ -41,6 +43,7 @@ class Address implements \phpOMS\Contract\JsonableInterface
      * @since 1.0.0
      */
     private $location = null;
+// endregion
 
     /**
      * Constructor
@@ -51,6 +54,19 @@ class Address implements \phpOMS\Contract\JsonableInterface
     public function __construct()
     {
         $this->$location = new \phpOMS\Datatypes\Location();
+    }
+
+    /**
+     * Get recipient
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
     }
 
     /**
@@ -71,16 +87,16 @@ class Address implements \phpOMS\Contract\JsonableInterface
     }
 
     /**
-     * Get recipient
+     * Get FAO
      *
      * @return string
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getRecipient()
+    public function getFAO()
     {
-        return $this->recipient;
+        return $this->fao;
     }
 
     /**
@@ -97,16 +113,16 @@ class Address implements \phpOMS\Contract\JsonableInterface
     }
 
     /**
-     * Get FAO
+     * Get location
      *
-     * @return string
+     * @return \phpOMS\Datatypes\Location
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getFAO()
+    public function getLocation()
     {
-        return $this->fao;
+        return $this->location;
     }
 
     /**
@@ -120,19 +136,6 @@ class Address implements \phpOMS\Contract\JsonableInterface
     public function setLocation($location)
     {
         $this->location = $location;
-    }
-
-    /**
-     * Get location
-     *
-     * @return \phpOMS\Datatypes\Location
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getLocation()
-    {
-        return $this->location;
     }
 
     /**

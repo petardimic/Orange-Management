@@ -18,6 +18,8 @@ namespace phpOMS\Message\Http;
  */
 class Response extends \phpOMS\Message\ResponseAbstract
 {
+
+// region Class Fields
     /**
      * Header
      *
@@ -41,6 +43,7 @@ class Response extends \phpOMS\Message\ResponseAbstract
      * @since 1.0.0
      */
     private $autoPush = false;
+// endregion
 
     /**
      * {@inheritdoc}
@@ -58,19 +61,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
         }
 
         return true;
-    }
-
-    /**
-     * Push all headers
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function pushHeader()
-    {
-        foreach($this->header as $ele) {
-            header($ele, true);
-        }
     }
 
     /**
@@ -131,18 +121,18 @@ class Response extends \phpOMS\Message\ResponseAbstract
     }
 
     /**
-     * Get response by ID
+     * Push a specific response ID
      *
      * @param int $id Response ID
-     *
-     * @return mixed
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function &get($id)
+    public function pushResponseId($id)
     {
-        return $this->response[$id];
+        ob_start();
+        echo $this->response[$id];
+        ob_end_flush();
     }
 
     /**
@@ -160,6 +150,34 @@ class Response extends \phpOMS\Message\ResponseAbstract
         $this->pushHeader();
 
         return $this->get($id);
+    }
+
+    /**
+     * Push all headers
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function pushHeader()
+    {
+        foreach($this->header as $ele) {
+            header($ele, true);
+        }
+    }
+
+    /**
+     * Get response by ID
+     *
+     * @param int $id Response ID
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function &get($id)
+    {
+        return $this->response[$id];
     }
 
     /**
@@ -193,18 +211,16 @@ class Response extends \phpOMS\Message\ResponseAbstract
     }
 
     /**
-     * Push a specific response ID
+     * Is auto push enabled?
      *
-     * @param int $id Response ID
+     * @return bool
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function pushResponseId($id)
+    public function getAutoPush()
     {
-        ob_start();
-        echo $this->response[$id];
-        ob_end_flush();
+        return $this->autoPush;
     }
 
     /**
@@ -218,18 +234,5 @@ class Response extends \phpOMS\Message\ResponseAbstract
     public function setAutoPush($push)
     {
         $this->autoPush = (bool) $push;
-    }
-
-    /**
-     * Is auto push enabled?
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getAutoPush()
-    {
-        return $this->autoPush;
     }
 }

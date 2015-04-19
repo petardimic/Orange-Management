@@ -18,6 +18,8 @@ namespace Modules\Warehousing\Models;
  */
 class Arrival implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * ID
      *
@@ -83,6 +85,7 @@ class Arrival implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multiti
      * @since 1.0.0
      */
     private static $instances = [];
+// endregion
 
     /**
      * Constructor

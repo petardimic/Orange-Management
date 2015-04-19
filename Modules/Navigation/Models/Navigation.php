@@ -18,6 +18,8 @@ namespace Modules\Navigation\Models;
  */
 class Navigation
 {
+
+// region Class Fields
     /**
      * Navigation array
      *
@@ -61,6 +63,7 @@ class Navigation
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

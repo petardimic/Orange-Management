@@ -3,6 +3,8 @@ namespace Modules\Admin\Models;
 
 class Group
 {
+
+// region Class Fields
     /**
      * Database connection
      *
@@ -50,6 +52,26 @@ class Group
      * @since 1.0.0
      */
     private static $instances = [];
+// endregion
+
+    /**
+     * Constructor
+     *
+     * @param int                                                        $id           Account id
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
+     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct($id, $connection, $cacheManager)
+    {
+        $this->id           = $id;
+        $this->connection   = $connection;
+        $this->cacheManager = $cacheManager;
+
+        $this->l11n = new \phpOMS\Localization\Localization();
+    }
 
     /**
      * Multition constructor
@@ -70,25 +92,6 @@ class Group
         }
 
         return self::$instances[$id];
-    }
-
-    /**
-     * Constructor
-     *
-     * @param int                                                        $id           Account id
-     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function __construct($id, $connection, $cacheManager)
-    {
-        $this->id           = $id;
-        $this->connection   = $connection;
-        $this->cacheManager = $cacheManager;
-
-        $this->l11n = new \phpOMS\Localization\Localization();
     }
 
     /**

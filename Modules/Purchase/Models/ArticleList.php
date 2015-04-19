@@ -18,6 +18,8 @@ namespace Modules\Purchase\Models;
  */
 class ArticleList
 {
+
+// region Class Fields
     /**
      * Database instance
      *
@@ -25,6 +27,7 @@ class ArticleList
      * @since 1.0.0
      */
     private $dbPool = null;
+// endregion
 
     /**
      * Constructor

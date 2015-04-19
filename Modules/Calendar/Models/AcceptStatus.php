@@ -18,7 +18,9 @@ namespace Modules\Calendar\Models;
  */
 abstract class AcceptStatus extends \phpOMS\Datatypes\Enum
 {
+
     const ACCEPTED = 0;
+
     const DENIED   = 1;
 
 }

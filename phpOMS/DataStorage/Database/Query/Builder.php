@@ -4,43 +4,47 @@ namespace phpOMS\DataStorage\Database\Query;
 
 class Builder
 {
-    protected $connection = null;
 
-    protected $grammar = null;
-
-    protected $type = null;
-
-    //<editor-fold desc="Compile components for grammar compiler">
-    public $columns = [];
+// region Class Fields
+    public $columns  = [];
 
     public $distinct = false;
 
-    public $from = [];
+    public $from     = [];
 
-    public $joins = [];
+    //<editor-fold desc="Compile components for grammar compiler">
 
-    public $wheres = [];
+    public $joins    = [];
 
-    public $groups = [];
+    public $wheres   = [];
 
-    public $orders = [];
+    public $groups   = [];
 
-    public $limit = null;
+    public $orders   = [];
 
-    public $offset = null;
+    public $limit    = null;
 
-    public $unions = [];
+    public $offset   = null;
 
-    public $lock = false;
+    public $unions   = [];
+
+    public $lock     = false;
+
+    protected $connection = null;
+
+    protected $grammar    = null;
+
+    protected $type       = null;
+
     //</editor-fold>
 
-    protected $unionLimit = null;
+    protected $unionLimit  = null;
 
     protected $unionOffset = null;
 
     protected $unionOrders = [];
 
-    protected $operators = [
+    protected $operators   = [
         '=',
         '<',
         '>',
@@ -69,7 +73,8 @@ class Builder
         'not similar to',
     ];
 
-    protected $queryType = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
+    protected $queryType   = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
+// endregion
 
     public function __construct($connection, $grammar)
     {
@@ -119,6 +124,11 @@ class Builder
         return $this;
     }
 
+    public function orWhere($column, $operator = null, $value = null, $boolean = 'and')
+    {
+        return $this->where($column, $operator, $value, 'or');
+    }
+
     public function where($column, $operator = null, $value = null, $boolean = 'and')
     {
         // TODO: handle $column is nested where
@@ -134,11 +144,6 @@ class Builder
         $this->wheres[] = ['column' => $column, 'operator' => $operator, 'value' => $operator, 'boolean' => $boolean];
 
         return $this;
-    }
-
-    public function orWhere($column, $operator = null, $value = null, $boolean = 'and')
-    {
-        return $this->where($column, $operator, $value, 'or');
     }
 
     public function whereBetween()

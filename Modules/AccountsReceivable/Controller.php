@@ -18,6 +18,8 @@ namespace Modules\AccountsReceivable;
  */
 class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module\WebInterface
 {
+
+// region Class Fields
     /**
      * Providing
      *
@@ -37,6 +39,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     protected static $dependencies = [
         'Media'
     ];
+// endregion
 
     /**
      * Constructor

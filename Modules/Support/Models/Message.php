@@ -18,6 +18,8 @@ namespace Modules\Support;
  */
 class Message implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multition
 {
+
+// region Class Fields
     /**
      * Name
      *
@@ -48,9 +50,10 @@ class Message implements \phpOMS\Models\MapperInterface, \phpOMS\Pattern\Multiti
      * @var int
      * @since 1.0.0
      */
-    private $creator = null;
+    private        $creator   = null;
 
     private static $instances = [];
+// endregion
 
     public function __construct($id)
     {
