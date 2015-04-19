@@ -112,7 +112,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         parent::__construct($app);
 
-        $modules = $this->app->moduleManager->getActiveModules();
+        $modules  = $this->app->moduleManager->getActiveModules();
         $language = $this->app->user->getL11n()->getLanguage();
 
         foreach($modules as $id => $module) {

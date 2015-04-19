@@ -10,7 +10,8 @@
         "l2": null,
         "l3": null,
         "l4": null,
-        "l5": null, "query": null,
+        "l5": null,
+        "query": null,
         "icon": null,
         "order": 40,
         "from": 1001000000,
@@ -28,14 +29,14 @@
                 "l2": null,
                 "l3": null,
                 "l4": null,
-                "l5": null, "query": null,
+                "l5": null,
+                "query": null,
                 "icon": null,
                 "order": 40,
                 "from": 1001000000,
                 "permission": null,
                 "parent": 1001001001,
                 "children": [
-                    
                 ]
             }
         ]

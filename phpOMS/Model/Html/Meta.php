@@ -18,9 +18,9 @@ namespace phpOMS\Model\Html;
  */
 class Meta
 {
-    private $keywords = [];
-    private $author = null;
-    private $charset = null;
+    private $keywords    = [];
+    private $author      = null;
+    private $charset     = null;
     private $description = null;
 
     public function addKeyword($keyword)

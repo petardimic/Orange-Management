@@ -97,7 +97,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getData()['l3']) {
             case 'single':
                 if(file_exists(__DIR__ . '/Templates/' . $request->getData()['id'] . '.tpl.php')) {
-
                 }
 
                 $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);

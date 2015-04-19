@@ -1,7 +1,7 @@
 <?php /** @var \Modules\Sales\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1001605001]);
+                                                           1001605001]);
 ?>
 
 <div class="tabview">

@@ -23,26 +23,26 @@ $formGroupCreate->setAction('http://127.0.0.1');
 $formGroupCreate->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formGroupCreate->setElement(0, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'text',
-    'name' => 'gid',
-    'label' => $this->l11n->lang[0]['ID'],
+    'type'        => \phpOMS\Html\TagType::INPUT,
+    'subtype'     => 'text',
+    'name'        => 'gid',
+    'label'       => $this->l11n->lang[0]['ID'],
     'placeholder' => 'unique_group_id',
-    'regex' => '[a-zA-Z0-9_\-+/]*'
+    'regex'       => '[a-zA-Z0-9_\-+/]*'
 ]);
 
 $formGroupCreate->setElement(1, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'text',
-    'label' => $this->l11n->lang[1]['Name'],
-    'name' => 'gname',
+    'type'        => \phpOMS\Html\TagType::INPUT,
+    'subtype'     => 'text',
+    'label'       => $this->l11n->lang[1]['Name'],
+    'name'        => 'gname',
     'placeholder' => $this->l11n->lang[1]['Group']
 ]);
 
 $formGroupCreate->setElement(2, 0, [
-    'type' => \phpOMS\Html\TagType::TEXTAREA,
+    'type'  => \phpOMS\Html\TagType::TEXTAREA,
     'label' => $this->l11n->lang[1]['Description'],
-    'name' => 'gdesc',
+    'name'  => 'gdesc',
 ]);
 
 $this->getView('group:create')->addView('form', $formGroupCreate);

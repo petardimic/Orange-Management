@@ -1,7 +1,7 @@
 <?php
 /** @noinspection PhpUndefinedMethodInspection */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1000401001]);
+                                                           1000401001]);
 ?>
 
 <div class="b b-3 c4-2 c4" id="i4-2-1">

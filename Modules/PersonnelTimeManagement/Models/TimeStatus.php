@@ -19,5 +19,5 @@ namespace Modules\PersonnelTimeManagement\Models;
 abstract class TimeStatus extends \phpOMS\Datatypes\Enum
 {
     const ACCEPTED = 0;
-    const OPEN = 1;
+    const OPEN     = 1;
 }

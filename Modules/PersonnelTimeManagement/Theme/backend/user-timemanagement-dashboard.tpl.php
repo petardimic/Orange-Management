@@ -46,16 +46,16 @@ $settingsFormView->setAction('http://127.0.0.1');
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
-    'type'     => \phpOMS\Html\TagType::SELECT,
-    'options'  => [
+    'type'    => \phpOMS\Html\TagType::SELECT,
+    'options' => [
         ['value' => 0, 'content' => $this->l11n->lang[35]['All']],
         ['value' => 1, 'content' => $this->l11n->lang[35]['Day']],
         ['value' => 2, 'content' => $this->l11n->lang[35]['Week']],
         ['value' => 3, 'content' => $this->l11n->lang[35]['Month'], 'selected' => true],
         ['value' => 4, 'content' => $this->l11n->lang[35]['Year']],
     ],
-    'label'    => $this->l11n->lang[35]['Interval'],
-    'name'     => 'interval'
+    'label'   => $this->l11n->lang[35]['Interval'],
+    'name'    => 'interval'
 ]);
 
 $this->getView('settings')->addView('form', $settingsFormView);

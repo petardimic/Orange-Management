@@ -4,7 +4,7 @@ namespace phpOMS\Math;
 class Complex
 {
     private $real = null;
-    private $im = null;
+    private $im   = null;
 
     public function setReal()
     {

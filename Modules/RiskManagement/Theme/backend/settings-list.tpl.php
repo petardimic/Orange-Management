@@ -1,6 +1,6 @@
 <?php /** @var \Modules\RiskManagement\Controller $this */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1003001001]);
+                                                           1003001001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b b-2 c30-1 c30 lf" id="i30-1-1">

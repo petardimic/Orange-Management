@@ -21,8 +21,8 @@ class Media
     /**
      * Install module
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database instance
-     * @param array                                    $info Module info
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

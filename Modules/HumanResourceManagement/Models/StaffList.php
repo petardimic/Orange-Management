@@ -65,7 +65,7 @@ class StaffList
                             `' . $this->dbPool->get('core')->prefix . 'hr_staff`.*
                         FROM
                             `' . $this->dbPool->get('core')->prefix . 'hr_staff` '
-                                               . $search . 'LIMIT ' . $offset . ',' . $limit);
+                                                                . $search . 'LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();

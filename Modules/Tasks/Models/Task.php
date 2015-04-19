@@ -113,12 +113,13 @@ class Task
         $this->dummy();
     }
 
-    private function dummy() {
-        $this->title = 'Dummy';
-        $this->due = new \DateTime('now');
-        $this->done = new \DateTime('now');
-        $this->created = new \DateTime('now');
-        $this->status = \Modules\Tasks\Models\TaskStatus::WORKING;
+    private function dummy()
+    {
+        $this->title       = 'Dummy';
+        $this->due         = new \DateTime('now');
+        $this->done        = new \DateTime('now');
+        $this->created     = new \DateTime('now');
+        $this->status      = \Modules\Tasks\Models\TaskStatus::WORKING;
         $this->description = 'This is a dummy description';
     }
 

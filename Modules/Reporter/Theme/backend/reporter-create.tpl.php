@@ -36,7 +36,7 @@ $formCreateForm->setElement(1, 0, [
     'subtype' => 'text',
     'name'    => 'mdirectory',
     'label'   => $this->l11n->lang[27]['MediaDirectory'],
-    'active' => false
+    'active'  => false
 ]);
 
 $formCreateForm->setElement(1, 1, [
@@ -49,7 +49,7 @@ $formCreateForm->setElement(2, 0, [
     'subtype' => 'text',
     'name'    => 'template',
     'label'   => $this->l11n->lang[27]['Template'],
-    'active' => false
+    'active'  => false
 ]);
 
 $formCreateForm->setElement(2, 1, [

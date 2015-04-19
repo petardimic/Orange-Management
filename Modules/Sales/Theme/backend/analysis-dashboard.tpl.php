@@ -26,11 +26,11 @@
         <!-- @formatter:on -->
         <div class="cT">
             <a href="<?= \phpOMS\Uri\UriFactory::build([$this->app->request->getLanguage(),
-                                                           'backend',
-                                                           'sales',
-                                                           'analysis',
-                                                           'clients',
-                                                           'dashboard']); ?>"
+                                                        'backend',
+                                                        'sales',
+                                                        'analysis',
+                                                        'clients',
+                                                        'dashboard']); ?>"
                class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>

@@ -18,12 +18,12 @@ namespace phpOMS\Utils\Compiler\Php;
  */
 class ClassCompiler
 {
-    private $path = null;
-    private $namespace = null;
-    private $class = null;
-    private $extends = null;
+    private $path       = null;
+    private $namespace  = null;
+    private $class      = null;
+    private $extends    = null;
     private $implements = [];
-    private $member = [];
+    private $member     = [];
 
     public function __construct($path)
     {

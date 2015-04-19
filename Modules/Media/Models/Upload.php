@@ -94,7 +94,7 @@ class Upload
             $this->fileName = sha1_file($FILE['upfile']['tmp_name']) . '.' . explode('.', $FILE['upfile']['name'])[1];
         }
 
-        $path =  __DIR__ . '/../../..' . $this->outputDir;
+        $path = __DIR__ . '/../../..' . $this->outputDir;
 
         if(!is_dir($path)) {
             \mkdir($path, '0655', true);

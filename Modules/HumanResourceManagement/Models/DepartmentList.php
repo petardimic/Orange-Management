@@ -65,7 +65,7 @@ class DepartmentList
                             `' . $this->dbPool->get('core')->prefix . 'hr_department`.*
                         FROM
                             `' . $this->dbPool->get('core')->prefix . 'hr_department` '
-                                               . $search . 'LIMIT ' . $offset . ',' . $limit);
+                                                                . $search . 'LIMIT ' . $offset . ',' . $limit);
                 $sth->execute();
 
                 $result['list'] = $sth->fetchAll();

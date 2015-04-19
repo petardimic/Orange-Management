@@ -87,54 +87,54 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
      *
      * @var string
      */
-    protected $created_at_column = 'created_at';
-    protected $created_at = null;
+    protected $created_at_column   = 'created_at';
+    protected $created_at          = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $created_at_validate = [
-        'isType' => ['datetime']
-    ];
+              $created_at_validate = [
+                  'isType' => ['datetime']
+              ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    protected $created_by_column = 'created_by';
-    protected $created_by = null;
+    protected $created_by_column   = 'created_by';
+    protected $created_by          = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $created_by_validate = [
-        'isType'   => ['integer'],
-        'hasLimit' => [1, PHP_INT_MAX]
-    ];
+              $created_by_validate = [
+                  'isType'   => ['integer'],
+                  'hasLimit' => [1, PHP_INT_MAX]
+              ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    protected $updated_at_column = 'updated_at';
-    protected $updated_at = null;
+    protected $updated_at_column   = 'updated_at';
+    protected $updated_at          = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $updated_at_validate = [
-        'isType' => ['datetime']
-    ];
+              $updated_at_validate = [
+                  'isType' => ['datetime']
+              ];
 
     /**
      * The name of the "updated at" column.
      *
      * @var string
      */
-    protected $updated_by_column = 'updated_by';
-    protected $updated_by = null;
+    protected $updated_by_column   = 'updated_by';
+    protected $updated_by          = null;
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $updated_by_validate = [
-        'isType'   => ['integer'],
-        'hasLimit' => [1, PHP_INT_MAX]
-    ];
+              $updated_by_validate = [
+                  'isType'   => ['integer'],
+                  'hasLimit' => [1, PHP_INT_MAX]
+              ];
 
     protected function query()
     {

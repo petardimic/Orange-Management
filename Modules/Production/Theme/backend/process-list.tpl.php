@@ -1,7 +1,7 @@
 <?php /** @var \Modules\Production\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1000401001]);
+                                                           1000401001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c4-1 c4" id="i4-1-1">

@@ -6,7 +6,7 @@
 /*
 * UI Logic
 */
-$watchList = new \Web\Views\Lists\ListView($this->l11n);
+$watchList  = new \Web\Views\Lists\ListView($this->l11n);
 $headerView = new \Web\Views\Lists\HeaderView($this->l11n);
 
 $watchList->setTemplate('/Web/Theme/Templates/Lists/ListFull');

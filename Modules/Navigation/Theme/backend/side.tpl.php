@@ -19,11 +19,11 @@ if(isset($this->nav[\Modules\Navigation\Models\NavigationType::SIDE])) {
             if($link['nav_parent'] === $parent['nav_id']) {
                 echo '<li>';
                 echo '<a href="' . \phpOMS\Uri\UriFactory::build([$this->language,
-                                                                     $link['nav_l0'],
-                                                                     $link['nav_l1'],
-                                                                     $link['nav_l2'],
-                                                                     $link['nav_l3'],
-                                                                     $link['nav_l4']]) . '">' . $this->l11n->lang[5][$link['nav_name']] . '</a>';
+                                                                  $link['nav_l0'],
+                                                                  $link['nav_l1'],
+                                                                  $link['nav_l2'],
+                                                                  $link['nav_l3'],
+                                                                  $link['nav_l4']]) . '">' . $this->l11n->lang[5][$link['nav_name']] . '</a>';
             }
         }
         echo '</ul>';

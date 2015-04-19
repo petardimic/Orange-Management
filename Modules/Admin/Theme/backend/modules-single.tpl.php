@@ -6,7 +6,7 @@ $modules_all = $this->app->modules->getAllModules();
 if(array_key_exists($request->getData()['id'], $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
     \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                     1000105001]);
+                                                               1000105001]);
 }
 ?>
 

@@ -7,8 +7,8 @@
  * UI Logic
  */
 $supportList = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
+$headerView  = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView  = new \Web\Views\Lists\PaginationView($this->l11n);
 
 $supportList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -22,7 +22,7 @@ $headerView->setHeader([
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Status'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Priority'], 'sortable' => true],
-    ['title' => $this->l11n->lang[29]['Title'], 'sortable' => true,  'full' => true],
+    ['title' => $this->l11n->lang[29]['Title'], 'sortable' => true, 'full' => true],
     ['title' => $this->l11n->lang[29]['Account'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Creator'], 'sortable' => true],
     ['title' => $this->l11n->lang[29]['Created'], 'sortable' => true],
@@ -57,8 +57,8 @@ $settingsFormView->setAction('http://127.0.0.1');
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
         ['value' => 0, 'content' => $this->l11n->lang[29]['All']],
         ['value' => 1, 'content' => $this->l11n->lang[29]['Day']],
         ['value' => 2, 'content' => $this->l11n->lang[29]['Week']],
@@ -66,8 +66,8 @@ $settingsFormView->setElement(0, 0, [
         ['value' => 4, 'content' => $this->l11n->lang[29]['Year']],
     ],
     'selected' => 3,
-    'label' => $this->l11n->lang[29]['Interval'],
-    'name' => 'interval'
+    'label'    => $this->l11n->lang[29]['Interval'],
+    'name'     => 'interval'
 ]);
 
 $this->getView('settings')->addView('form', $settingsFormView);

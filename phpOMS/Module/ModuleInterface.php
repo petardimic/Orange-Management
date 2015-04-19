@@ -49,9 +49,9 @@ interface ModuleInterface
     /**
      * Call all modules from which this module is receiving
      *
-     * @param \phpOMS\Message\RequestAbstract   $request  Request
-     * @param \phpOMS\Message\ResponseAbstract  $response Response
-     * @param mixed                             $data     Data to pass (if required)
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     * @param mixed                            $data     Data to pass (if required)
      *
      * @since  1.0.0
      * @author Dennis Eichhorn

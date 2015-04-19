@@ -65,7 +65,7 @@ class Navigation
     /**
      * Constructor
      *
-     * @param string[]                             $request Request hashes
+     * @param string[]                          $request Request hashes
      * @param \phpOMS\DataStorage\Database\Pool $dbPool  Database pool
      *
      * @since  1.0.0
@@ -111,7 +111,7 @@ class Navigation
     /**
      * Get instance
      *
-     * @param string[]                             $request Request hashes
+     * @param string[]                          $request Request hashes
      * @param \phpOMS\DataStorage\Database\Pool $dbPool  Database pool
      *
      * @return \Modules\Navigation\Models\Navigation

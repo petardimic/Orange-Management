@@ -250,16 +250,16 @@ class Localization
      * Returns instance
      *
      * @param string $language Language ID
-     * @param string  $file    Language array
-     * @param string  $module  Available modules
+     * @param string $file     Language array
+     * @param string $module   Available modules
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function loadLanguage($language = 'en', $file, $module)
     {
-            /** @noinspection PhpIncludeInspection */
-            /* TODO: change, store name inside instead of id */
+        /** @noinspection PhpIncludeInspection */
+        /* TODO: change, store name inside instead of id */
         if(file_exists(($path = __DIR__ . '/../../Modules/' . $module . '/Theme/lang/' . $file . '.' . $language . '.lang.php'))) {
             /** @noinspection PhpIncludeInspection */
             require $path;

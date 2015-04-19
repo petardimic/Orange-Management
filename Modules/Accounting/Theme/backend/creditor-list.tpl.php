@@ -1,13 +1,13 @@
 <?php /** @var \Modules\Accounting\Controller $this */
 /** @noinspection PhpUndefinedMethodInspection */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1002604001]);
+                                                           1002604001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="b-7" id="i3-2-1">
     <?php /** @noinspection PhpUndefinedMethodInspection */
     \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT_SIDE,
-                                                                     1003003001]);
+                                                               1003003001]);
     ?>
 </div>
 <div class="b-6">

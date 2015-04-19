@@ -18,7 +18,7 @@ namespace phpOMS\Localization;
  */
 abstract class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray
 {
-    protected static $constatns  = [
+    protected static $constatns = [
         'aa' => 'Afar',
         'ab' => 'Abkhaz',
         'ae' => 'Avestan',

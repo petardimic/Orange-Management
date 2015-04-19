@@ -68,13 +68,14 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     /**
      * Load module language
      *
-     * @param string $language ISO language code
+     * @param string $language    ISO language code
      * @param string $destination Destination language file to load
      *
      * @since  1.0.0
      * @author Dennis Eichhorn
      */
-    public function loadLanguage($language, $destination) {
+    public function loadLanguage($language, $destination)
+    {
         /** @noinspection PhpUndefinedFieldInspection */
         if(isset(static::$localization[\phpOMS\Message\RequestDestination::BACKEND])) {
             /** @noinspection PhpUndefinedFieldInspection */

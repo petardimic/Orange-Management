@@ -75,7 +75,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
     }
 
-    public function getBackendUserClocking() {
+    public function getBackendUserClocking()
+    {
         $clockingTimeMgmtView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
         $clockingTimeMgmtView->setTemplate('/Modules/Clocking/Theme/backend/user-clocking');
         echo $clockingTimeMgmtView->getOutput();

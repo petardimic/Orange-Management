@@ -10,7 +10,8 @@
         "l2": "dashboard",
         "l3": null,
         "l4": null,
-        "l5": null, "query": null,
+        "l5": null,
+        "query": null,
         "icon": "fa fa-question-circle",
         "order": 80,
         "from": 1002900000,
@@ -28,14 +29,14 @@
                 "l2": "list",
                 "l3": null,
                 "l4": null,
-                "l5": null, "query": null,
+                "l5": null,
+                "query": null,
                 "icon": null,
                 "order": 80,
                 "from": 1002900000,
                 "permission": null,
                 "parent": 1002901001,
                 "children": [
-
                 ]
             },
             {
@@ -49,14 +50,14 @@
                 "l2": "settings",
                 "l3": "dashboard",
                 "l4": null,
-                "l5": null, "query": null,
+                "l5": null,
+                "query": null,
                 "icon": null,
                 "order": 80,
                 "from": 1002900000,
                 "permission": null,
                 "parent": 1002901001,
                 "children": [
-
                 ]
             },
             {
@@ -70,14 +71,14 @@
                 "l2": "analysis",
                 "l3": "dashboard",
                 "l4": null,
-                "l5": null, "query": null,
+                "l5": null,
+                "query": null,
                 "icon": null,
                 "order": 80,
                 "from": 1002900000,
                 "permission": null,
                 "parent": 1002901001,
                 "children": [
-
                 ]
             }
         ]
@@ -93,7 +94,8 @@
         "l2": "support",
         "l3": "dashboard",
         "l4": null,
-        "l5": null, "query": null,
+        "l5": null,
+        "query": null,
         "icon": null,
         "order": 5,
         "from": 1002900000,

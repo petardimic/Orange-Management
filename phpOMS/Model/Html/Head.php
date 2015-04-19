@@ -19,7 +19,7 @@ namespace phpOMS\Model\Html;
 class Head
 {
     private $language = '';
-    private $title = '';
-    private $assets = null;
-    private $meta = null;
+    private $title    = '';
+    private $assets   = null;
+    private $meta     = null;
 }

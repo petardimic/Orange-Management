@@ -12,21 +12,21 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000401001);
 ?>
-<?= $nav->getOutput();?>
+<?= $nav->getOutput(); ?>
 <div class="b b-3 c4-2 c4" id="i4-2-1">
     <h1>
         <?= $this->l11n->lang[4]['Preview']; ?>
-<i class="fa fa-minus min"></i>
-<i class="fa fa-plus max vh"></i>
-</h1>
+        <i class="fa fa-minus min"></i>
+        <i class="fa fa-plus max vh"></i>
+    </h1>
 
-<div class="bc-1">
-    <div style="min-height: 150px">
-        Drag or click here for upload!
+    <div class="bc-1">
+        <div style="min-height: 150px">
+            Drag or click here for upload!
+        </div>
+        <button class="rf"><?= $this->l11n->lang[0]['Submit']; ?></button>
+        <div class="clearfix"></div>
     </div>
-    <button class="rf"><?= $this->l11n->lang[0]['Submit']; ?></button>
-    <div class="clearfix"></div>
-</div>
 </div>
 
 <div class="b b-1 c4-2 c4" id="i4-2-2">

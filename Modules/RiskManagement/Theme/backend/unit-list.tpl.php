@@ -6,7 +6,7 @@
 /*
 * UI Logic
 */
-$unitList = new \Web\Views\Lists\ListView($this->l11n);
+$unitList   = new \Web\Views\Lists\ListView($this->l11n);
 $headerView = new \Web\Views\Lists\HeaderView($this->l11n);
 $footerView = new \Web\Views\Lists\PaginationView($this->l11n);
 
@@ -62,10 +62,10 @@ $nav->setParent(1003001001);
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
-    <div class="bc-1">
-        <button><?= $this->l11n->lang[30]['New']; ?></button>
+        <div class="bc-1">
+            <button><?= $this->l11n->lang[30]['New']; ?></button>
+        </div>
     </div>
-</div>
 
     <?= $panelStatView->getOutput(); ?>
 </div>

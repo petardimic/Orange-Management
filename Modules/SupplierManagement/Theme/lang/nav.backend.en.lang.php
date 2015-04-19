@@ -1,4 +1,4 @@
 <?php
 $MODLANG[5] = [
-    'Suppliers'        => 'Suppliers',
+    'Suppliers' => 'Suppliers',
 ];

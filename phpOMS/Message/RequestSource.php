@@ -18,8 +18,8 @@ namespace phpOMS\Message;
  */
 abstract class RequestSource extends \phpOMS\Datatypes\Enum
 {
-    const WEB = 0; /* This is a http request */
+    const WEB     = 0; /* This is a http request */
     const CONSOLE = 1; /* Request is a console command */
-    const SOCKET = 2; /* Request through socket connection */
+    const SOCKET  = 2; /* Request through socket connection */
 
 }

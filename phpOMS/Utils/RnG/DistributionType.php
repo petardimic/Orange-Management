@@ -19,6 +19,6 @@ namespace phpOMS\Utils\RnG;
 abstract class DistributionType extends \phpOMS\Datatypes\Enum
 {
     const UNIFORM = 0;
-    const NORMAL = 1;
+    const NORMAL  = 1;
 
 }

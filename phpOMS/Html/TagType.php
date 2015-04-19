@@ -18,11 +18,11 @@ namespace phpOMS\Html;
  */
 abstract class TagType extends \phpOMS\Datatypes\Enum
 {
-    const INPUT = 0; /* <input> */
-    const BUTTON = 1; /* <button> */
-    const LINK = 2; /* <a> */
+    const INPUT     = 0; /* <input> */
+    const BUTTON    = 1; /* <button> */
+    const LINK      = 2; /* <a> */
     const SYMMETRIC = 3; /* <span>;<div>;... */
-    const TEXTAREA = 4; /* <textarea>; */
-    const SELECT = 5; /* <select>; */
-    const LABEL = 6; /* <label>; */
+    const TEXTAREA  = 4; /* <textarea>; */
+    const SELECT    = 5; /* <select>; */
+    const LABEL     = 6; /* <label>; */
 }

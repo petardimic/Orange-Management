@@ -7,8 +7,8 @@
  * UI Logic
  */
 $unitListView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
+$headerView   = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView   = new \Web\Views\Lists\PaginationView($this->l11n);
 
 $unitListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -27,7 +27,7 @@ $headerView->setHeader([
 /*
  * Footer
  */
-$footerView->setPages($this->getData('list:count')/25);
+$footerView->setPages($this->getData('list:count') / 25);
 $footerView->setPage(1);
 $footerView->setResults($this->getData('list:count'));
 

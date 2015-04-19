@@ -28,8 +28,8 @@ $formCreateForm->setElement(0, 0, [
     'type'    => \phpOMS\Html\TagType::SELECT,
     'options' => [
         [
-            'value'   => 0,
-            'content' => $this->l11n->lang[11]['Default'],
+            'value'    => 0,
+            'content'  => $this->l11n->lang[11]['Default'],
             'selected' => true
         ] // this can be used for pre designed tasks (receiver + different templates)
     ],

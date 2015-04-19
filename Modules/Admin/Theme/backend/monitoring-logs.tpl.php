@@ -7,8 +7,8 @@
  * UI Logic
  */
 $logListView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
+$headerView  = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView  = new \Web\Views\Lists\PaginationView($this->l11n);
 
 $logListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');

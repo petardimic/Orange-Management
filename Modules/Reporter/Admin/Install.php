@@ -20,8 +20,8 @@ class Install
     /**
      * Install module
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database pool instance
-     * @param array                                    $info Module info
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -43,7 +43,7 @@ class Install
                             KEY `reporter_creator` (`reporter_creator`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
-                
+
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'reporter`
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'reporter_ibfk_1` FOREIGN KEY (`reporter_media`) REFERENCES `' . $dbPool->get('core')->prefix . 'media` (`media_id`),

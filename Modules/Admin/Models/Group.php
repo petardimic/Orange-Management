@@ -54,9 +54,9 @@ class Group
     /**
      * Multition constructor
      *
-     * @param int                                                        $id             Account id
-     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
+     * @param int                                                        $id           Account id
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
+     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
      *
      * @return \Model\Account
      *
@@ -75,18 +75,18 @@ class Group
     /**
      * Constructor
      *
-     * @param int                                                        $id             Account id
-     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
+     * @param int                                                        $id           Account id
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
+     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function __construct($id, $connection, $cacheManager)
     {
-        $this->id             = $id;
-        $this->connection     = $connection;
-        $this->cacheManager   = $cacheManager;
+        $this->id           = $id;
+        $this->connection   = $connection;
+        $this->cacheManager = $cacheManager;
 
         $this->l11n = new \phpOMS\Localization\Localization();
     }

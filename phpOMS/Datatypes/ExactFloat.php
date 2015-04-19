@@ -12,7 +12,7 @@ class ExactFloat
 
     public static function sum($a, $b, $length = null)
     {
-        $length = (isset($length) ? $length : self::$length);
+        $length  = (isset($length) ? $length : self::$length);
         $split_a = explode('.', $a) + ['0', '0'];
         $split_b = explode('.', $b) + ['0', '0'];
 

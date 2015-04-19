@@ -42,7 +42,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
      * Constructor
      *
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database connection
-     * @param \phpOMS\DataStorage\Session\SessionInterface       $session    Session
+     * @param \phpOMS\DataStorage\Session\SessionInterface               $session    Session
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

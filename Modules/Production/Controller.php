@@ -65,7 +65,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
@@ -86,7 +86,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0
@@ -112,7 +112,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     /**
      * Shows module content
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
      * @param \phpOMS\Message\ResponseAbstract $response Response
      *
      * @since  1.0.0

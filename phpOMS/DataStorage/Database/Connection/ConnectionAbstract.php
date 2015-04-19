@@ -84,7 +84,8 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
     /**
      * {@inheritdoc}
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 

@@ -152,7 +152,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showAPI($request, $response) {
+    public function showAPI($request, $response)
+    {
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestMethod::POST:
                 $newsOBJ = new \Modules\News\Models\NewsArticle($this->app->dbPool);

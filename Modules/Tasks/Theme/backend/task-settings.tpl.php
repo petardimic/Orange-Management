@@ -3,7 +3,6 @@
  * @var \phpOMS\Views\View $this
  */
 
-
 /*
 * Navigation
 */

@@ -102,7 +102,7 @@ class Builder
     public function addSelect($columns = ['*'], $table = null, $alias = null)
     {
         $this->columns = array_merge($this->columns, $columns);
-        $this->table  = array_merge($this->table, $table);
+        $this->table   = array_merge($this->table, $table);
     }
 
     public function distinct()
@@ -373,7 +373,8 @@ class Builder
         return $this->grammar->compileQuery();
     }
 
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 }

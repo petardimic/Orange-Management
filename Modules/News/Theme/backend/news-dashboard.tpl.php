@@ -1,6 +1,6 @@
 <?php
 /**
-* @var \phpOMS\Views\View $this
+ * @var \phpOMS\Views\View $this
  */
 /*
  * Navigation
@@ -22,11 +22,11 @@ $nav->setParent(1000701001);
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
-        <tr>
-            <th><?= $this->l11n->lang[7]['Type']; ?>
-            <th class="full lT"><?= $this->l11n->lang[7]['Title']; ?>
-            <th><?= $this->l11n->lang[7]['Author']; ?>
-            <th><?= $this->l11n->lang[7]['Date']; ?>
+                <tr>
+                    <th><?= $this->l11n->lang[7]['Type']; ?>
+                    <th class="full lT"><?= $this->l11n->lang[7]['Title']; ?>
+                    <th><?= $this->l11n->lang[7]['Author']; ?>
+                    <th><?= $this->l11n->lang[7]['Date']; ?>
         <tbody>
     </table>
 </div>
@@ -41,11 +41,11 @@ $nav->setParent(1000701001);
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
 
-        <tr>
-            <th><?= $this->l11n->lang[7]['Type']; ?>
-            <th class="full lT"><?= $this->l11n->lang[7]['Title']; ?>
-            <th><?= $this->l11n->lang[7]['Author']; ?>
-            <th><?= $this->l11n->lang[7]['Date']; ?>
+                <tr>
+                    <th><?= $this->l11n->lang[7]['Type']; ?>
+                    <th class="full lT"><?= $this->l11n->lang[7]['Title']; ?>
+                    <th><?= $this->l11n->lang[7]['Author']; ?>
+                    <th><?= $this->l11n->lang[7]['Date']; ?>
         <tbody>
     </table>
 </div>

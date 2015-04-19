@@ -18,24 +18,24 @@ $settingsFormView->setAction('http://127.0.0.1');
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
-    'label' => $this->l11n->lang[11]['Person'],
-    'name' => 'person',
+    'label'   => $this->l11n->lang[11]['Person'],
+    'name'    => 'person',
 ]);
 
 $settingsFormView->setElement(1, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'date',
-    'label' => $this->l11n->lang[11]['From'],
-    'name' => 'date-from',
+    'label'   => $this->l11n->lang[11]['From'],
+    'name'    => 'date-from',
 ]);
 
 $settingsFormView->setElement(1, 1, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'date',
-    'label' => $this->l11n->lang[11]['To'],
-    'name' => 'date-to',
+    'label'   => $this->l11n->lang[11]['To'],
+    'name'    => 'date-to',
 ]);
 
 $this->getView('select::person')->addView('form', $settingsFormView);
@@ -74,5 +74,5 @@ $nav->setParent(1001101001);
 
 <?= $this->getView('select::person')->getOutput(); ?>
 
-<!-- Analyse how many tasks that a user created got finished in time in order to see if he/she creates realistic estimates -->
+    <!-- Analyse how many tasks that a user created got finished in time in order to see if he/she creates realistic estimates -->
 <?= $this->getView('stats')->getOutput(); ?>

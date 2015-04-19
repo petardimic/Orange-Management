@@ -7,8 +7,8 @@
  * UI Logic
  */
 $accountListView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView = new \Web\Views\Lists\PaginationView($this->l11n);
+$headerView      = new \Web\Views\Lists\HeaderView($this->l11n);
+$footerView      = new \Web\Views\Lists\PaginationView($this->l11n);
 
 $accountListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -27,7 +27,12 @@ $headerView->setHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'admin', 'account', 'single', 'front'], ['id' => $value['account_id']]);
+    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
+                                          'backend',
+                                          'admin',
+                                          'account',
+                                          'single',
+                                          'front'], ['id' => $value['account_id']]);
 
     $accountListView->addElements([
         '<a href="' . $url . '">' . $value['account_status'] . '</a>',
@@ -41,7 +46,7 @@ foreach($this->getData('list:elements') as $key => $value) {
 /*
  * Footer
  */
-$footerView->setPages($this->getData('list:count')/25);
+$footerView->setPages($this->getData('list:count') / 25);
 $footerView->setPage(1);
 $footerView->setResults($this->getData('list:count'));
 

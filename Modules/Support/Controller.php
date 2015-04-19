@@ -148,7 +148,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackendPrivate($request, $response) {
+    public function showContentBackendPrivate($request, $response)
+    {
         switch($request->getData()['l4']) {
             case 'dashboard':
                 $supportDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);

@@ -1,6 +1,6 @@
 <?php /** @var \Modules\EventManagement\Controller $this */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1004201001]);
+                                                           1004201001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <table class="t t-1 c1-2 c1" id="i1-2-1">

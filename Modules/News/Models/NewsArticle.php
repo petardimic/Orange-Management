@@ -32,13 +32,13 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var int
      * @since 1.0.0
      */
-    private $id = null;
+    private $id          = null;
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $id_validate = [
-        'isType'   => ['integer'],
-        'hasLimit' => [0, PHP_INT_MAX]
-    ];
+            $id_validate = [
+                'isType'   => ['integer'],
+                'hasLimit' => [0, PHP_INT_MAX]
+            ];
 
     /**
      * Primary table
@@ -54,13 +54,13 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var string
      * @since 1.0.0
      */
-    private $title = '';
+    private $title          = '';
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $title_validate = [
-        'isType'    => ['string'],
-        'hasLength' => [1, 100]
-    ];
+            $title_validate = [
+                'isType'    => ['string'],
+                'hasLength' => [1, 100]
+            ];
 
     /**
      * Content
@@ -68,12 +68,12 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var string
      * @since 1.0.0
      */
-    private $content = '';
+    private $content          = '';
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $content_validate = [
-        'isType' => ['string']
-    ];
+            $content_validate = [
+                'isType' => ['string']
+            ];
 
     /**
      * Plain
@@ -81,12 +81,12 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var string
      * @since 1.0.0
      */
-    private $plain = '';
+    private $plain          = '';
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $plain_validate = [
-        'isType' => ['string']
-    ];
+            $plain_validate = [
+                'isType' => ['string']
+            ];
 
     /**
      * News type
@@ -94,12 +94,12 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var int
      * @since 1.0.0
      */
-    private $type = \Modules\News\Models\NewsType::ARTICLE;
+    private $type          = \Modules\News\Models\NewsType::ARTICLE;
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $type_validate = [
-        'isType' => ['\Modules\News\Models\NewsType']
-    ];
+            $type_validate = [
+                'isType' => ['\Modules\News\Models\NewsType']
+            ];
 
     /**
      * Language
@@ -107,12 +107,12 @@ class NewsArticle extends \phpOMS\Model\ORM
      * @var string
      * @since 1.0.0
      */
-    private $lang = \phpOMS\Localization\ISO639Enum::EN;
+    private $lang          = \phpOMS\Localization\ISO639Enum::EN;
     private static
         /** @noinspection PhpUnusedPrivateFieldInspection */
-        $lang_validate = [
-        'isType' => ['\phpOMS\Localization\ISO639']
-    ];
+            $lang_validate = [
+                'isType' => ['\phpOMS\Localization\ISO639']
+            ];
 
     /**
      * Constructor

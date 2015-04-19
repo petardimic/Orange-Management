@@ -26,45 +26,45 @@ class Invoice implements \phpOMS\Models\MapperInterface
      */
     private $dbPool = null;
 
-/**
-
-    private $id = null;
-
-    private $referer = null;
-
-    private $reference = null;
-
-    private $orderer = null;
-
-    private $ordered = null;
-
-    private $creator = null;
-
-    private $created = null;
-
-    private $client = null;
-
-    private $deliveryAddress = null;
-
-    private $billingAddress = null;
-
-    private $payment = null;
-
-    private $delivery = null;
-
-    private $freightage = null;
-
-    private $invoiceItemList = [];
-
-    private $info = '';
-
-    private $status = null;
-
-    private $price = null;
-
-    private $currency = null;
-
     /**
+     *
+     * private $id = null;
+     *
+     * private $referer = null;
+     *
+     * private $reference = null;
+     *
+     * private $orderer = null;
+     *
+     * private $ordered = null;
+     *
+     * private $creator = null;
+     *
+     * private $created = null;
+     *
+     * private $client = null;
+     *
+     * private $deliveryAddress = null;
+     *
+     * private $billingAddress = null;
+     *
+     * private $payment = null;
+     *
+     * private $delivery = null;
+     *
+     * private $freightage = null;
+     *
+     * private $invoiceItemList = [];
+     *
+     * private $info = '';
+     *
+     * private $status = null;
+     *
+     * private $price = null;
+     *
+     * private $currency = null;
+     *
+     * /**
      * Constructor
      *
      * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance

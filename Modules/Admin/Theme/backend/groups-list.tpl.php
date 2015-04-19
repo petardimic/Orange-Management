@@ -27,7 +27,12 @@ $headerView->setHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'admin', 'group', 'single', 'front'], ['id' => $value['group_id']]);
+    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
+                                          'backend',
+                                          'admin',
+                                          'group',
+                                          'single',
+                                          'front'], ['id' => $value['group_id']]);
     $groupListView->addElements([
         '<a href="' . $url . '">' . $value['group_id'] . '</a>',
         '<a href="' . $url . '">' . $value['group_name'] . '</a>',

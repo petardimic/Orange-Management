@@ -1,6 +1,6 @@
 <?php /** @var \Modules\Surveys\Controller $this */
 \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
-                                                                 1000801001]);
+                                                           1000801001]);
 \phpOMS\Model\Model::generate_table_filter_view(); ?>
 
 <div class="tabview">

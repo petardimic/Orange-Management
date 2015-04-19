@@ -6,7 +6,7 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelPageView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelPageView         = new \Web\Views\Panel\PanelView($this->l11n);
 $panelLocalizationView = clone $panelPageView;
 $panelAccountsView     = clone $panelPageView;
 
@@ -32,32 +32,32 @@ $formPageView->setAction('http://127.0.0.1');
 $formPageView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formPageView->setElement(0, 0, [
-   'type' => \phpOMS\Html\TagType::INPUT,
-   'subtype' => 'text',
-   'name' => 'oname',
-   'label' => $this->l11n->lang[1]['OName'],
-   'placeholder' => 'Orange Management'
+    'type'        => \phpOMS\Html\TagType::INPUT,
+    'subtype'     => 'text',
+    'name'        => 'oname',
+    'label'       => $this->l11n->lang[1]['OName'],
+    'placeholder' => 'Orange Management'
 ]);
 
 $formPageView->setElement(1, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
-    'label' => $this->l11n->lang[1]['LAddress'],
-    'name' => 'laddr',
+    'label'   => $this->l11n->lang[1]['LAddress'],
+    'name'    => 'laddr',
 ]);
 
 $formPageView->setElement(2, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'text',
-    'label' => $this->l11n->lang[1]['RAddress'],
-    'name' => 'raddr',
+    'label'   => $this->l11n->lang[1]['RAddress'],
+    'name'    => 'raddr',
 ]);
 
 $formPageView->setElement(3, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'checkbox',
-    'label' => $this->l11n->lang[1]['Cache'],
-    'name' => 'cache',
+    'label'   => $this->l11n->lang[1]['Cache'],
+    'name'    => 'cache',
 ]);
 
 $this->getView('settings::page')->addView('form', $formPageView);
@@ -73,51 +73,51 @@ $formLocalizationView->setAction('http://127.0.0.1');
 $formLocalizationView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formLocalizationView->setElement(0, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [],
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [],
     'selected' => '',
-    'label' => $this->l11n->lang[1]['Language'],
-    'name' => 'lang'
+    'label'    => $this->l11n->lang[1]['Language'],
+    'name'     => 'lang'
 ]);
 
 $formLocalizationView->setElement(1, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [],
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [],
     'selected' => '',
-    'label' => $this->l11n->lang[1]['Country'],
-    'name' => 'country'
+    'label'    => $this->l11n->lang[1]['Country'],
+    'name'     => 'country'
 ]);
 
 $formLocalizationView->setElement(2, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'text',
-    'label' => $this->l11n->lang[1]['Timezone'],
-    'name' => 'timezone',
+    'type'        => \phpOMS\Html\TagType::INPUT,
+    'subtype'     => 'text',
+    'label'       => $this->l11n->lang[1]['Timezone'],
+    'name'        => 'timezone',
     'placeholder' => 'Europe/London',
 ]);
 
 $formLocalizationView->setElement(3, 0, [
-    'type' => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'text',
-    'name' => 'datetime',
-    'label' => $this->l11n->lang[1]['Timeformat'],
+    'type'        => \phpOMS\Html\TagType::INPUT,
+    'subtype'     => 'text',
+    'name'        => 'datetime',
+    'label'       => $this->l11n->lang[1]['Timeformat'],
     'placeholder' => 'YYYY-MM-DD hh:mm:ss',
 ]);
 
 $formLocalizationView->setElement(4, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [],
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [],
     'selected' => '',
-    'label' => $this->l11n->lang[1]['Currency'],
-    'name' => 'currency'
+    'label'    => $this->l11n->lang[1]['Currency'],
+    'name'     => 'currency'
 ]);
 
 $formLocalizationView->setElement(5, 0, [
-    'type' => \phpOMS\Html\TagType::SELECT,
-    'options' => [],
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [],
     'selected' => '',
-    'label' => $this->l11n->lang[1]['Numberformat'],
-    'name' => 'nformat'
+    'label'    => $this->l11n->lang[1]['Numberformat'],
+    'name'     => 'nformat'
 ]);
 
 $this->getView('settings::l11n')->addView('form', $formLocalizationView);

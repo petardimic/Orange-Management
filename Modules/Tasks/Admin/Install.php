@@ -21,8 +21,8 @@ class Install
     /**
      * Install module
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool   Database instance
-     * @param array                                    $info Module info
+     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database instance
+     * @param array                             $info   Module info
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -78,7 +78,7 @@ class Install
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_element_ibfk_2` FOREIGN KEY (`task_element_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
                             ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_element_ibfk_3` FOREIGN KEY (`task_element_forwarded`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
-                
+
                 $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'task_sub` (
                             `task_sub_id` int(11) NOT NULL AUTO_INCREMENT,
