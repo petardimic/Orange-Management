@@ -102,12 +102,12 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskDashboardView->getOutput();
                 break;
             case 'single':
-                /** @noinspection PhpUnusedLocalVariableInspection */
-                $task = new \Modules\Tasks\Models\Task($this->app->dbPool);
-                $task->init($request->getData()['id']);
+                $taskSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $taskSingleView->setTemplate('/Modules/Tasks/Theme/backend/task-single');
 
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/task-single.tpl.php';
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $taskSingleView->addData('nav', $navigation->nav);
+                echo $taskSingleView->getOutput();
                 break;
             case 'create':
                 $taskCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);

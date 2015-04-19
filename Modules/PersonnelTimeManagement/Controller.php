@@ -92,16 +92,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function showContentBackend($request, $response)
     {
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
-        switch($request->getData()['l3']) {
-            case 'list':
-                $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $timemgmtDashboardView->setTemplate('/Modules/Support/Theme/backend/support-dashboard');
-
-                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-                $timemgmtDashboardView->addData('nav', $navigation->nav);
-                echo $timemgmtDashboardView->getOutput();
+        switch($request->getData()['l2']) {
+            case 'hr':
+                $this->showContentTimemgmtBackend($request, $response);
                 break;
-            case 'timemgmt':
+            case 'private':
                 $this->showContentBackendPrivate($request, $response);
                 break;
         }
@@ -116,7 +111,41 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function showContentBackendPrivate($request, $response) {
+    public function showContentTimemgmtBackend($request, $response)
+    {
+        if($request->getData()['l3'] === 'timemgmt') {
+            switch($request->getData()['l4']) {
+                case 'dashboard':
+                    $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                    $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-list');
+
+                    $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                    $timemgmtDashboardView->addData('nav', $navigation->nav);
+                    echo $timemgmtDashboardView->getOutput();
+                    break;
+                case 'single':
+                    $timemgmtSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                    $timemgmtSingleView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-single');
+
+                    $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                    $timemgmtSingleView->addData('nav', $navigation->nav);
+                    echo $timemgmtSingleView->getOutput();
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendPrivate($request, $response)
+    {
         switch($request->getData()['l4']) {
             case 'dashboard':
                 $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);

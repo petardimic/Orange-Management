@@ -34,6 +34,14 @@ $profileList->addView('header', $headerView);
 $profileList->addView('footer', $footerView);
 
 /*
- * Template
+ * Navigation
  */
-echo $profileList->getOutput();
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1000301001);
+?>
+
+<?= $nav->getOutput(); ?>
+<?= $profileList->getOutput();

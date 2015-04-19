@@ -35,4 +35,5 @@ abstract class RequestDestination extends \phpOMS\Datatypes\Enum
     const PROFILE = 'profile';     /* User profile page */
     const CHAT = 'chat';        /* Chat page */
     const GALLERY = 'gallery';     /* Chat page */
+    // This or let api handle this const GUI = 'gui';     /* Request GUI elements */
 }

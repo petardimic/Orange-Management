@@ -18,12 +18,13 @@ $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
 $headerView->setTitle($this->l11n->lang[35]['TimeManagement']);
 $headerView->setHeader([
     ['title' => '', 'sortable' => false],
-    ['title' => $this->l11n->lang[35]['Date'], 'sortable' => true],
-    ['title' => $this->l11n->lang[35]['Status'], 'sortable' => true],
-    ['title' => $this->l11n->lang[35]['Type'], 'sortable' => true, 'full' => true],
-    ['title' => $this->l11n->lang[35]['Start'], 'sortable' => true],
-    ['title' => $this->l11n->lang[35]['End'], 'sortable' => true],
-    ['title' => $this->l11n->lang[35]['Duration'], 'sortable' => true],
+    ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
+    ['title' => $this->l11n->lang[35]['Type'], 'sortable' => true],
+    ['title' => $this->l11n->lang[35]['Name'], 'sortable' => true, 'full' => true],
+    ['title' => $this->l11n->lang[35]['Working'], 'sortable' => true],
+    ['title' => $this->l11n->lang[35]['Vacation'], 'sortable' => true],
+    ['title' => $this->l11n->lang[35]['Sick'], 'sortable' => true],
+    ['title' => $this->l11n->lang[35]['Other'], 'sortable' => true],
 ]);
 $timeMgmtView->addView('header', $headerView);
 
@@ -71,26 +72,30 @@ $this->addView('stats', $panelStatView);
 $statTableView = new \Web\Views\Lists\ListView($this->l11n);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
-    [$this->l11n->lang[35]['Surplus'], '+2 ' . $this->l11n->lang[35]['hours']],
-    [$this->l11n->lang[35]['Work'], '12.5 / 160 ' . $this->l11n->lang[35]['hours']],
-    [$this->l11n->lang[35]['Vacation'], '20 / 28 ' . $this->l11n->lang[35]['days']],
-    [$this->l11n->lang[35]['Sick'], '2 ' . $this->l11n->lang[35]['days']],
+    [$this->l11n->lang[35]['Working'], '136'],
+    [$this->l11n->lang[35]['Late'], '3'],
+    [$this->l11n->lang[35]['Vacation'], '5'],
+    [$this->l11n->lang[35]['Sick'], '1'],
+    [$this->l11n->lang[35]['Travel'], '17'],
+    [$this->l11n->lang[35]['Remote'], '2'],
+    [$this->l11n->lang[35]['Off'], '0'],
+    [$this->l11n->lang[35]['Other'], '0'],
 ]);
 
 $this->getView('stats')->addView('stat::table', $statTableView);
+
+/*
+ * Navigation
+ */
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setNav($this->getData('nav'));
+$nav->setLanguage($this->l11n->language);
+$nav->setParent(1003501001);
 ?>
+<?= $nav->getOutput(); ?>
 
 <div class="b-7" id="i3-2-1">
-    <?php if(($clocking = \phpOMS\Module\ModuleFactory::getInstance('Clocking')) !== null) {
-        $clocking->getBackendUserClocking();
-    } ?>
-    <div class="b b-5 c3-2 c3" id="i3-2-5">
-        <h1><?= $this->l11n->lang[35]['Planning']; ?></h1>
-
-        <div class="bc-1">
-            <button><?= $this->l11n->lang[35]['New']; ?></button>
-        </div>
-    </div>
     <?= $this->getView('settings')->getOutput(); ?>
 
     <?= $this->getView('stats')->getOutput(); ?>

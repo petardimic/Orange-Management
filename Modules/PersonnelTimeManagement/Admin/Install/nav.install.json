@@ -8,7 +8,7 @@
         "l0": "backend",
         "l1": "hr",
         "l2": "timemgmt",
-        "l3": null,
+        "l3": "dashboard",
         "l4": null,
         "l5": null, "query": null,
         "icon": null,
@@ -17,6 +17,26 @@
         "permission": null,
         "parent": 1002401001,
         "children": [
+            {
+                "id": 1003502001,
+                "pid": "66503874f6c5e79e66fa47bd42847a8955fdd933",
+                "type": 3,
+                "subtype": 1,
+                "name": "List",
+                "l0": "backend",
+                "l1": "hr",
+                "l2": "timemgmt",
+                "l3": "dashboard",
+                "l4": null,
+                "l5": null, "query": null,
+                "icon": null,
+                "order": 1,
+                "from": 1003500000,
+                "permission": null,
+                "parent": 1003501001,
+                "children": [
+                ]
+            }
         ]
     },
     {

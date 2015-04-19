@@ -236,7 +236,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountView->addData('nav', $navigation->nav);
 
-                $account = \phpOMS\Models\User\User::getInstance((int) $request->getData()['id'], $this->app->dbPool);
+                $account = \Model\Account::getInstance((int) $request->getData()['id'], $this->app->dbPool->get(), $this->app->sessionManager, $this->app->cache);
                 $accountView->addData('account', $account);
 
                 echo $accountView->getOutput();
@@ -351,7 +351,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \phpOMS\Models\Group\Group((int) $request->getData()['id'], $this->app);
+                $group = new \Modules\Admin\Models\Group((int) $request->getData()['id'], $this->app->dbPool->get(), $this->app->cache);
 
                 if(!isset($request->getData()['page'])) {
                     $request->getData()['page'] = 1;

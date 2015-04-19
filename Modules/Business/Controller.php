@@ -73,5 +73,77 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function call($request, $response, $data = null)
     {
+        switch($request->getRequestDestination()) {
+            case \phpOMS\Message\RequestDestination::BACKEND:
+                $this->showContentBackend($request, $response);
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackend($request, $response)
+    {
+        switch($request->getData()['l3']) {
+            case 'unit':
+                $this->showContentBackendUnit($request, $response);
+                break;
+            case 'department':
+                $this->showContentBackendDepartment($request, $response);
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendUnit($request, $response)
+    {
+        switch($request->getData()['l4']) {
+            case 'list':
+                $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $unitListView->setTemplate('/Modules/Business/Theme/backend/unit-list');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $unitListView->addData('nav', $navigation->nav);
+
+                echo $unitListView->getOutput();
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendDepartment($request, $response)
+    {
+        switch($request->getData()['l4']) {
+            case 'list':
+                $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $unitListView->setTemplate('/Modules/Business/Theme/backend/department-list');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $unitListView->addData('nav', $navigation->nav);
+
+                echo $unitListView->getOutput();
+                break;
+        }
     }
 }

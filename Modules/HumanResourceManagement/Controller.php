@@ -94,6 +94,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case 'staff':
                 $this->showContentBackendStaff($request, $response);
                 break;
+            case 'department':
+                $this->showContentBackendDepartment($request, $response);
+                break;
         }
     }
 
@@ -112,6 +115,31 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case 'list':
                 $staffView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/staff-list');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $staffView->addData('nav', $navigation->nav);
+
+                echo $staffView->getOutput();
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentBackendDepartment($request, $response)
+    {
+        switch($request->getData()['l4']) {
+            case 'list':
+                $staffView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/department-list');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $staffView->addData('nav', $navigation->nav);
 
                 echo $staffView->getOutput();
                 break;

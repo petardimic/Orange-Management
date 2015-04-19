@@ -93,15 +93,18 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l3']) {
             case 'single':
-                /** TODO: request navigation access in order to modify navigation. remove (temporary) settings link if not own profile */
-                /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/profile-single.tpl.php';
+                $profileSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $profileSingleView->setTemplate('/Modules/Profile/Theme/backend/profile-single');
 
-                $this->callPull();
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $profileSingleView->addData('nav', $navigation->nav);
+                echo $profileSingleView->getOutput();
                 break;
             case 'list':
                 $profileView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $profileView->setTemplate('/Modules/Profile/Theme/backend/profile-list');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $profileView->addData('nav', $navigation->nav);
 
                 echo $profileView->getOutput();
                 break;

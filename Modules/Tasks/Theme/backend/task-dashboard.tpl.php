@@ -105,7 +105,7 @@ $nav->setParent(1001101001);
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
-            <button><?= $this->l11n->lang[11]['New']; ?></button>
+            <a href="create.php" class="button"><?= $this->l11n->lang[11]['New']; ?></a>
         </div>
     </div>
     <?= $this->getView('settings')->getOutput(); ?>

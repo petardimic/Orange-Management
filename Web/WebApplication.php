@@ -236,7 +236,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->eventManager   = new \phpOMS\Event\EventManager();
         $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
         $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-        $this->user           = new \Model\Account($this->dbPool->get('core'), $this->sessionManager, $this->cache);
+        $this->user           = new \Model\Account(0, $this->dbPool->get('core'), $this->sessionManager, $this->cache);
         $this->user->authenticate();
     }
 }

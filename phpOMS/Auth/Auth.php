@@ -33,7 +33,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
     /**
      * Database connection instance
      *
-     * @var \phpOMS\DataStorage\Database\Connection\Connection
+     * @var \phpOMS\DataStorage\Database\Connection\ConnectionAbstract
      * @since 1.0.0
      */
     private $connection = null;
@@ -41,7 +41,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Connection\Connection $connection Database connection
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database connection
      * @param \phpOMS\DataStorage\Session\SessionInterface       $session    Session
      *
      * @since  1.0.0

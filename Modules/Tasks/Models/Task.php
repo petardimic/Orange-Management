@@ -16,7 +16,7 @@ namespace Modules\Tasks\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Task implements \phpOMS\Models\MapperInterface
+class Task
 {
     /**
      * Database instance
@@ -109,6 +109,17 @@ class Task implements \phpOMS\Models\MapperInterface
     public function __construct($dbPool)
     {
         $this->dbPool = $dbPool;
+
+        $this->dummy();
+    }
+
+    private function dummy() {
+        $this->title = 'Dummy';
+        $this->due = new \DateTime('now');
+        $this->done = new \DateTime('now');
+        $this->created = new \DateTime('now');
+        $this->status = \Modules\Tasks\Models\TaskStatus::WORKING;
+        $this->description = 'This is a dummy description';
     }
 
     /**

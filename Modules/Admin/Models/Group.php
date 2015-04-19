@@ -1,7 +1,7 @@
 <?php
-namespace Model;
+namespace Modules\Admin\Models;
 
-class Account
+class Group
 {
     /**
      * Database connection
@@ -12,28 +12,12 @@ class Account
     private $connection = null;
 
     /**
-     * Session manager
-     *
-     * @var \phpOMS\DataStorage\Session\SessionInterface
-     * @since 1.0.0
-     */
-    private $sessionManager = null;
-
-    /**
      * Cache manager
      *
      * @var \phpOMS\DataStorage\Cache\Cache
      * @since 1.0.0
      */
     private $cacheManager = null;
-
-    /**
-     * Localization
-     *
-     * @var \phpOMS\Localization\Localization
-     * @since 1.0.0
-     */
-    private $l11n = null;
 
     /**
      * Account id
@@ -46,23 +30,18 @@ class Account
     /**
      * Account name
      *
-     * @var string[]
+     * @var string
      * @since 1.0.0
      */
-    private $name = [
-        0 => '', /* Login */
-        1 => '', /* Name 1 */
-        2 => '', /* Name 2 */
-        3 => '', /* Name 3 */
-    ];
+    private $name = '';
 
     /**
-     * Account address (primary)
+     * Account name
      *
-     * @var \phpOMS\Datatypes\Address
+     * @var string
      * @since 1.0.0
      */
-    private $address = null;
+    private $description = '';
 
     /**
      * Multition cache
@@ -77,7 +56,6 @@ class Account
      *
      * @param int                                                        $id             Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
-     * @param \phpOMS\DataStorage\Session\SessionInterface               $sessionManager Session manager
      * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
      *
      * @return \Model\Account
@@ -85,10 +63,10 @@ class Account
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function getInstance($id, $connection, $sessionManager, $cacheManager)
+    public static function getInstance($id, $connection, $cacheManager)
     {
         if(!isset(self::$instances[$id])) {
-            self::$instances[$id] = new self($id, $connection, $sessionManager, $cacheManager);
+            self::$instances[$id] = new self($id, $connection, $cacheManager);
         }
 
         return self::$instances[$id];
@@ -99,44 +77,18 @@ class Account
      *
      * @param int                                                        $id             Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
-     * @param \phpOMS\DataStorage\Session\SessionInterface               $sessionManager Session manager
      * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($id, $connection, $sessionManager, $cacheManager)
+    public function __construct($id, $connection, $cacheManager)
     {
         $this->id             = $id;
         $this->connection     = $connection;
-        $this->sessionManager = $sessionManager;
         $this->cacheManager   = $cacheManager;
 
         $this->l11n = new \phpOMS\Localization\Localization();
-    }
-
-    /**
-     * Authenticate account
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function authenticate()
-    {
-        $this->id = (new \phpOMS\Auth\Auth($this->connection, $this->sessionManager))->authenticate();
-    }
-
-    /**
-     * Get localization
-     *
-     * @return \phpOMS\Localization\Localization
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getL11n()
-    {
-        return $this->l11n;
     }
 
     /**
