@@ -32,25 +32,6 @@ class Client extends \phpOMS\Socket\SocketAbstract
         $this->commands->attach('disconnect', function ($conn, $para) {
             $this->disconnect();
         }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('help', function ($conn, $para) {
-            $this->help($conn);
-        }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('version', function ($conn, $para) {
-            $this->version($conn);
-        }, $this);
-
-        $this->commands->attach('help', function ($conn, $para) {
-            $this->kick($conn, $para);
-        }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->commands->attach('restart', function ($conn, $para) {
-            $this->restart($conn);
-        }, $this);
     }
 
     /**

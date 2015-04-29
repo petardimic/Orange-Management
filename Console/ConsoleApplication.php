@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS;
+namespace Console;
 
 /**
  * Controller class

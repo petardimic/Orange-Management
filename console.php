@@ -4,4 +4,4 @@ require_once __DIR__ . '/phpOMS/Autoloader.php';
 require_once __DIR__ . '/config.php';
 //</editor-fold>
 
-$App = new \phpOMS\ConsoleApplication($CONFIG);
+$App = new \Console\ConsoleApplication($CONFIG);

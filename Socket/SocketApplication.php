@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS;
+namespace Socket;
 
 /**
  * Controller class

@@ -2,14 +2,14 @@
     "name": "/",
     "description": "",
     "keywords": ["", "", ""],
-    "homepage": "http://www.spl1nes.com",
+    "homepage": "https://github.com/spl1nes/Orange-Management",
     "type": "",
     "license": "OMS 1.0",
     "authors": [
         {
             "name": "Dennis Eichhorn",
             "email": "spl1nes.com@googlemail.com",
-            "homepage": "http://www.spl1nes.com"
+            "homepage": "https://github.com/spl1nes/Orange-Management"
         }
     ],
     "support": {
