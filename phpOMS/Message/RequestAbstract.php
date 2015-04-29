@@ -63,6 +63,23 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
      * @since 1.0.0
      */
     private static $source = null;
+
+    /** @todo: implement!!! */
+    protected $scheme   = null;
+
+    protected $host     = null;
+
+    protected $port     = 80;
+
+    protected $user     = 80;
+
+    protected $password = 80;
+
+    protected $path     = null;
+
+    protected $query    = null;
+
+    protected $fragment = null;
 // endregion
 
     /**

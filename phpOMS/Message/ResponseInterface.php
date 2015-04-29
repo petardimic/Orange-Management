@@ -45,7 +45,7 @@ interface ResponseInterface
     /**
      * Set language
      *
-     * @param strin $language Language
+     * @param string $language Language
      *
      * @return string
      *

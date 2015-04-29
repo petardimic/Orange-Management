@@ -27,6 +27,7 @@ class ConsoleSession implements \phpOMS\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
     private $sid = null;
+
 // endregion
 
     /**
@@ -77,5 +78,12 @@ class ConsoleSession implements \phpOMS\DataStorage\Session\SessionInterface
     public function setSID($sid)
     {
         $this->sid = $sid;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function save()
+    {
     }
 }

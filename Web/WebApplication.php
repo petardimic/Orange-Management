@@ -18,6 +18,7 @@ namespace Web;
  */
 class WebApplication extends \phpOMS\ApplicationAbstract
 {
+
     /**
      * Main request
      *
@@ -52,7 +53,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      */
     public function __construct($config)
     {
-        $this->request  = new \phpOMS\Message\Http\Request();
+        $this->request = new \phpOMS\Message\Http\Request();
         $this->request->init();
         $this->response = new \phpOMS\Message\Http\Response();
 
@@ -77,7 +78,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $pageView = new \Web\Views\Page\BackendView();
 
-                if($this->dbPool->get('core')->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->dbFailResponse($pageView);
                     break;
                 }
@@ -105,7 +106,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $options = $this->settings->get([1000000011, 1000000009]);
+                $options                                          = $this->settings->get([1000000011, 1000000009]);
                 \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
                 \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
@@ -120,7 +121,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', $pageView->getOutput());
                 break;
             case \phpOMS\Message\RequestDestination::API:
-                if($this->dbPool->get('core')->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Retry-After', 'Retry-After: 300');
@@ -226,9 +227,10 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    private function setupBasic() {
+    private function setupBasic()
+    {
         $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \Model\CoreSettings($this->dbPool->get('core'));
+        $this->settings = new \Model\CoreSettings($this->dbPool->get());
 
         \phpOMS\Module\ModuleFactory::$app = $this;
         \phpOMS\Model\Model::$app          = $this;
@@ -236,7 +238,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->eventManager   = new \phpOMS\Event\EventManager();
         $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
         $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-        $this->user           = new \Model\Account(0, $this->dbPool->get('core'), $this->sessionManager, $this->cache);
+        $this->user           = new \Model\Account(0, $this->dbPool->get(), $this->sessionManager, $this->cache);
         $this->user->authenticate();
     }
 }

@@ -124,6 +124,14 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 echo $unitListView->getOutput();
                 break;
+            case 'create':
+                $unitCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $unitCreateView->setTemplate('/Modules/Business/Theme/backend/unit-create');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $unitCreateView->addData('nav', $navigation->nav);
+
+                echo $unitCreateView->getOutput();
+                break;
         }
     }
 
@@ -140,12 +148,20 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l4']) {
             case 'list':
-                $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $unitListView->setTemplate('/Modules/Business/Theme/backend/department-list');
+                $departmentListView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $departmentListView->setTemplate('/Modules/Business/Theme/backend/department-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-                $unitListView->addData('nav', $navigation->nav);
+                $departmentListView->addData('nav', $navigation->nav);
 
-                echo $unitListView->getOutput();
+                echo $departmentListView->getOutput();
+                break;
+            case 'create':
+                $departmentCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $departmentCreateView->setTemplate('/Modules/Business/Theme/backend/department-create');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $departmentCreateView->addData('nav', $navigation->nav);
+
+                echo $departmentCreateView->getOutput();
                 break;
         }
     }

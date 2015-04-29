@@ -46,7 +46,7 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database conection
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database connection
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>

@@ -154,4 +154,28 @@ class Account
     {
         return $this->id;
     }
+
+    /**
+     * Get account name
+     *
+     * @return string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Get account address
+     *
+     * @return \phpOMS\Datatypes\Address
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getAddress() {
+        return $this->address;
+    }
 }

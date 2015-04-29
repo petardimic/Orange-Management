@@ -23,10 +23,10 @@ class Install
     /**
      * Database object
      *
-     * @var \phpOMS\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
-    private $db = null;
+    private $dbPool = null;
 // endregion
 
     /**

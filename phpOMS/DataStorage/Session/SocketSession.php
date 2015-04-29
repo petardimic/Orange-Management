@@ -78,4 +78,11 @@ class SocketSession implements \phpOMS\DataStorage\Session\SessionInterface
     {
         $this->sid = $sid;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function save()
+    {
+    }
 }

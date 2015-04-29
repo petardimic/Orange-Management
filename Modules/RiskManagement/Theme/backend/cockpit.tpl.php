@@ -59,6 +59,47 @@ $statTableView->setElements([
 
 $this->getView('stats')->addView('stat::table', $statTableView);
 
+$panelExportView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelExportView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelExportView->setTitle($this->l11n->lang[30]['Export']);
+
+$formExportView = new \Web\Views\Form\FormView($this->l11n);
+$formExportView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formExportView->setSubmit('submit1', $this->l11n->lang[30]['Export']);
+$formExportView->setAction('http://127.0.0.1');
+$formExportView->setMethod(\phpOMS\Message\RequestMethod::POST);
+
+// TODO: put this on all risk management pages except settings - export should also export historic values (csv, excel)
+$formExportView->setElement(0, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 0, 'content' => 'English', 'selected' => true],
+    ],
+    'label'    => $this->l11n->lang[30]['Language'],
+    'name'     => 'language'
+]);
+
+$formExportView->setElement(1, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 'CockpitBasic', 'content' => $this->l11n->lang[30]['Basic'], 'selected' => true],
+    ],
+    'label'    => $this->l11n->lang[30]['Theme'],
+    'name'     => 'language'
+]);
+
+$formExportView->setElement(2, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 0, 'content' => 'PDF', 'selected' => true],
+    ],
+    'label'    => $this->l11n->lang[30]['Type'],
+    'name'     => 'export'
+]);
+
+$panelExportView->addView('form', $formExportView);
+$this->addView('export', $panelExportView);
+
 /*
  * Navigation
  */
@@ -81,6 +122,8 @@ $nav->setParent(1003001001);
             </ul>
         </div>
     </div>
+
+    <?= $panelExportView->getOutput(); ?>
 
     <?= $panelStatView->getOutput(); ?>
 </div>

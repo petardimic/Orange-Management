@@ -80,6 +80,8 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
     {
         //$key = md5(json_encode($columns));
 
+        $options = false;
+
         switch($this->connection->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $sth = $this->connection->con->prepare(

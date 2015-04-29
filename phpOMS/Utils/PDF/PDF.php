@@ -1,7 +1,9 @@
 <?php
-namespace \phpOMS\Utils\PDF;
+namespace phpOMS\Utils\PDF;
 
-class PDF extends \vendor\tcpdf\TCPDF implements \phpOMS\Contract\RenderableInterface
+require_once __DIR__ . '\..\..\..\vendor\tecnick.com\tcpdf\tcpdf.php';
+
+class PDF extends \TCPDF implements \phpOMS\Contract\RenderableInterface
 {
 
 // region Class Fields

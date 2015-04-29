@@ -27,7 +27,7 @@ $settingsFormView->setElement(0, 0, [
 $settingsFormView->setElement(1, 0, [
     'type'     => \phpOMS\Html\TagType::SELECT,
     'options'  => [
-        ['value' => 0, 'content' => $this->l11n->lang[1]['Single']],
+        ['value' => 0, 'content' => $this->l11n->lang[1]['Single'], 'selected' => true],
         ['value' => 1, 'content' => $this->l11n->lang[1]['Group']],
     ],
     'selected' => 1,

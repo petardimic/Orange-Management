@@ -26,7 +26,7 @@ class Model
     /**
      * Application instance
      *
-     * @var \phpOMS\WebApplication
+     * @var \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
     public static $app = null;

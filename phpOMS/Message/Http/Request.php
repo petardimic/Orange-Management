@@ -60,22 +60,7 @@ class Request extends \phpOMS\Message\RequestAbstract
      */
     private $requestDestination = null;
 
-    /** @todo: implement!!! */
-    private $scheme   = null;
 
-    private $host     = 80;
-
-    private $port     = 80;
-
-    private $user     = 80;
-
-    private $password = 80;
-
-    private $path     = null;
-
-    private $query    = null;
-
-    private $fragment = null;
 // endregion
 
     /**
@@ -129,6 +114,14 @@ class Request extends \phpOMS\Message\RequestAbstract
                                 $this->data['l4'],
                                 $this->data['l5']]),
         ];
+    }
+
+    public function getHost() {
+        if(!isset($this->host)) {
+            $this->host = $_SERVER['HTTP_HOST'];
+        }
+
+        return $this->host;
     }
 
     /**

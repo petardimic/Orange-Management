@@ -16,7 +16,7 @@ namespace phpOMS\Model\Html;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Meta
+class Meta implements \phpOMS\Contract\RenderableInterface
 {
 
 // region Class Fields
@@ -77,7 +77,7 @@ class Meta
     {
     }
 
-    public function __toString()
+    public function render()
     {
         return (count($this->keywords) > 0 ? '<meta name="keywords" content="' . implode(',', $this->keywords) . '">"' : '')
                . (isset($this->author) ? '<meta name="author" content="' . $this->author . '">' : '')
