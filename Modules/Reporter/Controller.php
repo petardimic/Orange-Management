@@ -109,7 +109,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $reportSingle->addData('nav', $navigation->nav);
 
                 $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData()['id']);
+                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData()['id'] . '/' . $request->getData()['id']);
+                $reportSingle->addData('name', $request->getData()['id']);
                 $reportSingle->addView('DataView', $dataView);
                 echo $reportSingle->getOutput();
                 break;

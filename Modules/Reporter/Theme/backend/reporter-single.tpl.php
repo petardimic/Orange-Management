@@ -1,7 +1,13 @@
 <?php
+
 /**
  * @var \phpOMS\Views\View $this
  */
+
+include_once __DIR__ . '/../../Templates/' . $this->getData('name') . '/' . $this->getData('name') . '.lang.php';
+
+$this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLanguage()]);
+
 /*
  * Navigation
  */
@@ -28,6 +34,12 @@ $nav->setParent(1002701001);
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <ul class="l-1">
+                <li><select>
+                        <!-- TODO: select language based on user language if language exists! -->
+                        <?php foreach($reportLanguage as $key => $language): ?>
+                            <option value="<?= $key; ?>"><?= $language[':language']; ?>
+                        <?php endforeach; ?>
+                    </select>
                 <li><select>
                         <option value="0" selected>PDF
                         <option value="1">Excel
