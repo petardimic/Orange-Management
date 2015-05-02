@@ -21,6 +21,15 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     protected $table = null;
 
     /**
+     * The column prefix
+     *
+     * e.g. Tablename
+     *
+     * @var string
+     */
+    protected $columnPrefix = '';
+
+    /**
      * The primary key for the model.
      *
      * @var mixed
@@ -84,13 +93,13 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     protected $queryBuilder = null;
 
     /**
-     * The name of the "created at" column.
+     * The name of the created at.
      *
-     * @var string
+     * @var \DateTime
      */
-    protected $created_at_column   = 'created_at';
-
     protected $created_at          = null;
+
+    protected $created_at_column   = 'created_at';
 
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
@@ -99,13 +108,13 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
               ];
 
     /**
-     * The name of the "updated at" column.
+     * The id of the "updated by"
      *
-     * @var string
+     * @var int
      */
-    protected $created_by_column   = 'created_by';
-
     protected $created_by          = null;
+
+    protected $created_by_column   = 'created_by';
 
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
@@ -115,13 +124,13 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
               ];
 
     /**
-     * The name of the "updated at" column.
+     * The date of the updated at
      *
-     * @var string
+     * @var \DateTime
      */
-    protected $updated_at_column   = 'updated_at';
-
     protected $updated_at          = null;
+
+    protected $updated_at_column   = 'updated_at';
 
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
@@ -130,13 +139,13 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
               ];
 
     /**
-     * The name of the "updated at" column.
+     * The id of the updated at
      *
-     * @var string
+     * @var int
      */
-    protected $updated_by_column   = 'updated_by';
-
     protected $updated_by          = null;
+
+    protected $updated_by_column   = 'updated_by';
 
     protected static
         /** @noinspection PhpUnusedPrivateFieldInspection */
@@ -144,6 +153,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
                   'isType'   => ['integer'],
                   'hasLimit' => [1, PHP_INT_MAX]
               ];
+
 // endregion
 
     protected static function find()
@@ -173,7 +183,7 @@ abstract class ORM implements \JsonSerializable, \phpOMS\Contract\JsonableInterf
     {
     }
 
-protected static function with()
+    protected static function with()
     {
     }
 
@@ -189,7 +199,7 @@ protected static function with()
     {
     }
 
-        protected function update()
+    protected function update()
     {
     } // TODO: provide different levels of implementation (1 = least information, 3 = all information) maybe use enum?!
 

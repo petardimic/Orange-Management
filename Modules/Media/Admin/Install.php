@@ -36,18 +36,18 @@ class Install
                             `media_id` int(11) NOT NULL AUTO_INCREMENT,
                             `media_name`  varchar(100) NOT NULL,
                             `media_file` varchar(255) NOT NULL,
-                            `media_type` varchar(10) NULL,
+                            `media_extension` varchar(10) NULL,
                             `media_size` int(11) NULL,
-                            `media_creator` int(11) DEFAULT NULL,
-                            `media_created` datetime DEFAULT NULL,
+                            `media_created_by` int(11) DEFAULT NULL,
+                            `media_created_at` datetime DEFAULT NULL,
                             PRIMARY KEY (`media_id`),
-                            KEY `media_creator` (`media_creator`)
+                            KEY `media_created_by` (`media_created_by`)
                         )ENGINE=InnoDB  DEFAULT CHARSET=utf8;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'media`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_ibfk_1` FOREIGN KEY (`media_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'media_ibfk_1` FOREIGN KEY (`media_created_by`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(

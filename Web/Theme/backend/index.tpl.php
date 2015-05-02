@@ -19,6 +19,9 @@ $side = $nav->getOutput();
         <style>
             <?php \phpOMS\Model\Model::load_style_small(); ?>
         </style>
+        <script>
+            var assetManager = new jsOMS.AssetManager();
+        </script>
     </head>
 <body>
 <div class="vh" id="dim"></div>

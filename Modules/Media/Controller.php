@@ -56,6 +56,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+
 // endregion
 
     /**
@@ -149,15 +150,102 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function showAPI($request, $response)
     {
-        switch($request->getRequestDestination()) {
+        switch($request->getMethod()) {
             case \phpOMS\Message\RequestMethod::POST:
                 $this->apiUpload($request, $response);
+                break;
+            case \phpOMS\Message\RequestMethod::GET:
+                $this->apiShow($request, $response);
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                 $response->setHeader('Status', 'Status:406 Not acceptable');
 
                 return;
+        }
+    }
+
+    /**
+     * Shows api content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function apiShow($request, $response)
+    {
+        if($request->getData()['l3'] === 'download') {
+            // TODO: check permissions + load data from database + if request = virtual directory -> zip all files and download + cache zip
+
+            $file = $_GET["file"] . ".pdf";
+            $response->setHeader('Content-Disposition', 'Content-Disposition: attachment; filename=' . urlencode($file));
+            $response->setHeader('Content-Type', 'Content-Type: application/octet-stream');
+            $response->setHeader('Content-Description', 'Content-Description: File Transfer');
+            $response->setHeader('Content-Length', 'Content-Length: ' . filesize($file));
+
+            $fp = fopen($file, "r");
+            while(!feof($fp)) {
+                echo fread($fp, 65536);
+                flush();
+            }
+            fclose($fp);
+        } else {
+            // TODO: check permissions + load data from database
+
+            switch($extension) {
+                case 'jpeg':
+                case 'png':
+                case 'bmp':
+                case 'tiff':
+                case 'gif':
+                    $response->setHeader('Content-Type', 'Content-Type: image/' . $extension);
+                    break;
+                case 'jpg':
+                    $response->setHeader('Content-Type', 'Content-Type: image/jpeg');
+                    break;
+                case 'svg':
+                    $response->setHeader('Content-Type', 'Content-Type: image/svg+xml');
+                    break;
+                case 'pdf':
+                    $response->setHeader('Content-Type', 'Content-Type: application/pdf');
+                    break;
+                case 'txt':
+                case 'csv':
+                case 'css':
+                case 'xml':
+                case 'html':
+                    $response->setHeader('Content-Type', 'Content-Type: text/' . $extension);
+                    break;
+                case 'htm':
+                    $response->setHeader('Content-Type', 'Content-Type: text/html');
+                    break;
+                case 'md':
+                    $response->setHeader('Content-Type', 'Content-Type: text/markdown');
+                    break;
+                case 'json':
+                    $response->setHeader('Content-Type', 'Content-Type: application/json');
+                    break;
+                case 'js':
+                    $response->setHeader('Content-Type', 'Content-Type: application/javascript');
+                    break;
+                case 'avi':
+                case 'mpeg':
+                case 'mp4':
+                case 'ogg':
+                    $response->setHeader('Content-Type', 'Content-Type: video/' . $extension);
+                    break;
+                case 'mp3':
+                    $response->setHeader('Content-Type', 'Content-Type: audio/' . $extension);
+                    break;
+                default:
+                    $response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                    $response->setHeader('Status', 'Status:406 Not acceptable');
+                    return;
+            }
+
+            $response->setHeader('Content-Length', 'Content-Length: ' . filesize($file));
         }
     }
 
@@ -177,5 +265,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         $upload->setOutputDir('/Modules/Media/Files/' . $rndPath[0] . $rndPath[1] . '/' . $rndPath[2] . $rndPath[3]);
         $upload->setFileName(false);
         $status = $upload->upload($_FILES);
+
+        if($status['success'] === \Modules\Media\Models\UploadStatus::OK) {
+            $media = new \Modules\Media\Models\Media($this->app->dbPool->get());
+            /* TODO: fill data */
+            $media->insert();
+        }
     }
 }

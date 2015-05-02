@@ -23,6 +23,14 @@ $nav->setParent(1002701001);
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <ul class="l-1">
+                <li><a href="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'reporter', 'edit'], ['id' => $this->getData('name')]); ?>" class="button"><?= $this->l11n->lang[27]['Edit']; ?></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="b b-5 c3-2 c3" id="i3-2-5">
+        <div class="bc-1">
+            <ul class="l-1">
                 <li><?= $this->l11n->lang[27]['Dataset']; ?>
                 <li><select>
                         <option value="0" selected>
@@ -36,9 +44,9 @@ $nav->setParent(1002701001);
             <ul class="l-1">
                 <li><select>
                         <!-- TODO: select language based on user language if language exists! -->
-                        <?php foreach($reportLanguage as $key => $language): ?>
-                            <option value="<?= $key; ?>"><?= $language[':language']; ?>
-                        <?php endforeach; ?>
+                        <?php foreach ($reportLanguage as $key => $language): ?>
+                        <option value="<?= $key; ?>"><?= $language[':language']; ?>
+                            <?php endforeach; ?>
                     </select>
                 <li><select>
                         <option value="0" selected>PDF

@@ -99,20 +99,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getData()['l3']) {
             case 'single':
-                if(file_exists(__DIR__ . '/Templates/' . $request->getData()['id'] . '.tpl.php')) {
-                }
-
-                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
-
-                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
-                $reportSingle->addData('nav', $navigation->nav);
-
-                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData()['id'] . '/' . $request->getData()['id']);
-                $reportSingle->addData('name', $request->getData()['id']);
-                $reportSingle->addView('DataView', $dataView);
-                echo $reportSingle->getOutput();
+                $this->showSingleBackend($request, $response);
                 break;
             case 'list':
                 $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
@@ -129,6 +116,46 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportCreate->addData('nav', $navigation->nav);
                 echo $reportCreate->getOutput();
+                break;
+            case 'edit':
+                $reportEdit = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $reportEdit->setTemplate('/Modules/Reporter/Theme/backend/reporter-edit');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $reportEdit->addData('nav', $navigation->nav);
+                $reportEdit->addData('name', $request->getData()['id']);
+                echo $reportEdit->getOutput();
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showSingleBackend($request, $response)
+    {
+        switch($request->getData()['l4']) {
+            case '':
+                if(file_exists(__DIR__ . '/Templates/' . $request->getData()['id'] . '.tpl.php')) {
+                }
+
+                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $reportSingle->addData('nav', $navigation->nav);
+
+                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData()['id'] . '/' . $request->getData()['id']);
+                $reportSingle->addData('name', $request->getData()['id']);
+                $reportSingle->addView('DataView', $dataView);
+                echo $reportSingle->getOutput();
                 break;
         }
     }

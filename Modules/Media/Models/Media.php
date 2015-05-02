@@ -16,17 +16,17 @@ namespace Modules\Media\Models;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Media implements \phpOMS\Models\MapperInterface
+class Media
 {
 
 // region Class Fields
     /**
      * Database instance
      *
-     * @var \phpOMS\DataStorage\Database\Database
+     * @var \phpOMS\DataStorage\Database\Connection\ConnectionAbstract
      * @since 1.0.0
      */
-    private $dbPool = null;
+    private $connection = null;
 
     /**
      * ID
@@ -66,7 +66,7 @@ class Media implements \phpOMS\Models\MapperInterface
      * @var int
      * @since 1.0.0
      */
-    private $author = 0;
+    private $created_by = 0;
 
     /**
      * Uploaded
@@ -74,7 +74,15 @@ class Media implements \phpOMS\Models\MapperInterface
      * @var \DateTime
      * @since 1.0.0
      */
-    private $created = null;
+    private $created_at = null;
+
+    /**
+     * Resource path
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $path = null;
 
     /**
      * Permissions
@@ -82,23 +90,30 @@ class Media implements \phpOMS\Models\MapperInterface
      * @var array
      * @since 1.0.0
      */
-    private $permissions = ['visibile' => ['groups' => [],
-                                           'users'  => []],
-                            'editable' => ['groups' => [],
-                                           'users'  => []]];
+    private $permissions = [
+        'visibile'   => ['groups' => [],
+                         'users'  => []],
+        'editable'   => ['groups' => [],
+                         'users'  => []],
+        'permission' => ['groups' => [],
+                         'users'  => []],
+        'deletable'  => ['groups' => [],
+                         'users'  => []]
+    ];
+
 // endregion
 
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool instance
+     * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection Database pool instance
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($dbPool)
+    public function __construct($connection)
     {
-        $this->dbPool = $dbPool;
+        $this->connection = $connection;
     }
 
     /**
@@ -205,29 +220,19 @@ class Media implements \phpOMS\Models\MapperInterface
     /**
      * {@inheritdoc}
      */
-    public function delete()
+    public function insert()
     {
-    }
+        $sth = $this->connection->con->prepare('INSERT INTO ' . $this->connection->prefix . 'media
+        (media_name, media_file, media_extension, media_size, media_created_by, media_created_at)
+        VALUES (:media_name, :media_file, :media_extension, :media_size, :media_created_by, :media_created_at)');
 
-    /**
-     * {@inheritdoc}
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function update()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize()
-    {
+        $sth->bindParam(':media_id', $this->id, \PDO::PARAM_INT);
+        $sth->bindParam(':media_name', $this->name, \PDO::PARAM_INT);
+        $sth->bindParam(':media_file', $this->path, \PDO::PARAM_INT);
+        $sth->bindParam(':media_extension', $this->extension, \PDO::PARAM_INT);
+        $sth->bindParam(':media_size', $this->size, \PDO::PARAM_INT);
+        $sth->bindParam(':media_created_by', $this->created_by, \PDO::PARAM_INT);
+        $sth->bindParam(':media_media_created_at', $this->created_at, \PDO::PARAM_INT);
     }
 
     /**

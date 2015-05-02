@@ -9,11 +9,13 @@ $reportLanguage = [
         'Description' => 'Description',
         'Diff'        => 'Diff',
         'DiffPlan'    => 'Diff Plan %',
+        'EventCourse' => 'Event Course',
         'Forecast'    => 'Forecast',
         'History'     => 'History',
         'Overview'    => 'Overview',
         'Plan'        => 'Plan',
         'Planning'    => 'Planning',
+        'Progress'    => 'Progress',
         'Type'        => 'Type',
     ]
 ];

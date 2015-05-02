@@ -15,7 +15,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/* <%= pkg.name %>\n' +
-        'Version: <%= pkg.version %>\n */',
+        'Version: <%= pkg.version %>\n' +
+        'License: <%= pkg.license %> */\n',
         includeSource: {
             options: {
                 // Task-specific options go here.
@@ -30,7 +31,24 @@ module.exports = function (grunt) {
             },
             dev: {
                 src: [
-                    'jsOMS/**/*.js'
+                    'jsOMS/Utils/oLib.js',
+                    'jsOMS/Stdlib/**/*.js',
+                    'jsOMS/Config/**/*.js',
+                    'jsOMS/Views/**/*.js',
+                    'jsOMS/Models/**/*.js',
+                    'jsOMS/Controllers/**/*.js',
+                    'jsOMS/DataStorage/**/*.js',
+                    'jsOMS/Module/**/*.js',
+                    'jsOMS/Math/**/*.js',
+                    'jsOMS/Route/**/*.js',
+                    'jsOMS/Uri/**/*.js',
+                    'jsOMS/Message/**/*.js',
+                    'jsOMS/Localization/**/*.js',
+                    'jsOMS/Event/**/*.js',
+                    'jsOMS/System/**/*.js',
+                    'jsOMS/Asset/**/*.js',
+                    'jsOMS/UI/**/*.js',
+                    'jsOMS/Validation/**/*.js'
                 ],
                 dest: 'jsOMS/oms.min.js'
             }

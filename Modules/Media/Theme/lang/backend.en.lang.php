@@ -1,5 +1,6 @@
 <?php
 $MODLANG[4] = [
+    "Account"     => "Account",
     "Author"      => "Author",
     "Changed"     => "Changed",
     "Changedby"   => "Changed by",
@@ -10,6 +11,7 @@ $MODLANG[4] = [
     "Extension"   => "Extension",
     "Media"       => "Media",
     "Name"        => "Name",
+    "Permission"  => "Permission",
     "Preview"     => "Preview",
     "Settings"    => "Settings",
     "Size"        => "Size",

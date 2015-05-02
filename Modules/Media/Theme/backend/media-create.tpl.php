@@ -63,12 +63,17 @@ $nav->setParent(1000401001);
 
     <div class="bc-1">
         <ul class="l-1">
-            <li><label><?= $this->l11n->lang[4]['Visibility']; ?></label>
+            <li><label><?= $this->l11n->lang[4]['Type']; ?></label>
+            <li><select></select>
+            <li><label><?= $this->l11n->lang[0]['ID']; ?></label>
             <li><input type="text">
+            <li><label><?= $this->l11n->lang[4]['Permission']; ?></label>
+            <li><li><select>
+                    <option>read
+                    <option>read+write
+                    <option>read+write+permission
+                </select>
                 <button><?= $this->l11n->lang[0]['Add']; ?></button>
-            <li><label><?= $this->l11n->lang[4]['Editability']; ?></label>
-            <li><input type="text">
-                <button><?= $this->l11n->lang[0]['Add']; ?>
         </ul>
     </div>
 </div>

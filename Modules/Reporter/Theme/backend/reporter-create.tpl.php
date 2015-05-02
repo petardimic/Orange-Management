@@ -41,7 +41,7 @@ $formCreateForm->setElement(1, 0, [
 
 $formCreateForm->setElement(1, 1, [
     'type'    => \phpOMS\Html\TagType::BUTTON,
-    'content' => $this->l11n->lang[27]['Select'],
+    'content' => $this->l11n->lang[27]['New'],
 ]);
 
 $formCreateForm->setElement(2, 0, [
@@ -54,7 +54,7 @@ $formCreateForm->setElement(2, 0, [
 
 $formCreateForm->setElement(2, 1, [
     'type'    => \phpOMS\Html\TagType::BUTTON,
-    'content' => $this->l11n->lang[27]['Select']
+    'content' => $this->l11n->lang[27]['New']
 ]);
 
 $this->getView('createFormPanel')->addView('form', $formCreateForm);

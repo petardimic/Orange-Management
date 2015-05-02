@@ -85,7 +85,7 @@ class Model
              . '<link rel="stylesheet" href="' . self::$content['page:addr:url'] . '/External/fontawesome/css/font-awesome.min.css">'
              . '<script>var URL = "' . self::$content['page:addr:url'] . '";</script>'
              . '<script src="' . self::$content['page:addr:url'] . '/External/d3/d3.min.js"></script>'
-             . '<script src="' . self::$content['page:addr:url'] . '/jsOMS/Utils/oLib.js"></script>';
+             . '<script src="' . self::$content['page:addr:url'] . '/jsOMS/oms.min.js"></script>';
 
         ob_flush();
     }
