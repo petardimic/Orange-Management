@@ -113,9 +113,14 @@
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     jsOMS.ready = function (func) {
-        document.addEventListener("DOMContentLoaded", function (event) {
+        // TODO: IE problems? + Maybe interactive + loaded can cause problems since elements might not be loaded yet?!!?!!?!
+        if (document.readyState === 'complete' || document.readyState === 'loaded' || document.readyState === 'interactive') {
             func();
-        });
+        } else {
+            document.addEventListener("DOMContentLoaded", function (event) {
+                func();
+            });
+        }
     };
 
     /**

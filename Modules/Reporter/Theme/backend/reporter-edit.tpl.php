@@ -227,7 +227,7 @@ $nav->setParent(1002701001);
 </div>
 
 <script>
-    oLib.ready(function () {
+    jsOMS.ready(function () {
         assetManager.load(URL + '/Modules/Media/JS', 'MediaUpload.js', 'js');
     });
 </script>
