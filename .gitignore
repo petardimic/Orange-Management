@@ -12,7 +12,6 @@
 *.iml
 *.lock
 *.phar
-*.css
 built.js
 oms.min.js
 tools/.metadata/*

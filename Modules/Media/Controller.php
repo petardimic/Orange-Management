@@ -105,10 +105,10 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function showContentBackend($request, $response)
     {
-        switch($request->getData()['l3']) {
+        switch($request->getRequest('l3')) {
             case 'single':
                 $media = new \Modules\Media\Models\Media($this->app->dbPool);
-                $media->init($request->getData()['id']);
+                $media->init($request->getRequest()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/media-single.tpl.php';
@@ -176,7 +176,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function apiShow($request, $response)
     {
-        if($request->getData()['l3'] === 'download') {
+        if($request->getRequest('l3') === 'download') {
             // TODO: check permissions + load data from database + if request = virtual directory -> zip all files and download + cache zip
 
             $file = $_GET["file"] . ".pdf";

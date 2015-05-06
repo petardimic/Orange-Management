@@ -77,7 +77,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request)
     {
-        switch($request->getData()['l3']) {
+        switch($request->getRequest('l3')) {
             case 'client':
                 $this->showBackendClient($request);
                 break;
@@ -104,7 +104,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendClient($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $clientList = new \Modules\Sales\Models\ClientList($this->app->dbPool);
@@ -134,7 +134,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendInvoice($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $invoiceList = new \Modules\Sales\Models\InvoiceList($this->app->dbPool);
@@ -164,7 +164,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendArticle($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $articleList = new \Modules\Sales\Models\ArticleList($this->app->dbPool);
@@ -194,7 +194,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendAnalysis($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';

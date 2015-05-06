@@ -104,7 +104,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getData()['l3']) {
+        switch($request->getRequest('l3')) {
             case 'dashboard':
                 $newsDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $newsDashboard->setTemplate('/Modules/News/Theme/backend/news-dashboard');
@@ -115,7 +115,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'single':
                 $article = new \Modules\News\Models\Article($this->app->dbPool);
-                $article->init($request->getData()['id']);
+                $article->init($request->getRequest()['id']);
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/news-single.tpl.php';
@@ -160,13 +160,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestMethod::POST:
                 $newsOBJ = new \Modules\News\Models\NewsArticle($this->app->dbPool);
-                $newsOBJ->setAuthor($request->getData()['author']);
+                $newsOBJ->setAuthor($request->getRequest()['author']);
                 $newsOBJ->setCreated(new \DateTime('now'));
-                $newsOBJ->setPublish(new \DateTime($request->getData()['publish']));
-                $newsOBJ->setTitle($request->getData()['title']);
-                $newsOBJ->setContent($request->getData()['content']);
-                $newsOBJ->setLang($request->getData()['language']);
-                $newsOBJ->setType($request->getData()['type']);
+                $newsOBJ->setPublish(new \DateTime($request->getRequest()['publish']));
+                $newsOBJ->setTitle($request->getRequest()['title']);
+                $newsOBJ->setContent($request->getRequest()['content']);
+                $newsOBJ->setLang($request->getRequest()['language']);
+                $newsOBJ->setType($request->getRequest()['type']);
                 $created = $newsOBJ->create();
 
                 $response->get('GLOBAL')->add($request->__toString(), $created);

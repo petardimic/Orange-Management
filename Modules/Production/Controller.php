@@ -76,7 +76,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request)
     {
-        switch($request->getData()['l3']) {
+        switch($request->getRequest('l3')) {
             case 'process':
                 $this->showBackendProcess($request);
                 break;
@@ -97,7 +97,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendProcess($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
@@ -123,7 +123,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendGuideline($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);

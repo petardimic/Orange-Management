@@ -137,7 +137,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $request = new \phpOMS\Message\Http\Request();
 
-                if(($uris = $this->request->getData('r')) !== false) {
+                if(($uris = $this->request->getRequest('r')) !== false) {
                     $uris = json_decode($uris, true);
 
                     foreach($uris as $key => $uri) {
@@ -157,7 +157,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $request = $this->request;
 
                     if($this->user->getId() < 1) {
-                        if($request->getData()['l2'] === 'login') {
+                        if($request->getRequest('l2') === 'login') {
                             $this->sessionManager->set('UID', 1);
                             $this->sessionManager->save();
 
@@ -166,7 +166,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             break;
                         }
                     } else {
-                        if($request->getData()['l2'] === 'logout') {
+                        if($request->getRequest('l2') === 'logout') {
                             $this->sessionManager->remove('UID');
                             $this->sessionManager->save();
                             $this->response->get('GLOBAL')->add($this->request->__toString(), 1);

@@ -95,7 +95,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function showContentBackend($request, $response)
     {
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
-        switch($request->getData()['l2']) {
+        switch($request->getRequest('l2')) {
             case 'hr':
                 $this->showContentTimemgmtBackend($request, $response);
                 break;
@@ -116,8 +116,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentTimemgmtBackend($request, $response)
     {
-        if($request->getData()['l3'] === 'timemgmt') {
-            switch($request->getData()['l4']) {
+        if($request->getRequest('l3') === 'timemgmt') {
+            switch($request->getRequest('l4')) {
                 case 'dashboard':
                     $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                     $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-list');
@@ -149,7 +149,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendPrivate($request, $response)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'dashboard':
                 $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
                 $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/user-timemanagement-dashboard');

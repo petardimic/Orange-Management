@@ -78,7 +78,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request)
     {
-        switch($request->getData()['l3']) {
+        switch($request->getRequest('l3')) {
             case 'supplier':
                 $this->showBackendSupplier($request);
                 break;
@@ -105,7 +105,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendSupplier($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $supplierList = new \Modules\Purchase\Models\SupplierList($this->app->dbPool);
@@ -135,7 +135,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendInvoice($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $invoiceList = new \Modules\Purchase\Models\InvoiceList($this->app->dbPool);
@@ -165,7 +165,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendArticle($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $articleList = new \Modules\Purchase\Models\ArticleList($this->app->dbPool);
@@ -195,7 +195,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendAnalysis($request)
     {
-        switch($request->getData()['l4']) {
+        switch($request->getRequest('l4')) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';
