@@ -80,6 +80,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\RequestDestination::BACKEND:
                 $this->showContentBackend($request, $response);
                 break;
+            case \phpOMS\Message\RequestDestination::API:
+                $this->showContentApi($request, $response);
+                break;
         }
     }
 
@@ -135,6 +138,26 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskSettingsView->addData('nav', $navigation->nav);
                 echo $taskSettingsView->getOutput();
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showContentApi($request, $response)
+    {
+        switch($request->getData()['l3']) {
+            case 'create':
+                // TODO: handle creation
+                // TODO: return success (at least a notify msg for user information)?
+                // + created id + destination url IFF creator = (first) receiver
                 break;
         }
     }

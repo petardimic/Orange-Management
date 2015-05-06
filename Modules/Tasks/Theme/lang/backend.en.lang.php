@@ -26,6 +26,7 @@ $MODLANG[11] = [
     "Redirected"         => "Redirected",
     "Select"             => "Select",
     "Settings"           => "Settings",
+    "SharedVisibility"   => "Visibility is shared across all",
     "Size"               => "Size",
     "Statistics"         => "Statistics",
     "Status"             => "Status",

@@ -34,24 +34,44 @@ class Install
                 $dbPool->get('core')->con->beginTransaction();
 
                 $dbPool->get('core')->con->prepare(
+                    'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'task_template` (
+                            `task_template_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `task_title` varchar(30) DEFAULT NULL,
+                            `task_desc` text NOT NULL,
+                            `task_created_by` int(11) NOT NULL,
+                            `task_created_at` datetime NOT NULL,
+                            PRIMARY KEY (`task_template_id`)
+                        )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
+                )->execute();
+
+                /**
+                 * task_visibility = 0 or 1
+                 * 0 everyone who ever received this task can see its current content
+                 * 1 only the current holder of a task can see its content
+                 */
+                $dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'task` (
                             `task_id` int(11) NOT NULL AUTO_INCREMENT,
                             `task_title` varchar(30) DEFAULT NULL,
                             `task_desc` text NOT NULL,
                             `task_plain` text NOT NULL,
                             `task_status` tinyint(3) NOT NULL,
+                            `task_template` int(11) NOT NULL,
+                            `task_visibility` tinyint(1) NOT NULL,
                             `task_due` datetime NOT NULL,
                             `task_done` datetime NOT NULL,
                             `task_creator` int(11) NOT NULL,
                             `task_created` datetime NOT NULL,
                             PRIMARY KEY (`task_id`),
-                            KEY `task_creator` (`task_creator`)
+                            KEY `task_creator` (`task_creator`),
+                            KEY `task_template` (`task_template`)
                         )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $dbPool->get('core')->prefix . 'task`
-                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_ibfk_1` FOREIGN KEY (`task_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_ibfk_1` FOREIGN KEY (`task_creator`) REFERENCES `' . $dbPool->get('core')->prefix . 'account` (`account_id`),
+                            ADD CONSTRAINT `' . $dbPool->get('core')->prefix . 'task_ibfk_2` FOREIGN KEY (`task_template`) REFERENCES `' . $dbPool->get('core')->prefix . 'task_template` (`task_template_id`);'
                 )->execute();
 
                 $dbPool->get('core')->con->prepare(

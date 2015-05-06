@@ -16,5 +16,6 @@ $MODLANG[4] = [
     "Settings"    => "Settings",
     "Size"        => "Size",
     "Type"        => "Type",
+    "Upload"      => "Upload",
     "Visibility"  => "Visibility"
 ];

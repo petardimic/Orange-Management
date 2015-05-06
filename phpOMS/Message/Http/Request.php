@@ -155,14 +155,6 @@ class Request extends \phpOMS\Message\RequestAbstract
     /**
      * {@inheritdoc}
      */
-    public function getRequest()
-    {
-        return $this->data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getRequestInfo()
     {
         if($this->info === null) {

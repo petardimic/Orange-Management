@@ -21,7 +21,7 @@ $this->getView('mediaPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
 $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
-$formCreateForm->setAction('http://127.0.0.1');
+$formCreateForm->setAction('http://127.0.0.1/en/api/task/create.php');
 $formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formCreateForm->setElement(0, 0, [
@@ -63,12 +63,20 @@ $formCreateForm->setElement(2, 0, [
 
 $formCreateForm->setElement(3, 0, [
     'type'    => \phpOMS\Html\TagType::INPUT,
+    'subtype' => 'checkbox',
+    'name'    => 'visibility',
+    'checked' => true,
+    'label'   => $this->l11n->lang[11]['SharedVisibility']
+]);
+
+$formCreateForm->setElement(4, 0, [
+    'type'    => \phpOMS\Html\TagType::INPUT,
     'subtype' => 'datetime-local',
     'name'    => 'due',
     'label'   => $this->l11n->lang[11]['Due']
 ]);
 
-$formCreateForm->setElement(4, 0, [
+$formCreateForm->setElement(5, 0, [
     'type'  => \phpOMS\Html\TagType::TEXTAREA,
     'name'  => 'msg',
     'label' => $this->l11n->lang[11]['Message']

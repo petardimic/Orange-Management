@@ -11,15 +11,16 @@
     <?php elseif ($element['type'] === \phpOMS\Html\TagType::INPUT): ?>
     <?php if (isset($element['label']) && $element['subtype'] !== 'checkbox'): ?>
     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label>
-    <li>
         <?php endif; ?>
+    <li>
         <input<?= (isset($element['visible']) && !$element['visible'] ? ' class="hidden"' : '') ?>
             name="<?= $element['name']; ?>" id="n-<?= $element['name']; ?>"
             type="<?= $element['subtype']; ?>"
             value="<?= (isset($element['value']) ? $element['value'] : ''); ?>"
             <?= (isset($element['placeholder']) ? ' placeholder="' . $element['placeholder'] . '"' : ''); ?>
             <?= (isset($element['regex']) ? ' data-validate="' . $element['regex'] . '"' : ''); ?>
-            <?= (isset($element['active']) && !$element['active'] ? ' disabled' : '') ?>>
+            <?= (isset($element['active']) && !$element['active'] ? ' disabled' : '') ?>
+            <?= (isset($element['checked']) && $element['checked'] ? ' checked' : '') ?>>
         <?php if(isset($element['label']) && $element['subtype'] === 'checkbox'): ?>
             <label for="<?= $element['name']; ?>"><?= $element['label']; ?></label>
         <?php endif; ?>
@@ -54,7 +55,12 @@
         <?php if (count($this->submit) > 0): ?>
     <li class="submit">
         <?php foreach($this->submit as $key => $submit) : ?>
-            <input class="<?php if(isset($submit[1]['float']) && $submit[1]['float'] === 1) { echo ' rf';} elseif(isset($submit[1]['float']) && $submit[1]['float'] === -1) { echo 'lf';} ?>" type="submit" name="<?= $key; ?>" value="<?= $submit[0]; ?>"<?= (isset($submit[1]['visible']) && !$submit[1]['visible'] ? ' disabled' : '') ?>>
+            <input class="<?php if(isset($submit[1]['float']) && $submit[1]['float'] === 1) {
+                echo ' rf';
+            } elseif(isset($submit[1]['float']) && $submit[1]['float'] === -1) {
+                echo 'lf';
+            } ?>" type="submit" name="<?= $key; ?>"
+                   value="<?= $submit[0]; ?>"<?= (isset($submit[1]['visible']) && !$submit[1]['visible'] ? ' disabled' : '') ?>>
         <?php endforeach; ?>
         <?php endif; ?>
 </ul>
