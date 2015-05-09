@@ -20,7 +20,10 @@
     },
     "load": [
         {
-            "pid": ["754a08ddf8bcb1cf22f310f09206dd783d42f7dd"],
+            "pid": [
+                "754a08ddf8bcb1cf22f310f09206dd783d42f7dd",
+                "a27297bde9732f2e73fbc06db2611764e3ad9855"
+            ],
             "type": 4,
             "for": 1004100000,
             "file": "Navigation",

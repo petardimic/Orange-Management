@@ -191,6 +191,60 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                 break;
+            case \phpOMS\Message\RequestDestination::REPORT:
+                if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
+                    $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                    $this->response->setHeader('Status', 'Status:406 Not acceptable');
+                    $this->response->add('GLOBAL', '');
+                    break;
+                }
+
+                $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+
+                $pageView = new \Web\Views\Page\BackendView();
+
+                if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                    $this->dbFailResponse($pageView);
+                    break;
+                }
+
+                $this->setupBasic();
+
+                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
+                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'report');
+
+                $pageView->setLocalization($this->user->getL11n());
+                $pageView->setRequest($this->request);
+                $pageView->setResponse($this->response);
+
+                if($this->user->getId() < 1) {
+                    $pageView->setTemplate('/Web/Theme/report/login');
+                    $this->response->add('GLOBAL', $pageView->getOutput());
+                    break;
+                }
+
+                $toLoad = $this->moduleManager->getUriLoads($this->request);
+
+                if(isset($toLoad[4])) {
+                    foreach($toLoad[4] as $module) {
+                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                    }
+                }
+
+                $options                                          = $this->settings->get([1000000011, 1000000009]);
+                \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+                \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
+                \phpOMS\Model\Model::$content['theme:path']       = $options[1000000011];
+                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
+                \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
+
+                $pageView->setTemplate('/Web/Theme/report/index');
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
+                $pageView->addData('nav', $navigation->nav);
+                $this->response->add('GLOBAL', $pageView->getOutput());
+                break;
             default:
                 $this->response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->setHeader('Status', 'Status: 404 Not Found');
