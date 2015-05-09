@@ -10,12 +10,20 @@ $types = [
     ],
 ];
 
-$now    = new \phpOMS\Datatypes\SmartDateTime();
-$now1   = $now->createModify(-1);
-$now2   = $now->createModify(-2);
-$now1m  = $now->createModify(0, -1);
-$now2m  = $now->createModify(0, -2);
-$now11m = $now->createModify(-1, -1);
+if(array_key_exists($this->app->account->getId(), $restricted) && in_array($this->request->getReqeust('source'), $restricted[$this->app->account->getId()])) {
+    $source = $this->request->getReqeust('source');
+} elseif(array_key_exists($this->app->account->getId(), $restricted)) {
+    $source = $restricted[$this->app->account->getId()][0];
+} else {
+    $source = 21;
+}
+
+$now     = new \phpOMS\Datatypes\SmartDateTime();
+$now1    = $now->createModify(-1);
+$now2    = $now->createModify(-2);
+$now1m   = $now->createModify(0, -1);
+$now2m   = $now->createModify(0, -2);
+$now11m  = $now->createModify(-1, -1);
 
 ?>
 <!-- Client rating -->
@@ -30,15 +38,30 @@ $now11m = $now->createModify(-1, -1);
         <th><?= $now1->format('Y'); ?>
         <th><?= $now->format('Y'); ?>
     <tr>
-        <th>A<td>1<td>2<td>3
+        <th>A
+        <td>1
+        <td>2
+        <td>3
     <tr>
-        <th>B<td>1<td>2<td>3
+        <th>B
+        <td>1
+        <td>2
+        <td>3
     <tr>
-        <th>C<td>1<td>2<td>3
+        <th>C
+        <td>1
+        <td>2
+        <td>3
     <tr>
-        <th>D<td>1<td>2<td>3
+        <th>D
+        <td>1
+        <td>2
+        <td>3
     <tr>
-        <th>E<td>1<td>2<td>3
+        <th>E
+        <td>1
+        <td>2
+        <td>3
 </table>
 
 <!-- Client new/lost -->
