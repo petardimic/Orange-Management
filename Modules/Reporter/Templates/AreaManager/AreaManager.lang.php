@@ -14,5 +14,8 @@ $reportLanguage = [
         'TurnoverNewClients'  => 'Turnover New Clients',
         'TurnoverOverview'    => 'Turnover Overview',
         'Type'                => 'Type',
+        '161'                 => 'IMPLA',
+        '162'                 => 'IMPLA 3D',
+        '233'                 => 'CAD/CAM',
     ]
 ];

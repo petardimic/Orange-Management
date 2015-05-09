@@ -3,6 +3,13 @@ $restricted = [
 
 ];
 
+$types = [
+    [
+        'title'    => 'IMPLA',
+        'elements' => [161, 162]
+    ],
+];
+
 $now    = new \phpOMS\Datatypes\SmartDateTime();
 $now1   = $now->createModify(-1);
 $now2   = $now->createModify(-2);
@@ -23,30 +30,15 @@ $now11m = $now->createModify(-1, -1);
         <th><?= $now1->format('Y'); ?>
         <th><?= $now->format('Y'); ?>
     <tr>
-        <th>A
-        <td>1
-        <td>2
-        <td>3
+        <th>A<td>1<td>2<td>3
     <tr>
-        <th>B
-        <td>1
-        <td>2
-        <td>3
+        <th>B<td>1<td>2<td>3
     <tr>
-        <th>C
-        <td>1
-        <td>2
-        <td>3
+        <th>C<td>1<td>2<td>3
     <tr>
-        <th>D
-        <td>1
-        <td>2
-        <td>3
+        <th>D<td>1<td>2<td>3
     <tr>
-        <th>E
-        <td>1
-        <td>2
-        <td>3
+        <th>E<td>1<td>2<td>3
 </table>
 
 <!-- Client new/lost -->
@@ -73,7 +65,7 @@ $now11m = $now->createModify(-1, -1);
 <table>
     <thead>
     <tr>
-        <th rowspan="66"><?= $lang['TurnoverOverview']; ?>
+        <th rowspan="16"><?= ['TurnoverOverview']; ?>
             <tbody>
     <tr>
         <th><?= $lang['Type']; ?>
@@ -92,8 +84,12 @@ $now11m = $now->createModify(-1, -1);
         <th><?= ($now1->format('Y')) ?>
         <th><?= ($now->format('Y')) ?>
         <th><?= $lang['Trend']; ?>
+            <?php foreach ($types as $ids) : ?>
     <tr>
-        <th>?
+        <th rowspan="16"><?= $lang[$ids['title']]; ?>
+            <?php foreach ($ids['elements'] as $id) : ?>
+    <tr>
+        <th><?= $id . ' ' . $lang[$id]; ?>
         <td>
         <td>
         <td>
@@ -108,5 +104,8 @@ $now11m = $now->createModify(-1, -1);
         <td>
         <td>
         <td>
-        <td>
+        <td><i class="fa-arrow-circle-o-right"></i>
+            <?php endforeach; ?>
+            <?php endforeach; ?>
+    <tr>
 </table>
