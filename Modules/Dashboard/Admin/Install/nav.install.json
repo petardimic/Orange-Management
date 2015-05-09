@@ -59,5 +59,25 @@
         "permission": null,
         "parent": 0,
         "children": []
+    },
+    {
+        "id": 1000210001,
+        "pid": "a27297bde9732f2e73fbc06db2611764e3ad9855",
+        "type": 1,
+        "subtype": 1,
+        "name": "Logout",
+        "l0": null,
+        "l1": null,
+        "l2": null,
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "query": null,
+        "icon": "fa fa-power-off",
+        "order": 999,
+        "from": 1000200000,
+        "permission": null,
+        "parent": 0,
+        "children": []
     }
 ]

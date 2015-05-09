@@ -119,9 +119,9 @@ class Model
 
         //var_dump(self::$app->modules->running);
 
-        foreach(self::$app->modules->running as $key => $val) {
+        //foreach(self::$app->modules->running as $key => $val) {
             //var_dump($val);
-        }
+        //}
 
         ob_flush();
     }

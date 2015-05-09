@@ -7,9 +7,6 @@ $nav->setTemplate('/Modules/Navigation/Theme/backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $top = $nav->getOutput();
-
-$nav->setTemplate('/Modules/Navigation/Theme/backend/side');
-$side = $nav->getOutput();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -30,10 +27,6 @@ $side = $nav->getOutput();
         <?= $top; ?>
     </div>
     <div id="bar-b">
-        <span class="vC" id="nav-toggle">
-            <i class="fa fa-bars ani-click" data-aniref="#s-nav" data-aniin="slide-right" data-aniout="slide-left"
-               data-anistate="1" data-anitime="300"></i>
-        </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
                 href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
                 itemprop="legalName"><?= \phpOMS\Model\Model::$content['core:oname']; ?></a>

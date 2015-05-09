@@ -1,4 +1,4 @@
-@import "clean", "mixins", "report_vars", "default";
+@import "clean", "mixins", "reporter_vars", "default";
 
 #dim {
     position: absolute;
@@ -104,4 +104,4 @@ button, input[type=submit], input[type=button], .button {
     }
 }
 
-@import "chart", "report_media", "report_nav", "report_box", "report_table", "report_form", "report_tab";
+@import "chart", "reporter_media", "reporter_nav", "reporter_box", "reporter_table", "reporter_form", "reporter_tab";

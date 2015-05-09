@@ -191,7 +191,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                 break;
-            case \phpOMS\Message\RequestDestination::REPORT:
+            case \phpOMS\Message\RequestDestination::REPORTER:
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->setHeader('Status', 'Status:406 Not acceptable');
@@ -211,14 +211,14 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->setupBasic();
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
-                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'report');
+                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'reporter');
 
                 $pageView->setLocalization($this->user->getL11n());
                 $pageView->setRequest($this->request);
                 $pageView->setResponse($this->response);
 
                 if($this->user->getId() < 1) {
-                    $pageView->setTemplate('/Web/Theme/report/login');
+                    $pageView->setTemplate('/Web/Theme/reporter/login');
                     $this->response->add('GLOBAL', $pageView->getOutput());
                     break;
                 }
@@ -240,7 +240,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 
-                $pageView->setTemplate('/Web/Theme/report/index');
+                $pageView->setTemplate('/Web/Theme/reporter/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
                 $this->response->add('GLOBAL', $pageView->getOutput());
