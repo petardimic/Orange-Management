@@ -35,6 +35,7 @@ class Install
                     'CREATE TABLE if NOT EXISTS `' . $dbPool->get('core')->prefix . 'media` (
                             `media_id` int(11) NOT NULL AUTO_INCREMENT,
                             `media_name`  varchar(100) NOT NULL,
+                            `media_versioned`  tinyint(1) NOT NULL,
                             `media_file` varchar(255) NOT NULL,
                             `media_extension` varchar(10) NULL,
                             `media_size` int(11) NULL,
