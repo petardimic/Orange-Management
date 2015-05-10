@@ -1,0 +1,85 @@
+.areamanager-report {
+    table {
+        width: 100%;
+        font-size: 0.9em;
+        margin: 5px 0 0 5px;
+    }
+
+    thead {
+        background: #e74b3c;
+        color: #fff;
+
+        th {
+            font-size: 0.9em;
+            padding: 3px;
+        }
+    }
+
+    tbody {
+        th {
+            text-align: left;
+            padding: 0 5px 0 5px;
+        }
+
+        tr {
+            &:first-child {
+                background: #c5c5c5;
+                th {
+                    padding: 5px 0 5px 0;
+                    border-bottom: 1px solid #a1a1a1;
+                    text-align: center;
+                }
+            }
+
+            &:nth-child(2n) {
+                background: #e4e4e4;
+            }
+
+            &:nth-child(n+2) {
+                &:hover {
+                    background: #d4d4d4;
+                }
+
+                th:first-child {
+                    text-align: left;
+                    background: #d4d4d4;
+                }
+            }
+        }
+    }
+
+    .reporter-subheadline {
+        border-bottom: 1px solid #a1a1a1;
+        border-top: 1px solid #a1a1a1;
+        background: #d4d4d4 !important;
+
+        th {
+            text-align: center !important;
+        }
+    }
+
+    .delim {
+        background: #d4d4d4 !important;
+    }
+}
+
+#areamanager-report-rating {
+    width: calc(50% - 5px);
+    float: left;
+}
+
+#areamanager-report-clientmovement {
+    width: calc(50% - 5px);
+    float: left;
+}
+
+#areamanager-report-turnoveroverview {
+    float: left;
+
+    tbody {
+        td:last-child {
+            text-align: center;
+            background: #bdbdbd;
+        }
+    }
+}
