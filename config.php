@@ -25,8 +25,6 @@ $CONFIG = [
 	    "prefix"   => "oms_" /* db table prefix */
 	],
 	'page' => [
-		 '127.0.0.1', /* remote address */
-    	'127.0.0.1', /* local address */
     	__DIR__ /* root of the web application */
 	],
 	'socket' => [

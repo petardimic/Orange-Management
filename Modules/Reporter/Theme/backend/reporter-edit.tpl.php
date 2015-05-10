@@ -55,7 +55,7 @@ $nav->setParent(1002701001);
     $formOverview->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formOverview->setSubmit('submit1', $this->l11n->lang[27]['Edit']);
     $formOverview->setSubmit('submit2', $this->l11n->lang[0]['Delete']);
-    $formOverview->setAction('http://127.0.0.1');
+    $formOverview->setAction($this->request->getScheme() . '://' . $this->request->getHost());
     $formOverview->setMethod(\phpOMS\Message\RequestMethod::POST);
 
     $formOverview->setElement(0, 0, [
@@ -100,7 +100,7 @@ $nav->setParent(1002701001);
     $formPermissionAdd = new \Web\Views\Form\FormView($this->l11n);
     $formPermissionAdd->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formPermissionAdd->setSubmit('submit1', $this->l11n->lang[0]['Add']);
-    $formPermissionAdd->setAction('http://127.0.0.1');
+    $formPermissionAdd->setAction($this->request->getScheme() . '://' . $this->request->getHost());
     $formPermissionAdd->setMethod(\phpOMS\Message\RequestMethod::POST);
 
     $formPermissionAdd->setElement(0, 0, [
@@ -203,7 +203,7 @@ $nav->setParent(1002701001);
     $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
     $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-    $formCreateForm->setAction('http://127.0.0.1');
+    $formCreateForm->setAction($this->request->getScheme() . '://' . $this->request->getHost());
     $formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
     $formCreateForm->setElement(0, 0, [

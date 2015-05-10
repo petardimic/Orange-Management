@@ -66,7 +66,7 @@ $panelExportView->setTitle($this->l11n->lang[30]['Export']);
 $formExportView = new \Web\Views\Form\FormView($this->l11n);
 $formExportView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formExportView->setSubmit('submit1', $this->l11n->lang[30]['Export']);
-$formExportView->setAction('http://127.0.0.1');
+$formExportView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
 $formExportView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 // TODO: put this on all risk management pages except settings - export should also export historic values (csv, excel)

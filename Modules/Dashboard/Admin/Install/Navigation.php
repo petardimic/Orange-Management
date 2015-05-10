@@ -1,5 +1,5 @@
 <?php
-namespace Modules\BackendDashboard\Admin\Install;
+namespace Modules\Dashboard\Admin\Install;
 
 /**
  * Navigation class

@@ -49,7 +49,7 @@ class Install
                             `nav_l5` varchar(30) DEFAULT NULL,
                             `nav_query` varchar(100) DEFAULT NULL,
                             `nav_from` int(11) DEFAULT NULL,
-                            `nav_order` tinyint(3) DEFAULT NULL,
+                            `nav_order` smallint(3) DEFAULT NULL,
                             `nav_parent` int(11) DEFAULT NULL,
                             `nav_permission` int(11) DEFAULT NULL,
                             PRIMARY KEY (`nav_id`)

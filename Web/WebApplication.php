@@ -106,12 +106,11 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $options                                          = $this->settings->get([1000000011, 1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
-                \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
-                \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+                $options                                          = $this->settings->get([1000000009]);
+                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getScheme() . '://' . $this->request->getHost();
                 \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
-                \phpOMS\Model\Model::$content['theme:path']       = $options[1000000011];
                 \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 
@@ -231,12 +230,11 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $options                                          = $this->settings->get([1000000011, 1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = 'http://127.0.0.1';
-                \phpOMS\Model\Model::$content['page:addr:local']  = 'http://127.0.0.1';
-                \phpOMS\Model\Model::$content['page:addr:remote'] = 'http://127.0.0.1';
+                $options                                          = $this->settings->get([1000000009]);
+                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getScheme() . '://' . $this->request->getHost();
                 \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
-                \phpOMS\Model\Model::$content['theme:path']       = $options[1000000011];
                 \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
 

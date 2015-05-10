@@ -1,5 +1,5 @@
 <?php
-namespace Modules\BackendDashboard;
+namespace Modules\Dashboard;
 
 /**
  * Dashboard controller class

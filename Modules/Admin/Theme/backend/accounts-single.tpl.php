@@ -15,7 +15,7 @@ $this->addView('account::account', $panelAccountView);
 $accountFormView = new \Web\Views\Form\FormView($this->l11n);
 $accountFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $accountFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$accountFormView->setAction('http://127.0.0.1');
+$accountFormView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
 $accountFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $accountFormView->setElement(0, 0, [
@@ -78,7 +78,7 @@ $this->addView('account::profile', $panelProfileView);
 $profileFormView = new \Web\Views\Form\FormView($this->l11n);
 $profileFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $profileFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$profileFormView->setAction('http://127.0.0.1');
+$profileFormView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
 $profileFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $profileFormView->setElement(0, 0, [

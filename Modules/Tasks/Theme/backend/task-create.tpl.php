@@ -21,7 +21,7 @@ $this->getView('mediaPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
 $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
-$formCreateForm->setAction('http://127.0.0.1/en/api/task/create.php');
+$formCreateForm->setAction($this->request->getScheme() . '://' . $this->request->getHost() . '/' . $this->l11n->getLanguage() . '/api/task/create.php');
 $formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formCreateForm->setElement(0, 0, [
@@ -91,7 +91,7 @@ $this->getView('createFormPanel')->addView('form', $formCreateForm);
 $mediaForm = new \Web\Views\Form\FormView($this->l11n);
 $mediaForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $mediaForm->setSubmit('submit1', $this->l11n->lang[0]['Add']);
-$mediaForm->setAction('http://127.0.0.1');
+$mediaForm->setAction($this->request->getScheme() . '://' . $this->request->getHost());
 $mediaForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $mediaForm->setElement(0, 0, [

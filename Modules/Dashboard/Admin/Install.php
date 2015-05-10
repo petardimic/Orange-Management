@@ -1,5 +1,5 @@
 <?php
-namespace Modules\BackendDashboard\Admin;
+namespace Modules\Dashboard\Admin;
 
 /**
  * Dashboard install class

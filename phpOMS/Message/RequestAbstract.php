@@ -103,6 +103,22 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
+    public function getHost()
+    {
+        return $this->host;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getScheme()
+    {
+        return $this->scheme;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getRequestSource()
     {
         return self::$source;

@@ -53,7 +53,7 @@ $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
-$settingsFormView->setAction('http://127.0.0.1');
+$settingsFormView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [

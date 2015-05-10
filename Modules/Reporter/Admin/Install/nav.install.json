@@ -59,5 +59,25 @@
                 "children": []
             }
         ]
+    },
+    {
+        "id": 1002710001,
+        "pid": "40a630e157504605e40ba241f6b1f78ab1dd97b9",
+        "type": 3,
+        "subtype": 1,
+        "name": "List",
+        "l0": "reporter",
+        "l1": "list",
+        "l2": null,
+        "l3": null,
+        "l4": null,
+        "l5": null,
+        "query": null,
+        "icon": null,
+        "order": 1,
+        "from": 1002700000,
+        "permission": null,
+        "parent": 1002710000,
+        "children": []
     }
 ]

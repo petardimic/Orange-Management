@@ -15,9 +15,9 @@ AddType application/font-woff .woff
 AddType application/vnd.ms-fontobject .eot
 
 # probably can be removed and is causing problems without installing header
-<FilesMatch "\.(ttf|svg|ttc|otf|eot|woff|css)$">
-    Header set Access-Control-Allow-Origin "*"
-</FilesMatch>
+#<FilesMatch "\.(ttf|svg|ttc|otf|eot|woff|css)$">
+#    Header set Access-Control-Allow-Origin "*"
+#</FilesMatch>
 
 <ifmodule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript

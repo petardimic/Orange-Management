@@ -12,6 +12,8 @@
 *.iml
 *.lock
 *.phar
+*.gitattributes
+Vagrantfile
 built.js
 oms.min.js
 tools/.metadata/*
@@ -34,3 +36,4 @@ Dev/puphpet/shell/*
 test.php
 MSG.md
 *NOGIT*
+puphpet/*

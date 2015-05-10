@@ -77,6 +77,9 @@ class Request extends \phpOMS\Message\RequestAbstract
 
     public function init($uri = null)
     {
+        $this->scheme = 'http';
+        $this->host = $_SERVER['HTTP_HOST'];
+
         $this->data = [
             'l0' => '',
             'l1' => '',
@@ -114,14 +117,6 @@ class Request extends \phpOMS\Message\RequestAbstract
                                 $this->data['l4'],
                                 $this->data['l5']]),
         ];
-    }
-
-    public function getHost() {
-        if(!isset($this->host)) {
-            $this->host = $_SERVER['HTTP_HOST'];
-        }
-
-        return $this->host;
     }
 
     /**
