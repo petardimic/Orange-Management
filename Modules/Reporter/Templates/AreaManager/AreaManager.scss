@@ -2,7 +2,11 @@
     table {
         width: 100%;
         font-size: 0.9em;
-        margin: 5px 0 0 5px;
+        margin: 5px 0 0 0;
+    }
+
+    th {
+        white-space: nowrap;
     }
 
     thead {
@@ -18,14 +22,19 @@
     tbody {
         th {
             text-align: left;
-            padding: 0 5px 0 5px;
+            padding: 0 3px 0 3px;
+        }
+
+        td {
+            box-sizing: border-box;
+            padding: 0 3px 0 3px;
         }
 
         tr {
             &:first-child {
                 background: #c5c5c5;
                 th {
-                    padding: 5px 0 5px 0;
+                    padding: 5px 3px 5px 3px;
                     border-bottom: 1px solid #a1a1a1;
                     text-align: center;
                 }
@@ -61,25 +70,46 @@
     .delim {
         background: #d4d4d4 !important;
     }
+
+    .reporter-scroll-wrapper {
+        overflow: auto;
+        width: 100%;
+        margin-left: 5px;
+    }
 }
 
 #areamanager-report-rating {
     width: calc(50% - 5px);
     float: left;
+    margin-left: 5px;
+
+    th:first-child {
+        width: 1%;
+    }
 }
 
 #areamanager-report-clientmovement {
     width: calc(50% - 5px);
+    margin-left: 5px;
     float: left;
+
+    th:first-child {
+        width: 1%;
+    }
 }
 
 #areamanager-report-turnoveroverview {
     float: left;
 
+    th:first-child {
+        width: 1%;
+    }
+
     tbody {
         td:last-child {
             text-align: center;
             background: #bdbdbd;
+            width: 1%;
         }
     }
 }
