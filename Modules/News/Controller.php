@@ -106,7 +106,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequest('l3')) {
             case 'dashboard':
-                $newsDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $newsDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $newsDashboard->setTemplate('/Modules/News/Theme/backend/news-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -121,7 +121,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/news-single.tpl.php';
                 break;
             case 'archive':
-                $newArchive = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $newArchive = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $newArchive->setTemplate('/Modules/News/Theme/backend/news-archive');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -129,7 +129,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $newArchive->getOutput();
                 break;
             case 'create':
-                $newsCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $newsCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $newsCreate->setTemplate('/Modules/News/Theme/backend/news-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

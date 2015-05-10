@@ -1,4 +1,6 @@
 <?php
+$lang = $this->getData('lang');
+
 $restricted = [
 
 ];
@@ -10,27 +12,64 @@ $types = [
     ],
 ];
 
-if(array_key_exists($this->app->account->getId(), $restricted) && in_array($this->request->getReqeust('source'), $restricted[$this->app->account->getId()])) {
+function coloringTrend($p)
+{
+    $b = 0;
+
+    if($p <= 0) {
+        $p = -$p;
+        $r = 255;
+        $g = 255 - log($p) * 60;
+
+        if($g < 0) {
+            $g = 0;
+        }
+    } else {
+        $r = 255 - log($p) * 60;
+        $g = 255;
+
+        if($r < 0) {
+            $r = 0;
+        }
+    }
+
+    return ['r' => (int) $r, 'g' => (int) $g, 'b' => $b];
+}
+
+function rotatingTrend($p)
+{
+    if($p < 0) {
+        return log(-$p) * 19.543;
+    } elseif($p > 0) {
+        $deg = log($p) * 19.543;
+
+        return $deg > 90 ? -90 : -$deg;
+    } else {
+        return 0;
+    }
+}
+
+if(array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getReqeust('source'), $restricted[$this->request->getAccount()->getId()])) {
     $source = $this->request->getReqeust('source');
-} elseif(array_key_exists($this->app->account->getId(), $restricted)) {
-    $source = $restricted[$this->app->account->getId()][0];
+} elseif(array_key_exists($this->request->getAccount()->getId(), $restricted)) {
+    $source = $restricted[$this->request->getAccount()->getId()][0];
 } else {
     $source = 21;
 }
 
-$now     = new \phpOMS\Datatypes\SmartDateTime();
-$now1    = $now->createModify(-1);
-$now2    = $now->createModify(-2);
-$now1m   = $now->createModify(0, -1);
-$now2m   = $now->createModify(0, -2);
-$now11m  = $now->createModify(-1, -1);
+$now    = new \phpOMS\Datatypes\SmartDateTime();
+$now1   = $now->createModify(-1);
+$now2   = $now->createModify(-2);
+$now1m  = $now->createModify(0, -1);
+$now2m  = $now->createModify(0, -2);
+$now11m = $now->createModify(-1, -1);
 
 ?>
 <!-- Client rating -->
 <table>
     <thead>
     <tr>
-        <th rowspan="3"><?= $lang['ClientRating']; ?>
+        <th colspan="3"><?= $lang['ClientRating']; ?>
             <tbody>
     <tr>
         <th><?= $lang['Rating']; ?>
@@ -68,7 +107,7 @@ $now11m  = $now->createModify(-1, -1);
 <table>
     <thead>
     <tr>
-        <th rowspan="2"><?= $lang['ClientMovement']; ?>
+        <th colspan="2"><?= $lang['ClientMovement']; ?>
             <tbody>
     <tr>
         <th><?= $lang['NewClients']; ?>
@@ -85,10 +124,14 @@ $now11m  = $now->createModify(-1, -1);
 </table>
 
 <!-- Turnover -->
+<!--
+-45 = -100%
++45 = > 100%
+-->
 <table>
     <thead>
     <tr>
-        <th rowspan="16"><?= ['TurnoverOverview']; ?>
+        <th colspan="16"><?= $lang['TurnoverOverview']; ?>
             <tbody>
     <tr>
         <th><?= $lang['Type']; ?>
@@ -109,7 +152,7 @@ $now11m  = $now->createModify(-1, -1);
         <th><?= $lang['Trend']; ?>
             <?php foreach ($types as $ids) : ?>
     <tr>
-        <th rowspan="16"><?= $lang[$ids['title']]; ?>
+        <th colspan="16"><?= $lang[$ids['title']]; ?>
             <?php foreach ($ids['elements'] as $id) : ?>
     <tr>
         <th><?= $id . ' ' . $lang[$id]; ?>
@@ -127,7 +170,9 @@ $now11m  = $now->createModify(-1, -1);
         <td>
         <td>
         <td>
-        <td><i class="fa-arrow-circle-o-right"></i>
+        <td><i class="fa fa-arrow-circle-o-right"
+               style="transform: rotate(<?= rotatingTrend((int) 1) ?>deg); color: #<?php $color = coloringTrend((int) 1);
+               echo str_pad(dechex($color['r']), 2, '0', STR_PAD_LEFT) . str_pad(dechex($color['g']), 2, '0', STR_PAD_LEFT) ?>00"></i>
             <?php endforeach; ?>
             <?php endforeach; ?>
     <tr>

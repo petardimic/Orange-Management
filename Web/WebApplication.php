@@ -208,6 +208,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
+                $this->request->setAccount($this->user);
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
                 $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'reporter');

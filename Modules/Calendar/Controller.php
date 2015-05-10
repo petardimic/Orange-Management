@@ -87,7 +87,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequest('l3')) {
             case 'dashboard':
-                $calendarView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $calendarView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $calendarView->setTemplate('/Modules/Calendar/Theme/backend/calendar-dashboard');
 
                 echo $calendarView->getOutput();

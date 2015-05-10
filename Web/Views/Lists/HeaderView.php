@@ -51,7 +51,7 @@ class HeaderView extends \phpOMS\Views\View
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setTitle($title)
+    public function setTitle($title = '')
     {
         $this->title = $title;
     }

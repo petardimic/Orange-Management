@@ -50,45 +50,45 @@ $overviewCompareList->setFreeze(1, 2);
 $overviewCompareList->addElements([
     'EventCourseInt',
     '?',
-    number_format($accountData[$year][4574], 2),
-    number_format($accountData[$year][4574] / $month * 12, 2),
-    number_format($accountData[$year - 1][4574], 2),
+    number_format(0.00, 2),
+    number_format(0.00 / $month * 12, 2),
+    number_format(0.00, 2),
     '100.00%'
 ]);
 
 $overviewCompareList->addElements([
     'EventCourse',
     '?',
-    number_format($accountData[$year][4340], 2),
-    number_format($accountData[$year][4340] / $month * 12, 2),
-    number_format($accountData[$year - 1][4340], 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
     '100.00%'
 ]);
 
 $overviewCompareList->addElements([
     'Demo',
     '?',
-    number_format($accountData[$year][4573], 2),
-    number_format($accountData[$year][4573] / $month * 12, 2),
-    number_format($accountData[$year - 1][4573], 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
     '100.00%'
 ]);
 
 $overviewCompareList->addElements([
     'Briefing',
     '?',
-    number_format($accountData[$year][4575], 2),
-    number_format($accountData[$year][4575] / $month * 12, 2),
-    number_format($accountData[$year - 1][4575], 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
     '100.00%'
 ]);
 
 $overviewCompareList->addElements([
     'Advice',
     '?',
-    number_format($accountData[$year][4572], 2),
-    number_format($accountData[$year][4572] / $month * 12, 2),
-    number_format($accountData[$year - 1][4572], 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
+    number_format(0.00, 2),
     '100.00%'
 ]);
 
@@ -488,25 +488,13 @@ $carsListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable'
 /*
  * Header
  */
-$carsListHeaderView->setTitle($lang['Cars']);
+$carsListHeaderView->setTitle();
 $carsListHeaderView->setHeader([
     ['title' => $lang['ID'], 'sortable' => true],
-    ['title' => $lang['Description'], 'sortable' => true, 'full' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Begin'], 'sortable' => true],
-    ['title' => $lang['LeasingBegin'], 'sortable' => true],
-    ['title' => $lang['LeasingEnd'], 'sortable' => true],
-    ['title' => $lang['Sold'], 'sortable' => true],
 ]);
 
 $carsList->setFreeze(1, 0);
 $carsList->addView('header', $carsListHeaderView);
-
-$carsList->setElements($cars);
 
 $tabView->addTab($lang['CostObject'], $carsList->getOutput(), 'cars');
 
@@ -525,69 +513,10 @@ $historyListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTab
 $historyListHeaderView->setTitle($lang['History']);
 $historyListHeaderView->setHeader([
     ['title' => $lang['ID'], 'sortable' => true, 'full' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
 ]);
 
 $historyList->setFreeze(1, 1);
 $historyList->addView('header', $historyListHeaderView);
-
-// tODO: add headline sum
-
-$sum1 = $accountData[$year][4574] + $accountData[$year][4340] + $accountData[$year][4573] + $accountData[$year][4575] + $accountData[$year][4572] + $accountData[$year][4580];
-$sum2 = $accountData[$year - 1][4574] + $accountData[$year - 1][4340] + $accountData[$year - 1][4573] + $accountData[$year - 1][4575] + $accountData[$year - 1][4572] + $accountData[$year - 1][4580];
-$sum3 = $accountData[$year - 2][4574] + $accountData[$year - 2][4340] + $accountData[$year - 2][4573] + $accountData[$year - 2][4575] + $accountData[$year - 2][4572] + $accountData[$year - 2][4580];
-
-$diff1 = ($sum2 != 0 ? ($sum1 - $sum2) / $sum2 : 'NA');
-$diff2 = ($sum3 != 0 ? ($sum2 - $sum3) / $sum3 : 'NA');
-
-$historyList->addElements([
-    'SUM',
-    number_format($accountData[$year][4574], 2),
-    number_format($accountData[$year][4340], 2),
-    number_format($accountData[$year][4573], 2),
-    number_format($accountData[$year][4575], 2),
-    number_format($accountData[$year][4572], 2),
-    number_format($accountData[$year][4580], 2),
-    number_format($sum1, 2),
-    number_format(number_format($diff1 * 100, 2), 2) . '%',
-    number_format($accountData[$year - 1][4574], 2),
-    number_format($accountData[$year - 1][4340], 2),
-    number_format($accountData[$year - 1][4573], 2),
-    number_format($accountData[$year - 1][4575], 2),
-    number_format($accountData[$year - 1][4572], 2),
-    number_format($accountData[$year - 1][4580], 2),
-    number_format($sum2, 2),
-    number_format(number_format($diff2 * 100, 2), 2) . '%',
-    number_format($accountData[$year - 2][4574], 2),
-    number_format($accountData[$year - 2][4340], 2),
-    number_format($accountData[$year - 2][4573], 2),
-    number_format($accountData[$year - 2][4575], 2),
-    number_format($accountData[$year - 2][4572], 2),
-    number_format($accountData[$year - 2][4580], 2),
-    number_format($sum3, 2),
-]);
 
 $tabView->addTab($lang['CostCenter'], $historyList->getOutput(), 'history');
 
@@ -606,79 +535,10 @@ $planningListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTa
 $planningListHeaderView->setTitle($lang['Plan']);
 $planningListHeaderView->setHeader([
     ['title' => $lang['ID'], 'sortable' => true],
-    ['title' => $lang['Owner'], 'sortable' => true, 'full' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
 ]);
 
 $planningList->setFreeze(3, 2);
 $planningList->addView('header', $planningListHeaderView);
 $tabView->addTab($lang['Account'], $planningList->getOutput(), 'planning');
-
-/*
- * UI Logic
- */
-$planningList           = new \Web\Views\Lists\ListView($this->l11n);
-$planningListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
-
-$planningList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$planningListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
-
-/*
- * Header
- */
-$planningListHeaderView->setTitle($lang['EventCourse']);
-$planningListHeaderView->setHeader([
-    ['title' => $lang['ID'], 'sortable' => true],
-    ['title' => $lang['Owner'], 'sortable' => true, 'full' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-    ['title' => $lang['Diff'], 'sortable' => true],
-    ['title' => $lang['Leasing'], 'sortable' => true],
-    ['title' => $lang['Tax'], 'sortable' => true],
-    ['title' => $lang['Rep./Insp.'], 'sortable' => true],
-    ['title' => $lang['Wheels'], 'sortable' => true],
-    ['title' => $lang['Gas'], 'sortable' => true],
-    ['title' => $lang['Misc'], 'sortable' => true],
-    ['title' => $lang['Sum'], 'sortable' => true],
-]);
-
-$planningList->setFreeze(3, 2);
-$planningList->addView('header', $planningListHeaderView);
-$tabView->addTab($lang['EventCourse'], $planningList->getOutput(), 'eventcourse');
 ?>
 <?= $tabView->getOutput(); ?>

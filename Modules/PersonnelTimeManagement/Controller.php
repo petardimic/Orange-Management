@@ -119,7 +119,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         if($request->getRequest('l3') === 'timemgmt') {
             switch($request->getRequest('l4')) {
                 case 'dashboard':
-                    $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                    $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                     $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-list');
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -127,7 +127,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     echo $timemgmtDashboardView->getOutput();
                     break;
                 case 'single':
-                    $timemgmtSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                    $timemgmtSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                     $timemgmtSingleView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-single');
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -151,7 +151,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequest('l4')) {
             case 'dashboard':
-                $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $timemgmtDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/user-timemanagement-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

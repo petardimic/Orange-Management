@@ -28,7 +28,7 @@ $top = $nav->getOutput();
     </div>
     <div id="bar-b">
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
+                href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'reporter']); ?>"
                 itemprop="legalName"><?= \phpOMS\Model\Model::$content['core:oname']; ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">

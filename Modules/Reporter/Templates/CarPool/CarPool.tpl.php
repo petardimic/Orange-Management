@@ -37,6 +37,15 @@ while(($line = fgetcsv($file)) !== false) {
         $soll  = (float) str_replace(':', ',', str_replace(',', '.', str_replace('.', ':', $line[3])));
         $haben = (float) str_replace(':', ',', str_replace(',', '.', str_replace('.', ':', $line[4])));
         $tYear = (int) ((new DateTime($line[0]))->format('Y'));
+
+        if(!isset($carData[$line[9]][$tYear][(int) $line[10]])) {
+            $carData[$line[9]][$tYear][(int) $line[10]] = 0;
+        }
+
+        if(!isset($accountData[$tYear][(int) $line[10]])) {
+            $accountData[$tYear][(int) $line[10]] = 0;
+        }
+
         $carData[$line[9]][$tYear][(int) $line[10]] += $soll;
         $carData[$line[9]][$tYear][(int) $line[10]] -= $haben;
         $accountData[$tYear][(int) $line[10]] += (float) $soll;
@@ -47,6 +56,24 @@ fclose($file);
 
 $year  = 2015;
 $month = 3;
+
+$accounts = [4574, 4340, 4573, 4575, 4572, 4580];
+
+for($y = $year; $y > $year-3; $y--) {
+    foreach($accounts as $account) {
+        if(!isset($accountData[$y][$account])) {
+            $accountData[$y][$account] = 0;
+        }
+
+        foreach($cars as $car => $more) {
+            if(!isset($carData[$car][$y][$account])) {
+                $carData[$car][$y][$account] = 0;
+            }
+        }
+
+    }
+}
+
 
 /*
  * Navigation

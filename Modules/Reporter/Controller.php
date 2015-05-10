@@ -83,6 +83,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\RequestDestination::API:
                 $this->showAPI($request, $response);
                 break;
+            case \phpOMS\Message\RequestDestination::REPORTER:
+                $this->showContentReporter($request, $response);
+                break;
         }
     }
 
@@ -102,7 +105,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showSingleBackend($request, $response);
                 break;
             case 'list':
-                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $reportList->setTemplate('/Modules/Reporter/Theme/backend/reporter-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -110,7 +113,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportList->getOutput();
                 break;
             case 'create':
-                $reportCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $reportCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $reportCreate->setTemplate('/Modules/Reporter/Theme/backend/reporter-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -118,7 +121,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportCreate->getOutput();
                 break;
             case 'edit':
-                $reportEdit = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $reportEdit = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $reportEdit->setTemplate('/Modules/Reporter/Theme/backend/reporter-edit');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -145,13 +148,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 if(file_exists(__DIR__ . '/Templates/' . $request->getRequest()['id'] . '.tpl.php')) {
                 }
 
-                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
-                $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
+                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $reportSingle->setTemplate('/Modules/Reporter/Theme/reporter/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportSingle->addData('nav', $navigation->nav);
 
-                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $this->app);
+                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getRequest()['id'] . '/' . $request->getRequest()['id']);
                 $reportSingle->addData('name', $request->getRequest()['id']);
                 $reportSingle->addView('DataView', $dataView);
@@ -171,5 +174,21 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showAPI($request, $response)
     {
+    }
+
+    public function showContentReporter($request, $response)
+    {
+        switch($request->getRequest('l2')) {
+            case 'single':
+                $this->showSingleBackend($request, $response);
+                break;
+            default:
+                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $reportList->setTemplate('/Modules/Reporter/Theme/reporter/reporter-list');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $reportList->addData('nav', $navigation->nav);
+                echo $reportList->getOutput();
+        }
     }
 }

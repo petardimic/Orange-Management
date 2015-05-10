@@ -57,6 +57,14 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     protected $lang = null;
 
     /**
+     * Account
+     *
+     * @var mixed
+     * @since 1.0.0
+     */
+    protected $account = null;
+
+    /**
      * Request type
      *
      * @var \phpOMS\Message\RequestSource
@@ -155,5 +163,13 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     public function getLanguage()
     {
         return $this->lang;
+    }
+
+    public function setAccount($account) {
+        $this->account = $account;
+    }
+
+    public function getAccount() {
+        return $this->account;
     }
 }

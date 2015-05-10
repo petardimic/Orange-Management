@@ -6,6 +6,7 @@ $reportLanguage = [
         'ClientRating'        => 'Client Ratin',
         'Diff'                => 'Diff',
         'DiffP'               => 'Diff %',
+        'IMPLA'               => 'IMPLA',
         'LostClients'         => 'Lost Clients',
         'NewClients'          => 'New Clients',
         'Rating'              => 'Rating',

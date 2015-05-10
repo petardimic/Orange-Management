@@ -1,6 +1,7 @@
 <?php
 $reportLanguage = [
     'en' => [
+        ':language'   => 'English',
         'Account'     => 'Account',
         'Budget'      => 'Budget',
         'CostCenter'  => 'Cost Center',
@@ -12,6 +13,7 @@ $reportLanguage = [
         'EventCourse' => 'Event Course',
         'Forecast'    => 'Forecast',
         'History'     => 'History',
+        'ID'          => 'ID',
         'Overview'    => 'Overview',
         'Plan'        => 'Plan',
         'Planning'    => 'Planning',
