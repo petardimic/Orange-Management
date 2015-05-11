@@ -128,7 +128,7 @@ $now11m = $now->createModify(-1, -1);
                 <tbody>
         <tr>
             <th><?= $lang['Type']; ?>
-                <th><?= $lang['Value']; ?>
+            <th><?= $lang['Value']; ?>
         <tr>
             <th><?= $lang['NewClients']; ?>
                 <td>1
@@ -144,60 +144,58 @@ $now11m = $now->createModify(-1, -1);
     </table>
 
     <!-- Turnover -->
-    <!--
-    -45 = -100%
-    +45 = > 100%
-    -->
-    <table id="areamanager-report-turnoveroverview">
-        <thead>
-        <tr>
-            <th colspan="16"><?= $lang['TurnoverOverview']; ?>
-                <tbody>
-        <tr>
-            <th><?= $lang['Type']; ?>
-            <th><?= $now2m->format('m'); ?>
-            <th><?= $now1m->format('m'); ?>
-            <th><?= $now11m->format('m'); ?>
-            <th><?= $now->format('m'); ?>
-            <th><?= $lang['Diff']; ?>
-            <th><?= $lang['DiffP']; ?>
-            <th><?= $now2->format('Y') . ' ' . $now2->format('m'); ?>
-            <th><?= $now1->format('Y') . ' ' . $now1->format('m'); ?>
-            <th><?= $now->format('Y') . ' ' . $now->format('m'); ?>
-            <th><?= $lang['Diff']; ?>
-            <th><?= $lang['DiffP']; ?>
-            <th><?= $now2->format('Y'); ?>
-            <th><?= $now1->format('Y'); ?>
-            <th><?= $now->format('Y'); ?>
-            <th><?= $lang['Trend']; ?>
-                <?php foreach ($types as $ids) : ?>
-        <tr class="reporter-subheadline">
-            <th><i class="fa fa-tag"></i> <?= $lang[$ids['title']]; ?>
-            <th colspan="15">
-                <?php foreach ($ids['elements'] as $id) : ?>
-        <tr>
-            <th><?= $id . ' ' . $lang[$id]; ?>
-            <td>
-            <td>
-            <td>
-            <td>
-            <td class="delim">
-            <td class="delim">
-            <td>
-            <td>
-            <td>
-            <td class="delim">
-            <td class="delim">
-            <td>
-            <td>
-            <td>
-            <td style="background: #<?php $color = coloringTrend((int) -1);
-            echo str_pad(dechex($color['r']), 2, '0', STR_PAD_LEFT) . str_pad(dechex($color['g']), 2, '0', STR_PAD_LEFT) ?>00">
-                <i class="fa fa-arrow-circle-o-right"
-                   style="transform: rotate(<?= (int) rotatingTrend((int) -1) ?>deg)"></i>
-                <?php endforeach; ?>
-                <?php endforeach; ?>
-    </table>
+    <div class="reporter-scroll-wrapper">
+        <table id="areamanager-report-turnoveroverview">
+            <thead>
+            <tr>
+                <th colspan="16"><?= $lang['TurnoverOverview']; ?>
+                    <tbody>
+            <tr>
+                <th><?= $lang['Type']; ?>
+                <th><?= $now2m->format('m'); ?>
+                <th><?= $now1->format('Y') . ' ' . $now1m->format('m'); ?>
+                <th><?= $now11m->format('m'); ?>
+                <th><?= $now->format('m'); ?>
+                <th><?= $lang['Diff']; ?>
+                <th><?= $lang['DiffP']; ?>
+                <th><?= $now2->format('Y') . ' ' . $now2->format('m'); ?>
+                <th><?= $now1->format('Y') . ' ' . $now1->format('m'); ?>
+                <th><?= $now->format('Y') . ' ' . $now->format('m'); ?>
+                <th><?= $lang['Diff']; ?>
+                <th><?= $lang['DiffP']; ?>
+                <th><?= $now2->format('Y'); ?>
+                <th><?= $now1->format('Y'); ?>
+                <th><?= $now->format('Y'); ?>
+                <th><?= $lang['Trend']; ?>
+                    <?php foreach ($types as $ids) : ?>
+            <tr class="reporter-subheadline">
+                <th><i class="fa fa-tag"></i> <?= $lang[$ids['title']]; ?>
+                <th colspan="15">
+                    <?php foreach ($ids['elements'] as $id) : ?>
+            <tr>
+                <th><?= $id . ' ' . $lang[$id]; ?>
+                <td>10,000.00
+                <td>10,000.00
+                <td>10,000.00
+                <td>10,000.00
+                <td class="delim">100.00%
+                <td class="delim">100.00%
+                <td>1,000,000.00
+                <td>1,000,000.00
+                <td>1,000,000.00
+                <td class="delim">100.00%
+                <td class="delim">100.00%
+                <td>1,000,000.00
+                <td>1,000,000.00
+                <td>1,000,000.00
+                <td style="background: #<?php $color = coloringTrend((int) -1);
+                echo str_pad(dechex($color['r']), 2, '0', STR_PAD_LEFT) . str_pad(dechex($color['g']), 2, '0', STR_PAD_LEFT) ?>00">
+                    <i class="fa fa-arrow-circle-o-right"
+                       style="transform: rotate(<?= (int) rotatingTrend((int) -1) ?>deg)"></i>
+                    <?php endforeach; ?>
+                    <?php endforeach; ?>
+        </table>
+    </div>
 
     <script>
         jsOMS.ready(function () {
