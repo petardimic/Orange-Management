@@ -7,12 +7,24 @@ $restricted = [
 
 $types = [
     [
+        'title'    => 'MetalGalvano',
+        'elements' => [101, 102, 103, 104]
+    ],
+    [
+        'title'    => 'Misc',
+        'elements' => [221, 222, 223, 224, 225, 351]
+    ],
+    [
+        'title'    => 'Machines',
+        'elements' => [171, 232, 233, 234, 241, 301, 311]
+    ],
+    [
         'title'    => 'IMPLA',
         'elements' => [161, 162]
     ],
     [
-        'title'    => 'Machines',
-        'elements' => [171, 233]
+        'title'    => 'Consumable',
+        'elements' => [111, 121, 122, 123, 131, 141, 151, 181, 191, 201, 211, 212, 213, 214, 231, 321, 322, 323, 331, 341]
     ],
 ];
 
