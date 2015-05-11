@@ -8,7 +8,7 @@ $restricted = [
 $types = [
     [
         'title'    => 'MetalGalvano',
-        'elements' => [101, 102, 103, 104]
+        'elements' => [101, 102, 103, 104, 106]
     ],
     [
         'title'    => 'Misc',
