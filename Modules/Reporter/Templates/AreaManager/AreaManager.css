@@ -1,68 +1,98 @@
-.areamanager-report table {
-  width: 100%;
-  font-size: 0.9em;
-  margin: 5px 0 0 0; }
-.areamanager-report th {
-  white-space: nowrap; }
-.areamanager-report thead {
-  background: #e74b3c;
-  color: #fff; }
-  .areamanager-report thead th {
+.areamanager-report {
+  font-size: 0.8em; }
+  .areamanager-report h1 {
+    background: #e74b3c;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
     font-size: 0.9em;
-    padding: 3px; }
-.areamanager-report tbody th {
-  text-align: left;
-  padding: 0 3px 0 3px; }
-.areamanager-report tbody td {
-  box-sizing: border-box;
-  padding: 0 3px 0 3px; }
-.areamanager-report tbody tr:first-child {
-  background: #c5c5c5; }
-  .areamanager-report tbody tr:first-child th {
-    padding: 5px 3px 5px 3px;
+    font-weight: bold; }
+  .areamanager-report table {
+    width: 100%;
+    margin: 5px 0 0 0; }
+  .areamanager-report th {
+    white-space: nowrap; }
+  .areamanager-report thead {
+    background: #e74b3c;
+    color: #fff; }
+    .areamanager-report thead th {
+      font-size: 0.9em;
+      padding: 3px; }
+  .areamanager-report tbody th {
+    text-align: left;
+    padding: 0 3px 0 3px; }
+  .areamanager-report tbody td {
+    box-sizing: border-box;
+    padding: 0 3px 0 3px; }
+  .areamanager-report tbody tr:first-child {
+    background: #c5c5c5; }
+    .areamanager-report tbody tr:first-child th {
+      padding: 5px 3px 5px 3px;
+      border-bottom: 1px solid #a1a1a1;
+      text-align: center; }
+  .areamanager-report tbody tr:nth-child(2n) {
+    background: #e4e4e4; }
+  .areamanager-report tbody tr:nth-child(n+2):hover {
+    background: #d4d4d4; }
+  .areamanager-report tbody tr:nth-child(n+2) th:first-child {
+    text-align: left;
+    background: #d4d4d4; }
+  .areamanager-report .reporter-subheadline {
     border-bottom: 1px solid #a1a1a1;
-    text-align: center; }
-.areamanager-report tbody tr:nth-child(2n) {
-  background: #e4e4e4; }
-.areamanager-report tbody tr:nth-child(n+2):hover {
-  background: #d4d4d4; }
-.areamanager-report tbody tr:nth-child(n+2) th:first-child {
-  text-align: left;
-  background: #d4d4d4; }
-.areamanager-report .reporter-subheadline {
-  border-bottom: 1px solid #a1a1a1;
-  border-top: 1px solid #a1a1a1;
-  background: #d4d4d4 !important; }
-  .areamanager-report .reporter-subheadline th {
-    text-align: center !important; }
-.areamanager-report .delim {
-  background: #d4d4d4 !important; }
-.areamanager-report .reporter-scroll-wrapper {
-  overflow: auto;
-  width: 100%;
-  margin-left: 5px; }
+    border-top: 1px solid #a1a1a1;
+    background: #d4d4d4 !important; }
+    .areamanager-report .reporter-subheadline th {
+      text-align: center !important; }
+  .areamanager-report .delim {
+    background: #d4d4d4 !important; }
+  .areamanager-report .coloring-0 {
+    color: #9c6500;
+    background: #ffeb9c !important; }
+  .areamanager-report .coloring-1 {
+    color: #006100;
+    background: #c6efce !important; }
+  .areamanager-report .coloring--1 {
+    color: #9c0006;
+    background: #ffc7ce !important; }
+  .areamanager-report .reporter-scroll-wrapper {
+    overflow: auto;
+    width: 100%; }
+
+#areamanager-report-select {
+  width: calc(34% - 5px);
+  float: left;
+  margin: 5px 0 0 5px; }
+  #areamanager-report-select div {
+    background: #fff;
+    padding: 5px; }
 
 #areamanager-report-rating {
-  width: calc(50% - 5px);
+  width: calc(33% - 5px);
   float: left;
   margin-left: 5px; }
   #areamanager-report-rating th:first-child {
     width: 1%; }
 
 #areamanager-report-clientmovement {
-  width: calc(50% - 5px);
+  width: calc(33% - 5px);
   margin-left: 5px;
   float: left; }
   #areamanager-report-clientmovement th:first-child {
     width: 1%; }
 
-#areamanager-report-turnoveroverview {
-  float: left; }
-  #areamanager-report-turnoveroverview th:first-child {
-    width: 1%; }
-  #areamanager-report-turnoveroverview tbody td:last-child {
-    text-align: center;
-    background: #bdbdbd;
-    width: 1%; }
+#areamanager-report-turnoveroverview th:first-child {
+  width: 1%; }
+#areamanager-report-turnoveroverview tbody td:last-child {
+  text-align: center;
+  background: #bdbdbd;
+  width: 1%; }
+
+.areamanger-box {
+  float: left;
+  width: 100%;
+  margin: 5px 0 0 5px; }
+  .areamanger-box table {
+    margin: 0;
+    padding: 0; }
 
 /*# sourceMappingURL=AreaManager.css.map */
