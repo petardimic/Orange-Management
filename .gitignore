@@ -26,7 +26,6 @@ bower_components/*
 content/themes/backend/css/*
 node_modules/*
 .vagrant/*
-composer.phar
 Docs/Code/*
 Docs/Dependencies/*
 Docs/Stats/*
