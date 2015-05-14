@@ -381,7 +381,7 @@ fclose($file);
                             }
                         }
                         echo number_format($sum2, 2, ',', '.'); ?>
-                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / $sum1); ?>
+                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / abs($sum1)); ?>
                     <th><?= number_format($sum2 - $sum1, 2, ',', '.'); ?>
                     <th><?= number_format($diff, 2, ',', '.'); ?>%
                     <th><?php $sum = 0.0;
@@ -405,7 +405,7 @@ fclose($file);
                             }
                         }
                         echo number_format($sum2, 2, ',', '.'); ?>
-                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / $sum1); ?>
+                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / abs($sum1)); ?>
                     <th><?= number_format($sum2 - $sum1, 2, ',', '.'); ?>
                     <th><?= number_format($diff, 2, ',', '.'); ?>%
                     <th><?php $sum = 0.0;
@@ -454,7 +454,7 @@ fclose($file);
                             $sum2 += $sales[$id][(int) $now->format('m') + 24];
                         }
                         echo number_format($sum2, 2, ',', '.'); ?>
-                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / $sum1); ?>
+                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / abs($sum1)); ?>
                     <th><?= number_format($sum2 - $sum1, 2, ',', '.'); ?>
                     <th><?= number_format($diff, 2, ',', '.'); ?>%
                     <th><?php $sum = 0.0;
@@ -472,7 +472,7 @@ fclose($file);
                             $sum2 += $sales['accumulated'][$id][3];
                         }
                         echo number_format($sum2, 2, ',', '.'); ?>
-                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / $sum1); ?>
+                        <?php $diff = ($sum1 === 0.0 ? 0.0 : 100 * ($sum2 - $sum1) / abs($sum1)); ?>
                     <th><?= number_format($sum2 - $sum1, 2, ',', '.'); ?>
                     <th><?= number_format($diff, 2, ',', '.'); ?>%
                     <th><?php $sum = 0.0;
@@ -499,7 +499,7 @@ fclose($file);
                     <td><?= number_format($sales[$id][$nowm1ml], 2, ',', '.'); ?>
                     <td><?= number_format($sales[$id][(int) $now->format('m') + 12], 2, ',', '.'); ?>
                     <td><?= number_format($sales[$id][(int) $now->format('m') + 24], 2, ',', '.'); ?>
-                        <?php $diff = ($sales[$id][(int) $now->format('m') + 12] === 0.0 ? 0.0 : (100 * ($sales[$id][(int) $now->format('m') + 24] - $sales[$id][(int) $now->format('m') + 12]) / $sales[$id][(int) $now->format('m') + 12])); ?>
+                        <?php $diff = ($sales[$id][(int) $now->format('m') + 12] === 0.0 ? 0.0 : (100 * ($sales[$id][(int) $now->format('m') + 24] - $sales[$id][(int) $now->format('m') + 12]) / abs($sales[$id][(int) $now->format('m') + 12]))); ?>
                     <td class="delim coloring-<?php if($diff > 1) {
                         echo 1;
                     } elseif($diff < -1) {
@@ -517,7 +517,7 @@ fclose($file);
                     <td><?= number_format($sales['accumulated'][$id][1], 2, ',', '.'); ?>
                     <td><?= number_format($sales['accumulated'][$id][2], 2, ',', '.'); ?>
                     <td><?= number_format($sales['accumulated'][$id][3], 2, ',', '.'); ?>
-                        <?php $diff2 = ($sales['accumulated'][$id][2] === 0.0 ? 0.0 : (100 * ($sales['accumulated'][$id][3] - $sales['accumulated'][$id][2]) / $sales['accumulated'][$id][2])); ?>
+                        <?php $diff2 = ($sales['accumulated'][$id][2] === 0.0 ? 0.0 : (100 * ($sales['accumulated'][$id][3] - $sales['accumulated'][$id][2]) / abs($sales['accumulated'][$id][2]))); ?>
                     <td class="delim coloring-<?php if($diff2 > 1) {
                         echo 1;
                     } elseif($diff2 < -1) {
@@ -556,7 +556,7 @@ fclose($file);
 
             var amSelect = document.getElementById('i-areamanager');
             amSelect.onchange = function () {
-                window.location.href = '<?= $this->request->getScheme() . '://' . $this->request->getHost() . $this->request->getPath() ; ?>' + '?id=AreaManager&source=' + amSelect.value;
+                window.location.href = '<?= $this->request->getScheme() . '://' . $this->request->getHost() . $this->request->getPath() ; ?>?id=AreaManager&source=' + amSelect.value;
             };
         });
     </script>
@@ -674,6 +674,7 @@ fclose($file);
                             left: 70
                         },
                         lSpace = WIDTH / dataGroup.length;
+
                     xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function (d) {
                         return +d.month;
                     }), d3.max(data, function (d) {
@@ -797,6 +798,7 @@ fclose($file);
                             left: 70
                         },
                         lSpace = WIDTH / dataGroup.length;
+
                     xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function (d) {
                         return +d.month;
                     }), d3.max(data, function (d) {
