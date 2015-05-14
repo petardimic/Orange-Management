@@ -149,6 +149,37 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 }
 
                 $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
+
+                $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
+                $reportSingle->addData('nav', $navigation->nav);
+
+                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getRequest()['id'] . '/' . $request->getRequest()['id']);
+                $reportSingle->addData('name', $request->getRequest()['id']);
+                $reportSingle->addView('DataView', $dataView);
+                echo $reportSingle->getOutput();
+                break;
+        }
+    }
+
+    /**
+     * Shows module content
+     *
+     * @param \phpOMS\Message\RequestAbstract  $request  Request
+     * @param \phpOMS\Message\ResponseAbstract $response Response
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function showSingleReporter($request, $response)
+    {
+        switch($request->getRequest('l4')) {
+            case '':
+                if(file_exists(__DIR__ . '/Templates/' . $request->getRequest()['id'] . '.tpl.php')) {
+                }
+
+                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $reportSingle->setTemplate('/Modules/Reporter/Theme/reporter/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -180,7 +211,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequest('l2')) {
             case 'single':
-                $this->showSingleBackend($request, $response);
+                $this->showSingleReporter($request, $response);
                 break;
             default:
                 $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);

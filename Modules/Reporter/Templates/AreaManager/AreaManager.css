@@ -25,13 +25,15 @@
     box-sizing: border-box;
     padding: 0 3px 0 3px; }
   .areamanager-report tbody tr:first-child {
-    background: #c5c5c5; }
+    background: #c5c5c5 !important; }
     .areamanager-report tbody tr:first-child th {
       padding: 5px 3px 5px 3px;
       border-bottom: 1px solid #a1a1a1;
       text-align: center; }
   .areamanager-report tbody tr:nth-child(2n) {
     background: #e4e4e4; }
+  .areamanager-report tbody tr:nth-child(2n+1) {
+    background: #eaecf0; }
   .areamanager-report tbody tr:nth-child(n+2):hover {
     background: #d4d4d4; }
   .areamanager-report tbody tr:nth-child(n+2) th:first-child {
@@ -89,10 +91,16 @@
 
 .areamanger-box {
   float: left;
-  width: 100%;
+  background: #fff;
   margin: 5px 0 0 5px; }
   .areamanger-box table {
     margin: 0;
     padding: 0; }
+
+.full {
+  width: 100%; }
+
+.half {
+  width: calc(50% - 5px); }
 
 /*# sourceMappingURL=AreaManager.css.map */

@@ -68,7 +68,7 @@ function rotatingTrend($p)
     }
 }
 
-if(array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getRequest('source'), $restricted[$this->request->getAccount()->getId()])) {
+if(true || array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getRequest('source'), $restricted[$this->request->getAccount()->getId()])) {
     $source = $this->request->getRequest('source');
 } elseif(array_key_exists($this->request->getAccount()->getId(), $restricted)) {
     $source = $restricted[$this->request->getAccount()->getId()][0];
@@ -231,6 +231,7 @@ while(($line = fgetcsv($file, 0, ';')) !== false) {
 fclose($file);
 ?>
 
+<!--suppress ALL -->
 <div class="areamanager-report">
     <!-- Client rating -->
     <div id="areamanager-report-select">
@@ -327,7 +328,7 @@ fclose($file);
     </table>
 
     <!-- Turnover -->
-    <div class="areamanger-box">
+    <div class="areamanger-box full">
         <h1><?= $lang['TurnoverOverview']; ?></h1>
 
         <div class="reporter-scroll-wrapper">
@@ -559,4 +560,473 @@ fclose($file);
             };
         });
     </script>
+
+    <div class="areamanger-box half">
+        <style>
+            .axis path, .axis line {
+                fill: none;
+                stroke: #777;
+                shape-rendering: crispEdges;
+            }
+
+            .axis text {
+                font-size: 13px;
+            }
+
+            .legend {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .tick text {
+                font-size: 12px;
+            }
+
+            .tick line {
+                opacity: 0.4;
+            }
+        </style>
+
+        <svg id="visualisation" width="100%" height="300"></svg>
+        <?php
+        $chartData  = '';
+        $chartData2 = '';
+        $chartData3 = '';
+        $chartData4 = '';
+        $first      = true;
+
+        foreach($types as $ids) {
+            $sum  = 0.0;
+            $sum2 = 0.0;
+            foreach($ids['elements'] as $id) {
+                $sum += $sales[$id][(int) $now->format('m') + 24];
+                $sum2 += $sales['accumulated'][$id][3];
+            }
+
+            if($sum > 1000) {
+                $chartData3 .= '{"label": "' . $lang[$ids['title']] . '", "value": "' . $sum . '"},';
+            }
+
+            if($sum2 > 3000) {
+                $chartData4 .= '{"label": "' . $lang[$ids['title']] . '", "value": "' . $sum2 . '"},';
+            }
+        }
+
+        $acc = 0.0;
+        for($i = 1; $i < 37; $i++) {
+            $sum = 0.0;
+            foreach($types as $ids) {
+                foreach($ids['elements'] as $id) {
+                    $sum += $sales[$id][$i];
+                }
+            }
+
+            $acc += $sum;
+
+            if($sum > 0.0 || $first) {
+                $first = true;
+
+                if($i <= 12) {
+                    $title = $now2->format('Y');
+                } elseif($i <= 24) {
+                    $title = $now1->format('Y');
+                } else {
+                    $title = $now->format('Y');
+                }
+
+                $chartData .= '{ "Year": "' . $title . '", "sale": "' . $sum . '", "month": "' . (((int) $i % 12 === 0 ? 12 : (int) $i % 12)) . '" },';
+
+                if($sum == 0.0) {
+                    $first = false;
+                } else {
+                    $chartData2 .= '{ "Year": "' . $title . '", "sale": "' . $acc . '", "month": "' . (((int) $i % 12 === 0 ? 12 : (int) $i % 12)) . '" },';
+                }
+            }
+
+            if($i % 12 === 0) {
+                $acc = 0.0;
+            }
+        }
+
+        $chartData  = rtrim($chartData, ',');
+        $chartData2 = rtrim($chartData2, ',');
+        $chartData3 = rtrim($chartData3, ',');
+        ?>
+
+        <script>
+            jsOMS.ready(function () {
+                function InitChart() {
+                    var color = ["#ff0000", "#00ff00", "#0000ff"];
+                    var data = [<?= $chartData; ?>];
+                    var dataGroup = d3.nest()
+                        .key(function (d) {
+                            return d.Year;
+                        })
+                        .entries(data);
+
+                    var vis = d3.select("#visualisation"),
+                        WIDTH = document.getElementById('visualisation').offsetWidth / 2,
+                        HEIGHT = document.getElementById('visualisation').offsetHeight,
+                        MARGINS = {
+                            top: 50,
+                            right: 20,
+                            bottom: 50,
+                            left: 70
+                        },
+                        lSpace = WIDTH / dataGroup.length;
+                    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function (d) {
+                        return +d.month;
+                    }), d3.max(data, function (d) {
+                        return +d.month;
+                    })]),
+                        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(data, function (d) {
+                            return +d.sale;
+                        }), d3.max(data, function (d) {
+                            return +d.sale;
+                        })]),
+                        xAxis = d3.svg.axis()
+                            .scale(xScale)
+                            .orient("bottom");
+                    yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient("left")
+                        .innerTickSize(-WIDTH + MARGINS.right + MARGINS.left)
+                        .outerTickSize(10)
+                        .tickPadding(10);
+
+                    vis.append("svg:g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+                        .call(xAxis);
+                    vis.append("svg:g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                        .call(yAxis);
+
+                    var lineGen = d3.svg.line()
+                        .x(function (d) {
+                            return xScale(d.month);
+                        })
+                        .y(function (d) {
+                            return yScale(d.sale);
+                        });
+                    dataGroup.forEach(function (d, i) {
+                        vis.append('svg:path')
+                            .attr('d', lineGen(d.values))
+                            .attr('stroke', gcolor = function (d, j) {
+                                return color[i];
+                            })
+                            .attr('stroke-width', 2)
+                            .attr('id', 'line_' + d.key)
+                            .attr('fill', 'none');
+                        vis.append("text")
+                            .attr("x", (lSpace / 2) + i * lSpace)
+                            .attr("y", HEIGHT)
+                            .style('fill', gcolor)
+                            .attr("class", "legend")
+                            .on('click', function () {
+                                var active = d.active ? false : true;
+                                var opacity = active ? 0 : 1;
+                                d3.select("#line_" + d.key).style("opacity", opacity);
+                                d.active = active;
+                            })
+                            .text(d.key);
+                    });
+
+                    vis.append("text")
+                        .attr("x", (WIDTH / 2))
+                        .attr("y", MARGINS.top / 2)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("<?= $lang['Sales3Y']; ?>");
+
+                }
+
+                InitChart();
+            });
+        </script>
+    </div>
+
+    <div class="areamanger-box half">
+        <style>
+            .axis path, .axis line {
+                fill: none;
+                stroke: #777;
+                shape-rendering: crispEdges;
+            }
+
+            .axis text {
+                font-size: 13px;
+            }
+
+            .legend {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .tick text {
+                font-size: 12px;
+            }
+
+            .tick line {
+                opacity: 0.4;
+            }
+        </style>
+
+        <svg id="visualisation2" width="100%" height="300"></svg>
+
+        <script>
+            jsOMS.ready(function () {
+                function InitChart() {
+                    var color = ["#ff0000", "#00ff00", "#0000ff"];
+                    var data = [<?= $chartData2; ?>];
+                    var dataGroup = d3.nest()
+                        .key(function (d) {
+                            return d.Year;
+                        })
+                        .entries(data);
+
+                    var vis = d3.select("#visualisation2"),
+                        WIDTH = document.getElementById('visualisation2').offsetWidth / 2,
+                        HEIGHT = document.getElementById('visualisation2').offsetHeight,
+                        MARGINS = {
+                            top: 50,
+                            right: 20,
+                            bottom: 50,
+                            left: 70
+                        },
+                        lSpace = WIDTH / dataGroup.length;
+                    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function (d) {
+                        return +d.month;
+                    }), d3.max(data, function (d) {
+                        return +d.month;
+                    })]),
+                        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(data, function (d) {
+                            return +d.sale;
+                        }), d3.max(data, function (d) {
+                            return +d.sale;
+                        })]),
+                        xAxis = d3.svg.axis()
+                            .scale(xScale)
+                            .orient("bottom");
+                    yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient("left")
+                        .innerTickSize(-WIDTH + MARGINS.right + MARGINS.left)
+                        .outerTickSize(10)
+                        .tickPadding(10);
+
+                    vis.append("svg:g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+                        .call(xAxis);
+                    vis.append("svg:g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                        .call(yAxis);
+
+                    var lineGen = d3.svg.line()
+                        .x(function (d) {
+                            return xScale(d.month);
+                        })
+                        .y(function (d) {
+                            return yScale(d.sale);
+                        });
+                    dataGroup.forEach(function (d, i) {
+                        vis.append('svg:path')
+                            .attr('d', lineGen(d.values))
+                            .attr('stroke', gcolor = function (d, j) {
+                                return color[i];
+                            })
+                            .attr('stroke-width', 2)
+                            .attr('id', 'line2_' + d.key)
+                            .attr('fill', 'none');
+                        vis.append("text")
+                            .attr("x", (lSpace / 2) + i * lSpace)
+                            .attr("y", HEIGHT)
+                            .style('fill', gcolor)
+                            .attr("class", "legend")
+                            .on('click', function () {
+                                var active = d.active ? false : true;
+                                var opacity = active ? 0 : 1;
+                                d3.select("#line2_" + d.key).style("opacity", opacity);
+                                d.active = active;
+                            })
+                            .text(d.key);
+                    });
+
+                    vis.append("text")
+                        .attr("x", (WIDTH / 2))
+                        .attr("y", MARGINS.top / 2)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("<?= $lang['Sales3YAcc']; ?>");
+
+                }
+
+                InitChart();
+            });
+        </script>
+    </div>
+
+    <div class="areamanger-box half cT">
+        <style>
+            .arc path {
+                stroke: #fff;
+                stroke-width: 2;
+            }
+        </style>
+        <svg id="visualisation3" width="600" height="250"></svg>
+
+        <script>
+            jsOMS.ready(function () {
+
+                function InitChart() {
+                    var color = d3.scale.category20c();
+                    var data = [<?= $chartData3; ?>];
+                    var w = document.getElementById('visualisation3').offsetWidth / 2,
+                        h = document.getElementById('visualisation3').offsetHeight,
+                        r = 290 / 2;
+
+
+                    var vis = d3.select('#visualisation3').data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+                    var pie = d3.layout.pie().value(function (d) {
+                        return d.value;
+                    });
+
+                    // declare an arc generator function
+                    var arc = d3.svg.arc().outerRadius(100);
+
+                    // select paths, use arc generator to draw
+                    var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice").attr("class", "arc");
+                    arcs.append("svg:path")
+                        .attr("fill", function (d, i) {
+                            return color(i);
+                        })
+                        .attr("d", function (d) {
+                            return arc(d);
+                        });
+
+                    var g = vis.selectAll(".arc")
+                        .data(pie(data))
+                        .enter().append("g")
+                        .attr("class", "arc");
+
+                    g.append("path")
+                        .attr("d", arcs)
+                        .style("fill", function (d) {
+                            return color(d.data.value);
+                        });
+
+                    g.append("text")
+                        .attr("transform", function (d) {
+                            return "translate(" + arcs.centroid(d) + ")";
+                        })
+                        .attr("dy", ".35em")
+                        .style("text-anchor", "middle");
+
+                    arcs.append("svg:text").attr("transform", function (d) {
+                        d.innerRadius = r - 40;
+                        d.outerRadius = r;
+                        return "translate(" + arc.centroid(d) + ")";
+                    }).attr("text-anchor", "middle").text(function (d, i) {
+                            return data[i].label;
+                        }
+                    );
+
+                    vis.append("text")
+                        .attr("x", 0)
+                        .attr("y", -r + 20)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("<?= $lang['SalesRatio'] . ' ' . $now->format('Y-m'); ?>");
+                };
+
+                InitChart();
+            });
+        </script>
+    </div>
+
+    <div class="areamanger-box half cT">
+        <style>
+            .arc path {
+                stroke: #fff;
+                stroke-width: 2;
+            }
+        </style>
+        <svg id="visualisation4" width="600" height="250"></svg>
+
+        <script>
+            jsOMS.ready(function () {
+                function InitChart() {
+                    var color = d3.scale.category20c();
+
+                    var data = [<?= $chartData4; ?>];
+
+                    var w = document.getElementById('visualisation4').offsetWidth / 2,
+                        h = document.getElementById('visualisation4').offsetHeight,
+                        r = 290 / 2;
+
+
+                    var vis = d3.select('#visualisation4').data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+                    var pie = d3.layout.pie().value(function (d) {
+                        return d.value;
+                    });
+
+                    // declare an arc generator function
+                    var arc = d3.svg.arc().outerRadius(100);
+
+                    // select paths, use arc generator to draw
+                    var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice").attr("class", "arc");
+                    arcs.append("svg:path")
+                        .attr("fill", function (d, i) {
+                            return color(i);
+                        })
+                        .attr("d", function (d) {
+                            return arc(d);
+                        });
+
+                    var g = vis.selectAll(".arc")
+                        .data(pie(data))
+                        .enter().append("g")
+                        .attr("class", "arc");
+
+                    g.append("path")
+                        .attr("d", arcs)
+                        .style("fill", function (d) {
+                            return color(d.data.value);
+                        });
+
+                    g.append("text")
+                        .attr("transform", function (d) {
+                            return "translate(" + arcs.centroid(d) + ")";
+                        })
+                        .attr("dy", ".35em")
+                        .style("text-anchor", "middle");
+
+                    arcs.append("svg:text").attr("transform", function (d) {
+                        d.innerRadius = r - 40;
+                        d.outerRadius = r;
+                        return "translate(" + arc.centroid(d) + ")";
+                    }).attr("text-anchor", "middle").text(function (d, i) {
+                            return data[i].label;
+                        }
+                    );
+
+                    vis.append("text")
+                        .attr("x", 0)
+                        .attr("y", -r + 20)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("<?= $lang['SalesRatioAcc'] . ' ' . $now->format('Y-m'); ?>");
+                };
+
+                InitChart();
+            });
+        </script>
+    </div>
 </div>
