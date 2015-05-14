@@ -79,6 +79,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         $this->scheme = 'http';
         $this->host = $_SERVER['HTTP_HOST'];
+        $this->path = parse_url(\phpOMS\Uri\Http::getCurrent())['path'];
 
         $this->data = [
             'l0' => '',

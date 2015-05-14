@@ -127,6 +127,14 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getRequestSource()
     {
         return self::$source;
