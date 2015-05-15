@@ -78,12 +78,12 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestDestination::BACKEND:
-                $this->showBackendContent($request);
+                $this->showBackendContent($request, $response);
                 break;
         }
     }
 
-    public function showBackendContent($request)
+    public function showBackendContent($request, $response)
     {
         switch($request->getPath(3)) {
             case 'dashboard':

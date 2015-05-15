@@ -1,6 +1,4 @@
-<?php /** @var \Modules\Messages\Controller $this */
-\phpOMS\Model\Model::generate_table_filter_view(); ?>
-
+<?php /** @var \Modules\Messages\Controller $this */ ?>
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
@@ -61,7 +59,7 @@
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
                 <tr>
-                    <?php
+                    <?php /*
                     \phpOMS\Model\Model::generate_table_header_view(
                         [
                             ['name' => $this->app->user->getL11n()->lang[12]['From'], 'sort' => 0],
@@ -71,7 +69,7 @@
                             ['name' => $this->app->user->getL11n()->lang[12]['Status'], 'sort' => 0],
                             ['name' => $this->app->user->getL11n()->lang[12]['Date'], 'sort' => 0],
                         ]
-                    );
+                    );*/
                     ?>
         <tbody>
         <?php

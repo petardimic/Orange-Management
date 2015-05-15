@@ -78,7 +78,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getRequestDestination()) {
             case \phpOMS\Message\RequestDestination::BACKEND:
-                $this->show_content_backend();
+                $this->showContentBackend($request, $response);
                 break;
         }
     }
@@ -89,7 +89,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function show_content_backend()
+    public function showContentBackend($request, $response)
     {
         switch($request->getPath(3)) {
             case 'dashboard':
