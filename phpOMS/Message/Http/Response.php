@@ -1,6 +1,5 @@
 <?php
 namespace phpOMS\Message\Http;
-
 /**
  * Response class
  *
@@ -16,9 +15,8 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Response extends \phpOMS\Message\ResponseAbstract
+class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contract\RenderableInterface
 {
-
 // region Class Fields
     /**
      * Header
@@ -27,7 +25,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
      * @since 1.0.0
      */
     private $header = null;
-
     /**
      * Responses
      *
@@ -35,7 +32,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
      * @since 1.0.0
      */
     private $response = [];
-
     /**
      * Auto push on add?
      *
@@ -43,8 +39,14 @@ class Response extends \phpOMS\Message\ResponseAbstract
      * @since 1.0.0
      */
     private $autoPush = false;
+    /**
+     * html head
+     *
+     * @var bool
+     * @since 1.0.0
+     */
+    private $head = null;
 // endregion
-
     /**
      * {@inheritdoc}
      */
@@ -53,16 +55,12 @@ class Response extends \phpOMS\Message\ResponseAbstract
         if(!$overwrite && isset($this->header[$key])) {
             return false;
         }
-
         $this->header[$key] = $header;
-
         if($this->autoPush) {
             $this->pushHeaderId($key);
         }
-
         return true;
     }
-
     /**
      * Push header by ID
      *
@@ -75,7 +73,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         header($key, true);
     }
-
     /**
      * Remove header by ID
      *
@@ -88,7 +85,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         unset($this->header[$key]);
     }
-
     /**
      * Set response
      *
@@ -101,7 +97,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         $this->response = $response;
     }
-
     /**
      * Add response
      *
@@ -116,10 +111,11 @@ class Response extends \phpOMS\Message\ResponseAbstract
         $this->response[$key] = $response;
 
         if($this->autoPush) {
-            $this->pushResponseId(count($this->response));
+            ob_start();
+            echo $response;
+            ob_end_flush();
         }
     }
-
     /**
      * Push a specific response ID
      *
@@ -134,24 +130,60 @@ class Response extends \phpOMS\Message\ResponseAbstract
         echo $this->response[$id];
         ob_end_flush();
     }
+    /**
+     * Push response ID
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function render()
+    {
+        ob_start();
+        echo '<htm>'
+        $this->head->render();
+        echo '<body>'
+        ob_end_flush();
 
+        foreach($this->response as $key => $response) {
+            ob_start();
+            echo $response;
+            ob_end_flush();
+        }
+    }
     /**
      * Generate response
-     *
-     * @param int $id Response ID
      *
      * @return string
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function make($id)
+    public function getYield()
     {
-        $this->pushHeader();
+        yield '<htm>' . $this->head->getAll(); . '<body>';;
 
-        return $this->get($id);
+        foreach($this->response as $key => $response) {
+            yield $response;
+        }
     }
+    /**
+     * Generate response
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getAll()
+    {
+        $render = '<htm>' . $this->head->getAll(); . '<body>';
 
+        foreach($this->response as $key => $response) {
+            $render .= $response;
+        }
+
+        return $render;
+    }
     /**
      * Push all headers
      *
@@ -164,7 +196,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
             header($ele, true);
         }
     }
-
     /**
      * Get response by ID
      *
@@ -179,7 +210,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         return $this->response[$id];
     }
-
     /**
      * Remove response by ID
      *
@@ -192,24 +222,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         unset($this->response[$id]);
     }
-
-    /**
-     * Push all responses
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function push()
-    {
-        ob_start();
-
-        foreach($this->response as $key => $response) {
-            echo $this->response[$key];
-        }
-
-        ob_end_flush();
-    }
-
     /**
      * Is auto push enabled?
      *
@@ -222,7 +234,6 @@ class Response extends \phpOMS\Message\ResponseAbstract
     {
         return $this->autoPush;
     }
-
     /**
      * Auto push added responses
      *
