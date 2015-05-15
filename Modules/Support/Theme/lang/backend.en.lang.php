@@ -6,6 +6,7 @@ $MODLANG[29] = [
     "AverageAmount"      => "Average Amount",
     "Created"            => "Created",
     "Creator"            => "Creator",
+    "Day"                => "Day",
     "Due"                => "Due",
     "Forwarded"          => "Forwarded",
     "From"               => "From",

@@ -9,6 +9,7 @@ $MODLANG[35] = [
     "End"            => "End",
     "General"        => "General",
     "hours"          => "hours",
+    "Interval"       => "Interval",
     "Late"           => "Late",
     "Month"          => "Month",
     "Name"           => "Name",

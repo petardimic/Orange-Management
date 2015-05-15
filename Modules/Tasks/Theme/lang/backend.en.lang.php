@@ -7,6 +7,7 @@ $MODLANG[11] = [
     "Created"            => "Created",
     "Creator"            => "Creator",
     "Default"            => "Default",
+    "Day"                => "Day",
     "Due"                => "Due",
     "Forwarded"          => "Forwarded",
     "From"               => "From",
