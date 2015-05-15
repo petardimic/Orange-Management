@@ -13,16 +13,17 @@ $side = $nav->getOutput();
 ?>
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <?php
-        \phpOMS\Model\Model::load_header(); ?>
-        <style>
-            <?php \phpOMS\Model\Model::load_style_small(); ?>
-        </style>
-        <script>
-            var assetManager = new jsOMS.AssetManager();
-        </script>
-    </head>
+<head>
+    <?= $this->response->getHead()->getMeta()->render(); ?>
+    <title><?= $a = $this->response->getHead()->getTitle(); ?></title>
+    <?= $this->response->getHead()->renderAssets(); ?>
+    <style>
+        <?= $this->response->getHead()->renderStyle(); ?>
+    </style>
+    <script>
+        <?= $this->response->getHead()->renderScript(); ?>
+    </script>
+</head>
 <body>
 <div class="vh" id="dim"></div>
 <div id="h">
@@ -36,7 +37,7 @@ $side = $nav->getOutput();
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
                 href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
-                itemprop="legalName"><?= \phpOMS\Model\Model::$content['core:oname']; ?></a>
+                itemprop="legalName"><?= $this->getData('Name') ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">
             <label> <input type="text" autofocus="autofocus"> </label>
@@ -56,4 +57,3 @@ $side = $nav->getOutput();
         \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response); ?>
     </div>
 </div>
-<?php \phpOMS\Model\Model::load_footer(); ?>

@@ -105,13 +105,17 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $options                                          = $this->settings->get([1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
-                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
-                \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
+                $options = $this->settings->get([1000000009]);
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'Web/Theme/backend/css/backend.css');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'External/fontawesome/css/font-awesome.min.css');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'jsOMS/oms.min.js');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'External/d3/d3.min.js');
+                $this->response->getHead()->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
+                $this->response->getHead()->setScript('core', 'var assetManager = new jsOMS.AssetManager();');
+
+                $pageView->setData('Name', $options[1000000009]);
+                $pageView->setData('Title', 'Orange Management');
+                $pageView->setData('Destination', $this->request->getRequestDestination());
 
                 $pageView->setTemplate('/Web/Theme/backend/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
@@ -228,13 +232,17 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $options                                          = $this->settings->get([1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
-                \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
-                \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
-                \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
+                $options = $this->settings->get([1000000009]);
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'Web/Theme/backend/css/backend.css');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'External/fontawesome/css/font-awesome.min.css');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'jsOMS/oms.min.js');
+                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'External/d3/d3.min.js');
+                $this->response->getHead()->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
+                $this->response->getHead()->setScript('core', 'var assetManager = new jsOMS.AssetManager();');
+
+                $pageView->setData('Name', $options[1000000009]);
+                $pageView->setData('Title', 'Orange Management');
+                $pageView->setData('Destination', $this->request->getRequestDestination());
 
                 $pageView->setTemplate('/Web/Theme/reporter/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);

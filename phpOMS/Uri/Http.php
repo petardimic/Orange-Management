@@ -41,6 +41,8 @@ class Http implements \phpOMS\Uri\UriInterface
 
     private $fragment = null;
 
+    private $base = '';
+
     /**
      * Constructor
      *
@@ -97,6 +99,10 @@ class Http implements \phpOMS\Uri\UriInterface
         return $this->fragment;
     }
 
+    public function getBase() {
+        return $this->base;
+    }
+
     public function set($uri)
     {
         $this->uri = $uri;
@@ -113,6 +119,8 @@ class Http implements \phpOMS\Uri\UriInterface
         $this->path     = ltrim($this->path, $this->rootPath); // TODO: this could cause a bug if the rootpath is the same as a regular path which is usually the language
         $this->query    = isset($url['query']) ? $url['query'] : null;
         $this->fragment = isset($url['fragment']) ? $url['fragment'] : null;
+
+        $this->base = $this->scheme . '://' . $this->host . $this->rootPath;
     }
 
     /**

@@ -50,7 +50,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since 1.0.0
      */
     private $head = null;
-
 // endregion
     public function __construct()
     {
@@ -248,5 +247,10 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     public function setAutoPush($push)
     {
         $this->autoPush = (bool) $push;
+    }
+
+    public function getHead()
+    {
+        return $this->head;
     }
 }
