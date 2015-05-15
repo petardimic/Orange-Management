@@ -97,7 +97,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getPath(3)) {
             case 'list':
-                $supportDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $supportDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $supportDashboardView->setTemplate('/Modules/Support/Theme/backend/support-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -113,7 +113,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 include __DIR__ . '/Theme/backend/support-single.tpl.php';
                 break;
             case 'create':
-                $supportCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $supportCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $supportCreateView->setTemplate('/Modules/Support/Theme/backend/support-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -121,7 +121,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $supportCreateView->getOutput();
                 break;
             case 'analysis':
-                $supportAnalysisView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $supportAnalysisView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $supportAnalysisView->setTemplate('/Modules/Support/Theme/backend/support-analysis');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -129,7 +129,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $supportAnalysisView->getOutput();
                 break;
             case 'settings':
-                $supportSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $supportSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $supportSettingsView->setTemplate('/Modules/Support/Theme/backend/support-settings');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -155,7 +155,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'dashboard':
-                $supportDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $supportDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $supportDashboardView->setTemplate('/Modules/Support/Theme/backend/user-support-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

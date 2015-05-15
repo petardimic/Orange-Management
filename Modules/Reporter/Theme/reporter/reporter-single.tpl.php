@@ -10,7 +10,7 @@ $this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLang
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

@@ -7,12 +7,12 @@
  * Account
  */
 
-$panelAccountView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelAccountView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelAccountView->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
 $panelAccountView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('account::account', $panelAccountView);
 
-$accountFormView = new \Web\Views\Form\FormView($this->l11n);
+$accountFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $accountFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $accountFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $accountFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -70,12 +70,12 @@ $this->getView('account::account')->addView('form', $accountFormView);
  * Profile
  */
 
-$panelProfileView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelProfileView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelProfileView->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
 $panelProfileView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('account::profile', $panelProfileView);
 
-$profileFormView = new \Web\Views\Form\FormView($this->l11n);
+$profileFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $profileFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $profileFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $profileFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -134,7 +134,7 @@ $this->getView('account::profile')->addView('form', $profileFormView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

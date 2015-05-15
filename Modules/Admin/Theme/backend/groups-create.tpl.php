@@ -6,7 +6,7 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelCreate = new \Web\Views\Panel\PanelView($this->l11n);
+$panelCreate = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelCreate->setTitle($this->l11n->lang[1]['Group']);
 
 $this->addView('group:create', $panelCreate);
@@ -16,7 +16,7 @@ $this->getView('group:create')->setTemplate('/Web/Theme/Templates/Panel/BoxThird
  * General
  */
 
-$formGroupCreate = new \Web\Views\Form\FormView($this->l11n);
+$formGroupCreate = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $formGroupCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formGroupCreate->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formGroupCreate->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -50,7 +50,7 @@ $this->getView('group:create')->addView('form', $formGroupCreate);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

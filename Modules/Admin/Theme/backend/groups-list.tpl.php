@@ -6,9 +6,9 @@
 /*
  * UI Logic
  */
-$groupListView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView    = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView    = new \Web\Views\Lists\PaginationView($this->l11n);
+$groupListView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$headerView    = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
+$footerView    = new \Web\Views\Lists\PaginationView($this->l11n, $this->response, $this->request);
 
 $groupListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -55,7 +55,7 @@ $groupListView->addView('footer', $footerView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

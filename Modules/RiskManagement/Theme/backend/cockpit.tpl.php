@@ -6,8 +6,8 @@
 /*
 * UI Logic
 */
-$watchList  = new \Web\Views\Lists\ListView($this->l11n);
-$headerView = new \Web\Views\Lists\HeaderView($this->l11n);
+$watchList  = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$headerView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $watchList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -32,12 +32,12 @@ $watchList->addView('header', $headerView);
 /*
  * Statistics
  */
-$panelStatView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelStatView->setTitle($this->l11n->lang[30]['Statistics']);
 $this->addView('stats', $panelStatView);
 
-$statTableView = new \Web\Views\Lists\ListView($this->l11n);
+$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[30]['RiskIndex'], 0],
@@ -59,11 +59,11 @@ $statTableView->setElements([
 
 $this->getView('stats')->addView('stat::table', $statTableView);
 
-$panelExportView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelExportView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelExportView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelExportView->setTitle($this->l11n->lang[30]['Export']);
 
-$formExportView = new \Web\Views\Form\FormView($this->l11n);
+$formExportView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $formExportView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formExportView->setSubmit('submit1', $this->l11n->lang[30]['Export']);
 $formExportView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -103,7 +103,7 @@ $this->addView('export', $panelExportView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

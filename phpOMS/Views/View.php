@@ -68,6 +68,14 @@ class View implements \phpOMS\Contract\RenderableInterface
      */
     protected $request = null;
 
+    /**
+     * Request
+     *
+     * @var \phpOMS\Message\RequestAbstract
+     * @since 1.0.0
+     */
+    protected $response = null;
+
 // endregion
 
     /**
@@ -75,16 +83,18 @@ class View implements \phpOMS\Contract\RenderableInterface
      *
      * @param \phpOMS\Localization\Localization $l11n    User localization
      * @param \phpOMS\Message\RequestAbstract   $request Request
+     * @param \phpOMS\Message\ResponseAbstract   $response Request
      * @param \phpOMS\ApplicationAbstract       $app     Application
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($l11n = null, $request = null, $app = null)
+    public function __construct($l11n, $request, $response, $app = null)
     {
         $this->l11n    = $l11n;
         $this->app     = $app;
         $this->request = $request;
+        $this->response = $response;
     }
 
     /**

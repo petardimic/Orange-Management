@@ -53,9 +53,9 @@ class WebViewAbstract extends \phpOMS\Views\View
     /**
      * {@inheritdoc}
      */
-    public function __construct($l11n)
+    public function __construct($l11n, $request, $response, $app = null)
     {
-        parent::__construct($l11n);
+        parent::__construct($l11n, $request, $response);
     }
 
     /**

@@ -3,12 +3,12 @@
  * @var \phpOMS\Views\View $this
  */
 
-$panelCoreSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelCoreSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelCoreSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $panelCoreSettingsView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('settings::core', $panelCoreSettingsView);
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -41,12 +41,12 @@ $this->getView('settings::core')->addView('form', $settingsFormView);
  * Account name
  */
 
-$panelNameSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelNameSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelNameSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $panelNameSettingsView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('settings::name', $panelNameSettingsView);
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
 $settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -105,7 +105,7 @@ $this->getView('settings::name')->addView('form', $settingsFormView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

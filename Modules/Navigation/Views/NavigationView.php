@@ -61,7 +61,7 @@ class NavigationView extends \phpOMS\Views\View
      */
     public function __construct($l11n)
     {
-        parent::__construct($l11n);
+        parent::__construct($l11n, null, null);
     }
 
     /**

@@ -140,7 +140,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'list':
-                $accountListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $accountListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -156,7 +156,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showBackendAccountSingle($request, $response);
                 break;
             case 'create':
-                $accountCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $accountCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $accountCreateView->setTemplate('/Modules/Admin/Theme/backend/accounts-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -186,7 +186,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(5)) {
             case 'front':
-                $accountView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $accountView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $accountView->setTemplate('/Modules/Admin/Theme/backend/accounts-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -220,7 +220,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'list':
-                $groupListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $groupListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -236,7 +236,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showBackendGroupSingle($request, $response);
                 break;
             case 'create':
-                $groupCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $groupCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $groupCreateView->setTemplate('/Modules/Admin/Theme/backend/groups-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -322,7 +322,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         switch($request->getPath(4)) {
             case 'general':
-                $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
                 echo $coreSettingsView->getOutput();
                 break;
@@ -349,7 +349,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'list':
-                $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
                 echo $moduleListView->getOutput();
                 break;

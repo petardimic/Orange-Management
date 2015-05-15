@@ -2,7 +2,7 @@
 /**
  * @var \Web\Views\Page\BackendView $this
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

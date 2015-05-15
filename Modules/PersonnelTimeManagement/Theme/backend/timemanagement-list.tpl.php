@@ -6,8 +6,8 @@
 /*
  * UI Logic
  */
-$timeMgmtView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView   = new \Web\Views\Lists\HeaderView($this->l11n);
+$timeMgmtView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$headerView   = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $timeMgmtView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -34,12 +34,12 @@ $timeMgmtView->addView('header', $headerView);
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelSettingsView->setTitle($this->l11n->lang[35]['Settings']);
 $this->addView('settings', $panelSettingsView);
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
@@ -64,12 +64,12 @@ $this->getView('settings')->addView('form', $settingsFormView);
 /*
  * Statistics
  */
-$panelStatView = new \Web\Views\Panel\PanelView($this->l11n);
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelStatView->setTitle($this->l11n->lang[35]['General']);
 $this->addView('stats', $panelStatView);
 
-$statTableView = new \Web\Views\Lists\ListView($this->l11n);
+$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[35]['Working'], '136'],
@@ -87,7 +87,7 @@ $this->getView('stats')->addView('stat::table', $statTableView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

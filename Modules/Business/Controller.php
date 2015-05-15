@@ -117,7 +117,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'list':
-                $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $unitListView->setTemplate('/Modules/Business/Theme/backend/unit-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $unitListView->addData('nav', $navigation->nav);
@@ -125,7 +125,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $unitListView->getOutput();
                 break;
             case 'create':
-                $unitCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $unitCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $unitCreateView->setTemplate('/Modules/Business/Theme/backend/unit-create');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $unitCreateView->addData('nav', $navigation->nav);
@@ -148,7 +148,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(4)) {
             case 'list':
-                $departmentListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $departmentListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $departmentListView->setTemplate('/Modules/Business/Theme/backend/department-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $departmentListView->addData('nav', $navigation->nav);
@@ -156,7 +156,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $departmentListView->getOutput();
                 break;
             case 'create':
-                $departmentCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $departmentCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $departmentCreateView->setTemplate('/Modules/Business/Theme/backend/department-create');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $departmentCreateView->addData('nav', $navigation->nav);

@@ -75,7 +75,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
 
-                $pageView = new \Web\Views\Page\BackendView();
+                $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
 
                 if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->dbFailResponse($pageView);
@@ -201,7 +201,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
-                $pageView = new \Web\Views\Page\BackendView();
+                $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
 
                 if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
                     $this->dbFailResponse($pageView);
@@ -253,7 +253,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $this->response->setHeader('Status', 'Status: 404 Not Found');
 
-                $pageView = new \phpOMS\Views\View();
+                $pageView = new \phpOMS\Views\View(null, $this->request, $this->response);
                 $pageView->setTemplate('/Web/Theme/Error/404');
                 $this->response->add('GLOBAL', $pageView->getOutput());
         }

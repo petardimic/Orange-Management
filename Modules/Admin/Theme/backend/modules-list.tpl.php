@@ -6,9 +6,9 @@
 /*
  * UI Logic
  */
-$moduleListView = new \Web\Views\Lists\ListView($this->l11n);
-$headerView     = new \Web\Views\Lists\HeaderView($this->l11n);
-$footerView     = new \Web\Views\Lists\PaginationView($this->l11n);
+$moduleListView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$headerView     = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
+$footerView     = new \Web\Views\Lists\PaginationView($this->l11n, $this->response, $this->request);
 
 $moduleListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');

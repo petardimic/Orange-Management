@@ -1,5 +1,5 @@
 <?php
-$loginForm = new \Web\Views\Form\FormView($this->l11n);
+$loginForm = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $loginForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $loginForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->l11n->getLanguage() . '/api/login.php');

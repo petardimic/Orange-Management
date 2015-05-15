@@ -3,7 +3,7 @@
  * @var \phpOMS\Views\View $this
  */
 
-$tabView = new \Web\Views\Divider\TabularView($this->l11n);
+$tabView = new \Web\Views\Divider\TabularView($this->l11n, $this->response, $this->request);
 $tabView->setTemplate('/Web/Theme/Templates/Divider/Tabular');
 $lang = $this->getData('lang');
 
@@ -78,7 +78,7 @@ for($y = $year; $y > $year-3; $y--) {
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
@@ -91,8 +91,8 @@ $nav->setParent(1002701001);
 /*
  * UI Logic
  */
-$overviewCompareList           = new \Web\Views\Lists\ListView($this->l11n);
-$overviewCompareListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
+$overviewCompareList           = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$overviewCompareListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $overviewCompareList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $overviewCompareListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -185,11 +185,11 @@ $overviewCompareList->addElements([
 
 $overviewCompareList->addView('header', $overviewCompareListHeaderView);
 
-$graphProgressView = new \Web\Views\Panel\PanelView($this->l11n);
+$graphProgressView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $graphProgressView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $graphProgressView->setTitle($lang['Progress']);
 
-$graphComparisonView = new \Web\Views\Panel\PanelView($this->l11n);
+$graphComparisonView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $graphComparisonView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $graphComparisonView->setTitle($lang['Comparison']);
 
@@ -198,8 +198,8 @@ $tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $graphPr
 /*
  * UI Logic
  */
-$carsList           = new \Web\Views\Lists\ListView($this->l11n);
-$carsListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
+$carsList           = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$carsListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $carsList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $carsListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -232,8 +232,8 @@ $tabView->addTab($lang['Cars'], $carsList->getOutput(), 'cars');
 /*
  * UI Logic
  */
-$historyList           = new \Web\Views\Lists\ListView($this->l11n);
-$historyListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
+$historyList           = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$historyListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $historyList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $historyListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -349,8 +349,8 @@ $tabView->addTab($lang['History'], $historyList->getOutput(), 'history');
 /*
  * UI Logic
  */
-$planningList           = new \Web\Views\Lists\ListView($this->l11n);
-$planningListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
+$planningList           = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$planningListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
 $planningList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $planningListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');

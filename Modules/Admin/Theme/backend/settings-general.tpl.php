@@ -6,7 +6,7 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelPageView         = new \Web\Views\Panel\PanelView($this->l11n);
+$panelPageView         = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
 $panelLocalizationView = clone $panelPageView;
 $panelAccountsView     = clone $panelPageView;
 
@@ -25,7 +25,7 @@ $this->getView('settings::l11n')->setTemplate('/Web/Theme/Templates/Panel/BoxThi
  * General
  */
 
-$formPageView = new \Web\Views\Form\FormView($this->l11n);
+$formPageView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $formPageView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formPageView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formPageView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -66,7 +66,7 @@ $this->getView('settings::page')->addView('form', $formPageView);
  * Localization
  */
 
-$formLocalizationView = new \Web\Views\Form\FormView($this->l11n);
+$formLocalizationView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $formLocalizationView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formLocalizationView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formLocalizationView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());

@@ -96,7 +96,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(3)) {
             case 'single':
-                $profileSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $profileSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $profileSingleView->setTemplate('/Modules/Profile/Theme/backend/profile-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -104,7 +104,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $profileSingleView->getOutput();
                 break;
             case 'list':
-                $profileView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
+                $profileView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $profileView->setTemplate('/Modules/Profile/Theme/backend/profile-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $profileView->addData('nav', $navigation->nav);

@@ -3,13 +3,13 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$tabView = new \Web\Views\Divider\TabularView($this->l11n);
+$tabView = new \Web\Views\Divider\TabularView($this->l11n, $this->response, $this->request);
 $tabView->setTemplate('/Web/Theme/Templates/Divider/Tabular');
 
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
@@ -35,7 +35,7 @@ $nav->setParent(1002701001);
     /**
      * @var \phpOMS\Views\View $this
      */
-    $overviwPanel    = new \Web\Views\Panel\PanelView($this->l11n);
+    $overviwPanel    = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
     $permissionPanel = clone $overviwPanel;
 
     $overviwPanel->setTitle($this->l11n->lang[0]['Create']);
@@ -51,7 +51,7 @@ $nav->setParent(1002701001);
      * Overview
      */
 
-    $formOverview = new \Web\Views\Form\FormView($this->l11n);
+    $formOverview = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
     $formOverview->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formOverview->setSubmit('submit1', $this->l11n->lang[27]['Edit']);
     $formOverview->setSubmit('submit2', $this->l11n->lang[0]['Delete']);
@@ -97,7 +97,7 @@ $nav->setParent(1002701001);
      * Permission Add
      */
 
-    $formPermissionAdd = new \Web\Views\Form\FormView($this->l11n);
+    $formPermissionAdd = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
     $formPermissionAdd->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formPermissionAdd->setSubmit('submit1', $this->l11n->lang[0]['Add']);
     $formPermissionAdd->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -139,8 +139,8 @@ $nav->setParent(1002701001);
     /*
      * Permission List
      */
-    $permissionListView = new \Web\Views\Lists\ListView($this->l11n);
-    $headerView         = new \Web\Views\Lists\HeaderView($this->l11n);
+    $permissionListView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+    $headerView         = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
     $permissionListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
     $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -163,8 +163,8 @@ $nav->setParent(1002701001);
     /*
  * UI Logic
  */
-    $sourceList           = new \Web\Views\Lists\ListView($this->l11n);
-    $sourceListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n);
+    $sourceList           = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+    $sourceListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
 
     $sourceList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
     $sourceListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -188,7 +188,7 @@ $nav->setParent(1002701001);
     /*
      * Create
      */
-    $createPanel = new \Web\Views\Panel\PanelView($this->l11n);
+    $createPanel = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
     $mediaPanel  = clone $createPanel;
 
     $createPanel->setTitle($this->l11n->lang[0]['Create']);
@@ -200,7 +200,7 @@ $nav->setParent(1002701001);
     $this->addView('permissionFormPanel', $mediaPanel);
     $this->getView('permissionFormPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 
-    $formCreateForm = new \Web\Views\Form\FormView($this->l11n);
+    $formCreateForm = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
     $formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
     $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
     $formCreateForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
