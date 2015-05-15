@@ -1,5 +1,6 @@
 <?php
 namespace phpOMS\Message\Http;
+
 /**
  * Request class
  *
@@ -25,6 +26,7 @@ class Request extends \phpOMS\Message\RequestAbstract
      * @since 1.0.0
      */
     public $browser = null;
+
     /**
      * OS type
      *
@@ -32,6 +34,7 @@ class Request extends \phpOMS\Message\RequestAbstract
      * @since 1.0.0
      */
     public $os = null;
+
     /**
      * Request information
      *
@@ -39,6 +42,7 @@ class Request extends \phpOMS\Message\RequestAbstract
      * @since 1.0.0
      */
     private $info = null;
+
     /**
      * Request hash
      *
@@ -48,12 +52,13 @@ class Request extends \phpOMS\Message\RequestAbstract
     private $hash = null;
 
     /**
-     * Root path for this application
+     * Path
      *
      * @var array
      * @since 1.0.0
      */
-    private $rootPath = null;
+    protected $path = null;
+
     /**
      * Web request type
      *
@@ -61,6 +66,7 @@ class Request extends \phpOMS\Message\RequestAbstract
      * @since 1.0.0
      */
     private $requestDestination = null;
+
 // endregion
     /**
      * Constructor
@@ -71,51 +77,36 @@ class Request extends \phpOMS\Message\RequestAbstract
     public function __construct($rootPath)
     {
         parent::__construct();
-        $this->rootPath = $rootPath;
-        $this->uri = new \phpOMS\Uri\Http();
+        $this->uri = new \phpOMS\Uri\Http($rootPath);
     }
+
     public function init($uri = null)
     {
-        $this->uri->set(\phpOMS\Uri\Http::getCurrent());
-        
-        $this->scheme = 'http';
-        $this->host = $_SERVER['HTTP_HOST'];
-        $this->path = parse_url(\phpOMS\Uri\Http::getCurrent())['path'];
-        $this->data = [
-            'l0' => '',
-            'l1' => '',
-            'l2' => '',
-            'l3' => '',
-            'l4' => '',
-            'l5' => '',
-            'l6' => '',
-            'l7' => '',
-        ];
         if($uri === null) {
-            /** @noinspection PhpWrongStringConcatenationInspection */
-            $this->data = (isset($_GET) ? $_GET : file_get_contents('php://input')) + $this->data;
+            $this->data = (isset($_GET) ? $_GET : file_get_contents('php://input'));
+            $this->uri->set(\phpOMS\Uri\Http::getCurrent());
         } else {
             $this->setMethod($uri['type']); // TODO: is this correct?
-            $this->data = $this->uri->routify($uri['request']) + $this->data;
+            $this->uri->set($uri['uri']);
         }
-        $this->requestDestination = $this->data['l1'];
-        $this->lang               = $this->data['l0'];
-        $this->hash = null;
-        $this->hash = [
-            $this->hashRequest([$this->data['l1']]),
-            $this->hashRequest([$this->data['l1'], $this->data['l2']]),
-            $this->hashRequest([$this->data['l1'], $this->data['l2'], $this->data['l3']]),
-            $this->hashRequest([$this->data['l1'],
-                                $this->data['l2'],
-                                $this->data['l3'],
-                                $this->data['l4']]),
-            $this->hashRequest([$this->data['l1'],
-                                $this->data['l2'],
-                                $this->data['l3'],
-                                $this->data['l4'],
-                                $this->data['l5']]),
-        ];
+
+        $this->path = explode('/', $this->uri->getPath());
+        $this->lang = $this->path[0];
+
+        $this->requestDestination = $this->path[1];
+        $this->lang               = $this->path[0];
+        $this->hash               = [];
+
+        foreach($this->path as $key => $path) {
+            $paths = [];
+            for($i = 1; $i < $key+1; $i++) {
+                $paths[] = $this->path[$i];
+            }
+
+            $this->hash[] = $this->hashRequest($paths);
+        }
     }
+
     /**
      * Set request type
      *
@@ -128,6 +119,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         $this->type = $type;
     }
+
     /**
      * Generate request hash
      *
@@ -142,6 +134,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         return sha1(implode('', $request));
     }
+
     /**
      * {@inheritdoc}
      */
@@ -151,8 +144,10 @@ class Request extends \phpOMS\Message\RequestAbstract
             $this->info['browser'] = $this->getBrowser();
             $this->info['os']      = $this->getOS();
         }
+
         return $this->info;
     }
+
     /**
      * Determine request browser
      *
@@ -164,7 +159,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     public function getBrowser()
     {
         if($this->browser == null) {
-            $arr = BrowserType::getConstants();
+            $arr               = BrowserType::getConstants();
             $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
             foreach($arr as $key => $val) {
                 if(stripos($http_request_type, $val)) {
@@ -173,8 +168,10 @@ class Request extends \phpOMS\Message\RequestAbstract
                 }
             }
         }
+
         return $this->browser;
     }
+
     /**
      * Determine request OS
      *
@@ -186,7 +183,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     public function getOS()
     {
         if($this->os == null) {
-            $arr = OSType::getConstants();
+            $arr               = OSType::getConstants();
             $http_request_type = strtolower($_SERVER['HTTP_USER_AGENT']);
             foreach($arr as $key => $val) {
                 if(stripos($http_request_type, $val)) {
@@ -195,8 +192,10 @@ class Request extends \phpOMS\Message\RequestAbstract
                 }
             }
         }
+
         return $this->os;
     }
+
     /**
      * Get request hashes
      *
@@ -209,6 +208,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         return $this->hash;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -216,6 +216,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         return $_SERVER['REMOTE_ADDR'];
     }
+
     /**
      * Is request made via https
      *
@@ -234,6 +235,7 @@ class Request extends \phpOMS\Message\RequestAbstract
             || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')
             || $_SERVER['SERVER_PORT'] == $port;
     }
+
     /**
      * Stringify request
      *
@@ -246,8 +248,10 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         $lastElement = end($this->hash);;
         reset($this->hash);
+
         return $lastElement;
     }
+
     /**
      * Get request type
      *
@@ -261,8 +265,10 @@ class Request extends \phpOMS\Message\RequestAbstract
         if(!isset($this->type)) {
             $this->type = $_SERVER['REQUEST_METHOD'];
         }
+
         return $this->type;
     }
+
     /**
      * @return \phpOMS\Message\RequestDestination
      *
@@ -273,6 +279,7 @@ class Request extends \phpOMS\Message\RequestAbstract
     {
         return $this->requestDestination;
     }
+
     /**
      * @param \phpOMS\Message\RequestDestination $requestDestination
      *

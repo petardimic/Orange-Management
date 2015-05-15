@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/projectmanagement-dashboard.tpl.php';

@@ -16,7 +16,7 @@ $this->getView('group:create')->setTemplate('/Web/Theme/Templates/Panel/BoxThird
 $formUnitCreate = new \Web\Views\Form\FormView($this->l11n);
 $formUnitCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formUnitCreate->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$formUnitCreate->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$formUnitCreate->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formUnitCreate->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formUnitCreate->setElement(0, 0, [

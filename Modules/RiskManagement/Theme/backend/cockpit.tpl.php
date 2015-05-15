@@ -15,7 +15,7 @@ $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
 /*
  * Header
  */
-$headerView->setTitle($this->l11n->lang[3]['Profiles']);
+$headerView->setTitle($this->l11n->lang[30]['Watchlist']);
 $headerView->setHeader([
     ['title' => $this->l11n->lang[0]['ID'], 'sortable' => true],
     ['title' => $this->l11n->lang[30]['Name'], 'sortable' => true, 'full' => true],
@@ -66,7 +66,7 @@ $panelExportView->setTitle($this->l11n->lang[30]['Export']);
 $formExportView = new \Web\Views\Form\FormView($this->l11n);
 $formExportView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formExportView->setSubmit('submit1', $this->l11n->lang[30]['Export']);
-$formExportView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$formExportView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formExportView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 // TODO: put this on all risk management pages except settings - export should also export historic values (csv, excel)

@@ -53,7 +53,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      */
     public function __construct($config)
     {
-        $this->request = new \phpOMS\Message\Http\Request();
+        $this->request = new \phpOMS\Message\Http\Request($config['page']['root']);
         $this->request->init();
         $this->response = new \phpOMS\Message\Http\Response();
 
@@ -70,7 +70,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->setHeader('Status', 'Status:406 Not acceptable');
-                    $this->response->add('GLOBAL', '');
                     break;
                 }
 
@@ -107,9 +106,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options                                          = $this->settings->get([1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getScheme() . '://' . $this->request->getHost();
-                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getScheme() . '://' . $this->request->getHost();
-                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
+                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
+                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
                 \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
                 \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
@@ -134,9 +133,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
                 $this->response->get('GLOBAL')->add($this->request->__toString(), null);
 
-                $request = new \phpOMS\Message\Http\Request();
+                $request = new \phpOMS\Message\Http\Request($config['page']['root']);
 
-                if(($uris = $this->request->getRequest('r')) !== false) {
+                if(($uris = $this->request->getUri()->getQuery('r')) !== null) {
                     $uris = json_decode($uris, true);
 
                     foreach($uris as $key => $uri) {
@@ -156,7 +155,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $request = $this->request;
 
                     if($this->user->getId() < 1) {
-                        if($request->getRequest('l2') === 'login') {
+                        if($request->getPath(2) === 'login') {
                             $this->sessionManager->set('UID', 1);
                             $this->sessionManager->save();
 
@@ -165,7 +164,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             break;
                         }
                     } else {
-                        if($request->getRequest('l2') === 'logout') {
+                        if($request->getPath(2) === 'logout') {
                             $this->sessionManager->remove('UID');
                             $this->sessionManager->save();
                             $this->response->get('GLOBAL')->add($this->request->__toString(), 1);
@@ -194,12 +193,10 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
                     $this->response->setHeader('Status', 'Status:406 Not acceptable');
-                    $this->response->add('GLOBAL', '');
                     break;
                 }
 
                 $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
-
                 $pageView = new \Web\Views\Page\BackendView();
 
                 if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
@@ -232,9 +229,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options                                          = $this->settings->get([1000000009]);
-                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getScheme() . '://' . $this->request->getHost();
-                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getScheme() . '://' . $this->request->getHost();
-                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getScheme() . '://' . $this->request->getHost();
+                \phpOMS\Model\Model::$content['page:addr:url']    = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
+                \phpOMS\Model\Model::$content['page:addr:local']  = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
+                \phpOMS\Model\Model::$content['page:addr:remote'] = $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost();
                 \phpOMS\Model\Model::$content['core:oname']       = $options[1000000009];
                 \phpOMS\Model\Model::$content['core:layout']      = $this->request->getRequestDestination();
                 \phpOMS\Model\Model::$content['page:title']       = 'Orange Management';
@@ -253,7 +250,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', $pageView->getOutput());
         }
 
-        echo $this->response->make('GLOBAL');
+        echo $this->response->render();
     }
 
     /**
@@ -269,7 +266,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
         $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
         $this->response->setHeader('Retry-After', 'Retry-After: 300');
-        $this->response->add('GLOBAL', '');
 
         $view->setTemplate('/Web/Theme/Error/503');
     }

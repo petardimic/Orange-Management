@@ -119,6 +119,6 @@ class Head implements \phpOMS\Contract\RenderableInterface
      */
     public function render()
     {
-        // TODO: Implement render() method.
+        return '';
     }
 }

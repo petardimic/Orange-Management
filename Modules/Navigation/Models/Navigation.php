@@ -95,13 +95,24 @@ class Navigation
             $this->nav = [];
 
             $uri_hash = $request;
+            $uri_pdo = '';
 
-            $sth = $this->dbPool->get('core')->con->prepare('SELECT * FROM `' . $this->dbPool->get('core')->prefix . 'nav` WHERE `nav_pid` IN(:pidA, :pidB, :pidC, :pidD, :pidE) ORDER BY `nav_order` ASC');
-            $sth->bindValue(':pidA', $uri_hash[0], \PDO::PARAM_STR);
-            $sth->bindValue(':pidB', $uri_hash[1], \PDO::PARAM_STR);
-            $sth->bindValue(':pidC', $uri_hash[2], \PDO::PARAM_STR);
-            $sth->bindValue(':pidD', $uri_hash[3], \PDO::PARAM_STR);
-            $sth->bindValue(':pidE', $uri_hash[4], \PDO::PARAM_STR);
+            $i = 1;
+            foreach($uri_hash as $hash) {
+                $uri_pdo .= ':pid' . $i . ',';
+                $i++;
+            }
+
+            $uri_pdo = rtrim($uri_pdo, ',');
+
+            $sth = $this->dbPool->get('core')->con->prepare('SELECT * FROM `' . $this->dbPool->get('core')->prefix . 'nav` WHERE `nav_pid` IN('.$uri_pdo.') ORDER BY `nav_order` ASC');
+
+            $i = 1;
+            foreach($uri_hash as $hash) {
+                $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
+                $i++;
+            }
+
             $sth->execute();
             $temp_nav = $sth->fetchAll();
 

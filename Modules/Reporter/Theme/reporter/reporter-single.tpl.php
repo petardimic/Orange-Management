@@ -3,7 +3,6 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-
 include_once __DIR__ . '/../../Templates/' . $this->getData('name') . '/' . $this->getData('name') . '.lang.php';
 
 $this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLanguage()]);

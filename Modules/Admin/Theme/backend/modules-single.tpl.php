@@ -3,7 +3,7 @@
 /** @var \Modules\Admin\Controller $this */
 $modules_all = $this->app->modules->getAllModules();
 
-if(array_key_exists($request->getRequest()['id'], $modules_all)) {
+if(array_key_exists($request->getData('id'), $modules_all)) {
     /** @noinspection PhpUndefinedMethodInspection */
     \phpOMS\Module\ModuleFactory::$loaded['Navigation']->call([\Modules\Navigation\Models\NavigationType::CONTENT,
                                                                1000105001]);
@@ -19,7 +19,7 @@ if(array_key_exists($request->getRequest()['id'], $modules_all)) {
 
     <div class="bc-1">
         <img alt="<?= $this->app->user->getL11n()->lang[1]['Module']; ?>"
-             src="/Modules/<?= $request->getRequest()['id']; ?>/img/module_teaser_small.png" class="lf img-1">
+             src="/Modules/<?= $request->getData('id'); ?>/img/module_teaser_small.png" class="lf img-1">
         <span class="lf">
             <h1><?=
                 /** @var array $info */
@@ -31,13 +31,13 @@ if(array_key_exists($request->getRequest()['id'], $modules_all)) {
             <ul>
                 <?php
                 /** @var \phpOMS\Module\Modules $modules */
-                if (!array_key_exists($request->getRequest()['id'], $this->app->modules->getInstalledModules())) {
+                if (!array_key_exists($request->getData('id'), $this->app->modules->getInstalledModules())) {
                 ?>
                 <li>
                     <button data-http="PUT" data-request="DYN"
-                            data-json='{"id":"<?= $request->getRequest()['id']; ?>"}' data-uri="<?=
+                            data-json='{"id":"<?= $request->getData('id'); ?>"}' data-uri="<?=
                     \phpOMS\Uri\UriFactory::build([
-                            $request->getRequest('l0'),
+                            $request->getPath(0),
                             'api',
                             'admin',
                             'module'
@@ -46,14 +46,14 @@ if(array_key_exists($request->getRequest()['id'], $modules_all)) {
                     <?php } else { ?>
                 <li><a href="<?=
                     \phpOMS\Uri\UriFactory::build([
-                        $request->getRequest('l0'),
-                        $request->getRequest('l1'),
-                        $request->getRequest('l2'),
-                        $request->getRequest('l3'),
-                        $request->getRequest('l4'),
+                        $request->getPath(0),
+                        $request->getPath(1),
+                        $request->getPath(2),
+                        $request->getPath(3),
+                        $request->getPath(4),
                         'settings'
                     ],
-                        [['id', $request->getRequest()['id']]]
+                        [['id', $request->getData('id')]]
                     );
                     ?>"><?= $this->app->user->getL11n()->lang[1]['Settings']; ?></a>
                     <?php } ?>

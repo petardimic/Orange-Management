@@ -100,7 +100,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'single':
                 $this->showSingleBackend($request, $response);
                 break;
@@ -126,7 +126,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportEdit->addData('nav', $navigation->nav);
-                $reportEdit->addData('name', $request->getRequest()['id']);
+                $reportEdit->addData('name', $request->getData('id'));
                 echo $reportEdit->getOutput();
                 break;
         }
@@ -143,9 +143,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showSingleBackend($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case '':
-                if(file_exists(__DIR__ . '/Templates/' . $request->getRequest()['id'] . '.tpl.php')) {
+                if(file_exists(__DIR__ . '/Templates/' . $request->getData('id') . '.tpl.php')) {
                 }
 
                 $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
@@ -155,8 +155,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $reportSingle->addData('nav', $navigation->nav);
 
                 $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
-                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getRequest()['id'] . '/' . $request->getRequest()['id']);
-                $reportSingle->addData('name', $request->getRequest()['id']);
+                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
+                $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
                 echo $reportSingle->getOutput();
                 break;
@@ -174,9 +174,9 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showSingleReporter($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case '':
-                if(file_exists(__DIR__ . '/Templates/' . $request->getRequest()['id'] . '.tpl.php')) {
+                if(file_exists(__DIR__ . '/Templates/' . $request->getData('id') . '.tpl.php')) {
                 }
 
                 $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
@@ -186,8 +186,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $reportSingle->addData('nav', $navigation->nav);
 
                 $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
-                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getRequest()['id'] . '/' . $request->getRequest()['id']);
-                $reportSingle->addData('name', $request->getRequest()['id']);
+                $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
+                $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
                 echo $reportSingle->getOutput();
                 break;
@@ -209,7 +209,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
     public function showContentReporter($request, $response)
     {
-        switch($request->getRequest('l2')) {
+        switch($request->getPath(2)) {
             case 'single':
                 $this->showSingleReporter($request, $response);
                 break;

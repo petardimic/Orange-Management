@@ -104,7 +104,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'dashboard':
                 $newsDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $newsDashboard->setTemplate('/Modules/News/Theme/backend/news-dashboard');
@@ -115,7 +115,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'single':
                 $article = new \Modules\News\Models\Article($this->app->dbPool);
-                $article->init($request->getRequest()['id']);
+                $article->init($request->getData('id'));
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/news-single.tpl.php';

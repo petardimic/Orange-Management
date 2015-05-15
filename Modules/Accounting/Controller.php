@@ -102,7 +102,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'account':
                 $this->showBackendAccount($request, $response);
                 break;
@@ -127,7 +127,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendAccount($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accountList = new \Modules\Accounting\Models\AccountList($this->app->dbPool);

@@ -10,7 +10,7 @@ $this->addView('settings::core', $panelCoreSettingsView);
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
-$settingsFormView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [
@@ -49,7 +49,7 @@ $this->addView('settings::name', $panelNameSettingsView);
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
 $settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$settingsFormView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $settingsFormView->setElement(0, 0, [

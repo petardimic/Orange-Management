@@ -68,7 +68,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
     public function show_content_backend()
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
         }
     }
 }

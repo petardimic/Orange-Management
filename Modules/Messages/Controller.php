@@ -91,7 +91,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function show_content_backend()
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/dashboard.tpl.php';

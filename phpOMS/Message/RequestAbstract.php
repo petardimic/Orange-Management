@@ -49,6 +49,14 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     protected $data = null;
 
     /**
+     * Request data
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    protected $path = [];
+
+    /**
      * Language
      *
      * @var string
@@ -71,23 +79,6 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
      * @since 1.0.0
      */
     private static $source = null;
-
-    /** @todo: implement!!! */
-    protected $scheme   = null;
-
-    protected $host     = null;
-
-    protected $port     = 80;
-
-    protected $user     = 80;
-
-    protected $password = 80;
-
-    protected $path     = null;
-
-    protected $query    = null;
-
-    protected $fragment = null;
 // endregion
 
     /**
@@ -106,30 +97,6 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     public function getUri()
     {
         return $this->uri;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getHost()
-    {
-        return $this->host;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getScheme()
-    {
-        return $this->scheme;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPath()
-    {
-        return $this->path;
     }
 
     /**
@@ -156,7 +123,19 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($key = null)
+    public function getPath($key = null)
+    {
+        if($key === null) {
+            return $this->path;
+        }
+
+        return (isset($this->path[$key]) ? $this->path[$key] : false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getData($key = null)
     {
         if($key === null) {
             return $this->data;

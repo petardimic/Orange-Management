@@ -69,6 +69,7 @@ class ModuleManager
      * @since 1.0.0
      */
     private $all = null;
+
 // endregion
 
     /**
@@ -99,6 +100,17 @@ class ModuleManager
         if($this->running === null) {
             switch($this->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                    $uri_hash = $request->getHash();
+                    $uri_pdo  = '';
+
+                    $i = 1;
+                    foreach($uri_hash as $hash) {
+                        $uri_pdo .= ':pid' . $i . ',';
+                        $i++;
+                    }
+
+                    $uri_pdo = rtrim($uri_pdo, ',');
+
                     /* TODO: make join in order to see if they are active */
                     $sth = $this->dbPool->get('core')->con->prepare(
                         'SELECT
@@ -106,16 +118,15 @@ class ModuleManager
                         FROM
                         `' . $this->dbPool->get('core')->prefix . 'module_load`
                         WHERE
-                        `pid` IN(:pid1, :pid2, :pid3, :pid4)'
+                        `pid` IN(' . $uri_pdo . ')'
                     );
 
-                    /** @noinspection PhpUndefinedMethodInspection */
-                    $uri_hash = $request->getHash();
+                    $i = 1;
+                    foreach($uri_hash as $hash) {
+                        $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
+                        $i++;
+                    }
 
-                    $sth->bindValue(':pid1', $uri_hash[0], \PDO::PARAM_STR);
-                    $sth->bindValue(':pid2', $uri_hash[1], \PDO::PARAM_STR);
-                    $sth->bindValue(':pid3', $uri_hash[2], \PDO::PARAM_STR);
-                    $sth->bindValue(':pid4', $uri_hash[3], \PDO::PARAM_STR);
                     $sth->execute();
                     $this->running = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;

@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'cockpit':
                 $riskMgmtDashboard = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $riskMgmtDashboard->setTemplate('/Modules/RiskManagement/Theme/backend/cockpit');

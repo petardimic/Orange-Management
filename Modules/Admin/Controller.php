@@ -104,7 +104,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'account':
                 $this->showBackendAccount($request, $response);
                 break;
@@ -138,7 +138,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendAccount($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 $accountListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
@@ -184,7 +184,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendAccountSingle($request, $response)
     {
-        switch($request->getRequest()['l5']) {
+        switch($request->getPath(5)) {
             case 'front':
                 $accountView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $accountView->setTemplate('/Modules/Admin/Theme/backend/accounts-single');
@@ -192,7 +192,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountView->addData('nav', $navigation->nav);
 
-                $account = \Model\Account::getInstance((int) $request->getRequest()['id'], $this->app->dbPool->get(), $this->app->sessionManager, $this->app->cache);
+                $account = \Model\Account::getInstance((int) $request->getData('id'), $this->app->dbPool->get(), $this->app->sessionManager, $this->app->cache);
                 $accountView->addData('account', $account);
 
                 echo $accountView->getOutput();
@@ -218,7 +218,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendGroup($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 $groupListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
@@ -264,13 +264,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendGroupSingle($request, $response)
     {
-        switch($request->getRequest()['l5']) {
+        switch($request->getPath(5)) {
             case 'front':
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $accounts = new \Modules\Admin\Models\UserList($this->app->dbPool);
 
                 /** @noinspection PhpUnusedLocalVariableInspection */
-                $group = new \Modules\Admin\Models\Group((int) $request->getRequest()['id'], $this->app->dbPool->get(), $this->app->cache);
+                $group = new \Modules\Admin\Models\Group((int) $request->getData('id'), $this->app->dbPool->get(), $this->app->cache);
 
                 if(!isset($request->getRequest()['page'])) {
                     $request->getRequest()['page'] = 1;
@@ -320,7 +320,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             1000000026
         ]);
 
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'general':
                 $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
@@ -347,18 +347,14 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showBackendModule($request, $response)
     {
-        if(empty($request->getRequest('l4'))) {
-            $request->getRequest()['l5'] = 'front';
-        }
-
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
                 echo $moduleListView->getOutput();
                 break;
             case 'front':
-                //$info = $this->app->modules->moduleInfoGet((int)$request->getRequest()['id']);
+                //$info = $this->app->modules->moduleInfoGet((int)$request->getData('id'));
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/modules-single.tpl.php';
@@ -384,7 +380,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     private function showAPI($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'module':
                 $this->apiModule($request, $response);
                 break;

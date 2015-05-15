@@ -68,14 +68,14 @@ function rotatingTrend($p)
     }
 }
 
-if(true || array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getRequest('source'), $restricted[$this->request->getAccount()->getId()])) {
-    $source = $this->request->getRequest('source');
+if(true || array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getData('source'), $restricted[$this->request->getAccount()->getId()])) {
+    $source = $this->request->getData('source');
 } elseif(array_key_exists($this->request->getAccount()->getId(), $restricted)) {
     $source = $restricted[$this->request->getAccount()->getId()][0];
-} elseif(!in_array($this->request->getRequest('source'), $areas)) {
+} elseif(!in_array($this->request->getData('source'), $areas)) {
     $source = '21';
 } else {
-    $source = $this->request->getRequest('source');
+    $source = $this->request->getData('source');
 }
 
 $now    = new \phpOMS\Datatypes\SmartDateTime();
@@ -239,10 +239,10 @@ fclose($file);
 
         <div>
             <form method="post"
-                  action="<?= $this->request->getScheme() . '://' . $this->request->getHost() . \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
+                  action="<?= $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
                                                                                                                                'api',
                                                                                                                                'reporter',
-                                                                                                                               'single'], ['id' => $this->request->getRequest()['id']]) ?>">
+                                                                                                                               'single'], ['id' => $this->request->getData('id')]) ?>">
                 <ul>
                     <li class="rf"><?= $now->format('Y-m-d'); ?>
                     <li><label for="i-areamanager"><?= $lang['AreaManager']; ?></label>: <select name="i-areamanager"
@@ -556,7 +556,7 @@ fclose($file);
 
             var amSelect = document.getElementById('i-areamanager');
             amSelect.onchange = function () {
-                window.location.href = '<?= $this->request->getScheme() . '://' . $this->request->getHost() . $this->request->getPath() ; ?>?id=AreaManager&source=' + amSelect.value;
+                window.location.href = '<?= $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->request->getUri()->getPath() ; ?>.php?id=AreaManager&source=' + amSelect.value;
             };
         });
     </script>

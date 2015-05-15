@@ -1,5 +1,6 @@
 <?php
 namespace phpOMS\Message\Http;
+
 /**
  * Response class
  *
@@ -25,6 +26,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since 1.0.0
      */
     private $header = null;
+
     /**
      * Responses
      *
@@ -32,6 +34,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since 1.0.0
      */
     private $response = [];
+
     /**
      * Auto push on add?
      *
@@ -39,14 +42,21 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since 1.0.0
      */
     private $autoPush = false;
+
     /**
      * html head
      *
-     * @var bool
+     * @var \phpOMS\Model\Html\Head
      * @since 1.0.0
      */
     private $head = null;
+
 // endregion
+    public function __construct()
+    {
+        $this->head = new \phpOMS\Model\Html\Head();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -59,8 +69,10 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
         if($this->autoPush) {
             $this->pushHeaderId($key);
         }
+
         return true;
     }
+
     /**
      * Push header by ID
      *
@@ -73,6 +85,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         header($key, true);
     }
+
     /**
      * Remove header by ID
      *
@@ -85,6 +98,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         unset($this->header[$key]);
     }
+
     /**
      * Set response
      *
@@ -97,6 +111,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         $this->response = $response;
     }
+
     /**
      * Add response
      *
@@ -116,6 +131,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
             ob_end_flush();
         }
     }
+
     /**
      * Push a specific response ID
      *
@@ -130,26 +146,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
         echo $this->response[$id];
         ob_end_flush();
     }
-    /**
-     * Push response ID
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function render()
-    {
-        ob_start();
-        echo '<htm>'
-        $this->head->render();
-        echo '<body>'
-        ob_end_flush();
 
-        foreach($this->response as $key => $response) {
-            ob_start();
-            echo $response;
-            ob_end_flush();
-        }
-    }
     /**
      * Generate response
      *
@@ -160,12 +157,13 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      */
     public function getYield()
     {
-        yield '<htm>' . $this->head->getAll(); . '<body>';;
+        yield $this->head->render();
 
         foreach($this->response as $key => $response) {
             yield $response;
         }
     }
+
     /**
      * Generate response
      *
@@ -174,9 +172,9 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getAll()
+    public function render()
     {
-        $render = '<htm>' . $this->head->getAll(); . '<body>';
+        $render = $this->head->render();
 
         foreach($this->response as $key => $response) {
             $render .= $response;
@@ -184,6 +182,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
 
         return $render;
     }
+
     /**
      * Push all headers
      *
@@ -196,6 +195,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
             header($ele, true);
         }
     }
+
     /**
      * Get response by ID
      *
@@ -210,6 +210,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         return $this->response[$id];
     }
+
     /**
      * Remove response by ID
      *
@@ -222,6 +223,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         unset($this->response[$id]);
     }
+
     /**
      * Is auto push enabled?
      *
@@ -234,6 +236,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     {
         return $this->autoPush;
     }
+
     /**
      * Auto push added responses
      *

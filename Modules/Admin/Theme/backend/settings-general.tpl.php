@@ -28,7 +28,7 @@ $this->getView('settings::l11n')->setTemplate('/Web/Theme/Templates/Panel/BoxThi
 $formPageView = new \Web\Views\Form\FormView($this->l11n);
 $formPageView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formPageView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$formPageView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$formPageView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formPageView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formPageView->setElement(0, 0, [
@@ -69,7 +69,7 @@ $this->getView('settings::page')->addView('form', $formPageView);
 $formLocalizationView = new \Web\Views\Form\FormView($this->l11n);
 $formLocalizationView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formLocalizationView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
-$formLocalizationView->setAction($this->request->getScheme() . '://' . $this->request->getHost());
+$formLocalizationView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formLocalizationView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $formLocalizationView->setElement(0, 0, [

@@ -46,7 +46,17 @@ interface RequestInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getRequest();
+    public function getPath();
+
+    /**
+     * Get request
+     *
+     * @return mixed
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getData();
 
     /**
      * Get request type

@@ -98,7 +98,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function showContentBackend($request, $response)
     {
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'dashboard':
                 $taskDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $taskDashboardView->setTemplate('/Modules/Tasks/Theme/backend/task-dashboard');
@@ -153,7 +153,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentApi($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'create':
                 // TODO: validate parameter/query
                 // TODO: handle creation

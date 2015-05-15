@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'unit':
                 $this->showContentBackendUnit($request, $response);
                 break;
@@ -115,7 +115,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendUnit($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 $unitListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $unitListView->setTemplate('/Modules/Business/Theme/backend/unit-list');
@@ -146,7 +146,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackendDepartment($request, $response)
     {
-        switch($request->getRequest('l4')) {
+        switch($request->getPath(4)) {
             case 'list':
                 $departmentListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $departmentListView->setTemplate('/Modules/Business/Theme/backend/department-list');

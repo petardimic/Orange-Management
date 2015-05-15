@@ -94,7 +94,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showContentBackend($request, $response)
     {
-        switch($request->getRequest('l3')) {
+        switch($request->getPath(3)) {
             case 'single':
                 $profileSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $this->app);
                 $profileSingleView->setTemplate('/Modules/Profile/Theme/backend/profile-single');
