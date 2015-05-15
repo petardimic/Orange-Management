@@ -82,7 +82,7 @@ $this->getView('stats')->addView('stat::table', $statTableView);
 
 <div class="b-7" id="i3-2-1">
     <?php if(($clocking = \phpOMS\Module\ModuleFactory::getInstance('Clocking')) !== null) {
-        $clocking->getBackendUserClocking();
+        $clocking->getBackendUserClocking($this->response, $this->request);
     } ?>
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <h1><?= $this->l11n->lang[35]['Planning']; ?></h1>
