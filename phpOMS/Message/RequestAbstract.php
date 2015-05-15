@@ -129,7 +129,7 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
             return $this->path;
         }
 
-        return (isset($this->path[$key]) ? $this->path[$key] : false);
+        return (isset($this->path[$key]) ? $this->path[$key] : null);
     }
 
     /**
@@ -141,7 +141,17 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
             return $this->data;
         }
 
-        return (isset($this->data[$key]) ? $this->data[$key] : false);
+        return (isset($this->data[$key]) ? $this->data[$key] : null);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setData($key, $value, $overwrite = true)
+    {
+        if($overwrite || !isset($this->data[$key])) {
+            $this->data[$key] = $value;
+        }
     }
 
     /**

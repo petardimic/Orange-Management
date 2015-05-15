@@ -272,9 +272,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 $group = new \Modules\Admin\Models\Group((int) $request->getData('id'), $this->app->dbPool->get(), $this->app->cache);
 
-                if(!isset($request->getRequest()['page'])) {
-                    $request->getRequest()['page'] = 1;
-                }
+                $request->setData('id', 1, false);
+
 
                 /** @noinspection PhpIncludeInspection */
                 include __DIR__ . '/Theme/backend/groups-single.tpl.php';
