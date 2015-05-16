@@ -106,12 +106,15 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options = $this->settings->get([1000000009]);
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'Web/Theme/backend/css/backend.css');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'External/fontawesome/css/font-awesome.min.css');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'jsOMS/oms.min.js');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'External/d3/d3.min.js');
-                $this->response->getHead()->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
-                $this->response->getHead()->setScript('core', 'var assetManager = new jsOMS.AssetManager();');
+                $head    = $this->response->getHead();
+                $baseUri = $this->request->getUri()->getBase();
+                $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Theme/backend/css/backend.css');
+                $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
+                $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
+                $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'External/d3/d3.min.js');
+                //$head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
+                $head->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
+                $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
                 $pageView->setData('Name', $options[1000000009]);
                 $pageView->setData('Title', 'Orange Management');
@@ -127,7 +130,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $this->response->setHeader('HTTP', 'HTTP/1.0 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Status', 'Status: 503 Service Temporarily Unavailable');
                     $this->response->setHeader('Retry-After', 'Retry-After: 300');
-                    $this->response->add('GLOBAL', '');
                     break;
                 }
 
@@ -233,12 +235,14 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options = $this->settings->get([1000000009]);
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'Web/Theme/backend/css/backend.css');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::CSS, $this->request->getUri()->getBase() . 'External/fontawesome/css/font-awesome.min.css');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'jsOMS/oms.min.js');
-                $this->response->getHead()->addAsset(\phpOMS\Asset\AssetType::JS, $this->request->getUri()->getBase() . 'External/d3/d3.min.js');
-                $this->response->getHead()->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
-                $this->response->getHead()->setScript('core', 'var assetManager = new jsOMS.AssetManager();');
+                $head    = $this->response->getHead();
+                $baseUri = $this->request->getUri()->getBase();
+                $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Theme/backend/css/backend.css');
+                $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
+                $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
+                $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'External/d3/d3.min.js');
+                $head->setStyle('core', file_get_contents(__DIR__ . '/Theme/backend/css/backend-small.css'));
+                $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
                 $pageView->setData('Name', $options[1000000009]);
                 $pageView->setData('Title', 'Orange Management');

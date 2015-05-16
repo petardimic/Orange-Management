@@ -41,7 +41,7 @@ class Http implements \phpOMS\Uri\UriInterface
 
     private $fragment = null;
 
-    private $base = '';
+    private $base     = '';
 
     /**
      * Constructor
@@ -89,8 +89,16 @@ class Http implements \phpOMS\Uri\UriInterface
         return $this->path;
     }
 
-    public function getQuery()
+    public function getQuery($key)
     {
+        if(isset($key)) {
+            if(isset($this->query[$key])) {
+                return $this->query[$key];
+            } else {
+                return null;
+            }
+        }
+
         return $this->query;
     }
 
@@ -99,7 +107,8 @@ class Http implements \phpOMS\Uri\UriInterface
         return $this->fragment;
     }
 
-    public function getBase() {
+    public function getBase()
+    {
         return $this->base;
     }
 
@@ -109,15 +118,19 @@ class Http implements \phpOMS\Uri\UriInterface
 
         $url = parse_url($this->uri);
 
-        $this->scheme   = isset($url['scheme']) ? $url['scheme'] : null;
-        $this->host     = isset($url['host']) ? $url['host'] : null;
-        $this->port     = isset($url['port']) ? $url['port'] : null;
-        $this->user     = isset($url['user']) ? $url['user'] : null;
-        $this->pass     = isset($url['pass']) ? $url['pass'] : null;
-        $this->path     = isset($url['path']) ? $url['path'] : null;
-        $this->path     = rtrim($this->path, '.php');
-        $this->path     = ltrim($this->path, $this->rootPath); // TODO: this could cause a bug if the rootpath is the same as a regular path which is usually the language
-        $this->query    = isset($url['query']) ? $url['query'] : null;
+        $this->scheme = isset($url['scheme']) ? $url['scheme'] : null;
+        $this->host   = isset($url['host']) ? $url['host'] : null;
+        $this->port   = isset($url['port']) ? $url['port'] : null;
+        $this->user   = isset($url['user']) ? $url['user'] : null;
+        $this->pass   = isset($url['pass']) ? $url['pass'] : null;
+        $this->path   = isset($url['path']) ? $url['path'] : null;
+        $this->path   = rtrim($this->path, '.php');
+        $this->path   = ltrim($this->path, $this->rootPath); // TODO: this could cause a bug if the rootpath is the same as a regular path which is usually the language
+        $this->query  = isset($url['query']) ? $url['query'] : null;
+
+        if(isset($this->query)) {
+            parse_str($this->query, $this->query);
+        }
         $this->fragment = isset($url['fragment']) ? $url['fragment'] : null;
 
         $this->base = $this->scheme . '://' . $this->host . $this->rootPath;

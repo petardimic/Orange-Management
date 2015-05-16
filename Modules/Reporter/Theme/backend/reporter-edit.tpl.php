@@ -228,6 +228,6 @@ $nav->setParent(1002701001);
 
 <script>
     jsOMS.ready(function () {
-        assetManager.load(URL + '/Modules/Media/JS', 'MediaUpload.js', 'js');
+        assetManager.load(Url + '/Modules/Media/JS', 'MediaUpload.js', 'js');
     });
 </script>

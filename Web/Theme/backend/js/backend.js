@@ -1,6 +1,4 @@
 jsOMS.ready(function() {
-
-
     var route = new jsOMS.Route();
     var request = new jsOMS.Request();
     var auth = new jsOMS.Auth();

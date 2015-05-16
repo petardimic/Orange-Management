@@ -10,18 +10,19 @@ $top = $nav->getOutput();
 
 $nav->setTemplate('/Modules/Navigation/Theme/backend/side');
 $side = $nav->getOutput();
+$head = $this->response->getHead();
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <?= $this->response->getHead()->getMeta()->render(); ?>
-    <title><?= $a = $this->response->getHead()->getTitle(); ?></title>
-    <?= $this->response->getHead()->renderAssets(); ?>
+    <?= $head->getMeta()->render(); ?>
+    <title><?= $a = $head->getTitle(); ?></title>
+    <?= $head->renderAssets(); ?>
     <style>
-        <?= $this->response->getHead()->renderStyle(); ?>
+        <?= $head->renderStyle(); ?>
     </style>
     <script>
-        <?= $this->response->getHead()->renderScript(); ?>
+        <?= $head->renderScript(); ?>
     </script>
 </head>
 <body>

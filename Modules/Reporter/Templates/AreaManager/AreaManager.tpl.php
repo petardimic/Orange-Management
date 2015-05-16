@@ -68,11 +68,11 @@ function rotatingTrend($p)
     }
 }
 
-if(true || array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getData('source'), $restricted[$this->request->getAccount()->getId()])) {
+if(array_key_exists($this->request->getAccount()->getId(), $restricted) && in_array($this->request->getData('source'), $restricted[$this->request->getAccount()->getId()])) {
     $source = $this->request->getData('source');
 } elseif(array_key_exists($this->request->getAccount()->getId(), $restricted)) {
     $source = $restricted[$this->request->getAccount()->getId()][0];
-} elseif(!in_array($this->request->getData('source'), $areas)) {
+} elseif($this->request->getUri()->getQuery('source') === null || !in_array($this->request->getData('source'), $areas)) {
     $source = '21';
 } else {
     $source = $this->request->getData('source');
@@ -240,9 +240,9 @@ fclose($file);
         <div>
             <form method="post"
                   action="<?= $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
-                                                                                                                               'api',
-                                                                                                                               'reporter',
-                                                                                                                               'single'], ['id' => $this->request->getData('id')]) ?>">
+                                                                                                                                                   'api',
+                                                                                                                                                   'reporter',
+                                                                                                                                                   'single'], ['id' => $this->request->getData('id')]) ?>">
                 <ul>
                     <li class="rf"><?= $now->format('Y-m-d'); ?>
                     <li><label for="i-areamanager"><?= $lang['AreaManager']; ?></label>: <select name="i-areamanager"
@@ -552,7 +552,7 @@ fclose($file);
 
     <script>
         jsOMS.ready(function () {
-            assetManager.load(URL + '/Modules/Reporter/Templates/AreaManager', 'AreaManager.css', 'css');
+            assetManager.load(Url + '/Modules/Reporter/Templates/AreaManager', 'AreaManager.css', 'css');
 
             var amSelect = document.getElementById('i-areamanager');
             amSelect.onchange = function () {
