@@ -4,12 +4,14 @@ namespace Model\Message;
 abstract class NotifyType extends \phpOMS\Datatypes\Enum
 {
 
-    const INFO    = 0;
+    const BINARY  = 0;
 
-    const WARNING = 1;
+    const INFO    = 1;
 
-    const ERROR   = 1;
+    const WARNING = 2;
 
-    const FATAL   = 1;
+    const ERROR   = 3;
+
+    const FATAL   = 4;
 
 }

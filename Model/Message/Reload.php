@@ -3,14 +3,24 @@ namespace Model\Message;
 
 class Reload implements \phpOMS\Contract\RenderableInterface
 {
+    const TYPE = 'reload';
     private $delay = 0;
 
     public function setDelay($delay) {
         $this->delay = $delay;
     }
 
+    public function toArray() {
+        return ['type' => self::TYPE, 'time' => $this->delay];
+    }
+
+    public function __toString()
+    {
+        return json_encode($this->toArray());
+    }
+
     public function render()
     {
-        return json_encode(['type' => 'reload', 'time' => $this->delay]);
+        return $this->__toString();
     }
 }

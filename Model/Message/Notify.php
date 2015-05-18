@@ -3,6 +3,7 @@ namespace Model\Message;
 
 class Notify
 {
+    const TYPE = 'redirect';
 
     private $title   = '';
 
@@ -34,7 +35,7 @@ class Notify
 
     public function render()
     {
-        return json_encode(['type'  => 'notify',
+        return json_encode(['type'  => self::TYPE,
                             'time'  => $this->delay,
                             'msg'   => $this->message,
                             'title' => $this->title,
