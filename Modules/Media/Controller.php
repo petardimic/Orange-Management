@@ -119,7 +119,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaList->addData('nav', $navigation->nav);
-                echo $mediaList->getOutput();
+                echo $mediaList->render();
                 break;
             case 'create':
                 $mediaCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -127,7 +127,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaCreate->addData('nav', $navigation->nav);
-                echo $mediaCreate->getOutput();
+                echo $mediaCreate->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');

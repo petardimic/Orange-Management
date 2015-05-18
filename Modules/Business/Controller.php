@@ -122,7 +122,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $unitListView->addData('nav', $navigation->nav);
 
-                echo $unitListView->getOutput();
+                echo $unitListView->render();
                 break;
             case 'create':
                 $unitCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -130,7 +130,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $unitCreateView->addData('nav', $navigation->nav);
 
-                echo $unitCreateView->getOutput();
+                echo $unitCreateView->render();
                 break;
         }
     }
@@ -153,7 +153,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $departmentListView->addData('nav', $navigation->nav);
 
-                echo $departmentListView->getOutput();
+                echo $departmentListView->render();
                 break;
             case 'create':
                 $departmentCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -161,7 +161,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $departmentCreateView->addData('nav', $navigation->nav);
 
-                echo $departmentCreateView->getOutput();
+                echo $departmentCreateView->render();
                 break;
         }
     }

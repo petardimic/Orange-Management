@@ -101,7 +101,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $riskMgmtDashboard->addData('nav', $navigation->nav);
-                echo $riskMgmtDashboard->getOutput();
+                echo $riskMgmtDashboard->render();
                 break;
             case 'risk':
                 $this->showContentBackendRisk($request, $response);
@@ -149,7 +149,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $riskView->addData('nav', $navigation->nav);
-        echo $riskView->getOutput();
+        echo $riskView->render();
     }
 
     /**
@@ -168,7 +168,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $causeView->addData('nav', $navigation->nav);
-        echo $causeView->getOutput();
+        echo $causeView->render();
     }
 
     /**
@@ -187,7 +187,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $solutionView->addData('nav', $navigation->nav);
-        echo $solutionView->getOutput();
+        echo $solutionView->render();
     }
 
     /**
@@ -206,7 +206,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $unitView->addData('nav', $navigation->nav);
-        echo $unitView->getOutput();
+        echo $unitView->render();
     }
 
     /**
@@ -225,7 +225,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $departmentView->addData('nav', $navigation->nav);
-        echo $departmentView->getOutput();
+        echo $departmentView->render();
     }
 
     /**
@@ -244,7 +244,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $categoryView->addData('nav', $navigation->nav);
-        echo $categoryView->getOutput();
+        echo $categoryView->render();
     }
 
     /**
@@ -263,7 +263,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $projectView->addData('nav', $navigation->nav);
-        echo $projectView->getOutput();
+        echo $projectView->render();
     }
 
     /**
@@ -282,6 +282,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
         $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
         $processView->addData('nav', $navigation->nav);
-        echo $processView->getOutput();
+        echo $processView->render();
     }
 }

@@ -110,7 +110,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportList->addData('nav', $navigation->nav);
-                echo $reportList->getOutput();
+                echo $reportList->render();
                 break;
             case 'create':
                 $reportCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -118,7 +118,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportCreate->addData('nav', $navigation->nav);
-                echo $reportCreate->getOutput();
+                echo $reportCreate->render();
                 break;
             case 'edit':
                 $reportEdit = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -127,7 +127,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportEdit->addData('nav', $navigation->nav);
                 $reportEdit->addData('name', $request->getData('id'));
-                echo $reportEdit->getOutput();
+                echo $reportEdit->render();
                 break;
         }
     }
@@ -158,7 +158,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
                 $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
-                echo $reportSingle->getOutput();
+                echo $reportSingle->render();
                 break;
         }
     }
@@ -189,7 +189,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
                 $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
-                echo $reportSingle->getOutput();
+                echo $reportSingle->render();
                 break;
         }
     }
@@ -219,7 +219,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportList->addData('nav', $navigation->nav);
-                echo $reportList->getOutput();
+                echo $reportList->render();
         }
     }
 }

@@ -12,7 +12,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000401001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 <div class="b b-5 c4-2 c4" id="i4-2-1">
     <h1>
         <?= $this->l11n->lang[4]['Upload']; ?>

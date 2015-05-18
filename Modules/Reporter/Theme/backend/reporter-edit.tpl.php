@@ -15,7 +15,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
@@ -158,7 +158,7 @@ $nav->setParent(1002701001);
     $permissionListView->addView('header', $headerView);
     $this->addView('permissionList', $permissionListView);
 
-    $tabView->addTab($this->l11n->lang[27]['Overview'], $overviwPanel->getOutput() . $permissionPanel->getOutput() . $permissionListView->getOutput(), 'overview');
+    $tabView->addTab($this->l11n->lang[27]['Overview'], $overviwPanel->getOutput() . $permissionPanel->getOutput() . $permissionListView->render(), 'overview');
 
     /*
  * UI Logic
@@ -223,7 +223,7 @@ $nav->setParent(1002701001);
 
     $tabView->addTab($this->l11n->lang[27]['New'], $createPanel->getOutput() . $mediaPanel->getOutput(), 'new');
     ?>
-    <?= $tabView->getOutput(); ?>
+    <?= $tabView->render(); ?>
 </div>
 
 <script>

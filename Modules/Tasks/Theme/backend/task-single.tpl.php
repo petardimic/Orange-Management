@@ -14,7 +14,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1001101001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 <div class="b b-3 c7-1 c7" id="i7-1-1">
     <div class="bc-1">
         <select>

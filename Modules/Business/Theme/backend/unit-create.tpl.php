@@ -53,5 +53,5 @@ $nav->setParent(1004702001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $panelCreate->getOutput();
+echo $nav->render();
+echo $panelCreate->render();

@@ -20,7 +20,7 @@ $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
 ?>
 
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <?php
 /*
@@ -474,7 +474,7 @@ $graphProgressView = new \Web\Views\Panel\PanelView($this->l11n, $this->response
 $graphProgressView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $graphProgressView->setTitle($lang['Progress']);
 
-$tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $overviewTypeListView->getOutput() . $overviewCostCenterView->getOutput() . $overviewAccountView->getOutput() . $graphProgressView->getOutput(), 'overview');
+$tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $overviewTypeListView->render() . $overviewCostCenterView->render() . $overviewAccountView->render() . $graphProgressView->render(), 'overview');
 
 /*
  * UI Logic
@@ -541,4 +541,4 @@ $planningList->setFreeze(3, 2);
 $planningList->addView('header', $planningListHeaderView);
 $tabView->addTab($lang['Account'], $planningList->getOutput(), 'planning');
 ?>
-<?= $tabView->getOutput(); ?>
+<?= $tabView->render(); ?>

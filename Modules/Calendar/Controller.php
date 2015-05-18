@@ -90,7 +90,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $calendarView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $calendarView->setTemplate('/Modules/Calendar/Theme/backend/calendar-dashboard');
 
-                echo $calendarView->getOutput();
+                echo $calendarView->render();
                 break;
         }
     }

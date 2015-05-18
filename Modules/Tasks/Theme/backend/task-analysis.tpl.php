@@ -70,9 +70,9 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1001101001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
-<?= $this->getView('select::person')->getOutput(); ?>
+<?= $this->getView('select::person')->render(); ?>
 
     <!-- Analyse how many tasks that a user created got finished in time in order to see if he/she creates realistic estimates -->
-<?= $this->getView('stats')->getOutput(); ?>
+<?= $this->getView('stats')->render(); ?>

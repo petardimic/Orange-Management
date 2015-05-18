@@ -79,7 +79,7 @@ $loginForm->setElement(1, 0, [
 <div class="floater"></div>
 <div id="parent">
     <div id="child">
-        <?= $loginForm->getOutput(); ?>
+        <?= $loginForm->render(); ?>
     </div>
 </div>
 </body>

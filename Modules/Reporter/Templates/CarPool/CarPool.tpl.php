@@ -85,7 +85,7 @@ $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
 ?>
 
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <?php
 /*
@@ -193,7 +193,7 @@ $graphComparisonView = new \Web\Views\Panel\PanelView($this->l11n, $this->respon
 $graphComparisonView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $graphComparisonView->setTitle($lang['Comparison']);
 
-$tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $graphProgressView->getOutput() . $graphComparisonView->getOutput(), 'overview');
+$tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $graphProgressView->render() . $graphComparisonView->render(), 'overview');
 
 /*
  * UI Logic
@@ -391,4 +391,4 @@ $planningList->setFreeze(3, 2);
 $planningList->addView('header', $planningListHeaderView);
 $tabView->addTab($lang['Planning'], $planningList->getOutput(), 'planning');
 ?>
-<?= $tabView->getOutput(); ?>
+<?= $tabView->render(); ?>

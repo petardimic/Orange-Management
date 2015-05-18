@@ -46,5 +46,5 @@ $nav->setParent(1000701001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $newsListview->getOutput();
+echo $nav->render();
+echo $newsListview->render();

@@ -64,5 +64,5 @@ $nav->setParent(1000103001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $groupListView->getOutput();
+echo $nav->render();
+echo $groupListView->render();

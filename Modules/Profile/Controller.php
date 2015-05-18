@@ -101,7 +101,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $profileSingleView->addData('nav', $navigation->nav);
-                echo $profileSingleView->getOutput();
+                echo $profileSingleView->render();
                 break;
             case 'list':
                 $profileView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -109,7 +109,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $profileView->addData('nav', $navigation->nav);
 
-                echo $profileView->getOutput();
+                echo $profileView->render();
                 break;
         }
     }

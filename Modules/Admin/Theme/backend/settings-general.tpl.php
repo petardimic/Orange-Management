@@ -126,5 +126,5 @@ $this->getView('settings::l11n')->addView('form', $formLocalizationView);
  * Template
  */
 
-echo $this->getView('settings::page')->getOutput();
-echo $this->getView('settings::l11n')->getOutput();
+echo $this->getView('settings::page')->render();
+echo $this->getView('settings::l11n')->render();

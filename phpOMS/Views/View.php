@@ -244,12 +244,12 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getOutputs()
+    public function renderAll()
     {
         ob_start();
 
         foreach($this->views as $key => $view) {
-            echo $view->getOutput();
+            echo $view->render();
         }
 
         return ob_get_clean();
@@ -263,7 +263,7 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getOutput()
+    public function render()
     {
         ob_start();
         /** @noinspection PhpIncludeInspection */
@@ -320,12 +320,5 @@ class View implements \phpOMS\Contract\RenderableInterface
     public function addData($id, $data)
     {
         $this->data[$id] = $data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
     }
 }

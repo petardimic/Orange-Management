@@ -16,8 +16,8 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002710000);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-5">
-    <?= $this->getView('DataView')->getOutput(); ?>
+    <?= $this->getView('DataView')->render(); ?>
 </div>

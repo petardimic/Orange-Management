@@ -111,11 +111,11 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000104001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <form action="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'api', 'admin', 'account']); ?>"
       method="POST">
-    <?= $this->getView('settings::core')->getOutput(); ?>
+    <?= $this->getView('settings::core')->render(); ?>
 
-    <?= $this->getView('settings::name')->getOutput(); ?>
+    <?= $this->getView('settings::name')->render(); ?>
 </form>

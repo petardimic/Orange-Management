@@ -105,7 +105,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskDashboardView->addData('nav', $navigation->nav);
-                echo $taskDashboardView->getOutput();
+                echo $taskDashboardView->render();
                 break;
             case 'single':
                 $taskSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -113,7 +113,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskSingleView->addData('nav', $navigation->nav);
-                echo $taskSingleView->getOutput();
+                echo $taskSingleView->render();
                 break;
             case 'create':
                 $taskCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -121,7 +121,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskCreateView->addData('nav', $navigation->nav);
-                echo $taskCreateView->getOutput();
+                echo $taskCreateView->render();
                 break;
             case 'analysis':
                 $taskAnalysisView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -129,7 +129,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskAnalysisView->addData('nav', $navigation->nav);
-                echo $taskAnalysisView->getOutput();
+                echo $taskAnalysisView->render();
                 break;
             case 'settings':
                 $taskSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -137,7 +137,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskSettingsView->addData('nav', $navigation->nav);
-                echo $taskSettingsView->getOutput();
+                echo $taskSettingsView->render();
                 break;
         }
     }

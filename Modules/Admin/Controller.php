@@ -150,7 +150,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $accountListView->setData('list:elements', $accountList->getList()['list']);
                 $accountListView->setData('list:count', $accountList->getList()['count']);
 
-                echo $accountListView->getOutput();
+                echo $accountListView->render();
                 break;
             case 'single':
                 $this->showBackendAccountSingle($request, $response);
@@ -161,7 +161,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountCreateView->addData('nav', $navigation->nav);
-                echo $accountCreateView->getOutput();
+                echo $accountCreateView->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -195,7 +195,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $account = \Model\Account::getInstance((int) $request->getData('id'), $this->app->dbPool->get(), $this->app->sessionManager, $this->app->cache);
                 $accountView->addData('account', $account);
 
-                echo $accountView->getOutput();
+                echo $accountView->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -230,7 +230,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $groupListView->setData('list:elements', $groupList->getList()['list']);
                 $groupListView->setData('list:count', $groupList->getList()['count']);
 
-                echo $groupListView->getOutput();
+                echo $groupListView->render();
                 break;
             case 'single':
                 $this->showBackendGroupSingle($request, $response);
@@ -241,7 +241,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupCreateView->addData('nav', $navigation->nav);
-                echo $groupCreateView->getOutput();
+                echo $groupCreateView->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -323,7 +323,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case 'general':
                 $coreSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
-                echo $coreSettingsView->getOutput();
+                echo $coreSettingsView->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -350,7 +350,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case 'list':
                 $moduleListView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
-                echo $moduleListView->getOutput();
+                echo $moduleListView->render();
                 break;
             case 'front':
                 //$info = $this->app->modules->moduleInfoGet((int)$request->getData('id'));

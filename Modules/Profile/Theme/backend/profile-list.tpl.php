@@ -43,5 +43,5 @@ $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000301001);
 ?>
 
-<?= $nav->getOutput(); ?>
-<?= $profileList->getOutput();
+<?= $nav->render(); ?>
+<?= $profileList->render();

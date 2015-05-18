@@ -12,4 +12,4 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1001101001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>

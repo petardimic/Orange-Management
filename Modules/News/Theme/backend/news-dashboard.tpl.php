@@ -11,7 +11,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000701001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-2 c7-2 c7 lf" id="i7-2-1">
     <table class="t t-1 c4-1 c4" id="i4-1-1">

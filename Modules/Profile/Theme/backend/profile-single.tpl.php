@@ -14,7 +14,7 @@ $sidenav->setNav($this->getData('nav'));
 $sidenav->setLanguage($this->l11n->language);
 $sidenav->setParent(1000301001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 <div itemscope itemtype="http://schema.org/Person">
     <div class="b-7" id="i3-2-1">
         <div class="b-5" id="i3-2-4">
@@ -22,7 +22,7 @@ $sidenav->setParent(1000301001);
                 <img src="/Modules/Profile/Theme/backend/img/profile-default-small.jpg" itemprop="image">
             </div>
         </div>
-        <?= $sidenav->getOutput(); ?>
+        <?= $sidenav->render(); ?>
     </div>
     <div class="b-6" id="i3-2-2">
         <div class="b b-2 c3-2 c3" id="i3-2-3">

@@ -139,8 +139,8 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1001101001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
-<?= $this->getView('createFormPanel')->getOutput(); ?>
-<?= $this->getView('mediaPanel')->getOutput(); ?>
-<?= $this->getView('mediaList')->getOutput(); ?>
+<?= $this->getView('createFormPanel')->render(); ?>
+<?= $this->getView('mediaPanel')->render(); ?>
+<?= $this->getView('mediaList')->render(); ?>

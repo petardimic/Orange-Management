@@ -46,5 +46,5 @@ $nav->setParent(1000106001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $logListView->getOutput();
+echo $nav->render();
+echo $logListView->render();

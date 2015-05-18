@@ -122,7 +122,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $staffView->addData('nav', $navigation->nav);
 
-                echo $staffView->getOutput();
+                echo $staffView->render();
                 break;
         }
     }
@@ -145,7 +145,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $staffView->addData('nav', $navigation->nav);
 
-                echo $staffView->getOutput();
+                echo $staffView->render();
                 break;
         }
     }

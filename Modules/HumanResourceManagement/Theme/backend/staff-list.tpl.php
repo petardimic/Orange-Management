@@ -46,5 +46,5 @@ $nav->setParent(1002402001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $profileList->getOutput();
+echo $nav->render();
+echo $profileList->render();

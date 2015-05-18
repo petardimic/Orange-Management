@@ -65,5 +65,5 @@ $nav->setParent(1000104001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $accountListView->getOutput();
+echo $nav->render();
+echo $accountListView->render();

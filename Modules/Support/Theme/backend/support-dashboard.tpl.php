@@ -100,10 +100,10 @@ $this->getView('stats')->addView('stat::table', $statTableView);
             <button><?= $this->l11n->lang[29]['New']; ?></button>
         </div>
     </div>
-    <?= $this->getView('settings')->getOutput(); ?>
+    <?= $this->getView('settings')->render(); ?>
 
-    <?= $this->getView('stats')->getOutput(); ?>
+    <?= $this->getView('stats')->render(); ?>
 </div>
 <div class="b-6">
-    <?= $supportList->getOutput(); ?>
+    <?= $supportList->render(); ?>
 </div>

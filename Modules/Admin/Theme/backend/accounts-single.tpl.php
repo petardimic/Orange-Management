@@ -141,6 +141,6 @@ $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000104001);
 ?>
 
-<?= $nav->getOutput(); ?>
-<?= $this->getView('account::account')->getOutput(); ?>
-<?= $this->getView('account::profile')->getOutput(); ?>
+<?= $nav->render(); ?>
+<?= $this->getView('account::account')->render(); ?>
+<?= $this->getView('account::profile')->render(); ?>

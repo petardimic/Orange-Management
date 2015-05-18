@@ -92,7 +92,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1003501001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
@@ -102,10 +102,10 @@ $nav->setParent(1003501001);
             <button><?= $this->l11n->lang[35]['New']; ?></button>
         </div>
     </div>
-    <?= $this->getView('settings')->getOutput(); ?>
+    <?= $this->getView('settings')->render(); ?>
 
-    <?= $this->getView('stats')->getOutput(); ?>
+    <?= $this->getView('stats')->render(); ?>
 </div>
 <div class="b-6">
-    <?= $timeMgmtView->getOutput(); ?>
+    <?= $timeMgmtView->render(); ?>
 </div>

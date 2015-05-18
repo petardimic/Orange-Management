@@ -52,7 +52,7 @@ $settingsFormView->setElement(1, 0, [
         </h1>
 
         <div class="bc-1">
-            <?= $settingsFormView->getOutput(); ?>
+            <?= $settingsFormView->render(); ?>
         </div>
     </div>
 </div>

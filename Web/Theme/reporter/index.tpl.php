@@ -6,7 +6,7 @@ $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response
 $nav->setTemplate('/Modules/Navigation/Theme/backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
-$top = $nav->getOutput();
+$top = $nav->render();
 $head = $this->response->getHead();
 ?>
 <!DOCTYPE HTML>

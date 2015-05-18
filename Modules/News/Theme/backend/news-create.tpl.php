@@ -71,10 +71,10 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000701001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-7" id="i3-2-1">
-    <?= $this->getView('settingsPanel')->getOutput(); ?>
+    <?= $this->getView('settingsPanel')->render(); ?>
 
     <div class="b b-5 c30-1 c30" id="i30-1-4">
         <h1>

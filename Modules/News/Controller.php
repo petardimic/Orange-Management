@@ -111,7 +111,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newsDashboard->addData('nav', $navigation->nav);
-                echo $newsDashboard->getOutput();
+                echo $newsDashboard->render();
                 break;
             case 'single':
                 $article = new \Modules\News\Models\Article($this->app->dbPool);
@@ -126,7 +126,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newArchive->addData('nav', $navigation->nav);
-                echo $newArchive->getOutput();
+                echo $newArchive->render();
                 break;
             case 'create':
                 $newsCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -134,7 +134,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newsCreate->addData('nav', $navigation->nav);
-                echo $newsCreate->getOutput();
+                echo $newsCreate->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');

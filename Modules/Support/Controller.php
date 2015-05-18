@@ -102,7 +102,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $supportDashboardView->addData('nav', $navigation->nav);
-                echo $supportDashboardView->getOutput();
+                echo $supportDashboardView->render();
                 break;
             case 'single':
                 /** @noinspection PhpUnusedLocalVariableInspection */
@@ -118,7 +118,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $supportCreateView->addData('nav', $navigation->nav);
-                echo $supportCreateView->getOutput();
+                echo $supportCreateView->render();
                 break;
             case 'analysis':
                 $supportAnalysisView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -126,7 +126,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $supportAnalysisView->addData('nav', $navigation->nav);
-                echo $supportAnalysisView->getOutput();
+                echo $supportAnalysisView->render();
                 break;
             case 'settings':
                 $supportSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -134,7 +134,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $supportSettingsView->addData('nav', $navigation->nav);
-                echo $supportSettingsView->getOutput();
+                echo $supportSettingsView->render();
                 break;
             case 'support':
                 $this->showContentBackendPrivate($request, $response);
@@ -160,7 +160,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $supportDashboardView->addData('nav', $navigation->nav);
-                echo $supportDashboardView->getOutput();
+                echo $supportDashboardView->render();
                 break;
         }
     }

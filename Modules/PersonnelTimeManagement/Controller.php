@@ -124,7 +124,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                     $timemgmtDashboardView->addData('nav', $navigation->nav);
-                    echo $timemgmtDashboardView->getOutput();
+                    echo $timemgmtDashboardView->render();
                     break;
                 case 'single':
                     $timemgmtSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
@@ -132,7 +132,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                     $timemgmtSingleView->addData('nav', $navigation->nav);
-                    echo $timemgmtSingleView->getOutput();
+                    echo $timemgmtSingleView->render();
                     break;
             }
         }
@@ -156,7 +156,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $timemgmtDashboardView->addData('nav', $navigation->nav);
-                echo $timemgmtDashboardView->getOutput();
+                echo $timemgmtDashboardView->render();
                 break;
         }
     }

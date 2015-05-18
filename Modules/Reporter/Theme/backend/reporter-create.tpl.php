@@ -134,7 +134,7 @@ $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
 ?>
 
-<?= $nav->getOutput(); ?>
-<?= $this->getView('createFormPanel')->getOutput(); ?>
-<?= $this->getView('permissionFormPanel')->getOutput(); ?>
-<?= $this->getView('permissionList')->getOutput(); ?>
+<?= $nav->render(); ?>
+<?= $this->getView('createFormPanel')->render(); ?>
+<?= $this->getView('permissionFormPanel')->render(); ?>
+<?= $this->getView('permissionList')->render(); ?>

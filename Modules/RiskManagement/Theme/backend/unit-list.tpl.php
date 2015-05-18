@@ -58,7 +58,7 @@ $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1003001001);
 ?>
-<?= $nav->getOutput(); ?>
+<?= $nav->render(); ?>
 
 <div class="b-7" id="i3-2-1">
     <div class="b b-5 c3-2 c3" id="i3-2-5">
@@ -67,8 +67,8 @@ $nav->setParent(1003001001);
         </div>
     </div>
 
-    <?= $panelStatView->getOutput(); ?>
+    <?= $panelStatView->render(); ?>
 </div>
 <div class="b-6">
-    <?= $unitList->getOutput(); ?>
+    <?= $unitList->render(); ?>
 </div>

@@ -9,7 +9,7 @@
         <?php
         /** @var  \phpOMS\Views\View $view */
         foreach($this->views as $view) {
-            echo $view->getOutput();
+            echo $view->render();
         }
         ?>
     </div>

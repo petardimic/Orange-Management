@@ -46,5 +46,5 @@ $nav->setParent(1004703001);
 /*
  * Template
  */
-echo $nav->getOutput();
-echo $departmentListView->getOutput();
+echo $nav->render();
+echo $departmentListView->render();
