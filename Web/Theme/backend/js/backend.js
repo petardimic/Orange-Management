@@ -1,19 +1,18 @@
 jsOMS.ready(function() {
-    var route = new jsOMS.Route();
-    var request = new jsOMS.Request();
-    var auth = new jsOMS.Auth();
+    // TODO: maybe move all the managers inline?!?!?!
+    var eventManager = new jsOMS.EventManager();
+    var responseManager = new jsOMS.Response();
 
-    route.add('/backend.php', loginButton);
+    responseManager.add(jsOMS.NOTIFY, notifyMessage);
+    responseManager.add(jsOMS.FORMVALIDATION, formValidationMessage);
+    responseManager.add(jsOMS.REDIRECT, redirectMessage);
+    responseManager.add(jsOMS.RELOAD, reloadMessage);
 
-    var loginButton = function() {
-        /* LOGIN PAGE */
-        var loginbutton = null;
+    var formView = new jsOMS.FormView();
+    formView.identify(); // also responsible for math parsing inside input=text
 
-        if((loginbutton = document.getElementById('login-button')))
-        {
-            loginbutton.addEventListener('click', function () {
-                auth.login();
-            });
-        }
-    }
+    var uiManager = new jsOMS.UIManager(); // responsible for tabs, tables, accordion, animations, element behaviour such as boxes (close, hide)
+
+    var moduleManager = new jsOMS.ModuleManager();
+    var inputManager = new jsOMS.InputManager();
 });
