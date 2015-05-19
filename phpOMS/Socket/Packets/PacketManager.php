@@ -37,6 +37,7 @@ class PacketManager
      * @since 1.0.0
      */
     private $clientManager = null;
+
 // endregion
 
     /**

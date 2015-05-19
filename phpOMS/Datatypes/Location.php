@@ -67,6 +67,7 @@ class Location implements \phpOMS\Contract\JsonableInterface
      * @since 1.0.0
      */
     private $geo = null;
+
 // endregion
 
     /**

@@ -38,6 +38,7 @@ class Model
      * @since 1.0.0
      */
     public static $content = [];
+
 // endregion
 
     /**
@@ -120,7 +121,7 @@ class Model
         //var_dump(self::$app->modules->running);
 
         //foreach(self::$app->modules->running as $key => $val) {
-            //var_dump($val);
+        //var_dump($val);
         //}
 
         ob_flush();

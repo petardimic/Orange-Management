@@ -14,21 +14,21 @@ class Builder
 
     //<editor-fold desc="Compile components for grammar compiler">
 
-    public $joins    = [];
+    public    $joins      = [];
 
-    public $wheres   = [];
+    public    $wheres     = [];
 
-    public $groups   = [];
+    public    $groups     = [];
 
-    public $orders   = [];
+    public    $orders     = [];
 
-    public $limit    = null;
+    public    $limit      = null;
 
-    public $offset   = null;
+    public    $offset     = null;
 
-    public $unions   = [];
+    public    $unions     = [];
 
-    public $lock     = false;
+    public    $lock       = false;
 
     protected $connection = null;
 
@@ -74,6 +74,7 @@ class Builder
     ];
 
     protected $queryType   = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
+
 // endregion
 
     public function __construct($connection, $grammar)

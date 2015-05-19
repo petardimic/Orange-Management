@@ -1,4 +1,4 @@
 (function (jsOMS, undefined) {
-    jsOMS.EventManager = function() {
+    jsOMS.EventManager = function () {
     };
 }(window.jsOMS = window.jsOMS || {}));

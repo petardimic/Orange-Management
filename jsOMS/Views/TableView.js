@@ -1,12 +1,12 @@
 (function (jsOMS, undefined) {
-    jsOMS.TableView = function() {
+    jsOMS.TableView = function () {
 
     };
 
     /**
      * None, Pagination, Infinite
      */
-    jsOMS.TableView.prototype.setExtensible = function() {
+    jsOMS.TableView.prototype.setExtensible = function () {
 
     };
 

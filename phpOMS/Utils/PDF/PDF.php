@@ -12,6 +12,7 @@ class PDF extends \TCPDF implements \phpOMS\Contract\RenderableInterface
     private $pageNumberPages = [];
 
     private $pageNumberStyle = null;
+
 // endregion
 
     public function __construct()

@@ -27,6 +27,7 @@ class SocketSession implements \phpOMS\DataStorage\Session\SessionInterface
      * @since 1.0.0
      */
     private $sid = null;
+
 // endregion
 
     /**

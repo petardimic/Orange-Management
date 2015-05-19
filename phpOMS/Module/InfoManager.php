@@ -37,6 +37,7 @@ class InfoManager
      * @since 1.0.0
      */
     private static $module_path = __DIR__ . '/../../Modules/';
+
 // endregion
 
     /**

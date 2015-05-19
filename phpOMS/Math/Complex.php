@@ -8,6 +8,7 @@ class Complex
     private $real = null;
 
     private $im   = null;
+
 // endregion
 
     public function getReal()

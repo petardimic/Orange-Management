@@ -51,6 +51,7 @@ abstract class SocketAbstract implements \phpOMS\Socket\SocketInterface
      * @since 1.0.0
      */
     protected $sock = null;
+
 // endregion
 
     /**

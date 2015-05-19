@@ -3,6 +3,7 @@ namespace Model\Message;
 
 class Notify
 {
+
     const TYPE = 'redirect';
 
     private $title   = '';

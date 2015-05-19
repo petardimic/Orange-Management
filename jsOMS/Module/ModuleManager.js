@@ -1,10 +1,10 @@
 (function (jsOMS, undefined) {
-    jsOMS.ModuleManager = function() {
+    jsOMS.ModuleManager = function () {
         this.modules = {};
     };
 
-    jsOMS.ModuleManager.prototype.register = function(module) {
-        if(!isLoaded()){
+    jsOMS.ModuleManager.prototype.register = function (module) {
+        if (!isLoaded()) {
             // load module
         }
     };

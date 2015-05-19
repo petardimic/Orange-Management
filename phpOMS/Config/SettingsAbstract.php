@@ -64,6 +64,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
      * @since 1.0.0
      */
     protected $valueField = 'option';
+
 // endregion
 
     /**

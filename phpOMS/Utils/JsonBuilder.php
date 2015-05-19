@@ -27,6 +27,7 @@ class JsonBuilder
      * @since 1.0.0
      */
     private $json = [];
+
 // endregion
 
     /**

@@ -3,16 +3,20 @@ namespace Model\Message;
 
 class Redirect implements \phpOMS\Contract\RenderableInterface
 {
+
     const TYPE = 'redirect';
-    private $uri = '';
+
+    private $uri   = '';
 
     private $delay = 0;
 
-    public function setDelay($delay) {
+    public function setDelay($delay)
+    {
         $this->delay = $delay;
     }
 
-    public function setUri($uri) {
+    public function setUri($uri)
+    {
         $this->uri = $uri;
     }
 

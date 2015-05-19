@@ -51,6 +51,7 @@ class Encryption
      * @since 1.0.0
      */
     private $mode = MCRYPT_MODE_CBC;
+
 // endregion
 
     /**

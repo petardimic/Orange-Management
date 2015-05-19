@@ -1,5 +1,5 @@
 var reloadMessage = function (data) {
-    setTimeout(function() {
+    setTimeout(function () {
         document.location.reload(true);
     }, data.delay);
 };

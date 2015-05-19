@@ -99,7 +99,7 @@ class Request extends \phpOMS\Message\RequestAbstract
 
         foreach($this->path as $key => $path) {
             $paths = [];
-            for($i = 1; $i < $key+1; $i++) {
+            for($i = 1; $i < $key + 1; $i++) {
                 $paths[] = $this->path[$i];
             }
 

@@ -27,6 +27,7 @@ trait OptionsTrait
      * @since 1.0.0
      */
     private $options = [];
+
 // endregion
 
     /**

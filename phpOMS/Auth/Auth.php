@@ -38,6 +38,7 @@ class Auth implements \phpOMS\Config\OptionsInterface
      * @since 1.0.0
      */
     private $connection = null;
+
 // endregion
 
     /**

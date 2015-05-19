@@ -20,6 +20,7 @@ class Grammar extends \phpOMS\DataStorage\Database\Grammar
         'unions',
         'lock',
     ];
+
 // endregion
 
     public function compileQuery($query)

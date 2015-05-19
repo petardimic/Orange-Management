@@ -52,6 +52,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
      * @since 1.0.0
      */
     protected $app = null;
+
 // endregion
 
     /**

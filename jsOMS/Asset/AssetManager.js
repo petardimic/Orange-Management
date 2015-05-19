@@ -51,8 +51,8 @@
         return false;
     };
 
-    jsOMS.AssetManager.prototype.get = function(id) {
-        if(this.assets[id]) {
+    jsOMS.AssetManager.prototype.get = function (id) {
+        if (this.assets[id]) {
             return this.assets[id];
         }
 

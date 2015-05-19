@@ -1,5 +1,5 @@
 var notifyMessage = function (data) {
-    setTimeout(function() {
+    setTimeout(function () {
         var notify = document.createElement('div'),
             h = document.createElement('h1'),
             inner = document.createElement('div'),
@@ -13,7 +13,7 @@ var notifyMessage = function (data) {
         notify.appendChild(h);
         notify.appendChild(inner);
 
-        if(data.stay > 0) {
+        if (data.stay > 0) {
             setTimeout(function () {
                 notify.parentElement.removeChild(notify);
             }, data.stay);

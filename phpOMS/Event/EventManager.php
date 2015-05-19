@@ -29,6 +29,7 @@ class EventManager implements \phpOMS\Pattern\Mediator
      * @since 1.0.0
      */
     private $events = [];
+
 // endregion
 
     /**

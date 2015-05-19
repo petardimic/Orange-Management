@@ -27,6 +27,7 @@ class Meta implements \phpOMS\Contract\RenderableInterface
     private $charset     = null;
 
     private $description = null;
+
 // endregion
 
     public function addKeyword($keyword)

@@ -79,6 +79,7 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
      * @since 1.0.0
      */
     private static $source = null;
+
 // endregion
 
     /**
@@ -162,11 +163,13 @@ abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
         return $this->lang;
     }
 
-    public function setAccount($account) {
+    public function setAccount($account)
+    {
         $this->account = $account;
     }
 
-    public function getAccount() {
+    public function getAccount()
+    {
         return $this->account;
     }
 }

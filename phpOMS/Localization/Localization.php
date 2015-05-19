@@ -75,6 +75,7 @@ class Localization
      * @since 1.0.0
      */
     public $lang = [];
+
 // endregion
 
     /**

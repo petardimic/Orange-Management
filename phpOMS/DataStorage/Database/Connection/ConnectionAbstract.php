@@ -74,6 +74,7 @@ abstract class ConnectionAbstract implements \phpOMS\DataStorage\Database\Connec
      * @since 1.0.0
      */
     private $grammar = null;
+
 // endregion
 
     /**

@@ -50,6 +50,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      * @since 1.0.0
      */
     private $head = null;
+
 // endregion
     public function __construct()
     {

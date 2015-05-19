@@ -35,6 +35,7 @@ class FileCache implements \phpOMS\DataStorage\Cache\CacheInterface
      * @since 1.0.0
      */
     private $threshold = 50;
+
 // endregion
 
     /**

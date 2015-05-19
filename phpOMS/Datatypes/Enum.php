@@ -29,6 +29,7 @@ abstract class Enum
      * @since 1.0.0
      */
     private static $constCache = null;
+
 // endregion
 
     /**

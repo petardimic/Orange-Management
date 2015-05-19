@@ -18,53 +18,59 @@ namespace phpOMS\Router;
  */
 class Router
 {
+
     private static $routes = [];
 
     private function __construct()
     {
     }
 
-    public static function any($route, $callback, $order = 0) {
+    public static function any($route, $callback, $order = 0)
+    {
         if(!isset(self::$routes[$route]['any'])) {
             self::$routes[$route]['any'] = [];
         }
 
         self::$routes[$route]['any'][] = $callback;
 
-        return count(self::$routes[$route]['any'])-1;
+        return count(self::$routes[$route]['any']) - 1;
     }
 
-    public static function get($route, $callback, $order = 0) {
+    public static function get($route, $callback, $order = 0)
+    {
         if(!isset(self::$routes[$route]['get'])) {
             self::$routes[$route]['get'] = [];
         }
 
         self::$routes[$route]['get'][] = $callback;
 
-        return count(self::$routes[$route]['get'])-1;
+        return count(self::$routes[$route]['get']) - 1;
     }
 
-    public static function post($route, $callback, $order = 0) {
+    public static function post($route, $callback, $order = 0)
+    {
         if(!isset(self::$routes[$route]['post'])) {
             self::$routes[$route]['post'] = [];
         }
 
         self::$routes[$route]['post'][] = $callback;
 
-        return count(self::$routes[$route]['post'])-1;
+        return count(self::$routes[$route]['post']) - 1;
     }
 
-    public static function delete($route, $callback, $order = 0) {
+    public static function delete($route, $callback, $order = 0)
+    {
         if(!isset(self::$routes[$route]['delete'])) {
             self::$routes[$route]['delete'] = [];
         }
 
         self::$routes[$route]['delete'][] = $callback;
 
-        return count(self::$routes[$route]['delete'])-1;
+        return count(self::$routes[$route]['delete']) - 1;
     }
 
-    public static function execute($route, $parameters, $id = null) {
+    public static function execute($route, $parameters, $id = null)
+    {
         if(isset($id)) {
             $route = self::$any[$route][$id];
             yield $route(...$parameters);

@@ -206,6 +206,7 @@ abstract class ISO639EnumArray extends \phpOMS\Datatypes\EnumArray
         'zh' => 'Chinese',
         'zu' => 'Zulu',
     ];
+
 // endregion
 
 }

@@ -228,6 +228,7 @@ class Text
      * @since 1.0.0
      */
     private $sentences = 0;
+
 // endregion
 
     /**

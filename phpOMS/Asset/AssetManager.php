@@ -29,6 +29,7 @@ class AssetManager
      * @since 1.0.0
      */
     private $assets = [];
+
 // endregion
 
     /**

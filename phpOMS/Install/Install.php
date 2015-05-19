@@ -27,6 +27,7 @@ class Install
      * @since 1.0.0
      */
     private $dbPool = null;
+
 // endregion
 
     /**

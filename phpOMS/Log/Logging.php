@@ -49,6 +49,7 @@ class Logging implements \phpOMS\Pattern\Singleton
      * @since 1.0.0
      */
     private $fp = null;
+
 // endregion
 
     /**

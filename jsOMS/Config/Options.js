@@ -1,5 +1,5 @@
 (function (jsOMS, undefined) {
-    jsOMS.Options = function() {
+    jsOMS.Options = function () {
         this.options = {};
     };
 

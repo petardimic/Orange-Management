@@ -20,25 +20,25 @@
             // TODO: bind submit buttons
             var buttons = input[i].getElementsByTagName('button'),
                 submits = input[i].querySelectorAll('input[type=submit]');
-            
+
             if (typeof input[i].dataset.validate !== 'undefined') {
                 var valid = (new RegExp(input[i].dataset.validate)).test(input[i].value),
                     watcher = function (e) {
-                    var timer = 0;
-                    return function (callback, ms) {
-                        clearTimeout(timer);
-                        timer = setTimeout(callback, ms);
-                    };
-                }();
+                        var timer = 0;
+                        return function (callback, ms) {
+                            clearTimeout(timer);
+                            timer = setTimeout(callback, ms);
+                        };
+                    }();
 
-                input[i].keyup = watcher(function() {
-                    if(!valid) {
+                input[i].keyup = watcher(function () {
+                    if (!valid) {
                         console.log('wrong input');
                     }
                 }, 1000);
 
                 /** Maybe use this?
-                (function(){
+                 (function(){
                     var timer = 0;
                     return function(callback, ms){
                         clearTimeout (timer);

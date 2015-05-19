@@ -49,6 +49,7 @@ class Header implements \Serializable
      * @since 1.0.0
      */
     private $subtype = 0;
+
 // endregion
 
     public function getSendFrom()

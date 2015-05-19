@@ -136,6 +136,7 @@ abstract class ISO4217EnumArray extends \phpOMS\Datatypes\EnumArray
         "YER" => ["Yemen, Rials", "fdfc"],
         "ZWD" => ["Zimbabwe, Zimbabwe Dollars", "5a, 24"]
     ];
+
 // endregion
 
 }

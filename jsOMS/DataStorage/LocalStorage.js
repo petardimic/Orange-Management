@@ -1,5 +1,5 @@
 (function (jsOMS, undefined) {
-    jsOMS.LocalStorage = function() {
+    jsOMS.LocalStorage = function () {
     };
 
     jsOMS.LocalStorage.prototype.available = function () {

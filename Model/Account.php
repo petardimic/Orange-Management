@@ -163,7 +163,8 @@ class Account
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -175,7 +176,8 @@ class Account
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 }

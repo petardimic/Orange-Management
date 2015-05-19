@@ -59,6 +59,7 @@ class Server extends \phpOMS\Socket\SocketAbstract
      * @since 1.0.0
      */
     private $packetManager = null;
+
 // endregion
 
     /**

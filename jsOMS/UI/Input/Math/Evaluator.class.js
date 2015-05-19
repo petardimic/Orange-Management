@@ -13,7 +13,7 @@ MathEvaluator.prototype.detach = function () {
 MathEvaluator.prototype.trigger = function (node) {
     var value = node.value;
 
-    if(!value.slice(0, 1) == '=') {
+    if (!value.slice(0, 1) == '=') {
         return;
     }
 

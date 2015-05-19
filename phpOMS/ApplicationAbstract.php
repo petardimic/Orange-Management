@@ -83,6 +83,7 @@ class ApplicationAbstract
      * @since 1.0.0
      */
     public $eventManager = null;
+
 // endregion
 
 }

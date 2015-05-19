@@ -93,6 +93,7 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
      * @since 1.0.0
      */
     private $innerEdgeAngular = null;
+
 // endregion
 
     /**

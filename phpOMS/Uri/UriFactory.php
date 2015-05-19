@@ -29,6 +29,7 @@ class UriFactory
      * @since 1.0.0
      */
     private static $query = [];
+
 // endregion
 
     /**

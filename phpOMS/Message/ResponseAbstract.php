@@ -27,6 +27,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      * @since 1.0.0
      */
     protected $lang = null;
+
 // endregion
 
     /**

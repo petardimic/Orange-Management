@@ -37,6 +37,7 @@ class ArrayParser
      * @since 1.0.0
      */
     public $array = null;
+
 // endregion
 
     /**

@@ -14,9 +14,9 @@ class Color
             $diff[2] = $stop[2] - $start[2];
             $diff[3] = $stop[3] - $start[3];
 
-            $gradient['r'] = $start[1] + ($value - $start[0])/($diff[0]) * $diff[1];
-            $gradient['g'] = $start[2] + ($value - $start[0])/($diff[0]) * $diff[2];
-            $gradient['b'] = $start[3] + ($value - $start[0])/($diff[0]) * $diff[3]; // 206 -97 -20
+            $gradient['r'] = $start[1] + ($value - $start[0]) / ($diff[0]) * $diff[1];
+            $gradient['g'] = $start[2] + ($value - $start[0]) / ($diff[0]) * $diff[2];
+            $gradient['b'] = $start[3] + ($value - $start[0]) / ($diff[0]) * $diff[3]; // 206 -97 -20
         } else {
             if($value > $end[0]) {
                 $value = $end[0];
@@ -26,9 +26,9 @@ class Color
             $diff[2] = $end[2] - $stop[2];
             $diff[3] = $end[3] - $stop[3];
 
-            $gradient['r'] = $stop[1] + ($value - $stop[0])/($diff[0]) * $diff[1];
-            $gradient['g'] = $stop[2] + ($value - $stop[0])/($diff[0]) * $diff[2];
-            $gradient['b'] = $stop[3] + ($value - $stop[0])/($diff[0]) * $diff[3];
+            $gradient['r'] = $stop[1] + ($value - $stop[0]) / ($diff[0]) * $diff[1];
+            $gradient['g'] = $stop[2] + ($value - $stop[0]) / ($diff[0]) * $diff[2];
+            $gradient['b'] = $stop[3] + ($value - $stop[0]) / ($diff[0]) * $diff[3];
         }
 
         foreach($gradient as &$color) {

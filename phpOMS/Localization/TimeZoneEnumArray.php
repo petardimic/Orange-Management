@@ -438,6 +438,7 @@ class TimeZoneEnumArray extends \phpOMS\Datatypes\EnumArray
         414 => 'Pacific/Wallis',
         415 => 'UTC',
     ];
+
 // endregion
 
 }

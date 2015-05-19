@@ -35,6 +35,7 @@ abstract class ValidatorAbstract
      * @since 1.0.0
      */
     protected static $msg = '';
+
 // endregion
 
     /**

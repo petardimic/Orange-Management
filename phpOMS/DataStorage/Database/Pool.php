@@ -28,6 +28,7 @@ class Pool
      * @since 1.0.0
      */
     private $pool = [];
+
 // endregion
 
     /**

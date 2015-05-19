@@ -39,6 +39,7 @@ class ModuleFactory
      * @since 1.0.0
      */
     public static $app = null;
+
 // endregion
 
     /**

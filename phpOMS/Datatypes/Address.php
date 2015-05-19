@@ -43,6 +43,7 @@ class Address implements \phpOMS\Contract\JsonableInterface
      * @since 1.0.0
      */
     private $location = null;
+
 // endregion
 
     /**

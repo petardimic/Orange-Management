@@ -37,6 +37,7 @@ class CommandManager implements \Countable
      * @since 1.0.0
      */
     private $count = 0;
+
 // endregion
 
     /**

@@ -1,5 +1,5 @@
 (function (jsOMS, undefined) {
-    jsOMS.ViewAbstract = function() {
+    jsOMS.ViewAbstract = function () {
 
     };
 

@@ -31,6 +31,7 @@ class ClassCompiler
     private $implements = [];
 
     private $member     = [];
+
 // endregion
 
     public function __construct($path)

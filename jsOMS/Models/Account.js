@@ -1,5 +1,5 @@
 (function (jsOMS, undefined) {
-    jsOMS.Account = function() {
+    jsOMS.Account = function () {
         this.login = '';
         this.password = '';
         this.id = 0;

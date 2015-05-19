@@ -63,6 +63,7 @@ class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\
      * @since 1.0.0
      */
     private $dbPool = null;
+
 // endregion
 
     /**

@@ -267,6 +267,7 @@ abstract class ISO3166EnumArray extends \phpOMS\Datatypes\EnumArray
         'zm' => 'Zambia',
         'zw' => 'Zimbabwe',
     ];
+
 // endregion
 
 }

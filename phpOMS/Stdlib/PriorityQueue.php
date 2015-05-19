@@ -38,6 +38,7 @@ class PriorityQueue implements \Countable, \Serializable
      * @since 1.0.0
      */
     private $queue = [];
+
 // endregion
 
     /**
