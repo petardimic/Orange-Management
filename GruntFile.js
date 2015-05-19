@@ -45,10 +45,12 @@ module.exports = function (grunt) {
                     'jsOMS/Message/**/*.js',
                     'jsOMS/Localization/**/*.js',
                     'jsOMS/Event/**/*.js',
+                    'jsOMS/Security/**/*.js',
                     'jsOMS/System/**/*.js',
                     'jsOMS/Asset/**/*.js',
                     'jsOMS/UI/**/*.js',
-                    'jsOMS/Validation/**/*.js'
+                    'jsOMS/Validation/**/*.js',
+                    'Model/**/*.js'
                 ],
                 dest: 'jsOMS/oms.min.js'
             }
@@ -205,7 +207,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['jsOMS/**/*.js'],
+                files: ['jsOMS/**/*.js', 'Model/**/*.js'],
                 tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {

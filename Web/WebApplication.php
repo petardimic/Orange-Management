@@ -83,6 +83,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
+                $this->request->setAccount($this->user);
 
                 $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
                 $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
@@ -132,6 +133,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
+                $this->request->setAccount($this->user);
 
                 $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
                 $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
