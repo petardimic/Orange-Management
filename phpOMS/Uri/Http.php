@@ -18,7 +18,7 @@ namespace phpOMS\Uri;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Http
+class Http implements \phpOMS\Uri\UriInterface
 {
 
     private $rootPath = '';
@@ -31,9 +31,9 @@ class Http
 
     private $port     = 80;
 
-    private $user     = 80;
+    private $user     = '';
 
-    private $pass     = 80;
+    private $pass     = '';
 
     private $path     = null;
 
@@ -89,7 +89,7 @@ class Http
         return $this->path;
     }
 
-    public function getQuery($key)
+    public function getQuery($key = null)
     {
         if(isset($key)) {
             if(isset($this->query[$key])) {
@@ -213,8 +213,9 @@ class Http
     /**
      * {@inheritdoc}
      */
-    public function toString()
+    public function __toString()
     {
+        return $this->uri;
     }
 
     /**
@@ -222,5 +223,48 @@ class Http
      */
     public function resolve($base)
     {
+    }
+
+    /**
+     * Retrieve the authority component of the URI.
+     *
+     * If no authority information is present, this method MUST return an empty
+     * string.
+     *
+     * The authority syntax of the URI is:
+     *
+     * <pre>
+     * [user-info@]host[:port]
+     * </pre>
+     *
+     * If the port component is not set or is the standard port for the current
+     * scheme, it SHOULD NOT be included.
+     *
+     * @see https://tools.ietf.org/html/rfc3986#section-3.2
+     * @return string The URI authority, in "[user-info@]host[:port]" format.
+     */
+    public function getAuthority()
+    {
+        return ($this->getUser() !== '' ? $this->getUser() . '@' : '') . $this->host . (isset($this->port) && $this->port !== '' ? ':' . $this->port : '');
+    }
+
+    /**
+     * Retrieve the user information component of the URI.
+     *
+     * If no user information is present, this method MUST return an empty
+     * string.
+     *
+     * If a user is present in the URI, this will return that value;
+     * additionally, if the password is also present, it will be appended to the
+     * user value, with a colon (":") separating the values.
+     *
+     * The trailing "@" character is not part of the user information and MUST
+     * NOT be added.
+     *
+     * @return string The URI user information, in "username[:password]" format.
+     */
+    public function getUserInfo()
+    {
+        return $this->user . (isset($this->pass) && $this->pass !== '' ? ':' . $this->pass : '');
     }
 }
