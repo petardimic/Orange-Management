@@ -71,6 +71,8 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     /**
      * Constructor
      *
+     * @param string $rootPath relative installation path
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
@@ -79,6 +81,16 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
         $this->uri = new \phpOMS\Uri\Http($rootPath);
     }
 
+    /**
+     * Init request
+     *
+     * This is used in order to either initialize the current http request or a batch of GET requests
+     *
+     * @param string $uri URL
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function init($uri = null)
     {
         if($uri === null) {
