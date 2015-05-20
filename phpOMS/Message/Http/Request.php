@@ -16,7 +16,7 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Request extends \phpOMS\Message\RequestAbstract
+class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message\Http\RequestInterface
 {
 // region Class Fields
     /**
@@ -76,7 +76,6 @@ class Request extends \phpOMS\Message\RequestAbstract
      */
     public function __construct($rootPath)
     {
-        parent::__construct();
         $this->uri = new \phpOMS\Uri\Http($rootPath);
     }
 
@@ -289,5 +288,55 @@ class Request extends \phpOMS\Message\RequestAbstract
     public function setRequestDestination($requestDestination)
     {
         $this->requestDestination = $requestDestination;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProtocolVersion()
+    {
+        return $_SERVER['SERVER_PROTOCOL'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeaders()
+    {
+        return getallheaders();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasHeader($name)
+    {
+        return array_key_exists($name, getallheaders());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeader($name)
+    {
+        return getallheaders()[$name];
+    }
+
+    /**
+     * Gets the body of the message.
+     *
+     * @return StreamInterface Returns the body as a stream.
+     */
+    public function getBody()
+    {
+        return file_get_contents('php://input');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequestTarget()
+    {
+        return '/';
     }
 }

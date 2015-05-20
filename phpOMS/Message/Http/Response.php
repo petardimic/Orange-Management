@@ -16,16 +16,16 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contract\RenderableInterface
+class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Message\Http\ResponseInterface, \phpOMS\Contract\RenderableInterface
 {
 // region Class Fields
     /**
      * Header
      *
-     * @var array
+     * @var string[][]
      * @since 1.0.0
      */
-    private $header = null;
+    private $header = [];
 
     /**
      * Responses
@@ -51,6 +51,14 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      */
     private $head = null;
 
+    /**
+     * Response status
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    private $status = 200;
+
 // endregion
     public function __construct()
     {
@@ -65,7 +73,13 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
         if(!$overwrite && isset($this->header[$key])) {
             return false;
         }
-        $this->header[$key] = $header;
+
+        if(!isset($this->header[$key])) {
+            $this->header[$key] = [];
+        }
+
+
+        $this->header[$key][] = $header;
         if($this->autoPush) {
             $this->pushHeaderId($key);
         }
@@ -76,14 +90,16 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
     /**
      * Push header by ID
      *
-     * @param mixed $key Header ID
+     * @param mixed $name Header ID
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function pushHeaderId($key)
+    public function pushHeaderId($name)
     {
-        header($key, true);
+        foreach($this->header[$name] as $key => $value) {
+            header($name, $value);
+        }
     }
 
     /**
@@ -191,8 +207,10 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      */
     public function pushHeader()
     {
-        foreach($this->header as $ele) {
-            header($ele, true);
+        foreach($this->header as $name => $arr) {
+            foreach($name as $ele => $value) {
+                header($name, $value);
+            }
         }
     }
 
@@ -250,8 +268,67 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
         $this->autoPush = (bool) $push;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getHead()
     {
         return $this->head;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProtocolVersion()
+    {
+        return '1.0';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeaders()
+    {
+        return $this->header;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasHeader($name)
+    {
+        return array_key_exists($name, $this->header);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeader($name)
+    {
+        return $this->header[$name];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBody()
+    {
+        return $this->render();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatusCode()
+    {
+        return $this->status;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReasonPhrase()
+    {
+        return $this->getHeader('Status');
     }
 }

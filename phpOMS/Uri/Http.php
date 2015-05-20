@@ -18,7 +18,7 @@ namespace phpOMS\Uri;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Http implements \phpOMS\Uri\UriInterface
+class Http
 {
 
     private $rootPath = '';

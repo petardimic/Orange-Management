@@ -20,7 +20,7 @@ namespace phpOMS\Message;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class RequestAbstract implements \phpOMS\Message\RequestInterface
+abstract class RequestAbstract
 {
 
 // region Class Fields
