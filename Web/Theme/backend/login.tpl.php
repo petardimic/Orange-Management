@@ -18,14 +18,21 @@ $loginForm->setElement(1, 0, [
     'name'    => 'pass',
     'label'   => $this->l11n->lang[0]['Password'],
 ]);
+
+$head = $this->response->getHead();
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <?= $head->getMeta()->render(); ?>
+    <title><?= $a = $head->getTitle(); ?></title>
+    <?= $head->renderAssets(); ?>
+    <style>
+        <?= $head->renderStyle(); ?>
+    </style>
+    <script>
+        <?= $head->renderScript(); ?>
+    </script>
     <style type="text/css">
         html, body {
             height: 100%;

@@ -1,7 +1,7 @@
 <?php
 namespace Model\Message;
 
-class Reload implements \phpOMS\Contract\RenderableInterface
+class Reload implements \phpOMS\Contract\RenderableInterface, \phpOMS\Contract\ArrayableInterface
 {
 
     const TYPE = 'reload';

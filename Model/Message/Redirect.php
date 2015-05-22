@@ -1,7 +1,7 @@
 <?php
 namespace Model\Message;
 
-class Redirect implements \phpOMS\Contract\RenderableInterface
+class Redirect implements \phpOMS\Contract\RenderableInterface, \phpOMS\Contract\ArrayableInterface
 {
 
     const TYPE = 'redirect';
@@ -15,6 +15,11 @@ class Redirect implements \phpOMS\Contract\RenderableInterface
         $this->delay = $delay;
     }
 
+    public function toArray()
+    {
+        return ['type' => self::TYPE, 'time' => $this->delay, 'uri' => $this->uri];
+    }
+
     public function setUri($uri)
     {
         $this->uri = $uri;
@@ -22,6 +27,6 @@ class Redirect implements \phpOMS\Contract\RenderableInterface
 
     public function render()
     {
-        return json_encode(['type' => self::TYPE, 'time' => $this->delay, 'uri' => $this->uri]);
+        return json_encode($this->toArray());
     }
 }

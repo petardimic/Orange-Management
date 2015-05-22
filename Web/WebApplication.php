@@ -89,7 +89,15 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
                 $pageView->setLocalization($this->user->getL11n());
 
+                $head    = $this->response->getHead();
+                $baseUri = $this->request->getUri()->getBase();
+
                 if($this->user->getId() < 1) {
+                    $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
+                    $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
+
                     $pageView->setTemplate('/Web/Theme/backend/login');
                     $this->response->add('GLOBAL', $pageView->render());
                     break;
@@ -105,8 +113,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options = $this->settings->get([1000000009]);
-                $head    = $this->response->getHead();
-                $baseUri = $this->request->getUri()->getBase();
                 $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Theme/backend/css/backend.css');
                 $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
                 $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
@@ -165,7 +171,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             $this->sessionManager->set('UID', 1);
                             $this->sessionManager->save();
 
-                            $this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
+                            //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
                             $this->response->get('GLOBAL')->add($this->request->__toString(), (new \Model\Message\Reload())->toArray());
                             $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                             break;
@@ -218,8 +224,16 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'reporter');
                 $pageView->setLocalization($this->user->getL11n());
 
+                $head    = $this->response->getHead();
+                $baseUri = $this->request->getUri()->getBase();
+
                 if($this->user->getId() < 1) {
-                    $pageView->setTemplate('/Web/Theme/reporter/login');
+                    $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
+                    $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
+
+                    $pageView->setTemplate('/Web/Theme/backend/login');
                     $this->response->add('GLOBAL', $pageView->render());
                     break;
                 }
@@ -233,8 +247,6 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $options = $this->settings->get([1000000009]);
-                $head    = $this->response->getHead();
-                $baseUri = $this->request->getUri()->getBase();
                 $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Theme/backend/css/backend.css');
                 $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
                 $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');

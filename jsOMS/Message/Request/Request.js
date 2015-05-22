@@ -4,7 +4,8 @@
         this.method = null;
         this.requestHeader = null;
         this.success = null;
-        this.isAjax = true;
+        this.type = 'GET';
+        this.data = [];
 
         this.xhr = new XMLHttpRequest();
     };
@@ -53,11 +54,11 @@
 
     };
 
-    jsOMS.Request.prototype.setAjax = function (isAjax) {
-        this.isAjax = isAjax;
+    jsOMS.Request.prototype.setType = function (type) {
+        this.type = type;
     };
 
-    jsOMS.Request.prototype.isAjax = function () {
+    jsOMS.Request.prototype.getType = function () {
 
     };
 
@@ -66,18 +67,18 @@
     };
 
     jsOMS.Request.prototype.send = function () {
-        this.xhr.open(this.method, this.url);
+        var self = this;
 
-        this.xhr.onreadystatechange = function (xhr) {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                this.success(xhr);
+        self.xhr.open(this.method, this.uri);
+
+        self.xhr.onreadystatechange = function () {
+            if (self.xhr.readyState === 4 && self.xhr.status === 200) {
+                self.success(self.xhr);
             }
         };
 
-        if (this.type === jsOMS.EnumRequestType.GET) {
-            this.xhr.send();
-        } else {
-            this.xhr.send(this.data);
+        if (this.type === 'ajax') {
+            self.xhr.send(JSON.stringify(this.data));
         }
     };
 
