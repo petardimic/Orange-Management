@@ -8,11 +8,7 @@
     };
 
     jsOMS.Client.prototype.setMessage = function(id, callback) {
-        if(this.messages[id] === 'undefined') {
-            this.messages[id] = [];
-        }
-
-        this.messages.push()
+        this.messages[id] = callback;
     };
 
     jsOMS.Client.prototype.setIp = function(ip) {
