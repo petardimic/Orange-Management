@@ -69,7 +69,7 @@
 
         for (var i = 0; i < input.length; i++) {
             if (typeof input[i].dataset.validate !== 'undefined') {
-                var valid = (new RegExp(input[i].dataset.validate)).test(input[i].value),
+                var validator = new RegExp(input[i].dataset.validate),
                     watcher = function (e) {
                         var timer = 0;
                         return function (callback, ms) {
@@ -78,11 +78,17 @@
                         };
                     }();
 
-                input[i].keyup = watcher(function () {
-                    if (!valid) {
-                        console.log('wrong input');
-                    }
-                }, 1000);
+                //input[i].keyup = function() {console.log('up');};
+
+                input[i].onkeyup = function(e) {
+                    var self = this;
+                    watcher(function (e) {
+                        if (!validator.test(self.value)) {
+                            console.log('wrong input');
+                        }
+                    }, 500);
+                };
+
 
                 /** Maybe use this?
                  (function(){

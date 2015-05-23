@@ -18,7 +18,7 @@
             type="<?= $element['subtype']; ?>"
             value="<?= (isset($element['value']) ? $element['value'] : ''); ?>"
             <?= (isset($element['placeholder']) ? ' placeholder="' . $element['placeholder'] . '"' : ''); ?>
-            <?= (isset($element['regex']) ? ' data-validate="' . $element['regex'] . '"' : ''); ?>
+            <?= (isset($element['validate']) ? ' data-validate="' . $element['validate'] . '"' : ''); ?>
             <?= (isset($element['active']) && !$element['active'] ? ' disabled' : '') ?>
             <?= (isset($element['checked']) && $element['checked'] ? ' checked' : '') ?>>
         <?php if(isset($element['label']) && $element['subtype'] === 'checkbox'): ?>
