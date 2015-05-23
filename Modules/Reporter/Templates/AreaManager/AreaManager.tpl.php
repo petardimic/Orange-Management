@@ -562,7 +562,7 @@ fclose($file);
     </script>
 
     <div class="areamanger-box half">
-        <style>
+        <style scoped>
             .axis path, .axis line {
                 fill: none;
                 stroke: #777;
@@ -750,7 +750,7 @@ fclose($file);
     </div>
 
     <div class="areamanger-box half">
-        <style>
+        <style scoped>
             .axis path, .axis line {
                 fill: none;
                 stroke: #777;
@@ -874,7 +874,7 @@ fclose($file);
     </div>
 
     <div class="areamanger-box half cT">
-        <style>
+        <style scoped>
             .arc path {
                 stroke: #fff;
                 stroke-width: 2;
@@ -953,7 +953,7 @@ fclose($file);
     </div>
 
     <div class="areamanger-box half cT">
-        <style>
+        <style scoped>
             .arc path {
                 stroke: #fff;
                 stroke-width: 2;
