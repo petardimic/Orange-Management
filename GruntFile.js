@@ -207,7 +207,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['jsOMS/**/*.js', 'Model/**/*.js'],
+                files: ['!**/*.min.js', 'jsOMS/**/*.js', 'Model/**/*.js'],
                 tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
             },
             sass: {
