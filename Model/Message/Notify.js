@@ -18,5 +18,5 @@ var notifyMessage = function (data) {
                 notify.parentElement.removeChild(notify);
             }, data.stay);
         }
-    }, data.delay);
+    }, parseInt(data.delay));
 };

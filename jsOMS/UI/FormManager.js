@@ -1,16 +1,29 @@
 (function (jsOMS, undefined) {
     jsOMS.FormManager = function (responseManager) {
         this.responseManager = responseManager;
+        this.ignore = [];
+        this.success = [];
+    };
+
+
+    jsOMS.FormManager.prototype.ignore = function(id) {
+        this.ignore.push(id);
+    };
+
+    jsOMS.FormManager.prototype.setSuccess = function(id, callback) {
+        this.success[id] = callback;
     };
 
     jsOMS.FormManager.prototype.bind = function (id) {
-        if (typeof id !== 'undefined') {
+        if (typeof id !== 'undefined' && this.ignore.indexOf(id) == -1) {
             this.bindElement(document.getElementById(id));
         } else {
             var forms = document.getElementsByTagName('form');
 
             for (var i = 0; i < forms.length; i++) {
-                this.bindElement(forms[i]);
+                if(this.ignore.indexOf(forms[i].id == -1)) {
+                    this.bindElement(forms[i]);
+                }
             }
         }
     };
@@ -43,7 +56,11 @@
 
                     for(var k = 0; k < response.length; k++) {
                         console.log(response[k]);
-                        self.responseManager.execute(response[k].type, response[k]);
+                        if(self.success[e.id] === 'undefined') {
+                            self.responseManager.execute(response[k].type, response[k]);
+                        } else {
+                            self.success[e.id](response[k].type, response[k]);
+                        }
                     }
                 });
                 request.send();
