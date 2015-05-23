@@ -5,6 +5,21 @@
         this.footer = null;
         this.legend = null;
         this.dataset = null;
+        this.dimension = {width: 100, height: 100};
+        this.margin = {top: 0, right: 0, bottom: 0, left: 0};
+        this.relative = true;
+    };
+
+    jsOMS.Chart.prototype.setDimension = function(dimension) {
+        this.dimension = dimension;
+    };
+
+    jsOMS.Chart.prototype.getDimension = function() {
+        return this.dimension;
+    };
+
+    jsOMS.Chart.prototype.setDimensionRelative = function(relative) {
+        this.relative = relative;
     };
 
     jsOMS.Chart.prototype.setTitle = function(title) {
