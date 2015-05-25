@@ -96,16 +96,16 @@ class Auth implements \phpOMS\Config\OptionsInterface
 
                     $sth = $this->connection->con->prepare(
                         'SELECT
-                            `' . $this->connection->prefix . 'accounts_data`.*,
-                            `' . $this->connection->prefix . 'accounts`.*
+                            `' . $this->connection->prefix . 'account_data`.*,
+                            `' . $this->connection->prefix . 'account`.*
                         FROM
-                            `' . $this->connection->prefix . 'accounts_data`
+                            `' . $this->connection->prefix . 'account_data`
                         LEFT JOIN
-                            `' . $this->connection->prefix . 'accounts`
+                            `' . $this->connection->prefix . 'account`
                         ON
-                            `' . $this->connection->prefix . 'accounts_data`.`account` = `' . $this->connection->prefix . 'accounts_`.`id`
+                            `account_data_account` = `account_id`
                         WHERE
-                            `' . $this->connection->prefix . 'accounts_data`.`login` = :login'
+                            `account_data_login` = :login'
                     );
                     $sth->bindValue(':login', $login, \PDO::PARAM_STR);
                     $sth->execute();
@@ -120,16 +120,15 @@ class Auth implements \phpOMS\Config\OptionsInterface
                 return \phpOMS\Auth\LoginReturnType::WRONG_USERNAME;
             }
 
-            if($result['tries'] <= 0) {
+            if($result['account_data_tries'] <= 0) {
                 return \phpOMS\Auth\LoginReturnType::WRONG_INPUT_EXCEEDED;
             }
 
-            if(password_verify($password, $result['password'])) {
-                if($result['status'] === \phpOMS\Auth\LoginReturnType::OK) {
-                    $this->session->set('UID', $result['account']);
-                }
+            if(password_verify($password, $result['account_data_password'])) {
+                $this->session->set('UID', $result['account_id']);
+                $this->session->save();
 
-                return $result['status'];
+                return \phpOMS\Auth\LoginReturnType::OK;
             }
 
             return \phpOMS\Auth\LoginReturnType::WRONG_PASSWORD;

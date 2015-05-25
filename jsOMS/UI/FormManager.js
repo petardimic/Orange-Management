@@ -6,11 +6,11 @@
     };
 
 
-    jsOMS.FormManager.prototype.ignore = function(id) {
+    jsOMS.FormManager.prototype.ignore = function (id) {
         this.ignore.push(id);
     };
 
-    jsOMS.FormManager.prototype.setSuccess = function(id, callback) {
+    jsOMS.FormManager.prototype.setSuccess = function (id, callback) {
         this.success[id] = callback;
     };
 
@@ -21,7 +21,7 @@
             var forms = document.getElementsByTagName('form');
 
             for (var i = 0; i < forms.length; i++) {
-                if(this.ignore.indexOf(forms[i].id == -1)) {
+                if (this.ignore.indexOf(forms[i].id == -1)) {
                     this.bindElement(forms[i]);
                 }
             }
@@ -30,33 +30,30 @@
 
     jsOMS.FormManager.prototype.bindElement = function (e) {
         var input = e.getElementsByTagName('input'),
+            select = e.getElementsByTagName('select'),
+            textarea = e.getElementsByTagName('textarea'),
             buttons = e.getElementsByTagName('button'),
             submits = e.querySelectorAll('input[type=submit]'),
             self = this;
 
-        for(var j = 0; j < submits.length; j++) {
-            submits[j].addEventListener('click', function(event) {
-                // TODO: write a wrapper for this in your library
-                if (event.stopPropagation) {
-                    event.stopPropagation();   // W3C model
-                    event.preventDefault();
-                } else {
-                    event.cancelBubble = true; // IE model
-                    event.preventDefault();
-                }
+        for (var j = 0; j < submits.length; j++) {
+            submits[j].addEventListener('click', function (event) {
+                // TODO: validate before submit
 
                 var request = new jsOMS.Request();
 
                 request.setType('ajax');
                 request.setUri(e.action);
                 request.setMethod(e.method);
-                request.setSuccess(function(xhr) {
+                request.setSuccess(function (xhr) {
+                    console.log(xhr); // TODO: remove this is for error checking
                     var o = JSON.parse(xhr.response),
-                        response = Object.keys(o).map(function(k) { return o[k] });
+                        response = Object.keys(o).map(function (k) {
+                            return o[k]
+                        });
 
-                    for(var k = 0; k < response.length; k++) {
-                        console.log(response[k]);
-                        if(self.success[e.id] === 'undefined') {
+                    for (var k = 0; k < response.length; k++) {
+                        if (!self.success[e.id]) {
                             self.responseManager.execute(response[k].type, response[k]);
                         } else {
                             self.success[e.id](response[k].type, response[k]);
@@ -64,44 +61,41 @@
                     }
                 });
                 request.send();
+                jsOMS.preventAll(event);
             });
         }
 
+        /** Handle input */
         for (var i = 0; i < input.length; i++) {
+            /** Validate on change */
             if (typeof input[i].dataset.validate !== 'undefined') {
-                var validator = new RegExp(input[i].dataset.validate),
-                    watcher = function (e) {
-                        var timer = 0;
-                        return function (callback, ms) {
-                            clearTimeout(timer);
-                            timer = setTimeout(callback, ms);
-                        };
-                    }();
+                var validator = new RegExp(input[i].dataset.validate);
 
-                //input[i].keyup = function() {console.log('up');};
-
-                input[i].onkeyup = function(e) {
+                input[i].onkeyup = function (e) {
                     var self = this;
-                    watcher(function (e) {
+                    jsOMS.watcher(function (e) {
                         if (!validator.test(self.value)) {
-                            console.log('wrong input');
+                            jsOMS.addClass(self, 'invalid');
+                            console.log('wrong input:' + i);
                         }
                     }, 500);
                 };
-
-
-                /** Maybe use this?
-                 (function(){
-                    var timer = 0;
-                    return function(callback, ms){
-                        clearTimeout (timer);
-                        timer = setTimeout(callback, ms);
-                    }
-                }())(function(){alert('Time elapsed!');}, 1000 ); */
             }
 
+            /** Request on change */
             if (typeof input[i].dataset.request !== 'undefined') {
                 // handle request during typing
+            }
+        }
+
+        /** Handle select */
+        for (var i = 0; i < select.length; i++) {
+            /** Redirect on change */
+            if (typeof select[i].dataset.redirect !== 'undefined') {
+                select[i].onchange = function () {
+                    // TODO: use URI factory (which i still have to create :))
+                    window.document.href = e.action.replace('{' + select[i].dataset.redirect + '}', select[i].value);
+                };
             }
         }
     }

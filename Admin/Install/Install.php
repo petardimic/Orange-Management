@@ -311,7 +311,7 @@ class Install
 
                 $this->dbPool->get('core')->con->prepare(
                     'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account_data` (`account_data_id`, `account_data_login`, `account_data_name1`, `account_data_name2`, `account_data_name3`, `account_data_password`, `account_data_email`, `account_data_tries`, `account_data_account`) VALUES
-                            (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'yellowOrange\', \'admin@email.com\', 5, 1);'
+                            (1, \'admin\', \'Cherry\', \'Orange\', \'Orange Management\', \'' . password_hash("orange", PASSWORD_DEFAULT) . '\', \'admin@email.com\', 5, 1);'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(

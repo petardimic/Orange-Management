@@ -168,12 +168,16 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                     if($this->user->getId() < 1) {
                         if($request->getPath(2) === 'login') {
-                            $this->sessionManager->set('UID', 1);
-                            $this->sessionManager->save();
+                            $login = $this->user->login('admin', 'orange');
 
-                            //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
-                            $this->response->get('GLOBAL')->add($this->request->__toString(), (new \Model\Message\Reload())->toArray());
-                            $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                            if($login === \phpOMS\Auth\LoginReturnType::OK) {
+                                //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
+                                $this->response->get('GLOBAL')->add($this->request->__toString(), (new \Model\Message\Reload())->toArray());
+                                $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                            } else {
+                                // TODO: create login failure msg
+                            }
+
                             break;
                         }
                     } else {

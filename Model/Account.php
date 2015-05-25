@@ -180,4 +180,8 @@ class Account
     {
         return $this->address;
     }
+
+    public function login($user, $password) {
+        return (new \phpOMS\Auth\Auth($this->connection, $this->sessionManager))->login($user, $password);
+    }
 }
