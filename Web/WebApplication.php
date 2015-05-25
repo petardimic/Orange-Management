@@ -168,7 +168,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                     if($this->user->getId() < 1) {
                         if($request->getPath(2) === 'login') {
-                            $login = $this->user->login('admin', 'orange');
+                            $login = $this->user->login($this->request->getData('user'), $this->request->getData('pass'));
 
                             if($login === \phpOMS\Auth\LoginReturnType::OK) {
                                 //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());

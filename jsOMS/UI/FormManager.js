@@ -28,40 +28,67 @@
         }
     };
 
+    jsOMS.FormManager.prototype.validateFormElement = function (e) {
+        /** Validate on change */
+        if (typeof e.dataset.validate !== 'undefined') {
+            if (!(new RegExp(e.dataset.validate)).test(e.value)) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     jsOMS.FormManager.prototype.bindElement = function (e) {
         var input = e.getElementsByTagName('input'),
             select = e.getElementsByTagName('select'),
             textarea = e.getElementsByTagName('textarea'),
+            datalist = e.getElementsByTagName('datalist'),
             buttons = e.getElementsByTagName('button'),
             submits = e.querySelectorAll('input[type=submit]'),
+            formelements = Array.prototype.slice.call(input).concat(Array.prototype.slice.call(select), Array.prototype.slice.call(textarea), Array.prototype.slice.call(datalist)),
+            submitdata = {},
             self = this;
 
         for (var j = 0; j < submits.length; j++) {
             submits[j].addEventListener('click', function (event) {
-                // TODO: validate before submit
+                var validForm = true;
 
-                var request = new jsOMS.Request();
-
-                request.setType('ajax');
-                request.setUri(e.action);
-                request.setMethod(e.method);
-                request.setRequestHeader('Content-Type', 'application/json');
-                request.setSuccess(function (xhr) {
-                    console.log(xhr); // TODO: remove this is for error checking
-                    var o = JSON.parse(xhr.response),
-                        response = Object.keys(o).map(function (k) {
-                            return o[k]
-                        });
-
-                    for (var k = 0; k < response.length; k++) {
-                        if (!self.success[e.id]) {
-                            self.responseManager.execute(response[k].type, response[k]);
-                        } else {
-                            self.success[e.id](response[k].type, response[k]);
-                        }
+                for (var k = 0; k < formelements.length; k++) {
+                    if (!self.validateFormElement(e)) {
+                        validForm = false;
+                        // TODO: maybe jump out here since invalid and the elements get checked on changed by default
+                        // will this change in the future? if yes then I need to check all and also add markup/styles here
                     }
-                });
-                request.send();
+
+                    submitdata[formelements[k].getAttribute('name')] = formelements[k].value;
+                }
+
+                if (validForm) {
+                    var request = new jsOMS.Request();
+                    request.setData(submitdata);
+                    request.setType('ajax');
+                    request.setUri(e.action);
+                    request.setMethod(e.method);
+                    request.setRequestHeader('Content-Type', 'application/json');
+                    request.setSuccess(function (xhr) {
+                        console.log(xhr); // TODO: remove this is for error checking
+                        var o = JSON.parse(xhr.response),
+                            response = Object.keys(o).map(function (k) {
+                                return o[k]
+                            });
+
+                        for (var k = 0; k < response.length; k++) {
+                            if (!self.success[e.id]) {
+                                self.responseManager.execute(response[k].type, response[k]);
+                            } else {
+                                self.success[e.id](response[k].type, response[k]);
+                            }
+                        }
+                    });
+                    request.send();
+                }
+
                 jsOMS.preventAll(event);
             });
         }

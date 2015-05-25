@@ -2,10 +2,10 @@
     jsOMS.Request = function () {
         this.uri = null;
         this.method = null;
-        this.requestHeader = null;
+        this.requestHeader = [];
         this.success = null;
         this.type = 'GET';
-        this.data = [];
+        this.data = {};
 
         this.xhr = new XMLHttpRequest();
     };
@@ -27,7 +27,7 @@
     };
 
     jsOMS.Request.prototype.setRequestHeader = function (type, header) {
-        this.xhr.setRequestHeader(type, header);
+        this.requestHeader[type] = header;
     };
 
     jsOMS.Request.prototype.getRequestHeader = function () {
@@ -46,8 +46,8 @@
         this.success = callback;
     };
 
-    jsOMS.Request.prototype.setData = function () {
-
+    jsOMS.Request.prototype.setData = function (data) {
+        this.data = data;
     };
 
     jsOMS.Request.prototype.getData = function () {
@@ -66,10 +66,26 @@
 
     };
 
+    jsOMS.Request.prototype.queryfy = function (obj) {
+        var str = [];
+        for (var p in obj) {
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        }
+        return str.join("&");
+    };
+
     jsOMS.Request.prototype.send = function () {
         var self = this;
 
-        self.xhr.open(this.method, this.uri);
+        if(self.xhr.readyState !== 1) {
+            self.xhr.open(this.method, this.uri);
+
+            for (var p in this.requestHeader) {
+                self.xhr.setRequestHeader(p, this.requestHeader[p]);
+            }
+        }
 
         self.xhr.onreadystatechange = function () {
             if (self.xhr.readyState === 4 && self.xhr.status === 200) {
@@ -77,9 +93,13 @@
             }
         };
 
-        if (this.type === 'ajax') {
-            console.log(JSON.stringify(this.data));
-            self.xhr.send(JSON.stringify(this.data));
+        if(this.type === 'ajax') {
+            if (typeof this.requestHeader !== 'undefined' && this.requestHeader['Content-Type'] === 'application/json') {
+                console.log(JSON.stringify(this.data));
+                self.xhr.send(JSON.stringify(this.data));
+            } else {
+                self.xhr.send(this.queryfy(this.data));
+            }
         }
     };
 

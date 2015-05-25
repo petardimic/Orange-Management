@@ -94,7 +94,17 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     public function init($uri = null)
     {
         if($uri === null) {
-            $this->data = (isset($_GET) ? $_GET : file_get_contents('php://input'));
+            $this->data = (isset($_GET) ? $_GET : []);
+
+            if(isset($_SERVER['CONTENT_TYPE'])) {
+                if($_SERVER['CONTENT_TYPE'] === 'application/json') {
+                    $this->data += json_decode(file_get_contents('php://input'), true);
+                } elseif($_SERVER['CONTENT_TYPE'] === 'application/x-www-form-urlencoded') {
+                    parse_str(file_get_contents('php://input'), $temp);
+                    $this->data += $temp;
+                }
+            }
+
             $this->uri->set(\phpOMS\Uri\Http::getCurrent());
         } else {
             $this->setMethod($uri['type']); // TODO: is this correct?
