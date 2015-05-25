@@ -71,7 +71,7 @@
      * Add class
      *
      * Adding a class to an element
-     *
+vagran     *
      * @param ele DOM Element
      * @param cls Class to add
      *
@@ -100,6 +100,42 @@
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
             ele.className = ele.className.replace(reg, '');
         }
+    };
+
+    /**
+     * Delayed watcher
+     *
+     * Used to fire event after delay
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    jsOMS.watcher = function () {
+        var timer = 0;
+        return function (callback, ms) {
+            clearTimeout(timer);
+            timer = setTimeout(callback, ms);
+        };
+    }();
+
+    /**
+     * Action prevent
+     *
+     * Preventing event from firering and passing through
+     *
+     * @param event Event Event to stop
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    jsOMS.preventAll = function(event) {
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubble = true;
+        }
+
+        event.preventDefault();
     };
 
     /**
