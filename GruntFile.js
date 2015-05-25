@@ -208,7 +208,7 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ['!**/*.min.js', 'jsOMS/**/*.js', 'Model/**/*.js'],
-                tasks: ['concat:dev', 'uglify:dev', 'compress:dev']
+                tasks: ['concat:dev']
             },
             sass: {
                 files: ['Web/Theme/backend/scss/*.scss'],
