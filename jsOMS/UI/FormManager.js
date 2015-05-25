@@ -45,6 +45,7 @@
                 request.setType('ajax');
                 request.setUri(e.action);
                 request.setMethod(e.method);
+                request.setRequestHeader('Content-Type', 'application/json');
                 request.setSuccess(function (xhr) {
                     console.log(xhr); // TODO: remove this is for error checking
                     var o = JSON.parse(xhr.response),

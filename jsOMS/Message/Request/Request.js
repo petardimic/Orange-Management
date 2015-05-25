@@ -78,6 +78,7 @@
         };
 
         if (this.type === 'ajax') {
+            console.log(JSON.stringify(this.data));
             self.xhr.send(JSON.stringify(this.data));
         }
     };

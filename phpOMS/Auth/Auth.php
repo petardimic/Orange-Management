@@ -110,15 +110,17 @@ class Auth implements \phpOMS\Config\OptionsInterface
                     $sth->bindValue(':login', $login, \PDO::PARAM_STR);
                     $sth->execute();
 
-                    $result = $sth->fetchAll()[0];
+                    $result = $sth->fetchAll();
                     break;
             }
 
             // TODO: check if user is allowed to login on THIS page (backend|frontend|etc...)
 
-            if($result === null) {
+            if(!isset($result[0])) {
                 return \phpOMS\Auth\LoginReturnType::WRONG_USERNAME;
             }
+
+            $result = $result[0];
 
             if($result['account_data_tries'] <= 0) {
                 return \phpOMS\Auth\LoginReturnType::WRONG_INPUT_EXCEEDED;
