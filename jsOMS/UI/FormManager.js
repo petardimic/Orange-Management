@@ -79,10 +79,12 @@
                             });
 
                         for (var k = 0; k < response.length; k++) {
-                            if (!self.success[e.id]) {
-                                self.responseManager.execute(response[k].type, response[k]);
-                            } else {
-                                self.success[e.id](response[k].type, response[k]);
+                            if(response[k] !== null) {
+                                if (!self.success[e.id]) {
+                                    self.responseManager.execute(response[k].type, response[k]);
+                                } else {
+                                    self.success[e.id](response[k].type, response[k]);
+                                }
                             }
                         }
                     });

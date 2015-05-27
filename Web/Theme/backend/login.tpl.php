@@ -6,17 +6,20 @@ $loginForm->setAction($this->request->getUri()->getScheme() . '://' . $this->req
 $loginForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
 $loginForm->setElement(0, 0, [
-    'type'    => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'text',
-    'name'    => 'user',
-    'label'   => $this->l11n->lang[0]['Username'],
+    'type'      => \phpOMS\Html\TagType::INPUT,
+    'subtype'   => 'text',
+    'name'      => 'user',
+    'tabindex'  => 0,
+    'autofocus' => true,
+    'label'     => $this->l11n->lang[0]['Username'],
 ]);
 
 $loginForm->setElement(1, 0, [
-    'type'    => \phpOMS\Html\TagType::INPUT,
-    'subtype' => 'password',
-    'name'    => 'pass',
-    'label'   => $this->l11n->lang[0]['Password'],
+    'type'     => \phpOMS\Html\TagType::INPUT,
+    'subtype'  => 'password',
+    'name'     => 'pass',
+    'tabindex' => 1,
+    'label'    => $this->l11n->lang[0]['Password'],
 ]);
 
 $head = $this->response->getHead();

@@ -17,9 +17,11 @@
             name="<?= $element['name']; ?>" id="n-<?= $element['name']; ?>"
             type="<?= $element['subtype']; ?>"
             value="<?= (isset($element['value']) ? $element['value'] : ''); ?>"
+            <?= (isset($element['tabindex']) ? ' tabindex="' . $element['tabindex'] . '"' : ''); ?>
             <?= (isset($element['placeholder']) ? ' placeholder="' . $element['placeholder'] . '"' : ''); ?>
             <?= (isset($element['validate']) ? ' data-validate="' . $element['validate'] . '"' : ''); ?>
             <?= (isset($element['active']) && !$element['active'] ? ' disabled' : '') ?>
+            <?= (isset($element['autofocus']) && $element['autofocus'] ? ' autofocus' : '') ?>
             <?= (isset($element['checked']) && $element['checked'] ? ' checked' : '') ?>>
         <?php if(isset($element['label']) && $element['subtype'] === 'checkbox'): ?>
             <label for="<?= $element['name']; ?>"><?= $element['label']; ?></label>

@@ -206,6 +206,55 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
                 break;
+            case \phpOMS\Message\RequestDestination::RAW:
+                if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
+                    $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
+                    $this->response->setHeader('Status', 'Status:406 Not acceptable');
+                    break;
+                }
+
+                $this->response->setHeader('Content-Type', 'text/html; charset=utf-8');
+
+                $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
+
+                if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
+                    $this->dbFailResponse($pageView);
+                    break;
+                }
+
+                $this->setupBasic();
+                $this->request->setAccount($this->user);
+
+                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
+                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
+                $pageView->setLocalization($this->user->getL11n());
+
+                $head    = $this->response->getHead();
+                $baseUri = $this->request->getUri()->getBase();
+
+                if($this->user->getId() < 1) {
+                    $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
+                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
+                    $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
+
+                    $pageView->setTemplate('/Web/Theme/backend/login');
+                    $this->response->add('GLOBAL', $pageView->render());
+                    break;
+                }
+
+                // TODO: mybe don't use DB and instead use uri for loads (if module exists load it -> no activity check which could be bad)
+                $toLoad = $this->moduleManager->getUriLoads($this->request);
+
+                if(isset($toLoad[4])) {
+                    foreach($toLoad[4] as $module) {
+                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                    }
+                }
+
+                $pageView->setTemplate('/Web/Theme/raw/index');
+                $this->response->add('GLOBAL', $pageView->render());
+                break;
             case \phpOMS\Message\RequestDestination::REPORTER:
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
                     $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');

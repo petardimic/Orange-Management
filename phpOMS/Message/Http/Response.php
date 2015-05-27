@@ -68,10 +68,12 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     /**
      * {@inheritdoc}
      */
-    public function setHeader($key, $header, $overwrite = true)
+    public function setHeader($key, $header, $overwrite = false)
     {
         if(!$overwrite && isset($this->header[$key])) {
             return false;
+        } elseif($overwrite) {
+            unset($this->header[$key]);
         }
 
         if(!isset($this->header[$key])) {
