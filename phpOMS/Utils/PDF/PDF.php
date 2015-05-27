@@ -1,5 +1,5 @@
 <?php
-namespace phpOMS\Utils\PDF;
+namespace phpOMS\Utils\Pdf;
 
 require_once __DIR__ . '\..\..\..\vendor\tecnick.com\tcpdf\tcpdf.php';
 
@@ -13,10 +13,17 @@ class PDF extends \TCPDF implements \phpOMS\Contract\RenderableInterface
 
     private $pageNumberStyle = null;
 
+    private $theme = null;
+
 // endregion
 
     public function __construct()
     {
+        parent::__construct();
+    }
+
+    public function setTheme() {
+
     }
 
     public function setCreator()
@@ -57,10 +64,12 @@ class PDF extends \TCPDF implements \phpOMS\Contract\RenderableInterface
 
     public function Header()
     {
+        $this->theme->setHeader($this);
     }
 
     public function Footer()
     {
+        $this->theme->setFooter($this);
     }
 
     public function render()
