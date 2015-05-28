@@ -76,14 +76,14 @@ foreach($cc as $d3 => $d2) {
 }
 
 // Dataframe
-$file = fopen(__DIR__ . '/' . $source . '_clients.csv', 'r');
+$file = fopen(__DIR__ . '/' . $source . '_clientsNOGIT.csv', 'r');
 while(($line = fgetcsv($file, 0, ';')) !== false) {
     $clients[$line[0]] = $line[1];
 }
 fclose($file);
 
 // Fibu
-$file = fopen(__DIR__ . '/' . $source . '_entries.csv', 'r');
+$file = fopen(__DIR__ . '/' . $source . '_entriesNOGIT.csv', 'r');
 while(($line = fgetcsv($file, 0, ',', '"')) !== false) {
     if(isset($accounts[$line[10]])) {
         $accounts[$line[10]] += (float) str_replace(['.', ','], ['', '.'], $line[4]);
@@ -108,7 +108,7 @@ while(($line = fgetcsv($file, 0, ',', '"')) !== false) {
 fclose($file);
 
 $sum_countries = array_sum($countries);
-$sum_accounts = array_sum($accounts)
+$sum_accounts = array_sum($accounts);
 ?>
 
     <div class="b b-1">
