@@ -18,7 +18,7 @@ $loginForm->setElement(1, 0, [
     'type'     => \phpOMS\Html\TagType::INPUT,
     'subtype'  => 'password',
     'name'     => 'pass',
-    'tabindex' => 1,
+    'tabindex' => 0,
     'label'    => $this->l11n->lang[0]['Password'],
 ]);
 ?>
