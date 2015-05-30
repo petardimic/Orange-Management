@@ -111,10 +111,8 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
             $this->uri->set($uri['uri']);
         }
 
-        $this->path = explode('/', $this->uri->getPath());
-        $this->lang = $this->path[0];
-
-        $this->requestDestination = $this->path[1];
+        $this->path               = explode('/', $this->uri->getPath());
+        $this->requestDestination = isset($this->path[1]) ? $this->path[1] : '';
         $this->lang               = $this->path[0];
         $this->hash               = [];
 
