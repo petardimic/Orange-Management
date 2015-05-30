@@ -99,6 +99,7 @@ while(($line = fgetcsv($file, 0, ',', '"')) !== false) {
                 $clients[$line[11]] = '???';
             } // DE Muss aber Ausland sein!
             $countries[$clients[$line[11]]] += $line[4] - $line[3];
+
             if($clients[$line[11]] == '???') {
                 $unknown[] = $line;
             }
@@ -116,7 +117,20 @@ fclose($file);
 
 $sum_countries = array_sum($countries);
 $sum_accounts  = array_sum($accounts);
-$sum_unknown   = 0;
+$sum_unknown   = 0.0;
+
+foreach($unknown as $key => $uk) {
+    foreach($unknown as $key2 => $uk2) {
+        if($key != $key2 && $uk2 !== false) {
+            if($uk[10] == $uk2[10] && $uk[4] == $uk2[3] && $uk[3] == $uk2[4]) {
+                $unknown[$key2] = false;
+                break;
+            }
+        }
+    }
+
+    $sum_unknown += $uk[4] - $uk[3];
+}
 ?>
 
 <div class="b b-1">
@@ -137,7 +151,7 @@ $sum_unknown   = 0;
                             <?php endforeach; ?>
                     </select>
                 <li><label
-                        for="i-areamanager"><?= $lang['Status']; ?></label>: <?= abs($sum_countries - $sum_accounts) < 0.01 ? 'OK' : 'NOK'; ?>
+                        for="i-areamanager"><?= $lang['Status']; ?></label>: <?= abs($sum_countries - $sum_accounts) < 0.01 && abs($sum_unknown - $countries['???']) < 0.01 ? 'OK' : 'NOK'; ?>
             </ul>
         </form>
     </div>
@@ -145,24 +159,18 @@ $sum_unknown   = 0;
 
 <div class="b b-3">
     <h1><?= $lang['Unassigned']; ?></h1>
-    <?php foreach($unknown as $key => $uk) {
-        foreach($unknown as $key2 => $uk2) {
-            if($key != $key2 && $uk2 !== false) {
-                if($uk[10] == $uk2[10] && $uk[4] == $uk2[3] && $uk[3] == $uk2[4]) {
-                    $unknown[$key2] = false;
-                    break;
-                }
-            }
-        }
-    } ?>
+
     <div class="bc-1">
         <table class="tc-1">
-            <?php foreach ($unknown as $key => $uk) : if ($uk !== false) : $sum_unknown += (float)$uk[4]-(float)$uk[3]; ?>
+            <?php foreach($unknown as $key => $uk) : if($uk !== false) : ?>
                 <tr>
-                    <th><?= $uk[10]; ?><td><?= number_format((float)$uk[4]-(float)$uk[3], 2, ',', '.'); ?><td><?= $uk[11]; ?><td><?= $uk[0]; ?>
+                    <th><?= $uk[10]; ?>
+                    <td><?= number_format((float) $uk[4] - (float) $uk[3], 2, ',', '.'); ?>
+                    <td><?= $uk[11]; ?>
+                    <td><?= $uk[0]; ?>
                 </tr>
-                    <?php endif;
-                    endforeach; ?>
+            <?php endif;
+            endforeach; ?>
             <tr>
                 <th><?= $lang['Sum']; ?>
                 <td colspan="3"><strong><?= number_format($sum_unknown, 2, ',', '.'); ?></strong>
