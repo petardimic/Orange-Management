@@ -8,5 +8,6 @@ $reportLanguage = [
         'Select'         => 'Select',
         'Status'         => 'Status',
         'Sum'            => 'Sum',
+        'Unassigned'     => 'Unassigned',
     ]
 ];
