@@ -210,8 +210,8 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     public function pushHeader()
     {
         foreach($this->header as $name => $arr) {
-            foreach($name as $ele => $value) {
-                header($name, $value);
+            foreach($arr as $ele => $value) {
+                header($name . ': ' . $value);
             }
         }
     }

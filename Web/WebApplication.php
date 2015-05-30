@@ -325,6 +325,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->response->add('GLOBAL', $pageView->render());
         }
 
+        $this->response->pushHeader();
         echo $this->response->render();
     }
 

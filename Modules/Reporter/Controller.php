@@ -87,7 +87,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showContentReporter($request, $response);
                 break;
             case \phpOMS\Message\RequestDestination::RAW:
-                $this->showContentReporter($request, $response);
+                $this->showRaw($request, $response);
                 break;
         }
     }
@@ -223,27 +223,21 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     {
         switch($request->getPath(3)) {
             case 'export':
+                switch($request->getData('type')) {
+                    case 'pdf':
+                        $response->setHeader('Content-Type', 'application/pdf', true);
+                        break;
+                    case 'csv':
+                        $response->setHeader('Content-Type', 'text/plain', true);
+                        break;
+                    case 'json':
+                        $response->setHeader('Content-Type', 'application/json', true);
+                        break;
+                }
+
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
-                $pdfView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.pdf');
+                $pdfView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.' . $request->getData('type'));
                 echo $pdfView->render();
-                break;
-        }
-    }
-
-    /**
-     * Shows api content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showRawExport($request, $response)
-    {
-        switch($request->getPath(4)) {
-            case 'pdf':
-
                 break;
         }
     }
