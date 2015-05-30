@@ -56,6 +56,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     protected static $dependencies = [
     ];
+
 // endregion
 
     /**
@@ -233,6 +234,12 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     case 'json':
                         $response->setHeader('Content-Type', 'application/json', true);
                         break;
+                }
+
+                if($request->getData('download') !== null) {
+                    $response->setHeader('Content-Type', 'application/octet-stream', true);
+                    $response->setHeader('Content-Transfer-Encoding', 'Binary', true);
+                    $response->setHeader('Content-disposition', 'attachment; filename="' . $request->getData('id') . '.' . $request->getData('type') . '"', true);
                 }
 
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
