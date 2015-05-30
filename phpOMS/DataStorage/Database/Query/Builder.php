@@ -6,6 +6,7 @@ class Builder
 {
 
 // region Class Fields
+
     public $columns  = [];
 
     public $distinct = false;

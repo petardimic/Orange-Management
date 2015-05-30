@@ -1,7 +1,7 @@
 <?php
 $loginForm = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$loginForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
+$loginForm->setSubmit('submit1', $this->l11n->lang[0]['Login']);
 $loginForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->l11n->getLanguage() . '/api/login.php');
 $loginForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
@@ -51,6 +51,14 @@ $head = $this->response->getHead();
             padding: 0;
         }
 
+        li {
+            list-style-type: none;
+        }
+
+        input {
+            margin-bottom: 5px;
+        }
+
         .floater {
             float: left;
             height: 50%;
@@ -63,7 +71,7 @@ $head = $this->response->getHead();
             position: static;
             clear: left;
             height: 230px;
-            width: 600px;
+            width: 270px;
             margin: 0 auto;
         }
 

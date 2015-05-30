@@ -1,7 +1,7 @@
 <?php
 $loginForm = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
 $loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
-$loginForm->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
+$loginForm->setSubmit('submit1', $this->l11n->lang[0]['Login']);
 $loginForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->l11n->getLanguage() . '/api/login.php');
 $loginForm->setMethod(\phpOMS\Message\RequestMethod::POST);
 
@@ -21,14 +21,21 @@ $loginForm->setElement(1, 0, [
     'tabindex' => 0,
     'label'    => $this->l11n->lang[0]['Password'],
 ]);
+
+$head = $this->response->getHead();
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <?= $head->getMeta()->render(); ?>
+    <title><?= $a = $head->getTitle(); ?></title>
+    <?= $head->renderAssets(); ?>
+    <style>
+        <?= $head->renderStyle(); ?>
+    </style>
+    <script>
+        <?= $head->renderScript(); ?>
+    </script>
     <style type="text/css">
         html, body {
             height: 100%;
@@ -44,6 +51,14 @@ $loginForm->setElement(1, 0, [
             padding: 0;
         }
 
+        li {
+            list-style-type: none;
+        }
+
+        input {
+            margin-bottom: 5px;
+        }
+
         .floater {
             float: left;
             height: 50%;
@@ -56,7 +71,7 @@ $loginForm->setElement(1, 0, [
             position: static;
             clear: left;
             height: 230px;
-            width: 600px;
+            width: 270px;
             margin: 0 auto;
         }
 
