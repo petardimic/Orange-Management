@@ -93,7 +93,7 @@ $y = $pdf->getY();
 
 $css_table_basic = '
     <style>
-        table {
+        .table {
             border: 1px solid #000;
         }
 
@@ -117,12 +117,14 @@ $css_table_basic = '
 
         .side {
             background-color: #f0f0f0;
+            text-align: left;
         }
     </style>
 ';
 
 $html = $css_table_basic . '
-    <table cellpadding="1" cellspacing="1" width="48%">
+    <table><tr><td width="50%">
+    <table class="table" cellpadding="1" cellspacing="1" width="100%">
         <thead>
         <tr class="first">
             <th colspan="4">' . $lang['ClientRating'] . '</th>
@@ -167,18 +169,8 @@ $html = $css_table_basic . '
         </tr>
         </tbody>
     </table>
-';
-
-$pdf->writeHTML($html, true, false, false, false, '');
-
-$y2 = $pdf->getY();
-$x2 = $pdf->getX();
-
-$pdf->setY($y);
-$pdf->setX(105);
-
-$html = $css_table_basic . '
-    <table cellpadding="1" cellspacing="1" width="100%">
+    </td><td width="50%">
+    <table class="table" cellpadding="1" cellspacing="1" width="100%">
         <thead>
         <tr class="first">
             <th colspan="3">' . $lang['ClientMovement'] . '</th>
@@ -193,30 +185,31 @@ $html = $css_table_basic . '
         <tr>
             <th class="side">' . $lang['NewClients'] . '</th>
             <td>' . $movement['new']['value'] . '</td>
-            <td>' . number_format($movement['new']['sales'], 0, '.', ',') . '</td>
+            <td>' . number_format($movement['new']['sales'], 2, ',', '.') . '</td>
         </tr>
         <tr>
             <th class="side">' . $lang['LostClients'] . '</th>
             <td>' . $movement['lost']['value'] . '</td>
-            <td>' . number_format($movement['lost']['sales'], 0, '.', ',') . '</td>
+            <td>' . number_format($movement['lost']['sales'], 2, ',', '.') . '</td>
         </tr>
         <tr>
             <th class="side">' . $lang['NotVisited'] . '</th>
             <td>' . $movement['notvisited']['value'] . '</td>
-            <td>' . number_format($movement['notvisited']['sales'], 0, '.', ',') . '</td>
+            <td>' . number_format($movement['notvisited']['sales'], 2, ',', '.') . '</td>
         </tr>
         <tr>
             <th class="side">' . $lang['Visited'] . '</th>
             <td>' . $movement['visited']['value'] . '</td>
-            <td>' . number_format($movement['visited']['sales'], 0, '.', ',') . '</td>
+            <td>' . number_format($movement['visited']['sales'], 2, ',', '.') . '</td>
         </tr>
         <tr>
             <th class="side">' . $lang['VisitedLost'] . '</th>
             <td>' . $movement['visitedlost']['value'] . '</td>
-            <td>' . number_format($movement['visitedlost']['sales'], 0, '.', ',') . '</td>
+            <td>' . number_format($movement['visitedlost']['sales'], 2, ',', '.') . '</td>
         </tr>
         </tbody>
     </table>
+    </td></tr></table>
 ';
 
 $pdf->writeHTML($html, true, false, false, false, '');
