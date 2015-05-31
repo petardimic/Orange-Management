@@ -242,7 +242,10 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     $response->setHeader('Content-disposition', 'attachment; filename="' . $request->getData('id') . '.' . $request->getData('type') . '"', true);
                 }
 
+                include_once __DIR__ . '/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.lang.php';
+
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $pdfView->addData('lang', $reportLanguage[$this->app->user->getL11n()->getLanguage()]);
                 $pdfView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.' . $request->getData('type'));
                 echo $pdfView->render();
                 break;
