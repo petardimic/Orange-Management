@@ -10,6 +10,8 @@ class Redirect implements \phpOMS\Contract\RenderableInterface, \phpOMS\Contract
 
     private $delay = 0;
 
+    private $new = false;
+
     public function setDelay($delay)
     {
         $this->delay = $delay;
@@ -17,7 +19,7 @@ class Redirect implements \phpOMS\Contract\RenderableInterface, \phpOMS\Contract
 
     public function toArray()
     {
-        return ['type' => self::TYPE, 'time' => $this->delay, 'uri' => $this->uri];
+        return ['type' => self::TYPE, 'time' => $this->delay, 'uri' => $this->uri, 'new' => $this->new];
     }
 
     public function setUri($uri)

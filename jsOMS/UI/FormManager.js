@@ -128,5 +128,30 @@
                 };
             }
         }
+
+        /** Handle button */
+        for (var i = 0; i < buttons.length; i++) {
+            /** Redirect in new window on click */
+            if (typeof buttons[i].dataset.ropen !== 'undefined' || typeof buttons[i].dataset.redirect !== 'undefined') {
+                buttons[i].addEventListener('click', function (event) {
+                    // URI + /{#lang}/raw/reporter/export.php?id=AreaManager&source=21&type={#type}
+                    var ropen = typeof buttons[i].dataset.ropen !== 'undefined' ? this.dataset.ropen : this.dataset.redirect,
+                        matches = ropen.match(new RegExp("\{[a-zA-Z0-9]*\}", "gi")),
+                        value = null;
+
+                    for(var j = 0; j < matches.length; j++) {
+                        value = document.getElementById(matches[j].substring(1, matches[j].length-1)).value;
+                        ropen = ropen.replace(matches[j], value);
+                    }
+                });
+
+                if(typeof buttons[i].dataset.ropen !== 'undefined') {
+                    var win = window.open(ropen, '_blank');
+                    win.focus();
+                } else {
+                    window.document.href = ropen;
+                }
+            }
+        }
     }
 }(window.jsOMS = window.jsOMS || {}));
