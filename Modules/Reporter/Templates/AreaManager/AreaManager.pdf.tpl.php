@@ -93,7 +93,7 @@ $y = $pdf->getY();
 
 $css_table_basic = '
     <style>
-        .table {
+        table {
             border: 1px solid #000;
         }
 
@@ -117,14 +117,12 @@ $css_table_basic = '
 
         .side {
             background-color: #f0f0f0;
-            text-align: left;
         }
     </style>
 ';
 
 $html = $css_table_basic . '
-    <table><tr><td width="50%">
-    <table class="table" cellpadding="1" cellspacing="1" width="100%">
+    <table cellpadding="1" cellspacing="1" width="48%">
         <thead>
         <tr class="first">
             <th colspan="4">' . $lang['ClientRating'] . '</th>
@@ -169,8 +167,18 @@ $html = $css_table_basic . '
         </tr>
         </tbody>
     </table>
-    </td><td width="50%">
-    <table class="table" cellpadding="1" cellspacing="1" width="100%">
+';
+
+$pdf->writeHTML($html, true, false, false, false, '');
+
+$y2 = $pdf->getY();
+$x2 = $pdf->getX();
+
+$pdf->setY($y);
+$pdf->setX($pdf->getPageWidth()*0.48+3);
+
+$html = $css_table_basic . '
+    <table cellpadding="1" cellspacing="1" width="100%">
         <thead>
         <tr class="first">
             <th colspan="3">' . $lang['ClientMovement'] . '</th>
@@ -209,7 +217,6 @@ $html = $css_table_basic . '
         </tr>
         </tbody>
     </table>
-    </td></tr></table>
 ';
 
 $pdf->writeHTML($html, true, false, false, false, '');
