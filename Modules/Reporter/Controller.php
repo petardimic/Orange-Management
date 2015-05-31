@@ -231,9 +231,14 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     case 'csv':
                         $response->setHeader('Content-Type', 'text/plain', true);
                         break;
+                    case 'xlsx':
+                        $response->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', true);
+                        break;
                     case 'json':
                         $response->setHeader('Content-Type', 'application/json', true);
                         break;
+                    default:
+                        // TODO handle bad request
                 }
 
                 if($request->getData('download') !== null) {
