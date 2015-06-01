@@ -60,7 +60,7 @@ $cc = [
     'SVN' => 'SI', 'CZE' => 'CZ', 'SVK' => 'SK', 'LIE' => 'LI', 'MKD' => 'MK', 'BIH' => 'BA',
     'LUX' => 'LU', 'MNE' => 'ME', 'JPN' => 'JP', 'CAN' => 'CA', 'USA' => 'US', 'MEX' => 'MX',
     'GTM' => 'GT', 'PRI' => 'PR',
-    'AAA' => '???'
+    'AAA' => '???', 'Misc' => 'Misc'
 ];
 
 $clients   = [];
@@ -98,7 +98,12 @@ while(($line = fgetcsv($file, 0, ',', '"')) !== false) {
             if($clients[$line[11]] == 'DE') {
                 $clients[$line[11]] = '???';
             } // DE Muss aber Ausland sein!
-            $countries[$clients[$line[11]]] += $line[4] - $line[3];
+
+            if(isset($countries[$clients[$line[11]]])) {
+                $countries[$clients[$line[11]]] += $line[4] - $line[3];
+            } else {
+                $countries['Misc'] = $line[4] - $line[3];
+            }
 
             if($clients[$line[11]] == '???') {
                 $unknown[] = $line;
