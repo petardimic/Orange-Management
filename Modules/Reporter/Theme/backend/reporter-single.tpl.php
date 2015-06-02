@@ -8,6 +8,43 @@ include_once __DIR__ . '/../../Templates/' . $this->getData('name') . '/' . $thi
 
 $this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLanguage()]);
 
+$formExport = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$formExport->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formExport->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
+$formExport->setMethod(\phpOMS\Message\RequestMethod::POST);
+
+$formExport->setElement(0, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 'en', 'content' => 'English'],
+    ],
+    'selected' => 'en',
+    'label'    => $this->l11n->lang[27]['Language'],
+    'name'     => 'lang'
+]);
+
+$formExport->setElement(1, 0, [
+    'type'     => \phpOMS\Html\TagType::SELECT,
+    'options'  => [
+        ['value' => 'pdf', 'content' => 'PDF'],
+        ['value' => 'csv', 'content' => 'CSV'],
+        ['value' => 'json', 'content' => 'JSON'],
+        ['value' => 'xlsx', 'content' => 'Excel'],
+    ],
+    'selected' => '',
+    'label'    => $this->l11n->lang[27]['Type'],
+    'name'     => 'type'
+]);
+
+$formExport->setElement(2, 0, [
+    'type'  => \phpOMS\Html\TagType::BUTTON,
+    'label' => $this->l11n->lang[27]['Export'],
+    'name'  => 'export',
+    'data'  => [
+        'ropen' => '/{#lang}/raw/reporter/export.php?id={?id}&type={#type}'
+    ]
+]);
+
 /*
  * Navigation
  */
@@ -23,7 +60,9 @@ $nav->setParent(1002701001);
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <ul class="l-1">
-                <li><a href="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'reporter', 'edit'], ['id' => $this->getData('name')]); ?>" class="button"><?= $this->l11n->lang[27]['Edit']; ?></a>
+                <li><a href="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'reporter',
+                                                                'edit'], ['id' => $this->getData('name')]); ?>"
+                       class="button"><?= $this->l11n->lang[27]['Edit']; ?></a>
             </ul>
         </div>
     </div>
@@ -41,22 +80,7 @@ $nav->setParent(1002701001);
 
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
-            <ul class="l-1">
-                <li><select>
-                        <!-- TODO: select language based on user language if language exists! -->
-                        <?php foreach ($reportLanguage as $key => $language): ?>
-                        <option value="<?= $key; ?>"><?= $language[':language']; ?>
-                            <?php endforeach; ?>
-                    </select>
-                <li><select>
-                        <option value="0" selected>PDF
-                        <option value="1">Excel
-                        <option value="2">CSV
-                        <option value="2">JSON
-                    </select>
-                <li>
-                    <button><?= $this->l11n->lang[27]['Export']; ?></button
-            </ul>
+            <?= $formExport->render(); ?>
         </div>
     </div>
 

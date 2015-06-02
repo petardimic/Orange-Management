@@ -134,23 +134,32 @@
             /** Redirect in new window on click */
             if (typeof buttons[i].dataset.ropen !== 'undefined' || typeof buttons[i].dataset.redirect !== 'undefined') {
                 buttons[i].addEventListener('click', function (event) {
-                    // URI + /{#lang}/raw/reporter/export.php?id=AreaManager&source=21&type={#type}
-                    var ropen = typeof buttons[i].dataset.ropen !== 'undefined' ? this.dataset.ropen : this.dataset.redirect,
-                        matches = ropen.match(new RegExp("\{[a-zA-Z0-9]*\}", "gi")),
+                    var ropen = typeof this.dataset.ropen !== 'undefined' ? this.dataset.ropen : this.dataset.redirect,
+                        matches = ropen.match(new RegExp("\{[#\?\.a-zA-Z0-9]*\}", "gi")),
+                        current = jsOMS.parse_url(window.location.href),
                         value = null;
 
                     for(var j = 0; j < matches.length; j++) {
-                        value = document.getElementById(matches[j].substring(1, matches[j].length-1)).value;
+                        var match = matches[j].substring(1, matches[j].length-1);
+                        if(match.indexOf('#') === 0) {
+                            value = document.getElementById('n-' + match.substring(1, match.length)).value;
+                        } else if(match.indexOf('.') === 0) {
+
+                        } else if(match.indexOf('?') === 0) {
+                            value = jsOMS.getUriQueryParameter(current.query, match.substring(1, match.length));
+                        }
+
                         ropen = ropen.replace(matches[j], value);
+                    }
+
+                    if(typeof this.dataset.ropen !== 'undefined') {
+                        var win = window.open(ropen, '_blank');
+                        win.focus();
+                    } else {
+                        window.document.href = ropen;
                     }
                 });
 
-                if(typeof buttons[i].dataset.ropen !== 'undefined') {
-                    var win = window.open(ropen, '_blank');
-                    win.focus();
-                } else {
-                    window.document.href = ropen;
-                }
             }
         }
     }

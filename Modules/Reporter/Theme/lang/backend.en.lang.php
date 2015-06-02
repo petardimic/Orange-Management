@@ -9,6 +9,7 @@ $MODLANG[27] = [
     "Export"         => "Export",
     "Edit"           => "Edit",
     "Info"           => "Info",
+    "Language"       => "Language",
     "Media"          => "Media",
     "MediaDirectory" => "Media Directory",
     "Name"           => "Name",

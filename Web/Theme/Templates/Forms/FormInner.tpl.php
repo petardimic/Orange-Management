@@ -30,7 +30,7 @@
             <i class="bt-1 b-3 vh"><?= $element['info']; ?></i>
         <?php endif; ?>
         <?php elseif($element['type'] === \phpOMS\Html\TagType::BUTTON): ?>
-            <button><?= $element['content']; ?></button>
+            <button type="button"<?php if(isset($element['data'])) { foreach($element['data'] as $key => $data) { echo ' data-' . $key . '=' . $data; } } ?>><?= $element['label']; ?></button>
         <?php elseif ($element['type'] === \phpOMS\Html\TagType::TEXTAREA): ?>
         <?php if (isset($element['label'])): ?>
     <li><label for="n-<?= $element['name']; ?>"><?= $element['label']; ?></label>
