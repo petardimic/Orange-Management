@@ -32,6 +32,7 @@
         );
     };
 
+    // TODO move this to Uri model as static method
     jsOMS.parse_url = function(str, component) {
         var query, key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port',
                 'relative', 'path', 'directory', 'file', 'query', 'fragment'
@@ -74,6 +75,7 @@
         return uri;
     };
 
+    // TODO move this to Uri model as static method
     jsOMS.getUriQueryParameter = function(query, name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]*" + name + "=([^&#]*)"),

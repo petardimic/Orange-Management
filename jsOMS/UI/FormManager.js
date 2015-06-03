@@ -139,6 +139,8 @@
                         current = jsOMS.parse_url(window.location.href),
                         value = null;
 
+                    // TODO: find a way to use existing query parameters as well and just overwrite them if defined differently here
+                    // eg. use &? in dummy urls to indicate that the url should use existing query parameters as well if not overwritten
                     for(var j = 0; j < matches.length; j++) {
                         var match = matches[j].substring(1, matches[j].length-1);
                         if(match.indexOf('#') === 0) {
