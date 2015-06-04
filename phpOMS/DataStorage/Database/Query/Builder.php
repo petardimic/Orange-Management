@@ -84,32 +84,56 @@ class Builder
         $this->grammar    = $grammar;
     }
 
+    public function newQuery()
+    {
+        return new static($this->connection, $this->grammar);
+    }
+
     public function select($columns = ['*'], $table = null, $alias = null)
     {
         $this->type = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
 
-        /* TODO: maybe handle alias seperatly as paramater as indicated here */
-        $this->columns = $columns;
-
         if(isset($table)) {
-            $this->table = $table;
+            $this->columns[$table] = $columns;
+        } else {
+            $this->columns += $columns;
         }
 
         return $this;
     }
 
-    public function selectRaw()
+    public function selectRaw($expression)
     {
+        $this->addSelect($expression);
+
+        return $this;
     }
 
-    public function selectSub()
+    public function selectSub($query, $as)
     {
+        if($query instanceof \Closure) {
+            $callback = $query;
+
+            $callback($query = $this->newQuery());
+        }
+
+        if($query instanceof self) {
+            $query = $query->toSql();
+        } elseif(is_string($query)) {
+        } else {
+            // todo: handle error
+        }
+
+        return $this->selectRaw(['(' . $query . ') as ' . $as]);
     }
 
     public function addSelect($columns = ['*'], $table = null, $alias = null)
     {
-        $this->columns = array_merge($this->columns, $columns);
-        $this->table   = array_merge($this->table, $table);
+        if(isset($table)) {
+            $this->columns[$table] = $columns;
+        } else {
+            $this->columns += $columns;
+        }
     }
 
     public function distinct()
@@ -121,12 +145,12 @@ class Builder
 
     public function from($table)
     {
-        $this->from = $table;
+        $this->from += $table;
 
         return $this;
     }
 
-    public function orWhere($column, $operator = null, $value = null, $boolean = 'and')
+    public function orWhere($column, $operator = null, $value = null)
     {
         return $this->where($column, $operator, $value, 'or');
     }
