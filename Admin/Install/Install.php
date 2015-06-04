@@ -68,87 +68,83 @@ class Install
                 /* Create group relations table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'group_relations` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `group` int(11) DEFAULT NULL,
-                            `parent` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `group` (`group`)
+                            `group_relations_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `group_relations_group` int(11) DEFAULT NULL,
+                            `group_relations_parent` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`group_relations_id`),
+                            KEY `group_relations_group` (`group_relations_group`)
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'group_relations`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_relations_ibfk_1` FOREIGN KEY (`group_relations_group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
                 )->execute();
 
                 /* Create group permission table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'group_permission` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `permission` int(11) NOT NULL,
-                            `group` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `group` (`group`)
+                            `group_permission_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `group_permission_permission` int(11) NOT NULL,
+                            `group_permission_group` int(11) NOT NULL,
+                            PRIMARY KEY (`group_permission_id`),
+                            KEY `group_permission_group` (`group_permission_group`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'group_permission`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_permission_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'group_permission_ibfk_1` FOREIGN KEY (`group_permission_group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
                 )->execute();
 
                 /* Create ips table
                    This gets used in order to prevent unauthorized access for user group. */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'ips` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `begin` bigint(20) NOT NULL,
-                            `end` bigint(20) NOT NULL,
-                            `group` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `group` (`group`)
+                            `ips_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `ips_begin` bigint(20) NOT NULL,
+                            `ips_end` bigint(20) NOT NULL,
+                            `ips_group` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`ips_id`),
+                            KEY `ips_group` (`ips_group`)
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'ips`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'ips_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'ips_ibfk_1` FOREIGN KEY (`ips_group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
                 )->execute();
 
                 /* Create module table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'module` (
-                            `id` int(11) NOT NULL,
-                            `name` varchar(100) NOT NULL,
-                            `theme` varchar(100) DEFAULT NULL,
-                            `path` varchar(50) NOT NULL,
-                            `class` varchar(30) DEFAULT NULL,
-                            `active` tinyint(1) NOT NULL DEFAULT 1,
-                            `version` varchar(10) DEFAULT NULL,
-                            `lang` tinyint(1) DEFAULT NULL,
-                            `js` tinyint(1) DEFAULT NULL,
-                            `css` tinyint(1) DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+                            `module_id` int(11) NOT NULL,
+                            `module_name` varchar(100) NOT NULL,
+                            `module_theme` varchar(100) DEFAULT NULL,
+                            `module_path` varchar(50) NOT NULL,
+                            `module_active` tinyint(1) NOT NULL DEFAULT 1,
+                            `module_version` varchar(10) DEFAULT NULL,
+                            PRIMARY KEY (`module_id`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
                 )->execute();
 
                 /* Create module load table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'module_load` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `pid` varchar(40) NOT NULL,
-                            `type` tinyint(1) NOT NULL,
-                            `from` int(11) DEFAULT NULL,
-                            `for` int(11) DEFAULT NULL,
-                            `file` varchar(30) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `from` (`from`)
+                            `module_load_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `module_load_pid` varchar(40) NOT NULL,
+                            `module_load_type` tinyint(1) NOT NULL,
+                            `module_load_from` int(11) DEFAULT NULL,
+                            `module_load_for` int(11) DEFAULT NULL,
+                            `module_load_file` varchar(30) NOT NULL,
+                            PRIMARY KEY (`module_load_id`),
+                            KEY `module_load_from` (`module_load_from`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'module_load`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'module_load_ibfk_1` FOREIGN KEY (`from`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'module_load_ibfk_1` FOREIGN KEY (`module_load_from`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`module_id`);'
                 )->execute();
 
                 /* Create account table */
@@ -188,57 +184,57 @@ class Install
                 /* Create account group table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account_group` (
-                            `id` bigint(20) NOT NULL AUTO_INCREMENT,
-                            `group` int(11) NOT NULL,
-                            `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `group` (`group`),
-                            KEY `account` (`account`)
+                            `account_group_id` bigint(20) NOT NULL AUTO_INCREMENT,
+                            `account_group_group` int(11) NOT NULL,
+                            `account_group_account` int(11) NOT NULL,
+                            PRIMARY KEY (`account_group_id`),
+                            KEY `account_group_group` (`account_group_group`),
+                            KEY `account_group_account` (`account_group_account`)
                         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'account_group`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_1` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`),
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_2` FOREIGN KEY (`account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_1` FOREIGN KEY (`account_group_group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`),
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_group_ibfk_2` FOREIGN KEY (`account_group_account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 /* Create account settings table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'account_settings` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `name` varchar(30) NOT NULL,
-                            `content` varchar(250) NOT NULL,
-                            `account` int(11) NOT NULL,
-                            PRIMARY KEY (`id`),
-                            UNIQUE KEY `name` (`name`),
-                            KEY `account` (`account`)
+                            `account_settings_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `account_settings_name` varchar(30) NOT NULL,
+                            `account_settings_content` varchar(250) NOT NULL,
+                            `account_settings_account` int(11) NOT NULL,
+                            PRIMARY KEY (`account_settings_id`),
+                            UNIQUE KEY `account_settings_name` (`account_settings_name`),
+                            KEY `account_settings_account` (`account_settings_account`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'account_settings`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_settings_ibfk_1` FOREIGN KEY (`account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'account_settings_ibfk_1` FOREIGN KEY (`account_settings_account`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'account` (`account_id`);'
                 )->execute();
 
                 /* Create settings table */
                 $this->dbPool->get('core')->con->prepare(
                     'CREATE TABLE if NOT EXISTS `' . $this->dbPool->get('core')->prefix . 'settings` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            `module` int(11) DEFAULT NULL,
-                            `name` varchar(100) NOT NULL,
-                            `content` varchar(255) NOT NULL,
-                            `group` int(11) DEFAULT NULL,
-                            PRIMARY KEY (`id`),
-                            KEY `module` (`module`),
-                            KEY `group` (`group`)
+                            `settings_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `settings_module` int(11) DEFAULT NULL,
+                            `settings_name` varchar(100) NOT NULL,
+                            `settings_content` varchar(255) NOT NULL,
+                            `settings_group` int(11) DEFAULT NULL,
+                            PRIMARY KEY (`settings_id`),
+                            KEY `settings_module` (`settings_module`),
+                            KEY `settings_group` (`settings_group`)
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
                     'ALTER TABLE `' . $this->dbPool->get('core')->prefix . 'settings`
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_1` FOREIGN KEY (`module`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`id`),
-                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_2` FOREIGN KEY (`group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_1` FOREIGN KEY (`settings_module`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'module` (`module_id`),
+                            ADD CONSTRAINT `' . $this->dbPool->get('core')->prefix . 'settings_ibfk_2` FOREIGN KEY (`settings_group`) REFERENCES `' . $this->dbPool->get('core')->prefix . 'group` (`group_id`);'
                 )->execute();
 
                 $this->dbPool->get('core')->con->commit();
@@ -315,7 +311,7 @@ class Install
                 )->execute();
 
                 $this->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account_group` (`id`, `group`, `account`) VALUES
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'account_group` (`account_group_id`, `account_group_group`, `account_group_account`) VALUES
                             (1, 1000101000, 1),
                             (2, 1000104000, 1);'
                 )->execute();
@@ -338,7 +334,7 @@ class Install
                 $this->dbPool->get('core')->con->beginTransaction();
 
                 $this->dbPool->get('core')->con->prepare(
-                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'settings` (`id`, `module`, `name`, `content`, `group`) VALUES
+                    'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'settings` (`settings_id`, `settings_module`, `settings_name`, `settings_content`, `settings_group`) VALUES
                             (1000000001, NULL, \'username_length_max\', \'20\', NULL),
                             (1000000002, NULL, \'username_length_min\', \'5\', NULL),
                             (1000000003, NULL, \'password_length_max\', \'50\', NULL),

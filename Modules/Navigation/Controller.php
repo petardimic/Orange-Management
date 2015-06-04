@@ -104,6 +104,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
 // endregion
 
+// TODO: implement dynamic urls /{/lang}/{/type}/media/list.php?sample={?sample}{.query}
+
     /**
      * Constructor
      *
@@ -120,7 +122,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         $language = $this->app->user->getL11n()->getLanguage();
 
         foreach($modules as $id => $module) {
-            $this->app->user->getL11n()->loadLanguage($language, 'nav.backend', $module[0]['class']);
+            $this->app->user->getL11n()->loadLanguage($language, 'nav.backend', $module[0]['module_path']);
         }
 
         if(!$this->nav) {
@@ -162,19 +164,19 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($data[0]) {
             case \Modules\Navigation\Models\NavigationType::TOP:
                 /** @noinspection PhpIncludeInspection */
-                require __DIR__ . '/Theme/' . $this->app->request->getType() . '/top.tpl.php';
+                require __DIR__ . '/Theme/' . $request->getType() . '/top.tpl.php';
                 break;
             case \Modules\Navigation\Models\NavigationType::SIDE:
                 /** @noinspection PhpIncludeInspection */
-                require __DIR__ . '/Theme/' . $this->app->request->getType() . '/side.tpl.php';
+                require __DIR__ . '/Theme/' . $request->getType() . '/side.tpl.php';
                 break;
             case \Modules\Navigation\Models\NavigationType::CONTENT:
                 /** @noinspection PhpIncludeInspection */
-                require __DIR__ . '/Theme/' . $this->app->request->getType() . '/mid.tpl.php';
+                require __DIR__ . '/Theme/' . $request->getType() . '/mid.tpl.php';
                 break;
             case \Modules\Navigation\Models\NavigationType::CONTENT_SIDE:
                 /** @noinspection PhpIncludeInspection */
-                require __DIR__ . '/Theme/' . $this->app->request->getType() . '/mid-side.tpl.php';
+                require __DIR__ . '/Theme/' . $request->getType() . '/mid-side.tpl.php';
                 break;
         }
     }

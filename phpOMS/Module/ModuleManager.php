@@ -114,11 +114,11 @@ class ModuleManager
                     /* TODO: make join in order to see if they are active */
                     $sth = $this->dbPool->get('core')->con->prepare(
                         'SELECT
-                        `' . $this->dbPool->get('core')->prefix . 'module_load`.`type`, `' . $this->dbPool->get('core')->prefix . 'module_load`.*
+                        `' . $this->dbPool->get('core')->prefix . 'module_load`.`module_load_type`, `' . $this->dbPool->get('core')->prefix . 'module_load`.*
                         FROM
                         `' . $this->dbPool->get('core')->prefix . 'module_load`
                         WHERE
-                        `pid` IN(' . $uri_pdo . ')'
+                        `module_load_pid` IN(' . $uri_pdo . ')'
                     );
 
                     $i = 1;
@@ -161,7 +161,7 @@ class ModuleManager
         if($this->active === null) {
             switch($this->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module` WHERE `active` = 1');
+                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_path`,`module_theme`,`module_version`,`module_id` FROM `' . $this->dbPool->get('core')->prefix . 'module` WHERE `module_active` = 1');
                     $sth->execute();
                     $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -230,18 +230,34 @@ class ModuleManager
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                     $this->dbPool->get('core')->con->beginTransaction();
 
-                    // TODO: fix this!!! EASY!
-                    $this->dbPool->get('core')->con->prepare(
-                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module` (`id`, `name`, `theme`, `path`, `class`, `active`, `version`, `lang`, `js`, `css`) VALUES
-                                (' . $info['name']['internal'] . ',  \'' . $info['name']['external'] . '\', \'' . $info['theme']['name'] . '\', \'' . $info['theme']['path'] . '\', \'' . $info['directory'] . '\', 1, \'' . $info['version'] . '\', ' . (int) $info['lang'] . ', ' . (int) $info['js'] . ', ' . (int) $info['css'] . ');'
-                    )->execute();
+                    $sth = $this->dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module` (`module_id`, `module_name`, `module_theme`, `module_path`, `module_active`, `module_version`) VALUES
+                                (:internal,  :external, :theme, :path, :active, :version);'
+                    );
+
+                    $sth->bindValue(':internal', $info['name']['internal'], \PDO::PARAM_INT);
+                    $sth->bindValue(':external', $info['name']['external'], \PDO::PARAM_STR);
+                    $sth->bindValue(':theme', 'Default', \PDO::PARAM_STR);
+                    $sth->bindValue(':path', $info['directory'], \PDO::PARAM_STR);
+                    $sth->bindValue(':active', 1, \PDO::PARAM_INT);
+                    $sth->bindValue(':version', $info['version'], \PDO::PARAM_STR);
+
+                    $sth->execute();
+
+                    $sth = $this->dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module_load` (`module_load_pid`, `module_load_type`, `module_load_from`, `module_load_for`, `module_load_file`) VALUES
+                                        (:pid, :type, :from, :for, :file);'
+                    );
 
                     foreach($info['load'] as $val) {
                         foreach($val['pid'] as $pid) {
-                            $this->dbPool->get('core')->con->prepare(
-                                'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module_load` (`pid`, `type`, `from`, `for`, `file`) VALUES
-                                        (\'' . $pid . '\', ' . $val['type'] . ', ' . $val['from'] . ', ' . $val['for'] . ', \'' . $val['file'] . '\');'
-                            )->execute();
+                            $sth->bindValue(':pid', $pid, \PDO::PARAM_STR);
+                            $sth->bindValue(':type', $val['type'], \PDO::PARAM_INT);
+                            $sth->bindValue(':from', $val['from'], \PDO::PARAM_INT);
+                            $sth->bindValue(':for', $val['for'], \PDO::PARAM_INT);
+                            $sth->bindValue(':file', $val['file'], \PDO::PARAM_STR);
+
+                            $sth->execute();
                         }
                     }
 
@@ -284,7 +300,7 @@ class ModuleManager
         if($this->installed === null) {
             switch($this->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `id`,`name`,`class`,`theme`,`version`,`id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
+                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_theme`,`module_version`,`module_id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;

@@ -108,7 +108,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                        \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
                     }
                 }
 

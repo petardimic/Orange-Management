@@ -86,7 +86,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
         switch($this->connection->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
                 $sth = $this->connection->con->prepare(
-                    'SELECT `' . static::$columns[0] . '`, `content` FROM `' . $this->connection->prefix . static::$table . '` WHERE '
+                    'SELECT `' . static::$columns[0] . '`, `settings_content` FROM `' . $this->connection->prefix . static::$table . '` WHERE '
                     . '`' . $this->connection->prefix . static::$table . '`.`' . static::$columns[0] . '` IN ('
                     . implode(',', $columns) . ')'
                 );

@@ -38,7 +38,7 @@ class CoreSettings extends \phpOMS\Config\SettingsAbstract
      * @since 1.0.0
      */
     static protected $columns = [
-        'id'
+        'settings_id'
     ];
 
 // endregion

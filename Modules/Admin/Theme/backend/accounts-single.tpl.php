@@ -126,7 +126,7 @@ $profileFormView->setElement(5, 0, [
 
 $profileFormView->setElement(5, 1, [
     'type'    => \phpOMS\Html\TagType::BUTTON,
-    'content' => $this->l11n->lang[0]['Reset'],
+    'label' => $this->l11n->lang[0]['Reset'],
 ]);
 
 $this->getView('account::profile')->addView('form', $profileFormView);
