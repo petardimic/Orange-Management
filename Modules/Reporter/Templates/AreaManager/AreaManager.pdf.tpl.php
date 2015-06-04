@@ -1,8 +1,14 @@
 <?php
 include __DIR__ . '/Worker.php';
 
+/**
+ * {@inheritdoc}
+ */
 class AreaManagerPdf extends \phpOMS\Utils\Pdf\Pdf
 {
+    /**
+     * {@inheritdoc}
+     */
     public function Header()
     {
         $headerdata = $this->getHeaderData();
@@ -19,6 +25,9 @@ class AreaManagerPdf extends \phpOMS\Utils\Pdf\Pdf
         $this->Line($this->lMargin, $this->y, $this->w - $this->rMargin, $this->y);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function Footer()
     {
         $cur_y = $this->y;

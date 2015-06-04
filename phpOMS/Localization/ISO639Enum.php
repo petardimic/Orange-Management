@@ -2,7 +2,7 @@
 namespace phpOMS\Localization;
 
 /**
- * uage codes ISO list
+ * Language codes ISO list
  *
  * PHP Version 5.4
  *

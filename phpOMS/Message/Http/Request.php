@@ -343,9 +343,7 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     }
 
     /**
-     * Gets the body of the message.
-     *
-     * @return StreamInterface Returns the body as a stream.
+     * {@inheritdoc}
      */
     public function getBody()
     {

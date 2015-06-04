@@ -18,9 +18,31 @@ namespace phpOMS\Pattern;
  */
 interface Subject
 {
+    /**
+     * Attach observer to subject
+     *
+     * @param \phpOMS\Pattern\Observer $observer Observer
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function attach($observer);
 
-    public function detach();
+    /**
+     * Detach observer
+     *
+     * @param \phpOMS\Pattern\Observer $observer Observer
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function detach($observer);
 
+    /**
+     * Notify observer of change
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function notify();
 }

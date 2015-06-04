@@ -23,7 +23,7 @@ class ArrayUtils
      *
      * @param string $path  Path to element
      * @param array  $data  Array
-     * @param string $delim Delimeter for path
+     * @param string $delim Delimiter for path
      *
      * @return array
      *
@@ -56,7 +56,7 @@ class ArrayUtils
      * @param string $path      Path to element
      * @param array  $data      Array
      * @param mixed  $value     Value to add
-     * @param string $delim     Delimeter for path
+     * @param string $delim     Delimiter for path
      * @param bool   $overwrite Overwrite if existing
      *
      * @return array
@@ -125,6 +125,18 @@ class ArrayUtils
         return $found;
     }
 
+    /**
+     * Stringify array
+     *
+     * @param array $array Array to stringify
+     *
+     * @return string
+     *
+     * @throws \Exception
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public static function stringify($array)
     {
         $str = '[';

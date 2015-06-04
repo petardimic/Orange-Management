@@ -1,13 +1,44 @@
 <?php
 namespace phpOMS\Datatypes;
 
+/**
+ * SmartDateTime
+ *
+ * Providing smarter datetimes
+ *
+ * PHP Version 5.4
+ *
+ * @category   Modules
+ * @package    phpOMS\Datatypes
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
 class SmartDateTime extends \DateTime
 {
+    /**
+     * {@inheritdoc}
+     */
     public function __construct($time = 'now', $timezone = null)
     {
         parent::__construct($time, $timezone);
     }
 
+    /**
+     * Modify datetime in a smart way
+     *
+     * @param int $y        Year
+     * @param int $m        Month
+     * @param int $d        Day
+     * @param int $calendar Calendar
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function smartModify($y, $m = 0, $d = 0, $calendar = CAL_GREGORIAN)
     {
         $y_new       = (int) $this->format('Y') + $y;
@@ -32,6 +63,19 @@ class SmartDateTime extends \DateTime
         }
     }
 
+    /**
+     * Modify datetime in a smart way
+     *
+     * @param int $y        Year
+     * @param int $m        Month
+     * @param int $d        Day
+     * @param int $calendar Calendar
+     *
+     * @return SmartDateTime
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function createModify($y, $m = 0, $d = 0, $calendar = CAL_GREGORIAN)
     {
         $dt = clone $this;

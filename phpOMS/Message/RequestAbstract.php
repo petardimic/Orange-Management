@@ -163,11 +163,17 @@ abstract class RequestAbstract
         return $this->lang;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setAccount($account)
     {
         $this->account = $account;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAccount()
     {
         return $this->account;

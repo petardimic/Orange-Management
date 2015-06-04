@@ -88,7 +88,7 @@ class ModuleManager
     /**
      * Get modules that run on this page
      *
-     * @param \phpOMS\Message\RequestAbstract $request Request
+     * @param \phpOMS\Message\Http\Request $request Request
      *
      * @return array
      *

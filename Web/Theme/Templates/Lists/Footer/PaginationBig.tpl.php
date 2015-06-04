@@ -1,7 +1,5 @@
 <?php if($this->results > 0): ?>
-<select class="rf onChange" data-request="groups-list-length" data-bind='{"::limit": 25}' data-requesttype="GET" data-src="<?php
-$url = \phpOMS\Uri\Http::routify(\phpOMS\Uri\Http::getCurrent());
-echo \phpOMS\Uri\UriFactory::build($url['route'], ['limit' => '::limit']+$url['query']); ?>">
+<select class="rf onChange" data-request="groups-list-length" data-bind='{"::limit": 25}' data-requesttype="GET" data-src="<?= '' ?>">
     <option value="10">10
     <option value="25" selected>25
     <option value="50">50

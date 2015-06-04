@@ -1,8 +1,34 @@
 <?php
 namespace phpOMS\Utils;
 
+/**
+ * Color class for color operations
+ *
+ * PHP Version 5.4
+ *
+ * @category   Framework
+ * @package    phpOMS\Asset
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
 class Color
 {
+    /**
+     * Creates a 3 point gradient based on a input value
+     *
+     * @param int   $value Value to represent by color
+     * @param int[] $start Gradient start
+     * @param int[] $stop  Gradient stop
+     * @param int[] $end   Gradient end
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public static function getRGBGradient($value, $start, $stop, $end)
     {
         if($value <= $stop[0]) {

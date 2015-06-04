@@ -60,6 +60,12 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     private $status = 200;
 
 // endregion
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __construct()
     {
         $this->head = new \phpOMS\Model\Html\Head();
@@ -79,7 +85,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
         if(!isset($this->header[$key])) {
             $this->header[$key] = [];
         }
-
 
         $this->header[$key][] = $header;
         if($this->autoPush) {

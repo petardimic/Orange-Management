@@ -226,16 +226,16 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case 'export':
                 switch($request->getData('type')) {
                     case 'pdf':
-                        $response->setHeader('Content-Type', 'application/pdf', true);
+                        $response->setHeader('Content-Type', \phpOMS\System\MimeType::M_PDF, true);
                         break;
                     case 'csv':
-                        $response->setHeader('Content-Type', 'text/plain', true);
+                        $response->setHeader('Content-Type', \phpOMS\System\MimeType::M_CONF, true);
                         break;
                     case 'xlsx':
-                        $response->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', true);
+                        $response->setHeader('Content-Type', \phpOMS\System\MimeType::M_XLSX, true);
                         break;
                     case 'json':
-                        $response->setHeader('Content-Type', 'application/json', true);
+                        $response->setHeader('Content-Type', \phpOMS\System\MimeType::M_JSON, true);
                         break;
                     default:
                         // TODO handle bad request
@@ -247,6 +247,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     $response->setHeader('Content-disposition', 'attachment; filename="' . $request->getData('id') . '.' . $request->getData('type') . '"', true);
                 }
 
+                /** @var array $reportLanguage */
                 include_once __DIR__ . '/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.lang.php';
 
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);

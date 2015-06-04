@@ -2,7 +2,7 @@
 namespace phpOMS\Security\Encryption;
 
 /**
- * Encrpyion/Decryption class
+ * Encryption/Decryption class
  *
  * PHP Version 5.6
  *

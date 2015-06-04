@@ -2,7 +2,9 @@
 namespace phpOMS\Model\Html;
 
 /**
- * Logging class
+ * Head class
+ *
+ * Responsible for handling everything that's going on in the <head>
  *
  * PHP Version 5.4
  *
@@ -80,6 +82,12 @@ class Head implements \phpOMS\Contract\RenderableInterface
 
 // endregion
 
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function __construct()
     {
         $this->meta = new \phpOMS\Model\Html\Meta();
@@ -160,7 +168,6 @@ class Head implements \phpOMS\Contract\RenderableInterface
     public function render()
     {
         $head = '';
-
         if($this->hasContent) {
             $head .= $this->meta->render();
             $head .= $this->renderStyle();
@@ -170,6 +177,16 @@ class Head implements \phpOMS\Contract\RenderableInterface
         return $head;
     }
 
+    /**
+     * Set a style
+     *
+     * @param string  $key       Style key
+     * @param string  $style     Style source
+     * @param boolean $overwrite Overwrite if already existing
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function setStyle($key, $style, $overwrite = true)
     {
         if($overwrite || !isset($this->script[$key])) {
@@ -177,6 +194,16 @@ class Head implements \phpOMS\Contract\RenderableInterface
         }
     }
 
+    /**
+     * Set a script
+     *
+     * @param string  $key       Script key
+     * @param string  $script    Script source
+     * @param boolean $overwrite Overwrite if already existing
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function setScript($key, $script, $overwrite = true)
     {
         if($overwrite || !isset($this->script[$key])) {
@@ -184,20 +211,43 @@ class Head implements \phpOMS\Contract\RenderableInterface
         }
     }
 
+    /**
+     * Get all styles
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getStyleAll()
     {
         return $this->style;
     }
 
+    /**
+     * Get all scripts
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getScriptAll()
     {
         return $this->script;
     }
 
+    /**
+     * Render style
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function renderStyle()
     {
         $style = '';
-
         foreach($this->style as $css) {
             $style .= $css;
         }
@@ -205,10 +255,17 @@ class Head implements \phpOMS\Contract\RenderableInterface
         return $style;
     }
 
+    /**
+     * Render script
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function renderScript()
     {
         $script = '';
-
         foreach($this->script as $js) {
             $script .= $js;
         }
@@ -216,6 +273,14 @@ class Head implements \phpOMS\Contract\RenderableInterface
         return $script;
     }
 
+    /**
+     * Render assets
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function renderAssets()
     {
         $asset = '';

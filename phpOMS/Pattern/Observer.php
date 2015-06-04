@@ -18,5 +18,13 @@ namespace phpOMS\Pattern;
  */
 interface Observer
 {
-    public function update($key, $subject);
+    /**
+     * Subject updated
+     *
+     * @param \phpOMS\Pattern\Subject $subject Subject
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function update($subject);
 }

@@ -1,7 +1,38 @@
 <?php
 
+namespace phpOMS\Utils\IO\Zip;
+
+/**
+ * Zip class for handling zip files
+ *
+ * Providing basic zip support
+ *
+ * PHP Version 5.4
+ *
+ * @category   Framework
+ * @package    phpOMS\Asset
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
+ */
 class Zip
 {
+    /**
+     * Create zip
+     *
+     * @param string[] $sources     Files and directories to compress
+     * @param string   $destination Output destination
+     * @param boolean  $overwrite   Overwrite if destination is existing
+     *
+     * @return boolean
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public static function zip($sources, $destination, $overwrite = true)
     {
         $destination = str_replace('\\', '/', realpath($destination));
@@ -10,8 +41,8 @@ class Zip
             return false;
         }
 
-        $zip = new ZipArchive();
-        if(!$zip->open($destination, $overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE)) {
+        $zip = new \ZipArchive();
+        if(!$zip->open($destination, $overwrite ? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE)) {
             return false;
         }
 
@@ -23,13 +54,13 @@ class Zip
             }
 
             if(is_dir($source)) {
-                $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+                $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source), \RecursiveIteratorIterator::SELF_FIRST);
 
                 foreach($files as $file) {
                     $file = str_replace('\\', '/', $file);
 
                     /* Ignore . and .. */
-                    if(in_array(substr($file, strrpos($file, '/') + 1), array('.', '..'))) {
+                    if(in_array(substr($file, strrpos($file, '/') + 1), ['.', '..'])) {
                         continue;
                     }
 

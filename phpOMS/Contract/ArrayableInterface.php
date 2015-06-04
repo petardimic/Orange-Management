@@ -4,7 +4,7 @@ namespace phpOMS\Contract;
 /**
  * Defines an object arrayable
  *
- * This stands allways in combination with a jsonable instance.
+ * This stands always in combination with a jsonable instance.
  *
  * PHP Version 5.4
  *

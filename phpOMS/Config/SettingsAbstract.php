@@ -101,7 +101,7 @@ abstract class SettingsAbstract implements \phpOMS\Config\OptionsInterface
     }
 
     /**
-     * Get option by key
+     * Set option by key
      *
      * @param string[] $columns   Column values for filtering
      * @param string[] $value     Value to insert

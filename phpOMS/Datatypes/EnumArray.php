@@ -49,6 +49,7 @@ abstract class EnumArray
      */
     public static function getConstants()
     {
+        /** @var array $constants */
         return (new static)->$constants;
     }
 

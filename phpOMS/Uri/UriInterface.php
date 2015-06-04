@@ -141,13 +141,7 @@ interface UriInterface
      * The leading "?" character is not part of the query and MUST NOT be
      * added.
      *
-     * The value returned MUST be percent-encoded, but MUST NOT double-encode
-     * any characters. To determine what characters to encode, please refer to
-     * RFC 3986, Sections 2 and 3.4.
-     *
-     * As an example, if a value in a key/value pair of the query string should
-     * include an ampersand ("&") not intended as a delimiter between values,
-     * that value MUST be passed in encoded form (e.g., "%26") to the instance.
+     * @param string $key Parameter identifier
      *
      * @see https://tools.ietf.org/html/rfc3986#section-2
      * @see https://tools.ietf.org/html/rfc3986#section-3.4
@@ -197,4 +191,17 @@ interface UriInterface
      * @return string
      */
     public function __toString();
+
+    /**
+     * Is uri valid?
+     *
+     * @param string $uri Uri string
+     *
+     * @return boolean
+     *
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function isValid($uri);
 }

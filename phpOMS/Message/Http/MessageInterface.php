@@ -18,69 +18,44 @@ interface MessageInterface
     /**
      * Retrieves the HTTP protocol version as a string.
      *
-     * The string MUST contain only the HTTP version number (e.g., "1.1", "1.0").
-     *
-     * @return string HTTP protocol version.
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getProtocolVersion();
 
     /**
      * Retrieves all message header values.
      *
-     * The keys represent the header name as it will be sent over the wire, and
-     * each value is an array of strings associated with the header.
-     *
-     *     // Represent the headers as a string
-     *     foreach ($message->getHeaders() as $name => $values) {
-     *         echo $name . ": " . implode(", ", $values);
-     *     }
-     *
-     *     // Emit headers iteratively:
-     *     foreach ($message->getHeaders() as $name => $values) {
-     *         foreach ($values as $value) {
-     *             header(sprintf('%s: %s', $name, $value), false);
-     *         }
-     *     }
-     *
-     * While header names are not case-sensitive, getHeaders() will preserve the
-     * exact case in which headers were originally specified.
-     *
-     * @return string[][] Returns an associative array of the message's headers.
-     *     Each key MUST be a header name, and each value MUST be an array of
-     *     strings for that header.
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getHeaders();
 
     /**
      * Checks if a header exists by the given case-insensitive name.
      *
-     * @param string $name Case-insensitive header field name.
-     * @return bool Returns true if any header names match the given header
-     *     name using a case-insensitive string comparison. Returns false if
-     *     no matching header name is found in the message.
+     * @param string $name Header name
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function hasHeader($name);
 
     /**
      * Retrieves a message header value by the given case-insensitive name.
      *
-     * This method returns an array of all the header values of the given
-     * case-insensitive header name.
+     * @param string $name Header name
      *
-     * If the header does not appear in the message, this method MUST return an
-     * empty array.
-     *
-     * @param string $name Case-insensitive header field name.
-     * @return string[] An array of string values as provided for the given
-     *    header. If the header does not appear in the message, this method MUST
-     *    return an empty array.
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getHeader($name);
 
     /**
      * Gets the body of the message.
      *
-     * @return StreamInterface Returns the body as a stream.
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getBody();
 }

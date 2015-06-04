@@ -21,30 +21,98 @@ namespace phpOMS\Uri;
 class Http implements \phpOMS\Uri\UriInterface
 {
 
+    /**
+     * Root path
+     *
+     * @var string
+     * @since 1.0.0
+     */
     private $rootPath = '';
 
-    private $uri      = null;
+    /**
+     * Uri
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $uri = null;
 
-    private $scheme   = null;
+    /**
+     * Uri scheme
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $scheme = null;
 
-    private $host     = null;
+    /**
+     * Uri host
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $host = null;
 
-    private $port     = 80;
+    /**
+     * Uri port
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    private $port = 80;
 
-    private $user     = '';
+    /**
+     * Uri user
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $user = '';
 
-    private $pass     = '';
+    /**
+     * Uri password
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $pass = '';
 
-    private $path     = null;
+    /**
+     * Uri path
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $path = null;
 
-    private $query    = null;
+    /**
+     * Uri query
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $query = null;
 
+    /**
+     * Uri fragment
+     *
+     * @var string
+     * @since 1.0.0
+     */
     private $fragment = null;
 
-    private $base     = '';
+    /**
+     * Uri base
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private $base = '';
 
     /**
      * Constructor
+     *
+     * @param string $rootPath Root path for subdirectory
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -54,41 +122,107 @@ class Http implements \phpOMS\Uri\UriInterface
         $this->rootPath = $rootPath;
     }
 
+    /**
+     * Get root path
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getRootPath()
     {
         return $this->rootPath;
     }
 
+    /**
+     * Get scheme
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getScheme()
     {
         return $this->scheme;
     }
 
+    /**
+     * Get host
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getHost()
     {
         return $this->host;
     }
 
+    /**
+     * Get port
+     *
+     * @return int
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getPort()
     {
         return $this->port;
     }
 
+    /**
+     * Get user
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getUser()
     {
         return $this->user;
     }
 
+    /**
+     * Get password
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getPass()
     {
         return $this->pass;
     }
 
+    /**
+     * Get path
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getPath()
     {
         return $this->path;
     }
 
+    /**
+     * Get query
+     *
+     * @param null|string $key Query key
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getQuery($key = null)
     {
         if(isset($key)) {
@@ -102,16 +236,40 @@ class Http implements \phpOMS\Uri\UriInterface
         return $this->query;
     }
 
+    /**
+     * Get fragment
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getFragment()
     {
         return $this->fragment;
     }
 
+    /**
+     * Get base
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getBase()
     {
         return $this->base;
     }
 
+    /**
+     * Set uri
+     *
+     * @param string $uri Uri
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function set($uri)
     {
         $this->uri = $uri;
@@ -176,31 +334,12 @@ class Http implements \phpOMS\Uri\UriInterface
         return $uri;
     }
 
-    public static function routify($uri)
-    {
-        $route = parse_url($uri);
-        $path  = explode('/', ltrim(rtrim($route['path'], '.php'), '/'));
-
-        $count = count($path);
-
-        for($i = 0; $i < $count; $i++) {
-            $path['l' . $i] = $path[$i];
-            unset($path[$i]);
-        }
-
-        $query = [];
-        if(isset($route['query'])) {
-            parse_str($route['query'], $query);
-        }
-
-        return ['route' => $path, 'query' => $query];
-    }
-
     /**
      * {@inheritdoc}
      */
     public static function isValid($uri)
     {
+        return true;
     }
 
     /**

@@ -99,7 +99,7 @@ class EventManager implements \phpOMS\Pattern\Mediator
      */
     public function detach($event)
     {
-        $this->events = \phpOMS\Utils\ArrayUtils::unset_array($event, $this->events, '/');
+        $this->events = \phpOMS\Utils\ArrayUtils::unsetArray($event, $this->events, '/');
     }
 
     /**
