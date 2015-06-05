@@ -87,9 +87,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             case \phpOMS\Message\RequestDestination::REPORTER:
                 $this->showContentReporter($request, $response);
                 break;
-            case \phpOMS\Message\RequestDestination::RAW:
-                $this->showRaw($request, $response);
-                break;
         }
     }
 
@@ -209,19 +206,6 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function showAPI($request, $response)
     {
-    }
-
-    /**
-     * Shows api content
-     *
-     * @param \phpOMS\Message\RequestAbstract  $request  Request
-     * @param \phpOMS\Message\ResponseAbstract $response Response
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function showRaw($request, $response)
-    {
         switch($request->getPath(3)) {
             case 'export':
                 switch($request->getData('type')) {
@@ -242,7 +226,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 }
 
                 if($request->getData('download') !== null) {
-                    $response->setHeader('Content-Type', 'application/octet-stream', true);
+                    $response->setHeader('Content-Type', \phpOMS\System\MimeType::M_BIN, true);
                     $response->setHeader('Content-Transfer-Encoding', 'Binary', true);
                     $response->setHeader('Content-disposition', 'attachment; filename="' . $request->getData('id') . '.' . $request->getData('type') . '"', true);
                 }
@@ -253,7 +237,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
                 $pdfView->addData('lang', $reportLanguage[$this->app->user->getL11n()->getLanguage()]);
                 $pdfView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.' . $request->getData('type'));
-                echo $pdfView->render();
+                $response->set('GLOBAL', $pdfView->render());
                 break;
         }
     }

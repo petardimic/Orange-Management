@@ -41,7 +41,7 @@ $formExport->setElement(2, 0, [
     'label' => $this->l11n->lang[27]['Export'],
     'name'  => 'export',
     'data'  => [
-        'ropen' => '/{#lang}/raw/reporter/export.php?id={?id}&type={#type}'
+        'ropen' => '/{#lang}/api/reporter/export.php?id={?id}&type={#type}'
     ]
 ]);
 

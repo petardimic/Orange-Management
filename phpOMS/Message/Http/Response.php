@@ -28,22 +28,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     private $header = [];
 
     /**
-     * Responses
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    private $response = [];
-
-    /**
-     * Auto push on add?
-     *
-     * @var bool
-     * @since 1.0.0
-     */
-    private $autoPush = false;
-
-    /**
      * html head
      *
      * @var \phpOMS\Model\Html\Head
@@ -87,9 +71,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
         }
 
         $this->header[$key][] = $header;
-        if($this->autoPush) {
-            $this->pushHeaderId($key);
-        }
 
         return true;
     }
@@ -133,26 +114,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     public function setResponse($response)
     {
         $this->response = $response;
-    }
-
-    /**
-     * Add response
-     *
-     * @param mixed  $key      Response id
-     * @param string $response Response to add
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function add($key, $response)
-    {
-        $this->response[$key] = $response;
-
-        if($this->autoPush) {
-            ob_start();
-            echo $response;
-            ob_end_flush();
-        }
     }
 
     /**
@@ -222,21 +183,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     }
 
     /**
-     * Get response by ID
-     *
-     * @param int $id Response ID
-     *
-     * @return mixed
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function &get($id)
-    {
-        return $this->response[$id];
-    }
-
-    /**
      * Remove response by ID
      *
      * @param int $id Response ID
@@ -247,32 +193,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     public function remove($id)
     {
         unset($this->response[$id]);
-    }
-
-    /**
-     * Is auto push enabled?
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getAutoPush()
-    {
-        return $this->autoPush;
-    }
-
-    /**
-     * Auto push added responses
-     *
-     * @param bool $push
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setAutoPush($push)
-    {
-        $this->autoPush = (bool) $push;
     }
 
     /**

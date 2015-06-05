@@ -99,7 +99,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
                     $pageView->setTemplate('/Web/Theme/backend/login');
-                    $this->response->add('GLOBAL', $pageView->render());
+                    $this->response->set('GLOBAL', $pageView->render());
                     break;
                 }
 
@@ -128,7 +128,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $pageView->setTemplate('/Web/Theme/backend/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
-                $this->response->add('GLOBAL', $pageView->render());
+                $this->response->set('GLOBAL', $pageView->render());
                 break;
             case \phpOMS\Message\RequestDestination::API:
                 if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
@@ -141,8 +141,8 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $this->setupBasic();
                 $this->request->setAccount($this->user);
 
-                $this->response->setHeader('Content-Type', 'Content-Type: application/json; charset=utf-8');
-                $this->response->add('GLOBAL', new \phpOMS\Utils\JsonBuilder());
+                $this->response->setHeader('Content-Type', 'application/json; charset=utf-8');
+                $this->response->set('GLOBAL', new \phpOMS\Utils\JsonBuilder());
                 $this->response->get('GLOBAL')->add($this->request->__toString(), null);
 
                 $request = new \phpOMS\Message\Http\Request($config['page']['root']);
@@ -173,7 +173,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             if($login === \phpOMS\Auth\LoginReturnType::OK) {
                                 //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
                                 $this->response->get('GLOBAL')->add($this->request->__toString(), (new \Model\Message\Reload())->toArray());
-                                $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                                $this->response->set('GLOBAL', $this->response->get('GLOBAL')->__toString());
                             } else {
                                 // TODO: create login failure msg
                             }
@@ -185,7 +185,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                             $this->sessionManager->remove('UID');
                             $this->sessionManager->save();
                             $this->response->get('GLOBAL')->add($this->request->__toString(), 1);
-                            $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
+                            $this->response->set('GLOBAL', $this->response->get('GLOBAL')->__toString());
                             break;
                         }
                     }
@@ -194,7 +194,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                     if(isset($toLoad[4])) {
                         foreach($toLoad[4] as $module) {
-                            \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                            \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
                         }
                     }
 
@@ -204,56 +204,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     }
                 }
 
-                $this->response->add('GLOBAL', $this->response->get('GLOBAL')->__toString());
-                break;
-            case \phpOMS\Message\RequestDestination::RAW:
-                if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
-                    $this->response->setHeader('HTTP', 'HTTP/1.0 406 Not acceptable');
-                    $this->response->setHeader('Status', 'Status:406 Not acceptable');
-                    break;
+                if(!is_string($response_value = $this->response->get('GLOBAL'))) {
+                    $this->response->set('GLOBAL', $response_value->__toString());
                 }
-
-                $this->response->setHeader('Content-Type', 'text/html; charset=utf-8');
-
-                $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
-
-                if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
-                    $this->dbFailResponse($pageView);
-                    break;
-                }
-
-                $this->setupBasic();
-                $this->request->setAccount($this->user);
-
-                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
-                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
-                $pageView->setLocalization($this->user->getL11n());
-
-                $head    = $this->response->getHead();
-                $baseUri = $this->request->getUri()->getBase();
-
-                if($this->user->getId() < 1) {
-                    $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
-                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
-                    $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
-                    $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
-
-                    $pageView->setTemplate('/Web/Theme/backend/login');
-                    $this->response->add('GLOBAL', $pageView->render());
-                    break;
-                }
-
-                // TODO: mybe don't use DB and instead use uri for loads (if module exists load it -> no activity check which could be bad)
-                $toLoad = $this->moduleManager->getUriLoads($this->request);
-
-                if(isset($toLoad[4])) {
-                    foreach($toLoad[4] as $module) {
-                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
-                    }
-                }
-
-                $pageView->setTemplate('/Web/Theme/raw/index');
-                $this->response->add('GLOBAL', $pageView->render());
                 break;
             case \phpOMS\Message\RequestDestination::REPORTER:
                 if($this->request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
@@ -287,7 +240,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
                     $pageView->setTemplate('/Web/Theme/backend/login');
-                    $this->response->add('GLOBAL', $pageView->render());
+                    $this->response->set('GLOBAL', $pageView->render());
                     break;
                 }
 
@@ -295,7 +248,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                        \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
                     }
                 }
 
@@ -314,7 +267,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 $pageView->setTemplate('/Web/Theme/reporter/index');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($this->request->getHash(), $this->dbPool);
                 $pageView->addData('nav', $navigation->nav);
-                $this->response->add('GLOBAL', $pageView->render());
+                $this->response->set('GLOBAL', $pageView->render());
                 break;
             default:
                 $this->response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
@@ -322,7 +275,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 $pageView = new \phpOMS\Views\View(null, $this->request, $this->response);
                 $pageView->setTemplate('/Web/Theme/Error/404');
-                $this->response->add('GLOBAL', $pageView->render());
+                $this->response->set('GLOBAL', $pageView->render());
         }
 
         $this->response->pushHeader();
