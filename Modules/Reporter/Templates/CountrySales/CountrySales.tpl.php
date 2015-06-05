@@ -5,10 +5,7 @@
 
     <div>
         <form method="post"
-              action="<?= $this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
-                                                                                                                                               'api',
-                                                                                                                                               'reporter',
-                                                                                                                                               'single'], ['id' => $this->request->getData('id')]) ?>">
+              action="<?= \phpOMS\Uri\UriFactory::build('{/scheme}://{/host}/{/root}/{/lang}/api/reporter/single.php?id=' . $this->request->getData('id')) ?>">
             <ul class="l-1">
                 <li><label for="i-areamanager"><?= $lang['Company']; ?></label>:
                     <select name="i-areamanager" id="i-areamanager">

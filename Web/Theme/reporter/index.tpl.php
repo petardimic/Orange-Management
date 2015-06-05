@@ -30,7 +30,7 @@ $head = $this->response->getHead();
     </div>
     <div id="bar-b">
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'reporter']); ?>"
+                href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/reporter.php'); ?>"
                 itemprop="legalName"><?= $this->getData('Name') ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">

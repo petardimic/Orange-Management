@@ -60,8 +60,8 @@ $nav->setParent(1002701001);
     <div class="b b-5 c3-2 c3" id="i3-2-5">
         <div class="bc-1">
             <ul class="l-1">
-                <li><a href="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'backend', 'reporter',
-                                                                'edit'], ['id' => $this->getData('name')]); ?>"
+                <li>
+                    <a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/reporter/edit.php?id=' . $this->getData('name')); ?>"
                        class="button"><?= $this->l11n->lang[27]['Edit']; ?></a>
             </ul>
         </div>

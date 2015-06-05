@@ -37,7 +37,7 @@ $head = $this->response->getHead();
                data-anistate="1" data-anitime="300"></i>
         </span>
         <span class="vC" id="logo" itemscope itemtype="http://schema.org/Organization"><a
-                href="<?= \phpOMS\Uri\UriFactory::build([$this->request->getLanguage(), 'backend']); ?>"
+                href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend.php'); ?>"
                 itemprop="legalName"><?= $this->getData('Name') ?></a>
         </span>
         <span class="vC" id="s-bar" role="search">

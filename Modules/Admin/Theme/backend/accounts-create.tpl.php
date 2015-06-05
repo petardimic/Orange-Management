@@ -113,7 +113,7 @@ $nav->setParent(1000104001);
 ?>
 <?= $nav->render(); ?>
 
-<form action="<?= \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(), 'api', 'admin', 'account']); ?>"
+<form action="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/api/admin/account.php'); ?>"
       method="POST">
     <?= $this->getView('settings::core')->render(); ?>
 

@@ -27,12 +27,7 @@ $headerView->setHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build([$this->l11n->getLanguage(),
-                                          'backend',
-                                          'admin',
-                                          'account',
-                                          'single',
-                                          'front'], ['id' => $value['account_id']]);
+    $url = \phpOMS\Uri\UriFactory::build('/{/lang}/backend/admin/account/single/front.php?id=' . (int)$value['account_id']);
 
     $accountListView->addElements([
         '<a href="' . $url . '">' . $value['account_status'] . '</a>',

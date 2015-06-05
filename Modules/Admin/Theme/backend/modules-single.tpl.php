@@ -35,26 +35,11 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
                 ?>
                 <li>
                     <button data-http="PUT" data-request="DYN"
-                            data-json='{"id":"<?= $request->getData('id'); ?>"}' data-uri="<?=
-                    \phpOMS\Uri\UriFactory::build([
-                            $request->getPath(0),
-                            'api',
-                            'admin',
-                            'module'
-                        ]
-                    ); ?>"><?= $this->app->user->getL11n()->lang[1]['Install']; ?></button>
+                            data-json='{"id":"<?= $request->getData('id'); ?>"}'
+                            data-uri="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/api/admin/module.php'); ?>">
+                        <?= $this->app->user->getL11n()->lang[1]['Install']; ?></button>
                     <?php } else { ?>
-                <li><a href="<?=
-                    \phpOMS\Uri\UriFactory::build([
-                        $request->getPath(0),
-                        $request->getPath(1),
-                        $request->getPath(2),
-                        $request->getPath(3),
-                        $request->getPath(4),
-                        'settings'
-                    ],
-                        [['id', $request->getData('id')]]
-                    );
+                <li><a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/module/single/settings.php');
                     ?>"><?= $this->app->user->getL11n()->lang[1]['Settings']; ?></a>
                     <?php } ?>
                 <li><a href=""></a>

@@ -28,7 +28,7 @@ class UriFactory
      * @var string[]
      * @since 1.0.0
      */
-    private static $query = [];
+    private static $uri = [];
 
 // endregion
 
@@ -54,8 +54,8 @@ class UriFactory
      */
     public static function getQuery($key)
     {
-        if(isset(self::$query[$key])) {
-            return self::$query[$key];
+        if(isset(self::$uri[$key])) {
+            return self::$uri[$key];
         }
 
         return false;
@@ -73,16 +73,15 @@ class UriFactory
      */
     public static function setQuery($key, $value, $overwrite = true)
     {
-        if($overwrite || !isset(self::$query[$key])) {
-            self::$query[$key] = $value;
+        if($overwrite || !isset(self::$uri[$key])) {
+            self::$uri[$key] = $value;
         }
     }
 
     /**
      * Build uri
      *
-     * @param array         $data   Path data
-     * @param array         $query  Query data
+     * @param array         $uri    Path data
      * @param UriScheme|int $scheme Scheme type
      *
      * @return null|string
@@ -92,22 +91,17 @@ class UriFactory
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function build($data, $query = [], $scheme = \phpOMS\Uri\UriScheme::HTTP)
+    public static function build($uri, $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
         /* Overwriting dynamic link elements if they are defined */
         // TODO: maybe set $query = null for performance as default value and make isset check here
-        foreach($query as $key => $value) {
-            if(array_key_exists($value, self::$query)) {
-                $query[$key] = self::$query[$value];
-            }
-        }
+        //preg_match_all('\{[\/#\?@\.][a-zA-Z0-9]*\}', $uri, $matches);
 
-        switch($scheme) {
-            case \phpOMS\Uri\UriScheme::HTTP:
-                return \phpOMS\Uri\Http::create($data, $query);
-            default:
-                throw new \Exception('Unknown uri scheme');
-        }
+        preg_replace_callback('\{[\/#\?@\.][a-zA-Z0-9]*\}', function ($match) {
+            return isset(self::$uri[$match]) ? self::$uri[$match] : '???';
+        }, $uri);
+
+        return $uri;
     }
 
     /**

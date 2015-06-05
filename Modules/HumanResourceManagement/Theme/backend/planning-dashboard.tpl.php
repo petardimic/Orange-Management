@@ -25,12 +25,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="<?= \phpOMS\Uri\UriFactory::build([$this->app->request->getLanguage(),
-                                                        'backend',
-                                                        'sales',
-                                                        'analysis',
-                                                        'clients',
-                                                        'dashboard']); ?>"
+            <a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/sales/analysis/clients/dashboard.php'); ?>"
                class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
