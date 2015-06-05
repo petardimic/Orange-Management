@@ -96,7 +96,7 @@ $settingsFormView->setElement(5, 0, [
 
 $settingsFormView->setElement(5, 1, [
     'type'    => \phpOMS\Html\TagType::BUTTON,
-    'content' => $this->l11n->lang[0]['Create'],
+    'label' => $this->l11n->lang[0]['Create'],
 ]);
 
 $this->getView('settings::name')->addView('form', $settingsFormView);
