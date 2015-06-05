@@ -92,17 +92,13 @@ class UriFactory
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function build($uri, $toMatch, $scheme = \phpOMS\Uri\UriScheme::HTTP)
+    public static function build($uri, $toMatch = null, $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
-        //preg_match_all('\{[\/#\?@\.][a-zA-Z0-9]*\}', $uri, $matches);
-        $match_temp = self::$uri;
-        self::$uri += $toMatch;
+        $uri = preg_replace_callback('(\{[\/#\?@\.][a-zA-Z0-9]*\})', function ($match) {
+            $match = substr($match[0], 1, strlen($match[0])-2);
 
-        preg_replace_callback('\{[\/#\?@\.][a-zA-Z0-9]*\}', function ($match) {
             return isset(self::$uri[$match]) ? self::$uri[$match] : '???';
         }, $uri);
-
-        self::$uri = $match_temp;
 
         return $uri;
     }

@@ -109,3 +109,5 @@ $toDummy = [
     //'Accounting',
 ];
 //$instHOBJ->installDummy($toDummy);
+
+echo 'ALPHA successfully installed!';
