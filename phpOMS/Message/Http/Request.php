@@ -79,6 +79,7 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     public function __construct($rootPath)
     {
         $this->uri = new \phpOMS\Uri\Http($rootPath);
+        \phpOMS\Uri\UriFactory::setQuery('/root', $rootPath);
     }
 
     /**
@@ -115,6 +116,10 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
         $this->requestDestination = isset($this->path[1]) ? $this->path[1] : '';
         $this->lang               = $this->path[0];
         $this->hash               = [];
+
+        \phpOMS\Uri\UriFactory::setQuery('/scheme', $this->uri->getScheme());
+        \phpOMS\Uri\UriFactory::setQuery('/host', $this->uri->getHost());
+        \phpOMS\Uri\UriFactory::setQuery('/lang', $this->lang);
 
         foreach($this->path as $key => $path) {
             $paths = [];

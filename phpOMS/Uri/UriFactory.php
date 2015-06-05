@@ -81,8 +81,9 @@ class UriFactory
     /**
      * Build uri
      *
-     * @param array         $uri    Path data
-     * @param UriScheme|int $scheme Scheme type
+     * @param array         $uri     Path data
+     * @param array         $toMatch Optional special replacements
+     * @param UriScheme|int $scheme  Scheme type
      *
      * @return null|string
      *
@@ -91,15 +92,17 @@ class UriFactory
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function build($uri, $scheme = \phpOMS\Uri\UriScheme::HTTP)
+    public static function build($uri, $toMatch, $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
-        /* Overwriting dynamic link elements if they are defined */
-        // TODO: maybe set $query = null for performance as default value and make isset check here
         //preg_match_all('\{[\/#\?@\.][a-zA-Z0-9]*\}', $uri, $matches);
+        $match_temp = self::$uri;
+        self::$uri += $toMatch;
 
         preg_replace_callback('\{[\/#\?@\.][a-zA-Z0-9]*\}', function ($match) {
             return isset(self::$uri[$match]) ? self::$uri[$match] : '???';
         }, $uri);
+
+        self::$uri = $match_temp;
 
         return $uri;
     }
