@@ -81,7 +81,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     public function loadLanguage($language, $destination)
     {
         /** @noinspection PhpUndefinedFieldInspection */
-        if(isset(static::$localization[\phpOMS\Message\RequestDestination::BACKEND])) {
+        if(isset(static::$localization[$destination])) {
             /** @noinspection PhpUndefinedFieldInspection */
             $this->app->user->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
         }

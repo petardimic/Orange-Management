@@ -232,6 +232,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 }
 
                 /** @var array $reportLanguage */
+                /** @noinspection PhpIncludeInspection */
                 include_once __DIR__ . '/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.lang.php';
 
                 $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
