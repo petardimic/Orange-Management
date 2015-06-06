@@ -36,7 +36,7 @@ class UriFactory
      * Constructor
      *
      * @since  1.0.0
-     * @author Dennis Eichhorn
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     private function __construct()
     {

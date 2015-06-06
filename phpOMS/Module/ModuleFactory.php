@@ -51,13 +51,22 @@ class ModuleFactory
 // endregion
 
     /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function __construct()
+    {
+    }
+
+    /**
      * Gets and initializes modules
      *
      * @param string $module Module ID
      *
      * @return \phpOMS\Module\ModuleAbstract
      *
-     * @var array
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
