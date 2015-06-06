@@ -2,13 +2,13 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000301001);
 
-$sidenav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$sidenav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $sidenav->setTemplate('/Modules/Navigation/Theme/backend/mid-side');
 $sidenav->setNav($this->getData('nav'));
 $sidenav->setLanguage($this->l11n->language);

@@ -6,9 +6,9 @@
 /*
 * UI Logic
 */
-$profileList = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
-$headerView  = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
-$footerView  = new \Web\Views\Lists\PaginationView($this->l11n, $this->response, $this->request);
+$profileList = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
+$headerView  = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
+$footerView  = new \Web\Views\Lists\PaginationView($this->l11n, $this->request, $this->response);
 
 $profileList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -36,7 +36,7 @@ $profileList->addView('footer', $footerView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

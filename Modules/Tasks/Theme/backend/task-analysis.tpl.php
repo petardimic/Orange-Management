@@ -6,12 +6,12 @@
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelSelectView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
+$panelSelectView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
 $panelSelectView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $panelSelectView->setTitle($this->l11n->lang[11]['Person']);
 $this->addView('select::person', $panelSelectView);
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -43,12 +43,12 @@ $this->getView('select::person')->addView('form', $settingsFormView);
 /*
  * Statistics
  */
-$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
 $panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
 $panelStatView->setTitle($this->l11n->lang[11]['Statistics']);
 $this->addView('stats', $panelStatView);
 
-$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[11]['Received'], 0],
@@ -64,7 +64,7 @@ $this->getView('stats')->addView('stat::table', $statTableView);
 /*
 * Navigation
 */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

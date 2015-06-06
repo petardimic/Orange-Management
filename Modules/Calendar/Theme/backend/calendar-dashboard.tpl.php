@@ -7,7 +7,7 @@
  * General
  */
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);

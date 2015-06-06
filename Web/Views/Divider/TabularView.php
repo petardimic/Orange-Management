@@ -18,24 +18,50 @@ namespace Web\Views\Divider;
  */
 class TabularView extends \Web\Views\WebViewAbstract
 {
+
+    /**
+     * Active tab
+     *
+     * @var string
+     * @since 1.0.0
+     */
     protected $active = 1;
 
+    /**
+     * Tab views
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
     protected $tab = [];
 
     /**
      * {@inheritdoc}
      */
-    public function __construct($l11n)
+    public function __construct($l11n, $request = null, $response = null, $app = null)
     {
-        parent::__construct($l11n);
+        parent::__construct($l11n, $request, $response, $app = null);
     }
 
-    public function addTab($title, $view, $id = null) {
+    /**
+     * Creating tab
+     *
+     * @param string $title Tab title
+     * @param string $view  View to display
+     * @param string $id    Tab id
+     *
+     * @return array
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function addTab($title, $view, $id = null)
+    {
         if(!isset($id)) {
             $id = $title;
         }
 
-        $this->tab[$id]['title'] = $title;
+        $this->tab[$id]['title']   = $title;
         $this->tab[$id]['content'] = $view;
     }
 }

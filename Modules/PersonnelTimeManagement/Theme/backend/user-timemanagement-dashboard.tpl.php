@@ -6,8 +6,8 @@
 /*
  * UI Logic
  */
-$timeMgmtView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
-$headerView   = new \Web\Views\Lists\HeaderView($this->l11n, $this->response, $this->request);
+$timeMgmtView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
+$headerView   = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
 $timeMgmtView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
 $headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
@@ -33,12 +33,12 @@ $timeMgmtView->addView('header', $headerView);
 /**
  * @var \phpOMS\Views\View $this
  */
-$panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
+$panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
 $panelSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelSettingsView->setTitle($this->l11n->lang[35]['Settings']);
 $this->addView('settings', $panelSettingsView);
 
-$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
 $settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
@@ -63,12 +63,12 @@ $this->getView('settings')->addView('form', $settingsFormView);
 /*
  * Statistics
  */
-$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
+$panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
 $panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 $panelStatView->setTitle($this->l11n->lang[35]['General']);
 $this->addView('stats', $panelStatView);
 
-$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->response, $this->request);
+$statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[35]['Surplus'], '+2 ' . $this->l11n->lang[35]['hours']],

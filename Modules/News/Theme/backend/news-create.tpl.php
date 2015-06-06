@@ -6,12 +6,12 @@
 /*
  * Settings
  */
-$createPanel = new \Web\Views\Panel\PanelView($this->l11n, $this->response, $this->request);
+$createPanel = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
 $createPanel->setTitle($this->l11n->lang[7]['Settings']);
 $this->addView('settingsPanel', $createPanel);
 $this->getView('settingsPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
 
-$formSettingsView = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$formSettingsView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
 $formSettingsView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formSettingsView->setSubmit('submit1', $this->l11n->lang[0]['Save']);
 $formSettingsView->setSubmit('delete', $this->l11n->lang[0]['Delete']);
@@ -65,7 +65,7 @@ $this->getView('settingsPanel')->addView('form', $formSettingsView);
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);

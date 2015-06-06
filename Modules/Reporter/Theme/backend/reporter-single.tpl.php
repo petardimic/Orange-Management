@@ -8,7 +8,7 @@ include_once __DIR__ . '/../../Templates/' . $this->getData('name') . '/' . $thi
 
 $this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLanguage()]);
 
-$formExport = new \Web\Views\Form\FormView($this->l11n, $this->response, $this->request);
+$formExport = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
 $formExport->setTemplate('/Web/Theme/Templates/Forms/FormFull');
 $formExport->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formExport->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -48,7 +48,7 @@ $formExport->setElement(2, 0, [
 /*
  * Navigation
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->response, $this->request);
+$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
