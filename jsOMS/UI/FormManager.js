@@ -136,7 +136,7 @@
                 buttons[i].addEventListener('click', function (event) {
                     var ropen = typeof this.dataset.ropen !== 'undefined' ? this.dataset.ropen : this.dataset.redirect,
                         matches = ropen.match(new RegExp("\{[#\?\.a-zA-Z0-9]*\}", "gi")),
-                        current = jsOMS.parse_url(window.location.href),
+                        current = jsOMS.Uri.parse_url(window.location.href),
                         value = null;
 
                     // TODO: find a way to use existing query parameters as well and just overwrite them if defined differently here
@@ -148,7 +148,7 @@
                         } else if(match.indexOf('.') === 0) {
 
                         } else if(match.indexOf('?') === 0) {
-                            value = jsOMS.getUriQueryParameter(current.query, match.substring(1, match.length));
+                            value = jsOMS.Uri.getUriQueryParameter(current.query, match.substring(1, match.length));
                         }
 
                         ropen = ropen.replace(matches[j], value);
