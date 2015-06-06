@@ -40,6 +40,14 @@ class ModuleFactory
      */
     public static $app = null;
 
+    /**
+     * Unassigned providings
+     *
+     * @var string[][]
+     * @since 1.0.0
+     */
+    public static $providing = [];
+
 // endregion
 
     /**
@@ -58,36 +66,24 @@ class ModuleFactory
         if(!isset(self::$loaded[$module])) {
             $class = '\\Modules\\' . $module . '\\Controller';
 
-            if(\phpOMS\Autoloader::exists($class) === false) {
-                return null;
-            }
-
             /**
              * @var \phpOMS\Module\ModuleAbstract $obj
              */
             $obj                   = new $class(self::$app);
             self::$loaded[$module] = $obj;
 
-            /* TODO: find dependencies or load them inside module? */
+            foreach($obj->getProviding() as $providing) {
+                if(isset(self::$loaded[$providing])) {
+                    self::$loaded[$providing]->receiving[] = $obj->getName();
+                } else {
+                    self::$providing[$providing][] = $obj->getName();
+                }
+            }
 
-            /* Todo: find open dependencies or load them inside module? */
-
-            /* TODO: The following foreach loop finds all providing modules whenever a module gets loaded,
-            even if modules are already added to $receiving -> same entries will happen -> array_unique needs to get called.
-            Can we make that a little bit smarter? Maybe create a static receiving, providing array here and check if there is
-            anything for this module or if this module is providing anything for others?
-            If already handled remove from static array to not re-handle it and only loop static arrays*/
-
-            /* Find all providing modules */
-            foreach(self::$loaded as $key => $val) {
-                $providing = $val->getProviding();
-
-                foreach($providing as $key2 => $val2) {
-                    if(isset(self::$loaded[$val2])) {
-                        /** @var \phpOMS\Module\ModuleAbstract $receiving */
-                        self::$loaded[$val2]->receiving[] = $key;
-                        self::$loaded[$val2]->receiving   = array_unique(self::$loaded[$val2]->receiving);
-                    }
+            $name = $obj->getName();
+            if(isset(self::$providing[$name])) {
+                foreach(self::$providing[$name] as $providing) {
+                    self::$loaded[$name]->receiving[] = $providing;
                 }
             }
         }

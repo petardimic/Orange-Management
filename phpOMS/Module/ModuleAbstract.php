@@ -129,6 +129,20 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getName()
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        return static::$module;
+    }
+
+    /**
      * Get dependencies for this module
      *
      * @return array Dependencies
