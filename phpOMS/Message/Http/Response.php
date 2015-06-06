@@ -56,26 +56,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setHeader($key, $header, $overwrite = false)
-    {
-        if(!$overwrite && isset($this->header[$key])) {
-            return false;
-        } elseif($overwrite) {
-            unset($this->header[$key]);
-        }
-
-        if(!isset($this->header[$key])) {
-            $this->header[$key] = [];
-        }
-
-        $this->header[$key][] = $header;
-
-        return true;
-    }
-
-    /**
      * Push header by ID
      *
      * @param mixed $name Header ID
@@ -149,25 +129,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     }
 
     /**
-     * Generate response
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function render()
-    {
-        $render = $this->head->render();
-
-        foreach($this->response as $key => $response) {
-            $render .= $response;
-        }
-
-        return $render;
-    }
-
-    /**
      * Push all headers
      *
      * @since  1.0.0
@@ -230,17 +191,28 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     /**
      * {@inheritdoc}
      */
-    public function getHeader($name)
-    {
-        return $this->header[$name];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getBody()
     {
         return $this->render();
+    }
+
+    /**
+     * Generate response
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function render()
+    {
+        $render = $this->head->render();
+
+        foreach($this->response as $key => $response) {
+            $render .= $response;
+        }
+
+        return $render;
     }
 
     /**
@@ -257,5 +229,33 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
     public function getReasonPhrase()
     {
         return $this->getHeader('Status');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeader($name)
+    {
+        return $this->header[$name];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setHeader($key, $header, $overwrite = false)
+    {
+        if(!$overwrite && isset($this->header[$key])) {
+            return false;
+        } elseif($overwrite) {
+            unset($this->header[$key]);
+        }
+
+        if(!isset($this->header[$key])) {
+            $this->header[$key] = [];
+        }
+
+        $this->header[$key][] = $header;
+
+        return true;
     }
 }

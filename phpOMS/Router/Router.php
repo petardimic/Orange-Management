@@ -19,7 +19,9 @@ namespace phpOMS\Router;
 class Router
 {
 
+// region Class Fields
     private static $routes = [];
+// endregion
 
     private function __construct()
     {

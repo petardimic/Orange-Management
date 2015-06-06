@@ -21,6 +21,7 @@ namespace phpOMS\Uri;
 class Http implements \phpOMS\Uri\UriInterface
 {
 
+// region Class Fields
     /**
      * Root path
      *
@@ -108,6 +109,7 @@ class Http implements \phpOMS\Uri\UriInterface
      * @since 1.0.0
      */
     private $base = '';
+// endregion
 
     /**
      * Constructor
@@ -120,6 +122,54 @@ class Http implements \phpOMS\Uri\UriInterface
     public function __construct($rootPath)
     {
         $this->rootPath = $rootPath;
+    }
+
+    /**
+     * Get current uri
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function getCurrent()
+    {
+        /** @noinspection PhpUndefinedConstantInspection */
+        return 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function create($data, $query = null)
+    {
+        $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
+
+        if(isset($query) && $query !== []) {
+            /*
+            $i = 0;
+            foreach($query as $key => $para) {
+                if($i == 0) {
+                    $uri .= '?' . $key . '=' . $para;
+                    $i++;
+                    continue;
+                }
+
+                $uri .= '&' . $key . '=' . $para;
+            }*/
+
+            $uri .= '?' . http_build_query($query);
+        }
+
+        return $uri;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function isValid($uri)
+    {
+        return true;
     }
 
     /**
@@ -172,19 +222,6 @@ class Http implements \phpOMS\Uri\UriInterface
     public function getPort()
     {
         return $this->port;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -295,54 +332,6 @@ class Http implements \phpOMS\Uri\UriInterface
     }
 
     /**
-     * Get current uri
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function getCurrent()
-    {
-        /** @noinspection PhpUndefinedConstantInspection */
-        return 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function create($data, $query = null)
-    {
-        $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
-
-        if(isset($query) && $query !== []) {
-            /*
-            $i = 0;
-            foreach($query as $key => $para) {
-                if($i == 0) {
-                    $uri .= '?' . $key . '=' . $para;
-                    $i++;
-                    continue;
-                }
-
-                $uri .= '&' . $key . '=' . $para;
-            }*/
-
-            $uri .= '?' . http_build_query($query);
-        }
-
-        return $uri;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function isValid($uri)
-    {
-        return true;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function parse($uri)
@@ -370,6 +359,19 @@ class Http implements \phpOMS\Uri\UriInterface
     public function getAuthority()
     {
         return ($this->getUser() !== '' ? $this->getUser() . '@' : '') . $this->host . (isset($this->port) && $this->port !== '' ? ':' . $this->port : '');
+    }
+
+    /**
+     * Get user
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

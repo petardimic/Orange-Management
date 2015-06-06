@@ -84,11 +84,6 @@ class Builder
         $this->grammar    = $grammar;
     }
 
-    public function newQuery()
-    {
-        return new static($this->connection, $this->grammar);
-    }
-
     public function select($columns = ['*'], $table = null, $alias = null)
     {
         $this->type = \phpOMS\DataStorage\Database\Query\QueryType::SELECT;
@@ -98,13 +93,6 @@ class Builder
         } else {
             $this->columns += $columns;
         }
-
-        return $this;
-    }
-
-    public function selectRaw($expression)
-    {
-        $this->addSelect($expression);
 
         return $this;
     }
@@ -125,6 +113,23 @@ class Builder
         }
 
         return $this->selectRaw(['(' . $query . ') as ' . $as]);
+    }
+
+    public function newQuery()
+    {
+        return new static($this->connection, $this->grammar);
+    }
+
+    public function toSql()
+    {
+        return $this->grammar->compileQuery();
+    }
+
+    public function selectRaw($expression)
+    {
+        $this->addSelect($expression);
+
+        return $this;
     }
 
     public function addSelect($columns = ['*'], $table = null, $alias = null)
@@ -397,11 +402,6 @@ class Builder
     public function commit()
     {
         return $this;
-    }
-
-    public function toSql()
-    {
-        return $this->grammar->compileQuery();
     }
 
     public function getType()

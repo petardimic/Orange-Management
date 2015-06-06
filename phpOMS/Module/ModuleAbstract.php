@@ -66,7 +66,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     public function __construct($app)
     {
         $this->app = $app;
-        $this->loadLanguage($this->app->user->getL11n()->getLanguage(), \phpOMS\Message\RequestDestination::BACKEND);
+        $this->loadLanguage($this->app->user->getL11n()->getLanguage(), $app->request->getRequestDestination());
     }
 
     /**

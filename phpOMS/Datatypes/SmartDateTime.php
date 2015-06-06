@@ -36,6 +36,27 @@ class SmartDateTime extends \DateTime
      * @param int $d        Day
      * @param int $calendar Calendar
      *
+     * @return SmartDateTime
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function createModify($y, $m = 0, $d = 0, $calendar = CAL_GREGORIAN)
+    {
+        $dt = clone $this;
+        $dt->smartModify($y, $m, $d, $calendar);
+
+        return $dt;
+    }
+
+    /**
+     * Modify datetime in a smart way
+     *
+     * @param int $y        Year
+     * @param int $m        Month
+     * @param int $d        Day
+     * @param int $calendar Calendar
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
@@ -61,26 +82,5 @@ class SmartDateTime extends \DateTime
         if($d !== 0) {
             $this->modify($d . ' day');
         }
-    }
-
-    /**
-     * Modify datetime in a smart way
-     *
-     * @param int $y        Year
-     * @param int $m        Month
-     * @param int $d        Day
-     * @param int $calendar Calendar
-     *
-     * @return SmartDateTime
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function createModify($y, $m = 0, $d = 0, $calendar = CAL_GREGORIAN)
-    {
-        $dt = clone $this;
-        $dt->smartModify($y, $m, $d, $calendar);
-
-        return $dt;
     }
 }

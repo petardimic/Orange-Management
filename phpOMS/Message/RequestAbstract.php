@@ -166,16 +166,16 @@ abstract class RequestAbstract
     /**
      * {@inheritdoc}
      */
-    public function setAccount($account)
+    public function getAccount()
     {
-        $this->account = $account;
+        return $this->account;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAccount()
+    public function setAccount($account)
     {
-        return $this->account;
+        $this->account = $account;
     }
 }

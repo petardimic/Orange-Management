@@ -24,6 +24,19 @@ namespace phpOMS\Uri;
 interface UriInterface
 {
     /**
+     * Is uri valid?
+     *
+     * @param string $uri Uri string
+     *
+     * @return boolean
+     *
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public static function isValid($uri);
+
+    /**
      * Retrieve the scheme component of the URI.
      *
      * If no scheme is present, this method MUST return an empty string.
@@ -191,17 +204,4 @@ interface UriInterface
      * @return string
      */
     public function __toString();
-
-    /**
-     * Is uri valid?
-     *
-     * @param string $uri Uri string
-     *
-     * @return boolean
-     *
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function isValid($uri);
 }

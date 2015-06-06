@@ -199,6 +199,21 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
     /**
      * {@inheritdoc}
      */
+    public function reset()
+    {
+        $this->coord            = null;
+        $this->barycenter       = null;
+        $this->perimeter        = null;
+        $this->surface          = null;
+        $this->interiorAngleSum = null;
+        $this->edgeLength       = null;
+        $this->innerLength      = null;
+        $this->innerEdgeAngular = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getSurfaceFormula()
     {
         return "";
@@ -227,21 +242,6 @@ class Polygon implements \phpOMS\Math\Shape\D2\Shape2DInterface
         $this->reset();
 
         $this->perimeter = $perimeter;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function reset()
-    {
-        $this->coord            = null;
-        $this->barycenter       = null;
-        $this->perimeter        = null;
-        $this->surface          = null;
-        $this->interiorAngleSum = null;
-        $this->edgeLength       = null;
-        $this->innerLength      = null;
-        $this->innerEdgeAngular = null;
     }
 
     /**

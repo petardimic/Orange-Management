@@ -107,19 +107,6 @@ class Head implements \phpOMS\Contract\RenderableInterface
     /**
      * Set page title
      *
-     * @param string $title Page title
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Set page title
-     *
      * @return string
      *
      * @since  1.0.0
@@ -128,6 +115,19 @@ class Head implements \phpOMS\Contract\RenderableInterface
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set page title
+     *
+     * @param string $title Page title
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
@@ -175,6 +175,42 @@ class Head implements \phpOMS\Contract\RenderableInterface
         }
 
         return $head;
+    }
+
+    /**
+     * Render style
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function renderStyle()
+    {
+        $style = '';
+        foreach($this->style as $css) {
+            $style .= $css;
+        }
+
+        return $style;
+    }
+
+    /**
+     * Render script
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function renderScript()
+    {
+        $script = '';
+        foreach($this->script as $js) {
+            $script .= $js;
+        }
+
+        return $script;
     }
 
     /**
@@ -235,42 +271,6 @@ class Head implements \phpOMS\Contract\RenderableInterface
     public function getScriptAll()
     {
         return $this->script;
-    }
-
-    /**
-     * Render style
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function renderStyle()
-    {
-        $style = '';
-        foreach($this->style as $css) {
-            $style .= $css;
-        }
-
-        return $style;
-    }
-
-    /**
-     * Render script
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function renderScript()
-    {
-        $script = '';
-        foreach($this->script as $js) {
-            $script .= $js;
-        }
-
-        return $script;
     }
 
     /**

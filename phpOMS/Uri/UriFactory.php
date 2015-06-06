@@ -95,7 +95,7 @@ class UriFactory
     public static function build($uri, $toMatch = null, $scheme = \phpOMS\Uri\UriScheme::HTTP)
     {
         $uri = preg_replace_callback('(\{[\/#\?@\.][a-zA-Z0-9]*\})', function ($match) {
-            $match = substr($match[0], 1, strlen($match[0])-2);
+            $match = substr($match[0], 1, strlen($match[0]) - 2);
 
             return isset(self::$uri[$match]) ? self::$uri[$match] : '???';
         }, $uri);

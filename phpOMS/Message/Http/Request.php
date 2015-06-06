@@ -36,6 +36,14 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     public $os = null;
 
     /**
+     * Path
+     *
+     * @var array
+     * @since 1.0.0
+     */
+    protected $path = null;
+
+    /**
      * Request information
      *
      * @var string[]
@@ -50,14 +58,6 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
      * @since 1.0.0
      */
     private $hash = null;
-
-    /**
-     * Path
-     *
-     * @var array
-     * @since 1.0.0
-     */
-    protected $path = null;
 
     /**
      * Web request type
