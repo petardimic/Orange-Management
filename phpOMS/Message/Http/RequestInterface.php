@@ -2,38 +2,49 @@
 namespace phpOMS\Message\Http;
 
 /**
- * Representation of an outgoing, client-side request.
+ * Http request interface
  *
- * Per the HTTP specification, this interface includes properties for
- * each of the following:
+ * PHP Version 5.4
  *
- * - Protocol version
- * - HTTP method
- * - URI
- * - Headers
- * - Message body
- *
- * During construction, implementations MUST attempt to set the Host header from
- * a provided URI if no Host header is provided.
- *
- * Requests are considered immutable; all methods that might change state MUST
- * be implemented such that they retain the internal state of the current
- * message and return an instance that contains the changed state.
+ * @category   Framework
+ * @package    phpOMS\Response
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
  */
 interface RequestInterface extends \phpOMS\Message\Http\MessageInterface
 {
     /**
-     * Retrieves the message's request target.
+     * Get request target
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getRequestTarget();
 
     /**
-     * Retrieves the HTTP method of the request.
+     * Get request method
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getMethod();
 
     /**
-     * Retrieves the URI instance.
+     * Get request uri
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getUri();
 }

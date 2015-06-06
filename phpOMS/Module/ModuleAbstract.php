@@ -115,12 +115,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     abstract public function call($request, $response, $data = null);
 
     /**
-     * Get modules this module is providing for
-     *
-     * @return array Providing
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function getProviding()
     {
@@ -129,12 +124,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -143,12 +133,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     }
 
     /**
-     * Get dependencies for this module
-     *
-     * @return array Dependencies
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     * {@inheritdoc}
      */
     public function getDependencies()
     {

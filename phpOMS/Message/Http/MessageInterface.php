@@ -2,16 +2,19 @@
 namespace phpOMS\Message\Http;
 
 /**
- * HTTP messages consist of requests from a client to a server and responses
- * from a server to a client. This interface defines the methods common to
- * each.
+ * Http message interface
  *
- * Messages are considered immutable; all methods that might change state MUST
- * be implemented such that they retain the internal state of the current
- * message and return an instance that contains the changed state.
+ * PHP Version 5.4
  *
- * @see http://www.ietf.org/rfc/rfc7230.txt
- * @see http://www.ietf.org/rfc/rfc7231.txt
+ * @category   Framework
+ * @package    phpOMS\Response
+ * @author     OMS Development Team <dev@oms.com>
+ * @author     Dennis Eichhorn <d.eichhorn@oms.com>
+ * @copyright  2013
+ * @license    OMS License 1.0
+ * @version    1.0.0
+ * @link       http://orange-management.com
+ * @since      1.0.0
  */
 interface MessageInterface
 {

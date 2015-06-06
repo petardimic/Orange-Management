@@ -102,25 +102,4 @@ class UriFactory
 
         return $uri;
     }
-
-    /**
-     * Validate uri
-     *
-     * @param string        $uri    URI to validate
-     * @param UriScheme|int $scheme Scheme type
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public static function isValid($uri, $scheme = \phpOMS\Uri\UriScheme::HTTP)
-    {
-        switch($scheme) {
-            case \phpOMS\Uri\UriScheme::HTTP:
-                return \phpOMS\Uri\Http::isValid($uri);
-        }
-
-        return false;
-    }
 }

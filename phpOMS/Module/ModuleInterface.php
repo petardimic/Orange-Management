@@ -29,6 +29,16 @@ interface ModuleInterface
     public function getProviding();
 
     /**
+     * Get module name
+     *
+     * @return string Name
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getName();
+
+    /**
      * Get dependencies for this module
      *
      * @return array Dependencies

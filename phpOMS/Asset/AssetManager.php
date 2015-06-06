@@ -54,7 +54,7 @@ class AssetManager
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function add($id, $asset, $overwrite = true)
+    public function set($id, $asset, $overwrite = true)
     {
         if($overwrite || !isset($this->assets[$id])) {
             $this->assets[$id] = $asset;

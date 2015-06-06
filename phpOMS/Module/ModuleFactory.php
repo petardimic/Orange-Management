@@ -41,7 +41,7 @@ class ModuleFactory
     public static $app = null;
 
     /**
-     * Unassigned providings
+     * Unassigned providing
      *
      * @var string[][]
      * @since 1.0.0
@@ -72,6 +72,7 @@ class ModuleFactory
             $obj                   = new $class(self::$app);
             self::$loaded[$module] = $obj;
 
+            /** Install providing for */
             foreach($obj->getProviding() as $providing) {
                 if(isset(self::$loaded[$providing])) {
                     self::$loaded[$providing]->receiving[] = $obj->getName();
@@ -80,6 +81,7 @@ class ModuleFactory
                 }
             }
 
+            /** Check if I get provided with */
             $name = $obj->getName();
             if(isset(self::$providing[$name])) {
                 foreach(self::$providing[$name] as $providing) {

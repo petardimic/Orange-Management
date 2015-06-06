@@ -141,32 +141,6 @@ class Http implements \phpOMS\Uri\UriInterface
     /**
      * {@inheritdoc}
      */
-    public static function create($data, $query = null)
-    {
-        $uri = '/' . rtrim(implode('/', $data), '/') . '.php';
-
-        if(isset($query) && $query !== []) {
-            /*
-            $i = 0;
-            foreach($query as $key => $para) {
-                if($i == 0) {
-                    $uri .= '?' . $key . '=' . $para;
-                    $i++;
-                    continue;
-                }
-
-                $uri .= '&' . $key . '=' . $para;
-            }*/
-
-            $uri .= '?' . http_build_query($query);
-        }
-
-        return $uri;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public static function isValid($uri)
     {
         return true;
