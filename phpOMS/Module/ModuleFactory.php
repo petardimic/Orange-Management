@@ -23,16 +23,6 @@ class ModuleFactory
 
 // region Class Fields
     /**
-     * Module instances
-     *
-     * Reference to module.class
-     *
-     * @var \phpOMS\Module\ModuleAbstract[]
-     * @since 1.0.0
-     */
-    public static $loaded = [];
-
-    /**
      * Application instance
      *
      * @var \phpOMS\ApplicationAbstract
@@ -63,28 +53,28 @@ class ModuleFactory
     /**
      * Gets and initializes modules
      *
-     * @param string $module Module ID
+     * @param string                        $module      Module ID
+     * @param \phpOMS\Module\ModuleAbstract $initialized Running modules
      *
      * @return \phpOMS\Module\ModuleAbstract
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function getInstance($module)
+    public static function getInstance($module, $initialized)
     {
-        if(!isset(self::$loaded[$module])) {
+        if(!isset($initialized[$module])) {
             $class = '\\Modules\\' . $module . '\\Controller';
 
             /**
              * @var \phpOMS\Module\ModuleAbstract $obj
              */
-            $obj                   = new $class(self::$app);
-            self::$loaded[$module] = $obj;
+            $obj = new $class(self::$app);
 
             /** Install providing for */
             foreach($obj->getProviding() as $providing) {
-                if(isset(self::$loaded[$providing])) {
-                    self::$loaded[$providing]->receiving[] = $obj->getName();
+                if(isset($initialized[$providing])) {
+                    $initialized[$providing]->receiving[] = $obj->getName();
                 } else {
                     self::$providing[$providing][] = $obj->getName();
                 }
@@ -94,11 +84,13 @@ class ModuleFactory
             $name = $obj->getName();
             if(isset(self::$providing[$name])) {
                 foreach(self::$providing[$name] as $providing) {
-                    self::$loaded[$name]->receiving[] = $providing;
+                    $initialized[$name]->receiving[] = $providing;
                 }
             }
+
+            return $obj;
         }
 
-        return self::$loaded[$module];
+        return null;
     }
 }

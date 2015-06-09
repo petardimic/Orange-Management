@@ -55,6 +55,6 @@ $head = $this->response->getHead();
     <?= $side; ?>
     <div id="cont" role="main">
         <?php /** @noinspection PhpUndefinedMethodInspection */
-        \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response); ?>
+        $this->moduleManager->get('Content')->call($this->request, $this->response); ?>
     </div>
 </div>

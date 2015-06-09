@@ -53,12 +53,15 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      */
     public function __construct($config)
     {
+        $this->diContainer = new \phpOMS\DIContainer();
+
         $this->request = new \phpOMS\Message\Http\Request($config['page']['root']);
         $this->request->init();
         $this->response = new \phpOMS\Message\Http\Response();
 
-        $this->dbPool = new \phpOMS\DataStorage\Database\Pool();
-        $this->dbPool->create('core', $config['db']);
+        $dbPool = new \phpOMS\DataStorage\Database\Pool();
+        $dbPool->create('core', $config['db']);
+        $this->diContainer->setDbPool($dbPool);
 
         $pageView = null;
 
@@ -73,7 +76,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     break;
                 }
 
-                $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+                $this->response->setHeader('Content-Type', 'text/html; charset=utf-8');
 
                 $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
 
@@ -83,16 +86,16 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
-                $this->request->setAccount($this->user);
+                $this->request->setAccount($this->request->getAccount());
 
-                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
-                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
-                $pageView->setLocalization($this->user->getL11n());
+                $this->request->getAccount()->getL11n()->loadCoreLanguage($this->request->getLanguage());
+                $this->request->getAccount()->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'backend');
+                $pageView->setLocalization($this->request->getAccount()->getL11n());
 
                 $head    = $this->response->getHead();
                 $baseUri = $this->request->getUri()->getBase();
 
-                if($this->user->getId() < 1) {
+                if($this->request->getAccount()->getId() < 1) {
                     $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
                     $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
                     $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
@@ -103,12 +106,11 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     break;
                 }
 
-                // TODO: mybe don't use DB and instead use uri for loads (if module exists load it -> no activity check which could be bad)
                 $toLoad = $this->moduleManager->getUriLoads($this->request);
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
+                        $this->moduleManager->initModule($module['module_load_file']);
                     }
                 }
 
@@ -139,7 +141,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
-                $this->request->setAccount($this->user);
+                $this->request->setAccount($this->request->getAccount());
 
                 $this->response->setHeader('Content-Type', 'application/json; charset=utf-8');
                 $this->response->set('GLOBAL', new \phpOMS\Utils\JsonBuilder());
@@ -156,7 +158,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                         if(isset($toLoad[4])) {
                             foreach($toLoad[4] as $module) {
-                                \phpOMS\Module\ModuleFactory::getInstance($module['file']);
+                                $this->moduleManager->initModule($module['module_load_file']);
                             }
                         }
 
@@ -166,9 +168,9 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 } else {
                     $request = $this->request;
 
-                    if($this->user->getId() < 1) {
+                    if($this->request->getAccount()->getId() < 1) {
                         if($request->getPath(2) === 'login') {
-                            $login = $this->user->login($this->request->getData('user'), $this->request->getData('pass'));
+                            $login = $this->request->getAccount()->login($this->request->getData('user'), $this->request->getData('pass'));
 
                             if($login === \phpOMS\Auth\LoginReturnType::OK) {
                                 //$this->response->get('GLOBAL')->add($this->request->__toString(), $this->sessionManager->getSID());
@@ -194,13 +196,13 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                     if(isset($toLoad[4])) {
                         foreach($toLoad[4] as $module) {
-                            \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
+                            $this->moduleManager->initModule($module['module_load_file']);
                         }
                     }
 
-                    if(isset(\phpOMS\Module\ModuleFactory::$loaded['Content'])) {
+                    if(($content = $this->moduleManager->get('Content')) !== null) {
                         /** @noinspection PhpUndefinedMethodInspection */
-                        \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response);
+                        $content->call($this->request, $this->response);
                     }
                 }
 
@@ -215,7 +217,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     break;
                 }
 
-                $this->response->setHeader('Content-Type', 'Content-Type: text/html; charset=utf-8');
+                $this->response->setHeader('Content-Type', 'text/html; charset=utf-8');
                 $pageView = new \Web\Views\Page\BackendView(null, $this->request, $this->response);
 
                 if($this->dbPool->get()->getStatus() !== \phpOMS\DataStorage\Database\DatabaseStatus::OK) {
@@ -224,16 +226,16 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                 }
 
                 $this->setupBasic();
-                $this->request->setAccount($this->user);
+                $this->request->setAccount($this->request->getAccount());
 
-                $this->user->getL11n()->loadCoreLanguage($this->request->getLanguage());
-                $this->user->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'reporter');
-                $pageView->setLocalization($this->user->getL11n());
+                $this->request->getAccount()->getL11n()->loadCoreLanguage($this->request->getLanguage());
+                $this->request->getAccount()->getL11n()->loadThemeLanguage($this->request->getLanguage(), 'reporter');
+                $pageView->setLocalization($this->request->getAccount()->getL11n());
 
                 $head    = $this->response->getHead();
                 $baseUri = $this->request->getUri()->getBase();
 
-                if($this->user->getId() < 1) {
+                if($this->request->getAccount()->getId() < 1) {
                     $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
                     $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
                     $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/backend/js/backend.js');
@@ -248,7 +250,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
 
                 if(isset($toLoad[4])) {
                     foreach($toLoad[4] as $module) {
-                        \phpOMS\Module\ModuleFactory::getInstance($module['module_load_file']);
+                        $this->moduleManager->initModule($module['module_load_file']);
                     }
                 }
 
@@ -307,8 +309,10 @@ class WebApplication extends \phpOMS\ApplicationAbstract
      */
     private function setupBasic()
     {
-        $this->cache    = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
-        $this->settings = new \Model\CoreSettings($this->dbPool->get());
+        $cache = new \phpOMS\DataStorage\Cache\Cache($this->dbPool);
+        $this->diContainer->setCacheManager($cache);
+        $settings = new \Model\CoreSettings($this->dbPool->get());
+        $this->diContainer->setSettingsManager($settings);
 
         \phpOMS\Module\ModuleFactory::$app = $this;
         \phpOMS\Model\Model::$app          = $this;
@@ -316,7 +320,7 @@ class WebApplication extends \phpOMS\ApplicationAbstract
         $this->eventManager   = new \phpOMS\Event\EventManager();
         $this->sessionManager = new \phpOMS\DataStorage\Session\HttpSession(36000);
         $this->moduleManager  = new \phpOMS\Module\ModuleManager($this->dbPool);
-        $this->user           = new \Model\Account(0, $this->dbPool->get(), $this->sessionManager, $this->cache);
-        $this->user->authenticate();
+        $this->request->setAccount(new \Model\Account(0, $this->dbPool->get(), $this->sessionManager, $this->cache));
+        $this->request->getAccount()->authenticate();
     }
 }

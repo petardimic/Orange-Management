@@ -61,14 +61,6 @@ class ApplicationAbstract
     public $sessionManager = null;
 
     /**
-     * User instance
-     *
-     * @var \Model\Account
-     * @since 1.0.0
-     */
-    public $user = null;
-
-    /**
      * Server localization
      *
      * @var \phpOMS\Localization\Localization
