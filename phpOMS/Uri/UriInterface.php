@@ -91,16 +91,6 @@ interface UriInterface
     public function getPath();
 
     /**
-     * Get base
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getBase();
-
-    /**
      * Get query
      *
      * @param string $key Query key

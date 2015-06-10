@@ -27,7 +27,6 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
     private $type;
-
 // endregion
 
     /**
@@ -41,14 +40,11 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
      */
     public function __construct($config, $type)
     {
-        $this->type   = $type;
-        $socket       = null;
+        $this->type = $type;
+        $socket     = null;
+
         if($type === \phpOMS\Socket\SocketType::SERVER) {
-            $this->dbPool = new \phpOMS\DataStorage\Database\Pool();
-            $this->dbPool->create('core', $config['db']);
-            $this->moduleManager = new \phpOMS\Module\ModuleManager($this->dbPool);
-            $modules = $this->moduleManager->getActiveModules();
-            $this->moduleManager->initModule($modules);
+            // TODO: load all modules + other stuff
 
             $socket = new \phpOMS\Socket\Server\Server();
             $socket->create('127.0.0.1', $config['socket']['port']);

@@ -36,7 +36,7 @@ class ModuleManager
      * @var \phpOMS\Module\ModuleAbstract
      * @since 1.0.0
      */
-    public $running = [];
+    public $running = null;
 
     /**
      * FileCache instance
@@ -97,73 +97,43 @@ class ModuleManager
      */
     public function getUriLoads($request)
     {
-        switch($this->dbPool->get('core')->getType()) {
-            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                $uri_hash = $request->getHash();
-                $uri_pdo  = '';
+        if($this->running === null) {
+            switch($this->dbPool->get('core')->getType()) {
+                case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                    $uri_hash = $request->getHash();
+                    $uri_pdo  = '';
 
-                $i = 1;
-                foreach($uri_hash as $hash) {
-                    $uri_pdo .= ':pid' . $i . ',';
-                    $i++;
-                }
+                    $i = 1;
+                    foreach($uri_hash as $hash) {
+                        $uri_pdo .= ':pid' . $i . ',';
+                        $i++;
+                    }
 
-                $uri_pdo = rtrim($uri_pdo, ',');
+                    $uri_pdo = rtrim($uri_pdo, ',');
 
-                /* TODO: make join in order to see if they are active */
-                $sth = $this->dbPool->get('core')->con->prepare(
-                    'SELECT
+                    /* TODO: make join in order to see if they are active */
+                    $sth = $this->dbPool->get('core')->con->prepare(
+                        'SELECT
                         `' . $this->dbPool->get('core')->prefix . 'module_load`.`module_load_type`, `' . $this->dbPool->get('core')->prefix . 'module_load`.*
                         FROM
                         `' . $this->dbPool->get('core')->prefix . 'module_load`
                         WHERE
                         `module_load_pid` IN(' . $uri_pdo . ')'
-                );
+                    );
 
-                $i = 1;
-                foreach($uri_hash as $hash) {
-                    $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
-                    $i++;
-                }
+                    $i = 1;
+                    foreach($uri_hash as $hash) {
+                        $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
+                        $i++;
+                    }
 
-                $sth->execute();
-
-                return $sth->fetchAll(\PDO::FETCH_GROUP);
-        }
-
-        return null;
-    }
-
-    /**
-     * Init module
-     *
-     * @param string[]|string $module Module to initialize
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function initModule($module)
-    {
-        if(is_array($module)) {
-            foreach($module as $m) {
-                $this->running[$m] = \phpOMS\Module\ModuleFactory::getInstance($m, $this->running);
+                    $sth->execute();
+                    $this->running = $sth->fetchAll(\PDO::FETCH_GROUP);
+                    break;
             }
         }
-    }
 
-    /**
-     * Get module
-     *
-     * @param string $module Module
-     *
-     * @return \phpOMS\Module\ModuleAbstract
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function get($module)
-    {
-        return isset($this->running[$module]) ? $this->running[$module] : null;
+        return $this->running;
     }
 
     /**
