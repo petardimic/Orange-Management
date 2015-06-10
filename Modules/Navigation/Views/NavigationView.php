@@ -59,9 +59,10 @@ class NavigationView extends \phpOMS\Views\View
     /**
      * {@inheritdoc}
      */
-    public function __construct($l11n)
+    public function __construct($app, $request, $response)
     {
-        parent::__construct($l11n, null, null);
+        parent::__construct($app, $request, $response);
+        $this->l11n = $this->app->accountManager->get($request->getAccount())->getL11n();
     }
 
     /**

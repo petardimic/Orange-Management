@@ -1,8 +1,8 @@
 <?php
 /**
- * @var \Web\Views\Page\BackendView $this
+ * @var \Web\Views\Page\GenericView $this
  */
-$nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
+$nav = new \Modules\Navigation\Views\NavigationView($this->app);
 $nav->setTemplate('/Modules/Navigation/Theme/backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
@@ -46,7 +46,6 @@ $head = $this->response->getHead();
 </div>
 <div id="out">
     <div id="cont" role="main">
-        <?php /** @noinspection PhpUndefinedMethodInspection */
-        \phpOMS\Module\ModuleFactory::$loaded['Content']->call($this->request, $this->response); ?>
+        <?= $this->app->moduleManager->get('Content')->call($this->request, $this->response); ?>
     </div>
 </div>

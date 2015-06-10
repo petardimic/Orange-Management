@@ -121,4 +121,14 @@ interface UriInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function __toString();
+
+    /**
+     * Get base uri
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getBase();
 }

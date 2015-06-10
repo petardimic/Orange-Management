@@ -19,7 +19,7 @@ namespace phpOMS\DataStorage\Cache;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Cache implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\OptionsInterface
+class CacheManager implements \phpOMS\DataStorage\Cache\CacheInterface, \phpOMS\Config\OptionsInterface
 {
     use \phpOMS\Config\OptionsTrait;
 

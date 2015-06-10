@@ -12,13 +12,13 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
 
 <div class="b b-5 c1-7 c1" id="i1-7-1">
     <h1>
-        <?= $this->app->user->getL11n()->lang[1]['Module']; ?>
+        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Module']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
 
     <div class="bc-1">
-        <img alt="<?= $this->app->user->getL11n()->lang[1]['Module']; ?>"
+        <img alt="<?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Module']; ?>"
              src="/Modules/<?= $request->getData('id'); ?>/img/module_teaser_small.png" class="lf img-1">
         <span class="lf">
             <h1><?=
@@ -37,10 +37,10 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
                     <button data-http="PUT" data-request="DYN"
                             data-json='{"id":"<?= $request->getData('id'); ?>"}'
                             data-uri="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/api/admin/module.php'); ?>">
-                        <?= $this->app->user->getL11n()->lang[1]['Install']; ?></button>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Install']; ?></button>
                     <?php } else { ?>
                 <li><a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/module/single/settings.php');
-                    ?>"><?= $this->app->user->getL11n()->lang[1]['Settings']; ?></a>
+                    ?>"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Settings']; ?></a>
                     <?php } ?>
                 <li><a href=""></a>
             </ul>
@@ -50,7 +50,7 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
 
 <div class="b b-2 c1-7 c1" id="i1-7-2">
     <h1>
-        <?= $this->app->user->getL11n()->lang[1]['Features']; ?>
+        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Features']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>
@@ -63,7 +63,7 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
 
 <div class="b b-2 c1-7 c1" id="i1-7-3">
     <h1>
-        <?= $this->app->user->getL11n()->lang[1]['Version']; ?>
+        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Version']; ?>
         <i class="fa fa-minus min"></i>
         <i class="fa fa-plus max vh"></i>
     </h1>

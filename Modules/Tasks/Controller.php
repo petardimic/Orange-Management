@@ -100,7 +100,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         // TODO: pull abstract view creation and output out. let error be a view as well -> less code writing
         switch($request->getPath(3)) {
             case 'dashboard':
-                $taskDashboardView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $taskDashboardView = new \phpOMS\Views\View($this->app, $request, $response);
                 $taskDashboardView->setTemplate('/Modules/Tasks/Theme/backend/task-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -108,7 +108,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskDashboardView->render();
                 break;
             case 'single':
-                $taskSingleView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $taskSingleView = new \phpOMS\Views\View($this->app, $request, $response);
                 $taskSingleView->setTemplate('/Modules/Tasks/Theme/backend/task-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -116,7 +116,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskSingleView->render();
                 break;
             case 'create':
-                $taskCreateView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $taskCreateView = new \phpOMS\Views\View($this->app, $request, $response);
                 $taskCreateView->setTemplate('/Modules/Tasks/Theme/backend/task-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -124,7 +124,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskCreateView->render();
                 break;
             case 'analysis':
-                $taskAnalysisView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $taskAnalysisView = new \phpOMS\Views\View($this->app, $request, $response);
                 $taskAnalysisView->setTemplate('/Modules/Tasks/Theme/backend/task-analysis');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -132,7 +132,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $taskAnalysisView->render();
                 break;
             case 'settings':
-                $taskSettingsView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $taskSettingsView = new \phpOMS\Views\View($this->app, $request, $response);
                 $taskSettingsView->setTemplate('/Modules/Tasks/Theme/backend/task-settings');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

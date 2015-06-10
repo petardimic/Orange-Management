@@ -252,7 +252,7 @@ class Install
      */
     public function installModules($modules)
     {
-        $moduleManager = new \phpOMS\Module\ModuleManager($this->dbPool);
+        $moduleManager = new \phpOMS\Module\ModuleManager($this);
 
         foreach($modules as $module) {
             $moduleManager->install($module);

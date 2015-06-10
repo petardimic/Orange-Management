@@ -16,7 +16,7 @@ namespace Model;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Account
+class Account extends \phpOMS\Account\Account
 {
 // region Class Fields
     /**
@@ -38,7 +38,7 @@ class Account
     /**
      * Cache manager
      *
-     * @var \phpOMS\DataStorage\Cache\Cache
+     * @var \phpOMS\DataStorage\Cache\CacheManager
      * @since 1.0.0
      */
     private $cacheManager = null;
@@ -50,27 +50,6 @@ class Account
      * @since 1.0.0
      */
     private $l11n = null;
-
-    /**
-     * Account id
-     *
-     * @var int
-     * @since 1.0.0
-     */
-    private $id = 0;
-
-    /**
-     * Account name
-     *
-     * @var string[]
-     * @since 1.0.0
-     */
-    private $name = [
-        0 => '', /* Login */
-        1 => '', /* Name 1 */
-        2 => '', /* Name 2 */
-        3 => '', /* Name 3 */
-    ];
 
     /**
      * Account address (primary)
@@ -96,7 +75,7 @@ class Account
      * @param int                                                        $id             Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
      * @param \phpOMS\DataStorage\Session\SessionInterface               $sessionManager Session manager
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
+     * @param \phpOMS\DataStorage\Cache\CacheManager                            $cacheManager   Cache manager
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -117,7 +96,7 @@ class Account
      * @param int                                                        $id             Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection     Database connection
      * @param \phpOMS\DataStorage\Session\SessionInterface               $sessionManager Session manager
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager   Cache manager
+     * @param \phpOMS\DataStorage\Cache\CacheManager                            $cacheManager   Cache manager
      *
      * @return \Model\Account
      *

@@ -41,10 +41,10 @@ class ModuleManager
     /**
      * FileCache instance
      *
-     * @var \phpOMS\DataStorage\Database\Pool
+     * @var \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
-    private $dbPool = null;
+    private $app = null;
 
     /**
      * Installed modules
@@ -75,14 +75,14 @@ class ModuleManager
     /**
      * Constructor
      *
-     * @param \phpOMS\DataStorage\Database\Pool $dbPool Database pool
+     * @param \phpOMS\ApplicationAbstract $app Application
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($dbPool)
+    public function __construct($app)
     {
-        $this->dbPool = $dbPool;
+        $this->app = $app;
     }
 
     /**
@@ -97,43 +97,41 @@ class ModuleManager
      */
     public function getUriLoads($request)
     {
-        if($this->running === null) {
-            switch($this->dbPool->get('core')->getType()) {
-                case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $uri_hash = $request->getHash();
-                    $uri_pdo  = '';
+        switch($this->app->dbPool->get('core')->getType()) {
+            case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
+                $uri_hash = $request->getHash();
+                $uri_pdo  = '';
 
-                    $i = 1;
-                    foreach($uri_hash as $hash) {
-                        $uri_pdo .= ':pid' . $i . ',';
-                        $i++;
-                    }
+                $i = 1;
+                foreach($uri_hash as $hash) {
+                    $uri_pdo .= ':pid' . $i . ',';
+                    $i++;
+                }
 
-                    $uri_pdo = rtrim($uri_pdo, ',');
+                $uri_pdo = rtrim($uri_pdo, ',');
 
-                    /* TODO: make join in order to see if they are active */
-                    $sth = $this->dbPool->get('core')->con->prepare(
-                        'SELECT
-                        `' . $this->dbPool->get('core')->prefix . 'module_load`.`module_load_type`, `' . $this->dbPool->get('core')->prefix . 'module_load`.*
+                /* TODO: make join in order to see if they are active */
+                $sth = $this->app->dbPool->get('core')->con->prepare(
+                    'SELECT
+                        `' . $this->app->dbPool->get('core')->prefix . 'module_load`.`module_load_type`, `' . $this->app->dbPool->get('core')->prefix . 'module_load`.*
                         FROM
-                        `' . $this->dbPool->get('core')->prefix . 'module_load`
+                        `' . $this->app->dbPool->get('core')->prefix . 'module_load`
                         WHERE
                         `module_load_pid` IN(' . $uri_pdo . ')'
-                    );
+                );
 
-                    $i = 1;
-                    foreach($uri_hash as $hash) {
-                        $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
-                        $i++;
-                    }
+                $i = 1;
+                foreach($uri_hash as $hash) {
+                    $sth->bindValue(':pid' . $i, $hash, \PDO::PARAM_STR);
+                    $i++;
+                }
 
-                    $sth->execute();
-                    $this->running = $sth->fetchAll(\PDO::FETCH_GROUP);
-                    break;
-            }
+                $sth->execute();
+
+                return $sth->fetchAll(\PDO::FETCH_GROUP);
         }
 
-        return $this->running;
+        return null;
     }
 
     /**
@@ -147,9 +145,9 @@ class ModuleManager
     public function getActiveModules()
     {
         if($this->active === null) {
-            switch($this->dbPool->get('core')->getType()) {
+            switch($this->app->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_path`,`module_theme`,`module_version`,`module_id` FROM `' . $this->dbPool->get('core')->prefix . 'module` WHERE `module_active` = 1');
+                    $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_path`,`module_theme`,`module_version`,`module_id` FROM `' . $this->app->dbPool->get('core')->prefix . 'module` WHERE `module_active` = 1');
                     $sth->execute();
                     $this->active = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -199,6 +197,14 @@ class ModuleManager
     {
     }
 
+    /**
+     * Install module
+     *
+     * @param string $module Module name
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
     public function install($module)
     {
         $installed = $this->getInstalledModules();
@@ -214,12 +220,12 @@ class ModuleManager
         if(file_exists(self::MODULE_PATH . '/' . $module . '/' . 'info.json')) {
             $info = json_decode(file_get_contents(self::MODULE_PATH . '/' . $module . '/' . 'info.json'), true);
 
-            switch($this->dbPool->get('core')->getType()) {
+            switch($this->app->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $this->dbPool->get('core')->con->beginTransaction();
+                    $this->app->dbPool->get('core')->con->beginTransaction();
 
-                    $sth = $this->dbPool->get('core')->con->prepare(
-                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module` (`module_id`, `module_name`, `module_theme`, `module_path`, `module_active`, `module_version`) VALUES
+                    $sth = $this->app->dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'module` (`module_id`, `module_name`, `module_theme`, `module_path`, `module_active`, `module_version`) VALUES
                                 (:internal,  :external, :theme, :path, :active, :version);'
                     );
 
@@ -232,8 +238,8 @@ class ModuleManager
 
                     $sth->execute();
 
-                    $sth = $this->dbPool->get('core')->con->prepare(
-                        'INSERT INTO `' . $this->dbPool->get('core')->prefix . 'module_load` (`module_load_pid`, `module_load_type`, `module_load_from`, `module_load_for`, `module_load_file`) VALUES
+                    $sth = $this->app->dbPool->get('core')->con->prepare(
+                        'INSERT INTO `' . $this->app->dbPool->get('core')->prefix . 'module_load` (`module_load_pid`, `module_load_type`, `module_load_from`, `module_load_for`, `module_load_file`) VALUES
                                         (:pid, :type, :from, :for, :file);'
                     );
 
@@ -249,7 +255,7 @@ class ModuleManager
                         }
                     }
 
-                    $this->dbPool->get('core')->con->commit();
+                    $this->app->dbPool->get('core')->con->commit();
 
                     break;
             }
@@ -259,7 +265,7 @@ class ModuleManager
             }
 
             $class = '\\Modules\\' . $module . '\\Admin\\Install';
-            $class::install($this->dbPool, $info);
+            $class::install($this->app->dbPool, $info);
 
             // TODO: change this
             $this->installed[$module] = true;
@@ -276,6 +282,40 @@ class ModuleManager
     }
 
     /**
+     * Initialize module
+     *
+     * @param string $module Module name
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function initModule($module)
+    {
+        if(is_array($module)) {
+            foreach($module as $m) {
+                $this->running[$m] = \phpOMS\Module\ModuleFactory::getInstance($m, $this->app);
+            }
+        } else {
+            $this->running[$module] = \phpOMS\Module\ModuleFactory::getInstance($module, $this->app);
+        }
+    }
+
+    /**
+     * Get module instance
+     *
+     * @param string $module Module name
+     *
+     * @return \phpOMS\Module\ModuleAbstract
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function get($module)
+    {
+        return isset($this->running[$module]) ? $this->running[$module] : null;
+    }
+
+    /**
      * Get all installed modules
      *
      * @return array
@@ -286,9 +326,9 @@ class ModuleManager
     public function getInstalledModules()
     {
         if($this->installed === null) {
-            switch($this->dbPool->get('core')->getType()) {
+            switch($this->app->dbPool->get('core')->getType()) {
                 case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
-                    $sth = $this->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_theme`,`module_version`,`module_id` FROM `' . $this->dbPool->get('core')->prefix . 'module`');
+                    $sth = $this->app->dbPool->get('core')->con->prepare('SELECT `module_id`,`module_name`,`module_theme`,`module_version`,`module_id` FROM `' . $this->app->dbPool->get('core')->prefix . 'module`');
                     $sth->execute();
                     $this->installed = $sth->fetchAll(\PDO::FETCH_GROUP);
                     break;
@@ -298,11 +338,22 @@ class ModuleManager
         return $this->installed;
     }
 
+    /**
+     * Install providing
+     *
+     * Installing additional functionality for another module
+     *
+     * @param string $from From module
+     * @param string $for For module
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
     public function installProviding($from, $for)
     {
         if(file_exists(self::MODULE_PATH . '/' . $from . '/Admin/Install/' . $for . '.php')) {
             $class = '\\Modules\\' . $from . '\\Admin\\Install\\' . $for;
-            $class::install($this->dbPool, null);
+            $class::install($this->app->dbPool, null);
         }
     }
 }

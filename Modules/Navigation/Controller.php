@@ -117,12 +117,18 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
     public function __construct($app)
     {
         parent::__construct($app);
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function call($request, $response, $data = null)
+    {
         $modules  = $this->app->moduleManager->getActiveModules();
-        $language = $this->app->user->getL11n()->getLanguage();
+        $language = $this->app->accountManager->get($request->getAccount())->getL11n()->getLanguage();
 
         foreach($modules as $id => $module) {
-            $this->app->user->getL11n()->loadLanguage($language, 'nav.backend', $module[0]['module_path']);
+            $this->app->accountManager->get($request->getAccount())->getL11n()->loadLanguage($language, 'nav.backend', $module[0]['module_path']);
         }
 
         if(!$this->nav) {
@@ -154,13 +160,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->nav[$link['nav_type']][$link['nav_subtype']][$link['nav_id']] = $link;
             }
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function call($request, $response, $data = null)
-    {
         switch($data[0]) {
             case \Modules\Navigation\Models\NavigationType::TOP:
                 /** @noinspection PhpIncludeInspection */

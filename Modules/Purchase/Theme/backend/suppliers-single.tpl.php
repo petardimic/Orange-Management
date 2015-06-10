@@ -7,15 +7,15 @@
 <div class="tabview">
     <!-- @formatter:off -->
     <ul class="tab-links">
-        <li class="active"><a href=".tab-1"><?= $this->app->user->getL11n()->lang[21]['CoreData'] ?></a>
-        <li><a href=".tab-2"><?= $this->app->user->getL11n()->lang[21]['Address'] ?></a>
-        <li><a href=".tab-3"><?= $this->app->user->getL11n()->lang[21]['Terms'] ?></a>
-        <li><a href=".tab-4"><?= $this->app->user->getL11n()->lang[21]['Discount'] ?></a>
-        <li><a href=".tab-5"><?= $this->app->user->getL11n()->lang[21]['Invoices'] ?></a>
-        <li><a href=".tab-6"><?= $this->app->user->getL11n()->lang[21]['Articles'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[21]['Analysis'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[21]['Media'] ?></a>
-        <li><a href=".tab-7"><?= $this->app->user->getL11n()->lang[21]['Documentation'] ?></a>
+        <li class="active"><a href=".tab-1"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['CoreData'] ?></a>
+        <li><a href=".tab-2"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Address'] ?></a>
+        <li><a href=".tab-3"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Terms'] ?></a>
+        <li><a href=".tab-4"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Discount'] ?></a>
+        <li><a href=".tab-5"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Invoices'] ?></a>
+        <li><a href=".tab-6"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Articles'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Analysis'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Media'] ?></a>
+        <li><a href=".tab-7"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Documentation'] ?></a>
     </ul>
     <!-- @formatter:on -->
 
@@ -23,7 +23,7 @@
         <div class="tab tab-1 active">
             <div class="b b-2 c1-8 c1" id="i1-8-2">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Account']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Account']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -32,26 +32,26 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Reference']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Reference']; ?></label>
                             <li><input type="text">
-                                <button><?= $this->app->user->getL11n()->lang[0]['Find']; ?></button>
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Status']; ?></label>
+                                <button><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Find']; ?></button>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Status']; ?></label>
                             <li>
                                 <select name="status" id="i-status">
                                     <option value="0">
-                                        <?= $this->app->user->getL11n()->lang[21]['Active']; ?>
+                                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Active']; ?>
                                     <option value="1">
-                                        <?= $this->app->user->getL11n()->lang[21]['Inactive']; ?>
+                                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Inactive']; ?>
                                 </select>
-                            <li><label for="i-type"><?= $this->app->user->getL11n()->lang[21]['Type']; ?></label>
+                            <li><label for="i-type"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type']; ?></label>
                             <li>
                                 <select name="type" id="i-type">
                                     <option value="0">
-                                        <?= $this->app->user->getL11n()->lang[21]['Single']; ?>
+                                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Single']; ?>
                                     <option value="1">
-                                        <?= $this->app->user->getL11n()->lang[21]['Group']; ?>
+                                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Group']; ?>
                                 </select>
-                            <li><label for="i-active"><?= $this->app->user->getL11n()->lang[21]['Activity']; ?></label>
+                            <li><label for="i-active"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Activity']; ?></label>
                             <li><input name="active" class="i-1 t-i" id="i-active" type="text">
                             <li>
                         </ul>
@@ -62,7 +62,7 @@
 
             <div class="b b-2 c1-8 c1" id="i1-8-3">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Account']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Account']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -71,19 +71,19 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-login"><?= $this->app->user->getL11n()->lang[21]['Loginname']; ?></label>
+                            <li><label for="i-login"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Loginname']; ?></label>
                             <li><input name="login" class="i-1 t-i" id="i-login" type="text">
-                            <li><label for="i-name1"><?= $this->app->user->getL11n()->lang[21]['Name1']; ?></label>
+                            <li><label for="i-name1"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name1']; ?></label>
                             <li><input name="name1" class="i-1 t-i" id="i-name1" type="text">
-                            <li><label for="i-name2"><?= $this->app->user->getL11n()->lang[21]['Name2']; ?></label>
+                            <li><label for="i-name2"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name2']; ?></label>
                             <li><input name="name2" class="i-1 t-i" id="i-name2" type="text">
-                            <li><label for="i-name3"><?= $this->app->user->getL11n()->lang[21]['Name3']; ?></label>
+                            <li><label for="i-name3"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name3']; ?></label>
                             <li><input name="name3" class="i-1 t-i" id="i-name3" type="text">
-                            <li><label for="i-email"><?= $this->app->user->getL11n()->lang[0]['Email']; ?></label>
+                            <li><label for="i-email"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Email']; ?></label>
                             <li><input name="email" class="i-1 t-i" id="i-email" type="text">
-                            <li><label for="i-pass"><?= $this->app->user->getL11n()->lang[0]['Password']; ?></label>
+                            <li><label for="i-pass"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Password']; ?></label>
                             <li><input name="pass" class="i-1 t-i" id="i-pass" type="password">
-                                <input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Create']; ?>">
+                                <input type="button" value="<?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Create']; ?>">
                             <li>
                         </ul>
                         <!-- @formatter:on -->
@@ -94,7 +94,7 @@
         <div class="tab tab-2">
             <div class="b b-1 c21-1 c21" id="i21-1-1">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Address']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Address']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -103,21 +103,21 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Name']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name']; ?></label>
                             <li><select></select>
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['IsDefault']; ?></label>
-                            <li><input type="checkbox"><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['IsDefault']; ?></label>
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['FAO']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['IsDefault']; ?></label>
+                            <li><input type="checkbox"><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['IsDefault']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['FAO']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Street']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Street']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['ZipCode']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['ZipCode']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['City']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['City']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Country']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Country']; ?></label>
                             <li><input type="text">
-                            <li><input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Add']; ?>">
+                            <li><input type="button" value="<?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Add']; ?>">
                         </ul>
                         <!-- @formatter:on -->
                     </form>
@@ -126,7 +126,7 @@
 
             <div class="b b-3 c21-1 c21" id="i21-1-1">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Address']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Address']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -142,7 +142,7 @@
         <div class="tab tab-4">
             <div class="b b-1 c21-1 c21" id="i21-1-1">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Discount']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Discount']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -151,15 +151,15 @@
                     <form class="f-1">
                         <!-- @formatter:off -->
                         <ul class="l-1">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Type']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type']; ?></label>
                             <li><select></select>
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['Discount']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Discount']; ?></label>
                             <li><input type="text">
-                            <li><label for="i-status"><?= $this->app->user->getL11n()->lang[21]['DiscountP']; ?></label>
+                            <li><label for="i-status"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['DiscountP']; ?></label>
                             <li><input type="text">
-                            <li><input type="button" value="<?= $this->app->user->getL11n()->lang[0]['Add']; ?>">
+                            <li><input type="button" value="<?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Add']; ?>">
                         </ul>
                         <!-- @formatter:on -->
                     </form>
@@ -168,7 +168,7 @@
 
             <div class="b b-3 c21-1 c21" id="i21-1-1">
                 <h1>
-                    <?= $this->app->user->getL11n()->lang[21]['Discount']; ?>
+                    <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Discount']; ?>
                     <i class="fa fa-minus min"></i>
                     <i class="fa fa-plus max vh"></i>
                 </h1>
@@ -182,28 +182,28 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5" id="i3-2-4">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Settings']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Settings']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['From']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['To']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['To']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['Type']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type']; ?></label>
                             <li><select>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['All']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Invoice']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Offer']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Confirmation']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['DeliveryNote']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['CreditNote']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['All']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Invoice']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Offer']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Confirmation']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['DeliveryNote']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['CreditNote']; ?>
                                 </select>
                             <li>
-                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                         <th colspan="7" class="lT">
                             <i class="fa fa-filter p f dim"></i>
 
-                            <h1><?= $this->app->user->getL11n()->lang[21]['Invoices'] ?></h1>
+                            <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Invoices'] ?></h1>
                         <th class="rT">
                             <i class="fa fa-minus min"></i>
                             <i class="fa fa-plus max vh"></i>
@@ -224,16 +224,16 @@
                                 <?php
                                 \phpOMS\Model\Model::generate_table_header_view(
                                     [
-                                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Date'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Type'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Status'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Address'],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID'], 'sort' => 1],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Date'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Status'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Address'],
                                          'sort' => 0,
                                          'full' => true],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Price'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Creator'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Created'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Price'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Creator'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Created'], 'sort' => 0],
                                     ]
                                 );
                                 ?>
@@ -259,28 +259,28 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5" id="i3-2-4">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Settings']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Settings']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['From']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['To']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['To']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['Type']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type']; ?></label>
                             <li><select>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['All']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Invoice']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Offer']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['Confirmation']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['DeliveryNote']; ?>
-                                    <option><?= $this->app->user->getL11n()->lang[21]['CreditNote']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['All']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Invoice']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Offer']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Confirmation']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['DeliveryNote']; ?>
+                                    <option><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['CreditNote']; ?>
                                 </select>
                             <li>
-                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                         <th colspan="5" class="lT">
                             <i class="fa fa-filter p f dim"></i>
 
-                            <h1><?= $this->app->user->getL11n()->lang[21]['Articles'] ?></h1>
+                            <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Articles'] ?></h1>
                         <th class="rT">
                             <i class="fa fa-minus min"></i>
                             <i class="fa fa-plus max vh"></i>
@@ -301,14 +301,14 @@
                                 <?php
                                 \phpOMS\Model\Model::generate_table_header_view(
                                     [
-                                        ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Date'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Invoice'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Type'], 'sort' => 0],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Name'],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID'], 'sort' => 1],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Date'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Invoice'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Type'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name'],
                                          'sort' => 0,
                                          'full' => true],
-                                        ['name' => $this->app->user->getL11n()->lang[21]['Price'], 'sort' => 0],
+                                        ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Price'], 'sort' => 0],
                                     ]
                                 );
                                 ?>
@@ -334,16 +334,16 @@
             <div class="b-7" id="i3-2-1">
                 <div class="b b-5 c3-2 c3" id="i3-2-5">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Interval']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Interval']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['From']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['From']; ?></label>
                             <li><input type="text">
-                            <li><label><?= $this->app->user->getL11n()->lang[21]['To']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['To']; ?></label>
                             <li><input type="text">
                         </ul>
                     </div>
@@ -351,7 +351,7 @@
 
                 <div class="b b-5 c30-1 c30" id="i30-1-4">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Statistics']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Statistics']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -360,25 +360,25 @@
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Turnover']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Turnover']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Trend']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Trend']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Orders']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Orders']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Highest']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Highest']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Articles']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Articles']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Discount']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Discount']; ?></label>
                                 <td>asldkf
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['DSO']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['DSO']; ?></label>
                                 <td>asldkf
                         </table>
                         <!-- @formatter:on -->
@@ -388,7 +388,7 @@
             <div class="b-6">
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['TopArticles']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['TopArticles']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -397,10 +397,10 @@
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <td><strong><?= $this->app->user->getL11n()->lang[21]['Name']; ?></strong>
-                                <td><strong><?= $this->app->user->getL11n()->lang[0]['ID']; ?></strong>
-                                <td><strong><?= $this->app->user->getL11n()->lang[21]['Amount']; ?></strong>
-                                <td><strong><?= $this->app->user->getL11n()->lang[21]['Turnover']; ?></strong>
+                                <td><strong><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Name']; ?></strong>
+                                <td><strong><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID']; ?></strong>
+                                <td><strong><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Amount']; ?></strong>
+                                <td><strong><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Turnover']; ?></strong>
                             <tr>
                                 <td>Alphador
                                 <td>1224658
@@ -433,28 +433,28 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Article']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Article']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
 
                     <div class="bc-1">
                         <ul class="l-1">
-                            <li><label><?= $this->app->user->getL11n()->lang[0]['ID']; ?></label>
+                            <li><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID']; ?></label>
                             <li><input type="text">
-                                <button><?= $this->app->user->getL11n()->lang[0]['Submit']; ?></button>
+                                <button><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['Submit']; ?></button>
                         </ul>
 
                         <!-- @formatter:off -->
                         <table class="tc-1">
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Last']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Last']; ?></label>
                                 <td>1224658
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Turnover']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Turnover']; ?></label>
                                 <td>1224658
                             <tr>
-                                <th><label><?= $this->app->user->getL11n()->lang[21]['Amount']; ?></label>
+                                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Amount']; ?></label>
                                 <td>1224658
                         </table>
                         <!-- @formatter:on -->
@@ -463,7 +463,7 @@
 
                 <div class="b b-5 c30-1 c30" id="i30-1-3">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Turnover']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Turnover']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -612,7 +612,7 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-1">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Groups']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Groups']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>
@@ -727,7 +727,7 @@
 
                 <div class="b b-2 c30-1 c30" id="i30-1-6">
                     <h1>
-                        <?= $this->app->user->getL11n()->lang[21]['Groups']; ?>
+                        <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Groups']; ?>
                         <i class="fa fa-minus min"></i>
                         <i class="fa fa-plus max vh"></i>
                     </h1>

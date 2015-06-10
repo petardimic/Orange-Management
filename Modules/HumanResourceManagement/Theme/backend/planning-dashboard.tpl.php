@@ -1,5 +1,5 @@
 <div class="b b-1 c24-1 c24" id="i24-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[24]['Vacation'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[24]['Vacation'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -26,13 +26,13 @@
         <!-- @formatter:on -->
         <div class="cT">
             <a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/sales/analysis/clients/dashboard.php'); ?>"
-               class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+               class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c24-1 c24" id="i24-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[24]['Shifts'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[24]['Shifts'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -58,13 +58,13 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c24-1 c24" id="i24-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[24]['Personnel'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[24]['Personnel'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -90,7 +90,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>

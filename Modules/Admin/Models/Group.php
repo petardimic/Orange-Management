@@ -16,7 +16,7 @@ class Group
     /**
      * Cache manager
      *
-     * @var \phpOMS\DataStorage\Cache\Cache
+     * @var \phpOMS\DataStorage\Cache\CacheManager
      * @since 1.0.0
      */
     private $cacheManager = null;
@@ -59,7 +59,7 @@ class Group
      *
      * @param int                                                        $id           Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
+     * @param \phpOMS\DataStorage\Cache\CacheManager                            $cacheManager Cache manager
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -78,7 +78,7 @@ class Group
      *
      * @param int                                                        $id           Account id
      * @param \phpOMS\DataStorage\Database\Connection\ConnectionAbstract $connection   Database connection
-     * @param \phpOMS\DataStorage\Cache\Cache                            $cacheManager Cache manager
+     * @param \phpOMS\DataStorage\Cache\CacheManager                            $cacheManager Cache manager
      *
      * @return \Model\Account
      *

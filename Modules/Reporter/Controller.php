@@ -106,7 +106,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showSingleBackend($request, $response);
                 break;
             case 'list':
-                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportList = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportList->setTemplate('/Modules/Reporter/Theme/backend/reporter-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -114,7 +114,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportList->render();
                 break;
             case 'create':
-                $reportCreate = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportCreate = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportCreate->setTemplate('/Modules/Reporter/Theme/backend/reporter-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -122,7 +122,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 echo $reportCreate->render();
                 break;
             case 'edit':
-                $reportEdit = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportEdit = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportEdit->setTemplate('/Modules/Reporter/Theme/backend/reporter-edit');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
@@ -149,13 +149,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 if(file_exists(__DIR__ . '/Templates/' . $request->getData('id') . '.tpl.php')) {
                 }
 
-                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportSingle = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportSingle->addData('nav', $navigation->nav);
 
-                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $dataView = new \phpOMS\Views\View($this->app, $request, $response);
                 $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
                 $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
@@ -180,13 +180,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 if(file_exists(__DIR__ . '/Templates/' . $request->getData('id') . '.tpl.php')) {
                 }
 
-                $reportSingle = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportSingle = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportSingle->setTemplate('/Modules/Reporter/Theme/reporter/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportSingle->addData('nav', $navigation->nav);
 
-                $dataView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $dataView = new \phpOMS\Views\View($this->app, $request, $response);
                 $dataView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id'));
                 $reportSingle->addData('name', $request->getData('id'));
                 $reportSingle->addView('DataView', $dataView);
@@ -235,8 +235,8 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 /** @noinspection PhpIncludeInspection */
                 include_once __DIR__ . '/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.lang.php';
 
-                $pdfView = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
-                $pdfView->addData('lang', $reportLanguage[$this->app->user->getL11n()->getLanguage()]);
+                $pdfView = new \phpOMS\Views\View($this->app, $request, $response);
+                $pdfView->addData('lang', $reportLanguage[$this->app->accountManager->get($request->getAccount())->getL11n()->getLanguage()]);
                 $pdfView->setTemplate('/Modules/Reporter/Templates/' . $request->getData('id') . '/' . $request->getData('id') . '.' . $request->getData('type'));
                 $response->set('GLOBAL', $pdfView->render());
                 break;
@@ -250,7 +250,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $this->showSingleReporter($request, $response);
                 break;
             default:
-                $reportList = new \phpOMS\Views\View($this->app->user->getL11n(), $request, $response, $this->app);
+                $reportList = new \phpOMS\Views\View($this->app, $request, $response);
                 $reportList->setTemplate('/Modules/Reporter/Theme/reporter/reporter-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);

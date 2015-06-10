@@ -35,7 +35,7 @@ class Logging implements \phpOMS\Pattern\Singleton
     /**
      * Instance
      *
-     * @var \phpOMS\DataStorage\Cache\Cache
+     * @var \phpOMS\DataStorage\Cache\CacheManager
      * @since 1.0.0
      */
     protected static $instance = null;

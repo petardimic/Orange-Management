@@ -27,6 +27,7 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
      * @since 1.0.0
      */
     private $type;
+
 // endregion
 
     /**
@@ -44,16 +45,28 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
         $socket     = null;
 
         if($type === \phpOMS\Socket\SocketType::SERVER) {
-            // TODO: load all modules + other stuff
+            $this->dbPool = new \phpOMS\DataStorage\Database\Pool();
+            $this->dbPool->create('core', $config['db']);
 
-            $socket = new \phpOMS\Socket\Server\Server();
+            $this->cacheManager   = new \phpOMS\DataStorage\Cache\CacheManager($this->dbPool);
+            $this->appSettings    = new \Model\CoreSettings($this->dbPool->get());
+            $this->eventManager   = new \phpOMS\Event\EventManager();
+            $this->sessionManager = new \phpOMS\DataStorage\Session\SocketSession(36000);
+            $this->moduleManager  = new \phpOMS\Module\ModuleManager($this);
+
+            $modules = $this->moduleManager->getActiveModules();
+            foreach($modules as $module) {
+                $this->moduleManager->initModule($module['module_name']);
+            }
+
+            $socket = new \phpOMS\Socket\Server\Server($this);
             $socket->create('127.0.0.1', $config['socket']['port']);
             $socket->setLimit($config['socket']['limit']);
         } elseif($type === \phpOMS\Socket\SocketType::CLIENT) {
             $socket = new \phpOMS\Socket\Client\Client();
             $socket->create('127.0.0.1', $config['socket']['port']);
         } else {
-            exit();
+            exit('Unknown socket type');
         }
 
         $socket->run();

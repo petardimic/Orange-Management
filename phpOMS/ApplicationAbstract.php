@@ -2,7 +2,7 @@
 namespace phpOMS;
 
 /**
- * Controller class
+ * Application class
  *
  * PHP Version 5.4
  *
@@ -29,20 +29,28 @@ class ApplicationAbstract
     public $dbPool = null;
 
     /**
-     * Cache instance
-     *
-     * @var \phpOMS\DataStorage\Cache\Cache
-     * @since 1.0.0
-     */
-    public $cache = null;
-
-    /**
-     * Settings instance
+     * Application settings object
      *
      * @var \Model\CoreSettings
      * @since 1.0.0
      */
-    public $settings = null;
+    public $appSettings = null;
+
+    /**
+     * Account manager instance
+     *
+     * @var \phpOMS\Account\AccountManager
+     * @since 1.0.0
+     */
+    public $accountManager = null;
+
+    /**
+     * Cache instance
+     *
+     * @var \phpOMS\DataStorage\Cache\CacheManager
+     * @since 1.0.0
+     */
+    public $cacheManager = null;
 
     /**
      * ModuleManager instance
@@ -61,20 +69,12 @@ class ApplicationAbstract
     public $sessionManager = null;
 
     /**
-     * User instance
-     *
-     * @var \Model\Account
-     * @since 1.0.0
-     */
-    public $user = null;
-
-    /**
      * Server localization
      *
      * @var \phpOMS\Localization\Localization
      * @since 1.0.0
      */
-    public $localization = null;
+    public $l11nServer = null;
 
     /**
      * Event manager

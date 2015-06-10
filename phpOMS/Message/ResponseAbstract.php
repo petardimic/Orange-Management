@@ -36,6 +36,21 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      */
     protected $response = [];
 
+    /**
+     * Response status
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected $status = 200;
+
+    /**
+     * Account
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected $account = null;
 // endregion
 
     /**
@@ -89,5 +104,37 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
         if($overwrite || !isset($this->response[$key])) {
             $this->response[$key] = $response;
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStatusCode($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatusCode()
+    {
+        return $this->status;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccount($account)
+    {
+        $this->account = $account;
     }
 }

@@ -1,5 +1,5 @@
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[21]['Suppliers'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Suppliers'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -8,7 +8,7 @@
         <!-- @formatter:off -->
         <table class="tc-1" style="margin-top: 5px">
             <tr>
-                <th><label><?= $this->app->user->getL11n()->lang[21]['Amount'] ?></label>
+                <th><label><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Amount'] ?></label>
                 <td>asldkf
             <tr>
                 <th><label>Test string</label>
@@ -25,13 +25,13 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[21]['Articles'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Articles'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -57,13 +57,13 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>
 
 <div class="b b-1 c16-1 c16" id="i16-1-1">
-    <h1><?= $this->app->user->getL11n()->lang[21]['Purchases'] ?></h1>
+    <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[21]['Purchases'] ?></h1>
 
     <div class="bc-1">
         <div class="cT">
@@ -89,7 +89,7 @@
         </table>
         <!-- @formatter:on -->
         <div class="cT">
-            <a href="" class="button"><?= $this->app->user->getL11n()->lang[0]['More'] ?></a>
+            <a href="" class="button"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['More'] ?></a>
         </div>
     </div>
 </div>

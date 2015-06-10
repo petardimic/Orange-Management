@@ -66,7 +66,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     public function __construct($app)
     {
         $this->app = $app;
-        $this->loadLanguage($this->app->user->getL11n()->getLanguage(), $app->request->getRequestDestination());
+        $this->loadLanguage($this->app->accountManager->get($request->getAccount())->getL11n()->getLanguage(), $app->request->getRequestDestination());
     }
 
     /**
@@ -83,7 +83,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
         /** @noinspection PhpUndefinedFieldInspection */
         if(isset(static::$localization[$destination])) {
             /** @noinspection PhpUndefinedFieldInspection */
-            $this->app->user->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
+            $this->app->accountManager->get($request->getAccount())->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
         }
     }
 

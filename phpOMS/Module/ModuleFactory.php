@@ -33,14 +33,6 @@ class ModuleFactory
     public static $loaded = [];
 
     /**
-     * Application instance
-     *
-     * @var \phpOMS\ApplicationAbstract
-     * @since 1.0.0
-     */
-    public static $app = null;
-
-    /**
      * Unassigned providing
      *
      * @var string[][]
@@ -64,13 +56,14 @@ class ModuleFactory
      * Gets and initializes modules
      *
      * @param string $module Module ID
+     * @param \phpOMS\ApplicationAbstract $app Application
      *
      * @return \phpOMS\Module\ModuleAbstract
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public static function getInstance($module)
+    public static function getInstance($module, $app)
     {
         if(!isset(self::$loaded[$module])) {
             $class = '\\Modules\\' . $module . '\\Controller';
@@ -78,7 +71,7 @@ class ModuleFactory
             /**
              * @var \phpOMS\Module\ModuleAbstract $obj
              */
-            $obj                   = new $class(self::$app);
+            $obj                   = new $class($app);
             self::$loaded[$module] = $obj;
 
             /** Install providing for */

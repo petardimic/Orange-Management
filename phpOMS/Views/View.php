@@ -81,7 +81,6 @@ class View implements \phpOMS\Contract\RenderableInterface
     /**
      * Constructor
      *
-     * @param \phpOMS\Localization\Localization $l11n     User localization
      * @param \phpOMS\Message\RequestAbstract   $request  Request
      * @param \phpOMS\Message\ResponseAbstract  $response Request
      * @param \phpOMS\ApplicationAbstract       $app      Application
@@ -89,9 +88,8 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct($l11n, $request, $response, $app = null)
+    public function __construct($app, $request, $response)
     {
-        $this->l11n     = $l11n;
         $this->app      = $app;
         $this->request  = $request;
         $this->response = $response;
@@ -115,19 +113,6 @@ class View implements \phpOMS\Contract\RenderableInterface
         }
 
         return ($a['order'] < $b['order']) ? -1 : 1;
-    }
-
-    /**
-     * Set localization
-     *
-     * @param \phpOMS\Localization\Localization $l11n User localization
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setLocalization($l11n = null)
-    {
-        $this->l11n = $l11n;
     }
 
     /**
@@ -227,12 +212,14 @@ class View implements \phpOMS\Contract\RenderableInterface
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function addView($id, $view, $order = null, $overwrite = false)
+    public function addView($id, $view, $order = null, $overwrite = true)
     {
-        $this->views[$id] = $view;
+        if($overwrite || !isset($this->views[$id])) {
+            $this->views[$id] = $view;
 
-        if($order !== null) {
-            $this->views = uasort($this->views, ['\phpOMS\Views\View', 'viewSort']);
+            if($order !== null) {
+                $this->views = uasort($this->views, ['\phpOMS\Views\View', 'viewSort']);
+            }
         }
     }
 

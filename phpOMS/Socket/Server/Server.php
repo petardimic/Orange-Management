@@ -37,22 +37,6 @@ class Server extends \phpOMS\Socket\SocketAbstract
     private $conn = [];
 
     /**
-     * Clients
-     *
-     * @var \phpOMS\Socket\Server\ClientManager
-     * @since 1.0.0
-     */
-    private $clientManager = null;
-
-    /**
-     * Commands
-     *
-     * @var \phpOMS\Socket\CommandManager
-     * @since 1.0.0
-     */
-    private $cmdManager = null;
-
-    /**
      * Packet manager
      *
      * @var \phpOMS\Socket\Packets\PacketManager
@@ -60,42 +44,27 @@ class Server extends \phpOMS\Socket\SocketAbstract
      */
     private $packetManager = null;
 
+    /**
+     * Socket application
+     *
+     * @var \Socket\SocketApplication
+     * @since 1.0.0
+     */
+    private $app = null;
+
 // endregion
 
     /**
      * Constructor
      *
+     * @param \Socket\SocketApplication $app socketApplication
+     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function __construct()
+    public function __construct($app)
     {
-        $this->cmdManager    = new \phpOMS\Socket\CommandManager();
-        $this->packetManager = new \phpOMS\Socket\Packets\PacketManager($this->cmdManager, $this->clientManager);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->cmdManager->attach('disconnect', function ($conn, $para) {
-            $this->disconnect($conn);
-        }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->cmdManager->attach('help', function ($conn, $para) {
-            $this->help($conn, $para);
-        }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->cmdManager->attach('version', function ($conn, $para) {
-            $this->version($conn);
-        }, $this);
-
-        $this->cmdManager->attach('help', function ($conn, $para) {
-            $this->kick($conn, $para);
-        }, $this);
-
-        /** @noinspection PhpUnusedParameterInspection */
-        $this->cmdManager->attach('restart', function ($conn, $para) {
-            $this->restart($conn, $para);
-        }, $this);
+        $this->app = $app;
     }
 
     /**
@@ -108,60 +77,7 @@ class Server extends \phpOMS\Socket\SocketAbstract
      */
     private function disconnect($key)
     {
-        socket_write($this->conn[$key], 'disconnect', strlen('disconnect'));
         unset($this->conn[$key]);
-        $this->conn = array_values($this->conn);
-    }
-
-    /**
-     * Help for client
-     *
-     * @param mixed $key  Client key
-     * @param mixed $para Help parameters
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function help($key, $para)
-    {
-    }
-
-    /**
-     * Server version for client
-     *
-     * @param mixed $key Client key
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function version($key)
-    {
-    }
-
-    /**
-     * Kick client by Id
-     *
-     * @param mixed $key  Client key
-     * @param mixed $para Kick parameters
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function kick($key, $para)
-    {
-    }
-
-    /**
-     * Restart server
-     *
-     * @param mixed $key  Client key
-     * @param mixed $para Restart parameters
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    private function restart($key, $para)
-    {
     }
 
     /**
@@ -207,6 +123,12 @@ class Server extends \phpOMS\Socket\SocketAbstract
 
             if(in_array($this->sock, $read)) {
                 $this->conn[] = $newc = socket_accept($this->sock);
+
+                // TODO: init account
+                // This is only the initial connection no auth happens here
+                // Here the server should request an authentication
+
+                $account = new \phpOMS\Account\Account();
 
                 $welcome = "Welcome to the server.\n";
                 socket_write($newc, $welcome, strlen($welcome));

@@ -17,7 +17,7 @@
             <th colspan="8" class="lT">
                 <i class="fa fa-filter p f dim"></i>
 
-                <h1><?= $this->app->user->getL11n()->lang[16]['Clients'] ?></h1>
+                <h1><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Clients'] ?></h1>
             <th class="rT">
                 <i class="fa fa-minus min"></i>
                 <i class="fa fa-plus max vh"></i>
@@ -25,15 +25,15 @@
             <?php
             \phpOMS\Model\Model::generate_table_header_view(
                 [
-                    ['name' => $this->app->user->getL11n()->lang[0]['ID'], 'sort' => 1],
-                    ['name' => $this->app->user->getL11n()->lang[16]['Matchcode'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['Name'], 'sort' => 0, 'full' => true],
-                    ['name' => $this->app->user->getL11n()->lang[16]['Street'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['City'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['ZipCode'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['State'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['Country'], 'sort' => 0],
-                    ['name' => $this->app->user->getL11n()->lang[16]['Area'], 'sort' => 0]
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[0]['ID'], 'sort' => 1],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Matchcode'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Name'], 'sort' => 0, 'full' => true],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Street'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['City'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['ZipCode'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['State'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Country'], 'sort' => 0],
+                    ['name' => $this->app->accountManager->get($request->getAccount())->getL11n()->lang[16]['Area'], 'sort' => 0]
                 ]
             );
             ?>

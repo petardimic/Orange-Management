@@ -35,14 +35,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
      */
     private $head = null;
 
-    /**
-     * Response status
-     *
-     * @var int
-     * @since 1.0.0
-     */
-    private $status = 200;
-
 // endregion
     /**
      * Constructor
@@ -213,14 +205,6 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Messa
         }
 
         return $render;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getStatusCode()
-    {
-        return $this->status;
     }
 
     /**

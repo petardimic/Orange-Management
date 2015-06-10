@@ -16,7 +16,7 @@ namespace Web\Views\Page;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class BackendView extends \phpOMS\Views\View
+class GenericView extends \phpOMS\Views\View
 {
     /**
      * Request
