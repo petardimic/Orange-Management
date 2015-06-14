@@ -47,10 +47,10 @@ class View implements \phpOMS\Contract\RenderableInterface
     /**
      * User localized strings
      *
-     * @var \phpOMS\Localization\Localization
+     * @var array
      * @since 1.0.0
      */
-    protected $l11n = null;
+    protected $lang = null;
 
     /**
      * Application
@@ -252,6 +252,8 @@ class View implements \phpOMS\Contract\RenderableInterface
      */
     public function render()
     {
+        $this->l11n = $this->response->getL11n();
+
         ob_start();
         /** @noinspection PhpIncludeInspection */
         include __DIR__ . '/../..' . $this->template . '.tpl.php';

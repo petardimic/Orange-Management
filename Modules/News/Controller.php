@@ -87,7 +87,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -107,7 +107,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(3)) {
             case 'dashboard':
                 $newsDashboard = new \phpOMS\Views\View($this->app, $request, $response);
-                $newsDashboard->setTemplate('/Modules/News/Theme/backend/news-dashboard');
+                $newsDashboard->setTemplate('/Modules/News/Theme/Backend/news-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newsDashboard->addData('nav', $navigation->nav);
@@ -118,11 +118,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $article->init($request->getData('id'));
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/news-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/news-single.tpl.php';
                 break;
             case 'archive':
                 $newArchive = new \phpOMS\Views\View($this->app, $request, $response);
-                $newArchive->setTemplate('/Modules/News/Theme/backend/news-archive');
+                $newArchive->setTemplate('/Modules/News/Theme/Backend/news-archive');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newArchive->addData('nav', $navigation->nav);
@@ -130,7 +130,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $newsCreate = new \phpOMS\Views\View($this->app, $request, $response);
-                $newsCreate->setTemplate('/Modules/News/Theme/backend/news-create');
+                $newsCreate->setTemplate('/Modules/News/Theme/Backend/news-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $newsCreate->addData('nav', $navigation->nav);
@@ -140,7 +140,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }

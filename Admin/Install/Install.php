@@ -26,7 +26,7 @@ class Install
      * @var \phpOMS\DataStorage\Database\Pool
      * @since 1.0.0
      */
-    private $dbPool = null;
+    public $dbPool = null;
 
 // endregion
 
@@ -362,7 +362,8 @@ class Install
                             (1000000025, NULL, \'mail_admin\', \'mail@admin.com\', NULL),
                             (1000000026, NULL, \'login_name\', \'1\', NULL),
                             (1000000027, NULL, \'decimal_point\', \'.\', NULL),
-                            (1000000028, NULL, \'thousands_sep\', \',\', NULL)'
+                            (1000000028, NULL, \'thousands_sep\', \',\', NULL),
+                            (1000000029, NULL, \'server_language\', \'en\', NULL)'
                 )->execute();
 
                 $this->dbPool->get('core')->con->commit();

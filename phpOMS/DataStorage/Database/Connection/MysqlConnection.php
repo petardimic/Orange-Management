@@ -40,11 +40,11 @@ class MysqlConnection extends \phpOMS\DataStorage\Database\Connection\Connection
     /**
      * {@inheritdoc}
      */
-    public function connect($dbdata)
+    public function connect($dbdata = null)
     {
         $this->close();
 
-        $this->dbdata = $dbdata;
+        $this->dbdata = isset($dbdata) ? $dbdata : $this->dbdata;
         $this->prefix = $dbdata['prefix'];
 
         try {

@@ -85,7 +85,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -110,7 +110,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -133,29 +133,29 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $accountList = new \Modules\Accounting\Models\AccountList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/account-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/account-list.tpl.php';
                 break;
             case 'postings':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/account-postings.tpl.php';
+                include __DIR__ . '/Theme/Backend/account-postings.tpl.php';
                 break;
             case 'balance':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/account-balance.tpl.php';
+                include __DIR__ . '/Theme/Backend/account-balance.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/account-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/account-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/account-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/account-create.tpl.php';
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }

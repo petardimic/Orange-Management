@@ -97,11 +97,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(3)) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/eventmanagement-dashboard.tpl.php';
+                include __DIR__ . '/Theme/Backend/eventmanagement-dashboard.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/eventmanagement-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/eventmanagement-create.tpl.php';
                 break;
         }
     }

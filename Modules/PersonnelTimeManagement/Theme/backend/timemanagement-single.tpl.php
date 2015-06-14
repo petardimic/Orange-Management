@@ -87,7 +87,7 @@ $this->getView('stats')->addView('stat::table', $statTableView);
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1003501001);

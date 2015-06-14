@@ -1,8 +1,8 @@
 <?php
-namespace phpOMS\Message\Http;
+namespace phpOMS\Message;
 
 /**
- * Http response interface
+ * Http request interface
  *
  * PHP Version 5.4
  *
@@ -16,25 +16,35 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface ResponseInterface extends \phpOMS\Message\Http\MessageInterface
+interface RequestInterface extends MessageInterface
 {
     /**
-     * Get response status
-     *
-     * @return int
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getStatusCode();
-
-    /**
-     * Get response status
+     * Get request target
      *
      * @return string
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function getReasonPhrase();
+    public function getRequestTarget();
+
+    /**
+     * Get request method
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getMethod();
+
+    /**
+     * Get request uri
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getUri();
 }

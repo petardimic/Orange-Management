@@ -88,11 +88,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(3)) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/surveys-dashboard.tpl.php';
+                include __DIR__ . '/Theme/Backend/surveys-dashboard.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/surveys-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/surveys-create.tpl.php';
                 break;
         }
     }

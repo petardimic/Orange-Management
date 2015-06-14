@@ -16,7 +16,7 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Message\Http\ResponseInterface, \phpOMS\Contract\RenderableInterface
+class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contract\RenderableInterface
 {
 // region Class Fields
     /**

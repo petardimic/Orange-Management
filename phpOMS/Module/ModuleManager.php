@@ -95,7 +95,7 @@ class ModuleManager
      * @since  1.0.0
      * @author Dennis Eichhorn
      */
-    public function getUriLoads($request)
+    public function getRoutedModules($request)
     {
         switch($this->app->dbPool->get('core')->getType()) {
             case \phpOMS\DataStorage\Database\DatabaseType::MYSQL:
@@ -316,6 +316,22 @@ class ModuleManager
     }
 
     /**
+     * Load module language
+     *
+     * @param string $language    Langauge
+     * @param string $destination Destination
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn
+     */
+    public function loadLanguage($language, $destination)
+    {
+        foreach($this->running as $name => $m) {
+            $this->app->l11nManager->loadLanguage($m->getLocalization($destination), $name, $m->getLanguage($language, $destination));
+        }
+    }
+
+    /**
      * Get all installed modules
      *
      * @return array
@@ -344,7 +360,7 @@ class ModuleManager
      * Installing additional functionality for another module
      *
      * @param string $from From module
-     * @param string $for For module
+     * @param string $for  For module
      *
      * @since  1.0.0
      * @author Dennis Eichhorn

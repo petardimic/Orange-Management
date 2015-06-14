@@ -75,4 +75,21 @@ class AssetManager
             unset($this->assets[$id]);
         }
     }
+
+    /**
+     * Get asset
+     *
+     * @param mixed $id Asset id
+     *
+     * @return mixed Asset
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function get($id)
+    {
+        if(isset($this->assets[$id])) {
+            unset($this->assets[$id]);
+        }
+    }
 }

@@ -44,14 +44,6 @@ class Account extends \phpOMS\Account\Account
     private $cacheManager = null;
 
     /**
-     * Localization
-     *
-     * @var \phpOMS\Localization\Localization
-     * @since 1.0.0
-     */
-    private $l11n = null;
-
-    /**
      * Account address (primary)
      *
      * @var \phpOMS\Datatypes\Address

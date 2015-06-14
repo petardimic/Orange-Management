@@ -22,7 +22,7 @@ class AccountManager
     /**
      * Accounts
      *
-     * @var int[]
+     * @var \phpOMS\Account\Account[]
      * @since 1.0.0
      */
     private $accounts = [];
@@ -57,7 +57,7 @@ class AccountManager
     }
 
     /**
-     * Get account
+     * Set account
      *
      * @param \phpOMS\Account\Account $account Account
      *

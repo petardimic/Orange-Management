@@ -107,7 +107,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'list':
                 $reportList = new \phpOMS\Views\View($this->app, $request, $response);
-                $reportList->setTemplate('/Modules/Reporter/Theme/backend/reporter-list');
+                $reportList->setTemplate('/Modules/Reporter/Theme/Backend/reporter-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportList->addData('nav', $navigation->nav);
@@ -115,7 +115,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $reportCreate = new \phpOMS\Views\View($this->app, $request, $response);
-                $reportCreate->setTemplate('/Modules/Reporter/Theme/backend/reporter-create');
+                $reportCreate->setTemplate('/Modules/Reporter/Theme/Backend/reporter-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportCreate->addData('nav', $navigation->nav);
@@ -123,7 +123,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'edit':
                 $reportEdit = new \phpOMS\Views\View($this->app, $request, $response);
-                $reportEdit->setTemplate('/Modules/Reporter/Theme/backend/reporter-edit');
+                $reportEdit->setTemplate('/Modules/Reporter/Theme/Backend/reporter-edit');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportEdit->addData('nav', $navigation->nav);
@@ -150,7 +150,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 }
 
                 $reportSingle = new \phpOMS\Views\View($this->app, $request, $response);
-                $reportSingle->setTemplate('/Modules/Reporter/Theme/backend/reporter-single');
+                $reportSingle->setTemplate('/Modules/Reporter/Theme/Backend/reporter-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $reportSingle->addData('nav', $navigation->nav);

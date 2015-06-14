@@ -205,19 +205,14 @@ php:
     composer: '1'
     composer_home: ''
 xdebug:
-    install: '1'
+    install: '0'
     settings:
         xdebug.default_enable: '1'
-        xdebug.remote_autostart: '1'
+        xdebug.remote_autostart: '0'
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
-        xdebug.profiler_append: '0'
-        xdebug.profiler_enable: '0'
-        xdebug.profiler_output_dir: '/var/www/profiler'
-        xdebug.profiler_output_name: 'cachegrind.out.%p'
-        xdebug.profiler_enable_trigger: '1'
 blackfire:
     install: '0'
     settings:

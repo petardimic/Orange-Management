@@ -26,7 +26,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      * @var string
      * @since 1.0.0
      */
-    protected $lang = null;
+    protected $language = null;
 
     /**
      * Responses
@@ -63,7 +63,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      */
     public function getLanguage()
     {
-        return $this->lang;
+        return $this->language;
     }
 
     /**
@@ -71,7 +71,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      */
     public function setLanguage($language)
     {
-        return $this->lang = $language;
+        return $this->language = $language;
     }
 
     /**
@@ -93,7 +93,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      * Add response
      *
      * @param mixed   $key       Response id
-     * @param string  $response  Response to add
+     * @param mixed  $response  Response to add
      * @param boolean $overwrite Overwrite
      *
      * @since  1.0.0

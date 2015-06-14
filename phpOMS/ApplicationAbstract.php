@@ -61,6 +61,22 @@ class ApplicationAbstract
     public $moduleManager = null;
 
     /**
+     * Router instance
+     *
+     * @var \phpOMS\Router\Router
+     * @since 1.0.0
+     */
+    public $router = null;
+
+    /**
+     * Dispatcher instance
+     *
+     * @var \phpOMS\Dispatcher\Dispatcher
+     * @since 1.0.0
+     */
+    public $dispatcher = null;
+
+    /**
      * Session instance
      *
      * @var \phpOMS\DataStorage\Session\SessionInterface
@@ -75,6 +91,14 @@ class ApplicationAbstract
      * @since 1.0.0
      */
     public $l11nServer = null;
+
+    /**
+     * L11n manager
+     *
+     * @var \phpOMS\Localization\L11nManager
+     * @since 1.0.0
+     */
+    public $l11nManager = null;
 
     /**
      * Event manager

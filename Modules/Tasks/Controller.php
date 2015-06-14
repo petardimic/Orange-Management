@@ -101,7 +101,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(3)) {
             case 'dashboard':
                 $taskDashboardView = new \phpOMS\Views\View($this->app, $request, $response);
-                $taskDashboardView->setTemplate('/Modules/Tasks/Theme/backend/task-dashboard');
+                $taskDashboardView->setTemplate('/Modules/Tasks/Theme/Backend/task-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskDashboardView->addData('nav', $navigation->nav);
@@ -109,7 +109,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'single':
                 $taskSingleView = new \phpOMS\Views\View($this->app, $request, $response);
-                $taskSingleView->setTemplate('/Modules/Tasks/Theme/backend/task-single');
+                $taskSingleView->setTemplate('/Modules/Tasks/Theme/Backend/task-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskSingleView->addData('nav', $navigation->nav);
@@ -117,7 +117,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $taskCreateView = new \phpOMS\Views\View($this->app, $request, $response);
-                $taskCreateView->setTemplate('/Modules/Tasks/Theme/backend/task-create');
+                $taskCreateView->setTemplate('/Modules/Tasks/Theme/Backend/task-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskCreateView->addData('nav', $navigation->nav);
@@ -125,7 +125,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'analysis':
                 $taskAnalysisView = new \phpOMS\Views\View($this->app, $request, $response);
-                $taskAnalysisView->setTemplate('/Modules/Tasks/Theme/backend/task-analysis');
+                $taskAnalysisView->setTemplate('/Modules/Tasks/Theme/Backend/task-analysis');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskAnalysisView->addData('nav', $navigation->nav);
@@ -133,7 +133,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'settings':
                 $taskSettingsView = new \phpOMS\Views\View($this->app, $request, $response);
-                $taskSettingsView->setTemplate('/Modules/Tasks/Theme/backend/task-settings');
+                $taskSettingsView->setTemplate('/Modules/Tasks/Theme/Backend/task-settings');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $taskSettingsView->addData('nav', $navigation->nav);

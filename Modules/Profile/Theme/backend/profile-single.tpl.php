@@ -3,13 +3,13 @@
  * @var \phpOMS\Views\View $this
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000301001);
 
 $sidenav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$sidenav->setTemplate('/Modules/Navigation/Theme/backend/mid-side');
+$sidenav->setTemplate('/Modules/Navigation/Theme/Backend/mid-side');
 $sidenav->setNav($this->getData('nav'));
 $sidenav->setLanguage($this->l11n->language);
 $sidenav->setParent(1000301001);
@@ -19,7 +19,7 @@ $sidenav->setParent(1000301001);
     <div class="b-7" id="i3-2-1">
         <div class="b-5" id="i3-2-4">
             <div class="bc-1">
-                <img src="/Modules/Profile/Theme/backend/img/profile-default-small.jpg" itemprop="image">
+                <img src="/Modules/Profile/Theme/Backend/img/profile-default-small.jpg" itemprop="image">
             </div>
         </div>
         <?= $sidenav->render(); ?>

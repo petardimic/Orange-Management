@@ -3,12 +3,12 @@
  * @var \Web\Views\Page\GenericView $this
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->app, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/top');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/top');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $top = $nav->render();
 
-$nav->setTemplate('/Modules/Navigation/Theme/backend/side');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/side');
 $side = $nav->render();
 $head = $this->response->getHead();
 ?>
@@ -45,7 +45,7 @@ $head = $this->response->getHead();
             <input type="submit" value="<?= $this->l11n->lang[0]['Search'] ?>">
         </span>
         <span class="vC" id="u-box">
-            <img class="rf" src="<?= '/Web/Theme/backend/img/default-user.jpg'; ?>">
+            <img class="rf" src="<?= '/Web/Theme/Backend/img/default-user.jpg'; ?>">
         </span>
 
         <div id="u-logo" itemscope itemtype="http://schema.org/Person"></div>

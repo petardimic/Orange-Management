@@ -49,7 +49,7 @@ $formExport->setElement(2, 0, [
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1002701001);
@@ -61,7 +61,7 @@ $nav->setParent(1002701001);
         <div class="bc-1">
             <ul class="l-1">
                 <li>
-                    <a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/reporter/edit.php?id=' . $this->getData('name')); ?>"
+                    <a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/Backend/reporter/edit.php?id=' . $this->getData('name')); ?>"
                        class="button"><?= $this->l11n->lang[27]['Edit']; ?></a>
             </ul>
         </div>

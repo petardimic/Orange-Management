@@ -103,11 +103,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/process-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/process-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/process-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/process-single.tpl.php';
                 break;
         }
     }
@@ -129,11 +129,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $pList = new \Modules\Production\Models\ProductionList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/guideline-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/guideline-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/guideline-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/guideline-single.tpl.php';
                 break;
         }
     }

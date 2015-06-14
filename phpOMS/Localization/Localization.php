@@ -69,7 +69,7 @@ class Localization
     public $datetime = null;
 
     /**
-     * Localized strings
+     * Language array
      *
      * @var string[]
      * @since 1.0.0
@@ -164,6 +164,28 @@ class Localization
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
+    public function getLang()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string $language
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLang($language)
+    {
+        $this->language = $language;
+    }
+
+    /**
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
     public function getCurrency()
     {
         return $this->currency;
@@ -222,60 +244,5 @@ class Localization
     public function setNumberformat($numberformat)
     {
         $this->numberformat = $numberformat;
-    }
-
-    public function loadCoreLanguage($language = 'en')
-    {
-        if(!file_exists(__DIR__ . '/lang/' . $language . '.lang.php')) {
-            $language = 'en'; // TODO: maybe load server default
-        }
-
-        /** @noinspection PhpIncludeInspection */
-        /** @var string[] $CORELANG */
-        require __DIR__ . '/lang/' . $language . '.lang.php';
-        /** @noinspection PhpUndefinedVariableInspection */
-        $this->lang += $CORELANG;
-    }
-
-    public function loadThemeLanguage($language = 'en', $theme)
-    {
-        if(!file_exists(__DIR__ . '/../../Web/Theme/' . $theme . '/lang/' . $language . '.lang.php')) {
-            $language = 'en'; // TODO: maybe load server default
-        }
-
-        /** @noinspection PhpIncludeInspection */
-        /** @var string[] $CORELANG */
-        require __DIR__ . '/../../Web/Theme/' . $theme . '/lang/' . $language . '.lang.php';
-        /** @noinspection PhpUndefinedVariableInspection */
-        $this->lang[0] += $THEMELANG[0];
-    }
-
-    /**
-     * Returns instance
-     *
-     * @param string $language Language ID
-     * @param string $file     Language array
-     * @param string $module   Available modules
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function loadLanguage($language = 'en', $file, $module)
-    {
-        /** @noinspection PhpIncludeInspection */
-        /* TODO: change, store name inside instead of id */
-        if(file_exists(($path = __DIR__ . '/../../Modules/' . $module . '/Theme/lang/' . $file . '.' . $language . '.lang.php'))) {
-            /** @noinspection PhpIncludeInspection */
-            require $path;
-            /** @var string[] $MODLANG */
-            $key = array_keys($MODLANG);
-
-            if(!isset($this->lang[$key[0]])) {
-                $this->lang += $MODLANG;
-            } else {
-                /** @noinspection PhpWrongStringConcatenationInspection */
-                $this->lang[$key[0]] += $MODLANG[$key[0]];
-            }
-        }
     }
 }

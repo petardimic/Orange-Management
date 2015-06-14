@@ -20,66 +20,117 @@ class Router
 {
 
 // region Class Fields
-    private static $routes = [];
+    /**
+     * Routes
+     *
+     * @var string[]
+     * @since 1.0.0
+     */
+    private $routes = [];
+
 // endregion
 
-    private function __construct()
+    /**
+     * Constructor
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function __construct()
     {
     }
 
-    public static function any($route, $callback, $order = 0)
+    /**
+     * Add route
+     *
+     * @param string $route       Route regex
+     * @param string $destination Destination e.g. Module:function
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function add($route, $destination)
     {
-        if(!isset(self::$routes[$route]['any'])) {
-            self::$routes[$route]['any'] = [];
+        $this->routes[$route][] = $destination;
+    }
+
+    /**
+     * Is route regex
+     *
+     * @param string $route Route regex
+     *
+     * @return boolean
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function isValid($route)
+    {
+        if(@preg_match($route, null) === false) {
+            return false;
         }
 
-        self::$routes[$route]['any'][] = $callback;
-
-        return count(self::$routes[$route]['any']) - 1;
+        return true;
     }
 
-    public static function get($route, $callback, $order = 0)
+    /**
+     * Route uri
+     *
+     * @param string $uri Uri to route
+     *
+     * @return string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function route($uri)
     {
-        if(!isset(self::$routes[$route]['get'])) {
-            self::$routes[$route]['get'] = [];
-        }
-
-        self::$routes[$route]['get'][] = $callback;
-
-        return count(self::$routes[$route]['get']) - 1;
-    }
-
-    public static function post($route, $callback, $order = 0)
-    {
-        if(!isset(self::$routes[$route]['post'])) {
-            self::$routes[$route]['post'] = [];
-        }
-
-        self::$routes[$route]['post'][] = $callback;
-
-        return count(self::$routes[$route]['post']) - 1;
-    }
-
-    public static function delete($route, $callback, $order = 0)
-    {
-        if(!isset(self::$routes[$route]['delete'])) {
-            self::$routes[$route]['delete'] = [];
-        }
-
-        self::$routes[$route]['delete'][] = $callback;
-
-        return count(self::$routes[$route]['delete']) - 1;
-    }
-
-    public static function execute($route, $parameters, $id = null)
-    {
-        if(isset($id)) {
-            $route = self::$any[$route][$id];
-            yield $route(...$parameters);
-        } else {
-            foreach(self::$any[$route] as $route) {
-                yield $route(...$parameters);
+        $bound = [];
+        foreach($this->routes as $route => $dest) {
+            if($this->match($route, $uri)) {
+                $bound[] = $dest;
             }
         }
+
+        return $bound;
+    }
+
+    /**
+     * Route uri for module
+     *
+     * @param string $uri    Uri to route
+     * @param string $module Module name
+     *
+     * @return string[]
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function routeModule($uri, $module)
+    {
+        $bound = [];
+        foreach($this->routes as $route => $dest) {
+            if(strrpos($dest, $module, -strlen($dest)) !== false && $this->match($route, $uri)) {
+                $bound[] = $dest;
+            }
+        }
+
+        return $bound;
+    }
+
+    /**
+     * Match route and uri
+     *
+     * @param string $route Route
+     * @param string $uri   Uri
+     *
+     * @return bool
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    private function match($route, $uri)
+    {
+        return (bool) preg_match('~^' . $route . '$~', $uri);
     }
 }

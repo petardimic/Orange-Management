@@ -118,7 +118,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'list':
                 $staffView = new \phpOMS\Views\View($this->app, $request, $response);
-                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/staff-list');
+                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/Backend/staff-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $staffView->addData('nav', $navigation->nav);
 
@@ -141,7 +141,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'list':
                 $staffView = new \phpOMS\Views\View($this->app, $request, $response);
-                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/backend/department-list');
+                $staffView->setTemplate('/Modules/HumanResourceManagement/Theme/Backend/department-list');
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $staffView->addData('nav', $navigation->nav);
 

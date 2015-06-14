@@ -22,7 +22,6 @@ abstract class RequestDestination extends \phpOMS\Datatypes\Enum
 {
 
     const WEBSITE  = 'website';     /* Website */
-    const RAW      = 'raw';         /* Raw */
     const API      = 'api';         /* API */
     const SHOP     = 'shop';        /* Shop */
     const BACKEND  = 'backend';     /* Backend */

@@ -120,7 +120,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
             switch($request->getPath(4)) {
                 case 'dashboard':
                     $timemgmtDashboardView = new \phpOMS\Views\View($this->app, $request, $response);
-                    $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-list');
+                    $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/Backend/timemanagement-list');
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                     $timemgmtDashboardView->addData('nav', $navigation->nav);
@@ -128,7 +128,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                     break;
                 case 'single':
                     $timemgmtSingleView = new \phpOMS\Views\View($this->app, $request, $response);
-                    $timemgmtSingleView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/timemanagement-single');
+                    $timemgmtSingleView->setTemplate('/Modules/PersonnelTimeManagement/Theme/Backend/timemanagement-single');
 
                     $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                     $timemgmtSingleView->addData('nav', $navigation->nav);
@@ -152,7 +152,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'dashboard':
                 $timemgmtDashboardView = new \phpOMS\Views\View($this->app, $request, $response);
-                $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/backend/user-timemanagement-dashboard');
+                $timemgmtDashboardView->setTemplate('/Modules/PersonnelTimeManagement/Theme/Backend/user-timemanagement-dashboard');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $timemgmtDashboardView->addData('nav', $navigation->nav);

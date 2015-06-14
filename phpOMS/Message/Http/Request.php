@@ -16,7 +16,7 @@ namespace phpOMS\Message\Http;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message\Http\RequestInterface
+class Request extends \phpOMS\Message\RequestAbstract
 {
 // region Class Fields
     /**
@@ -95,7 +95,7 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     public function init($uri = null)
     {
         if($uri === null) {
-            $this->data = (isset($_GET) ? $_GET : []);
+            $this->data = isset($_GET) ? $_GET : [];
 
             if(isset($_SERVER['CONTENT_TYPE'])) {
                 if($_SERVER['CONTENT_TYPE'] === 'application/json') {
@@ -114,12 +114,12 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
 
         $this->path               = explode('/', $this->uri->getPath());
         $this->requestDestination = isset($this->path[1]) ? $this->path[1] : '';
-        $this->lang               = $this->path[0];
+        $this->language               = $this->path[0];
         $this->hash               = [];
 
         \phpOMS\Uri\UriFactory::setQuery('/scheme', $this->uri->getScheme());
         \phpOMS\Uri\UriFactory::setQuery('/host', $this->uri->getHost());
-        \phpOMS\Uri\UriFactory::setQuery('/lang', $this->lang);
+        \phpOMS\Uri\UriFactory::setQuery('/lang', $this->language);
 
         foreach($this->path as $key => $path) {
             $paths = [];
@@ -361,5 +361,10 @@ class Request extends \phpOMS\Message\RequestAbstract implements \phpOMS\Message
     public function getRequestTarget()
     {
         return '/';
+    }
+
+    public function setHeader($key, $header, $overwrite = true)
+    {
+        // NOT Required for Http request
     }
 }

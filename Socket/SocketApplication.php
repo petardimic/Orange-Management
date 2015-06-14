@@ -53,11 +53,10 @@ class SocketApplication extends \phpOMS\ApplicationAbstract
             $this->eventManager   = new \phpOMS\Event\EventManager();
             $this->sessionManager = new \phpOMS\DataStorage\Session\SocketSession(36000);
             $this->moduleManager  = new \phpOMS\Module\ModuleManager($this);
+            $this->l11nManager    = new \phpOMS\Localization\L11nManager();
 
             $modules = $this->moduleManager->getActiveModules();
-            foreach($modules as $module) {
-                $this->moduleManager->initModule($module['module_name']);
-            }
+            $this->moduleManager->initModule($modules);
 
             $socket = new \phpOMS\Socket\Server\Server($this);
             $socket->create('127.0.0.1', $config['socket']['port']);

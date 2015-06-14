@@ -39,7 +39,7 @@ if(array_key_exists($request->getData('id'), $modules_all)) {
                             data-uri="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/api/admin/module.php'); ?>">
                         <?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Install']; ?></button>
                     <?php } else { ?>
-                <li><a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/backend/module/single/settings.php');
+                <li><a href="<?= \phpOMS\Uri\UriFactory::build('/{/lang}/Backend/module/single/settings.php');
                     ?>"><?= $this->app->accountManager->get($request->getAccount())->getL11n()->lang[1]['Settings']; ?></a>
                     <?php } ?>
                 <li><a href=""></a>

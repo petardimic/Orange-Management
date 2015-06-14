@@ -109,19 +109,15 @@ class Pool
      * @param mixed $key    Database key
      * @param array $config Database config data
      *
-     * @return bool
-     *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function create($key, $config)
+    public function create($key, array $config)
     {
         if(isset($this->pool[$key])) {
-            return true;
+            return;
         }
 
         $this->pool[$key] = \phpOMS\DataStorage\Database\Connection\ConnectionFactory::create($config);
-
-        return true;
     }
 }

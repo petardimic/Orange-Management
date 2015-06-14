@@ -27,7 +27,7 @@ $headerView->setHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build('/{/lang}/backend/admin/group/single/front.php?id=' . $value['group_id']);
+    $url = \phpOMS\Uri\UriFactory::build('/{/lang}/Backend/admin/group/single/front.php?id=' . $value['group_id']);
     $groupListView->addElements([
         '<a href="' . $url . '">' . $value['group_id'] . '</a>',
         '<a href="' . $url . '">' . $value['group_name'] . '</a>',
@@ -51,7 +51,7 @@ $groupListView->addView('footer', $footerView);
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000103001);

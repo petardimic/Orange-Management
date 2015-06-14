@@ -16,41 +16,6 @@ namespace phpOMS\Message;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-interface ResponseInterface
+interface ResponseInterface extends \phpOMS\Message\MessageInterface
 {
-    /**
-     * Add header by ID
-     *
-     * @param mixed  $key       Header ID
-     * @param string $header    Header string
-     * @param bool   $overwrite Overwrite existing headers
-     *
-     * @return bool
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setHeader($key, $header, $overwrite = true);
-
-    /**
-     * Get language
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function getLanguage();
-
-    /**
-     * Set language
-     *
-     * @param string $language Language
-     *
-     * @return string
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn <d.eichhorn@oms.com>
-     */
-    public function setLanguage($language);
 }

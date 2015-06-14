@@ -83,8 +83,6 @@ class Address implements \phpOMS\Contract\JsonableInterface
     public function setRecipient($recipient)
     {
         $this->recipient = $recipient;
-
-        return true;
     }
 
     /**

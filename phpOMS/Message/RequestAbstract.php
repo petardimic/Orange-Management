@@ -18,7 +18,7 @@ namespace phpOMS\Message;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class RequestAbstract
+abstract class RequestAbstract implements RequestInterface
 {
 
 // region Class Fields
@@ -60,7 +60,7 @@ abstract class RequestAbstract
      * @var string
      * @since 1.0.0
      */
-    protected $lang = null;
+    protected $language = null;
 
     /**
      * Account
@@ -156,9 +156,17 @@ abstract class RequestAbstract
     /**
      * {@inheritdoc}
      */
+    public function setLanguage($language)
+    {
+        return $this->language = $language;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getLanguage()
     {
-        return $this->lang;
+        return $this->language;
     }
 
     /**
@@ -176,4 +184,20 @@ abstract class RequestAbstract
     {
         $this->account = $account;
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function setStatusCode($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatusCode()
+    {
+        return $this->status;
+    }
+
 }

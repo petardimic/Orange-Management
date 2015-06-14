@@ -27,7 +27,7 @@ $headerView->setHeader([
 ]);
 
 foreach($this->getData('list:elements') as $key => $value) {
-    $url = \phpOMS\Uri\UriFactory::build('/{/lang}/backend/admin/account/single/front.php?id=' . (int)$value['account_id']);
+    $url = \phpOMS\Uri\UriFactory::build('/{/lang}/Backend/admin/account/single/front.php?id=' . (int)$value['account_id']);
 
     $accountListView->addElements([
         '<a href="' . $url . '">' . $value['account_status'] . '</a>',
@@ -52,7 +52,7 @@ $accountListView->addView('footer', $footerView);
  * Navigation
  */
 $nav = new \Modules\Navigation\Views\NavigationView($this->l11n, $this->request, $this->response);
-$nav->setTemplate('/Modules/Navigation/Theme/backend/mid');
+$nav->setTemplate('/Modules/Navigation/Theme/Backend/mid');
 $nav->setNav($this->getData('nav'));
 $nav->setLanguage($this->l11n->language);
 $nav->setParent(1000104001);

@@ -88,7 +88,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -111,11 +111,11 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $media->init($request->getData('id'));
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/media-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/media-single.tpl.php';
                 break;
             case 'list':
                 $mediaList = new \phpOMS\Views\View($this->app, $request, $response);
-                $mediaList->setTemplate('/Modules/Media/Theme/backend/media-list');
+                $mediaList->setTemplate('/Modules/Media/Theme/Backend/media-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaList->addData('nav', $navigation->nav);
@@ -123,7 +123,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $mediaCreate = new \phpOMS\Views\View($this->app, $request, $response);
-                $mediaCreate->setTemplate('/Modules/Media/Theme/backend/media-create');
+                $mediaCreate->setTemplate('/Modules/Media/Theme/Backend/media-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $mediaCreate->addData('nav', $navigation->nav);
@@ -133,7 +133,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }

@@ -72,12 +72,10 @@ class Account
     /**
      * Account type
      *
-     * User, Group
-     *
-     * @var int
+     * @var \phpOMS\Account\AccountType
      * @since 1.0.0
      */
-    protected $type = null;
+    protected $type = \phpOMS\Account\AccountType::USER;
 
     /**
      * Localization

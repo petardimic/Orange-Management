@@ -34,7 +34,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
      * @var string
      * @since 1.0.0
      */
-    protected static $module = null;
+    protected static $module = '';
 
     /**
      * Localization files
@@ -66,25 +66,18 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     public function __construct($app)
     {
         $this->app = $app;
-        $this->loadLanguage($this->app->accountManager->get($request->getAccount())->getL11n()->getLanguage(), $app->request->getRequestDestination());
     }
 
-    /**
-     * Load module language
-     *
-     * @param string $language    ISO language code
-     * @param string $destination Destination language file to load
-     *
-     * @since  1.0.0
-     * @author Dennis Eichhorn
-     */
-    public function loadLanguage($language, $destination)
-    {
-        /** @noinspection PhpUndefinedFieldInspection */
+    public function getLocalization($language, $destination) {
+        $language = [];
         if(isset(static::$localization[$destination])) {
-            /** @noinspection PhpUndefinedFieldInspection */
-            $this->app->accountManager->get($request->getAccount())->getL11n()->loadLanguage($language, static::$localization[$destination], static::$module);
+            foreach(static::$localization[$destination] as $file) {
+                include $file . '.' . $language . '.lang.php';
+                $language += $MODLANG;
+            }
         }
+
+        return $language;
     }
 
     /**
@@ -105,7 +98,7 @@ abstract class ModuleAbstract implements \phpOMS\Module\ModuleInterface
     {
         foreach($this->receiving as $mid) {
             /** @noinspection PhpUndefinedMethodInspection */
-            \phpOMS\Module\ModuleFactory::$loaded[$mid]->callPush();
+            $this->app->moduleManager->running[$mid]->callPush();
         }
     }
 

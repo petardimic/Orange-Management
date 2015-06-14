@@ -68,6 +68,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
      */
     public function __construct($app)
     {
+        $app->router->add('/admin/settings/general', '\Modules\Admin\Controller:settingsGeneralBackend');
         parent::__construct($app);
     }
 
@@ -87,7 +88,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -121,7 +122,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -141,7 +142,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'list':
                 $accountListView = new \phpOMS\Views\View($this->app, $request, $response);
-                $accountListView->setTemplate('/Modules/Admin/Theme/backend/accounts-list');
+                $accountListView->setTemplate('/Modules/Admin/Theme/Backend/accounts-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountListView->addData('nav', $navigation->nav);
@@ -157,7 +158,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $accountCreateView = new \phpOMS\Views\View($this->app, $request, $response);
-                $accountCreateView->setTemplate('/Modules/Admin/Theme/backend/accounts-create');
+                $accountCreateView->setTemplate('/Modules/Admin/Theme/Backend/accounts-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountCreateView->addData('nav', $navigation->nav);
@@ -167,7 +168,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -187,7 +188,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(5)) {
             case 'front':
                 $accountView = new \phpOMS\Views\View($this->app, $request, $response);
-                $accountView->setTemplate('/Modules/Admin/Theme/backend/accounts-single');
+                $accountView->setTemplate('/Modules/Admin/Theme/Backend/accounts-single');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $accountView->addData('nav', $navigation->nav);
@@ -201,7 +202,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -221,7 +222,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'list':
                 $groupListView = new \phpOMS\Views\View($this->app, $request, $response);
-                $groupListView->setTemplate('/Modules/Admin/Theme/backend/groups-list');
+                $groupListView->setTemplate('/Modules/Admin/Theme/Backend/groups-list');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupListView->addData('nav', $navigation->nav);
@@ -237,7 +238,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 break;
             case 'create':
                 $groupCreateView = new \phpOMS\Views\View($this->app, $request, $response);
-                $groupCreateView->setTemplate('/Modules/Admin/Theme/backend/groups-create');
+                $groupCreateView->setTemplate('/Modules/Admin/Theme/Backend/groups-create');
 
                 $navigation = \Modules\Navigation\Models\Navigation::getInstance($request->getHash(), $this->app->dbPool);
                 $groupCreateView->addData('nav', $navigation->nav);
@@ -247,7 +248,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -276,13 +277,13 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
 
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/groups-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/groups-single.tpl.php';
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -322,14 +323,14 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'general':
                 $coreSettingsView = new \phpOMS\Views\View($this->app, $request, $response);
-                $coreSettingsView->setTemplate('/Modules/Admin/Theme/backend/settings-general');
+                $coreSettingsView->setTemplate('/Modules/Admin/Theme/Backend/settings-general');
                 echo $coreSettingsView->render();
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }
@@ -349,20 +350,20 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'list':
                 $moduleListView = new \phpOMS\Views\View($this->app, $request, $response);
-                $moduleListView->setTemplate('/Modules/Admin/Theme/backend/modules-list');
+                $moduleListView->setTemplate('/Modules/Admin/Theme/Backend/modules-list');
                 echo $moduleListView->render();
                 break;
             case 'front':
                 //$info = $this->app->modules->moduleInfoGet((int)$request->getData('id'));
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/modules-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/modules-single.tpl.php';
                 break;
             default:
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
 
                 return;
         }

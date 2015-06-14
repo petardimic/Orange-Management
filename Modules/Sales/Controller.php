@@ -110,15 +110,15 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $clientList = new \Modules\Sales\Models\ClientList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/clients-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/clients-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/clients-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/clients-create.tpl.php';
                 break;
         }
     }
@@ -140,15 +140,15 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $invoiceList = new \Modules\Sales\Models\InvoiceList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/invoice-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/invoice-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/invoice-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/invoice-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/invoice-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/invoice-create.tpl.php';
                 break;
         }
     }
@@ -170,15 +170,15 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $articleList = new \Modules\Sales\Models\ArticleList($this->app->dbPool);
 
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-list.tpl.php';
+                include __DIR__ . '/Theme/Backend/article-list.tpl.php';
                 break;
             case 'single':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-single.tpl.php';
+                include __DIR__ . '/Theme/Backend/article-single.tpl.php';
                 break;
             case 'create':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/article-create.tpl.php';
+                include __DIR__ . '/Theme/Backend/article-create.tpl.php';
                 break;
         }
     }
@@ -197,7 +197,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
         switch($request->getPath(4)) {
             case 'dashboard':
                 /** @noinspection PhpIncludeInspection */
-                include __DIR__ . '/Theme/backend/analysis-dashboard.tpl.php';
+                include __DIR__ . '/Theme/Backend/analysis-dashboard.tpl.php';
                 break;
         }
     }
