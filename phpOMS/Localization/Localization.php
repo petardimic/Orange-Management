@@ -159,25 +159,25 @@ class Localization
     }
 
     /**
-     * @return string
+     * @return array
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getLang()
     {
-        return $this->language;
+        return $this->lang;
     }
 
     /**
-     * @param string $language
+     * @param array $lang
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
-    public function setLang($language)
+    public function setLang($lang)
     {
-        $this->language = $language;
+        $this->lang = $lang;
     }
 
     /**

@@ -55,10 +55,10 @@ class L11nManager
      */
     public function loadLanguage($language, $module, $files)
     {
-        if(!isset($this->language[$language][$module])) {
-            $this->language[$language][$module] = $files;
+        if(!isset($this->language[$language])) {
+            $this->language[$language] = $files;
         } else {
-            $this->language[$language][$module] += $files;
+            $this->language[$language] = $files + $this->language[$language];
         }
     }
 
@@ -73,11 +73,11 @@ class L11nManager
      */
     public function getLanguage($language, $module = null) {
         if(!isset($module) && isset($this->language[$language])) {
-            return $this->langauge[$language];
+            return $this->language[$language];
         } elseif(isset($this->language[$language])) {
-            return $htis->language[$language][$module];
+            return $this->language[$language][$module];
         } else {
-            throw new \Exception('Unknown language or module');
+            return [];
         }
     }
 }

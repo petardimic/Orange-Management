@@ -117,7 +117,7 @@ class Account
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getL11n() {
-        return $this->$l11n;
+        return $this->l11n;
     }
 
     /**
@@ -129,6 +129,6 @@ class Account
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function setL11n($l11n) {
-        $this->$l11n = $l11n;
+        $this->l11n = $l11n;
     }
 }

@@ -256,7 +256,7 @@ class View implements \phpOMS\Contract\RenderableInterface
 
         ob_start();
         /** @noinspection PhpIncludeInspection */
-        include __DIR__ . '/../..' . $this->template . '.tpl.php';
+        include realpath(__DIR__ . '/../..' . $this->template . '.tpl.php');
 
         return ob_get_clean();
     }

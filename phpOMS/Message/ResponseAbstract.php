@@ -21,12 +21,12 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
 
 // region Class Fields
     /**
-     * Language
+     * Localization
      *
-     * @var string
+     * @var \phpOMS\Localization\L11nManager
      * @since 1.0.0
      */
-    protected $language = null;
+    protected $l11n = null;
 
     /**
      * Responses
@@ -61,17 +61,17 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
     /**
      * {@inheritdoc}
      */
-    public function getLanguage()
+    public function getL11n()
     {
-        return $this->language;
+        return $this->l11n;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setLanguage($language)
+    public function setL11n($l11n)
     {
-        return $this->language = $language;
+        return $this->l11n = $l11n;
     }
 
     /**

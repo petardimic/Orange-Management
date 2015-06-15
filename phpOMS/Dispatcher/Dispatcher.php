@@ -87,7 +87,7 @@ class Dispatcher
         } elseif($controller instanceof \Closure) {
             $controller($this->app, $request, $response, $data);
         } else {
-            throw \Exception('');
+            throw new \UnexpectedValueException('Unexpected controller type.');
         }
     }
 }

@@ -47,4 +47,26 @@ interface RequestInterface extends MessageInterface
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
      */
     public function getUri();
+
+    /**
+     * Get language
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function getLanguage();
+
+    /**
+     * Set language
+     *
+     * @param string $language Language
+     *
+     * @return string
+     *
+     * @since  1.0.0
+     * @author Dennis Eichhorn <d.eichhorn@oms.com>
+     */
+    public function setLanguage($language);
 }

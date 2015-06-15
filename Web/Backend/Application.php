@@ -55,7 +55,7 @@ class Application
      * Rendering backend
      *
      * @param \phpOMS\Message\Http\Request  $request  Request
-     * @param \phpOMS\Message\Http\Resposne $response Response
+     * @param \phpOMS\Message\Http\Response $response Response
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -93,12 +93,18 @@ class Application
 
         $l11n = new \phpOMS\Localization\Localization();
         $l11n->setLanguage(!in_array($request->getLanguage(), $this->config['language']) ? $options[1000000029] : $request->getLanguage());
-        $l11n->setLang($this->app->l11nManager->getLang($response->getLanguage()));
+        $l11n->setLang($this->app->l11nManager->getLanguage($l11n->getLanguage()));
         $account->setL11n($l11n);
         $response->setL11n($l11n);
 
-        include __DIR__ . '/lang/' . $account->getL11n()->getLanguage() . '.lang.php';
-        $this->app->l11nManager->loadLanguage($response->getLanguage(), 'CORE', $THEMELANG);
+        include realpath(__DIR__ . '/lang/' . $response->getL11n()->getLanguage() . '.lang.php');
+        $this->app->l11nManager->loadLanguage($response->getL11n()->getLanguage(), 0, $THEMELANG);
+
+        include realpath(__DIR__ . '/../../phpOMS/Localization/lang/' . $response->getL11n()->getLanguage() . '.lang.php');
+        $this->app->l11nManager->loadLanguage($response->getL11n()->getLanguage(), 0, $CORELANG);
+
+        var_dump($this->app->l11nManager->getLanguage('en')); // achtung anders da array
+        var_dump($response->getL11n()->getLang()); // achtung anders da array
 
         $head    = $response->getHead();
         $baseUri = $request->getUri()->getBase();
