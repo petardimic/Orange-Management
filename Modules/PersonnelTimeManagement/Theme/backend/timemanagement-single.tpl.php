@@ -9,8 +9,8 @@
 $timeMgmtView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $headerView   = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$timeMgmtView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$timeMgmtView->setTemplate('/Web/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -34,12 +34,12 @@ $timeMgmtView->addView('header', $headerView);
  * @var \phpOMS\Views\View $this
  */
 $panelSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelSettingsView->setTemplate('/Web/Templates/Panel/BoxFull');
 $panelSettingsView->setTitle($this->l11n->lang[35]['Settings']);
 $this->addView('settings', $panelSettingsView);
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$settingsFormView->setTemplate('/Web/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
@@ -64,12 +64,12 @@ $this->getView('settings')->addView('form', $settingsFormView);
  * Statistics
  */
 $panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelStatView->setTemplate('/Web/Templates/Panel/BoxFull');
 $panelStatView->setTitle($this->l11n->lang[35]['General']);
 $this->addView('stats', $panelStatView);
 
 $statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
-$statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
+$statTableView->setTemplate('/Web/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[35]['Surplus'], '-2.4 hours'],
     [$this->l11n->lang[35]['Working'], '136 hours'],

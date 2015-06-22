@@ -9,7 +9,7 @@ include_once __DIR__ . '/../../Templates/' . $this->getData('name') . '/' . $thi
 $this->getView('DataView')->addData('lang', $reportLanguage[$this->l11n->getLanguage()]);
 
 $formExport = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formExport->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formExport->setTemplate('/Web/Templates/Forms/FormFull');
 $formExport->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formExport->setMethod(\phpOMS\Message\RequestMethod::POST);
 

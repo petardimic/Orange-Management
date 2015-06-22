@@ -5,7 +5,6 @@
         this.success = [];
     };
 
-
     jsOMS.FormManager.prototype.ignore = function (id) {
         this.ignore.push(id);
     };

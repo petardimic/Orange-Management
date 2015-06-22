@@ -4,7 +4,7 @@
  */
 
 $tabView = new \Web\Views\Divider\TabularView($this->l11n, $this->request, $this->response);
-$tabView->setTemplate('/Web/Theme/Templates/Divider/Tabular');
+$tabView->setTemplate('/Web/Templates/Divider/Tabular');
 $lang = $this->getData('lang');
 
 // $csv = json_decode(file_get_contents(__DIR__ . '/NOGIT.json', true)); = faster but addional modification to json
@@ -94,8 +94,8 @@ $nav->setParent(1002701001);
 $overviewCompareList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $overviewCompareListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$overviewCompareList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$overviewCompareListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$overviewCompareList->setTemplate('/Web/Templates/Lists/ListFull');
+$overviewCompareListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -186,11 +186,11 @@ $overviewCompareList->addElements([
 $overviewCompareList->addView('header', $overviewCompareListHeaderView);
 
 $graphProgressView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$graphProgressView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$graphProgressView->setTemplate('/Web/Templates/Panel/BoxHalf');
 $graphProgressView->setTitle($lang['Progress']);
 
 $graphComparisonView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$graphComparisonView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$graphComparisonView->setTemplate('/Web/Templates/Panel/BoxHalf');
 $graphComparisonView->setTitle($lang['Comparison']);
 
 $tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $graphProgressView->render() . $graphComparisonView->render(), 'overview');
@@ -201,8 +201,8 @@ $tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $graphPr
 $carsList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $carsListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$carsList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$carsListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$carsList->setTemplate('/Web/Templates/Lists/ListFull');
+$carsListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -235,8 +235,8 @@ $tabView->addTab($lang['Cars'], $carsList->getOutput(), 'cars');
 $historyList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $historyListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$historyList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$historyListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$historyList->setTemplate('/Web/Templates/Lists/ListFull');
+$historyListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -352,8 +352,8 @@ $tabView->addTab($lang['History'], $historyList->getOutput(), 'history');
 $planningList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $planningListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$planningList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$planningListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$planningList->setTemplate('/Web/Templates/Lists/ListFull');
+$planningListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header

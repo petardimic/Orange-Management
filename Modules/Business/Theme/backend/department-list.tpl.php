@@ -10,9 +10,9 @@ $departmentListView = new \Web\Views\Lists\ListView($this->l11n, $this->request,
 $headerView         = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 $footerView         = new \Web\Views\Lists\PaginationView($this->l11n, $this->request, $this->response);
 
-$departmentListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
-$footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
+$departmentListView->setTemplate('/Web/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
+$footerView->setTemplate('/Web/Templates/Lists/Footer/PaginationBig');
 
 /*
  * Header

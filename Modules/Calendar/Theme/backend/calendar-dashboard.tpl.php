@@ -8,7 +8,7 @@
  */
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$settingsFormView->setTemplate('/Web/Templates/Forms/FormFull');
 $settingsFormView->setHasSubmit(false);
 $settingsFormView->setOnChange(true);
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());

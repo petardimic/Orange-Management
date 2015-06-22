@@ -4,12 +4,12 @@
  */
 
 $panelCoreSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelCoreSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$panelCoreSettingsView->setTemplate('/Web/Templates/Panel/BoxHalf');
 $panelCoreSettingsView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('settings::core', $panelCoreSettingsView);
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
+$settingsFormView->setTemplate('/Web/Templates/Forms/FormInner');
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
 
@@ -42,12 +42,12 @@ $this->getView('settings::core')->addView('form', $settingsFormView);
  */
 
 $panelNameSettingsView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelNameSettingsView->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$panelNameSettingsView->setTemplate('/Web/Templates/Panel/BoxHalf');
 $panelNameSettingsView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('settings::name', $panelNameSettingsView);
 
 $settingsFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$settingsFormView->setTemplate('/Web/Theme/Templates/Forms/FormInner');
+$settingsFormView->setTemplate('/Web/Templates/Forms/FormInner');
 $settingsFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $settingsFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $settingsFormView->setMethod(\phpOMS\Message\RequestMethod::POST);

@@ -4,7 +4,7 @@
  */
 
 $tabView = new \Web\Views\Divider\TabularView($this->l11n, $this->request, $this->response);
-$tabView->setTemplate('/Web/Theme/Templates/Divider/Tabular');
+$tabView->setTemplate('/Web/Templates/Divider/Tabular');
 $lang = $this->getData('lang');
 
 $year  = 2015;
@@ -29,8 +29,8 @@ $nav->setParent(1002701001);
 $overviewCompareList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $overviewCompareListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$overviewCompareList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$overviewCompareListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$overviewCompareList->setTemplate('/Web/Templates/Lists/ListFull');
+$overviewCompareListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -101,8 +101,8 @@ $overviewCompareList->addView('header', $overviewCompareListHeaderView);
 $overviewTypeListView           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $overviewTypeListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$overviewTypeListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$overviewTypeListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$overviewTypeListView->setTemplate('/Web/Templates/Lists/ListFull');
+$overviewTypeListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -244,8 +244,8 @@ $overviewTypeListView->addView('header', $overviewTypeListHeaderView);
 $overviewCostCenterView           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $overviewCostCenterHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$overviewCostCenterView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$overviewCostCenterHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$overviewCostCenterView->setTemplate('/Web/Templates/Lists/ListFull');
+$overviewCostCenterHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -360,8 +360,8 @@ $overviewCostCenterView->addView('header', $overviewCostCenterHeaderView);
 $overviewAccountView           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $overviewAccountHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$overviewAccountView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$overviewAccountHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$overviewAccountView->setTemplate('/Web/Templates/Lists/ListFull');
+$overviewAccountHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -471,7 +471,7 @@ $overviewAccountView->addElements([
 $overviewAccountView->addView('header', $overviewAccountHeaderView);
 
 $graphProgressView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$graphProgressView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$graphProgressView->setTemplate('/Web/Templates/Panel/BoxFull');
 $graphProgressView->setTitle($lang['Progress']);
 
 $tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $overviewTypeListView->render() . $overviewCostCenterView->render() . $overviewAccountView->render() . $graphProgressView->render(), 'overview');
@@ -482,8 +482,8 @@ $tabView->addTab($lang['Overview'], $overviewCompareList->getOutput() . $overvie
 $carsList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $carsListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$carsList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$carsListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$carsList->setTemplate('/Web/Templates/Lists/ListFull');
+$carsListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -504,8 +504,8 @@ $tabView->addTab($lang['CostObject'], $carsList->getOutput(), 'cars');
 $historyList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $historyListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$historyList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$historyListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$historyList->setTemplate('/Web/Templates/Lists/ListFull');
+$historyListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
@@ -526,8 +526,8 @@ $tabView->addTab($lang['CostCenter'], $historyList->getOutput(), 'history');
 $planningList           = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $planningListHeaderView = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$planningList->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$planningListHeaderView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$planningList->setTemplate('/Web/Templates/Lists/ListFull');
+$planningListHeaderView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header

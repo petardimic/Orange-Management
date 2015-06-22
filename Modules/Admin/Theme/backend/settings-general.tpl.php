@@ -17,16 +17,16 @@ $this->addView('settings::page', $panelPageView);
 $this->addView('settings::l11n', $panelLocalizationView);
 $this->addView('settings::accounts', $panelAccountsView);
 
-//$this->getView('nav::top')->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
-$this->getView('settings::page')->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
-$this->getView('settings::l11n')->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
+//$this->getView('nav::top')->setTemplate('/Web/Templates/Panel/BoxThird');
+$this->getView('settings::page')->setTemplate('/Web/Templates/Panel/BoxThird');
+$this->getView('settings::l11n')->setTemplate('/Web/Templates/Panel/BoxThird');
 
 /*
  * General
  */
 
 $formPageView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formPageView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formPageView->setTemplate('/Web/Templates/Forms/FormFull');
 $formPageView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formPageView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formPageView->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -67,7 +67,7 @@ $this->getView('settings::page')->addView('form', $formPageView);
  */
 
 $formLocalizationView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formLocalizationView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formLocalizationView->setTemplate('/Web/Templates/Forms/FormFull');
 $formLocalizationView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formLocalizationView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formLocalizationView->setMethod(\phpOMS\Message\RequestMethod::POST);

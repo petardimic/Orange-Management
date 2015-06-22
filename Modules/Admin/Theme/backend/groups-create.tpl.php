@@ -10,14 +10,14 @@ $panelCreate = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this
 $panelCreate->setTitle($this->l11n->lang[1]['Group']);
 
 $this->addView('group:create', $panelCreate);
-$this->getView('group:create')->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
+$this->getView('group:create')->setTemplate('/Web/Templates/Panel/BoxThird');
 
 /*
  * General
  */
 
 $formGroupCreate = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formGroupCreate->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formGroupCreate->setTemplate('/Web/Templates/Forms/FormFull');
 $formGroupCreate->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $formGroupCreate->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formGroupCreate->setMethod(\phpOMS\Message\RequestMethod::POST);

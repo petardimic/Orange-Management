@@ -70,13 +70,28 @@ class WebApplication extends \phpOMS\ApplicationAbstract
                     $sub->run($request, $response);
                     break;
             }
-
-
         } catch(\Exception $e) {
             $sub = new \Web\E500\Application($this, $config);
             $sub->run($request, $response);
         } finally {
-            echo $response->render();
+            switch($response->getHeader('Content-Type')) {
+                case \phpOMS\System\MimeType::M_HTML:
+                    echo $response->render();
+                    break;
+                case \phpOMS\System\MimeType::M_JSON:
+                    echo $response->toJson();
+                    break;
+                case \phpOMS\System\MimeType::M_PDF:
+                    break;
+                case \phpOMS\System\MimeType::M_CONF:
+                    echo $response->toCsv();
+                    break;
+                case \phpOMS\System\MimeType::M_CSV:
+                    break;
+                default:
+                    echo $response->render();
+                    break;
+            }
         }
     }
 }

@@ -38,9 +38,8 @@ class Application
     /**
      * Constructor
      *
-     * @param \Web\WebApplication           $app      WebApplication
-     * @param \phpOMS\Message\Http\Request  $request  Http request
-     * @param \phpOMS\Message\Http\Response $response Http response
+     * @param \Web\WebApplication $app    WebApplication
+     * @param array               $config Application config
      *
      * @since  1.0.0
      * @author Dennis Eichhorn <d.eichhorn@oms.com>
@@ -62,7 +61,6 @@ class Application
      */
     public function run($request, $response)
     {
-        $response->setHeader('Content-Type', 'text/html; charset=utf-8');
         $pageView = new \Web\Views\Page\GenericView($this->app, $request, $response);
 
         if($request->getMethod() !== \phpOMS\Message\RequestMethod::GET) {
@@ -71,7 +69,7 @@ class Application
             $response->setStatusCode(406);
 
             $pageView->setTemplate('/Web/Backend/Error/406');
-            $response->set('Content', $pageView->render());
+            $response->set('Content', $pageView);
 
             return;
         }
@@ -83,7 +81,7 @@ class Application
             $response->setStatusCode(503);
 
             $pageView->setTemplate('/Web/Backend/Error/503');
-            $response->set('Content', $pageView->render());
+            $response->set('Content', $pageView);
 
             return;
         }
@@ -93,7 +91,6 @@ class Application
 
         $l11n = new \phpOMS\Localization\Localization();
         $l11n->setLanguage(!in_array($request->getLanguage(), $this->config['language']) ? $options[1000000029] : $request->getLanguage());
-        $l11n->setLang($this->app->l11nManager->getLanguage($l11n->getLanguage()));
         $account->setL11n($l11n);
         $response->setL11n($l11n);
 
@@ -103,8 +100,8 @@ class Application
         include realpath(__DIR__ . '/../../phpOMS/Localization/lang/' . $response->getL11n()->getLanguage() . '.lang.php');
         $this->app->l11nManager->loadLanguage($response->getL11n()->getLanguage(), 0, $CORELANG);
 
-        var_dump($this->app->l11nManager->getLanguage('en')); // achtung anders da array
-        var_dump($response->getL11n()->getLang()); // achtung anders da array
+        /* Carefull we are setting an array here that's why changes in the future will result in different values */
+        $response->getL11n()->setLang($this->app->l11nManager->getLanguage($l11n->getLanguage()));
 
         $head    = $response->getHead();
         $baseUri = $request->getUri()->getBase();
@@ -112,24 +109,24 @@ class Application
         if($account->getId() < 1) {
             $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
             $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
-            $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/Backend/js/backend.js');
+            $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Backend/js/backend.js');
             $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
             $pageView->setTemplate('/Web/Backend/login');
-            $response->set('Content', $pageView->render());
+            $response->set('Content', $pageView);
 
             return;
         }
 
-        $modules = $this->app->moduleManager->getRoutedModules();
+        $modules = $this->app->moduleManager->getRoutedModules($request);
         $this->app->moduleManager->initModule($modules);
         $this->app->moduleManager->loadLanguage($response->getLanguage(), 'backend');
 
-        $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Theme/Backend/css/backend.css');
+        $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'Web/Backend/css/backend.css');
         $head->addAsset(\phpOMS\Asset\AssetType::CSS, $baseUri . 'External/fontawesome/css/font-awesome.min.css');
         $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'jsOMS/oms.min.js');
         $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'External/d3/d3.min.js');
-        $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Theme/Backend/js/backend.js');
+        $head->addAsset(\phpOMS\Asset\AssetType::JS, $baseUri . 'Web/Backend/js/backend.js');
         $head->setStyle('core', file_get_contents(__DIR__ . '/Theme/Backend/css/backend-small.css'));
         $head->setScript('core', 'var Url = "' . $baseUri . '", assetManager = new jsOMS.AssetManager();');
 
@@ -139,7 +136,7 @@ class Application
 
         $this->disptacher($this->router->route($this->request->getRoutify()), $request, $response, null);
 
-        $pageView->setTemplate('/Web/Theme/Backend/index');
-        $response->set('Content', $pageView->render());
+        $pageView->setTemplate('/Web/Backend/index');
+        $response->set('Content', $pageView);
     }
 }

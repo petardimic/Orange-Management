@@ -87,7 +87,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Backend/404.tpl.php';
 
                 return;
         }
@@ -140,7 +140,7 @@ class Controller extends \phpOMS\Module\ModuleAbstract implements \phpOMS\Module
                 $response->setHeader('HTTP', 'HTTP/1.0 404 Not Found');
                 $response->setHeader('Status', 'Status: 404 Not Found');
 
-                include __DIR__ . '/../../Web/Theme/Backend/404.tpl.php';
+                include __DIR__ . '/../../Web/Backend/404.tpl.php';
 
                 return;
         }

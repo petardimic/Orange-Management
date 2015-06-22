@@ -44,6 +44,7 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
      */
     public function __construct()
     {
+        $this->setHeader('Content-Type', 'text/html; charset=utf-8');
         $this->head = new \phpOMS\Model\Html\Head();
     }
 
@@ -201,7 +202,13 @@ class Response extends \phpOMS\Message\ResponseAbstract implements \phpOMS\Contr
         $render = $this->head->render();
 
         foreach($this->response as $key => $response) {
-            $render .= $response;
+            if(is_object($response)) {
+                $render .= $response->render();
+            } elseif(is_string($response)) {
+                $render .= $response;
+            } else {
+                throw new \RuntimeException('Wrong response type');
+            }
         }
 
         return $render;

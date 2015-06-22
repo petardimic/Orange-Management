@@ -9,17 +9,17 @@ $createPanel->setTitle($this->l11n->lang[0]['Create']);
 $permissionPanel->setTitle($this->l11n->lang[27]['Permission']);
 
 $this->addView('createFormPanel', $createPanel);
-$this->getView('createFormPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$this->getView('createFormPanel')->setTemplate('/Web/Templates/Panel/BoxHalf');
 
 $this->addView('permissionFormPanel', $permissionPanel);
-$this->getView('permissionFormPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$this->getView('permissionFormPanel')->setTemplate('/Web/Templates/Panel/BoxHalf');
 
 /*
  * Create
  */
 
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formCreateForm->setTemplate('/Web/Templates/Forms/FormFull');
 $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
 $formCreateForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -64,7 +64,7 @@ $this->getView('createFormPanel')->addView('form', $formCreateForm);
  */
 
 $formPermissionAdd = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formPermissionAdd->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formPermissionAdd->setTemplate('/Web/Templates/Forms/FormFull');
 $formPermissionAdd->setSubmit('submit1', $this->l11n->lang[0]['Add']);
 $formPermissionAdd->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $formPermissionAdd->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -108,8 +108,8 @@ $this->getView('permissionFormPanel')->addView('form', $formPermissionAdd);
 $permissionListView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $headerView         = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$permissionListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$permissionListView->setTemplate('/Web/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header

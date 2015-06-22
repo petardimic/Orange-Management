@@ -10,9 +10,9 @@ $mainTableView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $thi
 $headerView    = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 $footerView    = new \Web\Views\Lists\PaginationView($this->l11n, $this->request, $this->response);
 
-$mainTableView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
-$footerView->setTemplate('/Web/Theme/Templates/Lists/Footer/PaginationBig');
+$mainTableView->setTemplate('/Web/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
+$footerView->setTemplate('/Web/Templates/Lists/Footer/PaginationBig');
 
 /*
  * Header
@@ -45,12 +45,12 @@ $mainTableView->addView('footer', $footerView);
  * Statistics
  */
 $panelStatView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelStatView->setTemplate('/Web/Theme/Templates/Panel/BoxFull');
+$panelStatView->setTemplate('/Web/Templates/Panel/BoxFull');
 $panelStatView->setTitle($this->l11n->lang[30]['Statistics']);
 $this->addView('stats', $panelStatView);
 
 $statTableView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
-$statTableView->setTemplate('/Web/Theme/Templates/Lists/AssocList');
+$statTableView->setTemplate('/Web/Templates/Lists/AssocList');
 $statTableView->setElements([
     [$this->l11n->lang[30]['AvgRiskAmount'], 0],
 ]);

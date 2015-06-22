@@ -16,7 +16,7 @@ namespace phpOMS\Message;
  * @link       http://orange-management.com
  * @since      1.0.0
  */
-abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
+abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface, \phpOMS\Contract\ArrayableInterface, \phpOMS\Contract\JsonableInterface
 {
 
 // region Class Fields
@@ -51,6 +51,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      * @since 1.0.0
      */
     protected $account = null;
+
 // endregion
 
     /**
@@ -93,7 +94,7 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
      * Add response
      *
      * @param mixed   $key       Response id
-     * @param mixed  $response  Response to add
+     * @param mixed   $response  Response to add
      * @param boolean $overwrite Overwrite
      *
      * @since  1.0.0
@@ -136,5 +137,13 @@ abstract class ResponseAbstract implements \phpOMS\Message\ResponseInterface
     public function setAccount($account)
     {
         $this->account = $account;
+    }
+
+    public function toArray()
+    {
+    }
+
+    public function toJson($options = 0)
+    {
     }
 }

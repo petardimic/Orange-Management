@@ -8,12 +8,12 @@
  */
 
 $panelAccountView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelAccountView->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
+$panelAccountView->setTemplate('/Web/Templates/Panel/BoxThird');
 $panelAccountView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('account::account', $panelAccountView);
 
 $accountFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$accountFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$accountFormView->setTemplate('/Web/Templates/Forms/FormFull');
 $accountFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $accountFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $accountFormView->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -71,12 +71,12 @@ $this->getView('account::account')->addView('form', $accountFormView);
  */
 
 $panelProfileView = new \Web\Views\Panel\PanelView($this->l11n, $this->request, $this->response);
-$panelProfileView->setTemplate('/Web/Theme/Templates/Panel/BoxThird');
+$panelProfileView->setTemplate('/Web/Templates/Panel/BoxThird');
 $panelProfileView->setTitle($this->l11n->lang[1]['Account']);
 $this->addView('account::profile', $panelProfileView);
 
 $profileFormView = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$profileFormView->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$profileFormView->setTemplate('/Web/Templates/Forms/FormFull');
 $profileFormView->setSubmit('submit1', $this->l11n->lang[0]['Submit']);
 $profileFormView->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $profileFormView->setMethod(\phpOMS\Message\RequestMethod::POST);

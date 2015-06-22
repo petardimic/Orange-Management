@@ -55,10 +55,10 @@ class L11nManager
      */
     public function loadLanguage($language, $module, $files)
     {
-        if(!isset($this->language[$language])) {
-            $this->language[$language] = $files;
+        if(!isset($this->language[$language][$module])) {
+            $this->language[$language][$module] = $files[$module];
         } else {
-            $this->language[$language] = $files + $this->language[$language];
+            $this->language[$language][$module] = $files[$module] + $this->language[$language][$module];
         }
     }
 

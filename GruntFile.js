@@ -34,6 +34,7 @@ module.exports = function (grunt) {
                     'jsOMS/Utils/oLib.js',
                     'jsOMS/Stdlib/**/*.js',
                     'jsOMS/Config/**/*.js',
+                    'jsOMS/Auth/**/*.js',
                     'jsOMS/Uri/**/*.js',
                     'jsOMS/Views/**/*.js',
                     'jsOMS/Models/**/*.js',

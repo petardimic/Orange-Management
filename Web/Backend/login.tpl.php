@@ -1,6 +1,6 @@
 <?php
 $loginForm = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$loginForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$loginForm->setTemplate('/Web/Templates/Forms/FormFull');
 $loginForm->setSubmit('submit1', $this->l11n->lang[0]['Login']);
 $loginForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->l11n->getLanguage() . '/api/login.php');
 $loginForm->setMethod(\phpOMS\Message\RequestMethod::POST);

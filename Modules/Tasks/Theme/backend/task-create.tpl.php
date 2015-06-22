@@ -9,17 +9,17 @@ $createPanel->setTitle($this->l11n->lang[0]['Create']);
 $mediaPanel->setTitle($this->l11n->lang[11]['Media']);
 
 $this->addView('createFormPanel', $createPanel);
-$this->getView('createFormPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$this->getView('createFormPanel')->setTemplate('/Web/Templates/Panel/BoxHalf');
 
 $this->addView('mediaPanel', $mediaPanel);
-$this->getView('mediaPanel')->setTemplate('/Web/Theme/Templates/Panel/BoxHalf');
+$this->getView('mediaPanel')->setTemplate('/Web/Templates/Panel/BoxHalf');
 
 /*
  * Create
  */
 
 $formCreateForm = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$formCreateForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$formCreateForm->setTemplate('/Web/Templates/Forms/FormFull');
 $formCreateForm->setSubmit('submit1', $this->l11n->lang[0]['Create']);
 $formCreateForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost() . '/' . $this->l11n->getLanguage() . '/api/task/create.php');
 $formCreateForm->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -89,7 +89,7 @@ $this->getView('createFormPanel')->addView('form', $formCreateForm);
  */
 
 $mediaForm = new \Web\Views\Form\FormView($this->l11n, $this->request, $this->response);
-$mediaForm->setTemplate('/Web/Theme/Templates/Forms/FormFull');
+$mediaForm->setTemplate('/Web/Templates/Forms/FormFull');
 $mediaForm->setSubmit('submit1', $this->l11n->lang[0]['Add']);
 $mediaForm->setAction($this->request->getUri()->getScheme() . '://' . $this->request->getUri()->getHost());
 $mediaForm->setMethod(\phpOMS\Message\RequestMethod::POST);
@@ -114,8 +114,8 @@ $this->getView('mediaPanel')->addView('form', $mediaForm);
 $mediaListView = new \Web\Views\Lists\ListView($this->l11n, $this->request, $this->response);
 $headerView    = new \Web\Views\Lists\HeaderView($this->l11n, $this->request, $this->response);
 
-$mediaListView->setTemplate('/Web/Theme/Templates/Lists/ListFull');
-$headerView->setTemplate('/Web/Theme/Templates/Lists/Header/HeaderTable');
+$mediaListView->setTemplate('/Web/Templates/Lists/ListFull');
+$headerView->setTemplate('/Web/Templates/Lists/Header/HeaderTable');
 
 /*
  * Header
